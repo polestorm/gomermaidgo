@@ -244,3 +244,29 @@ Związki zapisane słowami (`only one to zero or more`; błąd `er-unsupported`)
 - etykieta związku jest opcjonalna;
 - limit 100 atrybutów w encji; limity grafu jak w schemacie blokowym.
 
+
+## Wykres kołowy (`pie`)
+
+### Obsługiwane
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| nagłówek | `pie`, `pie showData`, `pie title Tekst`, `pie showData title Tekst` | PIE-001 |
+| tytuł i wartości w legendzie | `title Tekst`, `showData` w osobnej linii | PIE-001, PIE-004 |
+| wycinek | `"etykieta" : 42.5` | PIE-002 |
+| dostępność | `accTitle`, `accDescr` | PIE-001 |
+
+### Poza profilem
+
+Konfiguracja w bloku `%%{init}%%` i `---` (położenie tekstu, szerokość obrysu), motywy.
+
+### Świadome różnice wobec Mermaid
+
+- wycinki są w kolejności ze źródła, od godziny dwunastej zgodnie z ruchem wskazówek zegara;
+- wypełnienia domyślne to odcienie szarości o naprzemiennej jasności, żeby wykres dało się czytać w druku
+  czarno-białym; `WithColors` daje kolory palety;
+- udział procentowy stoi na wycinku tylko wtedy, gdy wycinek ma co najmniej 4% koła; mniejszego nie da się
+  podpisać bez nachodzenia na sąsiadów (renderer odniesienia podpisuje każdy);
+- udział jest zaokrąglany do liczby całkowitej, a poniżej 10% do jednego miejsca po przecinku;
+- etykieta wycinka nie może być pusta ani się powtarzać, a wartość ujemna jest błędem; wykres bez wycinka
+  o wartości powyżej zera jest błędem; limit to 24 wycinki.

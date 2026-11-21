@@ -21,6 +21,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/gantt"
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/layered"
+	"github.com/polestorm/gomermaidgo/internal/pie"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
@@ -40,11 +41,12 @@ const (
 	TypeState     = "stateDiagram"
 	TypeGantt     = "gantt"
 	TypeER        = "erDiagram"
+	TypePie       = "pie"
 )
 
 // SupportedTypes zwraca obsługiwane typy diagramów.
 func SupportedTypes() []string {
-	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER}
+	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie}
 }
 
 type config struct {
@@ -126,6 +128,8 @@ func DetectType(source string) (string, error) {
 			return TypeGantt, nil
 		case "erDiagram":
 			return TypeER, nil
+		case "pie":
+			return TypePie, nil
 		}
 		return "", fmt.Errorf("%w: %q (line %d)", ErrUnsupportedType, word, n+1)
 	}
@@ -169,6 +173,8 @@ func Check(source string) error {
 		_, err = gantt.Parse(source)
 	case TypeER:
 		_, err = er.Parse(source)
+	case TypePie:
+		_, err = pie.Parse(source)
 	default:
 		_, err = sequence.Parse(source)
 	}
@@ -231,6 +237,13 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 			return nil, nil, err
 		}
 		return gantt.Layout(d, gantt.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+	}
+	if kind == TypePie {
+		chart, err := pie.Parse(source)
+		if err != nil {
+			return nil, nil, err
+		}
+		return pie.Layout(chart, pie.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
 	}
 	if kind != TypeSequence {
 		var g *graph.Graph
