@@ -33,8 +33,10 @@ func (l *layouter) wrapLimit(shape graph.Shape) float64 {
 // nodeSize zwraca rzeczywisty rozmiar kształtu mieszczącego podany tekst.
 func (l *layouter) nodeSize(shape graph.Shape, text []string) (w, h float64) {
 	tw, th := l.textSize(text)
-	padX, padY := l.u(20), l.u(12)
-	w, h = math.Max(tw+2*padX, l.u(56)), math.Max(th+2*padY, l.u(44))
+	// Pole jest wyraźnie większe od tekstu: napis ma wokół siebie powietrze, a pola o różnej
+	// długości tekstu nie różnią się tak mocno szerokością.
+	padX, padY := l.u(28), l.u(15)
+	w, h = math.Max(tw+2*padX, l.u(96)), math.Max(th+2*padY, l.u(50))
 	switch shape {
 	case graph.Stadium:
 		w += h / 2
@@ -122,7 +124,13 @@ func (l *layouter) portRange(it *item) float64 {
 		return w - 2*l.u(20)
 	}
 	switch it.node.Shape {
-	case graph.Rhombus, graph.Choice, graph.Circle, graph.DoubleCircle, graph.StateStart, graph.StateEnd:
+	case graph.Rhombus, graph.Choice:
+		// Krawędzie wychodzą z boków przy wierzchołku, każda w swoim miejscu: widać, która
+		// odpowiedź dokąd prowadzi.
+		return w * 0.45
+	case graph.Circle, graph.DoubleCircle:
+		return w * 0.5
+	case graph.StateStart, graph.StateEnd:
 		return 0
 	case graph.Stadium:
 		return w - it.h
@@ -499,6 +507,23 @@ func (l *layouter) drawLabel(lines []string, x, y float64) {
 
 type routePoint struct{ x, y float64 }
 
+// inset mówi, o ile brzeg kształtu jest bliżej środka pola niż krawędź jego prostokąta
+// w miejscu przesuniętym o off od osi: romb i koło zwężają się ku bokom.
+func inset(it *item, off float64) float64 {
+	if it.kind != kindNode || off == 0 {
+		return 0
+	}
+	half := it.nodeW() / 2
+	switch it.node.Shape {
+	case graph.Rhombus, graph.Choice:
+		return it.h / 2 * math.Min(math.Abs(off)/half, 1)
+	case graph.Circle, graph.DoubleCircle:
+		r := it.h / 2
+		return r - math.Sqrt(math.Max(r*r-off*off, 0))
+	}
+	return 0
+}
+
 // route zwraca punkty krawędzi od górnego końca do dolnego. Koniec leżący głębiej, w podgrafie,
 // jest prowadzony odcinkiem z układu tego podgrafu: od pola do punktu na ramce albo odwrotnie.
 func (l *layouter) route(e *ledge) []routePoint {
@@ -513,7 +538,7 @@ func (l *layouter) route(e *ledge) []routePoint {
 			pts = append(pts, routePoint{e.u.x, e.u.y})
 		}
 	default:
-		pts = append(pts, routePoint{e.u.nodeX() + e.upperPort, e.u.y + e.u.h/2})
+		pts = append(pts, routePoint{e.u.nodeX() + e.upperPort, e.u.y + e.u.h/2 - inset(e.u, e.upperPort)})
 	}
 	for _, d := range e.chain {
 		if d.band > 0 {
@@ -532,7 +557,7 @@ func (l *layouter) route(e *ledge) []routePoint {
 		}
 		pts = append(pts, routePoint{e.v.x, border})
 	default:
-		pts = append(pts, routePoint{e.v.nodeX() + e.lowerPort, e.v.y - e.v.h/2})
+		pts = append(pts, routePoint{e.v.nodeX() + e.lowerPort, e.v.y - e.v.h/2 + inset(e.v, e.lowerPort)})
 	}
 	return pts
 }

@@ -1,70 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="746.6" height="636" viewBox="-12 -12 746.6 636" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M69 22 L114 22 L250.4 22 L300.6 22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M362.9 22 L419.4 22 L456.6 22 L511.3 22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M573.6 22 L634.6 22 L660.3 22" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M69 114 L114 114 L250.4 114 C275.5 114 275.5 153 300.6 153" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M69 206 L114 206 L250.4 206 C275.5 206 275.5 167 300.6 167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M362.9 153 C391.15 153 391.15 151 419.4 151 L456.6 151 L511.3 151" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M362.9 167 C391.15 167 391.15 169 419.4 169 L456.6 169 C483.95 169 483.95 243 511.3 243" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M69 339 C91.5 339 91.5 325 114 325 L250.4 325 C275.5 325 275.5 373 300.6 373" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M69 353 C91.5 353 91.5 367 114 367 L250.4 367 C275.5 367 275.5 465 300.6 465" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M69 448 C91.5 448 91.5 434 114 434 L250.4 434 C275.5 434 275.5 387 300.6 387" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M69 462 C91.5 462 91.5 476 114 476 L250.4 476 C275.5 476 275.5 479 300.6 479" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M82 577 L114 577 L250.4 577 L276.1 577" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M387.4 577 L419.4 577 L456.6 577 L482.3 577" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="115" y="315" width="134.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="115" y="357" width="134.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="115" y="424" width="134.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="115" y="466" width="134.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="420.4" y="567" width="35.2" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="306.9,22 297.9,17 297.9,27" fill="#3b4754"/>
-<polygon class="arrowhead" points="517.6,22 508.6,17 508.6,27" fill="#3b4754"/>
-<polygon class="arrowhead" points="666.6,22 657.6,17 657.6,27" fill="#3b4754"/>
-<polygon class="arrowhead" points="306.9,153 297.9,148 297.9,158" fill="#3b4754"/>
-<polygon class="arrowhead" points="306.9,167 297.9,162 297.9,172" fill="#3b4754"/>
-<polygon class="arrowhead" points="517.6,151 508.6,146 508.6,156" fill="#3b4754"/>
-<polygon class="arrowhead" points="517.6,243 508.6,238 508.6,248" fill="#3b4754"/>
-<polygon class="arrowhead" points="306.9,373 297.9,368 297.9,378" fill="#3b4754"/>
-<polygon class="arrowhead" points="306.9,465 297.9,460 297.9,470" fill="#3b4754"/>
-<polygon class="arrowhead" points="306.9,387 297.9,382 297.9,392" fill="#3b4754"/>
-<polygon class="arrowhead" points="306.9,479 297.9,474 297.9,484" fill="#3b4754"/>
-<polygon class="arrowhead" points="282.4,577 273.4,572 273.4,582" fill="#3b4754"/>
-<polygon class="arrowhead" points="488.6,577 479.6,572 479.6,582" fill="#3b4754"/>
-<rect class="node" x="13" y="0" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="13" y="92" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="13" y="184" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="13" y="324" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="13" y="433" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="555" width="82" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="306.9" y="0" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="306.9" y="138" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="306.9" y="358" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="306.9" y="450" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="334.9,542 387.4,577 334.9,612 282.4,577" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="517.6" y="0" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="517.6" y="129" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="517.6" y="221" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="488.6" y="555" width="114" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="666.6" y="0" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="41" y="27.6" text-anchor="middle" fill="#1b1f24">A</text>
-<text class="node-label" x="41" y="119.6" text-anchor="middle" fill="#1b1f24">E</text>
-<text class="node-label" x="41" y="211.6" text-anchor="middle" fill="#1b1f24">F</text>
-<text class="node-label" x="41" y="351.6" text-anchor="middle" fill="#1b1f24">J</text>
-<text class="node-label" x="41" y="460.6" text-anchor="middle" fill="#1b1f24">K</text>
-<text class="node-label" x="41" y="582.6" text-anchor="middle" fill="#1b1f24">Start</text>
-<text class="node-label" x="334.9" y="27.6" text-anchor="middle" fill="#1b1f24">B</text>
-<text class="node-label" x="334.9" y="165.6" text-anchor="middle" fill="#1b1f24">G</text>
-<text class="node-label" x="334.9" y="385.6" text-anchor="middle" fill="#1b1f24">L</text>
-<text class="node-label" x="334.9" y="477.6" text-anchor="middle" fill="#1b1f24">M</text>
-<text class="node-label" x="334.9" y="582.6" text-anchor="middle" fill="#1b1f24">Wybór</text>
-<text class="node-label" x="545.6" y="27.6" text-anchor="middle" fill="#1b1f24">C</text>
-<text class="node-label" x="545.6" y="156.6" text-anchor="middle" fill="#1b1f24">H</text>
-<text class="node-label" x="545.6" y="248.6" text-anchor="middle" fill="#1b1f24">I</text>
-<text class="node-label" x="545.6" y="582.6" text-anchor="middle" fill="#1b1f24">Koniec</text>
-<text class="node-label" x="694.6" y="27.6" text-anchor="middle" fill="#1b1f24">D</text>
-<text class="edge-label" x="182.2" y="330.6" text-anchor="middle" fill="#1b1f24">każdy z każdym</text>
-<text class="edge-label" x="182.2" y="372.6" text-anchor="middle" fill="#1b1f24">każdy z każdym</text>
-<text class="edge-label" x="182.2" y="439.6" text-anchor="middle" fill="#1b1f24">każdy z każdym</text>
-<text class="edge-label" x="182.2" y="481.6" text-anchor="middle" fill="#1b1f24">każdy z każdym</text>
-<text class="edge-label" x="438" y="582.6" text-anchor="middle" fill="#1b1f24">tak</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="821.6" height="667" viewBox="-12 -12 821.6 667" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="edge" d="M97 25 L130 25 L266.4 25 L296.6 25" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M398.9 25 L435.4 25 L472.6 25 L516.8 25" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M619.1 25 L669.6 25 L695.3 25" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M97 123 L130 123 L266.4 123 C281.5 123 281.5 163.5 296.6 163.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M97 221 L130 221 L266.4 221 C281.5 221 281.5 180.5 296.6 180.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M398.9 163.5 C417.15 163.5 417.15 163 435.4 163 L472.6 163 L516.8 163" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M398.9 180.5 C417.15 180.5 417.15 181 435.4 181 L472.6 181 C494.7 181 494.7 261 516.8 261" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M97 358.5 C113.5 358.5 113.5 346 130 346 L266.4 346 C281.5 346 281.5 393.5 296.6 393.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M97 375.5 C113.5 375.5 113.5 388 130 388 L266.4 388 C281.5 388 281.5 491.5 296.6 491.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M97 470.5 C113.5 470.5 113.5 458 130 458 L266.4 458 C281.5 458 281.5 410.5 296.6 410.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M97 487.5 C113.5 487.5 113.5 500 130 500 L266.4 500 C281.5 500 281.5 508.5 296.6 508.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M98 608 L130 608 L266.4 608 L292.1 608" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M403.4 608 L435.4 608 L472.6 608 L498.3 608" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="131" y="336" width="134.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="131" y="378" width="134.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="131" y="448" width="134.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="131" y="490" width="134.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="436.4" y="598" width="35.2" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="302.9,25 293.9,20 293.9,30" fill="#3b4754"/>
+<polygon class="arrowhead" points="523.1,25 514.1,20 514.1,30" fill="#3b4754"/>
+<polygon class="arrowhead" points="701.6,25 692.6,20 692.6,30" fill="#3b4754"/>
+<polygon class="arrowhead" points="302.9,163.5 293.9,158.5 293.9,168.5" fill="#3b4754"/>
+<polygon class="arrowhead" points="302.9,180.5 293.9,175.5 293.9,185.5" fill="#3b4754"/>
+<polygon class="arrowhead" points="523.1,163 514.1,158 514.1,168" fill="#3b4754"/>
+<polygon class="arrowhead" points="523.1,261 514.1,256 514.1,266" fill="#3b4754"/>
+<polygon class="arrowhead" points="302.9,393.5 293.9,388.5 293.9,398.5" fill="#3b4754"/>
+<polygon class="arrowhead" points="302.9,491.5 293.9,486.5 293.9,496.5" fill="#3b4754"/>
+<polygon class="arrowhead" points="302.9,410.5 293.9,405.5 293.9,415.5" fill="#3b4754"/>
+<polygon class="arrowhead" points="302.9,508.5 293.9,503.5 293.9,513.5" fill="#3b4754"/>
+<polygon class="arrowhead" points="298.4,608 289.4,603 289.4,613" fill="#3b4754"/>
+<polygon class="arrowhead" points="504.6,608 495.6,603 495.6,613" fill="#3b4754"/>
+<rect class="node" x="1" y="0" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1" y="98" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1" y="196" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1" y="342" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1" y="454" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="583" width="98" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="302.9" y="0" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="302.9" y="147" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="302.9" y="377" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="302.9" y="475" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="350.9,573 403.4,608 350.9,643 298.4,608" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="523.1" y="0" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="523.1" y="138" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="523.1" y="236" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="504.6" y="583" width="133" height="50" rx="25" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="701.6" y="0" width="96" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="49" y="30.6" text-anchor="middle" fill="#1b1f24">A</text>
+<text class="node-label" x="49" y="128.6" text-anchor="middle" fill="#1b1f24">E</text>
+<text class="node-label" x="49" y="226.6" text-anchor="middle" fill="#1b1f24">F</text>
+<text class="node-label" x="49" y="372.6" text-anchor="middle" fill="#1b1f24">J</text>
+<text class="node-label" x="49" y="484.6" text-anchor="middle" fill="#1b1f24">K</text>
+<text class="node-label" x="49" y="613.6" text-anchor="middle" fill="#1b1f24">Start</text>
+<text class="node-label" x="350.9" y="30.6" text-anchor="middle" fill="#1b1f24">B</text>
+<text class="node-label" x="350.9" y="177.6" text-anchor="middle" fill="#1b1f24">G</text>
+<text class="node-label" x="350.9" y="407.6" text-anchor="middle" fill="#1b1f24">L</text>
+<text class="node-label" x="350.9" y="505.6" text-anchor="middle" fill="#1b1f24">M</text>
+<text class="node-label" x="350.9" y="613.6" text-anchor="middle" fill="#1b1f24">Wybór</text>
+<text class="node-label" x="571.1" y="30.6" text-anchor="middle" fill="#1b1f24">C</text>
+<text class="node-label" x="571.1" y="168.6" text-anchor="middle" fill="#1b1f24">H</text>
+<text class="node-label" x="571.1" y="266.6" text-anchor="middle" fill="#1b1f24">I</text>
+<text class="node-label" x="571.1" y="613.6" text-anchor="middle" fill="#1b1f24">Koniec</text>
+<text class="node-label" x="749.6" y="30.6" text-anchor="middle" fill="#1b1f24">D</text>
+<text class="edge-label" x="198.2" y="351.6" text-anchor="middle" fill="#1b1f24">każdy z każdym</text>
+<text class="edge-label" x="198.2" y="393.6" text-anchor="middle" fill="#1b1f24">każdy z każdym</text>
+<text class="edge-label" x="198.2" y="463.6" text-anchor="middle" fill="#1b1f24">każdy z każdym</text>
+<text class="edge-label" x="198.2" y="505.6" text-anchor="middle" fill="#1b1f24">każdy z każdym</text>
+<text class="edge-label" x="454" y="613.6" text-anchor="middle" fill="#1b1f24">tak</text>
 </svg>
