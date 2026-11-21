@@ -1,21 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="477.5" height="487" viewBox="-11.5 -12 477.5 487" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M154 50 L154 107.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M145 229.02 C145 260.86 96 260.86 96 292.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 229.02 C163 264.01 213 264.01 213 299 L213 349 C213 377.85 183 377.85 183 406.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M96 349 C96 377.85 165 377.85 165 406.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="154,114 149,105 159,105" fill="#3b4754"/>
-<polygon class="arrowhead" points="96,299 91,290 101,290" fill="#3b4754"/>
-<polygon class="arrowhead" points="183,413 178,404 188,404" fill="#3b4754"/>
-<polygon class="arrowhead" points="165,413 160,404 170,404" fill="#3b4754"/>
-<rect class="node" x="28.5" y="0" width="251" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="328" y="0" width="126" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="154,114 245,174.5 154,235 63,174.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0.5" y="299" width="191" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="101" y="413" width="146" height="50" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="154" y="30.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie niezgodności</text>
-<text class="node-label" x="391" y="30.6" text-anchor="middle" fill="#1b1f24">Samotny</text>
-<text class="node-label" x="154" y="170.1" text-anchor="middle" fill="#1b1f24">Czy wymaga</text>
-<text class="node-label" x="154" y="190.1" text-anchor="middle" fill="#1b1f24">działań?</text>
-<text class="node-label" x="96" y="329.6" text-anchor="middle" fill="#1b1f24">Analiza przyczyn</text>
-<text class="node-label" x="174" y="443.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="491.5" height="409" viewBox="-11.5 -12 491.5 409" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="edge" d="M154 44 L154 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M145 203.02 C145 223.81 96 223.81 96 244.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 203.02 C163 228.01 213 228.01 213 253 L213 297 C213 314.8 183 314.8 183 332.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M96 297 C96 314.8 165 314.8 165 332.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="154,88 148,76 160,76" fill="#3b4754"/>
+<polygon class="arrowhead" points="96,253 90,241 102,241" fill="#3b4754"/>
+<polygon class="arrowhead" points="183,341 177,329 189,329" fill="#3b4754"/>
+<polygon class="arrowhead" points="165,341 159,329 171,329" fill="#3b4754"/>
+<rect class="node" x="28.5" y="0" width="251" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="328" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="154,88 245,148.5 154,209 63,148.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0.5" y="253" width="191" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="101" y="341" width="146" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="154" y="27.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie niezgodności</text>
+<text class="node-label" x="398" y="27.6" text-anchor="middle" fill="#1b1f24">Samotny</text>
+<text class="node-label" x="154" y="144.1" text-anchor="middle" fill="#1b1f24">Czy wymaga</text>
+<text class="node-label" x="154" y="164.1" text-anchor="middle" fill="#1b1f24">działań?</text>
+<text class="node-label" x="96" y="280.6" text-anchor="middle" fill="#1b1f24">Analiza przyczyn</text>
+<text class="node-label" x="174" y="368.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
 </svg>

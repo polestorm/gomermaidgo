@@ -1271,7 +1271,12 @@ func (l *layouter) position(lv *level) (width, height float64) {
 	if math.IsInf(left, 1) {
 		left = 0
 	}
-	rankGap := l.u(64) / float64(lv.factor)
+	// Bez warstw pośrednich odstęp mieści samą strzałkę; z nimi (etykiety, krawędzie wielokrotne)
+	// każda połowa odstępu jest krótsza, a razem z warstwą pośrednią dają miejsce na etykietę.
+	rankGap := l.u(44)
+	if lv.factor > 1 {
+		rankGap = l.u(32)
+	}
 	y := 0.0
 	for r, row := range lv.ranks {
 		band := 0.0

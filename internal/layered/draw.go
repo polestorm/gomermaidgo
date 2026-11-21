@@ -35,8 +35,10 @@ func (l *layouter) nodeSize(shape graph.Shape, text []string) (w, h float64) {
 	tw, th := l.textSize(text)
 	// Pole jest wyraźnie większe od tekstu: napis ma wokół siebie powietrze, a pola o różnej
 	// długości tekstu nie różnią się tak mocno szerokością.
-	padX, padY := l.u(28), l.u(15)
-	w, h = math.Max(tw+2*padX, l.u(96)), math.Max(th+2*padY, l.u(50))
+	// Pola są płaskie: szerokość co najmniej trzykrotnie większa od wysokości pola z jedną linią
+	// tekstu, więc krótkie napisy dają pola tej samej szerokości i schemat wygląda równo.
+	padX, padY := l.u(28), l.u(12)
+	w, h = math.Max(tw+2*padX, l.u(140)), math.Max(th+2*padY, l.u(44))
 	switch shape {
 	case graph.Stadium:
 		w += h / 2
@@ -526,7 +528,7 @@ func (l *layouter) headAt(h graph.Head, x, y, dx, dy float64) float64 {
 	at := func(along, across float64) scene.Point { return l.point(x-dx*along+px*across, y-dy*along+py*across) }
 	switch h {
 	case graph.ArrowHead:
-		a, hw := l.u(9), l.u(4.5)
+		a, hw := l.u(12), l.u(6)
 		l.sc.Add(scene.Item{Kind: scene.Polygon, Layer: scene.LayerActivation, Role: "arrowhead",
 			Points: []scene.Point{at(0, 0), at(a, hw), at(a, -hw)}, Fill: colorLine})
 		return a * 0.7

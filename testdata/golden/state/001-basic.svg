@@ -1,19 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="190" height="466" viewBox="-12 -12 190 466" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M83 16 L83 73.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M83 130 L83 187.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M83 244 L83 301.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M83 358 L83 415.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="83,80 78,71 88,71" fill="#3b4754"/>
-<polygon class="arrowhead" points="83,194 78,185 88,185" fill="#3b4754"/>
-<polygon class="arrowhead" points="83,308 78,299 88,299" fill="#3b4754"/>
-<polygon class="arrowhead" points="83,422 78,413 88,413" fill="#3b4754"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="190" height="368" viewBox="-12 -12 190 368" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="edge" d="M83 16 L83 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M83 104 L83 139.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M83 192 L83 227.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M83 280 L83 315.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="83,60 77,48 89,48" fill="#3b4754"/>
+<polygon class="arrowhead" points="83,148 77,136 89,136" fill="#3b4754"/>
+<polygon class="arrowhead" points="83,236 77,224 89,224" fill="#3b4754"/>
+<polygon class="arrowhead" points="83,324 77,312 89,312" fill="#3b4754"/>
 <circle class="node" cx="83" cy="8" r="8" fill="#3b4754"/>
-<rect class="node" x="22.5" y="80" width="121" height="50" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="194" width="166" height="50" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="16" y="308" width="134" height="50" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="83" cy="432" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="83" cy="432" r="6" fill="#3b4754"/>
-<text class="node-label" x="83" y="110.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>
-<text class="node-label" x="83" y="224.6" text-anchor="middle" fill="#1b1f24">Zatwierdzony</text>
-<text class="node-label" x="83" y="338.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
+<rect class="node" x="13" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="148" width="166" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="13" y="236" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="83" cy="334" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="83" cy="334" r="6" fill="#3b4754"/>
+<text class="node-label" x="83" y="87.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>
+<text class="node-label" x="83" y="175.6" text-anchor="middle" fill="#1b1f24">Zatwierdzony</text>
+<text class="node-label" x="83" y="263.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
 </svg>
