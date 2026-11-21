@@ -332,6 +332,11 @@ func (l *layouter) measure() {
 	}
 }
 
+// titleStrip mówi, czy tytuł ramki stoi w osobnym pasku u góry: tak wyglądają stany złożone.
+func (l *layouter) titleStrip(lv *level) bool {
+	return l.g.Kind == "state" && lv.sub != nil && !lv.sub.Region && len(lv.titleLines) > 0
+}
+
 // boxLike mówi, czy pole jest zwykłym polem z tekstem, którego rozmiar można wyrównać z sąsiadami.
 func boxLike(it *item) bool {
 	if it.kind != kindNode || it.anchor != nil {
@@ -711,6 +716,9 @@ func (l *layouter) finish(lv *level) {
 	if lv.sub != nil {
 		titleW, titleH := l.textSize(lv.titleLines)
 		top := titleH + l.u(10)
+		if l.titleStrip(lv) {
+			top = titleH + 2*l.u(6) + l.u(8) // pasek tytułu i odstęp pod nim
+		}
 		switch {
 		case l.vertical && !l.flip:
 			padY0 += top

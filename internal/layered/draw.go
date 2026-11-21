@@ -310,8 +310,41 @@ func (l *layouter) drawLevel(lv *level) {
 			defer func(prev string) { l.bg = prev }(l.bg)
 			l.bg = paint.Fill
 		}
+		strip := l.titleStrip(lv)
+		if strip {
+			frame.RX = l.u(8)
+		}
 		l.sc.Add(frame)
 		defer func() { l.repaint(from, from+1, paint, colorFrame) }()
+		if strip {
+			// Stan złożony: tytuł w pasku z lekkim tłem, oddzielonym linią od wnętrza.
+			_, th := l.textSize(lv.titleLines)
+			x0, y0, sh := cx-w/2, cy-h/2, th+2*l.u(6)
+			if frame.Fill == "" {
+				l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster-title-strip", X: x0, Y: y0, W: w, H: sh, RX: frame.RX, Fill: colorNodeFill})
+				l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster-title-strip", X: x0, Y: y0 + sh/2, W: w, H: sh / 2, Fill: colorNodeFill})
+			}
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "cluster-title-rule", X: x0, Y: y0 + sh, X2: x0 + w, Y2: y0 + sh, Stroke: colorFrame, StrokeWidth: 1})
+			// Obrys jeszcze raz, na wierzchu: pasek zakrył jego wewnętrzną połowę.
+			outline := frame
+			outline.Fill, outline.Role = "", "cluster-outline"
+			at := len(l.sc.Items)
+			l.sc.Add(outline)
+			defer func() {
+				l.repaint(at-1, at+1, graph.Paint{Stroke: paint.Stroke, StrokeWidth: paint.StrokeWidth, Dash: paint.Dash}, "")
+			}()
+			defer func(at int) { l.repaint(at, at+len(lv.titleLines), graph.Paint{Color: paint.Color}, "") }(len(l.sc.Items))
+			l.textBlock(lv.titleLines, cx, y0+sh/2, "cluster-title")
+		} else {
+			l.drawFrameTitle(lv, cx, cy, w, h, paint)
+		}
+	}
+	l.drawLevelContent(lv)
+}
+
+// drawFrameTitle rysuje tytuł zwykłej ramki: przy lewej górnej krawędzi, z podkładem w kolorze tła.
+func (l *layouter) drawFrameTitle(lv *level, cx, cy, w, h float64, paint graph.Paint) {
+	{
 		if len(lv.titleLines) > 0 {
 			defer func(at int) { l.repaint(at, at+1+len(lv.titleLines), graph.Paint{Color: paint.Color}, "") }(len(l.sc.Items))
 		}
@@ -322,6 +355,10 @@ func (l *layouter) drawLevel(lv *level) {
 			X: tx - tw/2 - l.u(4), Y: ty - th/2, W: tw + 2*l.u(4), H: th, Fill: l.labelBackground()})
 		l.textBlock(lv.titleLines, tx, ty, "cluster-title")
 	}
+}
+
+// drawLevelContent rysuje wnętrze poziomu: pola, podgrafy i krawędzie.
+func (l *layouter) drawLevelContent(lv *level) {
 	// Linia podziału między kolejnymi regionami współbieżnymi, przez całą szerokość stanu.
 	var prev *item
 	for _, row := range lv.ranks {
@@ -905,7 +942,11 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 		tracks := 1
 		for i, j := range group {
 			for _, prev := range group[:i] {
-				if prev.lo < j.hi && j.lo < prev.hi {
+				m := l.u(5)
+				if (prev.b.x > prev.a.x) != (j.b.x > j.a.x) {
+					m = 0 // odcinki rozchodzące się w przeciwne strony mogą leżeć na jednej wysokości
+				}
+				if prev.lo+l.u(5)-m < j.hi-l.u(5)+m && j.lo+l.u(5)-m < prev.hi-l.u(5)+m {
 					j.track = max(j.track, prev.track+1)
 				}
 			}
