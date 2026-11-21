@@ -3,9 +3,9 @@
 <path class="edge" d="M142 104 L142 139.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M138.63 174.63 L138.63 176.31 C138.63 180.71 135.03 184.31 130.63 184.31 L78 184.31 C73.6 184.31 70 187.91 70 192.31 L70 208 L70 232 L70 253.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M145.38 174.63 L145.38 190.31 C145.38 194.71 148.98 198.31 153.38 198.31 L216 198.31 C220.4 198.31 224 201.91 224 206.31 L224 208 L224 232 L224 262 L224 271.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M210 288 L210 306 L210 322.8 C210 327.2 213.6 330.8 218 330.8 L256 330.8 C260.4 330.8 264 334.4 264 338.8 L264 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M238 288 L238 306 L238 308.8 C238 313.2 241.6 316.8 246 316.8 L495 316.8 C499.4 316.8 503 320.4 503 324.8 L503 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M264 394 L264 405.8 C264 409.1 261.3 411.8 258 411.8 L258 411.8 C254.7 411.8 252 414.5 252 417.8 L252 429.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M210 288 L210 306 L210 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M238 288 L238 306 L238 315.8 C238 320.2 241.6 323.8 246 323.8 L495 323.8 C499.4 323.8 503 327.4 503 331.8 L503 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M252 394 L252 429.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M503 394 L503 403.8 C503 408.2 499.4 411.8 495 411.8 L288 411.8 C283.6 411.8 280 415.4 280 419.8 L280 429.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M266 446 L266 455.8 C266 460.2 262.4 463.8 258 463.8 L176 463.8 C171.6 463.8 168 467.4 168 471.8 L168 481.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M70 306 L70 350 L70 394 L70 438 L70 446 L70 455.8 C70 460.2 73.6 463.8 78 463.8 L120 463.8 C124.4 463.8 128 467.4 128 471.8 L128 481.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -16,7 +16,7 @@
 <polygon class="arrowhead" points="142,148 136,136 148,136" fill="#3b4754"/>
 <polygon class="arrowhead" points="70,262 64,250 76,250" fill="#3b4754"/>
 <polygon class="arrowhead" points="224,280 218,268 230,268" fill="#3b4754"/>
-<polygon class="arrowhead" points="264,350 258,338 270,338" fill="#3b4754"/>
+<polygon class="arrowhead" points="210,350 204,338 216,338" fill="#3b4754"/>
 <polygon class="arrowhead" points="503,350 497,338 509,338" fill="#3b4754"/>
 <polygon class="arrowhead" points="252,438 246,426 258,426" fill="#3b4754"/>
 <polygon class="arrowhead" points="280,438 274,426 286,426" fill="#3b4754"/>

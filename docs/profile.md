@@ -107,7 +107,10 @@ Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`, teksty Markdo
   warstwami dostają osobne tory, a odstęp rośnie z ich liczbą. Opcja `WithCurvedEdges` (w programie `-curved`)
   przywraca łagodne łuki. Krawędź łamana skręca raz, przy końcu, z którego rozchodzi się kilka krawędzi; jej
   etykieta stoi w osi drugiego końca, a pole z kilkoma gałęziami stoi pośrodku nich;
-- gdzie krawędź łamana przecina inną, jej odcinek poprzeczny ma półokrągły mostek, o ile obok jest na niego miejsce;
+- gdzie krawędzie łamane się przecinają, krawędź zapisana w źródle później przeskakuje nad wcześniejszą półokrągłym
+  mostkiem, o ile obok jest na niego miejsce;
+- punkt zaczepienia krawędzi przesuwa się w oś jej następnego punktu, jeśli ten leży w zasięgu boku pola: krawędź
+  biegnie wtedy prosto, bez drobnego uskoku;
 - zakończenie krawędzi kółkiem albo krzyżykiem stoi przy polu, a linia kończy się na nim, nie na polu;
 - pola są płaskie, o szerokości co najmniej 140 px przy piśmie 16 px; z rombu i koła krawędzie wychodzą osobno,
   z boków przy wierzchołku;

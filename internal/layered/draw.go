@@ -182,6 +182,51 @@ func (l *layouter) spreadPorts() {
 			}
 		}
 	}
+	// straighten przesuwa punkt zaczepienia w oś następnego punktu krawędzi, jeśli ten leży
+	// w zasięgu boku pola: krawędź biegnie wtedy prosto, bez drobnego uskoku. Kolejność punktów
+	// na boku i odstęp między nimi zostają zachowane.
+	straighten := func(it *item, ends []end) {
+		usable := l.portRange(it)
+		if usable <= 0 {
+			return
+		}
+		get := func(en end) float64 {
+			if en.upper {
+				return en.e.upperPort
+			}
+			return en.e.lowerPort
+		}
+		for i, en := range ends {
+			var target float64
+			switch {
+			case len(en.e.chain) > 0 && en.upper:
+				target = en.e.chain[0].x
+			case len(en.e.chain) > 0:
+				target = en.e.chain[len(en.e.chain)-1].x
+			case en.upper && en.e.lowerCont == nil && en.e.v.kind == kindNode:
+				target = en.e.v.nodeX() + en.e.lowerPort
+			case !en.upper && en.e.upperCont == nil && en.e.u.kind == kindNode:
+				target = en.e.u.nodeX() + en.e.upperPort
+			default:
+				continue
+			}
+			off := target - it.nodeX()
+			if math.Abs(off) > usable/2 {
+				continue
+			}
+			if i > 0 && off < get(ends[i-1])+l.u(10) {
+				continue
+			}
+			if i+1 < len(ends) && off > get(ends[i+1])-l.u(10) {
+				continue
+			}
+			if en.upper {
+				en.e.upperPort = off
+			} else {
+				en.e.lowerPort = off
+			}
+		}
+	}
 	assign := func(it *item, ends []end) {
 		k := len(ends)
 		if k < 2 {
@@ -205,6 +250,13 @@ func (l *layouter) spreadPorts() {
 	for _, it := range order {
 		assign(it, bottom[it])
 		assign(it, top[it])
+	}
+	// Dwa przebiegi: przy krawędzi bez punktów pośrednich jeden koniec ustawia się względem drugiego.
+	for pass := 0; pass < 2; pass++ {
+		for _, it := range order {
+			straighten(it, bottom[it])
+			straighten(it, top[it])
+		}
 	}
 }
 
@@ -692,6 +744,10 @@ type edgeRoute struct {
 	topHead, bottomHead graph.Head
 	track               map[int]float64   // położenie odcinka poprzecznego dla odcinka o danym numerze
 	hops                map[int][]float64 // miejsca na odcinku poprzecznym, w których krawędź przeskakuje nad inną
+	// runHops: to samo dla odcinków wzdłuż osi warstw; klucz to numer odcinka i jego część
+	// (0: przed odcinkiem poprzecznym albo cały odcinek prosty, 1: za odcinkiem poprzecznym).
+	runHops map[[2]int][]float64
+	order   int // kolejność rysowania: krawędź późniejsza przeskakuje nad wcześniejszą
 }
 
 // findHops wyznacza przecięcia krawędzi łamanych: odcinek poprzeczny jednej krawędzi z odcinkiem
@@ -700,42 +756,59 @@ type edgeRoute struct {
 func (l *layouter) findHops(routes []*edgeRoute) {
 	type along struct {
 		r         *edgeRoute
+		key       [2]int
 		x, y0, y1 float64
 	}
 	var runs []along
-	for _, r := range routes {
+	for k, r := range routes {
+		r.order, r.hops, r.runHops = k, map[int][]float64{}, map[[2]int][]float64{}
 		for i := 0; i+1 < len(r.pts); i++ {
 			a, b := r.pts[i], r.pts[i+1]
 			if mid, ok := r.track[i]; ok {
-				runs = append(runs, along{r, a.x, a.y, mid}, along{r, b.x, mid, b.y})
+				runs = append(runs, along{r, [2]int{i, 0}, a.x, a.y, mid}, along{r, [2]int{i, 1}, b.x, mid, b.y})
 			} else {
-				runs = append(runs, along{r, a.x, a.y, b.y})
+				runs = append(runs, along{r, [2]int{i, 0}, a.x, a.y, b.y})
 			}
 		}
 	}
-	h := l.u(6)
+	h, corner := l.u(6), l.u(8)
 	for _, r := range routes {
-		r.hops = map[int][]float64{}
-		for i, mid := range r.track {
+		for i := 0; i+1 < len(r.pts); i++ {
+			mid, ok := r.track[i]
+			if !ok {
+				continue
+			}
 			lo, hi := math.Min(r.pts[i].x, r.pts[i+1].x), math.Max(r.pts[i].x, r.pts[i+1].x)
-			var at []float64
 			for _, v := range runs {
-				// Mostek potrzebuje miejsca: z dala od narożników własnej krawędzi i końców cudzej.
-				if v.r == r || v.x < lo+l.u(8)+h || v.x > hi-l.u(8)-h || mid < v.y0+l.u(8)+h || mid > v.y1-l.u(8)-h {
+				// Mostek potrzebuje miejsca: z dala od narożników obu krawędzi.
+				if v.r == r || v.x < lo+corner+h || v.x > hi-corner-h || mid < v.y0+corner+h || mid > v.y1-corner-h {
 					continue
 				}
-				at = append(at, v.x)
-			}
-			sort.Float64s(at)
-			var kept []float64
-			for _, x := range at {
-				if len(kept) == 0 || x-kept[len(kept)-1] > 2*h+l.u(2) {
-					kept = append(kept, x)
+				if r.order > v.r.order {
+					r.hops[i] = append(r.hops[i], v.x)
+				} else {
+					v.r.runHops[v.key] = append(v.r.runHops[v.key], mid)
 				}
 			}
-			if len(kept) > 0 {
-				r.hops[i] = kept
+		}
+	}
+	// Mostki w kolejności wzdłuż odcinka; zbyt bliskie siebie zlewają się w jeden.
+	thin := func(at []float64) []float64 {
+		sort.Float64s(at)
+		kept := at[:0]
+		for _, x := range at {
+			if len(kept) == 0 || x-kept[len(kept)-1] > 2*h+l.u(2) {
+				kept = append(kept, x)
 			}
+		}
+		return kept
+	}
+	for _, r := range routes {
+		for i, at := range r.hops {
+			r.hops[i] = thin(at)
+		}
+		for k, at := range r.runHops {
+			r.runHops[k] = thin(at)
 		}
 	}
 }
@@ -836,10 +909,23 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 	l.headAt(r.bottomHead, r.bottom.x, r.bottom.y, 0, 1)
 
 	segments := []scene.Segment{{Cmd: 'M', To: l.point(pts[0].x, pts[0].y)}}
+	// run prowadzi krawędź wzdłuż osi warstw do punktu (x, y), z mostkami nad krawędziami
+	// narysowanymi wcześniej, które w tym miejscu biegną w poprzek.
+	run := func(x, y float64, key [2]int) {
+		const q = 0.55
+		hh := l.u(6)
+		for _, at := range route.runHops[key] {
+			segments = append(segments,
+				scene.Segment{Cmd: 'L', To: l.point(x, at-hh)},
+				scene.Segment{Cmd: 'C', C1: l.point(x-hh*q, at-hh), C2: l.point(x-hh, at-hh*q), To: l.point(x-hh, at)},
+				scene.Segment{Cmd: 'C', C1: l.point(x-hh, at+hh*q), C2: l.point(x-hh*q, at+hh), To: l.point(x, at+hh)})
+		}
+		segments = append(segments, scene.Segment{Cmd: 'L', To: l.point(x, y)})
+	}
 	for i := 0; i+1 < len(pts); i++ {
 		a, b := pts[i], pts[i+1]
 		if math.Abs(a.x-b.x) < 0.5 {
-			segments = append(segments, scene.Segment{Cmd: 'L', To: l.point(b.x, b.y)})
+			run(b.x, b.y, [2]int{i, 0})
 			continue
 		}
 		mid := (a.y + b.y) / 2
@@ -857,8 +943,8 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 		}
 		// Narożnik to ćwiartka okręgu przybliżona krzywą: punkty kontrolne w 0,55 promienia od końców.
 		const k = 0.45
+		run(a.x, mid-r, [2]int{i, 0})
 		segments = append(segments,
-			scene.Segment{Cmd: 'L', To: l.point(a.x, mid-r)},
 			scene.Segment{Cmd: 'C', C1: l.point(a.x, mid-r*k), C2: l.point(a.x+dir*r*k, mid), To: l.point(a.x+dir*r, mid)})
 		// Mostki nad krawędziami, które ten odcinek przecina: półokrąg z dwóch ćwiartek.
 		hops := append([]float64(nil), route.hops[i]...)
@@ -875,8 +961,8 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 		}
 		segments = append(segments,
 			scene.Segment{Cmd: 'L', To: l.point(b.x-dir*r, mid)},
-			scene.Segment{Cmd: 'C', C1: l.point(b.x-dir*r*k, mid), C2: l.point(b.x, mid+r*k), To: l.point(b.x, mid+r)},
-			scene.Segment{Cmd: 'L', To: l.point(b.x, b.y)})
+			scene.Segment{Cmd: 'C', C1: l.point(b.x-dir*r*k, mid), C2: l.point(b.x, mid+r*k), To: l.point(b.x, mid+r)})
+		run(b.x, b.y, [2]int{i, 1})
 	}
 	width, dash := l.strokeOf(e.e)
 	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "edge", Segments: segments,

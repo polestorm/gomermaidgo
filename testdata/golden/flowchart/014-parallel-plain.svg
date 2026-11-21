@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="444" height="186" viewBox="-12 -12 444 186" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M110.69 27.13 L140 27.13 L178.64 27.13 C178.95 27.13 179.2 26.87 179.2 26.56 L179.2 26.56 C179.2 26.25 179.45 26 179.76 26 L210 26 L239.3 26 C240.13 26 240.8 26.68 240.8 27.5 L240.8 27.5 C240.8 28.33 241.48 29 242.3 29 L280 29 L318.36 29" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M110.69 42.88 L140 42.88 L178.64 42.88 C178.95 42.88 179.2 43.13 179.2 43.44 L179.2 43.44 C179.2 43.75 179.45 44 179.76 44 L210 44 L239.3 44 C240.13 44 240.8 43.33 240.8 42.5 L240.8 42.5 C240.8 41.68 241.48 41 242.3 41 L280 41 L318.36 41" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M140 133 L178.2 133 C178.75 133 179.2 132.55 179.2 132 L179.2 132 C179.2 131.45 179.65 131 180.2 131 L210 131 L239.8 131 C240.35 131 240.8 131.45 240.8 132 L240.8 132 C240.8 132.55 241.25 133 241.8 133 L271.6 133" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M148.4 147 L178.2 147 C178.75 147 179.2 147.45 179.2 148 L179.2 148 C179.2 148.55 179.65 149 180.2 149 L210 149 L239.8 149 C240.35 149 240.8 148.55 240.8 148 L240.8 148 C240.8 147.45 241.25 147 241.8 147 L280 147" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="326.76,29 314.76,23 314.76,35" fill="#3b4754"/>
-<polygon class="arrowhead" points="326.76,41 314.76,35 314.76,47" fill="#3b4754"/>
-<polygon class="arrowhead" points="280,133 268,127 268,139" fill="#3b4754"/>
-<polygon class="arrowhead" points="140,147 152,153 152,141" fill="#3b4754"/>
+<path class="edge" d="M109 26 L140 26 L210 26 L280 26 L319.35 26" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M109 44 L140 44 L210 44 L280 44 L319.35 44" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M140 131 L210 131 L271.6 131" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M148.4 149 L210 149 L280 149" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="327.75,26 315.75,20 315.75,32" fill="#3b4754"/>
+<polygon class="arrowhead" points="327.75,44 315.75,38 315.75,50" fill="#3b4754"/>
+<polygon class="arrowhead" points="280,131 268,125 268,137" fill="#3b4754"/>
+<polygon class="arrowhead" points="140,149 152,155 152,143" fill="#3b4754"/>
 <polygon class="node" points="70,0 122.5,35 70,70 17.5,35" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="118" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="350" cy="35" r="24" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
