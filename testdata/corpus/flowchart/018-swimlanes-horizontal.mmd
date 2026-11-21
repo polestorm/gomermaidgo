@@ -1,0 +1,19 @@
+%% REQ: FLOW-021
+%% Tytuł: Tory poziome i pole poza torami
+%% Sprawdza: tory w diagramie poziomym są pasami jeden pod drugim, z tytułem z boku; pole spoza podgrafów trafia do toru bez tytułu.
+%% layout: swimlanes
+flowchart LR
+    start([Start])
+    subgraph autor [Autor]
+        projekt[Przygotowuje projekt]
+        poprawki[Nanosi poprawki]
+    end
+    subgraph sprawdzajacy [Sprawdzający]
+        przeglad{Bez uwag?}
+    end
+    subgraph zatwierdzajacy [Zatwierdzający]
+        podpis[Zatwierdza] --> publikacja([Publikuje])
+    end
+    start --> projekt --> przeglad
+    przeglad -->|uwagi| poprawki --> przeglad
+    przeglad -->|tak| podpis

@@ -39,6 +39,8 @@ func TestParseErrors(t *testing.T) {
 		{"bad width", "flowchart TD\nA-->B\nstyle A stroke-width:gruba", 3, graph.CodeInvalid},
 		{"linkStyle out of range", "flowchart TD\nA-->B\nlinkStyle 3 stroke:red", 3, graph.CodeInvalid},
 		{"interpolate outside profile", "flowchart TD\nA-->B\ninterpolate basis", 3, CodeUnsupported},
+		{"nested lane", "%% layout: swimlanes\nflowchart TD\nsubgraph A\nsubgraph B\nx\nend\nend", 4, CodeSubgraph},
+		{"edge to a lane", "%% layout: swimlanes\nflowchart TD\nsubgraph A\nx\nend\ny --> A", 6, CodeEdge},
 		{"new shape syntax", "flowchart TD\nA@{ shape: rect }", 2, CodeUnsupported},
 		{"end without subgraph", "flowchart TD\nA-->B\nend", 3, CodeSubgraph},
 		{"unclosed subgraph", "flowchart TD\nsubgraph S\nA-->B", 0, CodeSubgraph},

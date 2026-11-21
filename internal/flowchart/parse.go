@@ -25,6 +25,7 @@ const idPattern = `[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*`
 
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+	swimlanes = regexp.MustCompile(`^%%\s*layout:\s*swimlanes\s*$`)
 	// Identyfikator: litery, cyfry i podkreślenie; łącznik i kropka tylko między nimi, żeby
 	// „A-->B” i „A-.->B” nadal zaczynały krawędź.
 	idAt      = regexp.MustCompile(`^` + idPattern)
@@ -140,6 +141,11 @@ func Parse(source string) (*graph.Graph, error) {
 	for n, raw := range strings.Split(source, "\n") {
 		line := n + 1
 		s := strings.TrimSpace(raw)
+		if swimlanes.MatchString(s) {
+			// Dyrektywa w komentarzu: inne narzędzia ją pomijają i rysują zwykłe podgrafy.
+			p.g.Layout = "swimlanes"
+			continue
+		}
 		if s == "" || strings.HasPrefix(s, "%%") {
 			continue
 		}
@@ -175,6 +181,19 @@ func Parse(source string) (*graph.Graph, error) {
 	p.g.AccTitle, p.g.AccDescr = p.acc.Title, p.acc.Descr
 	if err := p.g.Finish(); err != nil {
 		return nil, err
+	}
+	if p.g.Layout == "swimlanes" {
+		// Tor jest pasem przez cały rysunek: nie da się go zagnieździć ani do niego poprowadzić krawędzi.
+		for _, s := range p.g.Subgraphs {
+			if s.Parent != "" {
+				return nil, syntax.Errorf(s.Line, CodeSubgraph, "swimlanes do not support nested subgraphs (%q)", s.ID)
+			}
+		}
+		for _, e := range p.g.Edges {
+			if p.g.Subgraph(e.From) != nil || p.g.Subgraph(e.To) != nil {
+				return nil, syntax.Errorf(e.Line, CodeEdge, "in swimlanes an edge must connect nodes, not a lane")
+			}
+		}
 	}
 	return p.g, nil
 }

@@ -116,6 +116,9 @@ func (l *layouter) rect(x, y, w, h float64) (cx, cy, rw, rh float64) {
 
 func (l *layouter) draw() {
 	l.spreadPorts()
+	if l.lanes != nil {
+		l.drawLanes()
+	}
 	l.drawLevel(l.levels[""])
 }
 

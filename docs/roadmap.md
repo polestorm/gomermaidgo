@@ -6,6 +6,7 @@
 | 2 | parser schematu blokowego (`flowchart`/`graph`) i stanów (`stateDiagram-v2`); wspólny model grafu (`internal/graph`) | zrobione 2026-11-21 |
 | 3 | układ warstwowy (`internal/layered`): usuwanie cykli, warstwy, redukcja przecięć, rozmieszczenie, krawędzie, podgrafy rekurencyjnie, etykiety krawędzi, kształty węzłów | pierwsza wersja 2026-11-21; ograniczenia w `profile.md` |
 | 4 | v2: kolejne typy | wykres Gantta i diagram związków encji zrobione 2026-11-21; dalej: klasy, wykresy, oś czasu, mapa myśli |
+| 6 | tory (`%% layout: swimlanes`), krawędzie łamane z mostkami, wyrównywanie pól, rzędy pod proporcje strony | zrobione 2026-11-21 po przeglądzie rysunków |
 | 5 | diagramy w dokumencie Markdown (`markdown.Embed`, reguły CSS dla wydruku) | zrobione 2026-11-21 |
 
 Zrobione 2026-11-21 po pierwszym przeglądzie: krój domyślny Recursive (ADR 0002), `box`, `create`/`destroy`,

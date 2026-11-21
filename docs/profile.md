@@ -68,6 +68,7 @@ Stan: rysowany układem warstwowym (`internal/layered`).
 | wygląd ze źródła | `classDef nazwa właściwości`, `class A,B nazwa`, `A:::nazwa`, `style A właściwości`, `linkStyle 0,1 właściwości`, `linkStyle default …`; właściwości: `fill`, `stroke`, `color`, `stroke-width`, `stroke-dasharray` | FLOW-017 |
 | identyfikatory, Markdown, dostępność | `krok-1.a`; ``"`tekst **pogrubiony** i *pochylony*`"``; `accTitle`, `accDescr` | FLOW-018 |
 | kierunek podgrafu | `direction LR` w podgrafie niepołączonym krawędziami z resztą | FLOW-019 |
+| tory | komentarz `%% layout: swimlanes` przed albo po nagłówku: podgrafy najwyższego poziomu stają się pasami | FLOW-021 |
 
 ### Poza profilem (błąd `flowchart-unsupported`)
 
@@ -88,6 +89,14 @@ Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`, teksty Markdo
   Dotyczy też diagramu stanów. Jedynym rozpoznawanym znacznikiem jest `<br/>`;
 - kody encji (`#35;`) nie są rozwijane;
 - limity: 500 węzłów, 1000 krawędzi, 10 poziomów zagnieżdżenia.
+
+### Tory
+
+Tory nie mają w Mermaid własnej składni. Dyrektywa jest komentarzem, więc to samo źródło w innych narzędziach rysuje
+się jak zwykły schemat z podgrafami. Pas biegnie przez cały rysunek wzdłuż kierunku diagramu (kolumny przy `TB`,
+wiersze przy `LR`), nagłówek z tytułem stoi przy początku. Warstwy są wspólne dla wszystkich pasów: położenie kroku
+wzdłuż pasa mówi o kolejności w całym procesie. Krawędź zmienia pas raz, przy swoim początku. W torach nie ma
+podgrafów zagnieżdżonych ani krawędzi do samego toru (błąd), a `direction` w podgrafie nie ma znaczenia.
 
 ### Ograniczenia rysunku (wspólne ze stanami)
 

@@ -1,0 +1,27 @@
+%% REQ: FLOW-021
+%% Tytuł: Tory: proces z podziałem na role
+%% Sprawdza: dyrektywa layout: swimlanes zamienia podgrafy najwyższego poziomu w pasy przez cały rysunek; warstwy są wspólne dla wszystkich pasów; krawędzie między torami; krawędź powrotna; etykiety.
+%% layout: swimlanes
+flowchart TB
+    subgraph pracownik [Pracownik]
+        zgloszenie([Zgłasza niezgodność])
+        poprawka[Uzupełnia zgłoszenie]
+        informacja([Otrzymuje informację])
+    end
+    subgraph jakosc [Dział jakości]
+        rejestracja[Rejestruje zgłoszenie]
+        kompletne{Kompletne?}
+        ocena[Ocenia ryzyko]
+        zamkniecie[Zamyka zgłoszenie]
+    end
+    subgraph kierownik [Kierownik procesu]
+        decyzja{Wymaga działań?}
+        dzialania[Planuje działania korygujące]
+        weryfikacja[Weryfikuje skuteczność]
+    end
+    zgloszenie --> rejestracja --> kompletne
+    kompletne -->|nie| poprawka --> rejestracja
+    kompletne -->|tak| ocena --> decyzja
+    decyzja -->|tak| dzialania --> weryfikacja --> zamkniecie
+    decyzja -->|nie| zamkniecie
+    zamkniecie --> informacja

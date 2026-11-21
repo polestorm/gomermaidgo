@@ -1,0 +1,16 @@
+flowchart LR layout=swimlanes
+subgraph autor title="Autor"
+subgraph sprawdzajacy title="Sprawdzający"
+subgraph zatwierdzajacy title="Zatwierdzający"
+node start stadium "Start"
+node projekt rect "Przygotowuje projekt" in=autor
+node poprawki rect "Nanosi poprawki" in=autor
+node przeglad rhombus "Bez uwag?" in=sprawdzajacy
+node podpis rect "Zatwierdza" in=zatwierdzajacy
+node publikacja stadium "Publikuje" in=zatwierdzajacy
+edge podpis -> publikacja normal none/arrow len=1
+edge start -> projekt normal none/arrow len=1
+edge projekt -> przeglad normal none/arrow len=1
+edge przeglad -> poprawki normal none/arrow len=1 "uwagi"
+edge poprawki -> przeglad normal none/arrow len=1
+edge przeglad -> podpis normal none/arrow len=1 "tak"

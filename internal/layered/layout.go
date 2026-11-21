@@ -56,6 +56,7 @@ type item struct {
 	loopExtra float64 // miejsce po stronie +x na pętle własne
 	band      float64 // wysokość warstwy, w której leży pole
 
+	lane        int // numer toru, gdy diagram ma tory
 	shelf       int // rząd, w którym stoi część diagramu zawierająca to pole (patrz shelve)
 	rank, order int
 	x, y        float64
@@ -175,6 +176,9 @@ type layouter struct {
 	flip     bool    // BT albo RL: oś warstw odwrócona
 	ox, oy   float64 // zaczepienie bieżących osi umownych na rysunku
 
+	lanes  []*lane        // tory; nil = zwykły układ
+	laneOf map[string]int // węzeł → numer toru
+
 	levels map[string]*level
 	itemOf map[string]*item // węzeł albo podgraf → jego pole na poziomie rodzica
 }
@@ -264,7 +268,12 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	if o.FontSize <= 0 {
 		o.FontSize = 16
 	}
-	l := &layouter{g: g, o: o, fs: o.FontSize, levels: map[string]*level{}, itemOf: map[string]*item{}}
+	var lanes []*lane
+	var laneOf map[string]int
+	if g.Layout == "swimlanes" && len(g.Subgraphs) > 0 {
+		g, lanes, laneOf = flattenLanes(g)
+	}
+	l := &layouter{g: g, o: o, fs: o.FontSize, levels: map[string]*level{}, itemOf: map[string]*item{}, lanes: lanes, laneOf: laneOf}
 	l.lh = math.Round(l.fs * 1.25)
 	l.vertical = g.Direction == graph.TopBottom || g.Direction == graph.BottomTop
 	l.flip = g.Direction == graph.BottomTop || g.Direction == graph.RightLeft
@@ -301,7 +310,7 @@ func (l *layouter) build() {
 		entries = append(entries, entry{s.Line, i, it, s.Parent})
 	}
 	for i, n := range l.g.Nodes {
-		it := &item{kind: kindNode, node: n}
+		it := &item{kind: kindNode, node: n, lane: l.laneOf[n.ID]}
 		it.text = l.wrap(n.Label, l.wrapLimit(n.Shape))
 		l.itemOf[n.ID] = it
 		entries = append(entries, entry{n.Line, len(l.g.Subgraphs) + i, it, n.Parent})
@@ -601,8 +610,13 @@ func (l *layouter) sizeAll(lv *level) {
 			}
 		}
 	}
-	l.shelve(lv)
+	if l.lanes == nil {
+		l.shelve(lv)
+	}
 	l.order(lv)
+	if l.lanes != nil {
+		l.groupByLane(lv)
+	}
 	l.finish(lv)
 
 	// Drugie podejście: skoro wiadomo już, gdzie na tym poziomie leżą drugie końce krawędzi
@@ -930,7 +944,8 @@ func (l *layouter) rank(lv *level) {
 		}
 		prev := e.u
 		for r := e.u.rank + 1; r < e.v.rank; r++ {
-			d := &item{kind: kindDummy, rank: r, w: l.u(8)}
+			// Punkty pośrednie biegną w torze dolnego końca: krawędź zmienia tor raz, przy początku.
+			d := &item{kind: kindDummy, rank: r, w: l.u(8), lane: e.v.lane}
 			if r == labelRank {
 				d.kind = kindLabel
 				d.text = l.wrap(e.e.Label, l.u(200))
@@ -1331,6 +1346,9 @@ func (l *layouter) position(lv *level) (width, height float64) {
 	sep := func(a, b *item) float64 { return a.w/2 + b.w/2 + gap(a, b) }
 	attach := l.attachments(lv)
 	// arrange rozmieszcza wzdłuż osi kolejności jedną spójną część poziomu.
+	if l.lanes != nil {
+		l.laneExtents(lv, sep)
+	}
 	arrange := func(rows [][]*item) {
 		for _, row := range rows {
 			for i, it := range row {
@@ -1339,6 +1357,12 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				} else {
 					it.x = row[i-1].x + sep(row[i-1], it)
 				}
+				if l.lanes != nil {
+					it.x = (l.lanes[it.lane].lo + l.lanes[it.lane].hi) / 2 // początek: środek toru
+				}
+			}
+			if l.lanes != nil {
+				l.confine(row, sep)
 			}
 		}
 		weight := func(a, b *item) float64 {
@@ -1393,6 +1417,9 @@ func (l *layouter) position(lv *level) (width, height float64) {
 					}
 				}
 				fixed[i] = true
+			}
+			if l.lanes != nil {
+				l.confine(row, sep)
 			}
 		}
 		pull := func(row []*item, useUp, useDown bool) {
@@ -1554,12 +1581,20 @@ func (l *layouter) position(lv *level) (width, height float64) {
 
 	// Części niepołączone krawędziami są rozmieszczane osobno i ustawiane obok siebie; inaczej
 	// odpychałyby się nawzajem i zostawiały puste miejsce.
-	for _, rows := range components(lv) {
-		arrange(rows)
+	if l.lanes != nil {
+		// Tory: cały poziom jest jedną całością, a położenia w poprzek wyznaczają pasy.
+		arrange(lv.ranks)
+	} else {
+		for _, rows := range components(lv) {
+			arrange(rows)
+		}
 	}
 	// Każdy rząd części (patrz shelve) zaczyna od początku osi kolejności.
 	shifts := map[int]float64{}
 	for _, rows := range components(lv) {
+		if l.lanes != nil {
+			break
+		}
 		lo, hi := math.Inf(1), math.Inf(-1)
 		shelf := 0
 		for _, row := range rows {
@@ -1592,8 +1627,11 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			left = math.Min(left, it.x-it.w/2)
 		}
 	}
-	if math.IsInf(left, 1) {
+	if math.IsInf(left, 1) || l.lanes != nil {
 		left = 0
+	}
+	if l.lanes != nil {
+		width = l.lanes[len(l.lanes)-1].hi
 	}
 	// Odstęp między warstwami pól mieści strzałkę; przy warstwie złożonej z samych etykiet i punktów
 	// pośrednich jest krótszy, bo razem z nią i tak daje miejsce na krawędź.

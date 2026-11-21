@@ -154,6 +154,7 @@ type Graph struct {
 	Edges     []*Edge
 	Subgraphs []*Subgraph
 	Notes     []*Note
+	Layout    string // "" albo "swimlanes": podgrafy najwyższego poziomu są torami
 	AccTitle  string // tytuł dostępności (accTitle)
 	AccDescr  string // opis dostępności (accDescr)
 
@@ -296,7 +297,11 @@ func quote(lines []string) string { return fmt.Sprintf("%q", showMarks(strings.J
 // Dump zapisuje graf jako tekst w stałej kolejności; służy za plik wzorcowy parsera.
 func (g *Graph) Dump() string {
 	var b strings.Builder
-	fmt.Fprintf(&b, "%s %s\n", g.Kind, g.Direction)
+	fmt.Fprintf(&b, "%s %s", g.Kind, g.Direction)
+	if g.Layout != "" {
+		fmt.Fprintf(&b, " layout=%s", g.Layout)
+	}
+	b.WriteByte('\n')
 	for _, s := range g.Subgraphs {
 		fmt.Fprintf(&b, "subgraph %s title=%s", s.ID, quote(s.Title))
 		if s.Parent != "" {
