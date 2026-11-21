@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="633" height="218.4" viewBox="-12 -12.4 633 218.4" role="img" font-family="Recursive, sans-serif" font-size="16">
+<title>Zapoznanie z nową procedurą</title>
+<desc>Kroki pracownika od powiadomienia do potwierdzenia zapoznania.</desc>
+<line class="journey-grid" x1="263" y1="26" x2="263" y2="194" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="journey-grid" x1="297" y1="26" x2="297" y2="194" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="journey-grid" x1="331" y1="26" x2="331" y2="194" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="journey-grid" x1="365" y1="26" x2="365" y2="194" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="journey-grid" x1="399" y1="26" x2="399" y2="194" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<polyline class="journey-line" points="365,52 365,94 297,136 399,178" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="365" cy="52" r="7" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="365" cy="94" r="7" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="297" cy="136" r="7" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="399" cy="178" r="7" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<text class="journey-scale" x="263" y="15.6" text-anchor="middle" fill="#5b6570">1</text>
+<text class="journey-scale" x="297" y="15.6" text-anchor="middle" fill="#5b6570">2</text>
+<text class="journey-scale" x="331" y="15.6" text-anchor="middle" fill="#5b6570">3</text>
+<text class="journey-scale" x="365" y="15.6" text-anchor="middle" fill="#5b6570">4</text>
+<text class="journey-scale" x="399" y="15.6" text-anchor="middle" fill="#5b6570">5</text>
+<text class="journey-task" x="0" y="47.6" fill="#1b1f24">Powiadomienie o nowym</text>
+<text class="journey-task" x="0" y="67.6" fill="#1b1f24">wydaniu</text>
+<text class="journey-actors" x="429" y="57.6" fill="#5b6570">Pracownik</text>
+<text class="journey-task" x="0" y="99.6" fill="#1b1f24">Otwarcie dokumentu</text>
+<text class="journey-actors" x="429" y="99.6" fill="#5b6570">Pracownik</text>
+<text class="journey-task" x="0" y="131.6" fill="#1b1f24">Znalezienie zmian względem</text>
+<text class="journey-task" x="0" y="151.6" fill="#1b1f24">poprzedniego wydania</text>
+<text class="journey-actors" x="429" y="141.6" fill="#5b6570">Pracownik</text>
+<text class="journey-task" x="0" y="183.6" fill="#1b1f24">Potwierdzenie zapoznania</text>
+<text class="journey-actors" x="429" y="183.6" fill="#5b6570">Pracownik, Przełożony</text>
+</svg>

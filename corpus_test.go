@@ -456,7 +456,7 @@ func TestRequirementsCovered(t *testing.T) {
 
 // REQ: SEQ-011
 func TestUnsupportedType(t *testing.T) {
-	for _, src := range []string{"journey\n title x", "mindmap\n root", "timeline\n title x", "flowchart-elk TD\n A-->B"} {
+	for _, src := range []string{"sankey-beta\n a,b,1", "mindmap\n root", "quadrantChart\n title x", "flowchart-elk TD\n A-->B"} {
 		if _, err := Render(src); !errors.Is(err, ErrUnsupportedType) {
 			t.Errorf("%q: want unsupported type error, got %v", src, err)
 		}

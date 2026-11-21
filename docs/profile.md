@@ -305,3 +305,49 @@ w odwrotnych apostrofach, blok składowych w jednej linii z deklaracją, konfigu
   żeby opisy się nie stykały;
 - identyfikatorem klasy jest nazwa bez parametru typu: `Lista~T~` i `Lista` to ta sama klasa;
 - kolor nadany klasie stylem obejmuje całe pole, także linie przedziałów.
+
+## Oś czasu (`timeline`)
+
+### Obsługiwane
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| nagłówek, tytuł | `timeline`; `title Tekst` | TML-001 |
+| okres ze zdarzeniami | `2024 : zdarzenie : zdarzenie`; kolejna linia `: zdarzenie` dopisuje zdarzenia | TML-002 |
+| sekcja | `section Tytuł` | TML-003 |
+| dostępność | `accTitle`, `accDescr` | TML-001 |
+
+### Poza profilem
+
+Konfiguracja w bloku `%%{init}%%` (`disableMulticolor`, motywy).
+
+### Świadome różnice wobec Mermaid
+
+- oś biegnie z góry na dół, a zdarzenia okresu stoją po jego prawej stronie i zawijają się w szerokości strony;
+  Mermaid rysuje okresy w rzędzie od lewej do prawej, przez co dłuższa oś nie mieści się na stronie. Kierunek
+  podany po nagłówku (`timeline LR`) jest przyjmowany i pomijany;
+- `<br/>` w tekście okresu i zdarzenia łamie linię (renderer odniesienia rysuje znacznik dosłownie);
+- domyślnie rysunek jest neutralny; `WithColors` nadaje ton palety sekcji, a bez sekcji każdemu okresowi;
+- dwukropek zawsze rozdziela zdarzenia, więc tekst z dwukropkiem (np. godzina `10:30`) trzeba zapisać inaczej;
+  tak samo jest w Mermaid.
+
+## Podróż użytkownika (`journey`)
+
+### Obsługiwane
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| nagłówek, tytuł | `journey`; `title Tekst` | JRN-001 |
+| krok | `Nazwa kroku: 4: Uczestnik, Uczestnik`; uczestnicy opcjonalni | JRN-002 |
+| sekcja | `section Tytuł` | JRN-003 |
+| dostępność | `accTitle`, `accDescr` | JRN-001 |
+
+### Świadome różnice wobec Mermaid
+
+- kroki stoją z góry na dół jako lista: nazwa, znacznik oceny na skali od 1 do 5 i uczestnicy; linia łączy oceny
+  kolejnych kroków. Mermaid rysuje kroki w rzędzie z buźką na wysokości oceny i legendą uczestników; taki rysunek
+  przy kilkunastu krokach nie mieści się na stronie;
+- ocena jest czytelna bez koloru: położenie na skali, a znacznik oceny 1–2 jest pełny, 3 szary, 4–5 pusty;
+  `WithColors` daje czerwony, bursztynowy i zielony;
+- uczestnicy są wypisani przy każdym kroku, a nie w osobnej legendzie;
+- ocena spoza zakresu 1–5 albo niecałkowita jest błędem.

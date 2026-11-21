@@ -21,12 +21,14 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/gantt"
 	"github.com/polestorm/gomermaidgo/internal/graph"
+	"github.com/polestorm/gomermaidgo/internal/journey"
 	"github.com/polestorm/gomermaidgo/internal/layered"
 	"github.com/polestorm/gomermaidgo/internal/pie"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
 	"github.com/polestorm/gomermaidgo/internal/syntax"
+	"github.com/polestorm/gomermaidgo/internal/timeline"
 )
 
 // SyntaxError to błąd w źródle diagramu, z numerem linii i stałym kodem.
@@ -44,11 +46,13 @@ const (
 	TypeER        = "erDiagram"
 	TypePie       = "pie"
 	TypeClass     = "classDiagram"
+	TypeTimeline  = "timeline"
+	TypeJourney   = "journey"
 )
 
 // SupportedTypes zwraca obsługiwane typy diagramów.
 func SupportedTypes() []string {
-	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass}
+	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney}
 }
 
 type config struct {
@@ -134,6 +138,10 @@ func DetectType(source string) (string, error) {
 			return TypePie, nil
 		case "classDiagram", "classDiagram-v2":
 			return TypeClass, nil
+		case "timeline":
+			return TypeTimeline, nil
+		case "journey":
+			return TypeJourney, nil
 		}
 		return "", fmt.Errorf("%w: %q (line %d)", ErrUnsupportedType, word, n+1)
 	}
@@ -181,6 +189,10 @@ func Check(source string) error {
 		_, err = pie.Parse(source)
 	case TypeClass:
 		_, err = class.Parse(source)
+	case TypeTimeline:
+		_, err = timeline.Parse(source)
+	case TypeJourney:
+		_, err = journey.Parse(source)
 	default:
 		_, err = sequence.Parse(source)
 	}
@@ -250,6 +262,20 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 			return nil, nil, err
 		}
 		return pie.Layout(chart, pie.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+	}
+	if kind == TypeTimeline {
+		d, err := timeline.Parse(source)
+		if err != nil {
+			return nil, nil, err
+		}
+		return timeline.Layout(d, timeline.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+	}
+	if kind == TypeJourney {
+		d, err := journey.Parse(source)
+		if err != nil {
+			return nil, nil, err
+		}
+		return journey.Layout(d, journey.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
 	}
 	if kind != TypeSequence {
 		var g *graph.Graph

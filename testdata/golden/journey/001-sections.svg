@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="597" height="470.4" viewBox="-12 -12.4 597 470.4" role="img" font-family="Recursive, sans-serif" font-size="16">
+<title>Obsługa reklamacji okiem klienta</title>
+<rect class="journey-section" x="0" y="60" width="573" height="30" rx="4" fill="#f1f4f8"/>
+<rect class="journey-section" x="0" y="210" width="573" height="30" rx="4" fill="#f1f4f8"/>
+<rect class="journey-section" x="0" y="380" width="573" height="30" rx="4" fill="#f1f4f8"/>
+<line class="journey-grid" x1="247" y1="60" x2="247" y2="446" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="journey-grid" x1="281" y1="60" x2="281" y2="446" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="journey-grid" x1="315" y1="60" x2="315" y2="446" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="journey-grid" x1="349" y1="60" x2="349" y2="446" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="journey-grid" x1="383" y1="60" x2="383" y2="446" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<polyline class="journey-line" points="281,120 349,162 383,194 247,280 315,332 349,364 383,430" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="281" cy="120" r="7" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="349" cy="162" r="7" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="383" cy="194" r="7" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="247" cy="280" r="7" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="315" cy="332" r="7" fill="#9aa5b1" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="349" cy="364" r="7" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="journey-mark" cx="383" cy="430" r="7" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<text class="title" x="0" y="15.6" fill="#1b1f24">Obsługa reklamacji okiem klienta</text>
+<text class="journey-scale" x="247" y="49.6" text-anchor="middle" fill="#5b6570">1</text>
+<text class="journey-scale" x="281" y="49.6" text-anchor="middle" fill="#5b6570">2</text>
+<text class="journey-scale" x="315" y="49.6" text-anchor="middle" fill="#5b6570">3</text>
+<text class="journey-scale" x="349" y="49.6" text-anchor="middle" fill="#5b6570">4</text>
+<text class="journey-scale" x="383" y="49.6" text-anchor="middle" fill="#5b6570">5</text>
+<text class="journey-section-title" x="10" y="80.6" font-weight="bold" fill="#1b1f24">Zgłoszenie</text>
+<text class="journey-task" x="0" y="115.6" fill="#1b1f24">Znalezienie formularza na</text>
+<text class="journey-task" x="0" y="135.6" fill="#1b1f24">stronie</text>
+<text class="journey-actors" x="413" y="125.6" fill="#5b6570">Klient</text>
+<text class="journey-task" x="0" y="167.6" fill="#1b1f24">Opisanie problemu</text>
+<text class="journey-actors" x="413" y="167.6" fill="#5b6570">Klient</text>
+<text class="journey-task" x="0" y="199.6" fill="#1b1f24">Potwierdzenie przyjęcia</text>
+<text class="journey-actors" x="413" y="199.6" fill="#5b6570">Klient, Dział jakości</text>
+<text class="journey-section-title" x="10" y="230.6" font-weight="bold" fill="#1b1f24">Rozpatrzenie</text>
+<text class="journey-task" x="0" y="265.6" fill="#1b1f24">Oczekiwanie na odpowiedź</text>
+<text class="journey-task" x="0" y="285.6" fill="#1b1f24">bez informacji o postępie</text>
+<text class="journey-task" x="0" y="305.6" fill="#1b1f24">sprawy</text>
+<text class="journey-actors" x="413" y="285.6" fill="#5b6570">Klient</text>
+<text class="journey-task" x="0" y="337.6" fill="#1b1f24">Dodatkowe pytania</text>
+<text class="journey-actors" x="413" y="337.6" fill="#5b6570">Klient, Dział jakości</text>
+<text class="journey-task" x="0" y="369.6" fill="#1b1f24">Decyzja</text>
+<text class="journey-actors" x="413" y="369.6" fill="#5b6570">Dział jakości</text>
+<text class="journey-section-title" x="10" y="400.6" font-weight="bold" fill="#1b1f24">Zamknięcie</text>
+<text class="journey-task" x="0" y="435.6" fill="#1b1f24">Wymiana wyrobu</text>
+</svg>
