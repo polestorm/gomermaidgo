@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="368" height="186" viewBox="-12 -12 368 186" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M110.69 27.13 L140 27.13 C156 27.13 156 26 172 26 C188 26 188 29 204 29 L242.36 29" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M110.69 42.88 L140 42.88 C156 42.88 156 44 172 44 C188 44 188 41 204 41 L242.36 41" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M140 133 C156 133 156 131 172 131 C183.8 131 183.8 133 195.6 133" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M148.4 147 C160.2 147 160.2 149 172 149 C188 149 188 147 204 147" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="250.76,29 238.76,23 238.76,35" fill="#3b4754"/>
-<polygon class="arrowhead" points="250.76,41 238.76,35 238.76,47" fill="#3b4754"/>
-<polygon class="arrowhead" points="204,133 192,127 192,139" fill="#3b4754"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="420" height="186" viewBox="-12 -12 420 186" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="edge" d="M110.69 27.13 L140 27.13 L172.64 27.13 C172.95 27.13 173.2 26.87 173.2 26.56 L173.2 26.56 C173.2 26.25 173.45 26 173.76 26 L198 26 L221.3 26 C222.13 26 222.8 26.68 222.8 27.5 L222.8 27.5 C222.8 28.33 223.48 29 224.3 29 L256 29 L294.36 29" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M110.69 42.88 L140 42.88 L172.64 42.88 C172.95 42.88 173.2 43.13 173.2 43.44 L173.2 43.44 C173.2 43.75 173.45 44 173.76 44 L198 44 L221.3 44 C222.13 44 222.8 43.33 222.8 42.5 L222.8 42.5 C222.8 41.68 223.48 41 224.3 41 L256 41 L294.36 41" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M140 133 L172.2 133 C172.75 133 173.2 132.55 173.2 132 L173.2 132 C173.2 131.45 173.65 131 174.2 131 L198 131 L221.8 131 C222.35 131 222.8 131.45 222.8 132 L222.8 132 C222.8 132.55 223.25 133 223.8 133 L247.6 133" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M148.4 147 L172.2 147 C172.75 147 173.2 147.45 173.2 148 L173.2 148 C173.2 148.55 173.65 149 174.2 149 L198 149 L221.8 149 C222.35 149 222.8 148.55 222.8 148 L222.8 148 C222.8 147.45 223.25 147 223.8 147 L256 147" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="302.76,29 290.76,23 290.76,35" fill="#3b4754"/>
+<polygon class="arrowhead" points="302.76,41 290.76,35 290.76,47" fill="#3b4754"/>
+<polygon class="arrowhead" points="256,133 244,127 244,139" fill="#3b4754"/>
 <polygon class="arrowhead" points="140,147 152,153 152,141" fill="#3b4754"/>
 <polygon class="node" points="70,0 122.5,35 70,70 17.5,35" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="118" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="274" cy="35" r="24" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="204" y="118" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="326" cy="35" r="24" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="256" y="118" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="70" y="40.6" text-anchor="middle" fill="#1b1f24">Wybór</text>
 <text class="node-label" x="70" y="145.6" text-anchor="middle" fill="#1b1f24">Nadawca</text>
-<text class="node-label" x="274" y="40.6" text-anchor="middle" fill="#1b1f24">Cel</text>
-<text class="node-label" x="274" y="145.6" text-anchor="middle" fill="#1b1f24">Odbiorca</text>
+<text class="node-label" x="326" y="40.6" text-anchor="middle" fill="#1b1f24">Cel</text>
+<text class="node-label" x="326" y="145.6" text-anchor="middle" fill="#1b1f24">Odbiorca</text>
 </svg>

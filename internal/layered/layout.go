@@ -30,6 +30,9 @@ type Options struct {
 	Background    string
 	Colors        bool // kolor według roli węzła: krok, decyzja, początek i koniec
 	Shadows       bool // cień pod węzłami i notatkami
+	// CurvedEdges przywraca krawędzie prowadzone łagodnymi łukami; domyślnie są łamane pod kątem
+	// prostym, z zaokrąglonymi narożnikami.
+	CurvedEdges bool
 }
 
 type itemKind int
@@ -1280,16 +1283,26 @@ func (l *layouter) position(lv *level) (width, height float64) {
 	y := 0.0
 	for r, row := range lv.ranks {
 		band := 0.0
+		turns := 0 // krawędzie, które w odstępie nad tą warstwą zmieniają położenie w poprzek
 		for _, it := range row {
 			band = math.Max(band, it.h)
+			for _, up := range it.up {
+				if math.Abs(up.x-it.x) > 0.5 {
+					turns++
+				}
+			}
 		}
 		if r > 0 {
 			// Warstwa samych punktów na ramce potrzebuje tylko miejsca na łuk krawędzi.
+			gap := rankGap
 			if portsOnly(row) || portsOnly(lv.ranks[r-1]) {
-				y += l.u(24)
-			} else {
-				y += rankGap
+				gap = l.u(24)
 			}
+			// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
+			if !l.o.CurvedEdges && turns > 2 {
+				gap = math.Max(gap, math.Min(l.u(30)+float64(turns)*l.u(7), l.u(150)))
+			}
+			y += gap
 		}
 		for _, it := range row {
 			it.x = math.Round(it.x - left)

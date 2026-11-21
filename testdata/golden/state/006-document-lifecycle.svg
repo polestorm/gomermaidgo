@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1944.6" height="108" viewBox="-12 -12 1944.6 108" role="img" font-family="Recursive, sans-serif" font-size="16">
 <path class="edge" d="M16 42 L48 42 L71.6 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M220 35 C236 35 236 21 252 21 L452.4 21 C464.2 21 464.2 35 476 35" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M228.4 49 C240.2 49 240.2 63 252 63 L452.4 63 C468.4 63 468.4 49 484.4 49" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M220 35 L233.2 35 C237.05 35 240.2 31.85 240.2 28 L240.2 28 C240.2 24.15 243.35 21 247.2 21 L252 21 L452.4 21 L457.2 21 C461.05 21 464.2 24.15 464.2 28 L464.2 28 C464.2 31.85 467.35 35 471.2 35 L476 35" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M228.4 49 L233.2 49 C237.05 49 240.2 52.15 240.2 56 L240.2 56 C240.2 59.85 243.35 63 247.2 63 L252 63 L452.4 63 L457.2 63 C461.05 63 464.2 59.85 464.2 56 L464.2 56 C464.2 52.15 467.35 49 471.2 49 L484.4 49" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M661.4 42 L693.4 42 L783.4 42 L807 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M981.4 42 L1013.4 42 L1189 42 L1212.6 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M1429 42 L1461 42 L1664.6 42 L1688.2 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>

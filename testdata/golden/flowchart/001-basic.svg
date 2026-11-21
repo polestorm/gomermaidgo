@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="491.5" height="409" viewBox="-11.5 -12 491.5 409" role="img" font-family="Recursive, sans-serif" font-size="16">
 <path class="edge" d="M154 44 L154 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M145 203.02 C145 223.81 96 223.81 96 244.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 203.02 C163 228.01 213 228.01 213 253 L213 297 C213 314.8 183 314.8 183 332.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M96 297 C96 314.8 165 314.8 165 332.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M145 203.02 L145 215.81 C145 220.21 141.4 223.81 137 223.81 L104 223.81 C99.6 223.81 96 227.41 96 231.81 L96 244.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 203.02 L163 215.81 C163 220.21 166.6 223.81 171 223.81 L205 223.81 C209.4 223.81 213 227.41 213 231.81 L213 253 L213 297 L213 306.8 C213 311.2 209.4 314.8 205 314.8 L191 314.8 C186.6 314.8 183 318.4 183 322.8 L183 332.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M96 297 L96 306.8 C96 311.2 99.6 314.8 104 314.8 L157 314.8 C161.4 314.8 165 318.4 165 322.8 L165 332.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="154,88 148,76 160,76" fill="#3b4754"/>
 <polygon class="arrowhead" points="96,253 90,241 102,241" fill="#3b4754"/>
 <polygon class="arrowhead" points="183,341 177,329 189,329" fill="#3b4754"/>

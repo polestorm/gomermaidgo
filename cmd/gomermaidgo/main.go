@@ -1,6 +1,6 @@
 // Polecenie gomermaidgo renderuje plik z diagramem do SVG.
 //
-//	gomermaidgo [-font plik.ttf] [-family nazwa] [-size 16] [-background kolor] [-colors] [-shadows] [-o wynik.svg] [wejście.mmd]
+//	gomermaidgo [-font plik.ttf] [-family nazwa] [-size 16] [-background kolor] [-colors] [-shadows] [-curved] [-o wynik.svg] [wejście.mmd]
 //
 // Bez pliku wejściowego czyta standardowe wejście; bez -o pisze na standardowe wyjście.
 package main
@@ -22,11 +22,15 @@ func main() {
 	out := flag.String("o", "", "output file (default: stdout)")
 	colors := flag.Bool("colors", false, "colour participants and nodes")
 	shadows := flag.Bool("shadows", false, "draw shadows under participants, nodes and notes")
+	curved := flag.Bool("curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
 	flag.Parse()
 
 	var extra []gomermaidgo.Option
 	if *colors {
 		extra = append(extra, gomermaidgo.WithColors())
+	}
+	if *curved {
+		extra = append(extra, gomermaidgo.WithCurvedEdges())
 	}
 	if *shadows {
 		extra = append(extra, gomermaidgo.WithShadows())

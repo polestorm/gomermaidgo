@@ -1,26 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="169" height="473" viewBox="-12 -12 169 473" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M57 44 C57 60 42 60 42 76 L42 100 C42 111.8 52 111.8 52 123.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M75 44 C75 60 60 60 60 76 L60 100 C60 111.8 70 111.8 70 123.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M93 44 C93 60 107 60 107 76 L107 100 C107 111.8 88 111.8 88 123.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M61 176 L61 208 L61 237.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M79 176 L79 208 L79 237.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M61 307.48 L61 345 L61 369.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M79 307.48 L79 345 L79 369.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="83" y="78" width="48" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="52,132 46,120 58,120" fill="#3b4754"/>
-<polygon class="arrowhead" points="70,132 64,120 76,120" fill="#3b4754"/>
-<polygon class="arrowhead" points="88,132 82,120 94,120" fill="#3b4754"/>
-<polygon class="arrowhead" points="61,245.52 55,233.52 67,233.52" fill="#3b4754"/>
-<polygon class="arrowhead" points="79,245.52 73,233.52 85,233.52" fill="#3b4754"/>
-<polygon class="arrowhead" points="61,378.14 55,366.14 67,366.14" fill="#3b4754"/>
-<polygon class="arrowhead" points="79,378.14 73,366.14 85,366.14" fill="#3b4754"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="169" height="511" viewBox="-12 -12 169 511" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="edge" d="M57 44 L57 58.5 C57 62.63 53.63 66 49.5 66 L49.5 66 C45.38 66 42 69.38 42 73.5 L42 95 L42 119 L42 138.8 C42 141.55 44.25 143.8 47 143.8 L47 143.8 C49.75 143.8 52 146.05 52 148.8 L52 161.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M75 44 L75 65.5 C75 69.63 71.63 73 67.5 73 L67.5 73 C63.38 73 60 76.38 60 80.5 L60 95 L60 119 L60 131.8 C60 134.55 62.25 136.8 65 136.8 L65 136.8 C67.75 136.8 70 139.05 70 141.8 L70 161.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M93 44 L93 66 C93 69.85 96.15 73 100 73 L100 73 C103.85 73 107 76.15 107 80 L107 95 L107 119 L107 135.8 C107 140.2 103.4 143.8 99 143.8 L96 143.8 C91.6 143.8 88 147.4 88 151.8 L88 161.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 214 L61 246 L61 275.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M79 214 L79 246 L79 275.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 345.48 L61 383 L61 407.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M79 345.48 L79 383 L79 407.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="83" y="97" width="48" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="52,170 46,158 58,158" fill="#3b4754"/>
+<polygon class="arrowhead" points="70,170 64,158 76,158" fill="#3b4754"/>
+<polygon class="arrowhead" points="88,170 82,158 94,158" fill="#3b4754"/>
+<polygon class="arrowhead" points="61,283.52 55,271.52 67,271.52" fill="#3b4754"/>
+<polygon class="arrowhead" points="79,283.52 73,271.52 85,271.52" fill="#3b4754"/>
+<polygon class="arrowhead" points="61,416.14 55,404.14 67,404.14" fill="#3b4754"/>
+<polygon class="arrowhead" points="79,416.14 73,404.14 85,404.14" fill="#3b4754"/>
 <rect class="node" x="5" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="132" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="70,240 129.5,276.5 70,313 10.5,276.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="70" cy="413" r="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="170" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="70,278 129.5,314.5 70,351 10.5,314.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="70" cy="451" r="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="75" y="27.6" text-anchor="middle" fill="#1b1f24">Wniosek</text>
-<text class="node-label" x="70" y="159.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="70" y="282.1" text-anchor="middle" fill="#1b1f24">Decyzja</text>
-<text class="node-label" x="70" y="418.6" text-anchor="middle" fill="#1b1f24">Koniec</text>
-<text class="edge-label" x="107" y="93.6" text-anchor="middle" fill="#1b1f24">pilne</text>
+<text class="node-label" x="70" y="197.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
+<text class="node-label" x="70" y="320.1" text-anchor="middle" fill="#1b1f24">Decyzja</text>
+<text class="node-label" x="70" y="456.6" text-anchor="middle" fill="#1b1f24">Koniec</text>
+<text class="edge-label" x="107" y="112.6" text-anchor="middle" fill="#1b1f24">pilne</text>
 </svg>

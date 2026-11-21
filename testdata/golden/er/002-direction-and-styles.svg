@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1004.6" height="214" viewBox="-12 -12 1004.6 214" role="img" font-family="Recursive, sans-serif" font-size="16">
 <title>Struktura organizacyjna</title>
 <path class="edge" d="M501.1 130 L501.1 142 C501.1 172 517.1 172 517.1 142 L517.1 130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M178 99 L210 99 L297.6 99 C313.6 99 313.6 65 329.6 65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M688.6 65 C704.6 65 704.6 99 720.6 99 L770.6 99 L802.6 99" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M178 99 L210 99 L297.6 99 L305.6 99 C310 99 313.6 95.4 313.6 91 L313.6 73 C313.6 68.6 317.2 65 321.6 65 L329.6 65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M688.6 65 L696.6 65 C701 65 704.6 68.6 704.6 73 L704.6 91 C704.6 95.4 708.2 99 712.6 99 L720.6 99 L770.6 99 L802.6 99" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="435.9" y="170" width="146.4" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="211" y="89" width="85.6" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="721.6" y="89" width="48" height="20" fill="#ffffff"/>

@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="352" height="332" viewBox="-12 -12 352 332" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M155 44 C155 61.8 70 61.8 70 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M173 44 C173 61.8 258 61.8 258 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M70 132 C70 149.8 155 149.8 155 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M258 132 C258 149.8 173 149.8 173 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M155 44 L155 53.8 C155 58.2 151.4 61.8 147 61.8 L78 61.8 C73.6 61.8 70 65.4 70 69.8 L70 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M173 44 L173 53.8 C173 58.2 176.6 61.8 181 61.8 L250 61.8 C254.4 61.8 258 65.4 258 69.8 L258 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 132 L70 141.8 C70 146.2 73.6 149.8 78 149.8 L147 149.8 C151.4 149.8 155 153.4 155 157.8 L155 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M258 132 L258 141.8 C258 146.2 254.4 149.8 250 149.8 L181 149.8 C176.6 149.8 173 153.4 173 157.8 L173 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M164 220 L164 255.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="70,88 64,76 76,76" fill="#3b4754"/>
 <polygon class="arrowhead" points="258,88 252,76 264,76" fill="#3b4754"/>

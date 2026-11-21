@@ -57,6 +57,7 @@ type config struct {
 	background string
 	colors     bool
 	shadows    bool
+	curved     bool
 }
 
 // Option zmienia ustawienia renderowania.
@@ -90,6 +91,10 @@ func WithFontSize(px float64) Option { return func(c *config) { c.fontSize = px 
 
 // WithBackground ustawia kolor tła. Domyślnie tło jest przezroczyste.
 func WithBackground(color string) Option { return func(c *config) { c.background = color } }
+
+// WithCurvedEdges prowadzi krawędzie grafów łagodnymi łukami. Domyślnie krawędzie są łamane pod
+// kątem prostym, z zaokrąglonymi narożnikami.
+func WithCurvedEdges() Option { return func(c *config) { c.curved = true } }
 
 // WithColors włącza tryb kolorowy: uczestnicy diagramu sekwencji dostają kolejne kolory palety,
 // a węzły grafów kolor według roli (krok, decyzja, początek i koniec). Domyślnie rysunek jest
@@ -246,7 +251,7 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 		} else if styled, err = styledMeasure(c.boldData, c.italicData); err != nil {
 			return nil, nil, err
 		}
-		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {

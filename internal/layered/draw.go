@@ -291,10 +291,29 @@ func (l *layouter) drawLevel(lv *level) {
 			}
 		}
 	}
+	// Najpierw przebieg każdej krawędzi, potem wspólny przydział torów odcinkom poprzecznym,
+	// na końcu rysowanie.
+	var routes []*edgeRoute
 	for _, e := range lv.edges {
-		if !e.part {
-			l.drawEdge(e)
+		if e.part || e.e.Style == graph.Invisible {
+			continue
 		}
+		topHead, bottomHead := e.e.StartHead, e.e.EndHead
+		if e.rev {
+			topHead, bottomHead = bottomHead, topHead
+		}
+		r := &edgeRoute{e: e, pts: l.route(e), topHead: topHead, bottomHead: bottomHead}
+		last := len(r.pts) - 1
+		r.top, r.bottom = r.pts[0], r.pts[last]
+		r.pts[0].y += l.headLength(topHead)
+		r.pts[last].y -= l.headLength(bottomHead)
+		routes = append(routes, r)
+	}
+	if !l.o.CurvedEdges {
+		l.assignTracks(routes)
+	}
+	for _, r := range routes {
+		l.drawEdge(r)
 	}
 }
 
@@ -566,9 +585,10 @@ func (l *layouter) headAt(h graph.Head, x, y, dx, dy float64) float64 {
 		}
 		return 0
 	case graph.CrossHead:
-		r := l.u(4.5)
+		// Krzyżyk stoi tuż przy polu, a linia kończy się w jego środku.
+		r := l.u(5)
 		for _, s := range []float64{-1, 1} {
-			a, b := at(l.u(6)-r, s*r), at(l.u(6)+r, -s*r)
+			a, b := at(l.u(8)-r, s*r), at(l.u(8)+r, -s*r)
 			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerActivation, Role: "arrowhead",
 				X: a.X, Y: a.Y, X2: b.X, Y2: b.Y, Stroke: colorLine, StrokeWidth: 1.5})
 		}
@@ -663,20 +683,107 @@ func (l *layouter) route(e *ledge) []routePoint {
 }
 
 // drawEdge rysuje krawędź: w paśmie warstwy biegnie prosto, między pasmami łagodnym łukiem.
-func (l *layouter) drawEdge(e *ledge) {
-	if e.e.Style == graph.Invisible {
-		return
+// edgeRoute to przebieg jednej krawędzi przygotowany do rysowania.
+type edgeRoute struct {
+	e                   *ledge
+	pts                 []routePoint // punkty przebiegu, skrócone o zakończenia
+	top, bottom         routePoint   // końce przy polach, przed skróceniem
+	topHead, bottomHead graph.Head
+	track               map[int]float64 // położenie odcinka poprzecznego dla odcinka o danym numerze
+}
+
+// headLength mówi, o ile zakończenie skraca linię krawędzi.
+func (l *layouter) headLength(h graph.Head) float64 {
+	switch h {
+	case graph.ArrowHead:
+		return l.u(12) * 0.7
+	case graph.CircleHead:
+		return l.u(9)
+	case graph.CrossHead:
+		return l.u(8) // linia kończy się w środku krzyżyka
 	}
-	topHead, bottomHead := e.e.StartHead, e.e.EndHead
-	if e.rev {
-		topHead, bottomHead = bottomHead, topHead
+	return 0
+}
+
+// assignTracks rozdziela odcinki poprzeczne krawędzi łamanych na tory. Odcinki leżące w tym samym
+// odstępie między warstwami, których zakresy się pokrywają, dostają różne tory, w kolejności,
+// która nie dodaje przecięć: przy biegu w stronę +x krawędź zaczynająca się wcześniej skręca
+// później (bliżej następnej warstwy), przy biegu w stronę −x odwrotnie.
+func (l *layouter) assignTracks(routes []*edgeRoute) {
+	type jog struct {
+		r      *edgeRoute
+		seg    int
+		a, b   routePoint
+		lo, hi float64
+		track  int
 	}
-	pts := l.route(e)
-	last := len(pts) - 1
+	var jogs []*jog
+	for _, r := range routes {
+		r.track = map[int]float64{}
+		for i := 0; i+1 < len(r.pts); i++ {
+			a, b := r.pts[i], r.pts[i+1]
+			if math.Abs(a.x-b.x) >= 0.5 {
+				jogs = append(jogs, &jog{r: r, seg: i, a: a, b: b, lo: math.Min(a.x, b.x) - l.u(5), hi: math.Max(a.x, b.x) + l.u(5)})
+			}
+		}
+	}
+	sort.SliceStable(jogs, func(i, k int) bool { return jogs[i].a.y < jogs[k].a.y })
+	for start := 0; start < len(jogs); {
+		// Grupa odcinków z jednego odstępu między warstwami: ich zakresy wzdłuż osi warstw się pokrywają.
+		end, maxA, minB := start+1, jogs[start].a.y, jogs[start].b.y
+		for end < len(jogs) && jogs[end].a.y < minB-1 {
+			maxA, minB = math.Max(maxA, jogs[end].a.y), math.Min(minB, jogs[end].b.y)
+			end++
+		}
+		group := append([]*jog(nil), jogs[start:end]...)
+		start = end
+		sort.SliceStable(group, func(i, k int) bool {
+			p, q := group[i], group[k]
+			pr, qr := p.b.x > p.a.x, q.b.x > q.a.x
+			switch {
+			case pr != qr:
+				return pr
+			case pr && p.a.x != q.a.x:
+				return p.a.x < q.a.x
+			case pr:
+				return p.b.x < q.b.x
+			case p.a.x != q.a.x:
+				return p.a.x > q.a.x
+			}
+			return p.b.x > q.b.x
+		})
+		tracks := 1
+		for i, j := range group {
+			for _, prev := range group[:i] {
+				if prev.lo < j.hi && j.lo < prev.hi {
+					j.track = max(j.track, prev.track+1)
+				}
+			}
+			tracks = max(tracks, j.track+1)
+		}
+		lo, hi := maxA+l.u(7), minB-l.u(7)
+		if hi < lo {
+			lo, hi = (maxA+minB)/2, (maxA+minB)/2
+		}
+		step := 0.0
+		if tracks > 1 {
+			step = math.Min(l.u(7), (hi-lo)/float64(tracks-1))
+		}
+		for _, j := range group {
+			// Tor zerowy leży najbliżej następnej warstwy.
+			j.r.track[j.seg] = (lo+hi)/2 + (float64(tracks-1)/2-float64(j.track))*step
+		}
+	}
+}
+
+// drawEdge rysuje krawędź: w paśmie warstwy biegnie prosto; między pasmami skręca dwoma kątami
+// prostymi z zaokrąglonymi narożnikami albo, na życzenie, łagodnym łukiem.
+func (l *layouter) drawEdge(r *edgeRoute) {
+	e, pts := r.e, r.pts
 	from := len(l.sc.Items)
 	defer func() { l.repaint(from, len(l.sc.Items), e.e.Paint, colorLine) }()
-	pts[0].y += l.headAt(topHead, pts[0].x, pts[0].y, 0, -1)
-	pts[last].y -= l.headAt(bottomHead, pts[last].x, pts[last].y, 0, 1)
+	l.headAt(r.topHead, r.top.x, r.top.y, 0, -1)
+	l.headAt(r.bottomHead, r.bottom.x, r.bottom.y, 0, 1)
 
 	segments := []scene.Segment{{Cmd: 'M', To: l.point(pts[0].x, pts[0].y)}}
 	for i := 0; i+1 < len(pts); i++ {
@@ -686,7 +793,26 @@ func (l *layouter) drawEdge(e *ledge) {
 			continue
 		}
 		mid := (a.y + b.y) / 2
-		segments = append(segments, scene.Segment{Cmd: 'C', C1: l.point(a.x, mid), C2: l.point(b.x, mid), To: l.point(b.x, b.y)})
+		if l.o.CurvedEdges {
+			segments = append(segments, scene.Segment{Cmd: 'C', C1: l.point(a.x, mid), C2: l.point(b.x, mid), To: l.point(b.x, b.y)})
+			continue
+		}
+		if y, ok := r.track[i]; ok {
+			mid = y
+		}
+		r := math.Max(0, math.Min(l.u(8), math.Min(math.Abs(b.x-a.x)/2, math.Min(mid-a.y, b.y-mid))))
+		dir := 1.0
+		if b.x < a.x {
+			dir = -1
+		}
+		// Narożnik to ćwiartka okręgu przybliżona krzywą: punkty kontrolne w 0,55 promienia od końców.
+		const k = 0.45
+		segments = append(segments,
+			scene.Segment{Cmd: 'L', To: l.point(a.x, mid-r)},
+			scene.Segment{Cmd: 'C', C1: l.point(a.x, mid-r*k), C2: l.point(a.x+dir*r*k, mid), To: l.point(a.x+dir*r, mid)},
+			scene.Segment{Cmd: 'L', To: l.point(b.x-dir*r, mid)},
+			scene.Segment{Cmd: 'C', C1: l.point(b.x-dir*r*k, mid), C2: l.point(b.x, mid+r*k), To: l.point(b.x, mid+r)},
+			scene.Segment{Cmd: 'L', To: l.point(b.x, b.y)})
 	}
 	width, dash := l.strokeOf(e.e)
 	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "edge", Segments: segments,
