@@ -34,7 +34,7 @@ md, problems := markdown.Embed(source, markdown.Options{})
 ```
 
 Status: early. Supported diagram types: `sequenceDiagram`, `flowchart`/`graph`, `stateDiagram-v2`, `gantt`,
-`erDiagram`, `classDiagram`, `pie`, `timeline`, `journey` and `mindmap`. Graphs use a
+`erDiagram`, `classDiagram`, `pie`, `timeline`, `journey`, `mindmap`, `xychart-beta` and `quadrantChart`. Graphs use a
 layered layout written from the published algorithms; its current limits are listed in `docs/profile.md`. A construct outside the supported profile (`docs/profile.md`) is an error with a line number,
 never a partial drawing.
 

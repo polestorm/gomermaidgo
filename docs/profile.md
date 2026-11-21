@@ -399,3 +399,56 @@ komentarzem, więc to samo źródło w innych narzędziach rysuje układ domyśl
 - tabulacja we wcięciu liczy się jak cztery spacje;
 - domyślnie rysunek jest neutralny; `WithColors` nadaje każdej gałęzi głównej ton palety;
 - `accTitle` i `accDescr` nie są częścią składni mapy myśli: taka linia byłaby gałęzią.
+
+## Wykres słupkowy i liniowy (`xychart-beta`, `xychart`)
+
+### Obsługiwane
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| nagłówek, tytuł | `xychart-beta`; `title "Tekst"` | XY-001 |
+| oś pozioma | `x-axis [sty, lut, mar]`; `x-axis "Tytuł" [a, b]`; `x-axis Tytuł 0 --> 10` | XY-002 |
+| oś pionowa | `y-axis "Tytuł" 0 --> 40`; `y-axis Tytuł`; `y-axis 0 --> 40` | XY-002 |
+| serie | `bar [1, 2, 3]`; `line [1, 2, 3]`; z nazwą: `bar "Plan" [1, 2, 3]` | XY-002, XY-004 |
+| dostępność | `accTitle`, `accDescr` | XY-001 |
+
+### Poza profilem (błąd `xychart-unsupported`)
+
+Wykres poziomy (`xychart-beta horizontal`). Konfiguracja w bloku `%%{init}%%` i `---` (rozmiary, motywy,
+`showDataLabel`).
+
+### Świadome różnice wobec Mermaid
+
+- tytuł osi pionowej stoi poziomo nad osią, a nie obrócony wzdłuż niej: rysunek nie ma tekstu obróconego;
+- bez podanego zakresu oś pionowa przy słupkach obejmuje zero, bo słupek mierzy się od zera; podziałka ma
+  okrągłe wartości;
+- kilka serii słupków stoi obok siebie w obrębie kategorii (w Mermaid nakładają się na siebie);
+- serie różnią się bez koloru: słupki jasnością, linie kreskowaniem; `WithColors` daje kolory palety;
+- nazwa serii przed listą wartości daje legendę pod wykresem;
+- gdy etykiety kategorii się nie mieszczą, zostaje co któraś, zamiast nachodzić na siebie;
+- seria musi mieć tyle wartości, ile jest kategorii; inna liczba jest błędem.
+- tytuł i kategorie przyjmujemy także bez cudzysłowów, gdy mają polskie litery albo kilka wyrazów; Mermaid
+  wymaga wtedy cudzysłowów, więc w źródle przenośnym warto je pisać;
+- podziałka osi pionowej ma inny krok niż w Mermaid, więc liczby przy osi się różnią.
+
+## Wykres ćwiartkowy (`quadrantChart`)
+
+### Obsługiwane
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| nagłówek, tytuł | `quadrantChart`; `title Tekst` | QDR-001 |
+| osie | `x-axis Lewy --> Prawy`; `y-axis Dolny --> Górny`; drugi opis opcjonalny | QDR-001 |
+| ćwiartki | `quadrant-1 Tekst` … `quadrant-4 Tekst` | QDR-001 |
+| punkt | `Nazwa: [0.3, 0.6]` | QDR-002 |
+| style punktów | `Nazwa:::klasa: [x, y]`, `radius: 12, color: #f00` po nawiasie, `classDef` (pomijane) | QDR-002 |
+| dostępność | `accTitle`, `accDescr` | QDR-001 |
+
+### Świadome różnice wobec Mermaid
+
+- opisy osi pionowej stoją poziomo z lewej strony wykresu, każdy przy swojej połowie, a nie obrócone;
+- tytuł ćwiartki ustępuje punktom: stoi u góry ćwiartki, a gdy są tam punkty, u dołu albo pośrodku;
+- nazwa punktu ma własny podkład, a przy prawej krawędzi wykresu stoi po lewej stronie punktu;
+- wygląd punktów podany w źródle (promień, kolor, klasy) nie jest rysowany: wszystkie punkty są jednakowe;
+- ćwiartki stykające się bokiem różnią się jasnością; `WithColors` nadaje im tony palety;
+- współrzędna spoza zakresu 0–1 jest błędem.

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="547.2" height="504" viewBox="-12.2 -12.4 547.2 504" role="img" font-family="Recursive, sans-serif" font-size="16">
+<title>Ocena ryzyka procesów</title>
+<rect class="quadrant" x="323" y="32" width="200" height="200" fill="#e3e8ef"/>
+<rect class="quadrant" x="123" y="32" width="200" height="200" fill="#f6f8fa"/>
+<rect class="quadrant" x="123" y="232" width="200" height="200" fill="#e3e8ef"/>
+<rect class="quadrant" x="323" y="232" width="200" height="200" fill="#f6f8fa"/>
+<text class="quadrant-title" x="423" y="57.6" text-anchor="middle" font-weight="bold" fill="#5b6570">Działać natychmiast</text>
+<text class="quadrant-title" x="223" y="217.6" text-anchor="middle" font-weight="bold" fill="#5b6570">Zabezpieczyć</text>
+<text class="quadrant-title" x="223" y="257.6" text-anchor="middle" font-weight="bold" fill="#5b6570">Obserwować</text>
+<text class="quadrant-title" x="423" y="417.6" text-anchor="middle" font-weight="bold" fill="#5b6570">Ograniczać częstość</text>
+<rect class="quadrant-frame" x="123" y="32" width="400" height="400" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="quadrant-frame" x1="323" y1="32" x2="323" y2="432" fill="none" stroke="#3b4754" stroke-width="1"/>
+<line class="quadrant-frame" x1="123" y1="232" x2="523" y2="232" fill="none" stroke="#3b4754" stroke-width="1"/>
+<text class="title" x="323" y="15.6" text-anchor="middle" fill="#1b1f24">Ocena ryzyka procesów</text>
+<circle class="quadrant-point" cx="223" cy="72" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<rect class="quadrant-point-background" x="230" y="62" width="100.8" height="20" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+<text class="quadrant-point-label" x="232" y="77.6" fill="#1b1f24">Sterylizacja</text>
+<circle class="quadrant-point" cx="403" cy="132" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<rect class="quadrant-point-background" x="410" y="122" width="89.6" height="20" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+<text class="quadrant-point-label" x="412" y="137.6" fill="#1b1f24">Pakowanie</text>
+<circle class="quadrant-point" cx="443" cy="292" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<rect class="quadrant-point-background" x="316" y="282" width="120" height="20" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+<text class="quadrant-point-label" x="434" y="297.6" text-anchor="end" fill="#1b1f24">Etykietowanie</text>
+<circle class="quadrant-point" cx="243" cy="352" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<rect class="quadrant-point-background" x="250" y="342" width="130.4" height="20" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+<text class="quadrant-point-label" x="252" y="357.6" fill="#1b1f24">Magazynowanie</text>
+<circle class="quadrant-point" cx="343" cy="252" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<rect class="quadrant-point-background" x="350" y="242" width="61.6" height="20" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+<text class="quadrant-point-label" x="352" y="257.6" fill="#1b1f24">Zakupy</text>
+<circle class="quadrant-point" cx="495" cy="384" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<rect class="quadrant-point-background" x="318.4" y="374" width="169.6" height="20" rx="3" fill="#ffffff" fill-opacity="0.85"/>
+<text class="quadrant-point-label" x="486" y="389.6" text-anchor="end" fill="#1b1f24">Transport do klienta</text>
+<text class="axis-label" x="111" y="337.6" text-anchor="end" fill="#5b6570">Mała ciężkość</text>
+<text class="axis-label" x="111" y="137.6" text-anchor="end" fill="#5b6570">Duża ciężkość</text>
+<text class="axis-label" x="223" y="455.6" text-anchor="middle" fill="#5b6570">Małe</text>
+<text class="axis-label" x="223" y="475.6" text-anchor="middle" fill="#5b6570">prawdopodobieństwo</text>
+<text class="axis-label" x="423" y="455.6" text-anchor="middle" fill="#5b6570">Duże</text>
+<text class="axis-label" x="423" y="475.6" text-anchor="middle" fill="#5b6570">prawdopodobieństwo</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="605.8" height="450" viewBox="-12 -12.4 605.8 450" role="img" font-family="Recursive, sans-serif" font-size="16">
+<title>Odchylenie od planu audytów</title>
+<line class="chart-grid" x1="29" y1="344" x2="549" y2="344" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="chart-grid" x1="29" y1="250.67" x2="549" y2="250.67" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="chart-grid" x1="29" y1="157.33" x2="549" y2="157.33" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="chart-grid" x1="29" y1="64" x2="549" y2="64" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<rect class="chart-bar" x="48.5" y="138.67" width="45.5" height="112" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="178.5" y="101.33" width="45.5" height="149.33" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="308.5" y="101.33" width="45.5" height="149.33" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="438.5" y="138.67" width="45.5" height="112" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="94" y="157.33" width="45.5" height="93.33" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="224" y="82.67" width="45.5" height="168" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="354" y="138.67" width="45.5" height="112" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="484" y="120" width="45.5" height="130.67" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<polyline class="chart-line" points="94,269.33 224,232 354,288 484,232" fill="none" stroke="#3b4754" stroke-width="2"/>
+<polyline class="chart-line" points="94,269.33 224,250.67 354,288 484,269.33" fill="none" stroke="#3b4754" stroke-width="2" stroke-dasharray="7 4"/>
+<rect class="chart-swatch" x="29" y="410" width="18" height="12" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-swatch" x="107.4" y="410" width="18" height="12" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<line class="chart-swatch" x1="239.4" y1="416" x2="257.4" y2="416" fill="none" stroke="#3b4754" stroke-width="2"/>
+<line class="chart-swatch" x1="370.6" y1="416" x2="388.6" y2="416" fill="none" stroke="#3b4754" stroke-width="2" stroke-dasharray="7 4"/>
+<text class="title" x="289" y="15.6" text-anchor="middle" fill="#1b1f24">Odchylenie od planu audytów</text>
+<text class="axis-title" x="0" y="47.6" fill="#5b6570">Audyty</text>
+<text class="axis-label" x="21" y="349.6" text-anchor="end" fill="#5b6570">-5</text>
+<text class="axis-label" x="21" y="256.27" text-anchor="end" fill="#5b6570">0</text>
+<text class="axis-label" x="21" y="162.93" text-anchor="end" fill="#5b6570">5</text>
+<text class="axis-label" x="21" y="69.6" text-anchor="end" fill="#5b6570">10</text>
+<circle class="chart-point" cx="94" cy="269.33" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="224" cy="232" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="354" cy="288" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="484" cy="232" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="94" cy="269.33" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="224" cy="250.67" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="354" cy="288" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="484" cy="269.33" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="chart-axis" x1="29" y1="64" x2="29" y2="344" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="chart-axis" x1="29" y1="250.67" x2="549" y2="250.67" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="axis-label" x="94" y="367.6" text-anchor="middle" fill="#5b6570">I</text>
+<text class="axis-label" x="224" y="367.6" text-anchor="middle" fill="#5b6570">II</text>
+<text class="axis-label" x="354" y="367.6" text-anchor="middle" fill="#5b6570">III</text>
+<text class="axis-label" x="484" y="367.6" text-anchor="middle" fill="#5b6570">IV</text>
+<text class="axis-title" x="289" y="391.6" text-anchor="middle" fill="#5b6570">Kwartał</text>
+<text class="chart-legend" x="53" y="421.6" fill="#1b1f24">Plan</text>
+<text class="chart-legend" x="131.4" y="421.6" fill="#1b1f24">Wykonanie</text>
+<text class="chart-legend" x="263.4" y="421.6" fill="#1b1f24">Odchylenie</text>
+<text class="chart-legend" x="394.6" y="421.6" fill="#1b1f24">Odchylenie narastająco</text>
+</svg>

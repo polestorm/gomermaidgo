@@ -1,0 +1,12 @@
+%% REQ: XY-001 XY-002 XY-004
+%% Tytuł: Serie z nazwami, zakres z danych, wartości ujemne
+%% Sprawdza: nazwy serii i legenda; dwie serie słupków obok siebie; dwie linie odróżnione kreskowaniem; zakres osi pionowej z danych z zerem; wartość ujemna; tytuł osi poziomej; accTitle.
+xychart-beta
+    accTitle: Odchylenie od planu audytów
+    title "Odchylenie od planu audytów"
+    x-axis "Kwartał" [I, II, III, IV]
+    y-axis "Audyty"
+    bar "Plan" [6, 8, 8, 6]
+    bar "Wykonanie" [5, 9, 6, 7]
+    line "Odchylenie" [-1, 1, -2, 1]
+    line "Odchylenie narastająco" [-1, 0, -2, -1]
