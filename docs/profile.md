@@ -315,18 +315,27 @@ w odwrotnych apostrofach, blok składowych w jednej linii z deklaracją, konfigu
 | nagłówek, tytuł | `timeline`; `title Tekst` | TML-001 |
 | okres ze zdarzeniami | `2024 : zdarzenie : zdarzenie`; kolejna linia `: zdarzenie` dopisuje zdarzenia | TML-002 |
 | sekcja | `section Tytuł` | TML-003 |
+| układ listowy | komentarz `%% layout: list` | TML-006 |
 | dostępność | `accTitle`, `accDescr` | TML-001 |
 
 ### Poza profilem
 
 Konfiguracja w bloku `%%{init}%%` (`disableMulticolor`, motywy).
 
+### Układy
+
+Domyślny układ jest taki jak w Mermaid: okresy w rzędzie od lewej do prawej, pod nimi oś ze strzałką, pod osią
+zdarzenia każdego okresu jedno pod drugim, nagłówek sekcji nad jej okresami. Dłuższa oś nie mieści się wtedy
+w szerokości strony i jest pomniejszana.
+
+Układ listowy (`%% layout: list`) prowadzi oś z góry na dół: okresy stoją przy osi, a zdarzenia okresu po prawej,
+zawijane w szerokości strony. Rysunek rośnie w dół i mieści się na stronie przy dowolnej liczbie okresów. Dyrektywa
+jest komentarzem, więc to samo źródło w innych narzędziach rysuje układ domyślny.
+
 ### Świadome różnice wobec Mermaid
 
-- oś biegnie z góry na dół, a zdarzenia okresu stoją po jego prawej stronie i zawijają się w szerokości strony;
-  Mermaid rysuje okresy w rzędzie od lewej do prawej, przez co dłuższa oś nie mieści się na stronie. Kierunek
-  podany po nagłówku (`timeline LR`) jest przyjmowany i pomijany;
 - `<br/>` w tekście okresu i zdarzenia łamie linię (renderer odniesienia rysuje znacznik dosłownie);
+- kierunek podany po nagłówku (`timeline LR`, `timeline TD`) jest przyjmowany i pomijany;
 - domyślnie rysunek jest neutralny; `WithColors` nadaje ton palety sekcji, a bez sekcji każdemu okresowi;
 - dwukropek zawsze rozdziela zdarzenia, więc tekst z dwukropkiem (np. godzina `10:30`) trzeba zapisać inaczej;
   tak samo jest w Mermaid.
@@ -340,16 +349,23 @@ Konfiguracja w bloku `%%{init}%%` (`disableMulticolor`, motywy).
 | nagłówek, tytuł | `journey`; `title Tekst` | JRN-001 |
 | krok | `Nazwa kroku: 4: Uczestnik, Uczestnik`; uczestnicy opcjonalni | JRN-002 |
 | sekcja | `section Tytuł` | JRN-003 |
+| układ listowy | komentarz `%% layout: list` | JRN-005 |
 | dostępność | `accTitle`, `accDescr` | JRN-001 |
+
+### Układy
+
+Domyślny układ jest taki jak w Mermaid: kroki w rzędzie pod nagłówkami sekcji, pod każdym krokiem buźka na
+wysokości oceny, u dołu oś ze strzałką, z lewej legenda uczestników, a na krokach ich znaczniki.
+
+Układ listowy (`%% layout: list`) stawia kroki z góry na dół: nazwa, znacznik oceny na skali od 1 do 5
+i uczestnicy wypisani przy kroku; linia łączy oceny kolejnych kroków. Mieści się na stronie przy wielu krokach,
+a ocena jest w nim czytelna bez koloru (położenie na skali; znacznik oceny 1–2 pełny, 3 szary, 4–5 pusty).
 
 ### Świadome różnice wobec Mermaid
 
-- kroki stoją z góry na dół jako lista: nazwa, znacznik oceny na skali od 1 do 5 i uczestnicy; linia łączy oceny
-  kolejnych kroków. Mermaid rysuje kroki w rzędzie z buźką na wysokości oceny i legendą uczestników; taki rysunek
-  przy kilkunastu krokach nie mieści się na stronie;
-- ocena jest czytelna bez koloru: położenie na skali, a znacznik oceny 1–2 jest pełny, 3 szary, 4–5 pusty;
-  `WithColors` daje czerwony, bursztynowy i zielony;
-- uczestnicy są wypisani przy każdym kroku, a nie w osobnej legendzie;
+- buźka ma trzy miny: uśmiech dla ocen 4 i 5, usta proste dla 3, smutek dla 1 i 2;
+- domyślnie rysunek jest neutralny, a uczestnicy różnią się odcieniem szarości; `WithColors` daje kolory palety
+  sekcjom, uczestnikom i buźkom;
 - ocena spoza zakresu 1–5 albo niecałkowita jest błędem.
 
 ## Mapa myśli (`mindmap`)
@@ -363,12 +379,18 @@ Konfiguracja w bloku `%%{init}%%` (`disableMulticolor`, motywy).
 | kształty | `id[kwadrat]`, `id(zaokrąglony)`, `id((koło))`, `id{{sześciokąt}}`, `id))wybuch((`, `id)chmura(` | MND-004 |
 | tekst Markdown | ``"`**pogrubiony** i *pochylony*`"`` | MND-004 |
 | ikony, klasy | `::icon(…)`, `:::klasa` (pomijane) | MND-002 |
+| układ listowy | komentarz `%% layout: list` | MND-006 |
+
+### Układy
+
+Domyślnie korzeń stoi pośrodku, a gałęzie główne po obu jego stronach, jak w klasycznej mapie myśli. Układ listowy
+(`%% layout: list`) stawia wszystkie gałęzie po prawej stronie korzenia i czyta się jak konspekt. Dyrektywa jest
+komentarzem, więc to samo źródło w innych narzędziach rysuje układ domyślny.
 
 ### Świadome różnice wobec Mermaid
 
-- układ jest drzewem od lewej do prawej, z gałęziami jednej głębokości w jednej kolumnie; Mermaid rozkłada
-  gałęzie promieniście wokół korzenia. Drzewo czyta się jak konspekt i mieści na stronie; przy wysokim drzewie
-  gałęzie główne stają po obu stronach korzenia;
+- oba układy są drzewem z gałęziami jednej głębokości w jednej kolumnie i połączeniami pod kątem prostym; Mermaid
+  rozkłada gałęzie swobodnie wokół korzenia i łączy je łukami. Drzewo jest powtarzalne i mieści się na stronie;
 - „wybuch” jest rysowany jak sześciokąt, a „chmura” jak pole z półkolami: rysunek ma tylko proste kształty;
 - koło z dłuższym tekstem staje się elipsą, żeby pole nie rosło nad miarę;
 - gałąź bez kształtu jest polem zaokrąglonym (w Mermaid tekstem z podkreśleniem), a korzeń bez kształtu polem

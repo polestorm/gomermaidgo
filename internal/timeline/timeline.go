@@ -4,6 +4,7 @@ package timeline
 
 import (
 	"math"
+	"regexp"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/scene"
@@ -34,7 +35,12 @@ type Diagram struct {
 	Periods  []*Period
 	AccTitle string
 	AccDescr string
+	// List wybiera układ z osią z góry na dół (dyrektywa „%% layout: list”) zamiast osi poziomej
+	// jak w Mermaid.
+	List bool
 }
+
+var listDirective = regexp.MustCompile(`^%%\s*layout:\s*list\s*$`)
 
 // Parse rozbiera źródło osi czasu.
 func Parse(source string) (*Diagram, error) {
@@ -46,11 +52,16 @@ func Parse(source string) (*Diagram, error) {
 	for n, raw := range strings.Split(source, "\n") {
 		line := n + 1
 		s := strings.TrimSpace(raw)
+		if listDirective.MatchString(s) {
+			// Dyrektywa w komentarzu: inne narzędzia ją pomijają i rysują układ domyślny.
+			d.List = true
+			continue
+		}
 		if s == "" || strings.HasPrefix(s, "%%") {
 			continue
 		}
 		if !seenHeader {
-			// Kierunek po nagłówku jest przyjmowany i pomijany: oś biegnie zawsze z góry na dół.
+			// Kierunek po nagłówku jest przyjmowany i pomijany: o układzie decyduje dyrektywa.
 			if s != "timeline" && s != "timeline TD" && s != "timeline LR" {
 				return nil, syntax.Errorf(line, CodeHeader, "expected \"timeline\", found %q", s)
 			}
@@ -129,10 +140,19 @@ const (
 	colorSectionFill = "#f1f4f8"
 )
 
-// Layout rozmieszcza oś czasu z góry na dół: oś z lewej, przy niej okresy, a zdarzenia okresu
+// Layout rozmieszcza oś czasu: domyślnie poziomo, jak w Mermaid; z dyrektywą „%% layout: list”
+// z góry na dół.
+func Layout(d *Diagram, o Options) *scene.Scene {
+	if d.List {
+		return layoutList(d, o)
+	}
+	return layoutRow(d, o)
+}
+
+// layoutList rozmieszcza oś czasu z góry na dół: oś z lewej, przy niej okresy, a zdarzenia okresu
 // w rzędach po prawej. Rysunek rośnie w dół i mieści się w szerokości strony przy dowolnej
 // liczbie okresów.
-func Layout(d *Diagram, o Options) *scene.Scene {
+func layoutList(d *Diagram, o Options) *scene.Scene {
 	fs := o.FontSize
 	if fs <= 0 {
 		fs = 16

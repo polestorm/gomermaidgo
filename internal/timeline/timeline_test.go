@@ -58,11 +58,11 @@ func TestParseErrors(t *testing.T) {
 	}
 }
 
-// REQ: TML-002 TML-003 TML-004
-// Okresy stoją w kolumnie o wspólnej szerokości, jeden pod drugim; zdarzenia mieszczą się
+// REQ: TML-002 TML-003 TML-006
+// Układ listowy. Okresy stoją w kolumnie o wspólnej szerokości, jeden pod drugim; zdarzenia mieszczą się
 // w szerokości strony; żadne dwa pola się nie nakładają; każdy tekst jest na rysunku.
 func TestLayout(t *testing.T) {
-	src := "timeline\ntitle Oś\nsection Pierwsza\nA : " + strings.Repeat("zdarzenie na osi : ", 7) + "ostatnie\nBardzo długa nazwa okresu która się złamie : x\nsection Druga\nC"
+	src := "timeline\n%% layout: list\ntitle Oś\nsection Pierwsza\nA : " + strings.Repeat("zdarzenie na osi : ", 7) + "ostatnie\nBardzo długa nazwa okresu która się złamie : x\nsection Druga\nC"
 	d, err := Parse(src)
 	if err != nil {
 		t.Fatal(err)
@@ -111,6 +111,77 @@ func TestLayout(t *testing.T) {
 		}
 		if texts["zdarzenie na osi"] != 7 {
 			t.Errorf("repeated event drawn %d times, want 7", texts["zdarzenie na osi"])
+		}
+	}
+}
+
+// REQ: TML-002 TML-003 TML-004
+// Układ domyślny: okresy w rzędzie w kolumnach o wspólnej szerokości, zdarzenia okresu pod osią,
+// jedno pod drugim w kolumnie okresu; nagłówek sekcji nad jej okresami; pola rozłączne.
+func TestRowLayout(t *testing.T) {
+	d, err := Parse("timeline\ntitle Oś\nsection Pierwsza\nA : a1 : a2 dłuższe zdarzenie które się złamie : a3\nB\nsection Druga\nC : c1")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, o := range []Options{{Measure: font.ApproxTextWidth, FontSize: 16}, {Measure: font.ApproxTextWidth, FontSize: 16, Colors: true, Shadows: true}} {
+		sc := Layout(d, o)
+		var periods, events, sections, boxes []scene.Item
+		var axis scene.Item
+		texts := map[string]int{}
+		for _, it := range sc.Items {
+			switch it.Role {
+			case "timeline-period":
+				periods = append(periods, it)
+				boxes = append(boxes, it)
+			case "timeline-event":
+				events = append(events, it)
+				boxes = append(boxes, it)
+			case "timeline-section":
+				sections = append(sections, it)
+			case "timeline-axis":
+				if it.Kind == scene.Line {
+					axis = it
+				}
+			}
+			if it.Kind == scene.Text {
+				texts[it.Text]++
+			}
+		}
+		if len(periods) != 3 || len(events) != 4 || len(sections) != 2 {
+			t.Fatalf("%d periods, %d events, %d sections", len(periods), len(events), len(sections))
+		}
+		for i, p := range periods {
+			if p.Y != periods[0].Y || p.W != periods[0].W || (i > 0 && p.X < periods[i-1].X+periods[i-1].W) {
+				t.Errorf("period %d is not in the row after the previous one", i)
+			}
+			if p.Y+p.H >= axis.Y {
+				t.Errorf("period %d is not above the axis", i)
+			}
+		}
+		for i, e := range events[:3] {
+			if e.X != periods[0].X || e.Y <= axis.Y || (i > 0 && e.Y < events[i-1].Y+events[i-1].H) {
+				t.Errorf("event %d is not stacked under the axis in the column of its period", i)
+			}
+		}
+		if events[3].X != periods[2].X {
+			t.Errorf("the event of the last period stands in another column")
+		}
+		if s := sections[0]; s.X != periods[0].X || s.X+s.W != periods[1].X+periods[1].W || s.Y+s.H > periods[0].Y {
+			t.Errorf("section header does not span its periods: %+v", s.Bounds())
+		}
+		for i := range boxes {
+			a := boxes[i].Bounds()
+			for j := i + 1; j < len(boxes); j++ {
+				b := boxes[j].Bounds()
+				if a.X0 < b.X1-0.5 && b.X0 < a.X1-0.5 && a.Y0 < b.Y1-0.5 && b.Y0 < a.Y1-0.5 {
+					t.Errorf("boxes overlap: %+v and %+v", a, b)
+				}
+			}
+		}
+		for _, want := range []string{"Oś", "Pierwsza", "Druga", "A", "B", "C", "a1", "a3", "c1"} {
+			if texts[want] != 1 {
+				t.Errorf("text %q drawn %d times, want once", want, texts[want])
+			}
 		}
 	}
 }

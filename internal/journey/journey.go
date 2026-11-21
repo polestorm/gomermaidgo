@@ -4,6 +4,7 @@ package journey
 
 import (
 	"math"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -36,7 +37,11 @@ type Diagram struct {
 	Tasks    []*Task
 	AccTitle string
 	AccDescr string
+	// List wybiera układ listowy (dyrektywa „%% layout: list”) zamiast rzędu kroków jak w Mermaid.
+	List bool
 }
+
+var listDirective = regexp.MustCompile(`^%%\s*layout:\s*list\s*$`)
 
 // Parse rozbiera źródło podróży użytkownika.
 func Parse(source string) (*Diagram, error) {
@@ -48,6 +53,11 @@ func Parse(source string) (*Diagram, error) {
 	for n, raw := range strings.Split(source, "\n") {
 		line := n + 1
 		s := strings.TrimSpace(raw)
+		if listDirective.MatchString(s) {
+			// Dyrektywa w komentarzu: inne narzędzia ją pomijają i rysują układ domyślny.
+			d.List = true
+			continue
+		}
 		if s == "" || strings.HasPrefix(s, "%%") {
 			continue
 		}
@@ -122,10 +132,19 @@ const (
 	colorSectionFill = "#f1f4f8"
 )
 
-// Layout rozmieszcza podróż jako listę kroków z góry na dół: nazwa kroku, ocena na skali od 1 do 5
-// i uczestnicy. Linia łącząca oceny kolejnych kroków pokazuje, gdzie podróż idzie gładko,
-// a gdzie się załamuje.
+// Layout rozmieszcza podróż: domyślnie jako rząd kroków, jak w Mermaid; z dyrektywą
+// „%% layout: list” jako listę z góry na dół, która mieści się na stronie przy wielu krokach.
 func Layout(d *Diagram, o Options) *scene.Scene {
+	if d.List {
+		return layoutList(d, o)
+	}
+	return layoutRow(d, o)
+}
+
+// layoutList rozmieszcza podróż jako listę kroków z góry na dół: nazwa kroku, ocena na skali
+// od 1 do 5 i uczestnicy. Linia łącząca oceny kolejnych kroków pokazuje, gdzie podróż idzie
+// gładko, a gdzie się załamuje.
+func layoutList(d *Diagram, o Options) *scene.Scene {
 	fs := o.FontSize
 	if fs <= 0 {
 		fs = 16

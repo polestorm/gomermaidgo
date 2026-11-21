@@ -91,11 +91,11 @@ func boxes(sc *scene.Scene) map[string]scene.Box {
 	return out
 }
 
-// REQ: MND-003
-// Drzewo: potomkowie w jednej kolumnie i w kolejności ze źródła, rodzic pośrodku ich wysokości,
+// REQ: MND-003 MND-006
+// Układ listowy. Drzewo: potomkowie w jednej kolumnie i w kolejności ze źródła, rodzic pośrodku ich wysokości,
 // pola rozłączne.
 func TestLayoutIsATree(t *testing.T) {
-	g, err := Parse("mindmap\n  K\n    A\n      a1\n      a2 dłuższe\n      a3\n    B\n    C\n      c1")
+	g, err := Parse("mindmap\n%% layout: list\n  K\n    A\n      a1\n      a2 dłuższe\n      a3\n    B\n    C\n      c1")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -144,40 +144,44 @@ func TestLayoutIsATree(t *testing.T) {
 	}
 }
 
-// REQ: MND-003
-// Wysokie drzewo rozkłada gałęzie główne na obie strony korzenia, niskie zostaje jednostronne.
+// REQ: MND-003 MND-006
+// Układ domyślny stawia gałęzie główne po obu stronach korzenia, a liście lewej gałęzi dalej
+// w lewo; układ listowy stawia wszystkie po prawej.
 func TestLayoutUsesBothSides(t *testing.T) {
-	src := "mindmap\n  Korzeń\n"
-	for i := 0; i < 8; i++ {
-		src += fmt.Sprintf("    Gałąź %d\n", i)
-		for k := 0; k < 6; k++ {
-			src += fmt.Sprintf("      liść %d.%d\n", i, k)
+	tree := "  Korzeń\n"
+	for i := 0; i < 4; i++ {
+		tree += fmt.Sprintf("    Gałąź %d\n", i)
+		for k := 0; k < 3; k++ {
+			tree += fmt.Sprintf("      liść %d.%d\n", i, k)
 		}
 	}
-	g, err := Parse(src)
+	g, err := Parse("mindmap\n" + tree)
 	if err != nil {
 		t.Fatal(err)
 	}
 	b := boxes(Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16}))
 	left, right := 0, 0
-	for i := 0; i < 8; i++ {
+	for i := 0; i < 4; i++ {
 		if k := fmt.Sprintf("Gałąź %d", i); b[k].X1 < b["Korzeń"].X0 {
 			left++
 		} else if b[k].X0 > b["Korzeń"].X1 {
 			right++
 		}
 	}
-	if left == 0 || right == 0 || left+right != 8 {
-		t.Errorf("%d branches on the left and %d on the right; a tall tree should use both sides", left, right)
+	if left != 2 || right != 2 {
+		t.Errorf("%d branches on the left and %d on the right, want 2 and 2", left, right)
 	}
-	if b["liść 7.0"].X1 >= b["Gałąź 7"].X0 {
-		t.Errorf("leaves of a left branch should stand further to the left")
+	if b["liść 3.0"].X1 >= b["Gałąź 3"].X0 || b["liść 0.0"].X0 <= b["Gałąź 0"].X1 {
+		t.Errorf("leaves should stand on the outer side of their branch")
 	}
-	small, _ := Parse("mindmap\n  Korzeń\n    A\n    B\n    C")
-	b = boxes(Layout(small, Options{Measure: font.ApproxTextWidth, FontSize: 16}))
-	for _, k := range []string{"A", "B", "C"} {
-		if b[k].X0 <= b["Korzeń"].X1 {
-			t.Errorf("small tree: %s should stand to the right of the root", k)
+	list, err := Parse("mindmap\n%% layout: list\n" + tree)
+	if err != nil || list.Layout != "list" {
+		t.Fatalf("list directive: %v", err)
+	}
+	b = boxes(Layout(list, Options{Measure: font.ApproxTextWidth, FontSize: 16}))
+	for i := 0; i < 4; i++ {
+		if k := fmt.Sprintf("Gałąź %d", i); b[k].X0 <= b["Korzeń"].X1 {
+			t.Errorf("list layout: %s should stand to the right of the root", k)
 		}
 	}
 }

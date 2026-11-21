@@ -20,9 +20,10 @@ const (
 )
 
 var (
-	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
-	strong    = regexp.MustCompile(`\*\*([^*]+)\*\*`)
-	emphasis  = regexp.MustCompile(`\*([^*]+)\*`)
+	lineBreak     = regexp.MustCompile(`(?i)<br\s*/?>`)
+	listDirective = regexp.MustCompile(`^%%\s*layout:\s*list\s*$`)
+	strong        = regexp.MustCompile(`\*\*([^*]+)\*\*`)
+	emphasis      = regexp.MustCompile(`\*([^*]+)\*`)
 
 	// Kształty w kolejności dopasowywania: dłuższe ograniczniki przed krótszymi.
 	shapes = []struct {
@@ -85,6 +86,11 @@ func Parse(source string) (*graph.Graph, error) {
 	for n, raw := range strings.Split(source, "\n") {
 		line := n + 1
 		s := strings.TrimSpace(raw)
+		if listDirective.MatchString(s) {
+			// Dyrektywa w komentarzu: inne narzędzia ją pomijają i rysują układ domyślny.
+			g.Layout = "list"
+			continue
+		}
 		if s == "" || strings.HasPrefix(s, "%%") {
 			continue
 		}

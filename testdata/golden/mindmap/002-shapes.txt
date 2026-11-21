@@ -1,4 +1,4 @@
-mindmap LR
+mindmap LR layout=list
 node n1 stadium "Ryzyko wyrobu"
 node n2 rect "Identyfikacja"
 node n3 round "Zagrożenia"

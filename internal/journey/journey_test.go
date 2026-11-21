@@ -57,11 +57,14 @@ func TestParseErrors(t *testing.T) {
 	}
 }
 
-// REQ: JRN-002 JRN-003
-// Znaczniki ocen stoją w kolumnach skali, jeden pod drugim w kolejności kroków; linia przechodzi
+// REQ: JRN-005 JRN-003
+// Układ listowy. Znaczniki ocen stoją w kolumnach skali, jeden pod drugim w kolejności kroków; linia przechodzi
 // przez wszystkie; wypełnienie znacznika odróżnia ocenę niską, średnią i wysoką bez koloru.
 func TestLayout(t *testing.T) {
-	d, err := Parse("journey\ntitle T\nsection S\nA: 1: X\nB: 3\nC: 5: X, Y\nD: 5")
+	d, err := Parse("journey\n%% layout: list\ntitle T\nsection S\nA: 1: X\nB: 3\nC: 5: X, Y\nD: 5")
+	if err == nil && !d.List {
+		t.Fatal("the list directive was not read")
+	}
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -102,6 +105,62 @@ func TestLayout(t *testing.T) {
 	for _, want := range []string{"T", "S", "A", "D", "X", "X, Y"} {
 		if texts[want] == 0 {
 			t.Errorf("text %q is missing", want)
+		}
+	}
+}
+
+// REQ: JRN-002 JRN-003
+// Układ domyślny: kroki w rzędzie w kolejności ze źródła, buźka pod krokiem tym wyżej, im wyższa
+// ocena, nagłówek sekcji nad jej krokami, legenda uczestników i znaczniki na krokach.
+func TestRowLayout(t *testing.T) {
+	d, err := Parse("journey\ntitle T\nsection S\nA: 1: X\nB: 3\nsection Z\nC: 5: X, Y\nD: 5")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, o := range []Options{{Measure: font.ApproxTextWidth, FontSize: 16}, {Measure: font.ApproxTextWidth, FontSize: 16, Colors: true, Shadows: true}} {
+		sc := Layout(d, o)
+		var tasks, faces, sections, dots []scene.Item
+		texts := map[string]int{}
+		for _, it := range sc.Items {
+			switch it.Role {
+			case "journey-task":
+				tasks = append(tasks, it)
+			case "journey-face":
+				faces = append(faces, it)
+			case "journey-section":
+				sections = append(sections, it)
+			case "journey-actor":
+				dots = append(dots, it)
+			}
+			if it.Kind == scene.Text {
+				texts[it.Text]++
+			}
+		}
+		if len(tasks) != 4 || len(faces) != 4 || len(sections) != 2 {
+			t.Fatalf("%d tasks, %d faces, %d sections", len(tasks), len(faces), len(sections))
+		}
+		for i := range tasks {
+			if i > 0 && (tasks[i].X < tasks[i-1].X+tasks[i-1].W || tasks[i].Y != tasks[0].Y) {
+				t.Errorf("task %d is not in the row after the previous one", i)
+			}
+			if cx := tasks[i].X + tasks[i].W/2; faces[i].X != cx || faces[i].Y <= tasks[i].Y+tasks[i].H {
+				t.Errorf("face %d is not under its task", i)
+			}
+		}
+		if !(faces[0].Y > faces[1].Y && faces[1].Y > faces[2].Y && faces[2].Y == faces[3].Y) {
+			t.Errorf("faces should stand higher for higher scores: %v %v %v %v", faces[0].Y, faces[1].Y, faces[2].Y, faces[3].Y)
+		}
+		if s := sections[0]; s.X != tasks[0].X || s.X+s.W != tasks[1].X+tasks[1].W || s.Y+s.H > tasks[0].Y {
+			t.Errorf("section header does not span its tasks: %+v", s.Bounds())
+		}
+		// Dwóch uczestników w legendzie i trzy znaczniki na krokach (X, X, Y).
+		if len(dots) != 2+3 {
+			t.Errorf("%d actor marks, want 5", len(dots))
+		}
+		for _, want := range []string{"T", "S", "Z", "A", "B", "C", "D", "X", "Y"} {
+			if texts[want] != 1 {
+				t.Errorf("text %q drawn %d times, want once", want, texts[want])
+			}
 		}
 	}
 }

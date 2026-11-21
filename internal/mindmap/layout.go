@@ -159,8 +159,8 @@ func (l *layouter) place(bs []*branch, edge, top float64, dir float64, widths []
 	}
 }
 
-// Layout rozmieszcza mapę myśli jako drzewo: korzeń, a gałęzie główne po jego prawej stronie albo,
-// gdy rysunek lepiej mieści się wtedy na stronie, po obu stronach.
+// Layout rozmieszcza mapę myśli jako drzewo: korzeń pośrodku i gałęzie główne po obu jego stronach
+// albo, w układzie listowym, wszystkie po prawej.
 func Layout(g *graph.Graph, o Options) *scene.Scene {
 	fs := o.FontSize
 	if fs <= 0 {
@@ -175,10 +175,9 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	root := l.build(g, children, g.Nodes[0].ID, -1)
 	l.measure(root)
 
-	// Podział gałęzi głównych na strony: wszystkie po prawej albo pierwsze po prawej, a reszta
-	// po lewej, tak żeby obie strony były podobnej wysokości. Wygrywa układ, który mieści się
-	// na stronie w większej skali; przy równej skali jednostronny, bo czyta się go jak listę.
-	fit := func(w, h float64) float64 { return math.Min(1, math.Min(l.u(650)/w, l.u(870)/h)) }
+	// Podział gałęzi głównych na strony. Układ domyślny, jak mapa myśli: korzeń pośrodku, pierwsze
+	// gałęzie po prawej, reszta po lewej, tak żeby obie strony były podobnej wysokości. Układ
+	// listowy (dyrektywa „%% layout: list”): wszystkie gałęzie po prawej, jak konspekt.
 	extent := func(bs []*branch) (w, h float64) {
 		for _, cw := range columns(bs, 0, nil) {
 			w += cw + l.u(44)
@@ -186,9 +185,7 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 		return w, l.stack(bs)
 	}
 	right, left := root.children, []*branch(nil)
-	rw, rh := extent(right)
-	best := fit(root.w+rw, math.Max(root.h, rh))
-	if len(root.children) > 1 {
+	if g.Layout != "list" && len(root.children) > 1 {
 		half, cut, sum := l.stack(root.children)/2, 1, 0.0
 		for i, c := range root.children {
 			sum += c.span + l.u(10)
@@ -198,11 +195,7 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 			}
 		}
 		cut = min(cut, len(root.children)-1)
-		aw, ah := extent(root.children[:cut])
-		bw, bh := extent(root.children[cut:])
-		if two := fit(root.w+aw+bw, math.Max(root.h, math.Max(ah, bh))); two > best+0.02 {
-			right, left = root.children[:cut], root.children[cut:]
-		}
+		right, left = root.children[:cut], root.children[cut:]
 	}
 	lw, _ := extent(left)
 	height := math.Max(root.h, math.Max(l.stack(right), l.stack(left)))
