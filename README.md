@@ -1,6 +1,6 @@
 # gomermaidgo
 
-Renders diagrams written in Mermaid syntax to SVG in pure Go: no JavaScript, no browser, no dependencies outside the
+Renders diagrams written in Mermaid syntax to SVG (and optionally PDF) in pure Go: no JavaScript, no browser, no dependencies outside the
 Go standard library. The same source and options always give the same SVG, byte for byte.
 
 ```go
@@ -23,6 +23,18 @@ and white.
 
 ```sh
 go run ./cmd/gomermaidgo -font NotoSans-Regular.ttf -family "Noto Sans" -o diagram.svg diagram.mmd
+```
+
+PDF output is an optional package: it writes the same drawing straight to a one-page PDF, with real text and the
+font embedded as a subset. No SVG or HTML in between, and still no dependencies.
+
+```go
+doc, err := pdf.Render(source) // import "github.com/polestorm/gomermaidgo/pdf"
+```
+
+```sh
+go run ./cmd/gomermaidgo -o diagram.pdf diagram.mmd   # the extension selects the format
+go build -tags nopdf ./cmd/gomermaidgo                # a build without the PDF writer
 ```
 
 Diagrams inside a Markdown document: `markdown.Embed` replaces every fenced `mermaid` block with an inline SVG figure

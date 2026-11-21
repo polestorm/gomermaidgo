@@ -9,6 +9,7 @@
 | pliki wzorcowe modelu | `testdata/golden/<typ>/*.txt` | dla typów grafowych: model grafu z parsera (`Graph.Dump`), obok pliku SVG |
 | niezmienniki układu grafu | `internal/layered/layout_test.go` | cały korpus w czterech kierunkach: węzły nie nachodzą na siebie, ramki rozłączne albo zagnieżdżone, etykiety krawędzi nie kolidują, każda krawędź ma ścieżkę i nie przechodzi przez obcy węzeł; cykle i pętle; graf na granicy limitów |
 | reguły wyglądu | `internal/layered/appearance_test.go` | reguły z przeglądu rysunków (`requirements/layout.md`): odcinki krawędzi równoległe do osi, bez cofania i drobnych uskoków; mostek w każdym przecięciu, także między poziomami podgrafów; równe pola w ciągu; wspólna wysokość skrętu gałęzi; paski stanu złożonego i krótsze strzałki w jego wnętrzu; oś pola z pętlą własną; pakowanie ramek bez połączeń; kolumny w torach |
+| wynik PDF | `pdf/pdf_test.go` | cały korpus: budowa dokumentu i tabela odsyłaczy, rozmiar strony równy rysunkowi SVG, teksty strony odczytane przez tabelę ToUnicode równe tekstom SVG w tej samej kolejności; podzbiór kroju (kontury tylko użytych glifów, suma kontrolna); powtarzalność; błędy przy braku pliku kroju; odporność (`FuzzRender`) |
 | poprawność SVG | `TestCorpusValidSVG` | poprawny XML, przestrzeń nazw SVG, tylko dozwolone elementy i atrybuty, liczby w atrybutach geometrii |
 | treść | `TestCorpusLabelsPresent` | każdy tekst ze źródła jest w SVG; etykiety uczestników dwa razy (góra i dół) |
 | niezmienniki układu | `internal/sequence/layout_test.go` | teksty nie nachodzą na siebie; nagłówki uczestników nie kolidują ze sobą ani z etykietami |
@@ -101,6 +102,13 @@ Razem 37 z 43. Pliki z torami zgadzają się, bo dyrektywa jest komentarzem i od
 Pierwsze porównanie parserów wykazało jeszcze dwie różnice, które okazały się naszymi błędnymi założeniami i zostały
 poprawione: linia `%%` wewnątrz notatki wieloliniowej jest komentarzem (nie tekstem notatki), a `state Id` bez opisu nie
 jest rysowane przez odniesienie i nie ma go w dokumentacji (teraz błąd `state-unsupported`).
+
+## Wynik PDF w cudzych czytnikach
+
+2026-11-21: 57 plików korpusu zapisanych przez `pdf.Render`. `pdftotext` (poppler) wyciąga z każdego te same wyrazy,
+co są w SVG (1295 wyrazów); `pdffonts` pokazuje kroje jako osadzone podzbiory z tabelą Unicode; Ghostscript czyta
+wszystkie pliki bez ostrzeżeń i błędów. Pliki mają średnio 15 kB (cały korpus 872 kB), z czego większość to
+podzbiory krojów. Sprawdzenie ręczne: czytniki są cudzymi programami i nie wchodzą do `go test`.
 
 ## Próba na cudzych diagramach
 
