@@ -73,8 +73,8 @@ teksty Markdown w odwrotnych apostrofach, `flowchart-elk`.
 ### Ograniczenia rysunku (wspólne ze stanami)
 
 - `direction` w podgrafie i w stanie złożonym jest przyjmowane, ale nie zmienia układu: wnętrze ma kierunek diagramu;
-- krawędź wskazująca podgraf kończy się na jego ramce; krawędź do węzła wewnątrz podgrafu wchodzi przez ramkę i może
-  przejść pod tytułem ramki albo przeciąć inne węzły tego podgrafu, jeśli węzeł docelowy nie leży przy wejściu;
+- krawędź wskazująca podgraf kończy się na jego ramce; krawędź do węzła wewnątrz podgrafu przechodzi przez punkt na
+  ramce i jest prowadzona we wnętrzu między węzłami (FLOW-014); może przejść pod tytułem ramki, który ma wtedy podkład;
 - krawędź niewidoczna (`~~~`) wpływa tylko na rozmieszczenie;
 - dwie krawędzie bez etykiet między tą samą parą sąsiednich węzłów pokrywają się;
 - notatka diagramu stanów jest polem w następnej warstwie, połączonym linią kropkowaną; strona (`left`, `right`)

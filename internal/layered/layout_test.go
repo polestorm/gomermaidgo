@@ -150,6 +150,55 @@ func TestLabelsDoNotCollide(t *testing.T) {
 	}
 }
 
+// cubic zwraca punkt krzywej Béziera trzeciego stopnia.
+func cubic(a, c1, c2, b scene.Point, t float64) scene.Point {
+	u := 1 - t
+	return scene.Point{
+		X: u*u*u*a.X + 3*u*u*t*c1.X + 3*u*t*t*c2.X + t*t*t*b.X,
+		Y: u*u*u*a.Y + 3*u*u*t*c1.Y + 3*u*t*t*c2.Y + t*t*t*b.Y,
+	}
+}
+
+// REQ: FLOW-014
+// Żadna krawędź nie przechodzi przez węzeł inny niż jej własne końce.
+func TestEdgesDoNotCrossNodes(t *testing.T) {
+	near := func(p scene.Point, b scene.Box) bool {
+		const reach = 14 // koniec krawędzi bywa skrócony o grot
+		return p.X >= b.X0-reach && p.X <= b.X1+reach && p.Y >= b.Y0-reach && p.Y <= b.Y1+reach
+	}
+	for name, sc := range corpusScenes(t) {
+		nodes := byRole(sc, "node", "note")
+		for _, e := range byRole(sc, "edge") {
+			var samples []scene.Point
+			at := e.Segments[0].To
+			for _, sg := range e.Segments[1:] {
+				for k := 1; k <= 24; k++ {
+					f := float64(k) / 24
+					if sg.Cmd == 'C' {
+						samples = append(samples, cubic(at, sg.C1, sg.C2, sg.To, f))
+					} else {
+						samples = append(samples, scene.Point{X: at.X + (sg.To.X-at.X)*f, Y: at.Y + (sg.To.Y-at.Y)*f})
+					}
+				}
+				at = sg.To
+			}
+			first, last := e.Segments[0].To, at
+			for _, n := range nodes {
+				b := n.Bounds()
+				if near(first, b) || near(last, b) {
+					continue
+				}
+				for _, p := range samples {
+					if p.X > b.X0+2 && p.X < b.X1-2 && p.Y > b.Y0+2 && p.Y < b.Y1-2 {
+						t.Errorf("%s: an edge passes through a node at (%.0f, %.0f)", name, p.X, p.Y)
+						break
+					}
+				}
+			}
+		}
+	}
+}
+
 // REQ: FLOW-013
 // Każda krawędź ze źródła, poza niewidocznymi, ma dokładnie jedną ścieżkę na rysunku.
 func TestEveryEdgeIsDrawn(t *testing.T) {

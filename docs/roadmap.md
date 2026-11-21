@@ -19,8 +19,9 @@ krawędź niewidoczna jest tylko ograniczeniem rozmieszczenia.
 
 Do poprawy w układzie, w kolejności wpływu na czytelność:
 
-1. krawędzie przekraczające ramkę podgrafu: prowadzenie przez punkt na ramce i omijanie węzłów wnętrza (dziś wnętrze
-   podgrafu jest rozmieszczane bez wiedzy o krawędziach z zewnątrz);
+1. ~~krawędzie przekraczające ramkę podgrafu~~: zrobione 2026-11-21. Podgraf dostaje punkty wejścia i wyjścia na
+   ramce, a odcinek do pola wewnątrz jest prowadzony w układzie podgrafu; kolejność punktów na ramce nie jest jeszcze
+   uzgadniana z układem rodzica, więc dwie krawędzie mogą się skrzyżować tuż przed ramką;
 2. podział na warstwy metodą sympleksu sieciowego zamiast najdłuższej ścieżki (krótsze krawędzie, węższy rysunek);
 3. rozmieszczenie metodą Brandesa i Köpfa (bardziej zwarte i symetryczne niż metoda priorytetowa);
 4. krawędzie wielokrotne między tą samą parą węzłów;

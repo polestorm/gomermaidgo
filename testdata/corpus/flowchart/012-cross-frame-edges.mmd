@@ -1,0 +1,21 @@
+%% REQ: FLOW-007 FLOW-014
+%% Tytuł: Krawędzie przez ramki podgrafów
+%% Sprawdza: Krawędzie z zewnątrz do węzłów w podgrafie i w podgrafie zagnieżdżonym, między dwoma podgrafami, w obu kierunkach; żadna nie przecina węzła.
+flowchart TD
+    Klient --> Rejestracja
+    subgraph Jakość["Dział jakości"]
+        Rejestracja --> Ocena{Ocena}
+        Ocena -->|istotne| Analiza
+        Ocena -->|drobne| Zamknięcie
+        subgraph Zespół["Zespół analizy"]
+            Analiza --> Wnioski
+        end
+        Wnioski --> Zamknięcie
+    end
+    subgraph Produkcja
+        Korekta --> Kontrola
+    end
+    Wnioski -->|zalecenie| Korekta
+    Kontrola -->|wynik| Zamknięcie
+    Zamknięcie --> Klient
+    Analiza -.-> Kontrola

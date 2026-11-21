@@ -1,0 +1,23 @@
+flowchart TB
+subgraph Jakość title="Dział jakości"
+subgraph Zespół title="Zespół analizy" in=Jakość
+subgraph Produkcja title="Produkcja"
+node Klient rect "Klient"
+node Rejestracja rect "Rejestracja" in=Jakość
+node Ocena rhombus "Ocena" in=Jakość
+node Analiza rect "Analiza" in=Jakość
+node Zamknięcie rect "Zamknięcie" in=Jakość
+node Wnioski rect "Wnioski" in=Zespół
+node Korekta rect "Korekta" in=Produkcja
+node Kontrola rect "Kontrola" in=Produkcja
+edge Klient -> Rejestracja normal none/arrow len=1
+edge Rejestracja -> Ocena normal none/arrow len=1
+edge Ocena -> Analiza normal none/arrow len=1 "istotne"
+edge Ocena -> Zamknięcie normal none/arrow len=1 "drobne"
+edge Analiza -> Wnioski normal none/arrow len=1
+edge Wnioski -> Zamknięcie normal none/arrow len=1
+edge Korekta -> Kontrola normal none/arrow len=1
+edge Wnioski -> Korekta normal none/arrow len=1 "zalecenie"
+edge Kontrola -> Zamknięcie normal none/arrow len=1 "wynik"
+edge Zamknięcie -> Klient normal none/arrow len=1
+edge Analiza -> Kontrola dotted none/arrow len=1

@@ -34,6 +34,7 @@ const (
 	kindCluster
 	kindDummy
 	kindLabel
+	kindPort // punkt na ramce podgrafu, przez który przechodzi krawędź z zewnątrz
 )
 
 // item to pole w układzie jednego poziomu: węzeł, podgraf, punkt pomocniczy albo etykieta krawędzi.
@@ -50,6 +51,7 @@ type item struct {
 	rank, order int
 	x, y        float64
 	up, down    []*item
+	portTop     bool // punkt wejścia przy początku osi warstw (w przeciwnym razie przy końcu)
 }
 
 // nodeX to środek samego kształtu (bez miejsca na pętle).
@@ -70,6 +72,14 @@ type ledge struct {
 
 	// Przesunięcia punktów zaczepienia wzdłuż krawędzi pola: górnego końca i dolnego.
 	upperPort, lowerPort float64
+
+	lv *level
+	// Identyfikatory pól ze źródła na górnym i dolnym końcu (po odwróceniu); pusty dla punktu na ramce.
+	topID, bottomID string
+	// Gdy koniec leży głębiej, w podgrafie, dalszy odcinek krawędzi jest prowadzony w układzie
+	// tego podgrafu, między polem a punktem na jego ramce.
+	upperCont, lowerCont *ledge
+	part                 bool // odcinek krawędzi z poziomu wyżej; nie jest rysowany osobno
 }
 
 // level to układ jednego zakresu: całego diagramu albo wnętrza podgrafu.
@@ -171,7 +181,8 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 
 	l.build()
 	l.assignEdges()
-	l.layoutLevel(l.levels[""])
+	l.rankAll(l.levels[""])
+	l.sizeAll(l.levels[""])
 	l.place(l.levels[""], 0, 0)
 	l.draw()
 	return l.sc
@@ -234,12 +245,7 @@ func (l *layouter) assignEdges() {
 			}
 		}
 	}
-	lift := func(id, scope string) *item {
-		for l.scopeOf(id) != scope {
-			id = l.scopeOf(id)
-		}
-		return l.itemOf[id]
-	}
+	lift := l.lift
 	add := func(e *graph.Edge) {
 		if e.From == e.To {
 			lv := l.levels[l.scopeOf(e.From)]
@@ -260,7 +266,7 @@ func (l *layouter) assignEdges() {
 			}
 		}
 		lv := l.levels[scope]
-		le := &ledge{e: e, u: lift(e.From, scope), v: lift(e.To, scope)}
+		le := &ledge{e: e, u: lift(e.From, scope), v: lift(e.To, scope), lv: lv}
 		if le.u == le.v {
 			return // nie występuje po kontroli spójności grafu; krawędź bez rysunku
 		}
@@ -281,16 +287,54 @@ func (l *layouter) assignEdges() {
 		l.itemOf[id] = it
 		lv := l.levels[scope]
 		lv.items = append(lv.items, it)
-		lv.edges = append(lv.edges, &ledge{u: l.itemOf[n.Target], v: it,
+		lv.edges = append(lv.edges, &ledge{u: l.itemOf[n.Target], v: it, lv: lv,
 			e: &graph.Edge{From: n.Target, To: id, Style: graph.Dotted, StartHead: graph.NoHead, EndHead: graph.NoHead, MinLen: 1}})
 	}
 }
 
-// layoutLevel rozmieszcza poziom po rozmieszczeniu jego podgrafów.
-func (l *layouter) layoutLevel(lv *level) {
+// lift zwraca pole, które na poziomie scope reprezentuje węzeł albo podgraf id.
+func (l *layouter) lift(id, scope string) *item {
+	for l.scopeOf(id) != scope {
+		id = l.scopeOf(id)
+	}
+	return l.itemOf[id]
+}
+
+// rankAll dzieli na warstwy poziom, a potem jego podgrafy. Kolejność od góry jest potrzebna, bo
+// dopiero po podziale poziomu wiadomo, czy krawędź z zewnątrz wchodzi do podgrafu od strony
+// początku, czy końca osi warstw; podgraf dostaje wtedy punkt na ramce i odcinek do pola wewnątrz.
+func (l *layouter) rankAll(lv *level) {
+	l.rank(lv)
+	for _, e := range lv.edges {
+		if e.u.kind == kindCluster && e.topID != "" && l.itemOf[e.topID] != e.u {
+			child := e.u.child
+			port := &item{kind: kindPort, w: l.u(8)}
+			child.items = append(child.items, port)
+			part := &ledge{e: &graph.Edge{MinLen: 1}, u: l.lift(e.topID, child.sub.ID), v: port, lv: child, topID: e.topID, part: true}
+			child.edges = append(child.edges, part)
+			e.upperCont = part
+		}
+		if e.v.kind == kindCluster && e.bottomID != "" && l.itemOf[e.bottomID] != e.v {
+			child := e.v.child
+			port := &item{kind: kindPort, w: l.u(8), portTop: true}
+			child.items = append(child.items, port)
+			part := &ledge{e: &graph.Edge{MinLen: 1}, u: port, v: l.lift(e.bottomID, child.sub.ID), lv: child, bottomID: e.bottomID, part: true}
+			child.edges = append(child.edges, part)
+			e.lowerCont = part
+		}
+	}
 	for _, it := range lv.items {
 		if it.kind == kindCluster {
-			l.layoutLevel(it.child)
+			l.rankAll(it.child)
+		}
+	}
+}
+
+// sizeAll porządkuje i rozmieszcza poziom po rozmieszczeniu jego podgrafów.
+func (l *layouter) sizeAll(lv *level) {
+	for _, it := range lv.items {
+		if it.kind == kindCluster {
+			l.sizeAll(it.child)
 			it.w, it.h = it.child.w, it.child.h
 		}
 		for _, e := range lv.loops[it] {
@@ -306,13 +350,27 @@ func (l *layouter) layoutLevel(lv *level) {
 			}
 		}
 	}
-	l.rank(lv)
 	l.order(lv)
 	contentW, contentH := l.position(lv)
 
 	// Marginesy podgrafu: tytuł leży przy rzeczywistej górnej krawędzi ramki.
 	pad := l.u(16)
 	padX0, padX1, padY0, padY1 := pad, pad, pad, pad
+	// Warstwa punktów na ramce sama odsuwa zawartość od ramki; zwykły margines byłby drugim odstępem.
+	if lv.sub != nil {
+		for _, it := range lv.items {
+			if it.kind == kindPort && it.portTop {
+				padY0 -= pad
+				break
+			}
+		}
+		for _, it := range lv.items {
+			if it.kind == kindPort && !it.portTop {
+				padY1 -= pad
+				break
+			}
+		}
+	}
 	if lv.sub != nil {
 		titleW, titleH := l.textSize(lv.titleLines)
 		top := titleH + l.u(10)
@@ -382,6 +440,12 @@ func (l *layouter) rank(lv *level) {
 		if e.rev {
 			e.u, e.v = e.v, e.u
 		}
+		if !e.part {
+			e.topID, e.bottomID = e.e.From, e.e.To
+			if e.rev {
+				e.topID, e.bottomID = e.bottomID, e.topID
+			}
+		}
 	}
 
 	// Warstwy: najdłuższa ścieżka od źródeł, z minimalną długością krawędzi.
@@ -393,6 +457,18 @@ func (l *layouter) rank(lv *level) {
 		succ[index[e.u]] = append(succ[index[e.u]], e)
 	}
 	rank := make([]int, len(lv.items))
+	// Punkty wejścia leżą w warstwie zerowej, nad całą zawartością podgrafu.
+	hasTopPort := false
+	for _, it := range lv.items {
+		hasTopPort = hasTopPort || (it.kind == kindPort && it.portTop)
+	}
+	if hasTopPort {
+		for i, it := range lv.items {
+			if it.kind != kindPort || !it.portTop {
+				rank[i] = 1
+			}
+		}
+	}
 	var queue []int
 	for i := range lv.items {
 		if indeg[i] == 0 {
@@ -412,7 +488,7 @@ func (l *layouter) rank(lv *level) {
 	}
 	// Źródła dosuwamy do następników, żeby nie wisiały wysoko nad resztą.
 	for i := range lv.items {
-		if len(succ[i]) == 0 {
+		if len(succ[i]) == 0 || lv.items[i].kind == kindPort {
 			continue
 		}
 		hasIn := false
@@ -431,8 +507,18 @@ func (l *layouter) rank(lv *level) {
 		}
 		rank[i] = max(rank[i], best)
 	}
+	// Punkty wyjścia leżą w osobnej, ostatniej warstwie, pod całą zawartością podgrafu.
+	last := 0
+	for i, it := range lv.items {
+		if it.kind != kindPort || it.portTop {
+			last = max(last, rank[i])
+		}
+	}
 	maxRank := 0
 	for i, it := range lv.items {
+		if it.kind == kindPort && !it.portTop {
+			rank[i] = last + 1
+		}
 		it.rank = rank[i]
 		maxRank = max(maxRank, rank[i])
 	}
@@ -757,7 +843,12 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			band = math.Max(band, it.h)
 		}
 		if r > 0 {
-			y += rankGap
+			// Warstwa samych punktów na ramce potrzebuje tylko miejsca na łuk krawędzi.
+			if portsOnly(row) || portsOnly(lv.ranks[r-1]) {
+				y += l.u(24)
+			} else {
+				y += rankGap
+			}
 		}
 		for _, it := range row {
 			it.x = math.Round(it.x - left)
@@ -768,6 +859,15 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		y += band
 	}
 	return width, y
+}
+
+func portsOnly(row []*item) bool {
+	for _, it := range row {
+		if it.kind != kindPort {
+			return false
+		}
+	}
+	return len(row) > 0
 }
 
 // fanOffset zwraca przesunięcie pola względem wspólnego sąsiada: pola połączone z tym samym

@@ -7,7 +7,7 @@
 | korpus | `testdata/corpus/<typ>/*.mmd` | po pliku na grupę elementów profilu; polskie znaki w każdym; linia `%% REQ:` wskazuje wymagania |
 | pliki wzorcowe | `testdata/golden/<typ>/*.svg` | wynik co do bajta; zmiana przez `go test . -update` i przegląd różnicy |
 | pliki wzorcowe modelu | `testdata/golden/<typ>/*.txt` | dla typów grafowych: model grafu z parsera (`Graph.Dump`), obok pliku SVG |
-| niezmienniki układu grafu | `internal/layered/layout_test.go` | cały korpus w czterech kierunkach: węzły nie nachodzą na siebie, ramki rozłączne albo zagnieżdżone, etykiety krawędzi nie kolidują, każda krawędź ma ścieżkę; cykle i pętle; graf na granicy limitów |
+| niezmienniki układu grafu | `internal/layered/layout_test.go` | cały korpus w czterech kierunkach: węzły nie nachodzą na siebie, ramki rozłączne albo zagnieżdżone, etykiety krawędzi nie kolidują, każda krawędź ma ścieżkę i nie przechodzi przez obcy węzeł; cykle i pętle; graf na granicy limitów |
 | poprawność SVG | `TestCorpusValidSVG` | poprawny XML, przestrzeń nazw SVG, tylko dozwolone elementy i atrybuty, liczby w atrybutach geometrii |
 | treść | `TestCorpusLabelsPresent` | każdy tekst ze źródła jest w SVG; etykiety uczestników dwa razy (góra i dół) |
 | niezmienniki układu | `internal/sequence/layout_test.go` | teksty nie nachodzą na siebie; nagłówki uczestników nie kolidują ze sobą ani z etykietami |
@@ -15,6 +15,15 @@
 | powtarzalność | `TestCorpusDeterministic` | kilka renderowań daje ten sam wynik |
 | odporność | `FuzzRender` | dowolne wejście nie powoduje paniki, a wynik jest poprawnym XML |
 | pokrycie wymagań | `TestRequirementsCovered` | każde wymaganie ma test albo plik korpusu; każde odwołanie wskazuje istniejące wymaganie |
+
+## Przegląd przez człowieka
+
+`tools/review` składa jedną stronę HTML (`out/review.html`, poza repozytorium): dla każdego pliku korpusu tytuł, opis,
+wymagania, źródło, nasz rysunek i opcjonalnie rysunek renderera odniesienia; ocenę i uwagi można skopiować jako tekst.
+
+```sh
+go run ./tools/review -font NotoSans-Regular.ttf -family "Noto Sans" -ref 'mmdg -i {in} -o {out}' -o out/review.html
+```
 
 ## Porównanie z rendererem odniesienia
 

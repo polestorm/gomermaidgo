@@ -101,16 +101,6 @@ func (l *layouter) draw() {
 	l.drawLevel(l.levels[""])
 }
 
-// ends zwraca pola, przy których krawędź zaczyna się i kończy na rysunku: górne i dolne.
-// To pola wskazane w źródle, także gdy leżą głębiej, w podgrafie.
-func (l *layouter) ends(e *ledge) (upper, lower *item) {
-	upper, lower = l.itemOf[e.e.From], l.itemOf[e.e.To]
-	if e.rev {
-		upper, lower = lower, upper
-	}
-	return upper, lower
-}
-
 // portRange zwraca szerokość odcinka krawędzi pola, na którym wolno zaczepiać krawędzie.
 // Kształty zbiegające się w wierzchołek mają jeden punkt zaczepienia.
 func (l *layouter) portRange(it *item) float64 {
@@ -154,15 +144,19 @@ func (l *layouter) spreadPorts() {
 			if e.e.Style == graph.Invisible {
 				continue
 			}
-			upper, lower := l.ends(e)
-			next, prev := lower.nodeX(), upper.nodeX()
+			next, prev := e.v.nodeX(), e.u.nodeX()
 			if len(e.chain) > 0 {
 				next, prev = e.chain[0].x, e.chain[len(e.chain)-1].x
 			}
-			bottom[upper] = append(bottom[upper], end{e, true, next})
-			top[lower] = append(top[lower], end{e, false, prev})
-			note(upper)
-			note(lower)
+			// Koniec prowadzony dalej we wnętrzu podgrafu albo leżący na ramce nie zaczepia się o pole.
+			if e.upperCont == nil && e.u.kind != kindPort {
+				bottom[e.u] = append(bottom[e.u], end{e, true, next})
+				note(e.u)
+			}
+			if e.lowerCont == nil && e.v.kind != kindPort {
+				top[e.v] = append(top[e.v], end{e, false, prev})
+				note(e.v)
+			}
 		}
 	}
 	assign := func(it *item, ends []end) {
@@ -226,7 +220,9 @@ func (l *layouter) drawLevel(lv *level) {
 		}
 	}
 	for _, e := range lv.edges {
-		l.drawEdge(e)
+		if !e.part {
+			l.drawEdge(e)
+		}
 	}
 }
 
@@ -377,32 +373,59 @@ func (l *layouter) drawLabel(lines []string, x, y float64) {
 	l.textBlock(lines, p.X, p.Y, "edge-label")
 }
 
-// drawEdge prowadzi krawędź od dolnej krawędzi górnego pola przez punkty pomocnicze do górnej
-// krawędzi dolnego pola. W paśmie warstwy biegnie prosto, między pasmami łagodnym łukiem.
+type routePoint struct{ x, y float64 }
+
+// route zwraca punkty krawędzi od górnego końca do dolnego. Koniec leżący głębiej, w podgrafie,
+// jest prowadzony odcinkiem z układu tego podgrafu: od pola do punktu na ramce albo odwrotnie.
+func (l *layouter) route(e *ledge) []routePoint {
+	var pts []routePoint
+	switch {
+	case e.upperCont != nil:
+		pts = l.route(e.upperCont)
+	case e.u.kind == kindPort:
+		border := e.lv.offsetY
+		pts = append(pts, routePoint{e.u.x, border})
+		if e.u.y-border > 0.5 {
+			pts = append(pts, routePoint{e.u.x, e.u.y})
+		}
+	default:
+		pts = append(pts, routePoint{e.u.nodeX() + e.upperPort, e.u.y + e.u.h/2})
+	}
+	for _, d := range e.chain {
+		if d.band > 0 {
+			pts = append(pts, routePoint{d.x, d.y - d.band/2}, routePoint{d.x, d.y + d.band/2})
+		} else {
+			pts = append(pts, routePoint{d.x, d.y})
+		}
+	}
+	switch {
+	case e.lowerCont != nil:
+		pts = append(pts, l.route(e.lowerCont)...)
+	case e.v.kind == kindPort:
+		border := e.lv.offsetY + e.lv.h
+		if border-e.v.y > 0.5 {
+			pts = append(pts, routePoint{e.v.x, e.v.y})
+		}
+		pts = append(pts, routePoint{e.v.x, border})
+	default:
+		pts = append(pts, routePoint{e.v.nodeX() + e.lowerPort, e.v.y - e.v.h/2})
+	}
+	return pts
+}
+
+// drawEdge rysuje krawędź: w paśmie warstwy biegnie prosto, między pasmami łagodnym łukiem.
 func (l *layouter) drawEdge(e *ledge) {
 	if e.e.Style == graph.Invisible {
 		return
 	}
-	upper, lower := l.ends(e)
 	topHead, bottomHead := e.e.StartHead, e.e.EndHead
 	if e.rev {
 		topHead, bottomHead = bottomHead, topHead
 	}
-	type pt struct{ x, y float64 }
-	start := pt{upper.nodeX() + e.upperPort, upper.y + upper.h/2}
-	end := pt{lower.nodeX() + e.lowerPort, lower.y - lower.h/2}
-	start.y += l.headAt(topHead, start.x, start.y, 0, -1)
-	end.y -= l.headAt(bottomHead, end.x, end.y, 0, 1)
-
-	pts := []pt{start}
-	for _, d := range e.chain {
-		if d.band > 0 {
-			pts = append(pts, pt{d.x, d.y - d.band/2}, pt{d.x, d.y + d.band/2})
-		} else {
-			pts = append(pts, pt{d.x, d.y})
-		}
-	}
-	pts = append(pts, end)
+	pts := l.route(e)
+	last := len(pts) - 1
+	pts[0].y += l.headAt(topHead, pts[0].x, pts[0].y, 0, -1)
+	pts[last].y -= l.headAt(bottomHead, pts[last].x, pts[last].y, 0, 1)
 
 	segments := []scene.Segment{{Cmd: 'M', To: l.point(pts[0].x, pts[0].y)}}
 	for i := 0; i+1 < len(pts); i++ {
