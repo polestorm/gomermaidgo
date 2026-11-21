@@ -32,8 +32,8 @@ func (l *layouter) wrapLimit(shape graph.Shape) float64 {
 // nodeSize zwraca rzeczywisty rozmiar kształtu mieszczącego podany tekst.
 func (l *layouter) nodeSize(shape graph.Shape, text []string) (w, h float64) {
 	tw, th := l.textSize(text)
-	padX, padY := l.u(16), l.u(10)
-	w, h = math.Max(tw+2*padX, l.u(48)), math.Max(th+2*padY, l.u(40))
+	padX, padY := l.u(20), l.u(12)
+	w, h = math.Max(tw+2*padX, l.u(56)), math.Max(th+2*padY, l.u(44))
 	switch shape {
 	case graph.Stadium:
 		w += h / 2
@@ -106,7 +106,7 @@ func (l *layouter) draw() {
 func (l *layouter) portRange(it *item) float64 {
 	w := it.nodeW()
 	if it.kind == kindCluster {
-		return w - 2*l.u(16)
+		return w - 2*l.u(20)
 	}
 	switch it.node.Shape {
 	case graph.Rhombus, graph.Choice, graph.Circle, graph.DoubleCircle, graph.StateStart, graph.StateEnd:
@@ -233,7 +233,33 @@ func (l *layouter) drawLevel(lv *level) {
 	}
 }
 
+// tone zwraca kolory węzła w trybie kolorowym: kolor mówi, czym węzeł jest w procesie.
+func (l *layouter) tone(shape graph.Shape) (fill, stroke string) {
+	if !l.o.Colors {
+		return colorNodeFill, colorNodeStroke
+	}
+	t := scene.Palette[0] // krok
+	switch shape {
+	case graph.Rhombus, graph.Hexagon, graph.Choice:
+		t = scene.Palette[2] // decyzja
+	case graph.Stadium, graph.Circle, graph.DoubleCircle:
+		t = scene.Palette[1] // początek, koniec
+	case graph.Cylinder, graph.Subroutine:
+		t = scene.Palette[3] // dane, podproces
+	case graph.Parallelogram, graph.ParallelogramAlt, graph.Trapezoid, graph.TrapezoidAlt, graph.Asymmetric:
+		t = scene.Palette[5] // wejście, wyjście, czynność ręczna
+	}
+	return t.Fill, t.Stroke
+}
+
 func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float64) {
+	colorNodeFill, colorNodeStroke := l.tone(shape)
+	from := len(l.sc.Items)
+	defer func() {
+		if l.o.Shadows && shape != graph.StateStart && shape != graph.StateEnd && shape != graph.Fork && shape != graph.Join {
+			l.sc.AddShadows(from, l.u(3), "node", "note")
+		}
+	}()
 	x0, y0, x1, y1 := cx-w/2, cy-h/2, cx+w/2, cy+h/2
 	box := func(rx float64, fill, stroke string) {
 		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "node", X: x0, Y: y0, W: w, H: h, RX: rx,

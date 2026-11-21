@@ -43,6 +43,8 @@ type config struct {
 	fontFamily string
 	fontSize   float64
 	background string
+	colors     bool
+	shadows    bool
 }
 
 // Option zmienia ustawienia renderowania.
@@ -66,6 +68,14 @@ func WithFontSize(px float64) Option { return func(c *config) { c.fontSize = px 
 
 // WithBackground ustawia kolor tła. Domyślnie tło jest przezroczyste.
 func WithBackground(color string) Option { return func(c *config) { c.background = color } }
+
+// WithColors włącza tryb kolorowy: uczestnicy diagramu sekwencji dostają kolejne kolory palety,
+// a węzły grafów kolor według roli (krok, decyzja, początek i koniec). Domyślnie rysunek jest
+// neutralny, bo dobrze wygląda także w druku czarno-białym.
+func WithColors() Option { return func(c *config) { c.colors = true } }
+
+// WithShadows dodaje cień pod uczestnikami, węzłami i notatkami. Cień jest zwykłym kształtem, nie filtrem.
+func WithShadows() Option { return func(c *config) { c.shadows = true } }
 
 // DetectType zwraca typ diagramu z pierwszej znaczącej linii źródła.
 func DetectType(source string) (string, error) {
@@ -170,13 +180,13 @@ func Render(source string, opts ...Option) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-		sc := layered.Layout(g, layered.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background})
+		sc := layered.Layout(g, layered.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows})
 		return sc.SVG(), nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {
 		return nil, err
 	}
-	sc := sequence.Layout(d, sequence.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background})
+	sc := sequence.Layout(d, sequence.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows})
 	return sc.SVG(), nil
 }

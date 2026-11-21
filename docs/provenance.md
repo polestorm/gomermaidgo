@@ -24,7 +24,9 @@ kodu jest utworem zależnym i wnosi jego licencję (w tym LGPL i EPL w istnieją
 - Układ warstwowy napisano z pamięci opisów algorytmów w wymienionych publikacjach, bez otwierania cudzych
   implementacji; rekurencyjne rozmieszczanie podgrafów, rozsuwanie punktów zaczepienia i wachlarz wokół wspólnego
   sąsiada są rozwiązaniami własnymi.
-- Wygląd (kolory, wymiary, kształt ludzika, zakładka ramki) jest własny. Z konwencji Mermaid pochodzi tylko to, co jest
+- Wygląd (kolory, paleta trybu kolorowego, wymiary, kształt ludzika, zakładka ramki) jest własny. Po porównaniu
+  rysunków z rendererem odniesienia przyjęto trzy cechy widoczne na jego wyniku (nie w kodzie): większe odstępy
+  względem pisma, kropkowane ramki bloków i krzywą dla komunikatu do siebie. Z konwencji Mermaid pochodzi tylko to, co jest
   znaczeniem zapisu: rodzaje strzałek, nazwa rodzaju bloku w zakładce ramki, tytuł sekcji w nawiasach kwadratowych,
   powtórzenie uczestników na dole.
 - Zastrzeżenie: przed powstaniem repozytorium, w sesji rozpoznania, przeczytano fragmenty projektu `go-mermaid`

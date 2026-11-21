@@ -18,6 +18,8 @@ type Options struct {
 	FontSize   float64
 	FontFamily string
 	Background string
+	Colors     bool // uczestnicy w kolejnych kolorach palety
+	Shadows    bool // cień pod uczestnikami i notatkami
 }
 
 // Kolory rysunku. Wygląd jest stały i własny; nie naśladuje motywów Mermaid.
@@ -141,7 +143,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	}
 	l.participants(top)
 	headerBottom := top + l.header
-	l.cursor = headerBottom + l.u(14)
+	l.cursor = headerBottom + l.u(24)
 	l.lastY = l.cursor
 
 	for _, e := range d.Events {
@@ -194,13 +196,13 @@ func (l *layout) columns() {
 			l.boxW[i] = math.Max(l.u(28), w)
 			l.header = math.Max(l.header, l.u(48)+lines*l.lh)
 		} else {
-			l.boxW[i] = math.Max(l.u(80), w+2*l.u(14))
-			l.header = math.Max(l.header, lines*l.lh+2*l.u(10))
+			l.boxW[i] = math.Max(l.u(100), w+2*l.u(20))
+			l.header = math.Max(l.header, lines*l.lh+2*l.u(14))
 		}
 	}
 	gap := make([]float64, max(n-1, 0))
 	for i := range gap {
-		gap[i] = l.boxW[i]/2 + l.boxW[i+1]/2 + l.u(36)
+		gap[i] = l.boxW[i]/2 + l.boxW[i+1]/2 + l.u(56)
 	}
 	atLeast := func(i int, v float64) {
 		if i >= 0 && i < len(gap) {
@@ -238,7 +240,7 @@ func (l *layout) columns() {
 				continue
 			}
 			lo, hi := min(e.From, e.To), max(e.From, e.To)
-			need := w + 2*l.u(14) + l.u(12) + badge
+			need := w + 2*l.u(22) + l.u(12) + badge
 			if hi-lo == 1 {
 				atLeast(lo, need)
 			} else {
@@ -281,9 +283,20 @@ func (l *layout) half(i int) float64 {
 func (l *layout) selfReach() float64 { return l.u(8) + l.u(36) + l.u(8) }
 
 func (l *layout) participants(top float64) {
+	from := len(l.sc.Items)
+	defer func() {
+		if l.o.Shadows {
+			l.sc.AddShadows(from, l.u(3), "participant")
+		}
+	}()
 	for i, p := range l.d.Participants {
 		cx := l.x[i]
 		lines := float64(len(p.Label))
+		colorBoxFill, colorBoxStroke := colorBoxFill, colorBoxStroke
+		if l.o.Colors {
+			tone := scene.Palette[i%len(scene.Palette)]
+			colorBoxFill, colorBoxStroke = tone.Fill, tone.Stroke
+		}
 		if !p.Actor {
 			l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "participant",
 				X: cx - l.boxW[i]/2, Y: top, W: l.boxW[i], H: l.header, RX: l.u(3),
@@ -382,7 +395,7 @@ func (l *layout) message(e Event) {
 
 	lines := float64(len(e.Text))
 	labelTop := l.cursor
-	l.cursor += lines*l.lh + l.u(3)
+	l.cursor += lines*l.lh + l.u(5)
 	y := l.cursor
 	if len(e.Text) > 0 {
 		mid, w := (x1+x2)/2, l.maxWidth(e.Text)
@@ -411,7 +424,7 @@ func (l *layout) message(e Event) {
 		l.deactivate(e.From, y)
 	}
 	l.lastY = y
-	l.cursor = y + l.u(16)
+	l.cursor = y + l.u(28)
 }
 
 func (l *layout) selfMessage(e Event) {
@@ -432,9 +445,15 @@ func (l *layout) selfMessage(e Event) {
 	xe := l.edge(i, 1, level)
 	out := l.x[i] + l.u(8) + reach
 
+	// Komunikat do siebie jest jedną krzywą: od razu widać, że wraca do tego samego uczestnika.
 	short := l.head(e.Head, xe, y1, -1)
-	l.sc.Add(scene.Item{Kind: scene.Polyline, Layer: scene.LayerShape, Role: "message",
-		Points: []scene.Point{{X: xs, Y: y0}, {X: out, Y: y0}, {X: out, Y: y1}, {X: xe + short, Y: y1}},
+	bulge := (out - l.x[i]) * 4 / 3
+	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerShape, Role: "message",
+		Segments: []scene.Segment{
+			{Cmd: 'M', To: scene.Point{X: xs, Y: y0}},
+			{Cmd: 'C', C1: scene.Point{X: l.x[i] + bulge, Y: y0 - l.u(6)}, C2: scene.Point{X: l.x[i] + bulge, Y: y1}, To: scene.Point{X: xe + short + l.u(6), Y: y1}},
+			{Cmd: 'L', To: scene.Point{X: xe + short, Y: y1}},
+		},
 		Stroke: colorLine, StrokeWidth: 1.5, Dash: dash(e.LineStyle)})
 	l.badge(xs, y0)
 	right := out
@@ -452,7 +471,7 @@ func (l *layout) selfMessage(e Event) {
 		l.deactivate(i, y1)
 	}
 	l.lastY = y1
-	l.cursor = y1 + math.Max(l.u(16), (textH-drop)/2+l.u(8))
+	l.cursor = y1 + math.Max(l.u(28), (textH-drop)/2+l.u(14))
 }
 
 func (l *layout) note(e Event) {
@@ -475,9 +494,12 @@ func (l *layout) note(e Event) {
 	y0 := l.cursor
 	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "note", X: x0, Y: y0, W: w, H: h,
 		Fill: colorNoteFill, Stroke: colorNoteStroke, StrokeWidth: 1})
+	if l.o.Shadows {
+		l.sc.AddShadows(len(l.sc.Items)-1, l.u(3), "note")
+	}
 	l.text(e.Text, x0+w/2, y0+padY, "middle", "note-label", "", scene.LayerLabel)
 	l.extent(x0, x0+w)
-	l.cursor = y0 + h + l.u(12)
+	l.cursor = y0 + h + l.u(22)
 }
 
 func (l *layout) blockStart(e Event) {
@@ -488,15 +510,14 @@ func (l *layout) blockStart(e Event) {
 		l.fills = append(l.fills, blend(e.Color, l.fills[len(l.fills)-1]))
 		l.cursor += l.u(8)
 	} else {
-		l.cursor += l.lh + l.u(4) + l.u(6)
+		l.cursor += l.lh + l.u(4) + l.u(18)
 	}
 }
 
 func (l *layout) blockSection(e Event) {
 	f := l.frames[len(l.frames)-1]
-	l.cursor += l.u(2)
 	f.sections = append(f.sections, section{y: l.cursor, text: strings.Join(e.Text, " ")})
-	l.cursor += l.lh + l.u(6)
+	l.cursor += l.lh + l.u(20)
 }
 
 func (l *layout) blockEnd() {
@@ -508,7 +529,7 @@ func (l *layout) blockEnd() {
 	}
 	pad := l.u(12)
 	x0, x1 := f.minX-pad, f.maxX+pad
-	y1 := l.cursor + l.u(2)
+	y1 := l.cursor
 
 	if f.kind == "rect" {
 		l.fills = l.fills[:len(l.fills)-1]
@@ -533,7 +554,7 @@ func (l *layout) blockEnd() {
 		}
 		x1 = math.Max(x1, x0+need)
 		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerFrame, Role: "frame",
-			X: x0, Y: f.y0, W: x1 - x0, H: y1 - f.y0, Stroke: colorFrame, StrokeWidth: 1})
+			X: x0, Y: f.y0, W: x1 - x0, H: y1 - f.y0, RX: l.u(3), Stroke: colorFrame, StrokeWidth: 1.5, Dash: "2 3"})
 		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerFrame, Role: "frame-tab",
 			X: x0, Y: f.y0, W: tabW, H: tabH, Fill: colorTabFill, Stroke: colorFrame, StrokeWidth: 1})
 		l.text([]string{f.kind}, x0+tabW/2, f.y0+l.u(2), "middle", "frame-kind", "", scene.LayerLabel)
@@ -541,12 +562,12 @@ func (l *layout) blockEnd() {
 		l.text([]string{bracket(f.title)}, x0+tabW+l.u(8), f.y0+l.u(2), "start", "frame-title", "", scene.LayerLabel)
 		for _, s := range f.sections {
 			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerFrame, Role: "frame-divider",
-				X: x0, Y: s.y, X2: x1, Y2: s.y, Stroke: colorFrame, StrokeWidth: 1, Dash: "5 4"})
-			l.labelBackground(x0+l.u(8), s.y+l.u(3), l.width(bracket(s.text)), l.lh)
-			l.text([]string{bracket(s.text)}, x0+l.u(8), s.y+l.u(3), "start", "frame-title", "", scene.LayerLabel)
+				X: x0, Y: s.y, X2: x1, Y2: s.y, Stroke: colorFrame, StrokeWidth: 1, Dash: "6 4"})
+			l.labelBackground(x0+l.u(8), s.y+l.u(6), l.width(bracket(s.text)), l.lh)
+			l.text([]string{bracket(s.text)}, x0+l.u(8), s.y+l.u(6), "start", "frame-title", "", scene.LayerLabel)
 		}
 	}
-	l.cursor = y1 + l.u(12)
+	l.cursor = y1 + l.u(24)
 	l.extent(x0, x1)
 }
 

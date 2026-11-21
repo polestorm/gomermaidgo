@@ -32,7 +32,12 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 - nie ma zawijania tekstu (`wrap`), dyrektyw `%%{init}%%` ani bloku konfiguracji `---`;
 - limity: 50 uczestników, 2000 instrukcji, 20 poziomów zagnieżdżenia bloków;
 - dezaktywacja nieaktywnego uczestnika jest błędem, także w zapisie skróconym;
-- wygląd jest własny; motywy i zmienne motywu nie są obsługiwane.
+- wygląd jest własny; motywy i zmienne motywu nie są obsługiwane. Kryterium wyglądu jest czytelność, nie zgodność
+  z notacją UML: ramki bloków (`alt`, `loop`, `opt` i pozostałe) są kropkowane, żeby nie konkurowały z uczestnikami
+  i komunikatami, a komunikat do siebie jest jedną krzywą;
+- kolory i cienie są opcjami wywołującego (`WithColors`, `WithShadows`), domyślnie wyłączonymi: w diagramie sekwencji
+  uczestnicy dostają kolejne kolory palety, w grafach kolor mówi, czym jest węzeł (krok, decyzja, początek i koniec,
+  dane, wejście i wyjście); cień jest zwykłym kształtem, nie filtrem.
 
 ## Schemat blokowy (`flowchart`, `graph`)
 

@@ -163,7 +163,7 @@ var allowedSVG = map[string][]string{
 	"rect":     {"class", "x", "y", "width", "height", "rx", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"line":     {"class", "x1", "y1", "x2", "y2", "fill", "stroke", "stroke-width", "stroke-dasharray"},
 	"polyline": {"class", "points", "fill", "stroke", "stroke-width", "stroke-dasharray"},
-	"polygon":  {"class", "points", "fill", "stroke", "stroke-width", "stroke-dasharray"},
+	"polygon":  {"class", "points", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"circle":   {"class", "cx", "cy", "r", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"ellipse":  {"class", "cx", "cy", "rx", "ry", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"path":     {"class", "d", "fill", "stroke", "stroke-width", "stroke-dasharray"},
@@ -249,6 +249,19 @@ func TestCorpusValidSVG(t *testing.T) {
 			t.Fatalf("%s: %v", f, err)
 		}
 		checkSVG(t, f, svg)
+		// Tryb kolorowy z cieniami zmienia tylko barwy i dokłada kształty cienia: te same teksty,
+		// ten sam dozwolony podzbiór SVG.
+		plain, _ := Render(readFile(t, f))
+		styled, err := Render(readFile(t, f), WithColors(), WithShadows())
+		if err != nil {
+			t.Fatalf("%s: %v", f, err)
+		}
+		if a, b := checkSVG(t, f, plain), checkSVG(t, f+" (colors)", styled); strings.Join(a, "|") != strings.Join(b, "|") {
+			t.Errorf("%s: colours and shadows changed the texts", f)
+		}
+		if bytes.Count(styled, []byte(`class="shadow"`)) == 0 {
+			t.Errorf("%s: no shadows were drawn", f)
+		}
 	}
 }
 

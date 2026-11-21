@@ -25,6 +25,9 @@ wymagania, źródło, nasz rysunek i opcjonalnie rysunek renderera odniesienia; 
 go run ./tools/review -font NotoSans-Regular.ttf -family "Noto Sans" -ref 'mmdg -i {in} -o {out}' -o out/review.html
 ```
 
+`tools/fontsheet` składa osobną stronę (`out/fonts.html`) porównującą kroje pisma: próbki tekstu i trzy diagramy
+korpusu w każdym kroju, w dwóch rozmiarach pisma. Pliki fontów leżą poza repozytorium.
+
 ## Porównanie z rendererem odniesienia
 
 `tools/refcompare` uruchamia cudzy renderer jako osobny program i porównuje **treść** obu rysunków: zbiór tekstów

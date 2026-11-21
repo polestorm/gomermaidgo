@@ -29,6 +29,7 @@ type entry struct {
 	Reqs                      []string
 	Source                    string
 	SVG                       string
+	Styled                    string // nasz rysunek w trybie kolorowym z cieniami
 	Err                       string
 	Ref                       string // data URI albo pusty
 	RefWidth                  string // szerokość naturalna rysunku odniesienia w px
@@ -112,6 +113,8 @@ func main() {
 				e.Err = err.Error()
 			} else {
 				e.SVG = string(svg)
+				styled, _ := gomermaidgo.Render(e.Source, append(opts[:len(opts):len(opts)], gomermaidgo.WithColors(), gomermaidgo.WithShadows())...)
+				e.Styled = string(styled)
 			}
 			if *ref != "" {
 				target := filepath.Join(tmp, kind+"-"+filepath.Base(f)+".svg")
@@ -159,6 +162,9 @@ func main() {
 			b.WriteString(e.SVG)
 		}
 		b.WriteString("</div></section>\n")
+		if e.Styled != "" {
+			b.WriteString("<section><h4>gomermaidgo, kolory i cienie (opcje)</h4><div class=\"draw\">" + e.Styled + "</div></section>\n")
+		}
 		if *ref != "" {
 			b.WriteString("<section><h4>Odniesienie</h4><div class=\"draw\">")
 			if e.RefErr != "" {
@@ -202,7 +208,7 @@ body { margin:0; background:var(--desk); color:var(--ink); font:15px/1.5 system-
 .top .tally { font-variant-numeric:tabular-nums; }
 .top button, .top select { font:inherit; padding:5px 12px; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink); cursor:pointer; }
 .top button.primary { background:var(--accent); border-color:var(--accent); color:#fff; }
-main { max-width:1500px; margin:0 auto; padding:8px 20px 80px; }
+main { max-width:1700px; margin:0 auto; padding:8px 20px 80px; }
 h2 { font-size:20px; margin:28px 0 10px; }
 .card { background:var(--paper); border:1px solid var(--line); border-left:5px solid var(--line); border-radius:8px; margin:0 0 18px; padding:14px 18px; }
 .card.ok { border-left-color:var(--ok); }
@@ -213,9 +219,8 @@ h2 { font-size:20px; margin:28px 0 10px; }
 .path { color:var(--muted); font-size:12.5px; }
 .checks { margin:6px 0 4px; max-width:95ch; }
 .reqs { margin:0 0 10px; padding-left:18px; color:var(--muted); font-size:13px; max-width:120ch; }
-.cols { display:grid; grid-template-columns:minmax(260px, 0.8fr) minmax(0, 1.4fr) minmax(0, 1.4fr); gap:14px; align-items:start; }
-.cols.two { grid-template-columns:minmax(260px, 0.8fr) minmax(0, 2fr); }
-@media (max-width: 1100px) { .cols, .cols.two { grid-template-columns:1fr; } }
+.cols { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; align-items:start; }
+@media (max-width: 1100px) { .cols { grid-template-columns:1fr; } }
 h4 { font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:0 0 4px; font-weight:600; }
 pre { margin:0; padding:10px 12px; background:#f7f8fa; border:1px solid var(--line); border-radius:6px; font:12.5px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; overflow:auto; max-height:520px; white-space:pre; }
 .draw { border:1px solid var(--line); border-radius:6px; padding:8px; background:#fff; overflow:auto; }
@@ -265,7 +270,6 @@ const pageTail = `</main>
   }
   cards.forEach(function (c) {
     var id = c.dataset.id, s = state[id] || {};
-    if (!c.querySelector('.cols').children[2]) c.querySelector('.cols').classList.add('two');
     var note = c.querySelector('textarea');
     note.value = s.note || '';
     c.querySelectorAll('input[type=radio]').forEach(function (r) {

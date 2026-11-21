@@ -25,6 +25,8 @@ type Options struct {
 	FontSize   float64
 	FontFamily string
 	Background string
+	Colors     bool // kolor według roli węzła: krok, decyzja, początek i koniec
+	Shadows    bool // cień pod węzłami i notatkami
 }
 
 type itemKind int
@@ -360,7 +362,7 @@ func (l *layouter) sizeAll(lv *level) {
 	contentW, contentH := l.position(lv)
 
 	// Marginesy podgrafu: tytuł leży przy rzeczywistej górnej krawędzi ramki.
-	pad := l.u(16)
+	pad := l.u(20)
 	padX0, padX1, padY0, padY1 := pad, pad, pad, pad
 	// Warstwa punktów na ramce sama odsuwa zawartość od ramki; zwykły margines byłby drugim odstępem.
 	if lv.sub != nil {
@@ -772,7 +774,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 	gap := func(a, b *item) float64 {
 		switch {
 		case a.real() && b.real():
-			return l.u(36)
+			return l.u(48)
 		case a.kind == kindDummy && b.kind == kindDummy:
 			return l.u(10)
 		}
@@ -922,7 +924,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			}
 		}
 		if k > 0 {
-			shift += l.u(36)
+			shift += l.u(48)
 		}
 		for _, row := range rows {
 			for _, it := range row {
@@ -947,7 +949,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 	if math.IsInf(left, 1) {
 		left = 0
 	}
-	rankGap := l.u(48) / float64(lv.factor)
+	rankGap := l.u(64) / float64(lv.factor)
 	y := 0.0
 	for r, row := range lv.ranks {
 		band := 0.0

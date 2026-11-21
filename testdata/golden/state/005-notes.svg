@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="542.96" height="340" viewBox="-11.96 -12 542.96 340" role="img" font-family="sans-serif" font-size="16">
-<line class="note-link" x1="311" y1="92" x2="347" y2="92" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<line class="note-link" x1="186" y1="220" x2="149.96" y2="220" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M240 16 L240 40 L240 65.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M240 112 L240 144 L240 168 L240 193.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M240 240 L240 272 L240 289.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="140.96" y="146" width="198.08" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="240,72 235,63 245,63" fill="#3b4754"/>
-<polygon class="arrowhead" points="240,200 235,191 245,191" fill="#3b4754"/>
-<polygon class="arrowhead" points="240,296 235,287 245,287" fill="#3b4754"/>
-<circle class="node" cx="240" cy="8" r="8" fill="#3b4754"/>
-<rect class="node" x="169" y="72" width="142" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="note" x="347" y="64" width="172" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<rect class="note" x="0.04" y="192" width="149.92" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<rect class="node" x="186" y="200" width="108" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="240" cy="306" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="240" cy="306" r="6" fill="#3b4754"/>
-<text class="node-label" x="240" y="97.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
-<text class="note-label" x="433" y="87.6" text-anchor="middle" fill="#1b1f24">Szkolenie musi być</text>
-<text class="note-label" x="433" y="107.6" text-anchor="middle" fill="#1b1f24">ukończone</text>
-<text class="note-label" x="75" y="215.6" text-anchor="middle" fill="#1b1f24">Kopie papierowe</text>
-<text class="note-label" x="75" y="235.6" text-anchor="middle" fill="#1b1f24">do zniszczenia</text>
-<text class="node-label" x="240" y="225.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
-<text class="edge-label" x="240" y="161.6" text-anchor="middle" fill="#1b1f24">zastąpiony nową wersją</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="574.96" height="388" viewBox="-11.96 -12 574.96 388" role="img" font-family="sans-serif" font-size="16">
+<line class="note-link" x1="331" y1="108" x2="379" y2="108" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
+<line class="note-link" x1="198" y1="252" x2="149.96" y2="252" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M256 16 L256 48 L256 79.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M256 130 L256 168 L256 192 L256 223.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M256 274 L256 312 L256 337.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="156.96" y="170" width="198.08" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="256,86 251,77 261,77" fill="#3b4754"/>
+<polygon class="arrowhead" points="256,230 251,221 261,221" fill="#3b4754"/>
+<polygon class="arrowhead" points="256,344 251,335 261,335" fill="#3b4754"/>
+<circle class="node" cx="256" cy="8" r="8" fill="#3b4754"/>
+<rect class="node" x="181" y="86" width="150" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="note" x="379" y="80" width="172" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<rect class="note" x="0.04" y="224" width="149.92" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<rect class="node" x="198" y="230" width="116" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="256" cy="354" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="256" cy="354" r="6" fill="#3b4754"/>
+<text class="node-label" x="256" y="113.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
+<text class="note-label" x="465" y="103.6" text-anchor="middle" fill="#1b1f24">Szkolenie musi być</text>
+<text class="note-label" x="465" y="123.6" text-anchor="middle" fill="#1b1f24">ukończone</text>
+<text class="note-label" x="75" y="247.6" text-anchor="middle" fill="#1b1f24">Kopie papierowe</text>
+<text class="note-label" x="75" y="267.6" text-anchor="middle" fill="#1b1f24">do zniszczenia</text>
+<text class="node-label" x="256" y="257.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
+<text class="edge-label" x="256" y="185.6" text-anchor="middle" fill="#1b1f24">zastąpiony nową wersją</text>
 </svg>

@@ -1,40 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="2404" height="166" viewBox="-12 -12 2404 166" role="img" font-family="sans-serif" font-size="16">
-<rect class="node" x="0" y="51" width="108" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="144.5" y="51" width="129" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="309" y="51" width="112" height="40" rx="20" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="457" y="51" width="142" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="465" y1="51" x2="465" y2="91" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="591" y1="51" x2="591" y2="91" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="701" cy="91" rx="66" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="635" y="51" width="132" height="40" fill="#eef2f7"/>
-<line class="node-detail" x1="635" y1="51" x2="635" y2="91" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="767" y1="51" x2="767" y2="91" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="701" cy="51" rx="66" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="831" cy="71" r="28" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="966" cy="71" r="71" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node-detail" cx="966" cy="71" r="66" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="1073,51 1159,51 1159,91 1073,91 1083,71" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="1243,37 1291,71 1243,105 1195,71" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="1337.5,51 1456.5,51 1466.5,71 1456.5,91 1337.5,91 1327.5,71" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="1515.33,51 1680,51 1666.67,91 1502,91" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="1716.5,41 1887.5,41 1907.5,101 1736.5,101" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="1956.83,51 2043.17,51 2056.5,91 1943.5,91" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="2092,51 2296,51 2282.67,91 2105.33,91" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="2332" y="51" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="54" y="76.6" text-anchor="middle" fill="#1b1f24">Prostokąt</text>
-<text class="node-label" x="209" y="76.6" text-anchor="middle" fill="#1b1f24">Zaokrąglony</text>
-<text class="node-label" x="365" y="76.6" text-anchor="middle" fill="#1b1f24">Stadion</text>
-<text class="node-label" x="528" y="76.6" text-anchor="middle" fill="#1b1f24">Podprogram</text>
-<text class="node-label" x="701" y="80.1" text-anchor="middle" fill="#1b1f24">Baza danych</text>
-<text class="node-label" x="831" y="76.6" text-anchor="middle" fill="#1b1f24">Koło</text>
-<text class="node-label" x="966" y="76.6" text-anchor="middle" fill="#1b1f24">Podwójne koło</text>
-<text class="node-label" x="1121" y="76.6" text-anchor="middle" fill="#1b1f24">Flaga</text>
-<text class="node-label" x="1243" y="76.6" text-anchor="middle" fill="#1b1f24">Romb</text>
-<text class="node-label" x="1397" y="76.6" text-anchor="middle" fill="#1b1f24">Sześciokąt</text>
-<text class="node-label" x="1591" y="76.6" text-anchor="middle" fill="#1b1f24">Równoległobok</text>
-<text class="node-label" x="1812" y="66.6" text-anchor="middle" fill="#1b1f24">Równoległobok</text>
-<text class="node-label" x="1812" y="86.6" text-anchor="middle" fill="#1b1f24">odwrócony</text>
-<text class="node-label" x="2000" y="76.6" text-anchor="middle" fill="#1b1f24">Trapez</text>
-<text class="node-label" x="2194" y="76.6" text-anchor="middle" fill="#1b1f24">Trapez odwrócony</text>
-<text class="node-label" x="2356" y="76.6" text-anchor="middle" fill="#1b1f24">o</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="2683" height="166" viewBox="-12 -12 2683 166" role="img" font-family="sans-serif" font-size="16">
+<rect class="node" x="0" y="49" width="116" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="164.5" y="49" width="137" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="349" y="49" width="122" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="519" y="49" width="150" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="527" y1="49" x2="527" y2="93" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="661" y1="49" x2="661" y2="93" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="787" cy="93" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="717" y="49" width="140" height="44" fill="#eef2f7"/>
+<line class="node-detail" x1="717" y1="49" x2="717" y2="93" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="857" y1="49" x2="857" y2="93" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="787" cy="49" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="933" cy="71" r="28" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="1080" cy="71" r="71" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node-detail" cx="1080" cy="71" r="66" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="1199.5,49 1294.5,49 1294.5,93 1199.5,93 1210.5,71" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="1390,37 1438,71 1390,105 1342,71" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="1497.5,49 1624.5,49 1635.5,71 1624.5,93 1497.5,93 1486.5,71" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="1697.67,49 1871,49 1856.33,93 1683,93" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="1919,39 2099.67,39 2121,103 1940.33,103" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="2183.67,49 2278.33,49 2293,93 2169,93" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="2341,49 2555,49 2540.33,93 2355.67,93" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="2603" y="49" width="56" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="58" y="76.6" text-anchor="middle" fill="#1b1f24">Prostokąt</text>
+<text class="node-label" x="233" y="76.6" text-anchor="middle" fill="#1b1f24">Zaokrąglony</text>
+<text class="node-label" x="410" y="76.6" text-anchor="middle" fill="#1b1f24">Stadion</text>
+<text class="node-label" x="594" y="76.6" text-anchor="middle" fill="#1b1f24">Podprogram</text>
+<text class="node-label" x="787" y="80.1" text-anchor="middle" fill="#1b1f24">Baza danych</text>
+<text class="node-label" x="933" y="76.6" text-anchor="middle" fill="#1b1f24">Koło</text>
+<text class="node-label" x="1080" y="76.6" text-anchor="middle" fill="#1b1f24">Podwójne koło</text>
+<text class="node-label" x="1252.5" y="76.6" text-anchor="middle" fill="#1b1f24">Flaga</text>
+<text class="node-label" x="1390" y="76.6" text-anchor="middle" fill="#1b1f24">Romb</text>
+<text class="node-label" x="1561" y="76.6" text-anchor="middle" fill="#1b1f24">Sześciokąt</text>
+<text class="node-label" x="1777" y="76.6" text-anchor="middle" fill="#1b1f24">Równoległobok</text>
+<text class="node-label" x="2020" y="66.6" text-anchor="middle" fill="#1b1f24">Równoległobok</text>
+<text class="node-label" x="2020" y="86.6" text-anchor="middle" fill="#1b1f24">odwrócony</text>
+<text class="node-label" x="2231" y="76.6" text-anchor="middle" fill="#1b1f24">Trapez</text>
+<text class="node-label" x="2448" y="76.6" text-anchor="middle" fill="#1b1f24">Trapez odwrócony</text>
+<text class="node-label" x="2631" y="76.6" text-anchor="middle" fill="#1b1f24">o</text>
 </svg>

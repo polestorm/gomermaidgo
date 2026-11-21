@@ -78,6 +78,44 @@ type Scene struct {
 	Background string // pusty = przezroczyste tło
 }
 
+// Tone to para kolorów jednego elementu: obrys i wypełnienie.
+type Tone struct{ Stroke, Fill string }
+
+// Palette to kolory dla trybu kolorowego: własny zestaw o podobnej jasności, czytelny z ciemnym tekstem.
+var Palette = []Tone{
+	{"#3b6fb6", "#e8f0fb"}, // niebieski
+	{"#1f8a7a", "#e3f4f1"}, // morski
+	{"#b7791f", "#fcf1dc"}, // bursztynowy
+	{"#7a56b3", "#f0eafa"}, // fioletowy
+	{"#b8456b", "#fbe9ef"}, // malinowy
+	{"#4d8a2f", "#ebf5e4"}, // zielony
+}
+
+// AddShadows dopisuje cień pod każdym kształtem dodanym od pozycji from, którego rola jest na
+// liście: przesuniętą kopię kształtu w półprzezroczystej czerni. To zwykły kształt, nie filtr,
+// więc w PDF zostaje wektorem.
+func (s *Scene) AddShadows(from int, offset float64, roles ...string) {
+	for _, it := range s.Items[from:] {
+		match := false
+		for _, r := range roles {
+			match = match || it.Role == r
+		}
+		if !match || it.Fill == "" || it.Kind == Text || it.Kind == Line || it.Kind == Path || it.Kind == Polyline {
+			continue
+		}
+		sh := it
+		sh.Role, sh.Layer, sh.Fill, sh.FillOpacity, sh.Stroke = "shadow", LayerFrame, "#000000", 0.1, ""
+		sh.X, sh.Y = it.X+offset, it.Y+offset
+		if len(it.Points) > 0 {
+			sh.Points = make([]Point, len(it.Points))
+			for i, p := range it.Points {
+				sh.Points[i] = Point{X: p.X + offset, Y: p.Y + offset}
+			}
+		}
+		s.Items = append(s.Items, sh)
+	}
+}
+
 // Add dopisuje kształt.
 func (s *Scene) Add(it Item) { s.Items = append(s.Items, it) }
 

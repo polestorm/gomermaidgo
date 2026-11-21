@@ -10,6 +10,9 @@ svg, err := gomermaidgo.Render(source,
 )
 ```
 
+Colours (`WithColors`) and shadows (`WithShadows`) are opt-in; the default drawing is neutral and prints well in black
+and white.
+
 ```sh
 go run ./cmd/gomermaidgo -font NotoSans-Regular.ttf -family "Noto Sans" -o diagram.svg diagram.mmd
 ```
