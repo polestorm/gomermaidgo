@@ -311,6 +311,7 @@ func (l *layouter) drawLevel(lv *level) {
 	}
 	if !l.o.CurvedEdges {
 		l.assignTracks(routes)
+		l.findHops(routes)
 	}
 	for _, r := range routes {
 		l.drawEdge(r)
@@ -689,7 +690,54 @@ type edgeRoute struct {
 	pts                 []routePoint // punkty przebiegu, skrócone o zakończenia
 	top, bottom         routePoint   // końce przy polach, przed skróceniem
 	topHead, bottomHead graph.Head
-	track               map[int]float64 // położenie odcinka poprzecznego dla odcinka o danym numerze
+	track               map[int]float64   // położenie odcinka poprzecznego dla odcinka o danym numerze
+	hops                map[int][]float64 // miejsca na odcinku poprzecznym, w których krawędź przeskakuje nad inną
+}
+
+// findHops wyznacza przecięcia krawędzi łamanych: odcinek poprzeczny jednej krawędzi z odcinkiem
+// biegnącym wzdłuż osi warstw innej. W takim miejscu odcinek poprzeczny dostaje półokrągły mostek,
+// jak na rysunku technicznym, żeby przecięcia nie pomylić z połączeniem.
+func (l *layouter) findHops(routes []*edgeRoute) {
+	type along struct {
+		r         *edgeRoute
+		x, y0, y1 float64
+	}
+	var runs []along
+	for _, r := range routes {
+		for i := 0; i+1 < len(r.pts); i++ {
+			a, b := r.pts[i], r.pts[i+1]
+			if mid, ok := r.track[i]; ok {
+				runs = append(runs, along{r, a.x, a.y, mid}, along{r, b.x, mid, b.y})
+			} else {
+				runs = append(runs, along{r, a.x, a.y, b.y})
+			}
+		}
+	}
+	h := l.u(6)
+	for _, r := range routes {
+		r.hops = map[int][]float64{}
+		for i, mid := range r.track {
+			lo, hi := math.Min(r.pts[i].x, r.pts[i+1].x), math.Max(r.pts[i].x, r.pts[i+1].x)
+			var at []float64
+			for _, v := range runs {
+				// Mostek potrzebuje miejsca: z dala od narożników własnej krawędzi i końców cudzej.
+				if v.r == r || v.x < lo+l.u(8)+h || v.x > hi-l.u(8)-h || mid < v.y0+l.u(8)+h || mid > v.y1-l.u(8)-h {
+					continue
+				}
+				at = append(at, v.x)
+			}
+			sort.Float64s(at)
+			var kept []float64
+			for _, x := range at {
+				if len(kept) == 0 || x-kept[len(kept)-1] > 2*h+l.u(2) {
+					kept = append(kept, x)
+				}
+			}
+			if len(kept) > 0 {
+				r.hops[i] = kept
+			}
+		}
+	}
 }
 
 // headLength mówi, o ile zakończenie skraca linię krawędzi.
@@ -767,7 +815,8 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 		}
 		step := 0.0
 		if tracks > 1 {
-			step = math.Min(l.u(7), (hi-lo)/float64(tracks-1))
+			// Tory są na tyle daleko od siebie, żeby mostek zmieścił się obok narożnika sąsiedniej krawędzi.
+			step = math.Min(l.u(14), (hi-lo)/float64(tracks-1))
 		}
 		for _, j := range group {
 			// Tor zerowy leży najbliżej następnej warstwy.
@@ -778,7 +827,8 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 
 // drawEdge rysuje krawędź: w paśmie warstwy biegnie prosto; między pasmami skręca dwoma kątami
 // prostymi z zaokrąglonymi narożnikami albo, na życzenie, łagodnym łukiem.
-func (l *layouter) drawEdge(r *edgeRoute) {
+func (l *layouter) drawEdge(route *edgeRoute) {
+	r := route
 	e, pts := r.e, r.pts
 	from := len(l.sc.Items)
 	defer func() { l.repaint(from, len(l.sc.Items), e.e.Paint, colorLine) }()
@@ -809,7 +859,21 @@ func (l *layouter) drawEdge(r *edgeRoute) {
 		const k = 0.45
 		segments = append(segments,
 			scene.Segment{Cmd: 'L', To: l.point(a.x, mid-r)},
-			scene.Segment{Cmd: 'C', C1: l.point(a.x, mid-r*k), C2: l.point(a.x+dir*r*k, mid), To: l.point(a.x+dir*r, mid)},
+			scene.Segment{Cmd: 'C', C1: l.point(a.x, mid-r*k), C2: l.point(a.x+dir*r*k, mid), To: l.point(a.x+dir*r, mid)})
+		// Mostki nad krawędziami, które ten odcinek przecina: półokrąg z dwóch ćwiartek.
+		hops := append([]float64(nil), route.hops[i]...)
+		if dir < 0 {
+			sort.Sort(sort.Reverse(sort.Float64Slice(hops)))
+		}
+		for _, x := range hops {
+			const h, q = 6.0, 0.55
+			hh := l.u(h)
+			segments = append(segments,
+				scene.Segment{Cmd: 'L', To: l.point(x-dir*hh, mid)},
+				scene.Segment{Cmd: 'C', C1: l.point(x-dir*hh, mid-hh*q), C2: l.point(x-dir*hh*q, mid-hh), To: l.point(x, mid-hh)},
+				scene.Segment{Cmd: 'C', C1: l.point(x+dir*hh*q, mid-hh), C2: l.point(x+dir*hh, mid-hh*q), To: l.point(x+dir*hh, mid)})
+		}
+		segments = append(segments,
 			scene.Segment{Cmd: 'L', To: l.point(b.x-dir*r, mid)},
 			scene.Segment{Cmd: 'C', C1: l.point(b.x-dir*r*k, mid), C2: l.point(b.x, mid+r*k), To: l.point(b.x, mid+r)},
 			scene.Segment{Cmd: 'L', To: l.point(b.x, b.y)})

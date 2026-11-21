@@ -1397,7 +1397,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			}
 			// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
 			if !l.o.CurvedEdges && turns > 2 {
-				gap = math.Max(gap, math.Min(l.u(30)+float64(turns)*l.u(7), l.u(150)))
+				gap = math.Max(gap, math.Min(l.u(30)+float64(turns)*l.u(10), l.u(160)))
 			}
 			y += gap
 		}

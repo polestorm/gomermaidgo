@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="487.25" height="820" viewBox="-11.5 -12 487.25 820" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="487.25" height="829" viewBox="-11.5 -12 487.25 829" role="img" font-family="Recursive, sans-serif" font-size="16">
 <title>Postępowanie z wyrobem niezgodnym</title>
 <desc>Wyrób niezgodny jest izolowany, oceniany i albo naprawiany, albo złomowany.</desc>
 <rect class="cluster" x="54.25" y="236" width="409.5" height="363" rx="4" fill="#f3f6fb" stroke="#3b6fb6" stroke-width="1" stroke-dasharray="6 3"/>
@@ -7,9 +7,9 @@
 <path class="edge" d="M174.25 487 L174.25 522.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <path class="edge" d="M250 44 L250 79.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <path class="edge" d="M250 192 L250.25 236 L250.25 266 L250.25 281.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M154.25 575 L154.25 583.5 C154.25 585.42 155.82 587 157.75 587 L157.75 587 C159.68 587 161.25 588.58 161.25 590.5 L161.25 599 L161.25 612.3 C161.25 616.7 157.65 620.3 153.25 620.3 L91 620.3 C86.6 620.3 83 623.9 83 628.3 L83 641.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M368.25 487 L368.25 531 L368.25 575 L368.25 599 L368 650 L368 694 L368 703.8 C368 708.2 364.4 711.8 360 711.8 L306 711.8 C301.6 711.8 298 715.4 298 719.8 L298 729.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M194.25 575 L194.25 583.5 C194.25 585.42 192.68 587 190.75 587 L190.75 587 C188.83 587 187.25 588.58 187.25 590.5 L187.25 599 L187 650 L187 694 L187 703.8 C187 708.2 190.6 711.8 195 711.8 L250 711.8 C254.4 711.8 258 715.4 258 719.8 L258 729.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M154.25 575 L154.25 583.5 C154.25 585.42 155.82 587 157.75 587 L157.75 587 C159.68 587 161.25 588.58 161.25 590.5 L161.25 599 L161.25 616.8 C161.25 621.2 157.65 624.8 153.25 624.8 L91 624.8 C86.6 624.8 83 628.4 83 632.8 L83 650.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M368.25 487 L368.25 531 L368.25 575 L368.25 599 L368 659 L368 703 L368 712.8 C368 717.2 364.4 720.8 360 720.8 L306 720.8 C301.6 720.8 298 724.4 298 728.8 L298 738.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M194.25 575 L194.25 583.5 C194.25 585.42 192.68 587 190.75 587 L190.75 587 C188.83 587 187.25 588.58 187.25 590.5 L187.25 599 L187 659 L187 703 L187 712.8 C187 717.2 190.6 720.8 195 720.8 L250 720.8 C254.4 720.8 258 724.4 258 728.8 L258 738.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
 <rect class="cluster-title-background" x="62.25" y="242" width="109.6" height="20" fill="#f3f6fb"/>
 <rect class="edge-label-background" x="101.05" y="391" width="146.4" height="20" fill="#f3f6fb"/>
 <rect class="edge-label-background" x="309.85" y="391" width="116.8" height="20" fill="#f3f6fb"/>
@@ -18,21 +18,21 @@
 <polygon class="arrowhead" points="174.25,531 168.25,519 180.25,519" fill="#55657a"/>
 <polygon class="arrowhead" points="250,88 244,76 256,76" fill="#55657a"/>
 <polygon class="arrowhead" points="250.25,290 244.25,278 256.25,278" fill="#55657a"/>
-<polygon class="arrowhead" points="83,650 77,638 89,638" fill="#55657a"/>
-<polygon class="arrowhead" points="298,738 292,726 304,726" fill="#55657a"/>
-<polygon class="arrowhead" points="258,738 252,726 264,726" fill="#55657a"/>
+<polygon class="arrowhead" points="83,659 77,647 89,647" fill="#55657a"/>
+<polygon class="arrowhead" points="298,747 292,735 304,735" fill="#55657a"/>
+<polygon class="arrowhead" points="258,747 252,735 264,735" fill="#55657a"/>
 <rect class="node" x="119.5" y="0" width="261" height="44" rx="22" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
 <rect class="node" x="137.5" y="88" width="225" height="104" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <polygon class="node" points="250.25,290 300.25,324.5 250.25,359 200.25,324.5" fill="#eef2f7" stroke="#b7791f" stroke-width="3"/>
 <rect class="node" x="104.25" y="443" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="292.75" y="443" width="151" height="44" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
 <rect class="node" x="74.25" y="531" width="200" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0.5" y="650" width="165" height="44" rx="22" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="278" cy="789" rx="111.5" ry="7" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="1.5"/>
-<rect class="node" x="166.5" y="745" width="223" height="44" fill="#1f3a5f"/>
-<line class="node-detail" x1="166.5" y1="745" x2="166.5" y2="789" fill="none" stroke="#1f3a5f" stroke-width="1.5"/>
-<line class="node-detail" x1="389.5" y1="745" x2="389.5" y2="789" fill="none" stroke="#1f3a5f" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="278" cy="745" rx="111.5" ry="7" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="1.5"/>
+<rect class="node" x="0.5" y="659" width="165" height="44" rx="22" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="278" cy="798" rx="111.5" ry="7" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="1.5"/>
+<rect class="node" x="166.5" y="754" width="223" height="44" fill="#1f3a5f"/>
+<line class="node-detail" x1="166.5" y1="754" x2="166.5" y2="798" fill="none" stroke="#1f3a5f" stroke-width="1.5"/>
+<line class="node-detail" x1="389.5" y1="754" x2="389.5" y2="798" fill="none" stroke="#1f3a5f" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="278" cy="754" rx="111.5" ry="7" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="1.5"/>
 <text class="node-label" x="250" y="27.6" text-anchor="middle" fill="#1b1f24">Wykrycie niezgodności</text>
 <text class="node-label" x="165.6" y="115.6" fill="#1b1f24">Izolacja</text>
 <text class="node-label" x="235.2" y="115.6" font-weight="bold" fill="#1b1f24">całej partii</text>
@@ -48,6 +48,6 @@
 <text class="node-label" x="174.25" y="558.6" text-anchor="middle" fill="#1b1f24">Ponowna kontrola</text>
 <text class="edge-label" x="174.25" y="406.6" text-anchor="middle" fill="#1b1f24">naprawa możliwa</text>
 <text class="edge-label" x="368.25" y="406.6" text-anchor="middle" fill="#1b1f24">brak naprawy</text>
-<text class="node-label" x="83" y="677.6" text-anchor="middle" fill="#1b1f24">Zwolnienie</text>
-<text class="node-label" x="278" y="776.1" text-anchor="middle" fill="#ffffff">Rejestr niezgodności</text>
+<text class="node-label" x="83" y="686.6" text-anchor="middle" fill="#1b1f24">Zwolnienie</text>
+<text class="node-label" x="278" y="785.1" text-anchor="middle" fill="#ffffff">Rejestr niezgodności</text>
 </svg>
