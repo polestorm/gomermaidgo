@@ -19,6 +19,7 @@ const (
 	colorNoteStroke = "#b59a1b"
 	colorFrame      = "#8a94a3"
 	colorSolid      = "#3b4754"
+	colorRegion     = "#f1f4f8"
 )
 
 const shapeNote graph.Shape = "note"
@@ -301,7 +302,10 @@ func (l *layouter) drawLevel(lv *level) {
 		frame := scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster",
 			X: cx - w/2, Y: cy - h/2, W: w, H: h, RX: l.u(4), Stroke: colorFrame, StrokeWidth: 1}
 		if lv.sub.Region {
-			frame.Stroke = "" // region współbieżny nie ma ramki; regiony dzieli linia przerywana
+			// Region współbieżny: osobne pole z lekko przyciemnionym tłem, bez obrysu.
+			frame.Stroke, frame.Fill, frame.RX, frame.Role = "", colorRegion, l.u(6), "region"
+			defer func(prev string) { l.bg = prev }(l.bg)
+			l.bg = colorRegion
 		}
 		paint := lv.sub.Paint
 		if paint.Fill != "" && paint.Fill != "none" {
@@ -359,22 +363,6 @@ func (l *layouter) drawFrameTitle(lv *level, cx, cy, w, h float64, paint graph.P
 
 // drawLevelContent rysuje wnętrze poziomu: pola, podgrafy i krawędzie.
 func (l *layouter) drawLevelContent(lv *level) {
-	// Linia podziału między kolejnymi regionami współbieżnymi, przez całą szerokość stanu.
-	var prev *item
-	for _, row := range lv.ranks {
-		for _, it := range row {
-			if it.kind != kindCluster || !it.child.sub.Region {
-				continue
-			}
-			if prev != nil {
-				y := (prev.y + prev.h/2 + it.y - it.h/2) / 2
-				a, b := l.point(lv.offsetX, y), l.point(lv.offsetX+lv.w, y)
-				l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "region-divider",
-					X: a.X, Y: a.Y, X2: b.X, Y2: b.Y, Stroke: colorFrame, StrokeWidth: 1, Dash: "5 4"})
-			}
-			prev = it
-		}
-	}
 	for _, row := range lv.ranks {
 		for _, it := range row {
 			switch it.kind {

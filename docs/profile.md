@@ -95,7 +95,9 @@ Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`, teksty Markdo
   wnętrza z resztą diagramu (tak samo rozstrzyga to Mermaid); inaczej wnętrze ma kierunek otoczenia;
 - krawędź wychodząca z podgrafu biegnie od swojego punktu na ramce; punkty na ramce stoją w kolejności drugich
   końców krawędzi w otoczeniu, o ile nie dodaje to przecięć we wnętrzu podgrafu;
-- regiony współbieżne stoją jeden za drugim wzdłuż osi warstw, rozdzielone linią przerywaną;
+- regiony współbieżne są osobnymi polami z lekko przyciemnionym tłem, bez tytułu;
+- części diagramu (i wnętrza podgrafu albo stanu złożonego) niepołączone krawędziami układają się w rzędy tak, żeby
+  całość miała proporcje zbliżone do strony (3:4); w rzędzie stoją obok siebie, w kolejności źródła;
 - krawędź wskazująca podgraf kończy się na jego ramce; krawędź do węzła wewnątrz podgrafu przechodzi przez punkt na
   ramce i jest prowadzona we wnętrzu między węzłami (FLOW-014); może przejść pod tytułem ramki, który ma wtedy podkład;
 - krawędź niewidoczna (`~~~`) wpływa tylko na rozmieszczenie;

@@ -56,6 +56,7 @@ type item struct {
 	loopExtra float64 // miejsce po stronie +x na pętle własne
 	band      float64 // wysokość warstwy, w której leży pole
 
+	shelf       int // rząd, w którym stoi część diagramu zawierająca to pole (patrz shelve)
 	rank, order int
 	x, y        float64
 	up, down    []*item
@@ -496,18 +497,6 @@ func (l *layouter) assignEdges() {
 	for _, e := range l.g.Edges {
 		add(e)
 	}
-	// Regiony współbieżne stoją jeden za drugim wzdłuż osi warstw: wymusza to niewidoczna
-	// krawędź między kolejnymi regionami tego samego stanu.
-	last := map[string]string{}
-	for _, s := range l.g.Subgraphs {
-		if !s.Region {
-			continue
-		}
-		if prev := last[s.Parent]; prev != "" {
-			add(&graph.Edge{From: prev, To: s.ID, Style: graph.Invisible, MinLen: 1})
-		}
-		last[s.Parent] = s.ID
-	}
 	for _, n := range l.g.Notes {
 		id := "[note]" + n.Target + "#" + n.Side
 		for l.itemOf[id] != nil {
@@ -612,6 +601,7 @@ func (l *layouter) sizeAll(lv *level) {
 			}
 		}
 	}
+	l.shelve(lv)
 	l.order(lv)
 	l.finish(lv)
 
@@ -1011,6 +1001,106 @@ func crossings(ranks [][]*item) int {
 		}
 	}
 	return total
+}
+
+// shelve układa części poziomu niepołączone krawędziami w rzędy, tak żeby całość miała proporcje
+// zbliżone do strony: części stojące w jednym rzędzie obok siebie, kolejne rzędy jeden za drugim
+// wzdłuż osi warstw. Bez tego wiele części dawałoby rysunek bardzo szeroki, a ustawione jedna za
+// drugą bardzo długi. Kolejność części ze źródła zostaje.
+func (l *layouter) shelve(lv *level) {
+	for _, it := range lv.items {
+		if it.kind == kindPort {
+			return // warstwy punktów na ramce muszą zostać pierwszą i ostatnią
+		}
+	}
+	comps := components(lv)
+	if len(comps) < 2 {
+		return
+	}
+	type part struct {
+		rows   [][]*item
+		w, h   float64
+		ranks  int
+		lo, hi int
+	}
+	parts := make([]part, len(comps))
+	for k, rows := range comps {
+		p := part{rows: rows, lo: -1}
+		for r, row := range rows {
+			if len(row) == 0 {
+				continue
+			}
+			if p.lo < 0 {
+				p.lo = r
+			}
+			p.hi = r
+			width, band := -l.u(40), 0.0
+			for _, it := range row {
+				width += it.w + l.u(40)
+				band = math.Max(band, it.h)
+			}
+			p.w = math.Max(p.w, width)
+			p.h += band + l.u(44)
+		}
+		p.ranks = p.hi - p.lo + 1
+		parts[k] = p
+	}
+	// Proporcje strony: szerokość do wysokości około 3:4; przy osi warstw poziomej odwrotnie.
+	target := 0.75
+	if !l.vertical {
+		target = 1 / 0.75
+	}
+	pack := func(limit float64) (shelves [][]int, score float64) {
+		width, height, rowW, rowH := 0.0, 0.0, 0.0, 0.0
+		for k, p := range parts {
+			if len(shelves) == 0 || rowW+l.u(48)+p.w > limit+0.5 {
+				height += rowH
+				shelves, rowW, rowH = append(shelves, nil), -l.u(48), 0
+			}
+			shelves[len(shelves)-1] = append(shelves[len(shelves)-1], k)
+			rowW += l.u(48) + p.w
+			rowH = math.Max(rowH, p.h)
+			width = math.Max(width, rowW)
+		}
+		height += rowH
+		return shelves, math.Abs(math.Log(width / height / target))
+	}
+	var best [][]int
+	bestScore, limit := math.Inf(1), -l.u(48)
+	for _, p := range parts {
+		limit += l.u(48) + p.w // kolejne dopuszczalne szerokości rzędu: tyle, ile zajmują pierwsze części
+		for _, candidate := range []float64{limit, p.w} {
+			if shelves, score := pack(candidate); score < bestScore-1e-9 {
+				best, bestScore = shelves, score
+			}
+		}
+	}
+	if len(best) < 2 {
+		return
+	}
+	var ranks [][]*item
+	for s, shelf := range best {
+		base, depth := len(ranks), 0
+		for _, k := range shelf {
+			depth = max(depth, parts[k].ranks)
+		}
+		ranks = append(ranks, make([][]*item, depth)...)
+		for _, k := range shelf {
+			p := parts[k]
+			for r := p.lo; r <= p.hi; r++ {
+				for _, it := range p.rows[r] {
+					it.rank, it.shelf = base+r-p.lo, s
+					ranks[it.rank] = append(ranks[it.rank], it)
+				}
+			}
+		}
+	}
+	lv.ranks = ranks
+	for _, row := range lv.ranks {
+		for i, it := range row {
+			it.order = i
+		}
+	}
 }
 
 // attachments zwraca, dla pary (pole, podgraf), przesunięcie względem środka podgrafu punktu na
@@ -1467,15 +1557,19 @@ func (l *layouter) position(lv *level) (width, height float64) {
 	for _, rows := range components(lv) {
 		arrange(rows)
 	}
-	shift := 0.0
-	for k, rows := range components(lv) {
+	// Każdy rząd części (patrz shelve) zaczyna od początku osi kolejności.
+	shifts := map[int]float64{}
+	for _, rows := range components(lv) {
 		lo, hi := math.Inf(1), math.Inf(-1)
+		shelf := 0
 		for _, row := range rows {
 			for _, it := range row {
 				lo, hi = math.Min(lo, it.x-it.w/2), math.Max(hi, it.x+it.w/2)
+				shelf = it.shelf
 			}
 		}
-		if k > 0 {
+		shift, used := shifts[shelf]
+		if used {
 			shift += l.u(48)
 		}
 		for _, row := range rows {
@@ -1483,7 +1577,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				it.x += shift - lo
 			}
 		}
-		shift += hi - lo
+		shifts[shelf] = shift + hi - lo
 	}
 	for _, row := range lv.ranks {
 		sort.SliceStable(row, func(a, b int) bool { return row[a].x < row[b].x })
@@ -1540,6 +1634,9 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		for _, it := range row {
 			it.x = math.Round(it.x - left)
 			it.y = y + band/2
+			if it.kind == kindCluster && it.child.sub.Region {
+				it.y = y + it.h/2 // regiony w jednym rzędzie zaczynają na tej samej wysokości
+			}
 			it.band = band
 			width = math.Max(width, it.x+it.w/2)
 		}
