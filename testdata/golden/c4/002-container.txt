@@ -1,0 +1,14 @@
+c4 TB
+subgraph system title="System jakości\n[Container]" paint[dash=6,4]
+node uzytkownik stadium "**Użytkownik**\n«Person»"
+node www rect "**Aplikacja**\n«Container: Go, HTMX»\nFormularze i przeglądy" in=system
+node db cylinder "**Baza**\n«Container: PostgreSQL»\nDokumenty i zapisy" in=system
+node kolejka round "**Kolejka zadań**\n«Container: tabela w bazie»" in=system
+node pdf rect "**Renderer PDF**\n«Container: gopdfgo»" in=system
+node smtp rect "**Serwer poczty**\n«External Container: SMTP»" paint[fill=#f6f8fa stroke=#7b8794 dash=5,4]
+edge uzytkownik -> www normal none/arrow len=1 "Pracuje w przeglądarce\n[HTTPS]"
+edge www -> db normal none/arrow len=1 "Czyta i zapisuje\n[SQL]"
+edge www -> kolejka normal none/arrow len=1 "Zleca"
+edge kolejka -> pdf normal none/arrow len=1 "Uruchamia"
+edge www -> pdf normal arrow/none len=1 "Zwraca plik"
+edge kolejka -> smtp normal none/arrow len=1 "Wysyła"

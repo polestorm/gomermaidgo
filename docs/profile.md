@@ -533,3 +533,37 @@ gdy ma łącznik albo kropkę (Mermaid wymaga wtedy cudzysłowów).
 a `WithColors` nadaje im kolor węzła źródłowego; wykres ma stałą szerokość 620 px i wysokość rosnącą z liczbą węzłów
 w kolumnie; nazwy węzłów mogą zawierać polskie litery (Mermaid w tym typie odrzuca znaki spoza ASCII, także
 w cudzysłowach); cykl przepływów jest błędem; `accTitle` i `accDescr` nie są częścią składni (linia byłaby przepływem).
+
+## Diagramy C4 (`C4Context`, `C4Container`, `C4Component`, `C4Dynamic`, `C4Deployment`)
+
+Rysowane tym samym układem warstwowym co schemat blokowy.
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| osoba, system | `Person(alias, "Etykieta", "Opis")`, `System(…)`, z przyrostkami `Db`, `Queue`, `_Ext` | C4D-001 |
+| kontener, komponent | `Container(alias, "Etykieta", "Technologia", "Opis")`, `Component(…)`, z tymi samymi przyrostkami | C4D-001 |
+| relacja | `Rel(a, b, "Etykieta", "Technologia")`, `BiRel`, `Rel_Back`, `Rel_U`/`D`/`L`/`R`, `RelIndex(1, a, b, "…")` | C4D-002 |
+| granica | `Enterprise_Boundary(alias, "Etykieta") { … }`, `System_Boundary`, `Container_Boundary`, `Boundary(alias, "Etykieta", "rodzaj")` | C4D-003 |
+| węzeł wdrożenia | `Deployment_Node(alias, "Etykieta", "Typ") { … }`, `Node(…)` | C4D-003 |
+| tytuł, dostępność | `title Tekst`; `accTitle`, `accDescr` | C4D-003 |
+| wygląd, układ | `UpdateElementStyle(…)`, `UpdateRelStyle(…)`, `UpdateLayoutConfig(…)`, argumenty `$klucz="…"` (pomijane) | C4D-003 |
+
+Świadome różnice wobec Mermaid: układ jest warstwowy, wyznaczony przez relacje, a nie siatką o stałej liczbie
+kształtów w rzędzie, więc wskazówki kierunku (`Rel_U`, `Rel_L`) i `UpdateLayoutConfig` nie wpływają na położenie;
+tytuł jest ramką wokół diagramu; osoba jest polem z półkolami bez ikony; element zewnętrzny odróżnia linia przerywana
+i jaśniejsze tło, a nie kolor; wszystkie pięć nagłówków rysuje się tak samo.
+
+## Graf historii Gita (`gitGraph`)
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| commit | `commit`, `commit id: "a" tag: "v1" type: HIGHLIGHT` | GIT-001 |
+| gałąź | `branch nazwa`, `checkout nazwa`, `switch nazwa` | GIT-002 |
+| scalenie, kopia | `merge nazwa tag: "v2"`; `cherry-pick id: "a"` | GIT-002 |
+| dostępność | `accTitle`, `accDescr` | GIT-001 |
+
+Poza profilem (błąd `gitgraph-unsupported`): orientacja pionowa (`gitGraph TB:`, `BT:`). Świadome różnice wobec
+Mermaid: commit bez podanego identyfikatora nie ma podpisu (Mermaid losuje identyfikator, więc rysunek nie byłby
+powtarzalny); identyfikator stoi poziomo pod commitem, a odstęp commitów mieści najdłuższy; gałęzie stoją
+w kolejności powstania (`order:` jest pomijane); domyślnie rysunek jest neutralny, `WithColors` nadaje gałęziom
+kolory palety.

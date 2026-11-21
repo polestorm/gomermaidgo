@@ -1,6 +1,7 @@
 package gomermaidgo
 
 import (
+	"github.com/polestorm/gomermaidgo/internal/gitgraph"
 	"github.com/polestorm/gomermaidgo/internal/kanban"
 	"github.com/polestorm/gomermaidgo/internal/packet"
 	"github.com/polestorm/gomermaidgo/internal/radar"
@@ -16,6 +17,7 @@ const (
 	TypeRadar   = "radar"
 	TypeTreemap = "treemap"
 	TypeSankey  = "sankey"
+	TypeGit     = "gitGraph"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -57,6 +59,13 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return radar.Layout(c, radar.Options(o)), nil
+	}},
+	{TypeGit, []string{"gitGraph", "gitGraph:"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		g, err := gitgraph.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return gitgraph.Layout(g, gitgraph.Options(o)), nil
 	}},
 	{TypeSankey, []string{"sankey-beta", "sankey"}, func(source string, o layoutOptions) (*scene.Scene, error) {
 		c, err := sankey.Parse(source)

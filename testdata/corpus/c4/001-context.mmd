@@ -1,0 +1,22 @@
+%% REQ: C4D-001 C4D-002 C4D-003
+%% Tytuł: Diagram kontekstu C4
+%% Sprawdza: tytuł, osoba, system, system zewnętrzny, baza danych, granice zagnieżdżone, relacje Rel i BiRel z technologią, ustawienia wyglądu pomijane.
+C4Context
+    title System zarządzania jakością w otoczeniu
+    Person(pracownik, "Pracownik", "Czyta procedury i potwierdza zapoznanie")
+    Person_Ext(audytor, "Audytor zewnętrzny", "Przegląda zapisy podczas audytu")
+    Enterprise_Boundary(firma, "Wytwórca wyrobów medycznych") {
+        System(qms, "System jakości", "Dokumenty, zapisy, szkolenia, działania korygujące")
+        System_Boundary(it, "Infrastruktura") {
+            SystemDb(baza, "Baza danych", "Zapisy i ich historia")
+            System(poczta, "Poczta", "Powiadomienia")
+        }
+    }
+    System_Ext(erp, "ERP", "Partie, dostawcy, zamówienia")
+    Rel(pracownik, qms, "Korzysta", "HTTPS")
+    Rel(audytor, qms, "Przegląda zapisy")
+    Rel(qms, baza, "Zapisuje")
+    Rel(qms, poczta, "Wysyła powiadomienia", "SMTP")
+    BiRel(qms, erp, "Wymienia dane o partiach", "API")
+    UpdateRelStyle(pracownik, qms, $textColor="blue", $offsetY="-10")
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")

@@ -1,0 +1,19 @@
+%% REQ: C4D-001 C4D-002 C4D-004
+%% Tytuł: Diagram kontenerów C4
+%% Sprawdza: kontener z technologią, baza i kolejka, kontener zewnętrzny, granica kontenerów, relacja wsteczna i relacje z kierunkiem, argument nazwany pomijany, accTitle.
+C4Container
+    accTitle: Kontenery systemu jakości
+    Person(uzytkownik, "Użytkownik")
+    Container_Boundary(system, "System jakości") {
+        Container(www, "Aplikacja", "Go, HTMX", "Formularze i przeglądy", $tags="v1")
+        ContainerDb(db, "Baza", "PostgreSQL", "Dokumenty i zapisy")
+        ContainerQueue(kolejka, "Kolejka zadań", "tabela w bazie")
+        Container(pdf, "Renderer PDF", "gopdfgo")
+    }
+    Container_Ext(smtp, "Serwer poczty", "SMTP")
+    Rel_D(uzytkownik, www, "Pracuje w przeglądarce", "HTTPS")
+    Rel_R(www, db, "Czyta i zapisuje", "SQL")
+    Rel(www, kolejka, "Zleca")
+    Rel(kolejka, pdf, "Uruchamia")
+    Rel_Back(www, pdf, "Zwraca plik")
+    Rel(kolejka, smtp, "Wysyła")
