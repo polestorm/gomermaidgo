@@ -2,6 +2,7 @@ package sequence
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/syntax"
@@ -44,7 +45,7 @@ var (
 	}
 
 	// Instrukcje Mermaid poza profilem v1: znane, ale świadomie nieobsługiwane.
-	unsupported = []string{"box", "create", "destroy", "link", "links", "properties", "details", "accTitle", "accDescr"}
+	unsupported = []string{"link", "links", "properties", "details"}
 
 	blockStarts   = map[string]bool{"loop": true, "alt": true, "opt": true, "par": true, "critical": true, "break": true, "rect": true}
 	blockSections = map[string]string{"else": "alt", "and": "par", "option": "critical"}
@@ -71,6 +72,20 @@ type parser struct {
 	d      *Diagram
 	index  map[string]int
 	blocks []string // stos otwartych bloków
+
+	acc            syntax.Accessibility
+	box            int          // indeks otwartej grupy „box” + 1; 0 = brak
+	pendingCreate  int          // uczestnik czekający na komunikat tworzący + 1
+	pendingDestroy int          // uczestnik czekający na ostatni komunikat + 1
+	gone           map[int]bool // uczestnicy, których życie już się skończyło
+}
+
+// alive odrzuca użycie uczestnika po jego zakończeniu.
+func (p *parser) alive(i, line int) error {
+	if p.gone[i] {
+		return syntax.Errorf(line, CodeParticipant, "participant %q is used after it was destroyed", p.d.Participants[i].ID)
+	}
+	return nil
 }
 
 func (p *parser) participant(id string, line int) (int, error) {
@@ -99,7 +114,7 @@ func (p *parser) add(e Event) error {
 
 // Parse rozbiera źródło diagramu sekwencji. Pierwszą linią treści musi być „sequenceDiagram”.
 func Parse(source string) (*Diagram, error) {
-	p := &parser{d: &Diagram{}, index: map[string]int{}}
+	p := &parser{d: &Diagram{NumberStart: 1, NumberStep: 1}, index: map[string]int{}, gone: map[int]bool{}}
 	seenHeader := false
 	source = strings.ReplaceAll(source, "\r\n", "\n")
 	for n, raw := range strings.Split(source, "\n") {
@@ -115,6 +130,9 @@ func Parse(source string) (*Diagram, error) {
 			seenHeader = true
 			continue
 		}
+		if p.acc.Line(s) {
+			continue
+		}
 		if err := p.statement(s, line); err != nil {
 			return nil, err
 		}
@@ -125,6 +143,19 @@ func Parse(source string) (*Diagram, error) {
 	if len(p.blocks) > 0 {
 		return nil, syntax.Errorf(0, CodeBlock, "block %q is not closed with \"end\"", p.blocks[len(p.blocks)-1])
 	}
+	if p.box != 0 {
+		return nil, syntax.Errorf(0, CodeBlock, "block \"box\" is not closed with \"end\"")
+	}
+	if p.acc.Open() {
+		return nil, syntax.Errorf(0, CodeStatement, "accDescr is not closed with \"}\"")
+	}
+	if p.pendingCreate != 0 {
+		return nil, syntax.Errorf(0, CodeParticipant, "created participant %q receives no message", p.d.Participants[p.pendingCreate-1].ID)
+	}
+	if p.pendingDestroy != 0 {
+		return nil, syntax.Errorf(0, CodeParticipant, "destroyed participant %q has no final message", p.d.Participants[p.pendingDestroy-1].ID)
+	}
+	p.d.AccTitle, p.d.AccDescr = p.acc.Title, p.acc.Descr
 	if len(p.d.Participants) == 0 {
 		return nil, syntax.Errorf(0, CodeEmpty, "diagram has no participants")
 	}
@@ -171,7 +202,55 @@ func (p *parser) statement(s string, line int) error {
 	word, rest := keyword(s)
 	lower := strings.ToLower(word)
 
+	created := false
+	if word == "create" {
+		if p.pendingCreate != 0 {
+			return syntax.Errorf(line, CodeParticipant, "previous created participant has not received a message yet")
+		}
+		word, rest = keyword(rest)
+		if word != "participant" && word != "actor" {
+			return syntax.Errorf(line, CodeStatement, "create needs \"participant\" or \"actor\"")
+		}
+		created = true
+	}
+	if p.box != 0 && word != "participant" && word != "actor" && s != "end" {
+		return syntax.Errorf(line, CodeBlock, "only participants and actors are allowed inside \"box\"")
+	}
+
 	switch {
+	case word == "box":
+		if len(p.blocks) > 0 {
+			return syntax.Errorf(line, CodeBlock, "\"box\" is not allowed inside a block")
+		}
+		b := Box{First: len(p.d.Participants), Last: -1, Title: rest}
+		if c, title, ok := leadingColor(rest); ok {
+			b.Color, b.Title = c, title
+		}
+		p.d.Boxes = append(p.d.Boxes, b)
+		p.box = len(p.d.Boxes)
+		return nil
+
+	case s == "end" && p.box != 0:
+		b := &p.d.Boxes[p.box-1]
+		b.Last = len(p.d.Participants) - 1
+		if b.Last < b.First {
+			return syntax.Errorf(line, CodeBlock, "\"box\" has no participants")
+		}
+		p.box = 0
+		return nil
+
+	case word == "destroy":
+		i, ok := p.index[rest]
+		if !ok {
+			return syntax.Errorf(line, CodeParticipant, "destroy refers to unknown participant %q", rest)
+		}
+		if p.pendingDestroy != 0 || p.gone[i] {
+			return syntax.Errorf(line, CodeParticipant, "participant %q cannot be destroyed here", rest)
+		}
+		p.pendingDestroy = i + 1
+		p.d.Participants[i].Destroyed = true
+		return nil
+
 	case word == "participant" || word == "actor":
 		id, label := rest, rest
 		if i := strings.Index(rest, " as "); i >= 0 {
@@ -187,11 +266,31 @@ func (p *parser) statement(s string, line int) error {
 		}
 		p.d.Participants[i].Actor = word == "actor"
 		p.d.Participants[i].Label = splitLines(label)
+		if created {
+			if p.box != 0 {
+				return syntax.Errorf(line, CodeBlock, "create is not allowed inside \"box\"")
+			}
+			p.d.Participants[i].Created = true
+			p.pendingCreate = i + 1
+		}
 		return nil
 
 	case word == "autonumber":
-		if rest != "" {
-			return syntax.Errorf(line, CodeUnsupported, "autonumber with start or step is outside the supported profile")
+		// „autonumber”, „autonumber początek” albo „autonumber początek krok”.
+		f := strings.Fields(rest)
+		if len(f) > 2 {
+			return syntax.Errorf(line, CodeStatement, "autonumber takes at most a start and a step, found %q", rest)
+		}
+		for k, v := range f {
+			n, err := strconv.Atoi(v)
+			if err != nil || n < 0 || n > 1000000 || (k == 1 && n == 0) {
+				return syntax.Errorf(line, CodeStatement, "autonumber needs whole numbers, found %q", v)
+			}
+			if k == 0 {
+				p.d.NumberStart = n
+			} else {
+				p.d.NumberStep = n
+			}
 		}
 		p.d.Autonumber = true
 		return nil
@@ -204,6 +303,9 @@ func (p *parser) statement(s string, line int) error {
 		i, ok := p.index[rest]
 		if !ok {
 			return syntax.Errorf(line, CodeActivation, "%s refers to unknown participant %q", word, rest)
+		}
+		if err := p.alive(i, line); err != nil {
+			return err
 		}
 		kind := EventActivate
 		if word == "deactivate" {
@@ -286,6 +388,9 @@ func (p *parser) note(rest string, line int) error {
 		if err != nil {
 			return err
 		}
+		if err := p.alive(i, line); err != nil {
+			return err
+		}
 		e.Over[k] = i
 	}
 	if len(ids) == 1 {
@@ -334,10 +439,60 @@ func (p *parser) message(s string, line int) error {
 	if e.To, err = p.participant(to, line); err != nil {
 		return err
 	}
+	for _, i := range []int{e.From, e.To} {
+		if err := p.alive(i, line); err != nil {
+			return err
+		}
+	}
+	if c := p.pendingCreate; c != 0 {
+		if (e.From != c-1 && e.To != c-1) || e.From == e.To {
+			return syntax.Errorf(line, CodeParticipant, "the message after create must connect %q with another participant", p.d.Participants[c-1].ID)
+		}
+		e.Created, p.pendingCreate = c, 0
+	}
+	if d := p.pendingDestroy; d != 0 {
+		if e.From != d-1 && e.To != d-1 {
+			return syntax.Errorf(line, CodeParticipant, "the message after destroy must involve %q", p.d.Participants[d-1].ID)
+		}
+		e.Destroyed, p.pendingDestroy = d, 0
+		p.gone[d-1] = true
+	}
 	if text != "" {
 		e.Text = splitLines(text)
 	}
 	return p.add(e)
+}
+
+// leadingColor rozpoznaje kolor na początku tytułu grupy „box”: zapis rgb(), rgba(), #hex,
+// słowo „transparent” albo jedną z szesnastu podstawowych nazw kolorów.
+func leadingColor(s string) (color, rest string, ok bool) {
+	if m := leadingFunc.FindString(s); m != "" {
+		return normalizeColor(m), strings.TrimSpace(s[len(m):]), true
+	}
+	word, tail := keyword(s)
+	lower := strings.ToLower(word)
+	if lower == "transparent" {
+		return "", tail, true
+	}
+	if hex, found := basicColors[lower]; found {
+		return hex, tail, true
+	}
+	if validColor(word) {
+		return normalizeColor(word), tail, true
+	}
+	return "", s, false
+}
+
+var leadingFunc = regexp.MustCompile(`^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(?:,\s*(?:0|1|0?\.\d+)\s*)?\)`)
+
+// basicColors to szesnaście podstawowych nazw kolorów CSS i kilka często używanych w przykładach.
+var basicColors = map[string]string{
+	"black": "#000000", "silver": "#c0c0c0", "gray": "#808080", "grey": "#808080", "white": "#ffffff",
+	"maroon": "#800000", "red": "#ff0000", "purple": "#800080", "fuchsia": "#ff00ff", "green": "#008000",
+	"lime": "#00ff00", "olive": "#808000", "yellow": "#ffff00", "navy": "#000080", "blue": "#0000ff",
+	"teal": "#008080", "aqua": "#00ffff", "orange": "#ffa500", "pink": "#ffc0cb", "lightblue": "#add8e6",
+	"lightgreen": "#90ee90", "lightyellow": "#ffffe0", "lightgray": "#d3d3d3", "lightgrey": "#d3d3d3",
+	"lavender": "#e6e6fa", "beige": "#f5f5dc",
 }
 
 var colorPattern = regexp.MustCompile(`^(?:#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(?:,\s*(?:0|1|0?\.\d+)\s*)?\))$`)

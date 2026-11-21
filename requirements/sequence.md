@@ -19,3 +19,6 @@ wskazuje istniejące wymaganie.
 | SEQ-011 | Element spoza profilu albo błąd składni daje błąd z numerem linii i stałym kodem; nigdy niepełny rysunek. |
 | SEQ-012 | Wynik jest poprawnym XML, zawiera tylko dozwolone elementy i atrybuty SVG, bez skryptów, odnośników i `foreignObject`; ten sam tekst i opcje dają ten sam wynik co do bajta. |
 | SEQ-013 | Szerokości tekstu pochodzą z podanego fontu (tabele `cmap` formatu 4 i 12, `hmtx`); bez fontu działa miara zastępcza. |
+| SEQ-014 | Grupy uczestników `box [kolor] [tytuł]` … `end`: ramka obejmuje uczestników od nagłówka do stopki, z tytułem u góry; kolor w zapisie `rgb()`, `rgba()`, `#hex`, nazwą podstawową albo `transparent`; ramka mieści swój tytuł. |
+| SEQ-015 | `create participant` i `create actor` stawiają uczestnika na wysokości następnego komunikatu, który musi go łączyć z innym uczestnikiem; `destroy` kończy linię życia krzyżykiem po następnym komunikacie z jego udziałem; uczestnik zakończony nie ma stopki i nie może być dalej używany. |
+| SEQ-016 | `accTitle` i `accDescr` (także wieloliniowe w klamrach) trafiają do elementów `title` i `desc` dokumentu SVG; dotyczy wszystkich typów diagramów. |

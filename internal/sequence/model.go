@@ -5,9 +5,21 @@ package sequence
 // Diagram to rozebrany diagram sekwencji.
 type Diagram struct {
 	Title        string
+	AccTitle     string // tytuł dostępności (accTitle)
+	AccDescr     string // opis dostępności (accDescr)
 	Autonumber   bool
+	NumberStart  int // pierwszy numer komunikatu
+	NumberStep   int // przyrost numeru
+	Boxes        []Box
 	Participants []*Participant
 	Events       []Event
+}
+
+// Box to grupa sąsiednich uczestników (instrukcja „box”).
+type Box struct {
+	Title       string
+	Color       string // pusty = sama ramka
+	First, Last int    // indeksy uczestników
 }
 
 // Participant to uczestnik: prostokąt albo aktor (ludzik).
@@ -16,6 +28,9 @@ type Participant struct {
 	Label []string // linie etykiety
 	Actor bool
 	Line  int
+
+	Created   bool // powstaje w trakcie diagramu (instrukcja „create”)
+	Destroyed bool // kończy życie w trakcie diagramu (instrukcja „destroy”)
 }
 
 // EventKind to rodzaj zdarzenia na osi czasu.
@@ -69,6 +84,8 @@ type Event struct {
 	Bidirectional  bool
 	ActivateTo     bool // skrót „+”
 	DeactivateFrom bool // skrót „-”
+	Created        int  // indeks uczestnika tworzonego tym komunikatem + 1; 0 = brak
+	Destroyed      int  // indeks uczestnika kończącego życie tym komunikatem + 1; 0 = brak
 
 	// Note
 	Placement NotePlacement

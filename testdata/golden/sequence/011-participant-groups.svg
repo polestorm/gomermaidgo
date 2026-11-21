@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="939.4" height="560" viewBox="-52.8 -12 939.4 560" role="img" font-family="Recursive, sans-serif" font-size="16">
+<title>Zgłoszenie niezgodności</title>
+<desc>Pracownik zgłasza niezgodność, dział jakości ją ocenia i odpowiada zgłaszającemu.</desc>
+<rect class="participant-group" x="98.4" y="0" width="324.4" height="536" rx="4" fill="rgb(232,240,251)" stroke="#6b7785" stroke-width="1"/>
+<rect class="participant-group" x="523.4" y="0" width="351.2" height="536" rx="4" fill="none" stroke="#6b7785" stroke-width="1"/>
+<line class="lifeline" x1="0" y1="100" x2="0" y2="450" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<line class="lifeline" x1="168" y1="100" x2="168" y2="458" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<line class="lifeline" x1="348" y1="100" x2="348" y2="458" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<line class="lifeline" x1="699" y1="100" x2="699" y2="458" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<circle class="actor" cx="0" cy="40" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="48" x2="0" y2="64" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="-12" y1="54" x2="12" y2="54" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="64" x2="-10" y2="76" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="64" x2="10" y2="76" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="108.4" y="32" width="119.2" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="283.2" y="32" width="129.6" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="625" y="32" width="148" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="arrowhead" points="168,149 159,145 159,153" fill="#3b4754"/>
+<line class="message" x1="0" y1="149" x2="159" y2="149" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="348,202 339,198 339,206" fill="#3b4754"/>
+<line class="message" x1="168" y1="202" x2="339" y2="202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="699,255 690,251 690,259" fill="#3b4754"/>
+<line class="message" x1="348" y1="255" x2="690" y2="255" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="348,308 357,304 357,312" fill="#3b4754"/>
+<line class="message" x1="699" y1="308" x2="357" y2="308" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon class="arrowhead" points="168,361 177,357 177,365" fill="#3b4754"/>
+<line class="message" x1="348" y1="361" x2="177" y2="361" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon class="arrowhead" points="0,414 9,410 9,418" fill="#3b4754"/>
+<line class="message" x1="168" y1="414" x2="9" y2="414" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle class="actor" cx="0" cy="466" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="474" x2="0" y2="490" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="-12" y1="480" x2="12" y2="480" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="490" x2="-10" y2="502" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="490" x2="10" y2="502" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="108.4" y="458" width="119.2" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="283.2" y="458" width="129.6" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="625" y="458" width="148" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="participant-label" x="0" y="95.6" text-anchor="middle" fill="#1b1f24">Pracownik</text>
+<text class="participant-label" x="168" y="71.6" text-anchor="middle" fill="#1b1f24">Kierownik</text>
+<text class="participant-label" x="348" y="71.6" text-anchor="middle" fill="#1b1f24">Specjalista</text>
+<text class="participant-label" x="699" y="71.6" text-anchor="middle" fill="#1b1f24">Laboratorium</text>
+<text class="message-label" x="84" y="139.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie</text>
+<text class="message-label" x="258" y="192.6" text-anchor="middle" fill="#1b1f24">Ocena ryzyka</text>
+<text class="message-label" x="523.5" y="245.6" text-anchor="middle" fill="#1b1f24">Zapytanie o wzorcowanie</text>
+<text class="message-label" x="523.5" y="298.6" text-anchor="middle" fill="#1b1f24">Świadectwo</text>
+<text class="message-label" x="258" y="351.6" text-anchor="middle" fill="#1b1f24">Wynik oceny</text>
+<text class="message-label" x="84" y="404.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
+<text class="participant-label" x="0" y="521.6" text-anchor="middle" fill="#1b1f24">Pracownik</text>
+<text class="participant-label" x="168" y="497.6" text-anchor="middle" fill="#1b1f24">Kierownik</text>
+<text class="participant-label" x="348" y="497.6" text-anchor="middle" fill="#1b1f24">Specjalista</text>
+<text class="participant-label" x="699" y="497.6" text-anchor="middle" fill="#1b1f24">Laboratorium</text>
+<text class="participant-group-title" x="260.6" y="21.6" text-anchor="middle" fill="#1b1f24">Dział zapewnienia jakości</text>
+<text class="participant-group-title" x="699" y="21.6" text-anchor="middle" fill="#1b1f24">Zewnętrzny dostawca usług wzorcowania</text>
+</svg>

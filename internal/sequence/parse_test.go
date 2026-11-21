@@ -19,9 +19,17 @@ func TestParseErrors(t *testing.T) {
 		{"no participants", "sequenceDiagram\n", 0, CodeEmpty},
 		{"unknown statement", "sequenceDiagram\nA->>B: x\nfoo bar", 3, CodeStatement},
 		{"message without text", "sequenceDiagram\nA->>B", 2, CodeStatement},
-		{"box outside profile", "sequenceDiagram\nbox Grupa\nparticipant A\nend", 2, CodeUnsupported},
-		{"create outside profile", "sequenceDiagram\nA->>B: x\ncreate participant C", 3, CodeUnsupported},
-		{"autonumber with start", "sequenceDiagram\nautonumber 10 5\nA->>B: x", 2, CodeUnsupported},
+		{"links outside profile", "sequenceDiagram\nparticipant A\nlink A: Panel @ https://example.org", 3, CodeUnsupported},
+		{"message inside box", "sequenceDiagram\nbox Grupa\nA->>B: x\nend", 3, CodeBlock},
+		{"empty box", "sequenceDiagram\nbox Grupa\nend\nA->>B: x", 3, CodeBlock},
+		{"unclosed box", "sequenceDiagram\nbox Grupa\nparticipant A", 0, CodeBlock},
+		{"create without message", "sequenceDiagram\nA->>B: x\ncreate participant C", 0, CodeParticipant},
+		{"create with unrelated message", "sequenceDiagram\nA->>B: x\ncreate participant C\nA->>B: y", 4, CodeParticipant},
+		{"create without kind", "sequenceDiagram\nA->>B: x\ncreate C", 3, CodeStatement},
+		{"destroy unknown", "sequenceDiagram\nA->>B: x\ndestroy C", 3, CodeParticipant},
+		{"use after destroy", "sequenceDiagram\nA->>B: x\ndestroy B\nA-xB: koniec\nA->>B: y", 5, CodeParticipant},
+		{"autonumber with text", "sequenceDiagram\nautonumber od dziesięciu\nA->>B: x", 2, CodeStatement},
+		{"unclosed accDescr", "sequenceDiagram\naccDescr {\nopis\nA->>B: x", 0, CodeStatement},
 		{"unclosed block", "sequenceDiagram\nloop zawsze\nA->>B: x", 0, CodeBlock},
 		{"end without block", "sequenceDiagram\nA->>B: x\nend", 3, CodeBlock},
 		{"else outside alt", "sequenceDiagram\nloop x\nA->>B: x\nelse y\nend", 4, CodeBlock},
@@ -90,5 +98,26 @@ func TestParseArrows(t *testing.T) {
 		if m.LineStyle != w.line || m.Head != w.head || m.Bidirectional != w.both || len(d.Participants) != 2 {
 			t.Errorf("%s: got %+v", arrow, m)
 		}
+	}
+}
+
+// REQ: SEQ-014 SEQ-015 SEQ-016
+func TestParseGroupsLifetimeAccessibility(t *testing.T) {
+	d, err := Parse("sequenceDiagram\naccTitle: Obieg\naccDescr {\n  Pierwsza linia\n  druga linia\n}\nautonumber 10 5\n" +
+		"box rgb(230, 240, 255) Dział jakości\nparticipant A\nactor B\nend\nbox Bez koloru\nparticipant C\nend\n" +
+		"A->>B: x\ncreate participant D as Zadanie\nB->>D: utwórz\ndestroy D\nD-->>B: gotowe")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if d.AccTitle != "Obieg" || d.AccDescr != "Pierwsza linia druga linia" || d.NumberStart != 10 || d.NumberStep != 5 {
+		t.Errorf("accessibility or numbering: %+v", d)
+	}
+	if len(d.Boxes) != 2 || d.Boxes[0] != (Box{Title: "Dział jakości", Color: "rgb(230,240,255)", First: 0, Last: 1}) ||
+		d.Boxes[1] != (Box{Title: "Bez koloru", First: 2, Last: 2}) {
+		t.Errorf("boxes: %+v", d.Boxes)
+	}
+	p := d.Participants[3]
+	if !p.Created || !p.Destroyed || p.Label[0] != "Zadanie" || d.Events[1].Created != 4 || d.Events[2].Destroyed != 4 {
+		t.Errorf("lifetime: %+v %+v %+v", p, d.Events[1], d.Events[2])
 	}
 }

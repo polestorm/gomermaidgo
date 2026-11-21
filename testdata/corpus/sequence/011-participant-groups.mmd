@@ -1,0 +1,23 @@
+%% REQ: SEQ-014 SEQ-016
+%% Tytuł: Grupy uczestników i opis dostępności
+%% Sprawdza: box z kolorem i bez koloru: ramka wokół uczestników z tytułem, także gdy tytuł jest szerszy niż grupa; accTitle i accDescr trafiają do title i desc.
+sequenceDiagram
+    accTitle: Zgłoszenie niezgodności
+    accDescr {
+        Pracownik zgłasza niezgodność, dział jakości ją ocenia
+        i odpowiada zgłaszającemu.
+    }
+    actor P as Pracownik
+    box rgb(232, 240, 251) Dział zapewnienia jakości
+        participant K as Kierownik
+        participant S as Specjalista
+    end
+    box Zewnętrzny dostawca usług wzorcowania
+        participant L as Laboratorium
+    end
+    P->>K: Zgłoszenie
+    K->>S: Ocena ryzyka
+    S->>L: Zapytanie o wzorcowanie
+    L-->>S: Świadectwo
+    S-->>K: Wynik oceny
+    K-->>P: Decyzja

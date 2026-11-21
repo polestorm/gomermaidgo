@@ -1,0 +1,15 @@
+%% REQ: SEQ-008 SEQ-015
+%% Tytuł: Tworzenie i kończenie uczestnika, numeracja od zadanej liczby
+%% Sprawdza: create stawia uczestnika na wysokości komunikatu tworzącego; destroy kończy linię życia krzyżykiem i uczestnik nie ma stopki; autonumber 10 5 numeruje 10, 15, 20.
+sequenceDiagram
+    autonumber 10 5
+    actor A as Audytor
+    participant S as System QMS
+    A->>S: Otwórz audyt
+    create participant R as Raport z audytu
+    S->>R: Utwórz
+    A->>R: Dopisz ustalenia
+    R-->>A: Zapisano
+    destroy R
+    S-xR: Zamknij i zarchiwizuj
+    S-->>A: Audyt zamknięty

@@ -72,6 +72,7 @@ type Item struct {
 type Scene struct {
 	Items      []Item
 	Title      string
+	Desc       string // opis dostępności; trafia do elementu <desc>
 	FontFamily string
 	FontSize   float64
 	Margin     float64
@@ -291,6 +292,11 @@ func (s *Scene) SVG() []byte {
 		b.WriteString("<title>")
 		b.WriteString(Escape(s.Title))
 		b.WriteString("</title>\n")
+	}
+	if s.Desc != "" {
+		b.WriteString("<desc>")
+		b.WriteString(Escape(s.Desc))
+		b.WriteString("</desc>\n")
 	}
 	if s.Background != "" {
 		b.WriteString("<rect")

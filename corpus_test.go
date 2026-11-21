@@ -160,6 +160,7 @@ func TestCorpusDeterministic(t *testing.T) {
 var allowedSVG = map[string][]string{
 	"svg":      {"xmlns", "version", "width", "height", "viewBox", "role", "font-family", "font-size"},
 	"title":    {},
+	"desc":     {},
 	"rect":     {"class", "x", "y", "width", "height", "rx", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"line":     {"class", "x1", "y1", "x2", "y2", "fill", "stroke", "stroke-width", "stroke-dasharray"},
 	"polyline": {"class", "points", "fill", "stroke", "stroke-width", "stroke-dasharray"},
@@ -293,8 +294,12 @@ func TestCorpusLabelsPresent(t *testing.T) {
 		need(d.Title)
 		for _, p := range d.Participants {
 			for _, line := range p.Label {
-				if have[line] < 2 {
-					t.Errorf("%s: participant label %q should appear at the top and at the bottom", f, line)
+				want := 2
+				if p.Destroyed {
+					want = 1 // uczestnik, który zakończył życie, nie ma stopki
+				}
+				if have[line] < want {
+					t.Errorf("%s: participant label %q should appear %d times", f, line, want)
 				}
 			}
 		}

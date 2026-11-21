@@ -61,7 +61,10 @@ type layout struct {
 	fs, lh float64
 	x      []float64 // środki uczestników
 	boxW   []float64
-	header float64 // wysokość nagłówka uczestników
+	header float64   // wysokość nagłówka uczestników
+	start  []float64 // początek linii życia każdego uczestnika
+	end    []float64 // koniec linii życia uczestnika, który zakończył życie; NaN = do stopki
+	boxPad []float64 // poszerzenie ramki grupy „box” z każdej strony ponad uczestników
 
 	cursor float64
 	lastY  float64
@@ -125,7 +128,12 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	}
 	l := &layout{d: d, o: o, fs: o.FontSize}
 	l.lh = math.Round(l.fs * 1.25)
-	l.sc = &scene.Scene{Title: d.Title, FontFamily: o.FontFamily, FontSize: l.fs, Margin: l.u(12), Background: o.Background}
+	title := d.AccTitle
+	if title == "" {
+		title = d.Title
+	}
+	l.number = d.NumberStart - d.NumberStep
+	l.sc = &scene.Scene{Title: title, Desc: d.AccDescr, FontFamily: o.FontFamily, FontSize: l.fs, Margin: l.u(12), Background: o.Background}
 	l.active = make([][]float64, len(d.Participants))
 	base := o.Background
 	if _, _, _, _, ok := parseColor(base); !ok {
@@ -141,8 +149,22 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 		l.text([]string{d.Title}, mid, top, "middle", "title", "", scene.LayerLabel)
 		top += l.lh + l.u(12)
 	}
-	l.participants(top)
+	boxTop := top
+	if len(d.Boxes) > 0 {
+		// Nad uczestnikami zostaje miejsce na tytuły grup.
+		top += l.u(10)
+		for _, b := range d.Boxes {
+			if b.Title != "" {
+				top = boxTop + l.lh + l.u(12)
+			}
+		}
+	}
+	l.participants(top, func(p *Participant) bool { return !p.Created })
 	headerBottom := top + l.header
+	l.start, l.end = make([]float64, len(d.Participants)), make([]float64, len(d.Participants))
+	for i := range l.start {
+		l.start[i], l.end[i] = headerBottom, math.NaN()
+	}
 	l.cursor = headerBottom + l.u(24)
 	l.lastY = l.cursor
 
@@ -182,15 +204,32 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 			break
 		}
 	}
-	l.participants(footerTop)
+	l.participants(footerTop, func(p *Participant) bool { return !p.Destroyed })
 	for i, p := range d.Participants {
 		end := footerTop
 		if p.Actor {
 			head := footerTop + (l.header-(l.u(48)+float64(len(p.Label))*l.lh))/2
 			end = math.Min(end, head-l.u(8))
 		}
+		if !math.IsNaN(l.end[i]) {
+			end = l.end[i]
+		}
 		l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "lifeline",
-			X: l.x[i], Y: headerBottom, X2: l.x[i], Y2: end, Stroke: colorLifeline, StrokeWidth: 1.5})
+			X: l.x[i], Y: l.start[i], X2: l.x[i], Y2: end, Stroke: colorLifeline, StrokeWidth: 1.5})
+	}
+	for k, b := range d.Boxes {
+		pad := l.boxPad[k]
+		x0, x1 := l.x[b.First]-l.boxW[b.First]/2-pad, l.x[b.Last]+l.boxW[b.Last]/2+pad
+		it := scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "participant-group",
+			X: x0, Y: boxTop, W: x1 - x0, H: footerTop + l.header + l.u(10) - boxTop, RX: l.u(4),
+			Stroke: colorFrame, StrokeWidth: 1}
+		if b.Color != "" {
+			it.Fill, it.FillOpacity = splitColor(b.Color)
+		}
+		l.sc.Add(it)
+		if b.Title != "" {
+			l.text([]string{b.Title}, (x0+x1)/2, boxTop+l.u(6), "middle", "participant-group-title", "", scene.LayerLabel)
+		}
 	}
 	return l.sc
 }
@@ -212,9 +251,18 @@ func (l *layout) columns() {
 			l.header = math.Max(l.header, lines*l.lh+2*l.u(14))
 		}
 	}
+	group := make([]int, n) // numer grupy „box” uczestnika + 1; 0 = poza grupami
+	for k, b := range l.d.Boxes {
+		for i := b.First; i <= b.Last; i++ {
+			group[i] = k + 1
+		}
+	}
 	gap := make([]float64, max(n-1, 0))
 	for i := range gap {
 		gap[i] = l.boxW[i]/2 + l.boxW[i+1]/2 + l.u(56)
+		if group[i] != group[i+1] {
+			gap[i] += l.u(12) // ramka grupy nie może dotykać sąsiada spoza grupy
+		}
 	}
 	atLeast := func(i int, v float64) {
 		if i >= 0 && i < len(gap) {
@@ -248,11 +296,20 @@ func (l *layout) columns() {
 		case EventMessage:
 			w := l.maxWidth(e.Text)
 			if e.From == e.To {
+				if e.From == n-1 {
+					// Ostatni uczestnik: etykieta kończy się nad pętlą i rośnie w lewo, więc nie
+					// poszerza rysunku; potrzebuje miejsca przed poprzednią linią życia.
+					atLeast(e.From-1, w-l.u(8)-l.u(36)+l.u(16))
+					continue
+				}
 				atLeast(e.From, math.Max(l.selfReach(), l.u(10)+badge+w)+l.u(16)+l.half(e.From+1))
 				continue
 			}
 			lo, hi := min(e.From, e.To), max(e.From, e.To)
 			need := w + 2*l.u(22) + l.u(12) + badge
+			if e.Created != 0 {
+				need += l.half(e.Created - 1) // strzałka kończy się na krawędzi tworzonego uczestnika
+			}
 			if hi-lo == 1 {
 				atLeast(lo, need)
 			} else {
@@ -278,6 +335,25 @@ func (l *layout) columns() {
 	for _, d := range deferred {
 		span(d.lo, d.hi, d.need)
 	}
+	// Ramka grupy musi pomieścić swój tytuł: brak dzielimy na obie strony.
+	l.boxPad = make([]float64, len(l.d.Boxes))
+	for k, b := range l.d.Boxes {
+		l.boxPad[k] = l.u(10)
+		span := l.boxW[b.First]/2 + l.boxW[b.Last]/2 + 2*l.boxPad[k]
+		for i := b.First; i < b.Last; i++ {
+			span += gap[i]
+		}
+		if need := l.width(b.Title) + 2*l.u(10); need > span {
+			extra := (need - span) / 2
+			l.boxPad[k] += extra
+			if b.First > 0 {
+				gap[b.First-1] += extra
+			}
+			if b.Last < n-1 {
+				gap[b.Last] += extra
+			}
+		}
+	}
 	l.x = make([]float64, n)
 	for i := 1; i < n; i++ {
 		l.x[i] = math.Round(l.x[i-1] + gap[i-1])
@@ -294,7 +370,7 @@ func (l *layout) half(i int) float64 {
 // selfReach to odległość od linii życia do miejsca, gdzie zaczyna się etykieta komunikatu do siebie.
 func (l *layout) selfReach() float64 { return l.u(8) + l.u(36) + l.u(8) }
 
-func (l *layout) participants(top float64) {
+func (l *layout) participants(top float64, keep func(*Participant) bool) {
 	from := len(l.sc.Items)
 	defer func() {
 		if l.o.Shadows {
@@ -302,6 +378,9 @@ func (l *layout) participants(top float64) {
 		}
 	}()
 	for i, p := range l.d.Participants {
+		if !keep(p) {
+			continue
+		}
 		cx := l.x[i]
 		lines := float64(len(p.Label))
 		colorBoxFill, colorBoxStroke := colorBoxFill, colorBoxStroke
@@ -384,7 +463,7 @@ func (l *layout) badge(x, y float64) {
 	if !l.d.Autonumber {
 		return
 	}
-	l.number++
+	l.number += l.d.NumberStep
 	s := strconv.Itoa(l.number)
 	size := math.Round(l.fs * 0.7)
 	l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerLabel, Role: "sequence-number", X: x, Y: y, R: l.u(9), Fill: colorBadge})
@@ -404,6 +483,13 @@ func (l *layout) message(e Event) {
 	}
 	x1 := l.edge(e.From, dir, fromLevel)
 	x2 := l.edge(e.To, -dir, toLevel)
+	// Uczestnik tworzony tym komunikatem stoi na wysokości strzałki; strzałka kończy się na jego krawędzi.
+	switch e.Created - 1 {
+	case e.To:
+		x2 = l.x[e.To] - dir*l.boxW[e.To]/2
+	case e.From:
+		x1 = l.x[e.From] + dir*l.boxW[e.From]/2
+	}
 
 	lines := float64(len(e.Text))
 	labelTop := l.cursor
@@ -437,6 +523,30 @@ func (l *layout) message(e Event) {
 	}
 	l.lastY = y
 	l.cursor = y + l.u(28)
+	if c := e.Created - 1; c >= 0 {
+		l.participants(y-l.header/2, func(p *Participant) bool { return p == l.d.Participants[c] })
+		l.start[c] = y + l.header/2
+		l.cursor = y + l.header/2 + l.u(24)
+	}
+	l.destroy(e, y)
+}
+
+// destroy kończy linię życia uczestnika krzyżykiem tuż pod jego ostatnim komunikatem.
+func (l *layout) destroy(e Event, y float64) {
+	d := e.Destroyed - 1
+	if d < 0 {
+		return
+	}
+	for len(l.active[d]) > 0 {
+		l.deactivate(d, y)
+	}
+	cy, r := y+l.u(16), l.u(7)
+	l.end[d] = cy
+	for _, s := range []float64{-1, 1} {
+		l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "destroy",
+			X: l.x[d] - r, Y: cy - s*r, X2: l.x[d] + r, Y2: cy + s*r, Stroke: colorLine, StrokeWidth: 2})
+	}
+	l.cursor = math.Max(l.cursor, cy+r+l.u(20))
 }
 
 func (l *layout) selfMessage(e Event) {
@@ -457,9 +567,17 @@ func (l *layout) selfMessage(e Event) {
 		if l.d.Autonumber {
 			tx += l.u(10)
 		}
-		l.text(e.Text, tx, l.cursor, "start", "message-label", "", scene.LayerLabel)
-		right = math.Max(right, tx+l.maxWidth(e.Text))
-		l.cursor += float64(len(e.Text))*l.lh + l.u(5)
+		w, h := l.maxWidth(e.Text), float64(len(e.Text))*l.lh
+		if i == len(l.x)-1 && tx+w > out {
+			// Ostatni uczestnik: etykieta kończy się nad pętlą i rośnie w lewo, przez własną linię życia.
+			l.labelBackground(out-w, l.cursor, w, h)
+			l.text(e.Text, out, l.cursor, "end", "message-label", "", scene.LayerLabel)
+			l.extent(out-w, out)
+		} else {
+			l.text(e.Text, tx, l.cursor, "start", "message-label", "", scene.LayerLabel)
+			right = math.Max(right, tx+w)
+		}
+		l.cursor += h + l.u(5)
 	}
 	y0 := l.cursor
 	y1 := y0 + drop
@@ -485,6 +603,7 @@ func (l *layout) selfMessage(e Event) {
 	}
 	l.lastY = y1
 	l.cursor = y1 + l.u(28)
+	l.destroy(e, y1)
 }
 
 func (l *layout) note(e Event) {
