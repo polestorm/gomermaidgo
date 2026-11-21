@@ -44,3 +44,8 @@ attributes: no `foreignObject`, no style sheets, no scripts, no links, no ids.
 
 Documentation (in Polish): `docs/profile.md` (supported syntax), `docs/provenance.md` (sources and clean-room rules),
 `docs/testing.md` (corpus, invariants, comparison with reference renderers), `requirements/` (numbered requirements).
+
+## License
+
+Apache License 2.0, see `LICENSE` and `NOTICE`. The bundled Recursive typeface is distributed under the SIL Open Font
+License 1.1 (`fonts/OFL.txt`).
