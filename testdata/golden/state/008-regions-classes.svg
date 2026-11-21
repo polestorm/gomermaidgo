@@ -1,81 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="644.05" height="1332" viewBox="-12.02 -12 644.05 1332" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="636.05" height="1006" viewBox="-12.02 -12 636.05 1006" role="img" font-family="Recursive, sans-serif" font-size="16">
 <title>Sterylizator w trakcie cyklu</title>
-<rect class="cluster" x="-0.02" y="188" width="620.05" height="880" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-title-strip" x="-0.02" y="188" width="620.05" height="32" rx="8" fill="#eef2f7"/>
-<rect class="cluster-title-strip" x="-0.02" y="204" width="620.05" height="16" fill="#eef2f7"/>
-<line class="cluster-title-rule" x1="-0.02" y1="220" x2="620.03" y2="220" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-outline" x="-0.02" y="188" width="620.05" height="880" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="region" x="19.98" y="248" width="242" height="474" rx="6" fill="#f1f4f8"/>
-<rect class="region" x="309.93" y="248" width="290.1" height="154" rx="6" fill="#f1f4f8"/>
-<rect class="region" x="20.23" y="766" width="205.5" height="282" rx="6" fill="#f1f4f8"/>
+<rect class="cluster" x="-0.02" y="188" width="612.05" height="554" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-title-strip" x="-0.02" y="188" width="612.05" height="32" rx="8" fill="#eef2f7"/>
+<rect class="cluster-title-strip" x="-0.02" y="204" width="612.05" height="16" fill="#eef2f7"/>
+<line class="cluster-title-rule" x1="-0.02" y1="220" x2="612.03" y2="220" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-outline" x="-0.02" y="188" width="612.05" height="554" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="region" x="19.98" y="248" width="242" height="474" rx="6" fill="#f1f4f8" stroke="#8a94a3" stroke-width="1" stroke-dasharray="5 4"/>
+<rect class="region" x="301.93" y="248" width="290.1" height="154" rx="6" fill="#f1f4f8" stroke="#8a94a3" stroke-width="1" stroke-dasharray="5 4"/>
+<rect class="region" x="302.23" y="438" width="205.5" height="282" rx="6" fill="#f1f4f8" stroke="#8a94a3" stroke-width="1" stroke-dasharray="5 4"/>
 <path class="edge" d="M140.98 294 L140.98 329.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M140.98 382 L140.98 412 L140.98 436 L140.98 457.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M140.98 510 L140.98 540 L140.98 564 L140.98 585.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M140.98 638 L140.98 673.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M476.83 352 L488.83 352 C518.83 352 518.83 368 488.83 368 L485.23 368" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M454.93 294 L454.93 329.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M123.23 812 L123.23 847.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M123.23 900 L123.23 930 L123.23 954 L123.23 975.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M310 16 L310 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M310 104 L310 134 L310 158 L310 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M247 1068 L247 1103.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M373 1068 L373 1112 L373 1156 L373 1191.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M247 1156 L247 1200 L247 1244 L247 1253.8 C247 1258.2 250.6 1261.8 255 1261.8 L302 1261.8 C306.4 1261.8 310 1265.4 310 1269.8 L310 1279.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M373 1244 L373 1253.8 C373 1258.2 369.4 1261.8 365 1261.8 L318 1261.8 C313.6 1261.8 310 1265.4 310 1269.8 L310 1279.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M468.83 352 L480.83 352 C510.83 352 510.83 368 480.83 368 L477.23 368" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M446.93 294 L446.93 329.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M405.23 484 L405.23 519.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M405.23 572 L405.23 602 L405.23 626 L405.23 647.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M306 16 L306 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M306 104 L306 134 L306 158 L306 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M243 742 L243 777.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M369 742 L369 786 L369 830 L369 865.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M243 830 L243 874 L243 918 L243 927.8 C243 932.2 246.6 935.8 251 935.8 L298 935.8 C302.4 935.8 306 939.4 306 943.8 L306 953.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M369 918 L369 927.8 C369 932.2 365.4 935.8 361 935.8 L314 935.8 C309.6 935.8 306 939.4 306 943.8 L306 953.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="cluster-title-background" x="27.98" y="254" width="8" height="0" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="40.98" y="414" width="200" height="20" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="94.98" y="542" width="92" height="20" fill="#f1f4f8"/>
-<rect class="cluster-title-background" x="317.93" y="254" width="8" height="0" fill="#f1f4f8"/>
-<rect class="edge-label-background" x="512.83" y="350" width="63.2" height="20" fill="#f1f4f8"/>
-<rect class="cluster-title-background" x="28.23" y="772" width="8" height="0" fill="#f1f4f8"/>
-<rect class="edge-label-background" x="58.83" y="932" width="128.8" height="20" fill="#f1f4f8"/>
-<rect class="edge-label-background" x="284.8" y="136" width="50.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="341.8" y="1124" width="62.4" height="20" fill="#ffffff"/>
+<rect class="cluster-title-background" x="309.93" y="254" width="8" height="0" fill="#f1f4f8"/>
+<rect class="edge-label-background" x="504.82" y="350" width="63.2" height="20" fill="#f1f4f8"/>
+<rect class="cluster-title-background" x="310.23" y="444" width="8" height="0" fill="#f1f4f8"/>
+<rect class="edge-label-background" x="340.83" y="604" width="128.8" height="20" fill="#f1f4f8"/>
+<rect class="edge-label-background" x="280.8" y="136" width="50.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="337.8" y="798" width="62.4" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="140.98,338 134.98,326 146.98,326" fill="#3b4754"/>
 <polygon class="arrowhead" points="140.98,466 134.98,454 146.98,454" fill="#3b4754"/>
 <polygon class="arrowhead" points="140.98,594 134.98,582 146.98,582" fill="#3b4754"/>
 <polygon class="arrowhead" points="140.98,682 134.98,670 146.98,670" fill="#3b4754"/>
-<polygon class="arrowhead" points="476.83,368 488.83,362 488.83,374" fill="#3b4754"/>
-<polygon class="arrowhead" points="454.93,338 448.93,326 460.93,326" fill="#3b4754"/>
-<polygon class="arrowhead" points="123.23,856 117.23,844 129.23,844" fill="#3b4754"/>
-<polygon class="arrowhead" points="123.23,984 117.23,972 129.23,972" fill="#3b4754"/>
-<polygon class="arrowhead" points="310,60 304,48 316,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="310,188 304,176 316,176" fill="#3b4754"/>
-<polygon class="arrowhead" points="247,1112 241,1100 253,1100" fill="#3b4754"/>
-<polygon class="arrowhead" points="373,1200 367,1188 379,1188" fill="#3b4754"/>
-<polygon class="arrowhead" points="310,1288 304,1276 316,1276" fill="#3b4754"/>
-<polygon class="arrowhead" points="310,1288 304,1276 316,1276" fill="#3b4754"/>
-<circle class="node" cx="310" cy="8" r="8" fill="#3b4754"/>
-<rect class="node" x="240" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="arrowhead" points="468.83,368 480.83,362 480.83,374" fill="#3b4754"/>
+<polygon class="arrowhead" points="446.93,338 440.93,326 452.93,326" fill="#3b4754"/>
+<polygon class="arrowhead" points="405.23,528 399.23,516 411.23,516" fill="#3b4754"/>
+<polygon class="arrowhead" points="405.23,656 399.23,644 411.23,644" fill="#3b4754"/>
+<polygon class="arrowhead" points="306,60 300,48 312,48" fill="#3b4754"/>
+<polygon class="arrowhead" points="306,188 300,176 312,176" fill="#3b4754"/>
+<polygon class="arrowhead" points="243,786 237,774 249,774" fill="#3b4754"/>
+<polygon class="arrowhead" points="369,874 363,862 375,862" fill="#3b4754"/>
+<polygon class="arrowhead" points="306,962 300,950 312,950" fill="#3b4754"/>
+<polygon class="arrowhead" points="306,962 300,950 312,950" fill="#3b4754"/>
+<circle class="node" cx="306" cy="8" r="8" fill="#3b4754"/>
+<rect class="node" x="236" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="140.98" cy="286" r="8" fill="#3b4754"/>
 <rect class="node" x="61.98" y="338" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="61.98" y="466" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="61.98" y="594" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="140.98" cy="692" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <circle class="node-detail" cx="140.98" cy="692" r="6" fill="#3b4754"/>
-<circle class="node" cx="454.93" cy="286" r="8" fill="#3b4754"/>
-<rect class="node" x="329.83" y="338" width="147" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="123.23" cy="804" r="8" fill="#3b4754"/>
-<rect class="node" x="40.73" y="856" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="40.73" y="984" width="165" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
-<rect class="node" x="172" y="1112" width="150" height="44" rx="8" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
-<rect class="node" x="303" y="1200" width="140" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
-<circle class="node" cx="310" cy="1298" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="310" cy="1298" r="6" fill="#3b4754"/>
-<text class="node-label" x="310" y="87.6" text-anchor="middle" fill="#1b1f24">Gotowy</text>
-<text class="cluster-title" x="310" y="209.6" text-anchor="middle" fill="#1b1f24">W_cyklu</text>
+<circle class="node" cx="446.93" cy="286" r="8" fill="#3b4754"/>
+<rect class="node" x="321.83" y="338" width="147" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="405.23" cy="476" r="8" fill="#3b4754"/>
+<rect class="node" x="322.73" y="528" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="322.73" y="656" width="165" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="node" x="168" y="786" width="150" height="44" rx="8" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
+<rect class="node" x="299" y="874" width="140" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<circle class="node" cx="306" cy="972" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="306" cy="972" r="6" fill="#3b4754"/>
+<text class="node-label" x="306" y="87.6" text-anchor="middle" fill="#1b1f24">Gotowy</text>
+<text class="cluster-title" x="306" y="209.6" text-anchor="middle" fill="#1b1f24">W_cyklu</text>
 <text class="node-label" x="140.98" y="365.6" text-anchor="middle" fill="#1b1f24">Nagrzewanie</text>
 <text class="node-label" x="140.98" y="493.6" text-anchor="middle" fill="#1b1f24">Ekspozycja</text>
 <text class="node-label" x="140.98" y="621.6" text-anchor="middle" fill="#1b1f24">Chłodzenie</text>
 <text class="edge-label" x="140.98" y="429.6" text-anchor="middle" fill="#1b1f24">temperatura osiągnięta</text>
 <text class="edge-label" x="140.98" y="557.6" text-anchor="middle" fill="#1b1f24">czas minął</text>
-<text class="node-label" x="403.33" y="365.6" text-anchor="middle" fill="#1b1f24">Rejestracja</text>
-<text class="edge-label" x="544.43" y="365.6" text-anchor="middle" fill="#1b1f24">co 10 s</text>
-<text class="node-label" x="123.23" y="883.6" text-anchor="middle" fill="#1b1f24">Nadzór_drzwi</text>
-<text class="node-label" x="123.23" y="1011.6" text-anchor="middle" fill="#1b1f24">Blokada</text>
-<text class="edge-label" x="123.23" y="947.6" text-anchor="middle" fill="#1b1f24">próba otwarcia</text>
-<text class="node-label" x="247" y="1139.6" text-anchor="middle" fill="#1b1f24">Zakończony</text>
-<text class="node-label" x="373" y="1227.6" text-anchor="middle" fill="#1b1f24">Przerwany</text>
-<text class="edge-label" x="310" y="151.6" text-anchor="middle" fill="#1b1f24">Start</text>
-<text class="edge-label" x="373" y="1139.6" text-anchor="middle" fill="#1b1f24">awaria</text>
+<text class="node-label" x="395.33" y="365.6" text-anchor="middle" fill="#1b1f24">Rejestracja</text>
+<text class="edge-label" x="536.42" y="365.6" text-anchor="middle" fill="#1b1f24">co 10 s</text>
+<text class="node-label" x="405.23" y="555.6" text-anchor="middle" fill="#1b1f24">Nadzór_drzwi</text>
+<text class="node-label" x="405.23" y="683.6" text-anchor="middle" fill="#1b1f24">Blokada</text>
+<text class="edge-label" x="405.23" y="619.6" text-anchor="middle" fill="#1b1f24">próba otwarcia</text>
+<text class="node-label" x="243" y="813.6" text-anchor="middle" fill="#1b1f24">Zakończony</text>
+<text class="node-label" x="369" y="901.6" text-anchor="middle" fill="#1b1f24">Przerwany</text>
+<text class="edge-label" x="306" y="151.6" text-anchor="middle" fill="#1b1f24">Start</text>
+<text class="edge-label" x="369" y="813.6" text-anchor="middle" fill="#1b1f24">awaria</text>
 </svg>

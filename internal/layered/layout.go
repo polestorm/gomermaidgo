@@ -57,6 +57,7 @@ type item struct {
 	band      float64 // wysokość warstwy, w której leży pole
 
 	lane        int // numer toru, gdy diagram ma tory
+	column      int // kolumna w rzędzie: części w jednej kolumnie stoją jedna za drugą
 	shelf       int // rząd, w którym stoi część diagramu zawierająca to pole (patrz shelve)
 	rank, order int
 	x, y        float64
@@ -111,7 +112,9 @@ type level struct {
 
 	// Układ osi poziomu. Podgraf z własnym kierunkiem (turned) ma własne osie umowne, zaczepione
 	// w punkcie (ox, oy) rysunku; pozostałe poziomy dziedziczą osie rodzica.
-	pinPorts               bool // porządkowanie nie rusza warstw złożonych z samych punktów na ramce
+	free                   map[*item][2]float64 // położenia ramek rozmieszczonych swobodnie (packBoxes)
+	shelved                bool                 // części poziomu dostały rzędy i kolumny w shelve
+	pinPorts               bool                 // porządkowanie nie rusza warstw złożonych z samych punktów na ramce
 	vertical, flip, turned bool
 	ox, oy                 float64
 }
@@ -1060,61 +1063,210 @@ func (l *layouter) shelve(lv *level) {
 		p.ranks = p.hi - p.lo + 1
 		parts[k] = p
 	}
-	// Proporcje strony: szerokość do wysokości około 3:4; przy osi warstw poziomej odwrotnie.
-	target := 0.75
-	if !l.vertical {
-		target = 1 / 0.75
-	}
-	pack := func(limit float64) (shelves [][]int, score float64) {
-		width, height, rowW, rowH := 0.0, 0.0, 0.0, 0.0
-		for k, p := range parts {
-			if len(shelves) == 0 || rowW+l.u(48)+p.w > limit+0.5 {
-				height += rowH
-				shelves, rowW, rowH = append(shelves, nil), -l.u(48), 0
+	// Poziom złożony z samych ramek bez połączeń (regiony współbieżne, osobne podgrafy) pakujemy
+	// swobodnie, bez wspólnych warstw: niższe ramki mogą stanąć jedna pod drugą obok wyższej.
+	boxes := true
+	for _, p := range parts {
+		n := 0
+		for _, row := range p.rows {
+			for _, it := range row {
+				n++
+				boxes = boxes && it.kind == kindCluster
 			}
-			shelves[len(shelves)-1] = append(shelves[len(shelves)-1], k)
-			rowW += l.u(48) + p.w
-			rowH = math.Max(rowH, p.h)
-			width = math.Max(width, rowW)
 		}
-		height += rowH
-		return shelves, math.Abs(math.Log(width / height / target))
+		boxes = boxes && n == 1
 	}
-	var best [][]int
-	bestScore, limit := math.Inf(1), -l.u(48)
+	if boxes {
+		l.packBoxes(lv)
+		return
+	}
+	// Miarą jest skala, w jakiej rysunek zmieści się na stronie (około 650 × 870 px przy piśmie 16 px,
+	// czyli A4 albo Letter z marginesami): im większa, tym czytelniej; przy równej wygrywa mniejsze pole.
+	pageW, pageH := l.u(650), l.u(870)
+	if !l.vertical {
+		pageW, pageH = pageH, pageW
+	}
+	type slot struct{ shelf, column, offset int }
+	// pack ustawia części kolejno: pod poprzednią, jeśli kolumna nie stanie się przez to dłuższa od
+	// najdłuższej w rzędzie (stack); obok, jeśli rząd nie przekroczy szerokości limit; inaczej w nowym rzędzie.
+	pack := func(limit float64, stack bool) (slots []slot, depth []int, scale, area float64) {
+		slots = make([]slot, len(parts))
+		var colW, colH []float64 // szerokości i wysokości kolumn bieżącego rzędu
+		var colRanks []int
+		width, height := 0.0, 0.0
+		rowWidth := func() float64 {
+			w := -l.u(48)
+			for _, c := range colW {
+				w += c + l.u(48)
+			}
+			return w
+		}
+		closeRow := func() {
+			if len(colW) == 0 {
+				return
+			}
+			h, d := 0.0, 0
+			for i := range colW {
+				h, d = math.Max(h, colH[i]), max(d, colRanks[i])
+			}
+			width, height = math.Max(width, rowWidth()), height+h
+			depth = append(depth, d)
+			colW, colH, colRanks = nil, nil, nil
+		}
+		for k, p := range parts {
+			last := len(colW) - 1
+			tallest := 0
+			for i := 0; i < last; i++ {
+				tallest = max(tallest, colRanks[i])
+			}
+			switch {
+			case stack && last >= 1 && colRanks[last]+p.ranks <= tallest:
+				slots[k] = slot{len(depth), last, colRanks[last]}
+				colW[last], colH[last], colRanks[last] = math.Max(colW[last], p.w), colH[last]+p.h, colRanks[last]+p.ranks
+			case last >= 0 && rowWidth()+l.u(48)+p.w <= limit+0.5:
+				slots[k] = slot{len(depth), last + 1, 0}
+				colW, colH, colRanks = append(colW, p.w), append(colH, p.h), append(colRanks, p.ranks)
+			default:
+				closeRow()
+				slots[k] = slot{len(depth), 0, 0}
+				colW, colH, colRanks = []float64{p.w}, []float64{p.h}, []int{p.ranks}
+			}
+		}
+		closeRow()
+		return slots, depth, math.Min(1, math.Min(pageW/width, pageH/height)), width * height
+	}
+	var best []slot
+	var bestDepth []int
+	bestScale, bestArea, limit := -1.0, 0.0, -l.u(48)
 	for _, p := range parts {
 		limit += l.u(48) + p.w // kolejne dopuszczalne szerokości rzędu: tyle, ile zajmują pierwsze części
 		for _, candidate := range []float64{limit, p.w} {
-			if shelves, score := pack(candidate); score < bestScore-1e-9 {
-				best, bestScore = shelves, score
-			}
-		}
-	}
-	if len(best) < 2 {
-		return
-	}
-	var ranks [][]*item
-	for s, shelf := range best {
-		base, depth := len(ranks), 0
-		for _, k := range shelf {
-			depth = max(depth, parts[k].ranks)
-		}
-		ranks = append(ranks, make([][]*item, depth)...)
-		for _, k := range shelf {
-			p := parts[k]
-			for r := p.lo; r <= p.hi; r++ {
-				for _, it := range p.rows[r] {
-					it.rank, it.shelf = base+r-p.lo, s
-					ranks[it.rank] = append(ranks[it.rank], it)
+			for _, stack := range []bool{false, true} {
+				slots, depth, scale, area := pack(candidate, stack)
+				if scale > bestScale+1e-9 || (scale > bestScale-1e-9 && area < bestArea-0.5) {
+					best, bestDepth, bestScale, bestArea = slots, depth, scale, area
 				}
 			}
 		}
 	}
-	lv.ranks = ranks
+	single := true
+	for _, sl := range best {
+		single = single && sl.shelf == 0 && sl.offset == 0
+	}
+	if single {
+		return
+	}
+	base := make([]int, len(bestDepth)+1)
+	for i, d := range bestDepth {
+		base[i+1] = base[i] + d
+	}
+	ranks := make([][]*item, base[len(bestDepth)])
+	for k, p := range parts {
+		sl := best[k]
+		for r := p.lo; r <= p.hi; r++ {
+			for _, it := range p.rows[r] {
+				it.rank, it.shelf, it.column = base[sl.shelf]+sl.offset+r-p.lo, sl.shelf, sl.column
+				ranks[it.rank] = append(ranks[it.rank], it)
+			}
+		}
+	}
+	lv.ranks, lv.shelved = ranks, true
 	for _, row := range lv.ranks {
+		sort.SliceStable(row, func(a, b int) bool { return row[a].column < row[b].column })
 		for i, it := range row {
 			it.order = i
 		}
+	}
+}
+
+// packBoxes rozmieszcza niepołączone ramki poziomu w rzędach i kolumnach: ramka staje pod
+// poprzednią, jeśli kolumna nie będzie przez to wyższa od najwyższej w rzędzie; obok, jeśli rząd
+// mieści się w limicie szerokości; inaczej w nowym rzędzie. Spośród limitów wygrywa ten, przy
+// którym całość mieści się na stronie w największej skali. Kolejność ramek ze źródła zostaje.
+func (l *layouter) packBoxes(lv *level) {
+	var items []*item
+	for _, row := range lv.ranks {
+		items = append(items, row...)
+	}
+	sort.SliceStable(items, func(a, b int) bool { return items[a].child.sub.Line < items[b].child.sub.Line })
+	gapX, gapY := l.u(40), l.u(36)
+	pageW, pageH := l.u(650), l.u(870)
+	if !l.vertical {
+		pageW, pageH = pageH, pageW
+	}
+	type column struct {
+		w, h  float64
+		items []*item
+	}
+	pack := func(limit float64) (rows [][]column, width, height float64) {
+		var cur []column
+		rowWidth := func() float64 {
+			w := -gapX
+			for _, c := range cur {
+				w += c.w + gapX
+			}
+			return w
+		}
+		flush := func() {
+			if len(cur) == 0 {
+				return
+			}
+			h := 0.0
+			for _, c := range cur {
+				h = math.Max(h, c.h)
+			}
+			if len(rows) > 0 {
+				height += gapY
+			}
+			width, height = math.Max(width, rowWidth()), height+h
+			rows, cur = append(rows, cur), nil
+		}
+		for _, it := range items {
+			last := len(cur) - 1
+			tallest := 0.0
+			for i := 0; i < last; i++ {
+				tallest = math.Max(tallest, cur[i].h)
+			}
+			switch {
+			case last >= 1 && cur[last].h+gapY+it.h <= tallest+0.5:
+				c := &cur[last]
+				c.w, c.h, c.items = math.Max(c.w, it.w), c.h+gapY+it.h, append(c.items, it)
+			case last >= 0 && rowWidth()+gapX+it.w <= limit+0.5:
+				cur = append(cur, column{it.w, it.h, []*item{it}})
+			default:
+				flush()
+				cur = []column{{it.w, it.h, []*item{it}}}
+			}
+		}
+		flush()
+		return rows, width, height
+	}
+	var best [][]column
+	bestScale, bestArea, limit := -1.0, 0.0, -gapX
+	for _, it := range items {
+		limit += gapX + it.w
+		for _, candidate := range []float64{limit, it.w} {
+			rows, w, h := pack(candidate)
+			scale, area := math.Min(1, math.Min(pageW/w, pageH/h)), w*h
+			if scale > bestScale+1e-9 || (scale > bestScale-1e-9 && area < bestArea-0.5) {
+				best, bestScale, bestArea = rows, scale, area
+			}
+		}
+	}
+	lv.free = map[*item][2]float64{}
+	y := 0.0
+	for _, row := range best {
+		x, rowH := 0.0, 0.0
+		for _, c := range row {
+			top := y
+			for _, it := range c.items {
+				lv.free[it] = [2]float64{x + it.w/2, top + it.h/2}
+				top += it.h + gapY
+			}
+			x += c.w + gapX
+			rowH = math.Max(rowH, c.h)
+		}
+		y += rowH + gapY
 	}
 }
 
@@ -1334,6 +1486,16 @@ func (l *layouter) order(lv *level) {
 
 // position wyznacza współrzędne pól poziomu i zwraca rozmiar zawartości.
 func (l *layouter) position(lv *level) (width, height float64) {
+	if lv.free != nil {
+		for _, row := range lv.ranks {
+			for _, it := range row {
+				at := lv.free[it]
+				it.x, it.y, it.band = math.Round(at[0]), math.Round(at[1]), it.h
+				width, height = math.Max(width, it.x+it.w/2), math.Max(height, it.y+it.h/2)
+			}
+		}
+		return width, height
+	}
 	gap := func(a, b *item) float64 {
 		switch {
 		case a.real() && b.real():
@@ -1589,30 +1751,44 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			arrange(rows)
 		}
 	}
-	// Każdy rząd części (patrz shelve) zaczyna od początku osi kolejności.
-	shifts := map[int]float64{}
-	for _, rows := range components(lv) {
-		if l.lanes != nil {
-			break
+	// Części stoją w rzędach i kolumnach wyznaczonych przez shelve: kolumna ma szerokość
+	// najszerszej swojej części, a każdy rząd zaczyna od początku osi kolejności.
+	if l.lanes == nil {
+		type cell struct{ shelf, column int }
+		type span struct {
+			rows   [][]*item
+			lo, hi float64
+			at     cell
 		}
-		lo, hi := math.Inf(1), math.Inf(-1)
-		shelf := 0
-		for _, row := range rows {
-			for _, it := range row {
-				lo, hi = math.Min(lo, it.x-it.w/2), math.Max(hi, it.x+it.w/2)
-				shelf = it.shelf
+		var spans []span
+		colWidth := map[cell]float64{}
+		for _, rows := range components(lv) {
+			sp := span{rows: rows, lo: math.Inf(1), hi: math.Inf(-1)}
+			for _, row := range rows {
+				for _, it := range row {
+					sp.lo, sp.hi = math.Min(sp.lo, it.x-it.w/2), math.Max(sp.hi, it.x+it.w/2)
+					sp.at = cell{it.shelf, it.column}
+				}
+			}
+			if !lv.shelved {
+				sp.at = cell{0, len(spans)} // bez rzędów każda część jest osobną kolumną
+			}
+			spans = append(spans, sp)
+			colWidth[sp.at] = math.Max(colWidth[sp.at], sp.hi-sp.lo)
+		}
+		for _, sp := range spans {
+			offset := 0.0
+			for c := 0; c < sp.at.column; c++ {
+				if w, ok := colWidth[cell{sp.at.shelf, c}]; ok {
+					offset += w + l.u(48)
+				}
+			}
+			for _, row := range sp.rows {
+				for _, it := range row {
+					it.x += offset - sp.lo
+				}
 			}
 		}
-		shift, used := shifts[shelf]
-		if used {
-			shift += l.u(48)
-		}
-		for _, row := range rows {
-			for _, it := range row {
-				it.x += shift - lo
-			}
-		}
-		shifts[shelf] = shift + hi - lo
 	}
 	for _, row := range lv.ranks {
 		sort.SliceStable(row, func(a, b int) bool { return row[a].x < row[b].x })

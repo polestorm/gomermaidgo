@@ -305,8 +305,9 @@ func (l *layouter) drawLevel(lv *level) {
 		frame := scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster",
 			X: cx - w/2, Y: cy - h/2, W: w, H: h, RX: l.u(4), Stroke: colorFrame, StrokeWidth: 1}
 		if lv.sub.Region {
-			// Region współbieżny: osobne pole z lekko przyciemnionym tłem, bez obrysu.
-			frame.Stroke, frame.Fill, frame.RX, frame.Role = "", colorRegion, l.u(6), "region"
+			// Region współbieżny: osobne pole z lekko przyciemnionym tłem i przerywanym obrysem.
+			// Obrys przerywany zostaje: na wydruku samo tło bywa niewidoczne.
+			frame.Fill, frame.RX, frame.Role, frame.Dash = colorRegion, l.u(6), "region", "5 4"
 			defer func(prev string) { l.bg = prev }(l.bg)
 			l.bg = colorRegion
 		}
