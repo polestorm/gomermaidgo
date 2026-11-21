@@ -22,3 +22,4 @@ wskazuje istniejące wymaganie.
 | SEQ-014 | Grupy uczestników `box [kolor] [tytuł]` … `end`: ramka obejmuje uczestników od nagłówka do stopki, z tytułem u góry; kolor w zapisie `rgb()`, `rgba()`, `#hex`, nazwą podstawową albo `transparent`; ramka mieści swój tytuł. |
 | SEQ-015 | `create participant` i `create actor` stawiają uczestnika na wysokości następnego komunikatu, który musi go łączyć z innym uczestnikiem; `destroy` kończy linię życia krzyżykiem po następnym komunikacie z jego udziałem; uczestnik zakończony nie ma stopki i nie może być dalej używany. |
 | SEQ-016 | `accTitle` i `accDescr` (także wieloliniowe w klamrach) trafiają do elementów `title` i `desc` dokumentu SVG; dotyczy wszystkich typów diagramów. |
+| SEQ-017 | `MissingGlyphs` zwraca znaki tekstów rysunku, których nie ma w kroju użytym do pomiaru; korpus nie zawiera takich znaków dla kroju dołączonego. Dotyczy wszystkich typów diagramów. |

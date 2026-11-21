@@ -66,6 +66,9 @@ func run(fontPath, family string, size float64, background, out, in string, extr
 	if err != nil {
 		return err
 	}
+	if missing, _ := gomermaidgo.MissingGlyphs(string(source), opts...); len(missing) > 0 {
+		fmt.Fprintf(os.Stderr, "gomermaidgo: warning: the font has no glyphs for %q\n", string(missing))
+	}
 	if out == "" {
 		_, err = os.Stdout.Write(svg)
 		return err

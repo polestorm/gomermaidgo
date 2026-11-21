@@ -451,3 +451,24 @@ func FuzzRender(f *testing.F) {
 		}
 	})
 }
+
+// REQ: SEQ-017
+func TestMissingGlyphs(t *testing.T) {
+	missing, err := MissingGlyphs("sequenceDiagram\nA->>B: Zażółć gęślą jaźń 漢字 ✓ 字")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if string(missing) != "字漢" && string(missing) != "✓字漢" {
+		t.Errorf("missing glyphs: %q", string(missing))
+	}
+	for _, f := range corpusFiles(t) {
+		if m, err := MissingGlyphs(readFile(t, f)); err != nil || len(m) > 0 {
+			t.Errorf("%s: the bundled typeface lacks %q (%v)", f, string(m), err)
+		}
+	}
+	// Bez znanego kroju nie ma czego sprawdzać.
+	m, err := MissingGlyphs("flowchart TD\nA[漢字]", WithMeasure(func(s string, size float64) float64 { return size }))
+	if err != nil || m != nil {
+		t.Errorf("custom measure: %q %v", string(m), err)
+	}
+}

@@ -9,6 +9,7 @@ package gomermaidgo
 import (
 	"errors"
 	"fmt"
+	"slices"
 	"strings"
 	"sync"
 	"unicode/utf8"
@@ -18,6 +19,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/layered"
+	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
 	"github.com/polestorm/gomermaidgo/internal/syntax"
@@ -145,40 +147,41 @@ func Check(source string) error {
 	return err
 }
 
-// defaultMeasure mierzy krojem dołączonym; plik jest czytany raz na proces.
-var defaultMeasure = sync.OnceValue(func() func(string, float64) float64 {
+// defaultFace to krój dołączony; plik jest czytany raz na proces.
+var defaultFace = sync.OnceValue(func() *font.Face {
 	face, err := font.Parse(fonts.Recursive())
 	if err != nil {
-		return font.ApproxTextWidth
+		return nil
 	}
-	return func(text string, size float64) float64 {
-		w, _ := face.TextWidth(text, size)
-		return w
-	}
+	return face
 })
 
-// Render zamienia źródło diagramu na dokument SVG.
-func Render(source string, opts ...Option) ([]byte, error) {
+// build przechodzi drogę od źródła do sceny. Zwraca też krój użyty do pomiaru; nil, gdy
+// mierzyła funkcja wywołującego albo miara zastępcza.
+func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 	c := config{fontSize: 16}
 	for _, o := range opts {
 		o(&c)
 	}
-	if c.fontFamily == "" {
-		// Bez wskazania kroju obowiązuje krój dołączony; jego plik służy też do pomiaru.
-		c.fontFamily = fonts.RecursiveFamily + ", sans-serif"
-		if c.fontData == nil && c.measure == nil {
-			c.measure = defaultMeasure()
-		}
-	}
 	if c.fontSize < 6 || c.fontSize > 96 {
-		return nil, fmt.Errorf("gomermaidgo: font size %v is outside 6–96 px", c.fontSize)
+		return nil, nil, fmt.Errorf("gomermaidgo: font size %v is outside 6–96 px", c.fontSize)
+	}
+	var face *font.Face
+	switch {
+	case c.measure != nil:
+	case c.fontData != nil:
+		var err error
+		if face, err = font.Parse(c.fontData); err != nil {
+			return nil, nil, fmt.Errorf("gomermaidgo: %w", err)
+		}
+	case c.fontFamily == "":
+		face = defaultFace() // bez wskazania kroju mierzy krój dołączony
+	}
+	if c.fontFamily == "" {
+		c.fontFamily = fonts.RecursiveFamily + ", sans-serif"
 	}
 	measure := c.measure
-	if measure == nil && c.fontData != nil {
-		face, err := font.Parse(c.fontData)
-		if err != nil {
-			return nil, fmt.Errorf("gomermaidgo: %w", err)
-		}
+	if measure == nil && face != nil {
 		measure = func(text string, size float64) float64 {
 			w, _ := face.TextWidth(text, size)
 			return w
@@ -188,11 +191,11 @@ func Render(source string, opts ...Option) ([]byte, error) {
 		measure = font.ApproxTextWidth
 	}
 	if err := checkCharacters(source); err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	kind, err := DetectType(source)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	if kind != TypeSequence {
 		var g *graph.Graph
@@ -202,15 +205,48 @@ func Render(source string, opts ...Option) ([]byte, error) {
 			g, err = state.Parse(source)
 		}
 		if err != nil {
-			return nil, err
+			return nil, nil, err
 		}
-		sc := layered.Layout(g, layered.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows})
-		return sc.SVG(), nil
+		return layered.Layout(g, layered.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {
+		return nil, nil, err
+	}
+	return sequence.Layout(d, sequence.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+}
+
+// Render zamienia źródło diagramu na dokument SVG.
+func Render(source string, opts ...Option) ([]byte, error) {
+	sc, _, err := build(source, opts)
+	if err != nil {
 		return nil, err
 	}
-	sc := sequence.Layout(d, sequence.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows})
 	return sc.SVG(), nil
+}
+
+// MissingGlyphs zwraca znaki tekstów rysunku, których nie ma w kroju użytym do pomiaru
+// (dołączonym albo podanym w WithFont), w kolejności kodów. Taki znak zostanie narysowany
+// krojem zastępczym albo pustym polem, a jego szerokość jest tylko przybliżona. Gdy mierzy
+// funkcja z WithMeasure albo miara zastępcza, wynik jest pusty, bo krój nie jest znany.
+func MissingGlyphs(source string, opts ...Option) ([]rune, error) {
+	sc, face, err := build(source, opts)
+	if err != nil || face == nil {
+		return nil, err
+	}
+	seen := map[rune]bool{}
+	var missing []rune
+	for _, it := range sc.Items {
+		if it.Kind != scene.Text {
+			continue
+		}
+		for _, r := range it.Text {
+			if _, ok := face.Advance(r); !ok && !seen[r] {
+				seen[r] = true
+				missing = append(missing, r)
+			}
+		}
+	}
+	slices.Sort(missing)
+	return missing, nil
 }
