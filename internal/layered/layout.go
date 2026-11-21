@@ -371,6 +371,8 @@ func (l *layouter) measure() {
 		for _, it := range lv.items {
 			if it.kind == kindNode && it.node.Shape == graph.Entity {
 				it.w, it.h = l.abstract(l.entitySize(it.node))
+			} else if it.kind == kindNode && it.node.Shape == graph.Class {
+				it.w, it.h = l.abstract(l.classSize(it.node))
 			} else if it.kind == kindNode {
 				it.w, it.h = l.abstract(l.nodeSize(it.node.Shape, it.text))
 			}
@@ -814,7 +816,8 @@ func (l *layouter) rank(lv *level) {
 	}
 	extra := map[*ledge]int{}
 	for _, e := range lv.edges {
-		if len(e.e.Label) > 0 || count[pair(e)] > 1 {
+		// Opisy przy obu końcach potrzebują miejsca tak jak etykieta.
+		if len(e.e.Label) > 0 || count[pair(e)] > 1 || (e.e.StartLabel != "" && e.e.EndLabel != "") {
 			extra[e] = 1
 		}
 	}

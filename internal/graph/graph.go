@@ -67,6 +67,7 @@ const (
 	Fork             Shape = "fork"
 	Join             Shape = "join"
 	Entity           Shape = "entity" // encja diagramu związków: nagłówek i tabela atrybutów
+	Class            Shape = "class"  // klasa: nazwa, atrybuty, metody
 )
 
 // LineStyle to rodzaj linii krawędzi.
@@ -93,6 +94,12 @@ const (
 	ZeroOrOne  Head = "zero-or-one"
 	OneOrMore  Head = "one-or-more"
 	ZeroOrMore Head = "zero-or-more"
+
+	// Zakończenia relacji diagramu klas.
+	Triangle      Head = "triangle"       // dziedziczenie, realizacja: pusty trójkąt
+	DiamondFilled Head = "diamond-filled" // kompozycja
+	DiamondHollow Head = "diamond-hollow" // agregacja
+	OpenArrow     Head = "open-arrow"     // asocjacja skierowana, zależność: otwarty grot
 )
 
 // Node to węzeł. Parent to identyfikator podgrafu albo pusty napis.
@@ -110,6 +117,17 @@ type Node struct {
 
 	// Table to wiersze tabeli atrybutów encji: typ, nazwa, klucze, komentarz.
 	Table [][]string
+
+	// Klasa: adnotacja (np. „interface”) i składowe w kolejności ze źródła.
+	Annotation string
+	Members    []Member
+}
+
+// Member to składowa klasy: atrybut albo metoda. Tekst składowej abstrakcyjnej niesie znaki kursywy.
+type Member struct {
+	Text   string
+	Method bool
+	Static bool // rysowana z podkreśleniem
 }
 
 // Edge to krawędź. From i To wskazują węzeł albo podgraf.
@@ -122,6 +140,9 @@ type Edge struct {
 	Label     []string
 	Line      int
 	Paint     Paint // wygląd narzucony przez źródło (linkStyle)
+
+	// Opisy przy końcach krawędzi (liczność relacji w diagramie klas).
+	StartLabel, EndLabel string
 }
 
 // Subgraph to podgraf schematu blokowego albo stan złożony.
@@ -326,11 +347,27 @@ func (g *Graph) Dump() string {
 		for _, row := range n.Table {
 			fmt.Fprintf(&b, "  attribute %q\n", row)
 		}
+		if n.Annotation != "" {
+			fmt.Fprintf(&b, "  annotation %q\n", n.Annotation)
+		}
+		for _, m := range n.Members {
+			kind := "attribute"
+			if m.Method {
+				kind = "method"
+			}
+			if m.Static {
+				kind += " static"
+			}
+			fmt.Fprintf(&b, "  %s %q\n", kind, m.Text)
+		}
 	}
 	for _, e := range g.Edges {
 		fmt.Fprintf(&b, "edge %s -> %s %s %s/%s len=%d", e.From, e.To, e.Style, e.StartHead, e.EndHead, e.MinLen)
 		if len(e.Label) > 0 {
 			fmt.Fprintf(&b, " %s", quote(e.Label))
+		}
+		if e.StartLabel != "" || e.EndLabel != "" {
+			fmt.Fprintf(&b, " ends=%q/%q", e.StartLabel, e.EndLabel)
 		}
 		b.WriteString(e.Paint.dump())
 		b.WriteByte('\n')
@@ -355,13 +392,20 @@ func (g *Graph) Texts() []string {
 		add(s.Title)
 	}
 	for _, n := range g.Nodes {
+		if n.Annotation != "" {
+			add([]string{"«" + n.Annotation + "»"})
+		}
 		add(n.Label)
 		for _, row := range n.Table {
 			add(row)
 		}
+		for _, m := range n.Members {
+			add([]string{m.Text})
+		}
 	}
 	for _, e := range g.Edges {
 		add(e.Label)
+		add([]string{e.StartLabel, e.EndLabel})
 	}
 	for _, n := range g.Notes {
 		add(n.Text)

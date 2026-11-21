@@ -1,0 +1,23 @@
+class TB
+node Dokument class "Dokument"
+node Procedura class "Procedura"
+node Instrukcja class "Instrukcja"
+node Zatwierdzalny class "Zatwierdzalny"
+node Wydanie class "Wydanie"
+node Rejestr class "Rejestr"
+node Osoba class "Osoba"
+node Formularz class "Formularz"
+node Stanowisko class "Stanowisko"
+node Zapis class "Zapis"
+node Szkolenie class "Szkolenie"
+edge Dokument -> Procedura normal triangle/none len=1
+edge Dokument -> Instrukcja normal triangle/none len=1
+edge Zatwierdzalny -> Dokument dotted triangle/none len=1 "realizuje"
+edge Dokument -> Wydanie normal diamond-filled/none len=1 "ma" ends="1"/"1..*"
+edge Rejestr -> Dokument normal diamond-hollow/none len=1 ends="1"/"*"
+edge Wydanie -> Osoba normal none/open-arrow len=1 "zatwierdził"
+edge Procedura -> Formularz dotted none/open-arrow len=1 "używa"
+edge Instrukcja -> Stanowisko normal none/none len=1
+edge Formularz -> Zapis dotted none/none len=1
+edge Zapis -> Dokument normal none/triangle len=1
+edge Szkolenie -> Wydanie normal open-arrow/none len=1 "wymaga" ends="0..*"/"1"

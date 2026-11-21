@@ -270,3 +270,38 @@ Konfiguracja w bloku `%%{init}%%` i `---` (położenie tekstu, szerokość obrys
 - udział jest zaokrąglany do liczby całkowitej, a poniżej 10% do jednego miejsca po przecinku;
 - etykieta wycinka nie może być pusta ani się powtarzać, a wartość ujemna jest błędem; wykres bez wycinka
   o wartości powyżej zera jest błędem; limit to 24 wycinki.
+
+## Diagram klas (`classDiagram`)
+
+Rysowany tym samym układem warstwowym co schemat blokowy; obowiązują te same reguły krawędzi i te same
+ograniczenia rysunku.
+
+### Obsługiwane
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| nagłówek | `classDiagram`, `classDiagram-v2` | CLS-001 |
+| klasa | `class Nazwa`, `class Nazwa["Etykieta"]`, `class Lista~T~` | CLS-001 |
+| składowe | `class Nazwa { … }` po jednej w linii; `Nazwa : +pole`; `Nazwa : +metoda(arg) Typ` | CLS-002 |
+| klasyfikatory | `metoda()*` (abstrakcyjna, kursywa), `metoda()$` i `pole$` (statyczna, podkreślenie) | CLS-003 |
+| adnotacja | `<<interface>>` w bloku klasy; `<<interface>> Nazwa` | CLS-003 |
+| relacje | `<\|--`, `*--`, `o--`, `-->`, `--`, `..>`, `..\|>`, `..` i zapisy odwrócone | CLS-004 |
+| etykieta i liczności | `A "1" --> "0..*" B : etykieta` | CLS-005 |
+| kierunek, notatka | `direction LR`; `note for Nazwa "tekst"` | CLS-006 |
+| wygląd | `classDef`, `class Nazwa:::styl`, `cssClass "A,B" styl`, `style Nazwa …` | CLS-007 |
+| dostępność, odsyłacze | `accTitle`, `accDescr`; `click`, `link`, `callback` (pomijane) | CLS-006 |
+
+### Poza profilem (błąd `class-unsupported`)
+
+Przestrzenie nazw (`namespace`), interfejs „lizak” (`()--`), notatka bez klasy (`note "tekst"`), nazwy klas
+w odwrotnych apostrofach, blok składowych w jednej linii z deklaracją, konfiguracja `hideEmptyMembersBox`.
+
+### Świadome różnice wobec Mermaid
+
+- klasa bez składowych jest prostym polem z nazwą; renderer odniesienia rysuje zawsze trzy przedziały;
+- klasa ze składowymi ma dwa przedziały; pusty zostaje jako wąski pasek;
+- asocjacja skierowana i zależność mają otwarty grot (dwie kreski), jak w UML, a nie grot wypełniony;
+- liczności stoją obok linii tuż przy polu; krawędź z licznościami przy obu końcach jest o warstwę dłuższa,
+  żeby opisy się nie stykały;
+- identyfikatorem klasy jest nazwa bez parametru typu: `Lista~T~` i `Lista` to ta sama klasa;
+- kolor nadany klasie stylem obejmuje całe pole, także linie przedziałów.

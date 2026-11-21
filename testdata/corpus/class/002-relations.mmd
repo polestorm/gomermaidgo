@@ -1,0 +1,15 @@
+%% REQ: CLS-004 CLS-005
+%% Tytuł: Relacje
+%% Sprawdza: dziedziczenie, realizacja, kompozycja, agregacja, asocjacja, zależność, połączenie zwykłe i przerywane, zapis odwrócony, etykieta relacji, liczności przy końcach.
+classDiagram
+    Dokument <|-- Procedura
+    Dokument <|-- Instrukcja
+    Zatwierdzalny <|.. Dokument : realizuje
+    Dokument "1" *-- "1..*" Wydanie : ma
+    Rejestr "1" o-- "*" Dokument
+    Wydanie --> Osoba : zatwierdził
+    Procedura ..> Formularz : używa
+    Instrukcja -- Stanowisko
+    Formularz .. Zapis
+    Zapis --|> Dokument
+    Szkolenie "0..*" <-- "1" Wydanie : wymaga

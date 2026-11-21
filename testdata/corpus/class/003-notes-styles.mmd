@@ -1,0 +1,26 @@
+%% REQ: CLS-006 CLS-007
+%% Tytuł: Kierunek, notatki i wygląd
+%% Sprawdza: direction, note for, classDef i skrót :::, cssClass, style, relacja klasy z samą sobą, accTitle i accDescr, click pomijane.
+classDiagram
+    direction LR
+    accTitle: Niezgodność i działania
+    accDescr: Niezgodność prowadzi do działań korygujących, które mogą się łączyć.
+    classDef alarm fill:#fde8e8,stroke:#b42318,stroke-width:2px
+    classDef ok fill:#e6f4ea,stroke:#1e7b34
+    class Niezgodnosc:::alarm {
+        +String opis
+        +Date wykryto
+        +ocen() Ryzyko
+    }
+    class Dzialanie {
+        +Date termin
+        +zamknij()
+    }
+    class Weryfikacja
+    Niezgodnosc "1" --> "0..*" Dzialanie : prowadzi do
+    Dzialanie --> Weryfikacja
+    Dzialanie --> Dzialanie : poprzedza
+    note for Niezgodnosc "Każda niezgodność<br/>ma właściciela"
+    cssClass "Weryfikacja" ok
+    style Dzialanie stroke:#b7791f,stroke-width:3px
+    click Niezgodnosc href "https://example.org"

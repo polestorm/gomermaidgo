@@ -15,6 +15,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/polestorm/gomermaidgo/fonts"
+	"github.com/polestorm/gomermaidgo/internal/class"
 	"github.com/polestorm/gomermaidgo/internal/er"
 	"github.com/polestorm/gomermaidgo/internal/flowchart"
 	"github.com/polestorm/gomermaidgo/internal/font"
@@ -42,11 +43,12 @@ const (
 	TypeGantt     = "gantt"
 	TypeER        = "erDiagram"
 	TypePie       = "pie"
+	TypeClass     = "classDiagram"
 )
 
 // SupportedTypes zwraca obsługiwane typy diagramów.
 func SupportedTypes() []string {
-	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie}
+	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass}
 }
 
 type config struct {
@@ -130,6 +132,8 @@ func DetectType(source string) (string, error) {
 			return TypeER, nil
 		case "pie":
 			return TypePie, nil
+		case "classDiagram", "classDiagram-v2":
+			return TypeClass, nil
 		}
 		return "", fmt.Errorf("%w: %q (line %d)", ErrUnsupportedType, word, n+1)
 	}
@@ -175,6 +179,8 @@ func Check(source string) error {
 		_, err = er.Parse(source)
 	case TypePie:
 		_, err = pie.Parse(source)
+	case TypeClass:
+		_, err = class.Parse(source)
 	default:
 		_, err = sequence.Parse(source)
 	}
@@ -252,6 +258,8 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 			g, err = flowchart.Parse(source)
 		case TypeER:
 			g, err = er.Parse(source)
+		case TypeClass:
+			g, err = class.Parse(source)
 		default:
 			g, err = state.Parse(source)
 		}

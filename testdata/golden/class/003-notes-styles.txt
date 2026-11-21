@@ -1,0 +1,13 @@
+class LR
+node Niezgodnosc class "Niezgodnosc" paint[fill=#fde8e8 stroke=#b42318 width=2]
+  attribute "+String opis"
+  attribute "+Date wykryto"
+  method "+ocen() : Ryzyko"
+node Dzialanie class "Dzialanie" paint[stroke=#b7791f width=3]
+  attribute "+Date termin"
+  method "+zamknij()"
+node Weryfikacja class "Weryfikacja" paint[fill=#e6f4ea stroke=#1e7b34]
+edge Niezgodnosc -> Dzialanie normal none/open-arrow len=1 "prowadzi do" ends="1"/"0..*"
+edge Dzialanie -> Weryfikacja normal none/open-arrow len=1
+edge Dzialanie -> Dzialanie normal none/open-arrow len=1 "poprzedza"
+note right of Niezgodnosc "Każda niezgodność\nma właściciela"

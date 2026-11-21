@@ -385,3 +385,52 @@ func TestEntityDiagramFitsPage(t *testing.T) {
 		}
 	}
 }
+
+// REQ: CLS-003 CLS-004 CLS-005
+// Klasa: składowe stoją wewnątrz pola, wyrównane do lewej; składowa statyczna ma podkreślenie,
+// abstrakcyjna kursywę, nazwa jest pogrubiona. Relacja z licznościami ma opis przy każdym końcu.
+func TestClassDrawing(t *testing.T) {
+	sc := natural(t, "class/001-classes-members.mmd")
+	box := nodeOf(t, sc, "Dokument")
+	members, underlines, italics := 0, 0, 0
+	left := math.Inf(1)
+	for _, it := range sc.Items {
+		b := it.Bounds()
+		inside := b.X0 >= box.X0 && b.X1 <= box.X1 && b.Y0 >= box.Y0 && b.Y1 <= box.Y1
+		switch {
+		case it.Role == "member" && inside:
+			members++
+			left = math.Min(left, it.X)
+			if it.Italic {
+				italics++
+			}
+			if it.X != left {
+				t.Errorf("member %q is not aligned with the others", it.Text)
+			}
+		case it.Role == "member-underline" && inside:
+			underlines++
+		case it.Role == "node-label" && it.Text == "Dokument" && !it.Bold:
+			t.Error("class name is not bold")
+		}
+	}
+	if members != 7 || underlines != 1 || italics != 1 {
+		t.Errorf("%d members, %d underlined, %d italic; want 7, 1, 1", members, underlines, italics)
+	}
+	sc = natural(t, "class/002-relations.mmd")
+	ends := map[string]int{}
+	for _, it := range byRole(sc, "edge-end-label") {
+		ends[it.Text]++
+	}
+	if ends["1"] != 3 || ends["1..*"] != 1 || ends["*"] != 1 || ends["0..*"] != 1 {
+		t.Errorf("end labels: %v", ends)
+	}
+	heads := map[int]int{}
+	for _, it := range byRole(sc, "arrowhead") {
+		if it.Kind == scene.Polygon {
+			heads[len(it.Points)]++
+		}
+	}
+	if heads[3] != 4 || heads[4] != 2 {
+		t.Errorf("%d triangles and %d diamonds, want 4 and 2", heads[3], heads[4])
+	}
+}

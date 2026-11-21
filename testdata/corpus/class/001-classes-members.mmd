@@ -1,0 +1,22 @@
+%% REQ: CLS-001 CLS-002 CLS-003
+%% Tytuł: Klasy i składowe
+%% Sprawdza: klasa z blokiem składowych, składowe po dwukropku, widoczność, metoda z typem zwracanym, parametr typu w tyldach, składowa statyczna i abstrakcyjna, adnotacja w bloku i w osobnej linii, klasa bez składowych, etykieta klasy.
+classDiagram
+    class Dokument {
+        <<abstract>>
+        +String numer
+        +int wydanie
+        #Status status
+        -List~Zmiana~ historia
+        +zatwierdz(Osoba kto) bool
+        +wycofaj()*
+        +nastepnyNumer()$ String
+    }
+    class Rejestr~T~
+    Rejestr : +dodaj(T zapis)
+    Rejestr : +znajdz(String numer) T
+    Rejestr : -int licznik$
+    class Zatwierdzajacy["Osoba zatwierdzająca"]
+    <<interface>> Zatwierdzajacy
+    Zatwierdzajacy : +podpisz(Dokument d)
+    class Uwaga

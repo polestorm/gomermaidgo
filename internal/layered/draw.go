@@ -457,9 +457,13 @@ func (l *layouter) drawLevelContent(lv *level) {
 				l.drawLevel(it.child)
 			case kindNode:
 				cx, cy, w, h := l.rect(it.nodeX(), it.y, it.nodeW(), it.h)
-				if it.node.Shape == graph.Entity {
+				if it.node.Shape == graph.Entity || it.node.Shape == graph.Class {
 					from := len(l.sc.Items)
-					l.drawEntity(it.node, cx, cy, w, h)
+					if it.node.Shape == graph.Class {
+						l.drawClass(it.node, cx, cy, w, h)
+					} else {
+						l.drawEntity(it.node, cx, cy, w, h)
+					}
 					l.repaint(from, len(l.sc.Items), it.node.Paint, "")
 					if l.o.Shadows {
 						l.sc.AddShadows(from, l.u(3), "node")
@@ -681,6 +685,96 @@ func (l *layouter) drawEntity(n *graph.Node, cx, cy, w, h float64) {
 	}
 }
 
+// classParts zwraca wymiary części klasy: nagłówka z adnotacją i nazwą, wiersza składowej
+// oraz przedziałów atrybutów i metod (0, gdy klasa nie ma żadnych składowych).
+func (l *layouter) classParts(n *graph.Node) (head, row, attrs, methods float64) {
+	lines := float64(len(n.Label))
+	if n.Annotation != "" {
+		lines++
+	}
+	head, row = lines*l.lh+2*l.u(8), l.lh+l.u(2)
+	if len(n.Members) == 0 {
+		return head, row, 0, 0
+	}
+	count := [2]float64{}
+	for _, m := range n.Members {
+		if m.Method {
+			count[1]++
+		} else {
+			count[0]++
+		}
+	}
+	// Pusty przedział zostaje jako wąski pasek: widać, że klasa nie ma atrybutów albo metod.
+	part := func(k float64) float64 { return math.Max(k*row+2*l.u(5), l.u(12)) }
+	return head, row, part(count[0]), part(count[1])
+}
+
+// boldWidth mierzy tekst odmianą pogrubioną.
+func (l *layouter) boldWidth(s string) float64 {
+	return l.width(string(graph.MarkBold) + s + string(graph.MarkBold))
+}
+
+// classSize zwraca rozmiar klasy: nagłówek i przedziały składowych.
+func (l *layouter) classSize(n *graph.Node) (w, h float64) {
+	head, _, attrs, methods := l.classParts(n)
+	for _, s := range n.Label {
+		w = math.Max(w, l.boldWidth(s))
+	}
+	if n.Annotation != "" {
+		w = math.Max(w, l.width("«"+n.Annotation+"»"))
+	}
+	for _, m := range n.Members {
+		w = math.Max(w, l.width(m.Text))
+	}
+	return math.Round(math.Max(w+2*l.u(12), l.u(120))), head + attrs + methods
+}
+
+// drawClass rysuje klasę: nagłówek z adnotacją i pogrubioną nazwą, pod nim atrybuty i metody
+// w osobnych przedziałach. Składowa statyczna jest podkreślona, abstrakcyjna pochylona.
+func (l *layouter) drawClass(n *graph.Node, cx, cy, w, h float64) {
+	fill, stroke := l.tone(graph.Class)
+	head, row, attrs, _ := l.classParts(n)
+	x0, y0 := cx-w/2, cy-h/2
+	body := "#ffffff"
+	if len(n.Members) == 0 {
+		body = fill
+	}
+	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "node", X: x0, Y: y0, W: w, H: h, Fill: body, Stroke: stroke, StrokeWidth: 1.5})
+	if len(n.Members) > 0 {
+		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "node-detail", X: x0, Y: y0, W: w, H: head, Fill: fill, Stroke: stroke, StrokeWidth: 1.5})
+		l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "node-detail", X: x0, Y: y0 + head + attrs, X2: x0 + w, Y2: y0 + head + attrs, Stroke: stroke, StrokeWidth: 1})
+	}
+	top := y0 + l.u(8)
+	if n.Annotation != "" {
+		s := "«" + n.Annotation + "»"
+		l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "node-label", X: cx, Y: top + l.lh/2 + 0.35*l.fs,
+			W: l.width(s), H: l.lh, Text: s, Anchor: "middle", Fill: colorText})
+		top += l.lh
+	}
+	for _, s := range n.Label {
+		l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "node-label", X: cx, Y: top + l.lh/2 + 0.35*l.fs,
+			W: l.boldWidth(s), H: l.lh, Text: s, Anchor: "middle", Bold: true, Fill: colorText})
+		top += l.lh
+	}
+	next := [2]float64{y0 + head + l.u(5), y0 + head + attrs + l.u(5)}
+	for _, m := range n.Members {
+		k := 0
+		if m.Method {
+			k = 1
+		}
+		mid, x := next[k]+row/2, x0+l.u(12)
+		next[k] += row
+		plain, italic := graph.Plain(m.Text), graph.HasMarks(m.Text)
+		tw := l.width(m.Text)
+		l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "member", X: x, Y: mid + 0.35*l.fs,
+			W: tw, H: l.lh, Text: plain, Anchor: "start", Italic: italic, Fill: colorText})
+		if m.Static {
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLabel, Role: "member-underline", X: x, Y: mid + 0.35*l.fs + l.u(3),
+				X2: x + tw, Y2: mid + 0.35*l.fs + l.u(3), Stroke: colorText, StrokeWidth: 1})
+		}
+	}
+}
+
 func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float64, paint graph.Paint) {
 	colorNodeFill, colorNodeStroke := l.tone(shape)
 	from := len(l.sc.Items)
@@ -834,6 +928,31 @@ func (l *layouter) headAt(h graph.Head, x, y, dx, dy float64) float64 {
 				Fill: l.labelBackground(), Stroke: colorLine, StrokeWidth: 1.5})
 		} else {
 			stroke(at(outer, hw), at(outer, -hw))
+		}
+		return 0
+	case graph.Triangle:
+		// Dziedziczenie i realizacja: pusty trójkąt, linia kończy się na jego podstawie.
+		a, hw := l.u(14), l.u(7.5)
+		l.sc.Add(scene.Item{Kind: scene.Polygon, Layer: scene.LayerActivation, Role: "arrowhead",
+			Points: []scene.Point{at(0, 0), at(a, hw), at(a, -hw)}, Fill: l.labelBackground(), Stroke: colorLine, StrokeWidth: 1.5})
+		return a
+	case graph.DiamondFilled, graph.DiamondHollow:
+		// Kompozycja (pełny romb) i agregacja (pusty): linia kończy się na dalszym wierzchołku.
+		a, hw := l.u(18), l.u(5.5)
+		fill := colorLine
+		if h == graph.DiamondHollow {
+			fill = l.labelBackground()
+		}
+		l.sc.Add(scene.Item{Kind: scene.Polygon, Layer: scene.LayerActivation, Role: "arrowhead",
+			Points: []scene.Point{at(0, 0), at(a/2, hw), at(a, 0), at(a/2, -hw)}, Fill: fill, Stroke: colorLine, StrokeWidth: 1.5})
+		return a
+	case graph.OpenArrow:
+		// Asocjacja skierowana i zależność: otwarty grot z dwóch kresek, linia dochodzi do pola.
+		a, hw := l.u(11), l.u(6)
+		for _, side := range []float64{-1, 1} {
+			p, q := at(0, 0), at(a, side*hw)
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerActivation, Role: "arrowhead",
+				X: p.X, Y: p.Y, X2: q.X, Y2: q.Y, Stroke: colorLine, StrokeWidth: 1.5})
 		}
 		return 0
 	case graph.CrossHead:
@@ -1033,6 +1152,10 @@ func (l *layouter) headLength(h graph.Head) float64 {
 		return l.u(9)
 	case graph.CrossHead:
 		return l.u(8) // linia kończy się w środku krzyżyka
+	case graph.Triangle:
+		return l.u(14)
+	case graph.DiamondFilled, graph.DiamondHollow:
+		return l.u(18)
 	}
 	return 0
 }
@@ -1126,6 +1249,27 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 	defer func() { l.repaint(from, len(l.sc.Items), e.e.Paint, colorLine) }()
 	l.headAt(r.topHead, r.top.x, r.top.y, 0, -1)
 	l.headAt(r.bottomHead, r.bottom.x, r.bottom.y, 0, 1)
+	// Opisy przy końcach (liczność): obok linii, tuż przy polu.
+	topLabel, bottomLabel := e.e.StartLabel, e.e.EndLabel
+	if e.rev {
+		topLabel, bottomLabel = bottomLabel, topLabel
+	}
+	for _, end := range []struct {
+		text string
+		at   routePoint
+		dir  float64
+	}{{topLabel, r.top, 1}, {bottomLabel, r.bottom, -1}} {
+		if end.text == "" {
+			continue
+		}
+		w := l.width(end.text)
+		p := l.point(end.at.x+l.u(8)+w/2, end.at.y+end.dir*l.u(13))
+		if !l.vertical {
+			p = l.point(end.at.x+l.u(13), end.at.y+end.dir*(l.u(8)+w/2))
+		}
+		l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "edge-end-label", X: p.X, Y: p.Y + 0.35*l.fs,
+			W: w, H: l.lh, Text: end.text, Anchor: "middle", Fill: colorText})
+	}
 
 	segments := []scene.Segment{{Cmd: 'M', To: l.point(pts[0].x, pts[0].y)}}
 	// run prowadzi krawędź wzdłuż osi warstw do punktu (x, y), z mostkami nad krawędziami
