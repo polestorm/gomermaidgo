@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="340" height="192" viewBox="-12 -12 340 192" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M103.69 27.13 C130.84 27.13 130.84 26 158 26 C190.73 26 190.73 29 223.46 29" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M103.69 42.88 C130.84 42.88 130.84 44 158 44 C190.73 44 190.73 41 223.46 41" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M103.69 27.13 L126 27.13 C142 27.13 142 26 158 26 C174 26 174 29 190 29 L223.46 29" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M103.69 42.88 L126 42.88 C142 42.88 142 44 158 44 C174 44 174 41 190 41 L223.46 41" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M126 134.5 C142 134.5 142 134 158 134 C170.85 134 170.85 134.5 183.7 134.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M132.3 151.5 C145.15 151.5 145.15 152 158 152 C174 152 174 151.5 190 151.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="229.76,29 220.76,24 220.76,34" fill="#3b4754"/>

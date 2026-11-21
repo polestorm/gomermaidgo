@@ -266,7 +266,16 @@ func (l *layouter) drawLevel(lv *level) {
 				l.drawLevel(it.child)
 			case kindNode:
 				cx, cy, w, h := l.rect(it.nodeX(), it.y, it.nodeW(), it.h)
-				l.drawNode(it.node.Shape, it.text, cx, cy, w, h, it.node.Paint)
+				if it.node.Shape == graph.Entity {
+					from := len(l.sc.Items)
+					l.drawEntity(it.node, cx, cy, w, h)
+					l.repaint(from, len(l.sc.Items), it.node.Paint, "")
+					if l.o.Shadows {
+						l.sc.AddShadows(from, l.u(3), "node")
+					}
+				} else {
+					l.drawNode(it.node.Shape, it.text, cx, cy, w, h, it.node.Paint)
+				}
 				if a := it.anchor; a != nil {
 					// Łącznik notatki: krótka linia kropkowana między bokami pola i notatki.
 					from := l.point(a.nodeX()+it.anchorSide*a.nodeW()/2, it.y)
@@ -343,6 +352,58 @@ func (l *layouter) repaint(from, to int, p graph.Paint, stroke string) {
 		}
 		if p.Dash != "" {
 			it.Dash = p.Dash
+		}
+	}
+}
+
+// entityColumns zwraca szerokości kolumn tabeli atrybutów encji i wysokości nagłówka oraz wiersza.
+func (l *layouter) entityColumns(n *graph.Node) (cols [4]float64, head, row float64) {
+	for _, r := range n.Table {
+		for c := range cols {
+			if r[c] != "" {
+				cols[c] = math.Max(cols[c], l.width(r[c])+2*l.u(10))
+			}
+		}
+	}
+	_, th := l.textSize(n.Label)
+	return cols, th + 2*l.u(10), l.lh + l.u(10)
+}
+
+// entitySize zwraca rozmiar encji: nagłówek z nazwą i tabela atrybutów.
+func (l *layouter) entitySize(n *graph.Node) (w, h float64) {
+	cols, head, row := l.entityColumns(n)
+	tw, _ := l.textSize(n.Label)
+	w = math.Max(tw+2*l.u(24), l.u(120))
+	w = math.Max(w, cols[0]+cols[1]+cols[2]+cols[3])
+	return math.Round(w), head + float64(len(n.Table))*row
+}
+
+// drawEntity rysuje encję: ramka, nagłówek z nazwą, wiersze atrybutów rozdzielone liniami.
+func (l *layouter) drawEntity(n *graph.Node, cx, cy, w, h float64) {
+	fill, stroke := l.tone(graph.Entity)
+	cols, head, row := l.entityColumns(n)
+	x0, y0 := cx-w/2, cy-h/2
+	body := "#ffffff"
+	if len(n.Table) == 0 {
+		body = fill
+	}
+	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "node", X: x0, Y: y0, W: w, H: h, Fill: body, Stroke: stroke, StrokeWidth: 1.5})
+	if len(n.Table) > 0 {
+		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "node-detail", X: x0, Y: y0, W: w, H: head, Fill: fill, Stroke: stroke, StrokeWidth: 1.5})
+	}
+	l.textBlock(n.Label, cx, y0+head/2, "node-label")
+	for i, r := range n.Table {
+		top := y0 + head + float64(i)*row
+		if i > 0 {
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "node-detail", X: x0, Y: top, X2: x0 + w, Y2: top, Stroke: colorFrame, StrokeWidth: 1})
+		}
+		x := x0
+		for c, cell := range r {
+			if cell != "" {
+				l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "attribute", X: x + l.u(10),
+					Y: top + row/2 + 0.35*l.fs, W: l.width(cell), H: l.lh, Text: cell, Anchor: "start", Fill: colorText})
+			}
+			x += cols[c]
 		}
 	}
 }
@@ -475,6 +536,33 @@ func (l *layouter) headAt(h graph.Head, x, y, dx, dy float64) float64 {
 		l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerActivation, Role: "arrowhead", X: c.X, Y: c.Y, R: r,
 			Fill: "#ffffff", Stroke: colorLine, StrokeWidth: 1.5})
 		return 2 * r
+	case graph.OnlyOne, graph.ZeroOrOne, graph.OneOrMore, graph.ZeroOrMore:
+		// Liczność związku: przy polu „jeden” (kreska) albo „wiele” (kurza stopka), dalej
+		// „co najmniej jeden” (kreska) albo „zero” (kółko). Linia dochodzi do samego pola.
+		stroke := func(a, b scene.Point) {
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerActivation, Role: "arrowhead",
+				X: a.X, Y: a.Y, X2: b.X, Y2: b.Y, Stroke: colorLine, StrokeWidth: 1.5})
+		}
+		hw := l.u(6)
+		outer := l.u(7)
+		if h == graph.OneOrMore || h == graph.ZeroOrMore {
+			foot := l.u(11)
+			stroke(at(foot, 0), at(0, hw))
+			stroke(at(foot, 0), at(0, -hw))
+			outer = foot + l.u(5)
+		} else {
+			stroke(at(l.u(7), hw), at(l.u(7), -hw))
+			outer = l.u(13)
+		}
+		if h == graph.ZeroOrOne || h == graph.ZeroOrMore {
+			r := l.u(4.5)
+			c := at(outer+r-l.u(1), 0)
+			l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerActivation, Role: "arrowhead", X: c.X, Y: c.Y, R: r,
+				Fill: l.labelBackground(), Stroke: colorLine, StrokeWidth: 1.5})
+		} else {
+			stroke(at(outer, hw), at(outer, -hw))
+		}
+		return 0
 	case graph.CrossHead:
 		r := l.u(4.5)
 		for _, s := range []float64{-1, 1} {
@@ -538,7 +626,13 @@ func (l *layouter) route(e *ledge) []routePoint {
 			pts = append(pts, routePoint{e.u.x, e.u.y})
 		}
 	default:
-		pts = append(pts, routePoint{e.u.nodeX() + e.upperPort, e.u.y + e.u.h/2 - inset(e.u, e.upperPort)})
+		x := e.u.nodeX() + e.upperPort
+		pts = append(pts, routePoint{x, e.u.y + e.u.h/2 - inset(e.u, e.upperPort)})
+		// Pole niższe niż jego warstwa: krawędź biegnie prosto do granicy warstwy, żeby nie skręcać
+		// obok wyższych sąsiadów.
+		if e.u.band > e.u.h+1 {
+			pts = append(pts, routePoint{x, e.u.y + e.u.band/2})
+		}
 	}
 	for _, d := range e.chain {
 		if d.band > 0 {
@@ -557,7 +651,11 @@ func (l *layouter) route(e *ledge) []routePoint {
 		}
 		pts = append(pts, routePoint{e.v.x, border})
 	default:
-		pts = append(pts, routePoint{e.v.nodeX() + e.lowerPort, e.v.y - e.v.h/2 + inset(e.v, e.lowerPort)})
+		x := e.v.nodeX() + e.lowerPort
+		if e.v.band > e.v.h+1 {
+			pts = append(pts, routePoint{x, e.v.y - e.v.band/2})
+		}
+		pts = append(pts, routePoint{x, e.v.y - e.v.h/2 + inset(e.v, e.lowerPort)})
 	}
 	return pts
 }

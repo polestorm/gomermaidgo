@@ -12,6 +12,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/polestorm/gomermaidgo/internal/er"
 	"github.com/polestorm/gomermaidgo/internal/flowchart"
 	"github.com/polestorm/gomermaidgo/internal/gantt"
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -45,7 +46,7 @@ func corpusFiles(t *testing.T) []string {
 func graphCorpusFiles(t *testing.T) []string {
 	t.Helper()
 	var files []string
-	for _, dir := range []string{"flowchart", "state"} {
+	for _, dir := range []string{"flowchart", "state", "er"} {
 		m, _ := filepath.Glob("testdata/corpus/" + dir + "/*.mmd")
 		if len(m) == 0 {
 			t.Fatalf("no corpus files for %s", dir)
@@ -62,6 +63,8 @@ func parseGraph(t *testing.T, path string) *graph.Graph {
 	var err error
 	if strings.Contains(path, "/flowchart/") {
 		g, err = flowchart.Parse(src)
+	} else if strings.Contains(path, "/er/") {
+		g, err = er.Parse(src)
 	} else {
 		g, err = state.Parse(src)
 	}

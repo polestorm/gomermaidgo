@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="594" height="388" viewBox="-12 -12 594 388" role="img" font-family="Recursive, sans-serif" font-size="16">
 <line class="note-link" x1="349.5" y1="108" x2="398" y2="108" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
 <line class="note-link" x1="200" y1="252" x2="152" y2="252" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M267 16 L267 48 L267 76.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M267 133 L267 168 L267 192 L267 220.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M267 277 L267 312 L267 337.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M267 16 L267 48 L267 80 L267 76.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M267 133 L267 136 L267 168 L267 192 L267 224 L267 220.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M267 277 L267 280 L267 312 L267 337.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="166.2" y="170" width="201.6" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="267,83 262,74 272,74" fill="#3b4754"/>
 <polygon class="arrowhead" points="267,227 262,218 272,218" fill="#3b4754"/>

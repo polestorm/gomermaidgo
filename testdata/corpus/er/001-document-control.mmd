@@ -1,0 +1,31 @@
+%% REQ: ER-001 ER-002 ER-003
+%% Tytuł: Model danych nadzoru nad dokumentami
+%% Sprawdza: encje z atrybutami (typ, nazwa, klucze, komentarz), encja bez atrybutów, nazwa z aliasem, cztery liczności po obu stronach, związek identyfikujący i nieidentyfikujący, etykiety związków.
+erDiagram
+    DOKUMENT ||--|{ WERSJA : "ma wersje"
+    DOKUMENT }o--|| OBSZAR : "należy do"
+    WERSJA ||--o{ ZATWIERDZENIE : wymaga
+    WERSJA }o..o{ SZKOLENIE : "jest podstawą"
+    UZYTKOWNIK ||--o{ ZATWIERDZENIE : podpisuje
+    UZYTKOWNIK |o..o| PODPIS-KWALIFIKOWANY : posiada
+    DOKUMENT {
+        uuid id PK
+        string numer UK "np. PR-07"
+        string tytul
+        uuid obszar_id FK
+    }
+    WERSJA {
+        uuid id PK
+        uuid dokument_id FK
+        int numer
+        date obowiazuje_od "puste dla projektu"
+    }
+    ZATWIERDZENIE {
+        uuid wersja_id PK, FK
+        uuid uzytkownik_id PK, FK
+        timestamp podpisano
+    }
+    UZYTKOWNIK["Użytkownik systemu"] {
+        uuid id PK
+        string login UK
+    }

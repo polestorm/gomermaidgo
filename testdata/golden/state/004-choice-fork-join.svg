@@ -2,9 +2,9 @@
 <path class="edge" d="M131 16 L131 48 L131 73.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M131 130 L131 162 L131 187.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M127.63 220.63 C127.63 238.31 59 238.31 59 256 L59 280 L59 305.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M134.38 220.63 C134.38 238.31 203 238.31 203 256 L203 280 L203 326.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M194 341 L194 394 L194 419.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M212 341 L212 394 C212 406.85 433 406.85 433 419.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M134.38 220.63 C134.38 238.31 203 238.31 203 256 L203 280 L203 312 L203 326.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M194 341 L194 362 L194 394 L194 419.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M212 341 L212 362 L212 394 C212 406.85 433 406.85 433 419.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M194 476 L194 508 C194 520.85 305 520.85 305 533.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M433 476 L433 508 C433 520.85 323 520.85 323 533.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M314 548 L314 580 C314 592.85 195 592.85 195 605.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>

@@ -1,0 +1,20 @@
+%% REQ: ER-001 ER-004
+%% Tytuł: Kierunek, klasy i związek z samą sobą
+%% Sprawdza: direction LR, classDef, class i skrót :::, style; związek encji z samą sobą; nazwa w cudzysłowie ze spacją; opis dostępności.
+erDiagram
+    accTitle: Struktura organizacyjna
+    direction LR
+    classDef kluczowa fill:#e8f0fb,stroke:#3b6fb6,stroke-width:2px
+    DZIAL ||--o{ PRACOWNIK : zatrudnia
+    PRACOWNIK |o--o{ PRACOWNIK : "jest przełożonym"
+    PRACOWNIK }o--o{ "Rola w systemie" : pełni
+    DZIAL:::kluczowa {
+        int id PK
+        string nazwa
+    }
+    PRACOWNIK {
+        int id PK
+        int dzial_id FK
+        int przelozony_id FK "może być pusty"
+    }
+    style PRACOWNIK stroke:#b7791f

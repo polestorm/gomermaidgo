@@ -1,0 +1,12 @@
+er LR
+node DZIAL entity "DZIAL" paint[fill=#e8f0fb stroke=#3b6fb6 width=2]
+  attribute ["int" "id" "PK" ""]
+  attribute ["string" "nazwa" "" ""]
+node PRACOWNIK entity "PRACOWNIK" paint[stroke=#b7791f]
+  attribute ["int" "id" "PK" ""]
+  attribute ["int" "dzial_id" "FK" ""]
+  attribute ["int" "przelozony_id" "FK" "może być pusty"]
+node Rola w systemie entity "Rola w systemie"
+edge DZIAL -> PRACOWNIK normal only-one/zero-or-more len=1 "zatrudnia"
+edge PRACOWNIK -> PRACOWNIK normal zero-or-one/zero-or-more len=1 "jest przełożonym"
+edge PRACOWNIK -> Rola w systemie normal zero-or-more/zero-or-more len=1 "pełni"

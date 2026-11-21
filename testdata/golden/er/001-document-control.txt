@@ -1,0 +1,27 @@
+er TB
+node DOKUMENT entity "DOKUMENT"
+  attribute ["uuid" "id" "PK" ""]
+  attribute ["string" "numer" "UK" "np. PR-07"]
+  attribute ["string" "tytul" "" ""]
+  attribute ["uuid" "obszar_id" "FK" ""]
+node WERSJA entity "WERSJA"
+  attribute ["uuid" "id" "PK" ""]
+  attribute ["uuid" "dokument_id" "FK" ""]
+  attribute ["int" "numer" "" ""]
+  attribute ["date" "obowiazuje_od" "" "puste dla projektu"]
+node OBSZAR entity "OBSZAR"
+node ZATWIERDZENIE entity "ZATWIERDZENIE"
+  attribute ["uuid" "wersja_id" "PK, FK" ""]
+  attribute ["uuid" "uzytkownik_id" "PK, FK" ""]
+  attribute ["timestamp" "podpisano" "" ""]
+node SZKOLENIE entity "SZKOLENIE"
+node UZYTKOWNIK entity "Użytkownik systemu"
+  attribute ["uuid" "id" "PK" ""]
+  attribute ["string" "login" "UK" ""]
+node PODPIS-KWALIFIKOWANY entity "PODPIS-KWALIFIKOWANY"
+edge DOKUMENT -> WERSJA normal only-one/one-or-more len=1 "ma wersje"
+edge DOKUMENT -> OBSZAR normal zero-or-more/only-one len=1 "należy do"
+edge WERSJA -> ZATWIERDZENIE normal only-one/zero-or-more len=1 "wymaga"
+edge WERSJA -> SZKOLENIE dotted zero-or-more/zero-or-more len=1 "jest podstawą"
+edge UZYTKOWNIK -> ZATWIERDZENIE normal only-one/zero-or-more len=1 "podpisuje"
+edge UZYTKOWNIK -> PODPIS-KWALIFIKOWANY dotted zero-or-one/zero-or-one len=1 "posiada"

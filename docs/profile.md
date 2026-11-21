@@ -164,3 +164,28 @@ Stan: rysowany tym samym układem warstwowym.
 - nazwa zadania kończy się na pierwszym dwukropku;
 - limity: 500 zadań, lata 1900–2200, rozpiętość do 100 lat.
 
+## Diagram związków encji (`erDiagram`)
+
+Stan: rysowany układem warstwowym; encja jest polem z nagłówkiem i tabelą atrybutów.
+
+### Obsługiwane
+
+| Element | Zapis | Wymaganie |
+|---|---|---|
+| nagłówek, kierunek | `erDiagram`, `direction LR` | ER-001 |
+| encja | `NAZWA`, `"Nazwa ze spacją"`, `NAZWA["Opis"]`, `NAZWA { … }` | ER-002 |
+| atrybut | `typ nazwa`, `typ nazwa PK`, `typ nazwa PK, FK "komentarz"` | ER-002 |
+| związek | `A \|\|--o{ B : etykieta`; liczności `\|o`, `\|\|`, `}o`, `}\|` i lustrzane; linia `--` albo `..` | ER-003 |
+| wygląd ze źródła | `classDef`, `class`, `NAZWA:::klasa`, `style` | ER-004 |
+| dostępność | `accTitle`, `accDescr` | ER-001 |
+
+### Poza profilem
+
+Związki zapisane słowami (`only one to zero or more`; błąd `er-unsupported`), atrybuty o typach ze spacją.
+
+### Świadome różnice wobec Mermaid
+
+- nazwa encji bez cudzysłowu składa się z liter, cyfr, podkreślenia i łącznika;
+- etykieta związku jest opcjonalna;
+- limit 100 atrybutów w encji; limity grafu jak w schemacie blokowym.
+

@@ -66,6 +66,7 @@ const (
 	Choice           Shape = "choice"
 	Fork             Shape = "fork"
 	Join             Shape = "join"
+	Entity           Shape = "entity" // encja diagramu związków: nagłówek i tabela atrybutów
 )
 
 // LineStyle to rodzaj linii krawędzi.
@@ -86,6 +87,12 @@ const (
 	ArrowHead  Head = "arrow"
 	CircleHead Head = "circle"
 	CrossHead  Head = "cross"
+
+	// Liczności związku w diagramie związków encji (notacja „kurzej stopki”).
+	OnlyOne    Head = "only-one"
+	ZeroOrOne  Head = "zero-or-one"
+	OneOrMore  Head = "one-or-more"
+	ZeroOrMore Head = "zero-or-more"
 )
 
 // Node to węzeł. Parent to identyfikator podgrafu albo pusty napis.
@@ -100,6 +107,9 @@ type Node struct {
 	Explicit bool
 
 	Paint Paint // wygląd narzucony przez źródło
+
+	// Table to wiersze tabeli atrybutów encji: typ, nazwa, klucze, komentarz.
+	Table [][]string
 }
 
 // Edge to krawędź. From i To wskazują węzeł albo podgraf.
@@ -308,6 +318,9 @@ func (g *Graph) Dump() string {
 		}
 		b.WriteString(n.Paint.dump())
 		b.WriteByte('\n')
+		for _, row := range n.Table {
+			fmt.Fprintf(&b, "  attribute %q\n", row)
+		}
 	}
 	for _, e := range g.Edges {
 		fmt.Fprintf(&b, "edge %s -> %s %s %s/%s len=%d", e.From, e.To, e.Style, e.StartHead, e.EndHead, e.MinLen)
@@ -338,6 +351,9 @@ func (g *Graph) Texts() []string {
 	}
 	for _, n := range g.Nodes {
 		add(n.Label)
+		for _, row := range n.Table {
+			add(row)
+		}
 	}
 	for _, e := range g.Edges {
 		add(e.Label)
