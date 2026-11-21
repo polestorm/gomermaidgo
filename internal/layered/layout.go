@@ -447,9 +447,17 @@ func (l *layouter) rank(lv *level) {
 		}
 		color[i] = black
 	}
-	for i := range lv.items {
-		if color[i] == white {
-			visit(i)
+	// Przeszukiwanie zaczyna się od pól, do których nic nie prowadzi (stan początkowy, pierwszy krok
+	// procesu), żeby odwracane były krawędzie powrotne, a nie te, które wyznaczają główny kierunek.
+	entered := make([]bool, len(lv.items))
+	for _, e := range lv.edges {
+		entered[index[e.v]] = true
+	}
+	for pass := 0; pass < 2; pass++ {
+		for i := range lv.items {
+			if color[i] == white && (pass == 1 || !entered[i]) {
+				visit(i)
+			}
 		}
 	}
 	for _, e := range lv.edges {
@@ -771,128 +779,162 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		return l.u(18)
 	}
 	sep := func(a, b *item) float64 { return a.w/2 + b.w/2 + gap(a, b) }
-	for _, row := range lv.ranks {
-		for i, it := range row {
-			if i == 0 {
-				it.x = it.w / 2
-			} else {
-				it.x = row[i-1].x + sep(row[i-1], it)
+	// arrange rozmieszcza wzdłuż osi kolejności jedną spójną część poziomu.
+	arrange := func(rows [][]*item) {
+		for _, row := range rows {
+			for i, it := range row {
+				if i == 0 {
+					it.x = it.w / 2
+				} else {
+					it.x = row[i-1].x + sep(row[i-1], it)
+				}
 			}
 		}
-	}
-	weight := func(a, b *item) float64 {
-		switch {
-		case !a.real() && !b.real():
-			return 8 // długie krawędzie mają biec prosto
-		case !a.real() || !b.real():
-			return 2
+		weight := func(a, b *item) float64 {
+			switch {
+			case !a.real() && !b.real():
+				return 8 // długie krawędzie mają biec prosto
+			case !a.real() || !b.real():
+				return 2
+			}
+			return 1
 		}
-		return 1
-	}
-	// Metoda priorytetowa (Sugiyama, Tagawa, Toda 1981): pola warstwy są ustawiane w kolejności
-	// malejącego priorytetu; każde przesuwa się do pozycji pożądanej tak daleko, jak pozwalają
-	// pola już ustawione, i odsuwa pola o niższym priorytecie. Punkty pomocnicze mają najwyższy
-	// priorytet, dzięki czemu długie krawędzie biegną prosto.
-	place := func(row []*item, want []float64, priority []float64) {
-		n := len(row)
-		fixed := make([]bool, n)
-		idx := make([]int, n)
-		for i := range idx {
-			idx[i] = i
-		}
-		sort.SliceStable(idx, func(a, b int) bool { return priority[idx[a]] > priority[idx[b]] })
-		for _, i := range idx {
-			target := want[i]
-			if target > row[i].x {
-				// Granica: najbliższe ustawione pole po prawej minus odstępy pól pomiędzy.
-				limit, need := math.Inf(1), 0.0
-				for j := i + 1; j < n; j++ {
-					need += sep(row[j-1], row[j])
-					if fixed[j] {
-						limit = row[j].x - need
-						break
+		// Metoda priorytetowa (Sugiyama, Tagawa, Toda 1981): pola warstwy są ustawiane w kolejności
+		// malejącego priorytetu; każde przesuwa się do pozycji pożądanej tak daleko, jak pozwalają
+		// pola już ustawione, i odsuwa pola o niższym priorytecie. Punkty pomocnicze mają najwyższy
+		// priorytet, dzięki czemu długie krawędzie biegną prosto.
+		place := func(row []*item, want []float64, priority []float64) {
+			n := len(row)
+			fixed := make([]bool, n)
+			idx := make([]int, n)
+			for i := range idx {
+				idx[i] = i
+			}
+			sort.SliceStable(idx, func(a, b int) bool { return priority[idx[a]] > priority[idx[b]] })
+			for _, i := range idx {
+				target := want[i]
+				if target > row[i].x {
+					// Granica: najbliższe ustawione pole po prawej minus odstępy pól pomiędzy.
+					limit, need := math.Inf(1), 0.0
+					for j := i + 1; j < n; j++ {
+						need += sep(row[j-1], row[j])
+						if fixed[j] {
+							limit = row[j].x - need
+							break
+						}
+					}
+					row[i].x = math.Max(row[i].x, math.Min(target, limit))
+					for j := i + 1; j < n && !fixed[j]; j++ {
+						row[j].x = math.Max(row[j].x, row[j-1].x+sep(row[j-1], row[j]))
+					}
+				} else if target < row[i].x {
+					limit, need := math.Inf(-1), 0.0
+					for j := i - 1; j >= 0; j-- {
+						need += sep(row[j], row[j+1])
+						if fixed[j] {
+							limit = row[j].x + need
+							break
+						}
+					}
+					row[i].x = math.Min(row[i].x, math.Max(target, limit))
+					for j := i - 1; j >= 0 && !fixed[j]; j-- {
+						row[j].x = math.Min(row[j].x, row[j+1].x-sep(row[j], row[j+1]))
 					}
 				}
-				row[i].x = math.Max(row[i].x, math.Min(target, limit))
-				for j := i + 1; j < n && !fixed[j]; j++ {
-					row[j].x = math.Max(row[j].x, row[j-1].x+sep(row[j-1], row[j]))
-				}
-			} else if target < row[i].x {
-				limit, need := math.Inf(-1), 0.0
-				for j := i - 1; j >= 0; j-- {
-					need += sep(row[j], row[j+1])
-					if fixed[j] {
-						limit = row[j].x + need
-						break
+				fixed[i] = true
+			}
+		}
+		pull := func(row []*item, useUp, useDown bool) {
+			want := make([]float64, len(row))
+			priority := make([]float64, len(row))
+			for i, it := range row {
+				sum, total, count := 0.0, 0.0, 0
+				add := func(ns []*item, siblings func(*item) []*item) {
+					for _, n := range ns {
+						w := weight(it, n)
+						sum += w * (n.x + fanOffset(it, siblings(n), sep))
+						total += w
+						count++
 					}
 				}
-				row[i].x = math.Min(row[i].x, math.Max(target, limit))
-				for j := i - 1; j >= 0 && !fixed[j]; j-- {
-					row[j].x = math.Min(row[j].x, row[j+1].x-sep(row[j], row[j+1]))
+				if useUp {
+					add(it.up, func(n *item) []*item { return n.down })
+				}
+				if useDown {
+					add(it.down, func(n *item) []*item { return n.up })
+				}
+				want[i] = it.x
+				if total > 0 {
+					want[i] = sum / total
+					priority[i] = float64(count)
+					if !it.real() {
+						priority[i] += 1000
+					}
+				} else {
+					priority[i] = -1 // pole bez sąsiadów po tej stronie ustępuje wszystkim
 				}
 			}
-			fixed[i] = true
+			place(row, want, priority)
 		}
-	}
-	pull := func(row []*item, useUp, useDown bool) {
-		want := make([]float64, len(row))
-		priority := make([]float64, len(row))
-		for i, it := range row {
-			sum, total, count := 0.0, 0.0, 0
-			add := func(ns []*item, siblings func(*item) []*item) {
-				for _, n := range ns {
-					w := weight(it, n)
-					sum += w * (n.x + fanOffset(it, siblings(n), sep))
-					total += w
-					count++
+		for iter := 0; iter < 4; iter++ {
+			for r := 1; r < len(rows); r++ {
+				pull(rows[r], true, false)
+			}
+			for r := len(rows) - 2; r >= 0; r-- {
+				pull(rows[r], false, true)
+			}
+		}
+		for r := 1; r < len(rows); r++ {
+			pull(rows[r], true, false)
+		}
+
+		// Notatki dosuwamy do pól, których dotyczą; mają pierwszeństwo przed resztą warstwy.
+		for _, row := range rows {
+			want := make([]float64, len(row))
+			priority := make([]float64, len(row))
+			any := false
+			for i, it := range row {
+				want[i], priority[i] = it.x, 0
+				if it.anchor != nil {
+					want[i] = it.anchor.x + it.anchorSide*sep(it.anchor, it)
+					priority[i] = 1
+					any = true
 				}
 			}
-			if useUp {
-				add(it.up, func(n *item) []*item { return n.down })
-			}
-			if useDown {
-				add(it.down, func(n *item) []*item { return n.up })
-			}
-			want[i] = it.x
-			if total > 0 {
-				want[i] = sum / total
-				priority[i] = float64(count)
-				if !it.real() {
-					priority[i] += 1000
-				}
-			} else {
-				priority[i] = -1 // pole bez sąsiadów po tej stronie ustępuje wszystkim
+			if any {
+				place(row, want, priority)
 			}
 		}
-		place(row, want, priority)
-	}
-	for iter := 0; iter < 4; iter++ {
-		for r := 1; r < len(lv.ranks); r++ {
-			pull(lv.ranks[r], true, false)
-		}
-		for r := len(lv.ranks) - 2; r >= 0; r-- {
-			pull(lv.ranks[r], false, true)
-		}
-	}
-	for r := 1; r < len(lv.ranks); r++ {
-		pull(lv.ranks[r], true, false)
+
 	}
 
-	// Notatki dosuwamy do pól, których dotyczą; mają pierwszeństwo przed resztą warstwy.
-	for _, row := range lv.ranks {
-		want := make([]float64, len(row))
-		priority := make([]float64, len(row))
-		any := false
-		for i, it := range row {
-			want[i], priority[i] = it.x, 0
-			if it.anchor != nil {
-				want[i] = it.anchor.x + it.anchorSide*sep(it.anchor, it)
-				priority[i] = 1
-				any = true
+	// Części niepołączone krawędziami są rozmieszczane osobno i ustawiane obok siebie; inaczej
+	// odpychałyby się nawzajem i zostawiały puste miejsce.
+	for _, rows := range components(lv) {
+		arrange(rows)
+	}
+	shift := 0.0
+	for k, rows := range components(lv) {
+		lo, hi := math.Inf(1), math.Inf(-1)
+		for _, row := range rows {
+			for _, it := range row {
+				lo, hi = math.Min(lo, it.x-it.w/2), math.Max(hi, it.x+it.w/2)
 			}
 		}
-		if any {
-			place(row, want, priority)
+		if k > 0 {
+			shift += l.u(36)
+		}
+		for _, row := range rows {
+			for _, it := range row {
+				it.x += shift - lo
+			}
+		}
+		shift += hi - lo
+	}
+	for _, row := range lv.ranks {
+		sort.SliceStable(row, func(a, b int) bool { return row[a].x < row[b].x })
+		for i, it := range row {
+			it.order = i
 		}
 	}
 
@@ -929,6 +971,56 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		y += band
 	}
 	return width, y
+}
+
+// components dzieli pola poziomu na części spójne (połączone krawędziami albo notatką ze stanem)
+// i zwraca dla każdej jej warstwy, z zachowaniem kolejności pól; części są w kolejności źródła.
+func components(lv *level) [][][]*item {
+	parent := map[*item]*item{}
+	var find func(it *item) *item
+	find = func(it *item) *item {
+		if p, ok := parent[it]; ok && p != it {
+			root := find(p)
+			parent[it] = root
+			return root
+		}
+		parent[it] = it
+		return it
+	}
+	for _, row := range lv.ranks {
+		for _, it := range row {
+			for _, d := range it.down {
+				parent[find(d)] = find(it)
+			}
+			if it.anchor != nil {
+				parent[find(it)] = find(it.anchor)
+			}
+		}
+	}
+	index := map[*item]int{}
+	var out [][][]*item
+	place := func(it *item) {
+		root := find(it)
+		k, ok := index[root]
+		if !ok {
+			k = len(out)
+			index[root] = k
+			out = append(out, make([][]*item, len(lv.ranks)))
+		}
+		_ = k
+	}
+	// Kolejność części według pierwszego pola w kolejności źródła, potem pozostałych (punkty pomocnicze).
+	for _, it := range lv.items {
+		place(it)
+	}
+	for r, row := range lv.ranks {
+		for _, it := range row {
+			place(it)
+			k := index[find(it)]
+			out[k][r] = append(out[k][r], it)
+		}
+	}
+	return out
 }
 
 func portsOnly(row []*item) bool {

@@ -22,6 +22,9 @@ Do poprawy w układzie, w kolejności wpływu na czytelność:
 1. ~~krawędzie przekraczające ramkę podgrafu~~: zrobione 2026-11-21. Podgraf dostaje punkty wejścia i wyjścia na
    ramce, a odcinek do pola wewnątrz jest prowadzony w układzie podgrafu; kolejność punktów na ramce nie jest jeszcze
    uzgadniana z układem rodzica, więc dwie krawędzie mogą się skrzyżować tuż przed ramką;
+   Zrobione też 2026-11-21: usuwanie cykli zaczyna od pól bez krawędzi wchodzących (początek procesu jest na
+   górze, odwracane są krawędzie powrotne); części diagramu niepołączone krawędziami są rozmieszczane osobno
+   i ustawiane obok siebie;
 2. podział na warstwy metodą sympleksu sieciowego zamiast najdłuższej ścieżki (krótsze krawędzie, węższy rysunek);
 3. rozmieszczenie metodą Brandesa i Köpfa (bardziej zwarte i symetryczne niż metoda priorytetowa);
 4. ~~krawędzie wielokrotne między tą samą parą węzłów~~: zrobione 2026-11-21 (FLOW-015);
