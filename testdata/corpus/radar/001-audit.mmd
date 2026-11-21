@@ -1,0 +1,13 @@
+%% REQ: RDR-001 RDR-002 RDR-003
+%% Tytuł: Wykres radarowy
+%% Sprawdza: tytuł, osie z podpisami w dwóch liniach źródła, dwie serie (lista wartości i pary oś: wartość), max i min, liczba pierścieni, siatka wielokątna, legenda.
+radar-beta
+  title Dojrzałość procesów po audycie
+  axis dok["Dokumentacja"], szk["Szkolenia"], zak["Zakupy"]
+  axis prod["Produkcja"], kon["Kontrola"], capa["Działania korygujące"]
+  curve a2025["Audyt 2025"]{3, 2, 4, 3, 2, 1}
+  curve a2026["Audyt 2026"]{dok: 4, szk: 4, zak: 4, prod: 3, kon: 4, capa: 3}
+  max 5
+  min 0
+  ticks 5
+  graticule polygon

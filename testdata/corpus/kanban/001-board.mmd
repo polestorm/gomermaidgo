@@ -1,0 +1,14 @@
+%% REQ: KBN-001 KBN-002 KBN-003
+%% Tytuł: Tablica kanban
+%% Sprawdza: kolumny z wcięcia, karty w nawiasach z identyfikatorem i bez, długi tekst karty, dane karty w bloku @{ }, priorytet, kolumna bez kart.
+kanban
+  Do zrobienia
+    [Zaktualizować procedurę nadzoru nad dokumentami]
+    k2[Przeszkolić nowych pracowników produkcji z instrukcji stanowiskowych]@{ ticket: CAPA-12, assigned: 'A. Nowak', priority: 'High' }
+    k3[Zamówić wzorcowanie wag]@{ assigned: "M. Kowal", priority: 'Low' }
+  wtoku[W toku]
+    k4[Analiza przyczyn reklamacji]@{ ticket: NC-2026-017, priority: 'Very High' }
+    k5[Audyt dostawcy opakowań]
+  Do weryfikacji
+  zrobione[Zrobione]
+    k6[Przegląd zarządzania]@{ ticket: MR-3 }

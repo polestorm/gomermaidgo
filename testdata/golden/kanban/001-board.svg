@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="860" height="375.8" viewBox="-12 -12 860 375.8" role="img" font-family="Recursive, sans-serif" font-size="16">
+<rect class="kanban-column" x="0" y="0" width="200" height="351.8" rx="6" fill="#eef2f7" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-column" x="212" y="0" width="200" height="351.8" rx="6" fill="#eef2f7" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-column" x="424" y="0" width="200" height="351.8" rx="6" fill="#eef2f7" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-column" x="636" y="0" width="200" height="351.8" rx="6" fill="#eef2f7" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-card" x="10" y="40" width="180" height="76" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-card" x="10" y="124" width="180" height="134.9" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-priority" x="10" y="124" width="4" height="134.9" fill="#3b4754"/>
+<rect class="kanban-card" x="10" y="266.9" width="180" height="74.9" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-priority" x="10" y="266.9" width="2" height="74.9" fill="#3b4754"/>
+<rect class="kanban-card" x="222" y="40" width="180" height="74.9" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-priority" x="222" y="40" width="6" height="74.9" fill="#3b4754"/>
+<rect class="kanban-card" x="222" y="122.9" width="180" height="56" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="kanban-card" x="646" y="40" width="180" height="74.9" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<text class="kanban-column-title" x="100" y="25.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Do zrobienia</text>
+<text class="kanban-card-text" x="20" y="63.6" fill="#1b1f24">Zaktualizować</text>
+<text class="kanban-card-text" x="20" y="83.6" fill="#1b1f24">procedurę nadzoru</text>
+<text class="kanban-card-text" x="20" y="103.6" fill="#1b1f24">nad dokumentami</text>
+<text class="kanban-card-text" x="20" y="147.6" fill="#1b1f24">Przeszkolić nowych</text>
+<text class="kanban-card-text" x="20" y="167.6" fill="#1b1f24">pracowników</text>
+<text class="kanban-card-text" x="20" y="187.6" fill="#1b1f24">produkcji z</text>
+<text class="kanban-card-text" x="20" y="207.6" fill="#1b1f24">instrukcji</text>
+<text class="kanban-card-text" x="20" y="227.6" fill="#1b1f24">stanowiskowych</text>
+<text class="kanban-card-details" x="20" y="248.3" font-size="13" fill="#5b6570">CAPA-12 · A. Nowak · High</text>
+<text class="kanban-card-text" x="20" y="290.5" fill="#1b1f24">Zamówić</text>
+<text class="kanban-card-text" x="20" y="310.5" fill="#1b1f24">wzorcowanie wag</text>
+<text class="kanban-card-details" x="20" y="331.2" font-size="13" fill="#5b6570">M. Kowal · Low</text>
+<text class="kanban-column-title" x="312" y="25.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">W toku</text>
+<text class="kanban-card-text" x="232" y="63.6" fill="#1b1f24">Analiza przyczyn</text>
+<text class="kanban-card-text" x="232" y="83.6" fill="#1b1f24">reklamacji</text>
+<text class="kanban-card-details" x="232" y="104.3" font-size="13" fill="#5b6570">NC-2026-017 · Very High</text>
+<text class="kanban-card-text" x="232" y="146.5" fill="#1b1f24">Audyt dostawcy</text>
+<text class="kanban-card-text" x="232" y="166.5" fill="#1b1f24">opakowań</text>
+<text class="kanban-column-title" x="524" y="25.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Do weryfikacji</text>
+<text class="kanban-column-title" x="736" y="25.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zrobione</text>
+<text class="kanban-card-text" x="656" y="63.6" fill="#1b1f24">Przegląd</text>
+<text class="kanban-card-text" x="656" y="83.6" fill="#1b1f24">zarządzania</text>
+<text class="kanban-card-details" x="656" y="104.3" font-size="13" fill="#5b6570">MR-3</text>
+</svg>

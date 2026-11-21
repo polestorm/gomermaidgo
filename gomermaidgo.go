@@ -58,7 +58,11 @@ const (
 
 // SupportedTypes zwraca obsługiwane typy diagramów.
 func SupportedTypes() []string {
-	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant}
+	out := []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant}
+	for _, t := range moreTypes {
+		out = append(out, t.name)
+	}
+	return out
 }
 
 type config struct {
@@ -155,6 +159,11 @@ func DetectType(source string) (string, error) {
 		case "quadrantChart":
 			return TypeQuadrant, nil
 		}
+		for _, t := range moreTypes {
+			if slices.Contains(t.headers, strings.TrimRight(word, ";")) {
+				return t.name, nil
+			}
+		}
 		return "", fmt.Errorf("%w: %q (line %d)", ErrUnsupportedType, word, n+1)
 	}
 	return "", &SyntaxError{Code: "empty-source", Message: "empty source"}
@@ -187,6 +196,12 @@ func Check(source string) error {
 	kind, err := DetectType(source)
 	if err != nil {
 		return err
+	}
+	for _, t := range moreTypes {
+		if t.name == kind {
+			_, err = t.scene(source, layoutOptions{Measure: font.ApproxTextWidth, FontSize: 16})
+			return err
+		}
 	}
 	switch kind {
 	case TypeFlowchart:
@@ -266,6 +281,12 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 	kind, err := DetectType(source)
 	if err != nil {
 		return nil, nil, err
+	}
+	for _, t := range moreTypes {
+		if t.name == kind {
+			sc, err := t.scene(source, layoutOptions{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows})
+			return sc, face, err
+		}
 	}
 	if kind == TypeGantt {
 		d, err := gantt.Parse(source)

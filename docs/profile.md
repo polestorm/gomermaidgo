@@ -452,3 +452,56 @@ Wykres poziomy (`xychart-beta horizontal`). Konfiguracja w bloku `%%{init}%%` i 
 - wygląd punktów podany w źródle (promień, kolor, klasy) nie jest rysowany: wszystkie punkty są jednakowe;
 - ćwiartki stykające się bokiem różnią się jasnością; `WithColors` nadaje im tony palety;
 - współrzędna spoza zakresu 0–1 jest błędem.
+
+## Tablica kanban (`kanban`)
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| kolumna | linia na najpłytszym wcięciu: `Tekst` albo `id[Tekst]` | KBN-001 |
+| karta | linia wcięta głębiej: `[Tekst]`, `id[Tekst]` albo sam tekst | KBN-002 |
+| dane karty | `@{ ticket: NC-17, assigned: 'A. Nowak', priority: 'High' }` | KBN-002 |
+| dostępność | `accTitle`, `accDescr` | KBN-001 |
+
+Świadome różnice wobec Mermaid: priorytet (`Very High`, `High`, `Low`, `Very Low`) widać po grubości paska przy lewej
+krawędzi karty, a nie po kolorze; dane karty stoją w jednej linii pod tekstem; odsyłacz zgłoszenia (`ticketBaseUrl`)
+nie jest rysowany; domyślnie rysunek jest neutralny, `WithColors` nadaje kolumnom tony palety.
+
+## Diagram pakietu (`packet-beta`, `packet`)
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| tytuł | `title Tekst` | PKT-001 |
+| pole | `0-15: "nazwa"`, `16: "nazwa"`, `+8: "nazwa"` | PKT-002 |
+| dostępność | `accTitle`, `accDescr` | PKT-001 |
+
+Świadome różnice wobec Mermaid: wiersz ma zawsze 32 bity (konfiguracja `bitsPerRow` jest poza profilem); nazwa, która
+nie mieści się w polu, jest rysowana mniejszym pismem; tytuł stoi nad diagramem; przerwa między polami jest błędem.
+
+## Wykres radarowy (`radar-beta`, `radar`)
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| tytuł | `title Tekst` | RDR-001 |
+| osie | `axis a["Podpis"], b["Podpis"]` | RDR-001 |
+| seria | `curve s["Podpis"]{1, 2, 3}`; `curve s{a: 1, b: 2, c: 3}` | RDR-002 |
+| zakres i siatka | `max 5`, `min 0`, `ticks 5`, `graticule circle` albo `polygon`, `showLegend false` | RDR-002 |
+| dostępność | `accTitle`, `accDescr` | RDR-001 |
+
+Świadome różnice wobec Mermaid: serie różnią się kreskowaniem linii, więc wykres czyta się bez koloru (`WithColors`
+daje kolory palety); legenda stoi z prawej strony; seria musi mieć wartość dla każdej osi; wartość spoza zakresu
+jest rysowana na jego brzegu.
+
+## Mapa drzewa (`treemap-beta`, `treemap`)
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| tytuł | `title Tekst` | TRM-001 |
+| sekcja | `"Nazwa"`, dzieci wcięte głębiej | TRM-001 |
+| liść | `"Nazwa": 12.5` | TRM-001 |
+| style | `:::klasa`, `classDef` (pomijane) | TRM-001 |
+| dostępność | `accTitle`, `accDescr` | TRM-001 |
+
+Świadome różnice wobec Mermaid: liść, którego nazwa nie mieści się w polu nawet mniejszym pismem, dostaje numer,
+a nazwa z wartością trafia do listy pod mapą, więc żadna dana nie znika; wartość jest zapisana tak jak w źródle,
+bez formatowania; mapa ma stały rozmiar 620 × 400 px; domyślnie rysunek jest neutralny, `WithColors` nadaje ton
+palety każdej gałęzi najwyższego poziomu.

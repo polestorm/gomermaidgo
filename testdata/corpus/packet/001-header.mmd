@@ -1,0 +1,15 @@
+%% REQ: PKT-001 PKT-002 PKT-003
+%% Tytuł: Diagram pakietu
+%% Sprawdza: tytuł, pola z zakresem bitów, pole jednobitowe, pole o długości względnej, pole przechodzące do następnego wiersza, długa nazwa w wąskim polu.
+packet-beta
+title Ramka danych czujnika
+0-7: "Preambuła"
+8-15: "Adres"
+16: "ACK"
+17: "ERR"
+18-23: "Rezerwa"
+24-31: "Długość"
++16: "Numer seryjny"
++32: "Znacznik czasu"
++24: "Pomiar temperatury"
++8: "CRC"
