@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="500.25" height="781" viewBox="-11.5 -12 500.25 781" role="img" font-family="Recursive, sans-serif" font-size="16">
+<title>Postępowanie z wyrobem niezgodnym</title>
+<desc>Wyrób niezgodny jest izolowany, oceniany i albo naprawiany, albo złomowany.</desc>
+<rect class="cluster" x="107.25" y="216" width="369.5" height="419" rx="4" fill="#f3f6fb" stroke="#3b6fb6" stroke-width="1" stroke-dasharray="6 3"/>
+<path class="edge" d="M295.25 371 C295.25 387 219.25 387 219.25 403 L219.25 427 L219.25 452.7" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M295.25 371 C295.25 387 371.25 387 371.25 403 L371.25 427 C371.25 439.85 389.25 439.85 389.25 452.7" fill="none" stroke="#b42318" stroke-width="2.5"/>
+<path class="edge" d="M219.25 503 L219.25 535 L219.25 560.7" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M292 44 L292 76 L292 101.7" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M292 152 L292 184 C292 200 295.25 200 295.25 216 L295.25 246 L295.25 270 L295.25 295.7" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M210.25 611 C210.25 623 206.25 623 206.25 635 C206.25 651 274 651 274 667 C274 683.35 75 683.35 75 699.7" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M389.25 503 L389.25 535 L389.25 567 L389.25 611 L389.25 635 C389.25 651 292 651 292 667 L292 692.7" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M228.25 611 C228.25 623 232.25 623 232.25 635 C232.25 651 310 651 310 667 L310 692.7" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect class="cluster-title-background" x="115.25" y="222" width="109.6" height="20" fill="#f3f6fb"/>
+<rect class="edge-label-background" x="146.05" y="405" width="146.4" height="20" fill="#f3f6fb"/>
+<rect class="edge-label-background" x="312.85" y="405" width="116.8" height="20" fill="#f3f6fb"/>
+<polygon class="arrowhead" points="219.25,459 214.25,450 224.25,450" fill="#55657a"/>
+<polygon class="arrowhead" points="389.25,459 384.25,450 394.25,450" fill="#b42318"/>
+<polygon class="arrowhead" points="219.25,567 214.25,558 224.25,558" fill="#55657a"/>
+<polygon class="arrowhead" points="292,108 287,99 297,99" fill="#55657a"/>
+<polygon class="arrowhead" points="295.25,302 290.25,293 300.25,293" fill="#55657a"/>
+<polygon class="arrowhead" points="75,706 70,697 80,697" fill="#55657a"/>
+<polygon class="arrowhead" points="292,699 287,690 297,690" fill="#55657a"/>
+<polygon class="arrowhead" points="310,699 305,690 315,690" fill="#55657a"/>
+<rect class="node" x="169.5" y="0" width="245" height="44" rx="22" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="node" x="214.5" y="108" width="155" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="295.25,302 345.25,336.5 295.25,371 245.25,336.5" fill="#eef2f7" stroke="#b7791f" stroke-width="3"/>
+<rect class="node" x="164.75" y="459" width="109" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="321.75" y="459" width="135" height="44" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="node" x="127.25" y="567" width="184" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0.5" y="706" width="149" height="44" rx="22" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="301" cy="750" rx="103.5" ry="7" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="1.5"/>
+<rect class="node" x="197.5" y="706" width="207" height="44" fill="#1f3a5f"/>
+<line class="node-detail" x1="197.5" y1="706" x2="197.5" y2="750" fill="none" stroke="#1f3a5f" stroke-width="1.5"/>
+<line class="node-detail" x1="404.5" y1="706" x2="404.5" y2="750" fill="none" stroke="#1f3a5f" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="301" cy="706" rx="103.5" ry="7" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="1.5"/>
+<text class="node-label" x="292" y="27.6" text-anchor="middle" fill="#1b1f24">Wykrycie niezgodności</text>
+<text class="node-label" x="292" y="135.6" text-anchor="middle" fill="#1b1f24">Izolacja partii</text>
+<text class="cluster-title" x="170.05" y="237.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
+<text class="node-label" x="295.25" y="342.1" text-anchor="middle" fill="#1b1f24">Ocena</text>
+<text class="node-label" x="219.25" y="486.6" text-anchor="middle" fill="#1b1f24">Naprawa</text>
+<text class="node-label" x="389.25" y="486.6" text-anchor="middle" fill="#1b1f24">Złomowanie</text>
+<text class="node-label" x="219.25" y="594.6" text-anchor="middle" fill="#1b1f24">Ponowna kontrola</text>
+<text class="edge-label" x="219.25" y="420.6" text-anchor="middle" fill="#1b1f24">naprawa możliwa</text>
+<text class="edge-label" x="371.25" y="420.6" text-anchor="middle" fill="#1b1f24">brak naprawy</text>
+<text class="node-label" x="75" y="733.6" text-anchor="middle" fill="#1b1f24">Zwolnienie</text>
+<text class="node-label" x="301" y="737.1" text-anchor="middle" fill="#ffffff">Rejestr niezgodności</text>
+</svg>

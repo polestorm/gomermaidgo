@@ -1,0 +1,25 @@
+%% REQ: FLOW-017 FLOW-018
+%% Tytuł: Wygląd ze źródła i identyfikatory z łącznikiem
+%% Sprawdza: classDef, class, skrót :::, style dla węzła i podgrafu, linkStyle; kolor tekstu; podkład etykiety w kolorze podgrafu; identyfikatory z łącznikiem i kropką; tekst Markdown bez znaczników.
+flowchart TD
+    accTitle: Postępowanie z wyrobem niezgodnym
+    accDescr: Wyrób niezgodny jest izolowany, oceniany i albo naprawiany, albo złomowany.
+    classDef alarm fill:#fde8e8,stroke:#b42318,stroke-width:2px
+    classDef ok fill:#e6f4ea,stroke:#1e7b34
+    classDef dane fill:#1f3a5f,stroke:#1f3a5f,color:#ffffff
+    wykrycie-1([Wykrycie niezgodności]):::alarm --> izolacja.a["`Izolacja **partii**`"]
+    izolacja.a --> ocena{Ocena}
+    subgraph dzial-jakosci [Dział jakości]
+        ocena -->|naprawa możliwa| naprawa[Naprawa]
+        ocena -->|brak naprawy| zlom[Złomowanie]:::alarm
+        naprawa --> kontrola[Ponowna kontrola]
+    end
+    kontrola --> zwolnienie([Zwolnienie]):::ok
+    zlom -.-> rejestr[(Rejestr niezgodności)]
+    kontrola -.-> rejestr
+    class rejestr dane
+    style dzial-jakosci fill:#f3f6fb,stroke:#3b6fb6,stroke-dasharray: 6 3
+    style ocena stroke:#b7791f,stroke-width:3px
+    linkStyle default stroke:#55657a
+    linkStyle 3 stroke:#b42318,stroke-width:2.5px
+    click rejestr href "https://example.org/rejestr"

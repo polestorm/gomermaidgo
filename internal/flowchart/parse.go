@@ -21,12 +21,18 @@ const (
 	CodeSubgraph    = "flowchart-subgraph"
 )
 
+const idPattern = `[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*`
+
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
-	idAt      = regexp.MustCompile(`^[\p{L}\p{N}_]+`)
+	// Identyfikator: litery, cyfry i podkreślenie; łącznik i kropka tylko między nimi, żeby
+	// „A-->B” i „A-.->B” nadal zaczynały krawędź.
+	idAt      = regexp.MustCompile(`^` + idPattern)
+	classAt   = regexp.MustCompile(`^:::\s*([\p{L}\p{N}_-]+)`)
+	styleHead = regexp.MustCompile(`^(\S+)\s+(.+)$`)
 
-	subgraphWithTitle = regexp.MustCompile(`^([\p{L}\p{N}_]+)\s*\[(.*)\]$`)
-	singleID          = regexp.MustCompile(`^[\p{L}\p{N}_]+$`)
+	subgraphWithTitle = regexp.MustCompile(`^(` + idPattern + `)\s*\[(.*)\]$`)
+	singleID          = regexp.MustCompile(`^` + idPattern + `$`)
 
 	// Krawędzie z tekstem w środku: „-- tekst -->”, „== tekst ==>”, „-. tekst .->”.
 	inlineNormal = regexp.MustCompile(`^([<ox])?--\s+(\S.*?)\s*(-{2,})([>ox])?`)
@@ -39,7 +45,10 @@ var (
 	invisible   = regexp.MustCompile(`^~{3,}`)
 
 	// Instrukcje Mermaid poza profilem: znane, ale świadomie nieobsługiwane.
-	unsupported = []string{"classDef", "class", "style", "linkStyle", "click", "accTitle", "accDescr", "interpolate"}
+	unsupported = []string{"interpolate"}
+
+	// Wyróżnienia w tekście Markdown: znaczniki znikają, tekst zostaje.
+	emphasis = regexp.MustCompile(`\*\*([^*]+)\*\*|\*([^*]+)\*|\b_([^_]+)_\b`)
 )
 
 // shapes: nawias otwierający, zamykający i kształt; dłuższe otwarcia przed krótszymi.
@@ -65,6 +74,7 @@ type parser struct {
 	g     *graph.Graph
 	stack []string // otwarte podgrafy
 	auto  int
+	acc   syntax.Accessibility
 }
 
 func (p *parser) scope() string {
@@ -81,7 +91,12 @@ func text(raw string, line int) ([]string, error) {
 		s = s[1 : len(s)-1]
 	}
 	if strings.HasPrefix(s, "`") {
-		return nil, syntax.Errorf(line, CodeUnsupported, "markdown strings are outside the supported profile")
+		// Tekst Markdown w odwrotnych apostrofach: rysunek ma jeden krój, więc pogrubienie
+		// i kursywa nie są oddawane; zostaje sam tekst.
+		if len(s) < 2 || !strings.HasSuffix(s, "`") {
+			return nil, syntax.Errorf(line, CodeNode, "markdown string opened with a backtick is not closed in %q", raw)
+		}
+		s = emphasis.ReplaceAllString(s[1:len(s)-1], "$1$2$3")
 	}
 	if strings.Contains(s, `"`) {
 		return nil, syntax.Errorf(line, CodeNode, "unexpected quote in text %q", raw)
@@ -134,6 +149,9 @@ func Parse(source string) (*graph.Graph, error) {
 			seenHeader = true
 			continue
 		}
+		if p.acc.Line(s) {
+			continue
+		}
 		for _, st := range splitStatements(s) {
 			st = strings.TrimSpace(st)
 			if st == "" {
@@ -150,6 +168,10 @@ func Parse(source string) (*graph.Graph, error) {
 	if len(p.stack) > 0 {
 		return nil, syntax.Errorf(0, CodeSubgraph, "subgraph %q is not closed with \"end\"", p.scope())
 	}
+	if p.acc.Open() {
+		return nil, syntax.Errorf(0, CodeStatement, "accDescr is not closed with \"}\"")
+	}
+	p.g.AccTitle, p.g.AccDescr = p.acc.Title, p.acc.Descr
 	if err := p.g.Finish(); err != nil {
 		return nil, err
 	}
@@ -198,6 +220,33 @@ func (p *parser) statement(s string, line int) error {
 			return syntax.Errorf(line, CodeStatement, "\"direction\" is only allowed inside a subgraph")
 		}
 		p.g.Subgraph(p.scope()).Direction = d
+		return nil
+	case word == "click":
+		return nil // odnośniki i wywołania nie mają znaczenia na rysunku statycznym
+	case word == "classDef" || word == "style" || word == "linkStyle":
+		m := styleHead.FindStringSubmatch(rest)
+		if m == nil {
+			return syntax.Errorf(line, CodeStatement, "%s needs a target and a list of properties", word)
+		}
+		paint, err := graph.ParsePaint(m[2], line)
+		if err != nil {
+			return err
+		}
+		switch word {
+		case "classDef":
+			p.g.DefineClass(m[1], paint)
+		case "style":
+			p.g.SetStyle(m[1], paint, line)
+		default:
+			p.g.SetLinkStyle(m[1], paint, line)
+		}
+		return nil
+	case word == "class":
+		m := styleHead.FindStringSubmatch(rest)
+		if m == nil {
+			return syntax.Errorf(line, CodeStatement, "class needs node ids and a class name")
+		}
+		p.g.AssignClass(m[1], m[2], line)
 		return nil
 	}
 	for _, u := range unsupported {
@@ -314,12 +363,19 @@ func (p *parser) node(sc *scanner) (string, error) {
 		return "", err
 	}
 	rest := sc.rest()
-	switch {
-	case strings.HasPrefix(rest, ":::"):
-		return "", syntax.Errorf(sc.line, CodeUnsupported, "class shorthand \":::\" is outside the supported profile")
-	case strings.HasPrefix(rest, "@{"):
+	if strings.HasPrefix(rest, "@{") {
 		return "", syntax.Errorf(sc.line, CodeUnsupported, "shape syntax \"@{ }\" is outside the supported profile")
 	}
+	// Klasa może stać przed kształtem albo za nim: „A:::k[tekst]”, „A[tekst]:::k”.
+	class := func() {
+		if m := classAt.FindStringSubmatch(sc.rest()); m != nil {
+			p.g.AssignClass(id, m[1], sc.line)
+			sc.pos += len(m[0])
+		}
+	}
+	class()
+	defer class()
+	rest = sc.rest()
 	for _, sh := range shapes {
 		if !strings.HasPrefix(rest, sh.open) {
 			continue

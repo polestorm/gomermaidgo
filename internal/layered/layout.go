@@ -104,6 +104,7 @@ type level struct {
 }
 
 type layouter struct {
+	bg string // wypełnienie ramki, w której trwa rysowanie; pusty = tło rysunku
 	g  *graph.Graph
 	o  Options
 	sc *scene.Scene
@@ -183,7 +184,7 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	l.lh = math.Round(l.fs * 1.25)
 	l.vertical = g.Direction == graph.TopBottom || g.Direction == graph.BottomTop
 	l.flip = g.Direction == graph.BottomTop || g.Direction == graph.RightLeft
-	l.sc = &scene.Scene{FontFamily: o.FontFamily, FontSize: l.fs, Margin: l.u(12), Background: o.Background}
+	l.sc = &scene.Scene{Title: g.AccTitle, Desc: g.AccDescr, FontFamily: o.FontFamily, FontSize: l.fs, Margin: l.u(12), Background: o.Background}
 
 	l.build()
 	l.assignEdges()

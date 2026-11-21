@@ -4,6 +4,7 @@ package state
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -19,7 +20,8 @@ const (
 	CodeNote        = "state-note"
 )
 
-const idPattern = `[\p{L}\p{N}_]+`
+// Identyfikator: litery, cyfry i podkreślenie; łącznik i kropka tylko między nimi.
+const idPattern = `[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*`
 
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
@@ -33,7 +35,10 @@ var (
 	noteLine    = regexp.MustCompile(`(?i)^note\s+(left|right)\s+of\s+(` + idPattern + `)\s*(?::\s*(.*))?$`)
 
 	// Instrukcje Mermaid poza profilem: znane, ale świadomie nieobsługiwane.
-	unsupported = []string{"classDef", "class", "style", "click", "accTitle", "accDescr", "scale", "hide"}
+	unsupported = []string{"scale", "hide"}
+
+	classUse  = regexp.MustCompile(`(` + idPattern + `):::\s*([\p{L}\p{N}_-]+)`)
+	styleHead = regexp.MustCompile(`^(\S+)\s+(.+)$`)
 )
 
 func split(text string) []string {
@@ -50,6 +55,46 @@ type parser struct {
 
 	note     *graph.Note // notatka wieloliniowa w trakcie czytania
 	noteLine int
+
+	acc     syntax.Accessibility
+	regions map[string]int // liczba regionów współbieżnych stanu złożonego
+}
+
+// region otwiera kolejny region współbieżny stanu złożonego (separator „--”). Przy pierwszym
+// separatorze dotychczasowa zawartość stanu staje się regionem pierwszym.
+func (p *parser) region(line int) error {
+	scope := p.scope()
+	if scope == "" {
+		return syntax.Errorf(line, CodeComposite, "\"--\" is only allowed inside a composite state")
+	}
+	owner := scope
+	if s := p.g.Subgraph(scope); s.Region {
+		owner = s.Parent
+		p.stack = p.stack[:len(p.stack)-1]
+	} else {
+		first := owner + "#1"
+		if err := p.g.AddSubgraph(&graph.Subgraph{ID: first, Parent: owner, Region: true, Line: s.Line}); err != nil {
+			return err
+		}
+		for _, n := range p.g.Nodes {
+			if n.Parent == owner {
+				n.Parent = first
+			}
+		}
+		for _, sub := range p.g.Subgraphs {
+			if sub.Parent == owner && sub.ID != first {
+				sub.Parent = first
+			}
+		}
+		p.regions[owner] = 1
+	}
+	p.regions[owner]++
+	id := owner + "#" + strconv.Itoa(p.regions[owner])
+	if err := p.g.AddSubgraph(&graph.Subgraph{ID: id, Parent: owner, Region: true, Line: line}); err != nil {
+		return err
+	}
+	p.stack = append(p.stack, id)
+	return nil
 }
 
 func (p *parser) scope() string {
@@ -61,7 +106,7 @@ func (p *parser) scope() string {
 
 // Parse rozbiera źródło diagramu stanów.
 func Parse(source string) (*graph.Graph, error) {
-	p := &parser{g: graph.New("state")}
+	p := &parser{g: graph.New("state"), regions: map[string]int{}}
 	seenHeader := false
 	source = strings.ReplaceAll(source, "\r\n", "\n")
 	for n, raw := range strings.Split(source, "\n") {
@@ -88,6 +133,9 @@ func Parse(source string) (*graph.Graph, error) {
 			seenHeader = true
 			continue
 		}
+		if p.acc.Line(s) {
+			continue
+		}
 		if err := p.statement(s, line); err != nil {
 			return nil, err
 		}
@@ -101,6 +149,10 @@ func Parse(source string) (*graph.Graph, error) {
 	if len(p.stack) > 0 {
 		return nil, syntax.Errorf(0, CodeComposite, "composite state %q is not closed with \"}\"", p.scope())
 	}
+	if p.acc.Open() {
+		return nil, syntax.Errorf(0, CodeStatement, "accDescr is not closed with \"}\"")
+	}
+	p.g.AccTitle, p.g.AccDescr = p.acc.Title, p.acc.Descr
 	if err := p.g.Finish(); err != nil {
 		return nil, err
 	}
@@ -147,12 +199,37 @@ func (p *parser) statement(s string, line int) error {
 		if len(p.stack) == 0 {
 			return syntax.Errorf(line, CodeComposite, "\"}\" without an open composite state")
 		}
+		if p.g.Subgraph(p.scope()).Region {
+			p.stack = p.stack[:len(p.stack)-1] // klamra zamyka ostatni region razem ze stanem
+		}
 		p.stack = p.stack[:len(p.stack)-1]
 		return nil
 	case s == "--":
-		return syntax.Errorf(line, CodeUnsupported, "concurrent regions (\"--\") are outside the supported profile")
-	case strings.Contains(s, ":::"):
-		return syntax.Errorf(line, CodeUnsupported, "class shorthand \":::\" is outside the supported profile")
+		return p.region(line)
+	case word == "click":
+		return nil // odnośniki nie mają znaczenia na rysunku statycznym
+	case word == "classDef" || word == "style":
+		m := styleHead.FindStringSubmatch(strings.TrimSpace(s[len(word):]))
+		if m == nil {
+			return syntax.Errorf(line, CodeStatement, "%s needs a target and a list of properties", word)
+		}
+		paint, err := graph.ParsePaint(m[2], line)
+		if err != nil {
+			return err
+		}
+		if word == "classDef" {
+			p.g.DefineClass(m[1], paint)
+		} else {
+			p.g.SetStyle(m[1], paint, line)
+		}
+		return nil
+	case word == "class":
+		m := styleHead.FindStringSubmatch(strings.TrimSpace(s[len(word):]))
+		if m == nil {
+			return syntax.Errorf(line, CodeStatement, "class needs state ids and a class name")
+		}
+		p.g.AssignClass(m[1], m[2], line)
+		return nil
 	case word == "direction":
 		d, ok := graph.ParseDirection(strings.TrimSpace(s[len(word):]))
 		if !ok {
@@ -169,6 +246,14 @@ func (p *parser) statement(s string, line int) error {
 		if word == u {
 			return syntax.Errorf(line, CodeUnsupported, "%q is outside the supported profile", word)
 		}
+	}
+
+	// Skrót „Id:::klasa” może stać przy każdym identyfikatorze stanu; po zapisaniu klasy znika.
+	if !strings.EqualFold(word, "note") && strings.Contains(s, ":::") {
+		for _, m := range classUse.FindAllStringSubmatch(s, -1) {
+			p.g.AssignClass(m[1], m[2], line)
+		}
+		s = classUse.ReplaceAllString(s, "$1")
 	}
 
 	if m := noteLine.FindStringSubmatch(s); m != nil {

@@ -3,6 +3,7 @@ package layered
 import (
 	"math"
 	"sort"
+	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/scene"
@@ -196,8 +197,24 @@ func (l *layouter) subgraphIDs() []string {
 func (l *layouter) drawLevel(lv *level) {
 	if lv.sub != nil {
 		cx, cy, w, h := l.rect(lv.offsetX+lv.w/2, lv.offsetY+lv.h/2, lv.w, lv.h)
-		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster",
-			X: cx - w/2, Y: cy - h/2, W: w, H: h, RX: l.u(4), Stroke: colorFrame, StrokeWidth: 1})
+		from := len(l.sc.Items)
+		frame := scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster",
+			X: cx - w/2, Y: cy - h/2, W: w, H: h, RX: l.u(4), Stroke: colorFrame, StrokeWidth: 1}
+		if lv.sub.Region {
+			frame.Role, frame.Dash = "region", "5 4" // region współbieżny: ramka przerywana, bez tytułu
+		}
+		paint := lv.sub.Paint
+		if paint.Fill != "" && paint.Fill != "none" {
+			// Wnętrze ramki ma własne tło: podkłady etykiet w środku biorą jego kolor.
+			frame.Fill = paint.Fill
+			defer func(prev string) { l.bg = prev }(l.bg)
+			l.bg = paint.Fill
+		}
+		l.sc.Add(frame)
+		defer func() { l.repaint(from, from+1, paint, colorFrame) }()
+		if len(lv.titleLines) > 0 {
+			defer func(at int) { l.repaint(at, at+1+len(lv.titleLines), graph.Paint{Color: paint.Color}, "") }(len(l.sc.Items))
+		}
 		// Tytuł ma podkład w kolorze tła: krawędź wchodząca do ramki znika pod nim, zamiast go przekreślać.
 		tw, th := l.textSize(lv.titleLines)
 		tx, ty := cx-w/2+l.u(12)+tw/2, cy-h/2+l.u(6)+th/2
@@ -212,7 +229,7 @@ func (l *layouter) drawLevel(lv *level) {
 				l.drawLevel(it.child)
 			case kindNode:
 				cx, cy, w, h := l.rect(it.nodeX(), it.y, it.nodeW(), it.h)
-				l.drawNode(it.node.Shape, it.text, cx, cy, w, h)
+				l.drawNode(it.node.Shape, it.text, cx, cy, w, h, it.node.Paint)
 				if a := it.anchor; a != nil {
 					// Łącznik notatki: krótka linia kropkowana między bokami pola i notatki.
 					from := l.point(a.nodeX()+it.anchorSide*a.nodeW()/2, it.y)
@@ -252,10 +269,52 @@ func (l *layouter) tone(shape graph.Shape) (fill, stroke string) {
 	return t.Fill, t.Stroke
 }
 
-func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float64) {
+// repaint nakłada wygląd narzucony przez źródło na kształty sceny o numerach od from do to:
+// wypełnienie zastępuje wypełnienie domyślne, obrys zastępuje kolor stroke, kolor tekstu
+// dotyczy tekstów. Kształty w kolorze pełnym (groty, stan początkowy) zmieniają się z obrysem.
+func (l *layouter) repaint(from, to int, p graph.Paint, stroke string) {
+	if p.IsZero() {
+		return
+	}
+	for i := from; i < to && i < len(l.sc.Items); i++ {
+		it := &l.sc.Items[i]
+		if it.Kind == scene.Text {
+			if p.Color != "" {
+				it.Fill = p.Color
+			}
+			continue
+		}
+		if strings.HasSuffix(it.Role, "-background") {
+			continue
+		}
+		if p.Stroke != "" && stroke != "" && it.Fill == stroke {
+			it.Fill = p.Stroke
+		} else if p.Fill != "" && it.Fill != "" && it.Fill != colorSolid {
+			it.Fill = p.Fill
+			if p.Fill == "none" {
+				it.Fill = ""
+			}
+		}
+		if it.Stroke == "" {
+			continue
+		}
+		if p.Stroke != "" {
+			it.Stroke = p.Stroke
+		}
+		if p.StrokeWidth != 0 {
+			it.StrokeWidth = p.StrokeWidth
+		}
+		if p.Dash != "" {
+			it.Dash = p.Dash
+		}
+	}
+}
+
+func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float64, paint graph.Paint) {
 	colorNodeFill, colorNodeStroke := l.tone(shape)
 	from := len(l.sc.Items)
 	defer func() {
+		l.repaint(from, len(l.sc.Items), paint, "")
 		if l.o.Shadows && shape != graph.StateStart && shape != graph.StateEnd && shape != graph.Fork && shape != graph.Join {
 			l.sc.AddShadows(from, l.u(3), "node", "note")
 		}
@@ -391,6 +450,9 @@ func (l *layouter) headAt(h graph.Head, x, y, dx, dy float64) float64 {
 }
 
 func (l *layouter) labelBackground() string {
+	if l.bg != "" {
+		return l.bg
+	}
 	if l.o.Background != "" {
 		return l.o.Background
 	}
@@ -457,6 +519,8 @@ func (l *layouter) drawEdge(e *ledge) {
 	}
 	pts := l.route(e)
 	last := len(pts) - 1
+	from := len(l.sc.Items)
+	defer func() { l.repaint(from, len(l.sc.Items), e.e.Paint, colorLine) }()
 	pts[0].y += l.headAt(topHead, pts[0].x, pts[0].y, 0, -1)
 	pts[last].y -= l.headAt(bottomHead, pts[last].x, pts[last].y, 0, 1)
 
@@ -483,6 +547,8 @@ func (l *layouter) drawLoop(it *item, e *graph.Edge, index int) {
 	if e.Style == graph.Invisible {
 		return
 	}
+	from := len(l.sc.Items)
+	defer func() { l.repaint(from, len(l.sc.Items), e.Paint, colorLine) }()
 	edge := it.nodeX() + it.nodeW()/2
 	dy := math.Min(l.u(8), it.h/4) + float64(index)*l.u(3)
 	reach := l.u(30)

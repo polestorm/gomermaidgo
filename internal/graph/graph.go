@@ -98,6 +98,8 @@ type Node struct {
 
 	// Explicit mówi, że źródło podało kształt albo opis węzła (a nie tylko identyfikator).
 	Explicit bool
+
+	Paint Paint // wygląd narzucony przez źródło
 }
 
 // Edge to krawędź. From i To wskazują węzeł albo podgraf.
@@ -109,6 +111,7 @@ type Edge struct {
 	MinLen    int // minimalna liczba warstw między końcami, od 1
 	Label     []string
 	Line      int
+	Paint     Paint // wygląd narzucony przez źródło (linkStyle)
 }
 
 // Subgraph to podgraf schematu blokowego albo stan złożony.
@@ -118,6 +121,11 @@ type Subgraph struct {
 	Parent    string
 	Direction Direction
 	Line      int
+	Paint     Paint // wygląd narzucony przez źródło
+
+	// Region oznacza region współbieżny stanu złożonego (separator „--”): podgraf podrzędny
+	// bez tytułu, rysowany linią przerywaną.
+	Region bool
 }
 
 // Note to notatka przy węźle (diagram stanów).
@@ -136,6 +144,12 @@ type Graph struct {
 	Edges     []*Edge
 	Subgraphs []*Subgraph
 	Notes     []*Note
+	AccTitle  string // tytuł dostępności (accTitle)
+	AccDescr  string // opis dostępności (accDescr)
+
+	classes  map[string]Paint
+	uses     []classUse
+	linkUses []classUse
 
 	nodeIndex map[string]*Node
 	subIndex  map[string]*Subgraph
@@ -257,7 +271,7 @@ func (g *Graph) Finish() error {
 	if len(g.Nodes) == 0 && len(g.Subgraphs) == 0 {
 		return syntax.Errorf(0, CodeInvalid, "diagram has no nodes")
 	}
-	return nil
+	return g.resolvePaint()
 }
 
 func pick(first bool, a, b string) string {
@@ -281,6 +295,10 @@ func (g *Graph) Dump() string {
 		if s.Direction != "" {
 			fmt.Fprintf(&b, " dir=%s", s.Direction)
 		}
+		if s.Region {
+			b.WriteString(" region")
+		}
+		b.WriteString(s.Paint.dump())
 		b.WriteByte('\n')
 	}
 	for _, n := range g.Nodes {
@@ -288,6 +306,7 @@ func (g *Graph) Dump() string {
 		if n.Parent != "" {
 			fmt.Fprintf(&b, " in=%s", n.Parent)
 		}
+		b.WriteString(n.Paint.dump())
 		b.WriteByte('\n')
 	}
 	for _, e := range g.Edges {
@@ -295,6 +314,7 @@ func (g *Graph) Dump() string {
 		if len(e.Label) > 0 {
 			fmt.Fprintf(&b, " %s", quote(e.Label))
 		}
+		b.WriteString(e.Paint.dump())
 		b.WriteByte('\n')
 	}
 	for _, n := range g.Notes {

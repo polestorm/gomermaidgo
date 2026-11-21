@@ -32,13 +32,14 @@ func TestParseErrors(t *testing.T) {
 		{"unclosed label", "flowchart TD\nA -->|tak B", 2, CodeEdge},
 		{"two labels", "flowchart TD\nA -- raz -->|dwa| B", 2, CodeEdge},
 		{"half bidirectional", "flowchart TD\nA <--- B", 2, CodeEdge},
-		{"markdown string", "flowchart TD\nA[\"`**pogrubienie**`\"]", 2, CodeUnsupported},
-		{"class shorthand", "flowchart TD\nA:::ważne --> B", 2, CodeUnsupported},
+		{"unclosed markdown string", "flowchart TD\nA[\"`**pogrubienie**\"]", 2, CodeNode},
+		{"undefined class", "flowchart TD\nA:::ważne --> B", 2, graph.CodeInvalid},
+		{"style without properties", "flowchart TD\nA-->B\nstyle A", 3, CodeStatement},
+		{"bad colour", "flowchart TD\nA-->B\nstyle A fill:url(#x)", 3, graph.CodeInvalid},
+		{"bad width", "flowchart TD\nA-->B\nstyle A stroke-width:gruba", 3, graph.CodeInvalid},
+		{"linkStyle out of range", "flowchart TD\nA-->B\nlinkStyle 3 stroke:red", 3, graph.CodeInvalid},
+		{"interpolate outside profile", "flowchart TD\nA-->B\ninterpolate basis", 3, CodeUnsupported},
 		{"new shape syntax", "flowchart TD\nA@{ shape: rect }", 2, CodeUnsupported},
-		{"style", "flowchart TD\nA-->B\nstyle A fill:#f00", 3, CodeUnsupported},
-		{"classDef", "flowchart TD\nclassDef x fill:#f00", 2, CodeUnsupported},
-		{"click", "flowchart TD\nA-->B\nclick A href \"https://example.com\"", 3, CodeUnsupported},
-		{"linkStyle", "flowchart TD\nA-->B\nlinkStyle 0 stroke:red", 3, CodeUnsupported},
 		{"end without subgraph", "flowchart TD\nA-->B\nend", 3, CodeSubgraph},
 		{"unclosed subgraph", "flowchart TD\nsubgraph S\nA-->B", 0, CodeSubgraph},
 		{"subgraph without name", "flowchart TD\nsubgraph\nA\nend", 2, CodeSubgraph},
@@ -110,5 +111,25 @@ func TestCompactEdges(t *testing.T) {
 		if got := e.To + " " + string(e.EndHead); got != want[i] {
 			t.Errorf("edge %d: got %q, want %q", i, got, want[i])
 		}
+	}
+}
+
+// REQ: FLOW-017 FLOW-018
+func TestParseStylesAndIdentifiers(t *testing.T) {
+	g, err := Parse("flowchart TD\nclassDef default fill:#fff\nclassDef ważne,pilne fill:#fde,stroke:#b00,stroke-width:2px,stroke-dasharray: 5 5,font-weight:bold\n" +
+		"krok-1.a:::ważne[\"`Pierwszy **krok**`\"] --> B[Drugi]:::pilne\nB --> C\nsubgraph S\nC\nend\n" +
+		"class C ważne\nstyle C fill:rgb(1, 2, 3),color:white\nstyle S fill:#eee\nlinkStyle default stroke:#999\nlinkStyle 1 stroke:red,stroke-width:3px\nclick B href \"https://example.org\"")
+	if err != nil {
+		t.Fatal(err)
+	}
+	a := g.Node("krok-1.a")
+	if a == nil || a.Label[0] != "Pierwszy krok" || a.Paint != (graph.Paint{Fill: "#fde", Stroke: "#b00", StrokeWidth: 2, Dash: "5 5"}) {
+		t.Errorf("node with a hyphen and a dot: %+v", a)
+	}
+	if c := g.Node("C"); c.Paint.Fill != "rgb(1,2,3)" || c.Paint.Color != "white" || c.Paint.Stroke != "#b00" {
+		t.Errorf("direct style should win over the class: %+v", c.Paint)
+	}
+	if g.Subgraph("S").Paint.Fill != "#eee" || g.Edges[0].Paint.Stroke != "#999" || g.Edges[1].Paint != (graph.Paint{Stroke: "red", StrokeWidth: 3}) {
+		t.Errorf("subgraph or link styles: %+v %+v %+v", g.Subgraph("S").Paint, g.Edges[0].Paint, g.Edges[1].Paint)
 	}
 }
