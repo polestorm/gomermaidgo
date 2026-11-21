@@ -20,8 +20,8 @@ const (
 	CodeNote        = "state-note"
 )
 
-// Identyfikator: litery, cyfry i podkreślenie; łącznik i kropka tylko między nimi.
-const idPattern = `[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*`
+// Identyfikator: litery, cyfry i podkreślenie. Łącznika Mermaid w diagramie stanów nie przyjmuje.
+const idPattern = `[\p{L}\p{N}_]+`
 
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)

@@ -1,34 +1,34 @@
 state TB
-subgraph W-cyklu title="W-cyklu"
-subgraph W-cyklu#1 title="" in=W-cyklu region
-subgraph W-cyklu#2 title="" in=W-cyklu region
-subgraph W-cyklu#3 title="" in=W-cyklu region
+subgraph W_cyklu title="W_cyklu"
+subgraph W_cyklu#1 title="" in=W_cyklu region
+subgraph W_cyklu#2 title="" in=W_cyklu region
+subgraph W_cyklu#3 title="" in=W_cyklu region
 node [start] state-start ""
 node Gotowy round "Gotowy"
-node [start]@W-cyklu state-start "" in=W-cyklu#1
-node Nagrzewanie round "Nagrzewanie" in=W-cyklu#1
-node Ekspozycja round "Ekspozycja" in=W-cyklu#1
-node Chłodzenie round "Chłodzenie" in=W-cyklu#1
-node [end]@W-cyklu state-end "" in=W-cyklu#1
-node [start]@W-cyklu#2 state-start "" in=W-cyklu#2
-node Rejestracja round "Rejestracja" in=W-cyklu#2
-node [start]@W-cyklu#3 state-start "" in=W-cyklu#3
-node Nadzór-drzwi round "Nadzór-drzwi" in=W-cyklu#3
-node Blokada round "Blokada" in=W-cyklu#3 paint[fill=#fde8e8 stroke=#b42318 width=2]
+node [start]@W_cyklu state-start "" in=W_cyklu#1
+node Nagrzewanie round "Nagrzewanie" in=W_cyklu#1
+node Ekspozycja round "Ekspozycja" in=W_cyklu#1
+node Chłodzenie round "Chłodzenie" in=W_cyklu#1
+node [end]@W_cyklu state-end "" in=W_cyklu#1
+node [start]@W_cyklu#2 state-start "" in=W_cyklu#2
+node Rejestracja round "Rejestracja" in=W_cyklu#2
+node [start]@W_cyklu#3 state-start "" in=W_cyklu#3
+node Nadzór_drzwi round "Nadzór_drzwi" in=W_cyklu#3
+node Blokada round "Blokada" in=W_cyklu#3 paint[fill=#fde8e8 stroke=#b42318 width=2]
 node Zakończony round "Zakończony" paint[fill=#e6f4ea stroke=#1e7b34]
 node Przerwany round "Przerwany" paint[fill=#fde8e8 stroke=#b42318 width=2]
 node [end] state-end ""
 edge [start] -> Gotowy normal none/arrow len=1
-edge Gotowy -> W-cyklu normal none/arrow len=1 "Start"
-edge [start]@W-cyklu -> Nagrzewanie normal none/arrow len=1
+edge Gotowy -> W_cyklu normal none/arrow len=1 "Start"
+edge [start]@W_cyklu -> Nagrzewanie normal none/arrow len=1
 edge Nagrzewanie -> Ekspozycja normal none/arrow len=1 "temperatura osiągnięta"
 edge Ekspozycja -> Chłodzenie normal none/arrow len=1 "czas minął"
-edge Chłodzenie -> [end]@W-cyklu normal none/arrow len=1
-edge [start]@W-cyklu#2 -> Rejestracja normal none/arrow len=1
+edge Chłodzenie -> [end]@W_cyklu normal none/arrow len=1
+edge [start]@W_cyklu#2 -> Rejestracja normal none/arrow len=1
 edge Rejestracja -> Rejestracja normal none/arrow len=1 "co 10 s"
-edge [start]@W-cyklu#3 -> Nadzór-drzwi normal none/arrow len=1
-edge Nadzór-drzwi -> Blokada normal none/arrow len=1 "próba otwarcia"
-edge W-cyklu -> Zakończony normal none/arrow len=1
-edge W-cyklu -> Przerwany normal none/arrow len=1 "awaria"
+edge [start]@W_cyklu#3 -> Nadzór_drzwi normal none/arrow len=1
+edge Nadzór_drzwi -> Blokada normal none/arrow len=1 "próba otwarcia"
+edge W_cyklu -> Zakończony normal none/arrow len=1
+edge W_cyklu -> Przerwany normal none/arrow len=1 "awaria"
 edge Zakończony -> [end] normal none/arrow len=1
 edge Przerwany -> [end] normal none/arrow len=1

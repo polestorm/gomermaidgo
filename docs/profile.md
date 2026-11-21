@@ -17,14 +17,16 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 | aktywacja | `activate A`, `deactivate A`, `A->>+B: t`, `B-->>-A: t` | SEQ-005 |
 | bloki | `loop`, `alt`/`else`, `opt`, `par`/`and`, `critical`/`option`, `break`, zamykane `end`; dowolnie zagnieżdżone | SEQ-006, SEQ-007 |
 | wyróżnienie tła | `rect rgb(r, g, b)`, `rect rgba(r, g, b, a)`, `rect #rrggbb` … `end` | SEQ-007 |
-| numeracja | `autonumber` | SEQ-008 |
+| numeracja | `autonumber`, `autonumber 10`, `autonumber 10 5` (początek, krok) | SEQ-008 |
+| grupy uczestników | `box [kolor] [tytuł]` … `end`; kolor: `rgb()`, `rgba()`, `#hex`, nazwa podstawowa, `transparent` | SEQ-014 |
+| tworzenie i kończenie uczestnika | `create participant A`, `create actor A`, `destroy A` (każde przed komunikatem, którego dotyczy) | SEQ-015 |
+| dostępność | `accTitle: tekst`, `accDescr: tekst`, `accDescr { … }` → `title` i `desc` w SVG | SEQ-016 |
 | tytuł | `title Tekst` | SEQ-010 |
 | podział linii w tekście | `<br/>`, `<br>` | SEQ-010 |
 
 ### Poza profilem (błąd `sequence-unsupported`)
 
-`box` (grupy uczestników), `create` i `destroy`, `link`, `links`, `properties`, `details`, `accTitle`, `accDescr`,
-`autonumber` z numerem początkowym i krokiem.
+`link`, `links`, `properties`, `details`.
 
 ### Świadome różnice wobec Mermaid
 
@@ -32,6 +34,11 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 - nie ma zawijania tekstu (`wrap`), dyrektyw `%%{init}%%` ani bloku konfiguracji `---`;
 - limity: 50 uczestników, 2000 instrukcji, 20 poziomów zagnieżdżenia bloków;
 - dezaktywacja nieaktywnego uczestnika jest błędem, także w zapisie skróconym;
+- uczestnik zakończony przez `destroy` kończy się krzyżykiem i nie ma stopki; Mermaid rysuje w tym miejscu jego pole
+  po raz drugi. Użycie takiego uczestnika po zakończeniu jest błędem;
+- etykieta komunikatu do siebie stoi nad pętlą; u ostatniego uczestnika kończy się nad pętlą i rośnie w lewo, żeby
+  nie poszerzać rysunku;
+- w grupie `box` z kolorem podkłady etykiet przechodzących przez linie życia pozostają w kolorze tła rysunku;
 - wygląd jest własny; motywy i zmienne motywu nie są obsługiwane. Kryterium wyglądu jest czytelność, nie zgodność
   z notacją UML: ramki bloków (`alt`, `loop`, `opt` i pozostałe) są kropkowane, żeby nie konkurowały z uczestnikami
   i komunikatami, a komunikat do siebie jest jedną krzywą;
@@ -58,15 +65,21 @@ Stan: rysowany układem warstwowym (`internal/layered`).
 | tekst | cudzysłów dla nawiasów i znaków specjalnych, `<br/>` | FLOW-008 |
 | średnik | rozdziela instrukcje, może kończyć linię | FLOW-009 |
 | rysunek | kształty, układ w czterech kierunkach, teksty z łamaniem | FLOW-012, FLOW-013 |
+| wygląd ze źródła | `classDef nazwa właściwości`, `class A,B nazwa`, `A:::nazwa`, `style A właściwości`, `linkStyle 0,1 właściwości`, `linkStyle default …`; właściwości: `fill`, `stroke`, `color`, `stroke-width`, `stroke-dasharray` | FLOW-017 |
+| identyfikatory, Markdown, dostępność | `krok-1.a`; ``"`tekst **pogrubiony**`"`` (bez wyróżnień na rysunku); `accTitle`, `accDescr` | FLOW-018 |
+| kierunek podgrafu | `direction LR` w podgrafie niepołączonym krawędziami z resztą | FLOW-019 |
 
 ### Poza profilem (błąd `flowchart-unsupported`)
 
-`classDef`, `class`, `style`, `linkStyle`, `:::klasa`, `click`, `accTitle`, `accDescr`, zapis kształtu `@{ shape: … }`,
-teksty Markdown w odwrotnych apostrofach, `flowchart-elk`.
+Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`, teksty Markdown rozciągnięte na kilka linii źródła.
 
 ### Świadome różnice wobec Mermaid
 
-- identyfikator węzła składa się z liter, cyfr i podkreślenia; łącznik i kropka w identyfikatorze nie są obsługiwane;
+- identyfikator węzła składa się z liter, cyfr i podkreślenia, z łącznikiem albo kropką między nimi;
+- właściwości stylu inne niż pięć honorowanych (czcionka, zaokrąglenia, przejścia) są pomijane; błędna wartość
+  honorowanej właściwości jest błędem. Przy ciemnym wypełnieniu kolor tekstu trzeba podać samemu (`color`);
+- `click` jest przyjmowane i pomijane: rysunek statyczny nie ma odnośników;
+- tekst Markdown traci znaczniki pogrubienia i kursywy, bo rysunek ma jeden krój;
 - węzeł należy do podgrafu, w którym po raz pierwszy wystąpił wewnątrz jakiegokolwiek podgrafu; późniejsze wystąpienia
   go nie przenoszą;
 - krawędź między podgrafem a jego własną zawartością jest błędem;
@@ -77,7 +90,11 @@ teksty Markdown w odwrotnych apostrofach, `flowchart-elk`.
 
 ### Ograniczenia rysunku (wspólne ze stanami)
 
-- `direction` w podgrafie i w stanie złożonym jest przyjmowane, ale nie zmienia układu: wnętrze ma kierunek diagramu;
+- `direction` w podgrafie i w stanie złożonym zmienia kierunek wnętrza tylko wtedy, gdy żadna krawędź nie łączy
+  wnętrza z resztą diagramu (tak samo rozstrzyga to Mermaid); inaczej wnętrze ma kierunek otoczenia;
+- krawędź wychodząca z podgrafu biegnie od swojego punktu na ramce; kolejność punktów na ramce wynika z układu
+  wnętrza i nie jest uzgadniana z otoczeniem, więc przy kilku krawędziach do różnych celów możliwe jest przecięcie;
+- regiony współbieżne stoją obok siebie w ramkach przerywanych; Mermaid układa je jeden pod drugim z linią podziału;
 - krawędź wskazująca podgraf kończy się na jego ramce; krawędź do węzła wewnątrz podgrafu przechodzi przez punkt na
   ramce i jest prowadzona we wnętrzu między węzłami (FLOW-014); może przejść pod tytułem ramki, który ma wtedy podkład;
 - krawędź niewidoczna (`~~~`) wpływa tylko na rozmieszczenie;
@@ -102,13 +119,16 @@ Stan: rysowany tym samym układem warstwowym.
 | notatka | `note right of Id : tekst`, `note left of Id` … `end note` | STATE-007 |
 | rysunek | kształty stanów, układ, teksty | STATE-010, STATE-011 |
 | kierunek | `direction LR` na poziomie diagramu albo stanu złożonego | STATE-008 |
+| regiony współbieżne | `--` wewnątrz stanu złożonego | STATE-012 |
+| wygląd ze źródła | `classDef`, `class A nazwa`, `A:::nazwa`, `style` | STATE-013 |
+| dostępność | `accTitle`, `accDescr` | STATE-014 |
 
 ### Poza profilem (błąd `state-unsupported`)
 
-Regiony współbieżne (`--`), `classDef`, `class`, `style`, `:::klasa`, `click`, `accTitle`, `accDescr`, `scale`, `hide`,
+`scale`, `hide`,
 `state Id` bez opisu, stereotypu i klamry (forma nieopisana w dokumentacji; renderer odniesienia jej nie rysuje).
 
 ### Świadome różnice wobec Mermaid
 
-- identyfikator stanu składa się z liter, cyfr i podkreślenia;
+- identyfikator stanu składa się z liter, cyfr i podkreślenia; łącznik jest błędem, tak jak w Mermaid;
 - przejście między stanem złożonym a jego własną zawartością jest błędem.

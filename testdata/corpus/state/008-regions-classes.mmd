@@ -1,13 +1,13 @@
 %% REQ: STATE-012 STATE-013 STATE-014
 %% Tytuł: Regiony współbieżne i klasy stanów
-%% Sprawdza: separator -- dzieli stan złożony na regiony w ramkach przerywanych; classDef, class i skrót :::; identyfikatory z łącznikiem.
+%% Sprawdza: separator -- dzieli stan złożony na regiony w ramkach przerywanych; classDef, class i skrót :::.
 stateDiagram-v2
     accTitle: Sterylizator w trakcie cyklu
     classDef alarm fill:#fde8e8,stroke:#b42318,stroke-width:2px
     classDef gotowe fill:#e6f4ea,stroke:#1e7b34
     [*] --> Gotowy
-    Gotowy --> W-cyklu : Start
-    state W-cyklu {
+    Gotowy --> W_cyklu : Start
+    state W_cyklu {
         [*] --> Nagrzewanie
         Nagrzewanie --> Ekspozycja : temperatura osiągnięta
         Ekspozycja --> Chłodzenie : czas minął
@@ -16,11 +16,11 @@ stateDiagram-v2
         [*] --> Rejestracja
         Rejestracja --> Rejestracja : co 10 s
         --
-        [*] --> Nadzór-drzwi
-        Nadzór-drzwi --> Blokada:::alarm : próba otwarcia
+        [*] --> Nadzór_drzwi
+        Nadzór_drzwi --> Blokada:::alarm : próba otwarcia
     }
-    W-cyklu --> Zakończony:::gotowe
-    W-cyklu --> Przerwany : awaria
+    W_cyklu --> Zakończony:::gotowe
+    W_cyklu --> Przerwany : awaria
     class Przerwany alarm
     Zakończony --> [*]
     Przerwany --> [*]

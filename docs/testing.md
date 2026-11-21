@@ -28,6 +28,23 @@ go run ./tools/review -font NotoSans-Regular.ttf -family "Noto Sans" -ref 'mmdg 
 `tools/fontsheet` składa osobną stronę (`out/fonts.html`) porównującą kroje pisma: próbki tekstu i trzy diagramy
 korpusu w każdym kroju, w dwóch rozmiarach pisma. Pliki fontów leżą poza repozytorium.
 
+## Droga do PDF
+
+`tools/pdfcheck` składa stronę HTML ze wszystkich diagramów korpusu, oddaje ją zewnętrznemu konwerterowi i sprawdza,
+że powstał PDF, a każdy wyraz rysunków jest w nim tekstem (wyciąganym osobnym programem), tyle samo razy.
+
+```sh
+go run ./tools/pdfcheck -pdf 'gopdfgo -in {in} -out {out} -fonts {fonts}' -text 'pdftotext {in} -' testdata/corpus/*/*.mmd
+```
+
+Konwerter jest czarną skrzynką jak renderer odniesienia; nie jest zależnością modułu, więc sprawdzenie nie wchodzi
+do `go test`. Wynik z 2026-11-21 (`gopdfgo` 0.1.0-dev, `pdftotext`): 36 diagramów, 28 stron, wszystkie 453 różne
+wyrazy są w PDF tekstem, krój Recursive osadzony.
+
+Ustalenie z tego testu: rysunku nie da się podzielić między strony, więc diagram wyższy niż strona jest ucinany.
+Strona musi ograniczać także wysokość rysunku (`max-height` razem z `width:auto; height:auto`); rysunek skaluje się
+wtedy z zachowaniem proporcji.
+
 ## Porównanie z rendererem odniesienia
 
 `tools/refcompare` uruchamia cudzy renderer jako osobny program i porównuje **treść** obu rysunków: zbiór tekstów

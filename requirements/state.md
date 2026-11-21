@@ -16,4 +16,4 @@
 | STATE-011 | Układ warstwowy jak dla schematu blokowego (FLOW-013); notatka stoi w warstwie swojego stanu, po wskazanej stronie (w układzie pionowym: po lewej albo po prawej), połączona z nim krótką linią kropkowaną. |
 | STATE-012 | Regiony współbieżne: separator `--` wewnątrz stanu złożonego dzieli go na regiony rysowane ramkami przerywanymi bez tytułu; `[*]` ma zasięg regionu. |
 | STATE-013 | Wygląd ze źródła: `classDef`, `class`, skrót `:::` przy identyfikatorze stanu i `style`, z tymi samymi właściwościami co w schemacie blokowym (FLOW-017). |
-| STATE-014 | Identyfikator stanu może zawierać łącznik i kropkę; `accTitle` i `accDescr` trafiają do `title` i `desc`. |
+| STATE-014 | `accTitle` i `accDescr` trafiają do `title` i `desc`; identyfikator stanu składa się z liter, cyfr i podkreślenia (łącznik jest błędem, jak w Mermaid). |

@@ -1,0 +1,31 @@
+flowchart TB
+subgraph zgloszenie title="Zgłaszający" dir=LR
+subgraph jakosc title="Dział jakości" dir=LR
+subgraph plan title="Plan działań" in=jakosc
+subgraph wdrozenie title="Wdrożenie" dir=RL
+subgraph polaczony title="Podgraf połączony z zewnątrz" dir=LR
+node z1 stadium "Zauważa problem" in=zgloszenie
+node z2 rect "Wypełnia formularz" in=zgloszenie
+node z3 parallelogram "Załącza dowody" in=zgloszenie
+node j1 rect "Rejestruje" in=jakosc
+node j2 rhombus "Zasadne?" in=jakosc
+node j3 rect "Analiza przyczyn" in=jakosc
+node j4 rect "Odpowiedź z uzasadnieniem" in=jakosc
+node p1 rect "Korekcja" in=plan
+node p2 rect "Działanie korygujące" in=plan
+node w1 rect "Wykonanie" in=wdrozenie
+node w2 rect "Ocena skuteczności" in=wdrozenie
+node k1 rect "Zamknięcie" in=polaczony
+node k2 rect "Archiwizacja" in=polaczony
+edge z1 -> z2 normal none/arrow len=1
+edge z2 -> z3 normal none/arrow len=1
+edge j1 -> j2 normal none/arrow len=1
+edge j2 -> j3 normal none/arrow len=1 "tak"
+edge j2 -> j4 normal none/arrow len=1 "nie"
+edge p1 -> p2 normal none/arrow len=1
+edge j3 -> plan normal none/arrow len=1
+edge w1 -> w2 normal none/arrow len=1
+edge k1 -> k2 normal none/arrow len=1
+edge zgloszenie -> jakosc normal none/arrow len=1
+edge jakosc -> wdrozenie normal none/arrow len=1
+edge wdrozenie -> k1 normal none/arrow len=1

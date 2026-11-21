@@ -101,6 +101,60 @@ type level struct {
 	padX0, padY0     float64
 	offsetX, offsetY float64 // położenie początku poziomu w osiach umownych diagramu
 	titleLines       []string
+
+	// Układ osi poziomu. Podgraf z własnym kierunkiem (turned) ma własne osie umowne, zaczepione
+	// w punkcie (ox, oy) rysunku; pozostałe poziomy dziedziczą osie rodzica.
+	vertical, flip, turned bool
+	ox, oy                 float64
+}
+
+// enter przełącza układ osi na osie poziomu i zwraca funkcję, która przywraca poprzednie.
+func (l *layouter) enter(lv *level) func() {
+	v, f, ox, oy := l.vertical, l.flip, l.ox, l.oy
+	l.vertical, l.flip, l.ox, l.oy = lv.vertical, lv.flip, lv.ox, lv.oy
+	return func() { l.vertical, l.flip, l.ox, l.oy = v, f, ox, oy }
+}
+
+// orient ustala osie każdego poziomu. Kierunek podany w podgrafie obowiązuje tylko wtedy, gdy
+// żadna krawędź nie łączy jego wnętrza z resztą diagramu (tak samo rozstrzyga to Mermaid);
+// inaczej wnętrze ma kierunek otoczenia.
+func (l *layouter) orient() {
+	inside := func(id, sub string) bool {
+		for s := l.scopeOf(id); s != ""; s = l.g.Subgraph(s).Parent {
+			if s == sub {
+				return true
+			}
+		}
+		return false
+	}
+	isolated := func(sub string) bool {
+		for _, e := range l.g.Edges {
+			if inside(e.From, sub) != inside(e.To, sub) {
+				return false
+			}
+		}
+		return true
+	}
+	var set func(lv *level)
+	set = func(lv *level) {
+		for _, it := range lv.items {
+			if it.kind != kindCluster {
+				continue
+			}
+			c := it.child
+			c.vertical, c.flip = lv.vertical, lv.flip
+			if d := c.sub.Direction; d != "" && isolated(c.sub.ID) {
+				v := d == graph.TopBottom || d == graph.BottomTop
+				f := d == graph.BottomTop || d == graph.RightLeft
+				c.turned = v != lv.vertical || f != lv.flip
+				c.vertical, c.flip = v, f
+			}
+			set(c)
+		}
+	}
+	root := l.levels[""]
+	root.vertical, root.flip = l.vertical, l.flip
+	set(root)
 }
 
 type layouter struct {
@@ -110,8 +164,9 @@ type layouter struct {
 	sc *scene.Scene
 
 	fs, lh   float64
-	vertical bool // TB albo BT: oś warstw jest pionowa
-	flip     bool // BT albo RL: oś warstw odwrócona
+	vertical bool    // TB albo BT: oś warstw jest pionowa
+	flip     bool    // BT albo RL: oś warstw odwrócona
+	ox, oy   float64 // zaczepienie bieżących osi umownych na rysunku
 
 	levels map[string]*level
 	itemOf map[string]*item // węzeł albo podgraf → jego pole na poziomie rodzica
@@ -170,9 +225,9 @@ func (l *layouter) point(x, y float64) scene.Point {
 		y = -y
 	}
 	if l.vertical {
-		return scene.Point{X: x, Y: y}
+		return scene.Point{X: x + l.ox, Y: y + l.oy}
 	}
-	return scene.Point{X: y, Y: x}
+	return scene.Point{X: y + l.ox, Y: x + l.oy}
 }
 
 // Layout rozmieszcza graf i zwraca scenę.
@@ -187,6 +242,8 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	l.sc = &scene.Scene{Title: g.AccTitle, Desc: g.AccDescr, FontFamily: o.FontFamily, FontSize: l.fs, Margin: l.u(12), Background: o.Background}
 
 	l.build()
+	l.orient()
+	l.measure()
 	l.assignEdges()
 	l.rankAll(l.levels[""])
 	l.sizeAll(l.levels[""])
@@ -216,7 +273,6 @@ func (l *layouter) build() {
 	for i, n := range l.g.Nodes {
 		it := &item{kind: kindNode, node: n}
 		it.text = l.wrap(n.Label, l.wrapLimit(n.Shape))
-		it.w, it.h = l.abstract(l.nodeSize(n.Shape, it.text))
 		l.itemOf[n.ID] = it
 		entries = append(entries, entry{n.Line, len(l.g.Subgraphs) + i, it, n.Parent})
 	}
@@ -229,6 +285,19 @@ func (l *layouter) build() {
 	for _, e := range entries {
 		lv := l.levels[e.scope]
 		lv.items = append(lv.items, e.it)
+	}
+}
+
+// measure nadaje polom węzłów rozmiar w osiach ich poziomu.
+func (l *layouter) measure() {
+	for _, lv := range l.levels {
+		restore := l.enter(lv)
+		for _, it := range lv.items {
+			if it.kind == kindNode {
+				it.w, it.h = l.abstract(l.nodeSize(it.node.Shape, it.text))
+			}
+		}
+		restore()
 	}
 }
 
@@ -290,7 +359,9 @@ func (l *layouter) assignEdges() {
 		scope := l.scopeOf(n.Target)
 		it := &item{kind: kindNode, node: &graph.Node{ID: id, Shape: "note", Parent: scope}}
 		it.text = l.wrap(n.Text, l.u(200))
+		restore := l.enter(l.levels[scope])
 		it.w, it.h = l.abstract(l.nodeSize("note", it.text))
+		restore()
 		l.itemOf[id] = it
 		it.anchor, it.anchorSide = l.itemOf[n.Target], 1
 		if n.Side == "left" {
@@ -341,10 +412,19 @@ func (l *layouter) rankAll(lv *level) {
 
 // sizeAll porządkuje i rozmieszcza poziom po rozmieszczeniu jego podgrafów.
 func (l *layouter) sizeAll(lv *level) {
+	defer l.enter(lv)()
 	for _, it := range lv.items {
 		if it.kind == kindCluster {
 			l.sizeAll(it.child)
 			it.w, it.h = it.child.w, it.child.h
+			if c := it.child; c.turned {
+				// Wnętrze ma własne osie: jego rozmiar przechodzi przez rozmiar rzeczywisty.
+				rw, rh := c.w, c.h
+				if !c.vertical {
+					rw, rh = rh, rw
+				}
+				it.w, it.h = l.abstract(rw, rh)
+			}
 		}
 		for _, e := range lv.loops[it] {
 			extra := l.u(40)
@@ -637,6 +717,39 @@ func crossings(ranks [][]*item) int {
 	return total
 }
 
+// attachments zwraca, dla pary (pole, podgraf), przesunięcie względem środka podgrafu punktu na
+// jego ramce, przez który przechodzi krawędź łącząca tę parę. Dzięki temu sąsiad podgrafu
+// ustawia się pod punktem wyjścia krawędzi, a nie pod środkiem ramki.
+func (l *layouter) attachments(lv *level) map[[2]*item]float64 {
+	sum, count := map[[2]*item]float64{}, map[[2]*item]float64{}
+	add := func(other, cluster, port *item) {
+		c := cluster.child
+		k := [2]*item{other, cluster}
+		sum[k] += c.padX0 + port.x - c.w/2
+		count[k]++
+	}
+	for _, e := range lv.edges {
+		if e.upperCont != nil {
+			below := e.v
+			if len(e.chain) > 0 {
+				below = e.chain[0]
+			}
+			add(below, e.u, e.upperCont.v)
+		}
+		if e.lowerCont != nil {
+			above := e.u
+			if len(e.chain) > 0 {
+				above = e.chain[len(e.chain)-1]
+			}
+			add(above, e.v, e.lowerCont.u)
+		}
+	}
+	for k := range sum {
+		sum[k] /= count[k]
+	}
+	return sum
+}
+
 // order zmniejsza liczbę przecięć: przebiegi barycentryczne w dół i w górę, potem zamiany sąsiadów.
 func (l *layouter) order(lv *level) {
 	snapshot := func() [][]*item {
@@ -738,6 +851,45 @@ func (l *layouter) order(lv *level) {
 		}
 	}
 
+	// Krawędzie wychodzące z jednego podgrafu przez różne punkty ramki: ich sąsiednie pola stoją
+	// w kolejności tych punktów, o ile nie dodaje to przecięć gdzie indziej.
+	attach := l.attachments(lv)
+	shared := func(a, b *item) (float64, float64, bool) {
+		for _, side := range [][]*item{a.up, a.down} {
+			for _, c := range side {
+				off, ok := attach[[2]*item{a, c}]
+				if !ok {
+					continue
+				}
+				if other, ok := attach[[2]*item{b, c}]; ok {
+					return off, other, true
+				}
+			}
+		}
+		return 0, 0, false
+	}
+	for _, row := range lv.ranks {
+		for round := 0; round < len(row); round++ {
+			swappedAny := false
+			for i := 0; i+1 < len(row); i++ {
+				a, b := row[i], row[i+1]
+				offA, offB, ok := shared(a, b)
+				if !ok || offA <= offB {
+					continue
+				}
+				if cross(b.up, a.up)+cross(b.down, a.down) > cross(a.up, b.up)+cross(a.down, b.down) {
+					continue
+				}
+				row[i], row[i+1] = b, a
+				a.order, b.order = i+1, i
+				swappedAny = true
+			}
+			if !swappedAny {
+				break
+			}
+		}
+	}
+
 	// Notatki nie mają krawędzi, więc porządkowanie ich nie rusza: stawiamy je obok pola, którego dotyczą.
 	for _, row := range lv.ranks {
 		var notes []*item
@@ -782,6 +934,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		return l.u(18)
 	}
 	sep := func(a, b *item) float64 { return a.w/2 + b.w/2 + gap(a, b) }
+	attach := l.attachments(lv)
 	// arrange rozmieszcza wzdłuż osi kolejności jedną spójną część poziomu.
 	arrange := func(rows [][]*item) {
 		for _, row := range rows {
@@ -855,7 +1008,13 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				add := func(ns []*item, siblings func(*item) []*item) {
 					for _, n := range ns {
 						w := weight(it, n)
-						sum += w * (n.x + fanOffset(it, siblings(n), sep))
+						if off, ok := attach[[2]*item{it, n}]; ok {
+							sum += w * (n.x + off) // pod punktem na ramce podgrafu
+						} else if off, ok := attach[[2]*item{n, it}]; ok {
+							sum += w * (n.x - off)
+						} else {
+							sum += w * (n.x + fanOffset(it, siblings(n), sep))
+						}
 						total += w
 						count++
 					}
@@ -1064,14 +1223,30 @@ func fanOffset(it *item, siblings []*item, sep func(a, b *item) float64) float64
 
 // place przelicza położenia pól na osie umowne całego diagramu.
 func (l *layouter) place(lv *level, ox, oy float64) {
+	defer l.enter(lv)()
 	lv.offsetX, lv.offsetY = ox, oy
 	for _, row := range lv.ranks {
 		for _, it := range row {
 			it.x += ox + lv.padX0
 			it.y += oy + lv.padY0
-			if it.kind == kindCluster {
-				l.place(it.child, it.x-it.w/2, it.y-it.h/2)
+			if it.kind != kindCluster {
+				continue
 			}
+			c := it.child
+			if !c.turned {
+				c.ox, c.oy = lv.ox, lv.oy
+				l.place(c, it.x-it.w/2, it.y-it.h/2)
+				continue
+			}
+			// Podgraf z własnym kierunkiem: jego osie zaczepiamy tak, żeby rzeczywisty
+			// prostokąt wnętrza pokrył się z polem podgrafu na tym poziomie.
+			cx, cy, rw, rh := l.rect(it.x, it.y, it.w, it.h)
+			c.ox, c.oy = 0, 0
+			restore := l.enter(c)
+			p0, p1 := l.point(0, 0), l.point(c.w, c.h)
+			restore()
+			c.ox, c.oy = cx-rw/2-math.Min(p0.X, p1.X), cy-rh/2-math.Min(p0.Y, p1.Y)
+			l.place(c, 0, 0)
 		}
 	}
 }

@@ -195,6 +195,7 @@ func (l *layouter) subgraphIDs() []string {
 }
 
 func (l *layouter) drawLevel(lv *level) {
+	defer l.enter(lv)()
 	if lv.sub != nil {
 		cx, cy, w, h := l.rect(lv.offsetX+lv.w/2, lv.offsetY+lv.h/2, lv.w, lv.h)
 		from := len(l.sc.Items)

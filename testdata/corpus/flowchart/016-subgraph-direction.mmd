@@ -1,0 +1,28 @@
+%% REQ: FLOW-019
+%% Tytuł: Tory: podgrafy z własnym kierunkiem
+%% Sprawdza: direction w podgrafie obowiązuje, gdy żadna krawędź nie łączy jego wnętrza z resztą; krawędzie między ramkami; podgraf zagnieżdżony dziedziczy kierunek; podgraf połączony z zewnątrz zachowuje kierunek diagramu.
+flowchart TB
+    subgraph zgloszenie [Zgłaszający]
+        direction LR
+        z1([Zauważa problem]) --> z2[Wypełnia formularz] --> z3[/Załącza dowody/]
+    end
+    subgraph jakosc [Dział jakości]
+        direction LR
+        j1[Rejestruje] --> j2{Zasadne?}
+        j2 -->|tak| j3[Analiza przyczyn]
+        j2 -->|nie| j4[Odpowiedź z uzasadnieniem]
+        subgraph plan [Plan działań]
+            p1[Korekcja] --> p2[Działanie korygujące]
+        end
+        j3 --> plan
+    end
+    subgraph wdrozenie [Wdrożenie]
+        direction RL
+        w1[Wykonanie] --> w2[Ocena skuteczności]
+    end
+    subgraph polaczony [Podgraf połączony z zewnątrz]
+        direction LR
+        k1[Zamknięcie] --> k2[Archiwizacja]
+    end
+    zgloszenie --> jakosc --> wdrozenie
+    wdrozenie --> k1
