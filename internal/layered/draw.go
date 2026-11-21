@@ -202,7 +202,7 @@ func (l *layouter) drawLevel(lv *level) {
 		frame := scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster",
 			X: cx - w/2, Y: cy - h/2, W: w, H: h, RX: l.u(4), Stroke: colorFrame, StrokeWidth: 1}
 		if lv.sub.Region {
-			frame.Role, frame.Dash = "region", "5 4" // region współbieżny: ramka przerywana, bez tytułu
+			frame.Stroke = "" // region współbieżny nie ma ramki; regiony dzieli linia przerywana
 		}
 		paint := lv.sub.Paint
 		if paint.Fill != "" && paint.Fill != "none" {
@@ -222,6 +222,22 @@ func (l *layouter) drawLevel(lv *level) {
 		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "cluster-title-background",
 			X: tx - tw/2 - l.u(4), Y: ty - th/2, W: tw + 2*l.u(4), H: th, Fill: l.labelBackground()})
 		l.textBlock(lv.titleLines, tx, ty, "cluster-title")
+	}
+	// Linia podziału między kolejnymi regionami współbieżnymi, przez całą szerokość stanu.
+	var prev *item
+	for _, row := range lv.ranks {
+		for _, it := range row {
+			if it.kind != kindCluster || !it.child.sub.Region {
+				continue
+			}
+			if prev != nil {
+				y := (prev.y + prev.h/2 + it.y - it.h/2) / 2
+				a, b := l.point(lv.offsetX, y), l.point(lv.offsetX+lv.w, y)
+				l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "region-divider",
+					X: a.X, Y: a.Y, X2: b.X, Y2: b.Y, Stroke: colorFrame, StrokeWidth: 1, Dash: "5 4"})
+			}
+			prev = it
+		}
 	}
 	for _, row := range lv.ranks {
 		for _, it := range row {

@@ -109,7 +109,26 @@ func (l *layout) labelBackground(x, top, w, h float64) {
 		return
 	}
 	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "label-background",
-		X: x - l.u(3), Y: top + l.u(1), W: w + 2*l.u(3), H: h - l.u(2), Fill: l.fills[len(l.fills)-1]})
+		X: x - l.u(3), Y: top + l.u(1), W: w + 2*l.u(3), H: h - l.u(2), Fill: l.fillAt(x-l.u(3), x+w+l.u(3))})
+}
+
+// fillAt zwraca kolor tła pod odcinkiem od x0 do x1: wyróżnienie „rect” albo tło rysunku,
+// a pod nim kolor grupy „box”, jeśli odcinek mieści się w niej cały.
+func (l *layout) fillAt(x0, x1 float64) string {
+	fill := l.fills[len(l.fills)-1]
+	if len(l.fills) > 1 {
+		return fill
+	}
+	for k, b := range l.d.Boxes {
+		if b.Color == "" {
+			continue
+		}
+		pad := l.boxPad[k]
+		if x0 >= l.x[b.First]-l.boxW[b.First]/2-pad && x1 <= l.x[b.Last]+l.boxW[b.Last]/2+pad {
+			return blend(b.Color, fill)
+		}
+	}
+	return fill
 }
 
 // extent zgłasza zajęty zakres poziomy do bieżącej ramki.

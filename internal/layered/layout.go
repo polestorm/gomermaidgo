@@ -104,6 +104,7 @@ type level struct {
 
 	// Układ osi poziomu. Podgraf z własnym kierunkiem (turned) ma własne osie umowne, zaczepione
 	// w punkcie (ox, oy) rysunku; pozostałe poziomy dziedziczą osie rodzica.
+	pinPorts               bool // porządkowanie nie rusza warstw złożonych z samych punktów na ramce
 	vertical, flip, turned bool
 	ox, oy                 float64
 }
@@ -351,6 +352,18 @@ func (l *layouter) assignEdges() {
 	for _, e := range l.g.Edges {
 		add(e)
 	}
+	// Regiony współbieżne stoją jeden za drugim wzdłuż osi warstw: wymusza to niewidoczna
+	// krawędź między kolejnymi regionami tego samego stanu.
+	last := map[string]string{}
+	for _, s := range l.g.Subgraphs {
+		if !s.Region {
+			continue
+		}
+		if prev := last[s.Parent]; prev != "" {
+			add(&graph.Edge{From: prev, To: s.ID, Style: graph.Invisible, MinLen: 1})
+		}
+		last[s.Parent] = s.ID
+	}
 	for _, n := range l.g.Notes {
 		id := "[note]" + n.Target + "#" + n.Side
 		for l.itemOf[id] != nil {
@@ -440,6 +453,86 @@ func (l *layouter) sizeAll(lv *level) {
 		}
 	}
 	l.order(lv)
+	l.finish(lv)
+
+	// Drugie podejście: skoro wiadomo już, gdzie na tym poziomie leżą drugie końce krawędzi
+	// wchodzących do podgrafów, punkty na ich ramkach ustawiamy w tej kolejności i wnętrza
+	// rozmieszczamy od nowa.
+	changed := false
+	for _, it := range lv.items {
+		if it.kind == kindCluster && l.alignPorts(lv, it) {
+			l.finish(it.child)
+			it.w, it.h = it.child.w, it.child.h
+			changed = true
+		}
+	}
+	if changed {
+		l.finish(lv)
+	}
+}
+
+// alignPorts ustawia punkty na ramce podgrafu w kolejności położenia drugich końców ich krawędzi
+// na poziomie lv i porządkuje wnętrze na nowo. Zmiana zostaje, jeśli nie dodaje przecięć we wnętrzu.
+func (l *layouter) alignPorts(lv *level, cluster *item) bool {
+	child := cluster.child
+	hint := map[*item]float64{}
+	for _, e := range lv.edges {
+		if e.upperCont != nil && e.u == cluster {
+			n := e.v
+			if len(e.chain) > 0 {
+				n = e.chain[0]
+			}
+			hint[e.upperCont.v] = n.x
+		}
+		if e.lowerCont != nil && e.v == cluster {
+			n := e.u
+			if len(e.chain) > 0 {
+				n = e.chain[len(e.chain)-1]
+			}
+			hint[e.lowerCont.u] = n.x
+		}
+	}
+	if len(hint) < 2 {
+		return false
+	}
+	before := make([][]*item, len(child.ranks))
+	for i, r := range child.ranks {
+		before[i] = append([]*item(nil), r...)
+	}
+	count := crossings(child.ranks)
+	moved := false
+	for _, row := range child.ranks {
+		if !portsOnly(row) {
+			continue
+		}
+		sorted := append([]*item(nil), row...)
+		sort.SliceStable(sorted, func(a, b int) bool { return hint[sorted[a]] < hint[sorted[b]] })
+		for i, it := range sorted {
+			moved = moved || row[i] != it
+			row[i], it.order = it, i
+		}
+	}
+	if !moved {
+		return false
+	}
+	child.pinPorts = true
+	l.order(child)
+	child.pinPorts = false
+	if crossings(child.ranks) > count {
+		for i, r := range before {
+			copy(child.ranks[i], r)
+			for k, it := range r {
+				it.order = k
+			}
+		}
+		return false
+	}
+	return true
+}
+
+// finish rozmieszcza uporządkowany poziom i wyznacza jego rozmiar z marginesami.
+func (l *layouter) finish(lv *level) {
+	defer l.enter(lv)()
 	contentW, contentH := l.position(lv)
 
 	// Marginesy podgrafu: tytuł leży przy rzeczywistej górnej krawędzi ramki.
@@ -769,6 +862,9 @@ func (l *layouter) order(lv *level) {
 	}
 	sweep := func(r int, neighbours func(*item) []*item) {
 		row := lv.ranks[r]
+		if lv.pinPorts && portsOnly(row) {
+			return
+		}
 		type keyed struct {
 			it  *item
 			key float64
@@ -804,6 +900,9 @@ func (l *layouter) order(lv *level) {
 		}
 	}
 	best, bestCount := snapshot(), crossings(lv.ranks)
+	if lv.pinPorts {
+		bestCount = math.MaxInt // kolejność zastana powstała przy innych punktach na ramce
+	}
 	for iter := 0; iter < 24 && bestCount > 0; iter++ {
 		if iter%2 == 0 {
 			for r := 1; r < len(lv.ranks); r++ {
@@ -835,6 +934,9 @@ func (l *layouter) order(lv *level) {
 	for round := 0; round < 8 && bestCount > 0; round++ {
 		improved := false
 		for _, row := range lv.ranks {
+			if lv.pinPorts && portsOnly(row) {
+				continue
+			}
 			for i := 0; i+1 < len(row); i++ {
 				a, b := row[i], row[i+1]
 				now := cross(a.up, b.up) + cross(a.down, b.down)
