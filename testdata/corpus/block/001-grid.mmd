@@ -1,0 +1,17 @@
+%% REQ: BLK-001 BLK-002 BLK-003
+%% Tytuł: Diagram blokowy
+%% Sprawdza: liczba kolumn, bloki o różnych kształtach, szerokość w kolumnach, puste miejsce, blok złożony z własną siatką, strzałka blokowa, połączenia ze strzałką i etykietą, styl bloku.
+block-beta
+    columns 3
+    wejscie(["Zgłoszenie"]) space:2
+    rejestr[("Rejestr niezgodności")]:2 ocena{"Ocena"}
+    block:dzialania:3
+        columns 3
+        korekcja["Korekcja"] strzalka<["potem"]>(right) capa(("CAPA"))
+    end
+    raport{{"Raport z przeglądu"}}:3
+    wejscie --> rejestr
+    rejestr -- "ryzyko" --> ocena
+    ocena --> korekcja
+    capa --- raport
+    style ocena fill:#fde8e8,stroke:#b42318

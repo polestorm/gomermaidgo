@@ -1,6 +1,7 @@
 package gomermaidgo
 
 import (
+	"github.com/polestorm/gomermaidgo/internal/block"
 	"github.com/polestorm/gomermaidgo/internal/gitgraph"
 	"github.com/polestorm/gomermaidgo/internal/kanban"
 	"github.com/polestorm/gomermaidgo/internal/packet"
@@ -18,6 +19,7 @@ const (
 	TypeTreemap = "treemap"
 	TypeSankey  = "sankey"
 	TypeGit     = "gitGraph"
+	TypeBlock   = "block"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -59,6 +61,13 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return radar.Layout(c, radar.Options(o)), nil
+	}},
+	{TypeBlock, []string{"block-beta", "block"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		d, err := block.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return block.Layout(d, block.Options(o)), nil
 	}},
 	{TypeGit, []string{"gitGraph", "gitGraph:"}, func(source string, o layoutOptions) (*scene.Scene, error) {
 		g, err := gitgraph.Parse(source)

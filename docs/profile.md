@@ -567,3 +567,18 @@ Mermaid: commit bez podanego identyfikatora nie ma podpisu (Mermaid losuje ident
 powtarzalny); identyfikator stoi poziomo pod commitem, a odstęp commitów mieści najdłuższy; gałęzie stoją
 w kolejności powstania (`order:` jest pomijane); domyślnie rysunek jest neutralny, `WithColors` nadaje gałęziom
 kolory palety.
+
+## Diagram blokowy (`block-beta`, `block`)
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| siatka | `columns 3`, `columns auto` | BLK-001 |
+| blok | `id`, `id["Etykieta"]`, z szerokością `id:2`; `space`, `space:2` | BLK-001 |
+| kształty | `(…)`, `([…])`, `((…))`, `{…}`, `{{…}}`, `[(…)]`, strzałka `id<["…"]>(right)` | BLK-002 |
+| blok złożony | `block:id:3 … end` | BLK-002 |
+| połączenia | `a --> b`, `a --- b`, `a -.-> b`, `a -- "tekst" --> b` | BLK-003 |
+| wygląd | `style`, `classDef`, `class` | BLK-003 |
+
+Świadome różnice wobec Mermaid: połączenie jest prostym odcinkiem między brzegami kształtów i może przejść nad
+innym blokiem; gdy diagram ma połączenia, odstępy między blokami rosną tak, żeby zmieściły się groty i etykiety;
+strzałka blokowa z kierunkiem `y` jest rysowana w prawo.

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="684.8" height="686" viewBox="-12 -12 684.8 686" role="img" font-family="Recursive, sans-serif" font-size="16">
+<rect class="block-group" x="0" y="280.8" width="660.8" height="248.8" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="5 4"/>
+<line class="edge" x1="100.23" y1="44" x2="173.74" y2="126.65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="edge" x1="411.07" y1="162.4" x2="491.77" y2="162.4" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="edge" x1="547.63" y1="180.31" x2="197.54" y2="373.26" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="edge" x1="495.8" y1="436.46" x2="348.28" y2="618" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="425.07" y="152.4" width="60.4" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="178.85,132.4 167.43,127.84 175.65,120.53" fill="#3b4754"/>
+<polygon class="arrowhead" points="499.47,162.4 488.47,167.9 488.47,156.9" fill="#3b4754"/>
+<polygon class="arrowhead" points="190.8,376.98 197.78,366.85 203.09,376.49" fill="#3b4754"/>
+<rect class="block" x="0" y="0" width="161.33" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="block-detail" cx="205.53" cy="185.4" rx="205.53" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="block" x="0" y="139.4" width="411.07" height="46" fill="#eef2f7"/>
+<line class="block-detail" x1="0" y1="139.4" x2="0" y2="185.4" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="block-detail" x1="411.07" y1="139.4" x2="411.07" y2="185.4" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="block-detail" cx="205.53" cy="139.4" rx="205.53" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="block" points="580.13,132.4 660.8,162.4 580.13,192.4 499.47,162.4" fill="#fde8e8" stroke="#b42318" stroke-width="1.5"/>
+<rect class="block" x="88.4" y="369.2" width="102.4" height="72" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="block" points="381.6,405.2 363.6,369.2 363.6,385.04 279.2,385.04 279.2,425.36 363.6,425.36 363.6,441.2" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="block" cx="521.2" cy="405.2" rx="51.2" ry="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="block" points="14,618 646.8,618 660.8,640 646.8,662 14,662 0,640" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="block-label" x="80.67" y="27.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie</text>
+<text class="block-label" x="205.53" y="168" text-anchor="middle" fill="#1b1f24">Rejestr niezgodności</text>
+<text class="block-label" x="580.13" y="168" text-anchor="middle" fill="#1b1f24">Ocena</text>
+<text class="block-label" x="139.6" y="410.8" text-anchor="middle" fill="#1b1f24">Korekcja</text>
+<text class="block-label" x="330.4" y="410.8" text-anchor="middle" fill="#1b1f24">potem</text>
+<text class="block-label" x="521.2" y="410.8" text-anchor="middle" fill="#1b1f24">CAPA</text>
+<text class="block-label" x="330.4" y="645.6" text-anchor="middle" fill="#1b1f24">Raport z przeglądu</text>
+<text class="edge-label" x="455.27" y="168" text-anchor="middle" fill="#1b1f24">ryzyko</text>
+</svg>
