@@ -38,8 +38,8 @@ go run ./tools/pdfcheck -pdf 'gopdfgo -in {in} -out {out} -fonts {fonts}' -text 
 ```
 
 Konwerter jest czarną skrzynką jak renderer odniesienia; nie jest zależnością modułu, więc sprawdzenie nie wchodzi
-do `go test`. Wynik z 2026-11-21 (`gopdfgo` 0.1.0-dev, `pdftotext`): 36 diagramów, 28 stron, wszystkie 453 różne
-wyrazy są w PDF tekstem, krój Recursive osadzony.
+do `go test`. Wynik z 2026-11-21 (`gopdfgo` 0.1.0-dev, `pdftotext`): 41 diagramów, 30 stron, wszystkie 565 różnych
+wyrazów jest w PDF tekstem, krój Recursive osadzony (także odmiana pogrubiona i pochylona).
 
 Ustalenie z tego testu: rysunku nie da się podzielić między strony, więc diagram wyższy niż strona jest ucinany.
 Strona musi ograniczać także wysokość rysunku (`max-height` razem z `width:auto; height:auto`); rysunek skaluje się

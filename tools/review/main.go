@@ -57,7 +57,7 @@ func requirements() map[string]string {
 	return out
 }
 
-var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów"}
+var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji"}
 
 func main() {
 	fontPath := flag.String("font", "", "font file used to measure text and embedded in the page")
@@ -89,7 +89,7 @@ func main() {
 	defer os.RemoveAll(tmp)
 
 	var entries []entry
-	for _, kind := range []string{"sequence", "flowchart", "state"} {
+	for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er"} {
 		files, _ := filepath.Glob("testdata/corpus/" + kind + "/*.mmd")
 		sort.Strings(files)
 		for _, f := range files {

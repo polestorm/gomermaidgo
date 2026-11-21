@@ -609,6 +609,7 @@ func (l *layouter) finish(lv *level) {
 
 // rank usuwa cykle, dzieli pola na warstwy i wstawia punkty pomocnicze na długich krawędziach.
 func (l *layouter) rank(lv *level) {
+	defer l.enter(lv)()
 	lv.factor = 1
 	pairs := map[[2]*item]bool{}
 	for _, e := range lv.edges {
@@ -733,6 +734,38 @@ func (l *layouter) rank(lv *level) {
 			best = min(best, rank[index[e.v]]-minLen(e))
 		}
 		rank[i] = max(rank[i], best)
+	}
+	// Podział z najdłuższej ścieżki jest dopuszczalny; sympleks sieciowy skraca w nim krawędzie.
+	// Punkty na ramce nie biorą udziału: ich warstwy są ustalone.
+	var inner []int
+	number := map[int]int{}
+	for i, it := range lv.items {
+		if it.kind != kindPort {
+			number[i] = len(inner)
+			inner = append(inner, i)
+		}
+	}
+	var triples [][3]int
+	for _, e := range lv.edges {
+		a, okA := number[index[e.u]]
+		b, okB := number[index[e.v]]
+		if okA && okB {
+			triples = append(triples, [3]int{a, b, minLen(e)})
+		}
+	}
+	if len(triples) > 0 {
+		local := make([]int, len(inner))
+		for k, i := range inner {
+			local[k] = rank[i]
+		}
+		networkSimplex(len(inner), triples, local)
+		base := 0
+		if hasTopPort {
+			base = 1
+		}
+		for k, i := range inner {
+			rank[i] = local[k] + base
+		}
 	}
 	// Punkty wyjścia leżą w osobnej, ostatniej warstwie, pod całą zawartością podgrafu.
 	last := 0

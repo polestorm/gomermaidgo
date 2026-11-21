@@ -263,3 +263,30 @@ func TestLargeGraphFinishes(t *testing.T) {
 		t.Errorf("layout of %d nodes took %s", len(g.Nodes), d)
 	}
 }
+
+// REQ: FLOW-020
+func TestNetworkSimplex(t *testing.T) {
+	// Łańcuch a→b→c→d oraz s→t→d: najdłuższa ścieżka stawia s i t na górze i zostawia krawędź
+	// t→d o długości 2; najkrótsza suma długości ma t tuż nad d.
+	edges := [][3]int{{0, 1, 1}, {1, 2, 1}, {2, 3, 1}, {4, 5, 1}, {5, 3, 1}}
+	rank := []int{0, 1, 2, 3, 0, 1}
+	networkSimplex(6, edges, rank)
+	total := 0
+	for _, e := range edges {
+		length := rank[e[1]] - rank[e[0]]
+		if length < e[2] {
+			t.Fatalf("edge %v is shorter than its minimum: ranks %v", e, rank)
+		}
+		total += length
+	}
+	if total != 5 || rank[0] != 0 {
+		t.Errorf("total length %d (want 5), ranks %v", total, rank)
+	}
+	// Dwie części niepołączone: każda zaczyna od zera; długości minimalne większe niż 1 zostają.
+	edges = [][3]int{{0, 1, 2}, {2, 3, 1}, {3, 4, 1}, {2, 4, 1}}
+	rank = []int{0, 2, 0, 1, 2}
+	networkSimplex(5, edges, rank)
+	if rank[0] != 0 || rank[1] != 2 || rank[2] != 0 || rank[4] != 2 {
+		t.Errorf("ranks %v", rank)
+	}
+}

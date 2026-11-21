@@ -5,7 +5,8 @@
 | 1 | diagram sekwencji: parser, układ, SVG, korpus, wymagania | zrobione 2026-11-21 (profil w `profile.md`) |
 | 2 | parser schematu blokowego (`flowchart`/`graph`) i stanów (`stateDiagram-v2`); wspólny model grafu (`internal/graph`) | zrobione 2026-11-21 |
 | 3 | układ warstwowy (`internal/layered`): usuwanie cykli, warstwy, redukcja przecięć, rozmieszczenie, krawędzie, podgrafy rekurencyjnie, etykiety krawędzi, kształty węzłów | pierwsza wersja 2026-11-21; ograniczenia w `profile.md` |
-| 4 | v2: kolejne typy (ER, klasy, Gantt, mapa myśli, oś czasu) | później |
+| 4 | v2: kolejne typy | wykres Gantta i diagram związków encji zrobione 2026-11-21; dalej: klasy, wykresy, oś czasu, mapa myśli |
+| 5 | diagramy w dokumencie Markdown (`markdown.Embed`, reguły CSS dla wydruku) | zrobione 2026-11-21 |
 
 Zrobione 2026-11-21 po pierwszym przeglądzie: krój domyślny Recursive (ADR 0002), `box`, `create`/`destroy`,
 `autonumber` z parametrami, `accTitle`/`accDescr`, style ze źródła (`classDef`, `class`, `style`, `linkStyle`, `:::`),
@@ -26,7 +27,8 @@ Do poprawy w układzie, w kolejności wpływu na czytelność:
    Zrobione też 2026-11-21: usuwanie cykli zaczyna od pól bez krawędzi wchodzących (początek procesu jest na
    górze, odwracane są krawędzie powrotne); części diagramu niepołączone krawędziami są rozmieszczane osobno
    i ustawiane obok siebie;
-2. podział na warstwy metodą sympleksu sieciowego zamiast najdłuższej ścieżki (krótsze krawędzie, węższy rysunek);
+2. ~~podział na warstwy metodą sympleksu sieciowego~~: zrobione 2026-11-21 (FLOW-020); wartości przecięć liczone od
+   nowa po każdej wymianie, bez przyrostowego liczenia z publikacji;
 3. rozmieszczenie metodą Brandesa i Köpfa (bardziej zwarte i symetryczne niż metoda priorytetowa);
 4. ~~krawędzie wielokrotne między tą samą parą węzłów~~: zrobione 2026-11-21 (FLOW-015);
 5. ~~strona notatki w diagramie stanów~~: zrobione 2026-11-21 (STATE-011);

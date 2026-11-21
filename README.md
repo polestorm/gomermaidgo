@@ -33,7 +33,8 @@ the page rules, including the height limit that keeps a tall diagram from being 
 md, problems := markdown.Embed(source, markdown.Options{})
 ```
 
-Status: early. Supported diagram types: `sequenceDiagram`, `flowchart`/`graph` and `stateDiagram-v2`. Graphs use a
+Status: early. Supported diagram types: `sequenceDiagram`, `flowchart`/`graph`, `stateDiagram-v2`, `gantt` and
+`erDiagram`. Graphs use a
 layered layout written from the published algorithms; its current limits are listed in `docs/profile.md`. A construct outside the supported profile (`docs/profile.md`) is an error with a line number,
 never a partial drawing.
 
