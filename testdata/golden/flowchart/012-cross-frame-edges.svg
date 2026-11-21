@@ -1,57 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="451" height="1137" viewBox="-11.5 -12 451 1137" role="img" font-family="Recursive, sans-serif" font-size="16">
-<rect class="cluster" x="0.5" y="104" width="427" height="643" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="20.5" y="487" width="180" height="122" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="52" y="891" width="264" height="222" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path class="edge" d="M258.5 202 L258.5 237.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M247.25 307.24 L247.25 318.12 C247.25 322.52 243.65 326.12 239.25 326.12 L174.5 326.12 C170.1 326.12 166.5 329.72 166.5 334.12 L166.5 345 L166.5 369 L166.5 390.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M269.75 307.24 L269.75 318.12 C269.75 322.52 273.35 326.12 277.75 326.12 L279.5 326.12 C283.9 326.12 287.5 329.72 287.5 334.12 L287.5 345 L287.5 369 L287.5 399 L287.5 443 L287.5 487 L287.5 609 L287.5 670.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M146.5 443 L146.5 457 C146.5 461.4 142.9 465 138.5 465 L118.5 465 C114.1 465 110.5 468.6 110.5 473 L110.5 487 L110.5 517 L110.5 532.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M130.5 585 L130.5 593.5 C130.5 595.42 128.93 597 127 597 L127 597 C125.08 597 123.5 598.58 123.5 600.5 L123.5 609 L123.5 631.8 C123.5 636.2 127.1 639.8 131.5 639.8 L269.5 639.8 C273.9 639.8 277.5 643.4 277.5 647.8 L277.5 670.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M186 989 L186 1040.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M322 44 L322 74 L322 81 C322 85.4 318.4 89 314 89 L266.5 89 C262.1 89 258.5 92.6 258.5 97 L258.5 104 L258.5 134 L258.5 149.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M90.5 585 L90.5 593.5 C90.5 595.42 92.08 597 94 597 L94 597 C95.93 597 97.5 598.58 97.5 600.5 L97.5 609 L97.5 679 L97.5 723 L97.5 747 L97.5 776.75 C97.5 776.89 97.39 777 97.25 777 L97.25 777 C97.11 777 97 777.11 97 777.25 L97 807 L97 831 L97 853 C97 857.4 100.6 861 105 861 L134 861 C138.4 861 142 864.6 142 869 L142 891 L142 921 L142 936.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M317.5 731.4 L317.5 747 L317.5 776.75 C317.5 776.89 317.39 777 317.25 777 L317.25 777 C317.11 777 317 777.11 317 777.25 L317 807 L317 831 L317 853 C317 857.4 313.4 861 309 861 L268 861 C263.6 861 260 864.6 260 869 L260 891 L260 921 L260 945 L260 989 L260 1049" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M340 52.4 L340 74 L340 81 C340 85.4 343.6 89 348 89 L395.5 89 C399.9 89 403.5 92.6 403.5 97 L403.5 104 L403.5 134 L403.5 158 L403.5 202 L403.5 246 L403.5 315 L403.5 345 L403.5 369 L403.5 399 L403.5 443 L403.5 487 L403.5 609 L403.5 636 C403.5 640.4 399.9 644 395.5 644 L365.5 644 C361.1 644 357.5 647.6 357.5 652 L357.5 679" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M222.5 443 L222.5 487 L222.5 609 L222.5 679 L222.5 723 L222.5 747 L222.5 776.75 C222.5 776.89 222.39 777 222.25 777 L222.25 777 C222.11 777 222 777.11 222 777.25 L222 807 L222 831 L222 855 C222 858.3 224.7 861 228 861 L228 861 C231.3 861 234 863.7 234 867 L234 891 L234 921 L234 945 L234 989 L234 1040.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect class="cluster-title-background" x="8.5" y="110" width="109.6" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="28.5" y="493" width="124" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="132.9" y="347" width="67.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="255.9" y="411" width="63.2" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="60" y="897" width="86.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="55" y="809" width="84" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="289.4" y="809" width="55.2" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="258.5,246 252.5,234 264.5,234" fill="#3b4754"/>
-<polygon class="arrowhead" points="166.5,399 160.5,387 172.5,387" fill="#3b4754"/>
-<polygon class="arrowhead" points="287.5,679 281.5,667 293.5,667" fill="#3b4754"/>
-<polygon class="arrowhead" points="110.5,541 104.5,529 116.5,529" fill="#3b4754"/>
-<polygon class="arrowhead" points="277.5,679 271.5,667 283.5,667" fill="#3b4754"/>
-<polygon class="arrowhead" points="186,1049 180,1037 192,1037" fill="#3b4754"/>
-<polygon class="arrowhead" points="258.5,158 252.5,146 264.5,146" fill="#3b4754"/>
-<polygon class="arrowhead" points="142,945 136,933 148,933" fill="#3b4754"/>
-<polygon class="arrowhead" points="317.5,723 323.5,735 311.5,735" fill="#3b4754"/>
-<polygon class="arrowhead" points="340,44 346,56 334,56" fill="#3b4754"/>
-<polygon class="arrowhead" points="234,1049 228,1037 240,1037" fill="#3b4754"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="451" height="1121" viewBox="-11.5 -12 451 1121" role="img" font-family="Recursive, sans-serif" font-size="16">
+<rect class="cluster" x="0.5" y="88" width="427" height="643" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster" x="20.5" y="471" width="180" height="122" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster" x="52" y="875" width="264" height="222" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M258.5 186 L258.5 221.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M247.25 291.24 L247.25 302.12 C247.25 306.52 243.65 310.12 239.25 310.12 L174.5 310.12 C170.1 310.12 166.5 313.72 166.5 318.12 L166.5 329 L166.5 353 L166.5 374.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M269.75 291.24 L269.75 302.12 C269.75 306.52 273.35 310.12 277.75 310.12 L279.5 310.12 C283.9 310.12 287.5 313.72 287.5 318.12 L287.5 329 L287.5 353 L287.5 383 L287.5 427 L287.5 471 L287.5 593 L287.5 654.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M110.5 427 L110.5 471 L110.5 501 L110.5 516.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M123.5 569 L123.5 593 L123.5 615.8 C123.5 620.2 127.1 623.8 131.5 623.8 L269.5 623.8 C273.9 623.8 277.5 627.4 277.5 631.8 L277.5 654.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M186 973 L186 1024.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M311 44 L311 62.2 C311 66.6 307.4 70.2 303 70.2 L266.5 70.2 C262.1 70.2 258.5 73.8 258.5 78.2 L258.5 88 L258.5 118 L258.5 133.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M97.5 569 L97.5 593 L97.5 663 L97.5 707 L97.5 731 L97 791 L97 815 L97 837 C97 841.4 100.6 845 105 845 L134 845 C138.4 845 142 848.6 142 853 L142 875 L142 905 L142 920.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M317.5 715.4 L317.5 731 L317 791 L317 815 L317 837 C317 841.4 313.4 845 309 845 L268 845 C263.6 845 260 848.6 260 853 L260 875 L260 905 L260 929 L260 973 L260 1033" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M351 52.4 L351 62.2 C351 66.6 354.6 70.2 359 70.2 L395.5 70.2 C399.9 70.2 403.5 73.8 403.5 78.2 L403.5 88 L403.5 118 L403.5 142 L403.5 186 L403.5 230 L403.5 299 L403.5 329 L403.5 353 L403.5 383 L403.5 427 L403.5 471 L403.5 593 L403.5 620 C403.5 624.4 399.9 628 395.5 628 L365.5 628 C361.1 628 357.5 631.6 357.5 636 L357.5 663" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M222.5 427 L222.5 471 L222.5 593 L222.5 663 L222.5 707 L222.5 731 L222 791 L222 815 L222 839 C222 842.3 224.7 845 228 845 L228 845 C231.3 845 234 847.7 234 851 L234 875 L234 905 L234 929 L234 973 L234 1024.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect class="cluster-title-background" x="8.5" y="94" width="109.6" height="20" fill="#ffffff"/>
+<rect class="cluster-title-background" x="28.5" y="477" width="124" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="132.9" y="331" width="67.2" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="255.9" y="395" width="63.2" height="20" fill="#ffffff"/>
+<rect class="cluster-title-background" x="60" y="881" width="86.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="55" y="793" width="84" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="289.4" y="793" width="55.2" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="258.5,230 252.5,218 264.5,218" fill="#3b4754"/>
+<polygon class="arrowhead" points="166.5,383 160.5,371 172.5,371" fill="#3b4754"/>
+<polygon class="arrowhead" points="287.5,663 281.5,651 293.5,651" fill="#3b4754"/>
+<polygon class="arrowhead" points="110.5,525 104.5,513 116.5,513" fill="#3b4754"/>
+<polygon class="arrowhead" points="277.5,663 271.5,651 283.5,651" fill="#3b4754"/>
+<polygon class="arrowhead" points="186,1033 180,1021 192,1021" fill="#3b4754"/>
+<polygon class="arrowhead" points="258.5,142 252.5,130 264.5,130" fill="#3b4754"/>
+<polygon class="arrowhead" points="142,929 136,917 148,917" fill="#3b4754"/>
+<polygon class="arrowhead" points="317.5,707 323.5,719 311.5,719" fill="#3b4754"/>
+<polygon class="arrowhead" points="351,44 357,56 345,56" fill="#3b4754"/>
+<polygon class="arrowhead" points="234,1033 228,1021 240,1021" fill="#3b4754"/>
 <rect class="node" x="261" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="185" y="158" width="147" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="258.5,246 308.5,280.5 258.5,315 208.5,280.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="96.5" y="399" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="40.5" y="541" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="244.5" y="679" width="146" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="72" y="945" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="156" y="1049" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="185" y="142" width="147" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="258.5,230 308.5,264.5 258.5,299 208.5,264.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="96.5" y="383" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="40.5" y="525" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="244.5" y="663" width="146" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="72" y="929" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="156" y="1033" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="331" y="27.6" text-anchor="middle" fill="#1b1f24">Klient</text>
-<text class="cluster-title" x="63.3" y="125.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
-<text class="node-label" x="258.5" y="185.6" text-anchor="middle" fill="#1b1f24">Rejestracja</text>
-<text class="node-label" x="258.5" y="286.1" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="166.5" y="426.6" text-anchor="middle" fill="#1b1f24">Analiza</text>
-<text class="cluster-title" x="90.5" y="508.6" text-anchor="middle" fill="#1b1f24">Zespół analizy</text>
-<text class="node-label" x="110.5" y="568.6" text-anchor="middle" fill="#1b1f24">Wnioski</text>
-<text class="node-label" x="317.5" y="706.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
-<text class="edge-label" x="166.5" y="362.6" text-anchor="middle" fill="#1b1f24">istotne</text>
-<text class="edge-label" x="287.5" y="426.6" text-anchor="middle" fill="#1b1f24">drobne</text>
-<text class="cluster-title" x="103.2" y="912.6" text-anchor="middle" fill="#1b1f24">Produkcja</text>
-<text class="node-label" x="142" y="972.6" text-anchor="middle" fill="#1b1f24">Korekta</text>
-<text class="node-label" x="226" y="1076.6" text-anchor="middle" fill="#1b1f24">Kontrola</text>
-<text class="edge-label" x="97" y="824.6" text-anchor="middle" fill="#1b1f24">zalecenie</text>
-<text class="edge-label" x="317" y="824.6" text-anchor="middle" fill="#1b1f24">wynik</text>
+<text class="cluster-title" x="63.3" y="109.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
+<text class="node-label" x="258.5" y="169.6" text-anchor="middle" fill="#1b1f24">Rejestracja</text>
+<text class="node-label" x="258.5" y="270.1" text-anchor="middle" fill="#1b1f24">Ocena</text>
+<text class="node-label" x="166.5" y="410.6" text-anchor="middle" fill="#1b1f24">Analiza</text>
+<text class="cluster-title" x="90.5" y="492.6" text-anchor="middle" fill="#1b1f24">Zespół analizy</text>
+<text class="node-label" x="110.5" y="552.6" text-anchor="middle" fill="#1b1f24">Wnioski</text>
+<text class="node-label" x="317.5" y="690.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
+<text class="edge-label" x="166.5" y="346.6" text-anchor="middle" fill="#1b1f24">istotne</text>
+<text class="edge-label" x="287.5" y="410.6" text-anchor="middle" fill="#1b1f24">drobne</text>
+<text class="cluster-title" x="103.2" y="896.6" text-anchor="middle" fill="#1b1f24">Produkcja</text>
+<text class="node-label" x="142" y="956.6" text-anchor="middle" fill="#1b1f24">Korekta</text>
+<text class="node-label" x="226" y="1060.6" text-anchor="middle" fill="#1b1f24">Kontrola</text>
+<text class="edge-label" x="97" y="808.6" text-anchor="middle" fill="#1b1f24">zalecenie</text>
+<text class="edge-label" x="317" y="808.6" text-anchor="middle" fill="#1b1f24">wynik</text>
 </svg>

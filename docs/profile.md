@@ -112,6 +112,10 @@ Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`, teksty Markdo
 - punkt zaczepienia krawędzi przesuwa się w oś jej następnego punktu, jeśli ten leży w zasięgu boku pola: krawędź
   biegnie wtedy prosto, bez drobnego uskoku;
 - zakończenie krawędzi kółkiem albo krzyżykiem stoi przy polu, a linia kończy się na nim, nie na polu;
+- pola połączone w prosty ciąg (jedna krawędź wychodząca i jedna wchodząca) mają ten sam rozmiar w poprzek
+  kierunku diagramu, a pola jednej warstwy ten sam rozmiar wzdłuż niego, o ile różnią się najwyżej o 40%;
+  najszersze pole o jednej linii tekstu jest łamane na dwie, jeśli zmieści się wtedy w szerokości sąsiada;
+- pole z jednym sąsiadem staje w jego osi przed polem, które uśrednia położenie kilku sąsiadów;
 - pola są płaskie, o szerokości co najmniej 140 px przy piśmie 16 px; z rombu i koła krawędzie wychodzą osobno,
   z boków przy wierzchołku;
 - notatka diagramu stanów stoi obok swojego stanu po wskazanej stronie osi kolejności: w układzie pionowym po lewej

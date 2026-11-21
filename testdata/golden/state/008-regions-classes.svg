@@ -48,15 +48,15 @@
 <rect class="node" x="95" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="164.98" cy="276" r="8" fill="#3b4754"/>
 <rect class="node" x="85.98" y="328" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="92.98" y="456" width="144" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="93.48" y="584" width="143" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="85.98" y="456" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="85.98" y="584" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="164.98" cy="682" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <circle class="node-detail" cx="164.98" cy="682" r="6" fill="#3b4754"/>
 <circle class="node" cx="164.93" cy="794" r="8" fill="#3b4754"/>
 <rect class="node" x="39.82" y="846" width="147" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="165.23" cy="992" r="8" fill="#3b4754"/>
 <rect class="node" x="82.73" y="1044" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="95.23" y="1172" width="140" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="node" x="82.73" y="1172" width="165" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
 <rect class="node" x="27" y="1300" width="150" height="44" rx="8" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
 <rect class="node" x="158" y="1388" width="140" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
 <circle class="node" cx="165" cy="1486" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>

@@ -272,6 +272,7 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	l.build()
 	l.orient()
 	l.measure()
+	l.evenChains()
 	l.assignEdges()
 	l.rankAll(l.levels[""])
 	l.sizeAll(l.levels[""])
@@ -327,6 +328,115 @@ func (l *layouter) measure() {
 				it.w, it.h = l.abstract(l.nodeSize(it.node.Shape, it.text))
 			}
 		}
+		restore()
+	}
+}
+
+// boxLike mówi, czy pole jest zwykłym polem z tekstem, którego rozmiar można wyrównać z sąsiadami.
+func boxLike(it *item) bool {
+	if it.kind != kindNode || it.anchor != nil {
+		return false
+	}
+	switch it.node.Shape {
+	case graph.Rect, graph.Round, graph.Stadium, graph.Subroutine:
+		return true
+	}
+	return false
+}
+
+// even wyrównuje rozmiar pól w jednym wymiarze: w poprzek osi warstw (cross) albo wzdłuż niej.
+// Pola o rozmiarze co najmniej 60% największego dostają rozmiar największego; mniejsze zostają,
+// żeby krótki napis nie dostał pola kilka razy za dużego. Gdy wyrównywana jest rzeczywista
+// szerokość, a najszersze pole ma jedną linię tekstu, którą da się złamać na dwie tak, żeby
+// zmieściło się w szerokości drugiego co do wielkości, pole jest łamane zamiast poszerzać resztę.
+func (l *layouter) even(items []*item, cross bool) {
+	if len(items) < 2 {
+		return
+	}
+	get := func(it *item) float64 {
+		if cross {
+			return it.w
+		}
+		return it.h
+	}
+	widest, second := items[0], 0.0
+	for _, it := range items[1:] {
+		if get(it) > get(widest) {
+			widest = it
+		}
+	}
+	for _, it := range items {
+		if it != widest {
+			second = math.Max(second, get(it))
+		}
+	}
+	if realWidth := cross == l.vertical; realWidth && len(widest.text) == 1 && get(widest) > second+1 {
+		lines := l.wrap(widest.node.Label, second-2*l.u(28))
+		if len(lines) == 2 {
+			if w, h := l.nodeSize(widest.node.Shape, lines); w <= second+0.5 {
+				widest.text = lines
+				widest.w, widest.h = l.abstract(w, h)
+			}
+		}
+	}
+	target := 0.0
+	for _, it := range items {
+		target = math.Max(target, get(it))
+	}
+	for _, it := range items {
+		if get(it) >= 0.6*target {
+			if cross {
+				it.w = target
+			} else {
+				it.h = target
+			}
+		}
+	}
+}
+
+// evenChains wyrównuje w poprzek osi warstw pola połączone w prosty ciąg (krawędź jest jedyną
+// wychodzącą z pierwszego i jedyną wchodzącą do drugiego): takie pola stoją jedno za drugim
+// i przy różnych rozmiarach wyglądają nierówno.
+func (l *layouter) evenChains() {
+	out, in := map[string]int{}, map[string]int{}
+	for _, e := range l.g.Edges {
+		if e.From != e.To {
+			out[e.From]++
+			in[e.To]++
+		}
+	}
+	parent := map[*item]*item{}
+	var find func(it *item) *item
+	find = func(it *item) *item {
+		if p := parent[it]; p != nil && p != it {
+			parent[it] = find(p)
+			return parent[it]
+		}
+		return it
+	}
+	for _, e := range l.g.Edges {
+		a, b := l.itemOf[e.From], l.itemOf[e.To]
+		if a == nil || b == nil || a == b || !boxLike(a) || !boxLike(b) || a.node.Parent != b.node.Parent || out[e.From] != 1 || in[e.To] != 1 {
+			continue
+		}
+		parent[find(a)] = find(b)
+	}
+	groups := map[*item][]*item{}
+	var roots []*item
+	for _, n := range l.g.Nodes {
+		it := l.itemOf[n.ID]
+		if it == nil || !boxLike(it) {
+			continue
+		}
+		r := find(it)
+		if groups[r] == nil {
+			roots = append(roots, r)
+		}
+		groups[r] = append(groups[r], it)
+	}
+	for _, r := range roots {
+		restore := l.enter(l.levels[r.node.Parent])
+		l.even(groups[r], true)
 		restore()
 	}
 }
@@ -427,6 +537,22 @@ func (l *layouter) lift(id, scope string) *item {
 // początku, czy końca osi warstw; podgraf dostaje wtedy punkt na ramce i odcinek do pola wewnątrz.
 func (l *layouter) rankAll(lv *level) {
 	l.rank(lv)
+	// Pola jednej warstwy stoją obok siebie: wyrównujemy ich rozmiar wzdłuż osi warstw.
+	restore := l.enter(lv)
+	byRank := map[int][]*item{}
+	var ranks []int
+	for _, it := range lv.items {
+		if boxLike(it) {
+			if byRank[it.rank] == nil {
+				ranks = append(ranks, it.rank)
+			}
+			byRank[it.rank] = append(byRank[it.rank], it)
+		}
+	}
+	for _, r := range ranks {
+		l.even(byRank[r], false)
+	}
+	restore()
 	for _, e := range lv.edges {
 		if e.u.kind == kindCluster && e.topID != "" && l.itemOf[e.topID] != e.u {
 			child := e.u.child
@@ -615,22 +741,19 @@ func (l *layouter) rank(lv *level) {
 	// Krawędź z etykietą jest o jedną warstwę dłuższa: etykieta zajmuje w tej warstwie miejsce jak
 	// pole, obok pól innych gałęzi. Krawędzie bez etykiet zostają krótkie. Krawędzie wielokrotne
 	// między tą samą parą pól też się wydłużają: każda dostaje w warstwie pośredniej własny punkt.
-	count := map[[2]*item]int{}
-	pair := func(e *ledge) [2]*item {
-		if index := func(it *item) int {
-			for i, x := range lv.items {
-				if x == it {
-					return i
-				}
-			}
-			return -1
-		}; index(e.u) > index(e.v) {
-			return [2]*item{e.v, e.u}
+	// Liczą się rzeczywiste końce ze źródła: dwie krawędzie z różnych pól podgrafu do tego samego
+	// celu mają na ramce osobne punkty i nie są krawędzią wielokrotną.
+	count := map[[2]string]int{}
+	pair := func(e *ledge) [2]string {
+		if e.e.From > e.e.To {
+			return [2]string{e.e.To, e.e.From}
 		}
-		return [2]*item{e.u, e.v}
+		return [2]string{e.e.From, e.e.To}
 	}
 	for _, e := range lv.edges {
-		count[pair(e)]++
+		if e.e.From != "" {
+			count[pair(e)]++
+		}
 	}
 	extra := map[*ledge]int{}
 	for _, e := range lv.edges {
@@ -1203,6 +1326,11 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				if total > 0 {
 					want[i] = sum / total
 					priority[i] = float64(count)
+					if count == 1 {
+						// Pole z jednym sąsiadem może stanąć dokładnie w jego osi; ma pierwszeństwo
+						// przed polem, które i tak uśrednia położenie dwóch sąsiadów.
+						priority[i] = 2.5
+					}
 					if !it.real() {
 						priority[i] += 1000
 					}

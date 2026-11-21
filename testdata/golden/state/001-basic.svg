@@ -8,9 +8,9 @@
 <polygon class="arrowhead" points="83,236 77,224 89,224" fill="#3b4754"/>
 <polygon class="arrowhead" points="83,324 77,312 89,312" fill="#3b4754"/>
 <circle class="node" cx="83" cy="8" r="8" fill="#3b4754"/>
-<rect class="node" x="13" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="60" width="166" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="148" width="166" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="13" y="236" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="236" width="166" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="83" cy="334" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <circle class="node-detail" cx="83" cy="334" r="6" fill="#3b4754"/>
 <text class="node-label" x="83" y="87.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>

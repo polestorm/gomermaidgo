@@ -1,27 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="591.7" height="452" viewBox="-11.2 -12 591.7 452" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="591.7" height="472" viewBox="-11.2 -12 591.7 472" role="img" font-family="Recursive, sans-serif" font-size="16">
 <path class="edge" d="M196 30 L196 44 L196 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M176 132 L176 143.2 C176 147.6 172.4 151.2 168 151.2 L108 151.2 C103.6 151.2 100 154.8 100 159.2 L100 162 L100 186 L100 188.8 C100 193.2 103.6 196.8 108 196.8 L168 196.8 C172.4 196.8 176 200.4 176 204.8 L176 207.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M216 140.4 L216 143.2 C216 147.6 219.6 151.2 224 151.2 L283 151.2 C287.4 151.2 291 154.8 291 159.2 L291 162 L291 186 L291 188.8 C291 193.2 287.4 196.8 283 196.8 L224 196.8 C219.6 196.8 216 200.4 216 204.8 L216 216" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M196 260 L196 290 L196 334 L196 355.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="0.8" y="164" width="198.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="219.4" y="164" width="143.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="149.6" y="292" width="92.8" height="40" fill="#ffffff"/>
+<path class="edge" d="M176 152 L176 163.2 C176 167.6 172.4 171.2 168 171.2 L108 171.2 C103.6 171.2 100 174.8 100 179.2 L100 182 L100 206 L100 208.8 C100 213.2 103.6 216.8 108 216.8 L168 216.8 C172.4 216.8 176 220.4 176 224.8 L176 227.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M216 160.4 L216 163.2 C216 167.6 219.6 171.2 224 171.2 L283 171.2 C287.4 171.2 291 174.8 291 179.2 L291 182 L291 206 L291 208.8 C291 213.2 287.4 216.8 283 216.8 L224 216.8 C219.6 216.8 216 220.4 216 224.8 L216 236" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M196 280 L196 310 L196 354 L196 375.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="0.8" y="184" width="198.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="219.4" y="184" width="143.2" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="149.6" y="312" width="92.8" height="40" fill="#ffffff"/>
 <polygon class="arrowhead" points="196,88 190,76 202,76" fill="#3b4754"/>
-<polygon class="arrowhead" points="176,216 170,204 182,204" fill="#3b4754"/>
-<polygon class="arrowhead" points="216,132 222,144 210,144" fill="#3b4754"/>
-<polygon class="arrowhead" points="196,364 190,352 202,352" fill="#3b4754"/>
+<polygon class="arrowhead" points="176,236 170,224 182,224" fill="#3b4754"/>
+<polygon class="arrowhead" points="216,152 222,164 210,164" fill="#3b4754"/>
+<polygon class="arrowhead" points="196,384 190,372 202,372" fill="#3b4754"/>
 <circle class="node" cx="196" cy="22" r="8" fill="#3b4754"/>
 <rect class="node" x="411.5" y="0" width="157" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="106.5" y="88" width="179" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="107.5" y="216" width="177" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="83.5" y="364" width="225" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="107.5" y="88" width="177" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="107.5" y="236" width="177" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="83.5" y="384" width="225" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="490" y="27.6" text-anchor="middle" fill="#1b1f24">Samodzielny</text>
-<text class="node-label" x="196" y="115.6" text-anchor="middle" fill="#1b1f24">Wersja robocza</text>
-<text class="node-label" x="196" y="243.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
-<text class="node-label" x="196" y="391.6" text-anchor="middle" fill="#1b1f24">Wersja obowiązująca</text>
-<text class="node-label" x="196" y="411.6" text-anchor="middle" fill="#1b1f24">szkolenie ukończone</text>
-<text class="edge-label" x="100" y="179.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
-<text class="edge-label" x="291" y="179.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
-<text class="edge-label" x="196" y="307.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
-<text class="edge-label" x="196" y="327.6" text-anchor="middle" fill="#1b1f24">i opublikuj</text>
+<text class="node-label" x="196" y="115.6" text-anchor="middle" fill="#1b1f24">Wersja</text>
+<text class="node-label" x="196" y="135.6" text-anchor="middle" fill="#1b1f24">robocza</text>
+<text class="node-label" x="196" y="263.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
+<text class="node-label" x="196" y="411.6" text-anchor="middle" fill="#1b1f24">Wersja obowiązująca</text>
+<text class="node-label" x="196" y="431.6" text-anchor="middle" fill="#1b1f24">szkolenie ukończone</text>
+<text class="edge-label" x="100" y="199.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
+<text class="edge-label" x="291" y="199.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
+<text class="edge-label" x="196" y="327.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
+<text class="edge-label" x="196" y="347.6" text-anchor="middle" fill="#1b1f24">i opublikuj</text>
 </svg>

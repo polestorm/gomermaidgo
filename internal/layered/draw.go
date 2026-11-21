@@ -168,6 +168,13 @@ func (l *layouter) spreadPorts() {
 				continue
 			}
 			next, prev := e.v.nodeX(), e.u.nodeX()
+			// Koniec w podgrafie: liczy się punkt na jego ramce, nie środek ramki.
+			if e.lowerCont != nil {
+				next = e.lowerCont.u.x
+			}
+			if e.upperCont != nil {
+				prev = e.upperCont.v.x
+			}
 			if len(e.chain) > 0 {
 				next, prev = e.chain[0].x, e.chain[len(e.chain)-1].x
 			}
@@ -203,6 +210,14 @@ func (l *layouter) spreadPorts() {
 				target = en.e.chain[0].x
 			case len(en.e.chain) > 0:
 				target = en.e.chain[len(en.e.chain)-1].x
+			case en.upper && en.e.lowerCont != nil:
+				target = en.e.lowerCont.u.x
+			case !en.upper && en.e.upperCont != nil:
+				target = en.e.upperCont.v.x
+			case en.upper && en.e.v.kind == kindPort:
+				target = en.e.v.x
+			case !en.upper && en.e.u.kind == kindPort:
+				target = en.e.u.x
 			case en.upper && en.e.lowerCont == nil && en.e.v.kind == kindNode:
 				target = en.e.v.nodeX() + en.e.lowerPort
 			case !en.upper && en.e.upperCont == nil && en.e.u.kind == kindNode:
@@ -214,17 +229,27 @@ func (l *layouter) spreadPorts() {
 			if math.Abs(off) > usable/2 {
 				continue
 			}
+			set := func(en end, v float64) {
+				if en.upper {
+					en.e.upperPort = v
+				} else {
+					en.e.lowerPort = v
+				}
+			}
+			// Sąsiedni punkt, który stoi na drodze, odsuwa się, jeśli ma dokąd; inaczej uskok zostaje.
 			if i > 0 && off < get(ends[i-1])+l.u(10) {
-				continue
+				if i > 1 || off-l.u(14) < -usable/2 {
+					continue
+				}
+				set(ends[i-1], off-l.u(14))
 			}
 			if i+1 < len(ends) && off > get(ends[i+1])-l.u(10) {
-				continue
+				if i+2 < len(ends) || off+l.u(14) > usable/2 {
+					continue
+				}
+				set(ends[i+1], off+l.u(14))
 			}
-			if en.upper {
-				en.e.upperPort = off
-			} else {
-				en.e.lowerPort = off
-			}
+			set(en, off)
 		}
 	}
 	assign := func(it *item, ends []end) {
@@ -670,6 +695,10 @@ func (l *layouter) drawLabel(lines []string, x, y float64) {
 
 type routePoint struct{ x, y float64 }
 
+// straightTolerance: odcinek, którego końce różnią się w poprzek o mniej, jest rysowany jako prosty.
+// Różnice rzędu piksela biorą się z zaokrągleń położeń i dawałyby widoczny, bezsensowny uskok.
+const straightTolerance = 2.5
+
 // inset mówi, o ile brzeg kształtu jest bliżej środka pola niż krawędź jego prostokąta
 // w miejscu przesuniętym o off od osi: romb i koło zwężają się ku bokom.
 func inset(it *item, off float64) float64 {
@@ -843,7 +872,7 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 		r.track = map[int]float64{}
 		for i := 0; i+1 < len(r.pts); i++ {
 			a, b := r.pts[i], r.pts[i+1]
-			if math.Abs(a.x-b.x) >= 0.5 {
+			if math.Abs(a.x-b.x) >= straightTolerance {
 				jogs = append(jogs, &jog{r: r, seg: i, a: a, b: b, lo: math.Min(a.x, b.x) - l.u(5), hi: math.Max(a.x, b.x) + l.u(5)})
 			}
 		}
@@ -924,7 +953,7 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 	}
 	for i := 0; i+1 < len(pts); i++ {
 		a, b := pts[i], pts[i+1]
-		if math.Abs(a.x-b.x) < 0.5 {
+		if math.Abs(a.x-b.x) < straightTolerance {
 			run(b.x, b.y, [2]int{i, 0})
 			continue
 		}

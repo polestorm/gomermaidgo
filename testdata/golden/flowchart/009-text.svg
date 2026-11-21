@@ -9,10 +9,10 @@
 <polygon class="arrowhead" points="127,344 121,332 133,332" fill="#3b4754"/>
 <polygon class="arrowhead" points="127,452 121,440 133,440" fill="#3b4754"/>
 <polygon class="arrowhead" points="127,617 121,605 133,605" fill="#3b4754"/>
-<rect class="node" x="8" y="0" width="238" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="2.5" y="0" width="249" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="2.5" y="108" width="249" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="22" y="236" width="210" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="10" y="344" width="234" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="2.5" y="236" width="249" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="2.5" y="344" width="249" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <polygon class="node" points="127,452 218.5,512.5 127,573 35.5,512.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0.5" y="617" width="253" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="127" y="27.6" text-anchor="middle" fill="#1b1f24">Tekst z (nawiasami),</text>

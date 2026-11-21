@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="830" height="599" viewBox="-12 -12 830 599" role="img" font-family="Recursive, sans-serif" font-size="16">
 <path class="edge" d="M140 22 L221.6 22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M370 22 L451.6 22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M600 22 L644 22 L646.6 22" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M600 22 L635.6 22" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M140 114 L172.8 114 C177.2 114 180.8 117.6 180.8 122 L180.8 145 C180.8 149.4 184.4 153 188.8 153 L221.6 153" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M140 206 L172.8 206 C177.2 206 180.8 202.4 180.8 198 L180.8 175 C180.8 170.6 184.4 167 188.8 167 L221.6 167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M370 153 L416.8 153 C421.2 153 424.8 149.4 424.8 145 L424.8 122 C424.8 117.6 428.4 114 432.8 114 L451.6 114" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -19,7 +19,7 @@
 <rect class="edge-label-background" x="512.4" y="530" width="35.2" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="230,22 218,16 218,28" fill="#3b4754"/>
 <polygon class="arrowhead" points="460,22 448,16 448,28" fill="#3b4754"/>
-<polygon class="arrowhead" points="655,22 643,16 643,28" fill="#3b4754"/>
+<polygon class="arrowhead" points="644,22 632,16 632,28" fill="#3b4754"/>
 <polygon class="arrowhead" points="230,153 218,147 218,159" fill="#3b4754"/>
 <polygon class="arrowhead" points="230,167 218,161 218,173" fill="#3b4754"/>
 <polygon class="arrowhead" points="460,114 448,108 448,120" fill="#3b4754"/>
@@ -44,7 +44,7 @@
 <rect class="node" x="460" y="184" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="460" y="321" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="460" y="413" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="655" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="644" y="0" width="162" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="644" y="518" width="162" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="70" y="27.6" text-anchor="middle" fill="#1b1f24">A</text>
 <text class="node-label" x="70" y="119.6" text-anchor="middle" fill="#1b1f24">E</text>
