@@ -96,12 +96,11 @@ type ledge struct {
 
 // level to układ jednego zakresu: całego diagramu albo wnętrza podgrafu.
 type level struct {
-	sub    *graph.Subgraph
-	items  []*item
-	edges  []*ledge
-	loops  map[*item][]*graph.Edge
-	ranks  [][]*item
-	factor int
+	sub   *graph.Subgraph
+	items []*item
+	edges []*ledge
+	loops map[*item][]*graph.Edge
+	ranks [][]*item
 
 	w, h             float64 // rozmiar z marginesami
 	padX0, padY0     float64
@@ -613,21 +612,31 @@ func (l *layouter) finish(lv *level) {
 // rank usuwa cykle, dzieli pola na warstwy i wstawia punkty pomocnicze na długich krawędziach.
 func (l *layouter) rank(lv *level) {
 	defer l.enter(lv)()
-	lv.factor = 1
-	pairs := map[[2]*item]bool{}
+	// Krawędź z etykietą jest o jedną warstwę dłuższa: etykieta zajmuje w tej warstwie miejsce jak
+	// pole, obok pól innych gałęzi. Krawędzie bez etykiet zostają krótkie. Krawędzie wielokrotne
+	// między tą samą parą pól też się wydłużają: każda dostaje w warstwie pośredniej własny punkt.
+	count := map[[2]*item]int{}
+	pair := func(e *ledge) [2]*item {
+		if index := func(it *item) int {
+			for i, x := range lv.items {
+				if x == it {
+					return i
+				}
+			}
+			return -1
+		}; index(e.u) > index(e.v) {
+			return [2]*item{e.v, e.u}
+		}
+		return [2]*item{e.u, e.v}
+	}
 	for _, e := range lv.edges {
-		if len(e.e.Label) > 0 {
-			lv.factor = 2 // warstwy pośrednie dają miejsce na etykiety krawędzi
+		count[pair(e)]++
+	}
+	extra := map[*ledge]int{}
+	for _, e := range lv.edges {
+		if len(e.e.Label) > 0 || count[pair(e)] > 1 {
+			extra[e] = 1
 		}
-		// Krawędzie wielokrotne też potrzebują warstwy pośredniej: każda dostaje w niej własny punkt.
-		key := [2]*item{e.u, e.v}
-		if e.u == e.v {
-			continue
-		}
-		if pairs[key] || pairs[[2]*item{e.v, e.u}] {
-			lv.factor = 2
-		}
-		pairs[key] = true
 	}
 	index := map[*item]int{}
 	for i, it := range lv.items {
@@ -680,7 +689,7 @@ func (l *layouter) rank(lv *level) {
 	}
 
 	// Warstwy: najdłuższa ścieżka od źródeł, z minimalną długością krawędzi.
-	minLen := func(e *ledge) int { return e.e.MinLen * lv.factor }
+	minLen := func(e *ledge) int { return e.e.MinLen + extra[e] }
 	indeg := make([]int, len(lv.items))
 	succ := make([][]*ledge, len(lv.items))
 	for _, e := range lv.edges {
@@ -1356,11 +1365,15 @@ func (l *layouter) position(lv *level) (width, height float64) {
 	if math.IsInf(left, 1) {
 		left = 0
 	}
-	// Bez warstw pośrednich odstęp mieści samą strzałkę; z nimi (etykiety, krawędzie wielokrotne)
-	// każda połowa odstępu jest krótsza, a razem z warstwą pośrednią dają miejsce na etykietę.
-	rankGap := l.u(44)
-	if lv.factor > 1 {
-		rankGap = l.u(32)
+	// Odstęp między warstwami pól mieści strzałkę; przy warstwie złożonej z samych etykiet i punktów
+	// pośrednich jest krótszy, bo razem z nią i tak daje miejsce na krawędź.
+	anyReal := func(row []*item) bool {
+		for _, it := range row {
+			if it.real() {
+				return true
+			}
+		}
+		return false
 	}
 	y := 0.0
 	for r, row := range lv.ranks {
@@ -1376,9 +1389,11 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		}
 		if r > 0 {
 			// Warstwa samych punktów na ramce potrzebuje tylko miejsca na łuk krawędzi.
-			gap := rankGap
+			gap := l.u(44)
 			if portsOnly(row) || portsOnly(lv.ranks[r-1]) {
 				gap = l.u(24)
+			} else if !anyReal(row) || !anyReal(lv.ranks[r-1]) {
+				gap = l.u(30)
 			}
 			// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
 			if !l.o.CurvedEdges && turns > 2 {

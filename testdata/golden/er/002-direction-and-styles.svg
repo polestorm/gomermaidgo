@@ -1,54 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1004.6" height="214" viewBox="-12 -12 1004.6 214" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="996.6" height="214" viewBox="-12 -12 996.6 214" role="img" font-family="Recursive, sans-serif" font-size="16">
 <title>Struktura organizacyjna</title>
-<path class="edge" d="M501.1 130 L501.1 142 C501.1 172 517.1 172 517.1 142 L517.1 130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M178 99 L186 99 C190.4 99 194 95.4 194 91 L194 73 C194 68.6 197.6 65 202 65 L210 65 L297.6 65 L329.6 65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M688.6 65 L696.6 65 C701 65 704.6 68.6 704.6 73 L704.6 91 C704.6 95.4 708.2 99 712.6 99 L720.6 99 L770.6 99 L802.6 99" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="435.9" y="170" width="146.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="211" y="55" width="85.6" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="721.6" y="89" width="48" height="20" fill="#ffffff"/>
-<line class="arrowhead" x1="495.1" y1="137" x2="507.1" y2="137" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="501.1" cy="147" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="517.1" y1="141" x2="511.1" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="517.1" y1="141" x2="523.1" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="517.1" cy="150" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M497.1 130 L497.1 142 C497.1 172 513.1 172 513.1 142 L513.1 130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M178 99 L185 99 C189.4 99 193 95.4 193 91 L193 73 C193 68.6 196.6 65 201 65 L208 65 L295.6 65 L325.6 65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M684.6 65 L691.6 65 C696 65 699.6 68.6 699.6 73 L699.6 91 C699.6 95.4 703.2 99 707.6 99 L714.6 99 L764.6 99 L794.6 99" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="431.9" y="170" width="146.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="209" y="55" width="85.6" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="715.6" y="89" width="48" height="20" fill="#ffffff"/>
+<line class="arrowhead" x1="491.1" y1="137" x2="503.1" y2="137" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="497.1" cy="147" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="513.1" y1="141" x2="507.1" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="513.1" y1="141" x2="519.1" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="513.1" cy="150" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="185" y1="105" x2="185" y2="93" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="191" y1="105" x2="191" y2="93" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="318.6" y1="65" x2="329.6" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="318.6" y1="65" x2="329.6" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="309.6" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="699.6" y1="65" x2="688.6" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="699.6" y1="65" x2="688.6" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="708.6" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="791.6" y1="99" x2="802.6" y2="93" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="791.6" y1="99" x2="802.6" y2="105" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="782.6" cy="99" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="314.6" y1="65" x2="325.6" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="314.6" y1="65" x2="325.6" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="305.6" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="695.6" y1="65" x2="684.6" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="695.6" y1="65" x2="684.6" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="704.6" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="783.6" y1="99" x2="794.6" y2="93" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="783.6" y1="99" x2="794.6" y2="105" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="774.6" cy="99" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="node" x="0" y="49" width="178" height="100" fill="#e8f0fb" stroke="#3b6fb6" stroke-width="2"/>
 <rect class="node-detail" x="0" y="49" width="178" height="40" fill="#e8f0fb" stroke="#3b6fb6" stroke-width="2"/>
 <line class="node-detail" x1="0" y1="119" x2="178" y2="119" fill="none" stroke="#3b6fb6" stroke-width="2"/>
-<rect class="node" x="329.6" y="0" width="359" height="130" fill="#ffffff" stroke="#b7791f" stroke-width="1.5"/>
-<rect class="node-detail" x="329.6" y="0" width="359" height="40" fill="#eef2f7" stroke="#b7791f" stroke-width="1.5"/>
-<line class="node-detail" x1="329.6" y1="70" x2="688.6" y2="70" fill="none" stroke="#b7791f" stroke-width="1"/>
-<line class="node-detail" x1="329.6" y1="100" x2="688.6" y2="100" fill="none" stroke="#b7791f" stroke-width="1"/>
-<rect class="node" x="802.6" y="79" width="178" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="325.6" y="0" width="359" height="130" fill="#ffffff" stroke="#b7791f" stroke-width="1.5"/>
+<rect class="node-detail" x="325.6" y="0" width="359" height="40" fill="#eef2f7" stroke="#b7791f" stroke-width="1.5"/>
+<line class="node-detail" x1="325.6" y1="70" x2="684.6" y2="70" fill="none" stroke="#b7791f" stroke-width="1"/>
+<line class="node-detail" x1="325.6" y1="100" x2="684.6" y2="100" fill="none" stroke="#b7791f" stroke-width="1"/>
+<rect class="node" x="794.6" y="79" width="178" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="89" y="74.6" text-anchor="middle" fill="#1b1f24">DZIAL</text>
 <text class="attribute" x="10" y="109.6" fill="#1b1f24">int</text>
 <text class="attribute" x="78.8" y="109.6" fill="#1b1f24">id</text>
 <text class="attribute" x="149.2" y="109.6" fill="#1b1f24">PK</text>
 <text class="attribute" x="10" y="139.6" fill="#1b1f24">string</text>
 <text class="attribute" x="78.8" y="139.6" fill="#1b1f24">nazwa</text>
-<text class="node-label" x="509.1" y="25.6" text-anchor="middle" fill="#1b1f24">PRACOWNIK</text>
-<text class="attribute" x="339.6" y="60.6" fill="#1b1f24">int</text>
-<text class="attribute" x="382.8" y="60.6" fill="#1b1f24">id</text>
-<text class="attribute" x="515.6" y="60.6" fill="#1b1f24">PK</text>
-<text class="attribute" x="339.6" y="90.6" fill="#1b1f24">int</text>
-<text class="attribute" x="382.8" y="90.6" fill="#1b1f24">dzial_id</text>
-<text class="attribute" x="515.6" y="90.6" fill="#1b1f24">FK</text>
-<text class="attribute" x="339.6" y="120.6" fill="#1b1f24">int</text>
-<text class="attribute" x="382.8" y="120.6" fill="#1b1f24">przelozony_id</text>
-<text class="attribute" x="515.6" y="120.6" fill="#1b1f24">FK</text>
-<text class="attribute" x="554.8" y="120.6" fill="#1b1f24">może być pusty</text>
-<text class="edge-label" x="509.1" y="185.6" text-anchor="middle" fill="#1b1f24">jest przełożonym</text>
-<text class="node-label" x="891.6" y="104.6" text-anchor="middle" fill="#1b1f24">Rola w systemie</text>
-<text class="edge-label" x="253.8" y="70.6" text-anchor="middle" fill="#1b1f24">zatrudnia</text>
-<text class="edge-label" x="745.6" y="104.6" text-anchor="middle" fill="#1b1f24">pełni</text>
+<text class="node-label" x="505.1" y="25.6" text-anchor="middle" fill="#1b1f24">PRACOWNIK</text>
+<text class="attribute" x="335.6" y="60.6" fill="#1b1f24">int</text>
+<text class="attribute" x="378.8" y="60.6" fill="#1b1f24">id</text>
+<text class="attribute" x="511.6" y="60.6" fill="#1b1f24">PK</text>
+<text class="attribute" x="335.6" y="90.6" fill="#1b1f24">int</text>
+<text class="attribute" x="378.8" y="90.6" fill="#1b1f24">dzial_id</text>
+<text class="attribute" x="511.6" y="90.6" fill="#1b1f24">FK</text>
+<text class="attribute" x="335.6" y="120.6" fill="#1b1f24">int</text>
+<text class="attribute" x="378.8" y="120.6" fill="#1b1f24">przelozony_id</text>
+<text class="attribute" x="511.6" y="120.6" fill="#1b1f24">FK</text>
+<text class="attribute" x="550.8" y="120.6" fill="#1b1f24">może być pusty</text>
+<text class="edge-label" x="505.1" y="185.6" text-anchor="middle" fill="#1b1f24">jest przełożonym</text>
+<text class="node-label" x="883.6" y="104.6" text-anchor="middle" fill="#1b1f24">Rola w systemie</text>
+<text class="edge-label" x="251.8" y="70.6" text-anchor="middle" fill="#1b1f24">zatrudnia</text>
+<text class="edge-label" x="739.6" y="104.6" text-anchor="middle" fill="#1b1f24">pełni</text>
 </svg>
