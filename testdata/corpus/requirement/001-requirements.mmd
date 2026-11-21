@@ -1,0 +1,34 @@
+%% REQ: RQD-001 RQD-002 RQD-003
+%% Tytuł: Diagram wymagań
+%% Sprawdza: rodzaje wymagań i element, pola id, text, risk, verifymethod, type, docref, długi tekst wymagania, nazwa w cudzysłowach, relacje w obu zapisach, relacja contains, styl klasy.
+requirementDiagram
+    classDef krytyczne fill:#fde8e8,stroke:#b42318,stroke-width:2px
+    requirement sterylnosc {
+        id: "URS-01"
+        text: Wyrób jest sterylny do końca okresu przydatności w opakowaniu jednostkowym nienaruszonym przez transport i składowanie
+        risk: high
+        verifymethod: test
+    }
+    functionalRequirement "szczelność opakowania":::krytyczne {
+        id: "FRS-07"
+        text: Zgrzew wytrzymuje próbę rozrywania
+        risk: medium
+        verifymethod: inspection
+    }
+    designConstraint material {
+        id: "DC-03"
+        text: Folia zgodna z normą
+        risk: low
+        verifymethod: analysis
+    }
+    element walidacja_zgrzewania {
+        type: raport walidacji
+        docref: "VAL-2026-004"
+    }
+    element specyfikacja_folii {
+        type: specyfikacja
+    }
+    sterylnosc - contains -> "szczelność opakowania"
+    "szczelność opakowania" - derives -> material
+    walidacja_zgrzewania - verifies -> "szczelność opakowania"
+    material <- satisfies - specyfikacja_folii

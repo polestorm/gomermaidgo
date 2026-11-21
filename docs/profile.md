@@ -505,3 +505,31 @@ jest rysowana na jego brzegu.
 a nazwa z wartością trafia do listy pod mapą, więc żadna dana nie znika; wartość jest zapisana tak jak w źródle,
 bez formatowania; mapa ma stały rozmiar 620 × 400 px; domyślnie rysunek jest neutralny, `WithColors` nadaje ton
 palety każdej gałęzi najwyższego poziomu.
+
+## Diagram wymagań (`requirementDiagram`)
+
+Rysowany tym samym układem warstwowym co schemat blokowy i diagram klas.
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| wymaganie | `requirement nazwa { id: 1  text: …  risk: high  verifymethod: test }` i pięć rodzajów szczegółowych | RQD-001, RQD-002 |
+| element | `element nazwa { type: …  docref: … }` | RQD-001, RQD-002 |
+| relacja | `a - satisfies -> b`; `b <- satisfies - a` | RQD-003 |
+| kierunek, wygląd | `direction LR`; `classDef`, `class`, `nazwa:::styl`, `style` | RQD-003 |
+| dostępność | `accTitle`, `accDescr` | RQD-001 |
+
+Świadome różnice wobec Mermaid: długi tekst wymagania jest łamany na linie o około 44 znakach; relacja `contains`
+ma kółko przy elemencie zawierającym (w Mermaid kółko z krzyżykiem); pozostałe relacje mają otwarty grot i linię
+ciągłą; nazwa użyta w relacji musi być zdefiniowana blokiem; wartość pola przyjmujemy także bez cudzysłowów,
+gdy ma łącznik albo kropkę (Mermaid wymaga wtedy cudzysłowów).
+
+## Wykres Sankeya (`sankey-beta`, `sankey`)
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| przepływ | `źródło,cel,wartość`; `"nazwa, z przecinkiem",cel,12.5` | SNK-001 |
+
+Świadome różnice wobec Mermaid: przy każdym węźle stoi jego wartość; wstęgi są domyślnie szare i półprzezroczyste,
+a `WithColors` nadaje im kolor węzła źródłowego; wykres ma stałą szerokość 620 px i wysokość rosnącą z liczbą węzłów
+w kolumnie; nazwy węzłów mogą zawierać polskie litery (Mermaid w tym typie odrzuca znaki spoza ASCII, także
+w cudzysłowach); cykl przepływów jest błędem; `accTitle` i `accDescr` nie są częścią składni (linia byłaby przepływem).

@@ -457,9 +457,9 @@ func (l *layouter) drawLevelContent(lv *level) {
 				l.drawLevel(it.child)
 			case kindNode:
 				cx, cy, w, h := l.rect(it.nodeX(), it.y, it.nodeW(), it.h)
-				if it.node.Shape == graph.Entity || it.node.Shape == graph.Class {
+				if it.node.Shape == graph.Entity || it.node.Shape == graph.Class || it.node.Shape == graph.Requirement {
 					from := len(l.sc.Items)
-					if it.node.Shape == graph.Class {
+					if it.node.Shape != graph.Entity {
 						l.drawClass(it.node, cx, cy, w, h)
 					} else {
 						l.drawEntity(it.node, cx, cy, w, h)
@@ -706,6 +706,9 @@ func (l *layouter) classParts(n *graph.Node) (head, row, attrs, methods float64)
 	}
 	// Pusty przedział zostaje jako wąski pasek: widać, że klasa nie ma atrybutów albo metod.
 	part := func(k float64) float64 { return math.Max(k*row+2*l.u(5), l.u(12)) }
+	if n.Shape == graph.Requirement {
+		return head, row, part(count[0]), 0 // wymaganie ma jeden przedział pól
+	}
 	return head, row, part(count[0]), part(count[1])
 }
 
@@ -733,7 +736,7 @@ func (l *layouter) classSize(n *graph.Node) (w, h float64) {
 // w osobnych przedziałach. Składowa statyczna jest podkreślona, abstrakcyjna pochylona.
 func (l *layouter) drawClass(n *graph.Node, cx, cy, w, h float64) {
 	fill, stroke := l.tone(graph.Class)
-	head, row, attrs, _ := l.classParts(n)
+	head, row, attrs, methods := l.classParts(n)
 	x0, y0 := cx-w/2, cy-h/2
 	body := "#ffffff"
 	if len(n.Members) == 0 {
@@ -742,7 +745,9 @@ func (l *layouter) drawClass(n *graph.Node, cx, cy, w, h float64) {
 	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "node", X: x0, Y: y0, W: w, H: h, Fill: body, Stroke: stroke, StrokeWidth: 1.5})
 	if len(n.Members) > 0 {
 		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "node-detail", X: x0, Y: y0, W: w, H: head, Fill: fill, Stroke: stroke, StrokeWidth: 1.5})
-		l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "node-detail", X: x0, Y: y0 + head + attrs, X2: x0 + w, Y2: y0 + head + attrs, Stroke: stroke, StrokeWidth: 1})
+		if methods > 0 {
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "node-detail", X: x0, Y: y0 + head + attrs, X2: x0 + w, Y2: y0 + head + attrs, Stroke: stroke, StrokeWidth: 1})
+		}
 	}
 	top := y0 + l.u(8)
 	if n.Annotation != "" {

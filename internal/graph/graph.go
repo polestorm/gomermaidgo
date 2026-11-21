@@ -66,8 +66,9 @@ const (
 	Choice           Shape = "choice"
 	Fork             Shape = "fork"
 	Join             Shape = "join"
-	Entity           Shape = "entity" // encja diagramu związków: nagłówek i tabela atrybutów
-	Class            Shape = "class"  // klasa: nazwa, atrybuty, metody
+	Entity           Shape = "entity"      // encja diagramu związków: nagłówek i tabela atrybutów
+	Class            Shape = "class"       // klasa: nazwa, atrybuty, metody
+	Requirement      Shape = "requirement" // wymaganie albo element: rodzaj, nazwa i pola w jednym przedziale
 )
 
 // LineStyle to rodzaj linii krawędzi.

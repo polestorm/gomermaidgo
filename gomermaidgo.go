@@ -26,6 +26,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/mindmap"
 	"github.com/polestorm/gomermaidgo/internal/pie"
 	"github.com/polestorm/gomermaidgo/internal/quadrant"
+	"github.com/polestorm/gomermaidgo/internal/requirement"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
@@ -42,23 +43,24 @@ var ErrUnsupportedType = errors.New("gomermaidgo: unsupported diagram type")
 
 // Typy diagramów.
 const (
-	TypeSequence  = "sequenceDiagram"
-	TypeFlowchart = "flowchart"
-	TypeState     = "stateDiagram"
-	TypeGantt     = "gantt"
-	TypeER        = "erDiagram"
-	TypePie       = "pie"
-	TypeClass     = "classDiagram"
-	TypeTimeline  = "timeline"
-	TypeJourney   = "journey"
-	TypeMindmap   = "mindmap"
-	TypeXYChart   = "xychart"
-	TypeQuadrant  = "quadrantChart"
+	TypeSequence    = "sequenceDiagram"
+	TypeFlowchart   = "flowchart"
+	TypeState       = "stateDiagram"
+	TypeGantt       = "gantt"
+	TypeER          = "erDiagram"
+	TypePie         = "pie"
+	TypeClass       = "classDiagram"
+	TypeTimeline    = "timeline"
+	TypeJourney     = "journey"
+	TypeMindmap     = "mindmap"
+	TypeXYChart     = "xychart"
+	TypeQuadrant    = "quadrantChart"
+	TypeRequirement = "requirementDiagram"
 )
 
 // SupportedTypes zwraca obsługiwane typy diagramów.
 func SupportedTypes() []string {
-	out := []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant}
+	out := []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant, TypeRequirement}
 	for _, t := range moreTypes {
 		out = append(out, t.name)
 	}
@@ -158,6 +160,8 @@ func DetectType(source string) (string, error) {
 			return TypeXYChart, nil
 		case "quadrantChart":
 			return TypeQuadrant, nil
+		case "requirementDiagram":
+			return TypeRequirement, nil
 		}
 		for _, t := range moreTypes {
 			if slices.Contains(t.headers, strings.TrimRight(word, ";")) {
@@ -216,6 +220,8 @@ func Check(source string) error {
 		_, err = pie.Parse(source)
 	case TypeClass:
 		_, err = class.Parse(source)
+	case TypeRequirement:
+		_, err = requirement.Parse(source)
 	case TypeTimeline:
 		_, err = timeline.Parse(source)
 	case TypeJourney:
@@ -346,6 +352,8 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 			g, err = er.Parse(source)
 		case TypeClass:
 			g, err = class.Parse(source)
+		case TypeRequirement:
+			g, err = requirement.Parse(source)
 		default:
 			g, err = state.Parse(source)
 		}

@@ -18,6 +18,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/gantt"
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/mindmap"
+	"github.com/polestorm/gomermaidgo/internal/requirement"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
 )
@@ -48,7 +49,7 @@ func corpusFiles(t *testing.T) []string {
 func graphCorpusFiles(t *testing.T) []string {
 	t.Helper()
 	var files []string
-	for _, dir := range []string{"flowchart", "state", "er", "class", "mindmap"} {
+	for _, dir := range []string{"flowchart", "state", "er", "class", "mindmap", "requirement"} {
 		m, _ := filepath.Glob("testdata/corpus/" + dir + "/*.mmd")
 		if len(m) == 0 {
 			t.Fatalf("no corpus files for %s", dir)
@@ -71,6 +72,8 @@ func parseGraph(t *testing.T, path string) *graph.Graph {
 		g, err = class.Parse(src)
 	} else if strings.Contains(path, "/mindmap/") {
 		g, err = mindmap.Parse(src)
+	} else if strings.Contains(path, "/requirement/") {
+		g, err = requirement.Parse(src)
 	} else {
 		g, err = state.Parse(src)
 	}
@@ -221,7 +224,7 @@ var allowedSVG = map[string][]string{
 	"polygon":  {"class", "points", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"circle":   {"class", "cx", "cy", "r", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"ellipse":  {"class", "cx", "cy", "rx", "ry", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
-	"path":     {"class", "d", "fill", "stroke", "stroke-width", "stroke-dasharray"},
+	"path":     {"class", "d", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"text":     {"class", "x", "y", "text-anchor", "font-size", "fill", "font-weight", "font-style"},
 }
 
@@ -316,7 +319,7 @@ func TestCorpusValidSVG(t *testing.T) {
 		}
 		// Diagram pakietu, wykres radarowy i mapa drzewa nie mają kształtów, pod którymi cień
 		// miałby sens (pola stykają się bokami albo są liniami); opcja jest tam przyjmowana bez skutku.
-		flat := strings.Contains(f, "/packet/") || strings.Contains(f, "/radar/") || strings.Contains(f, "/treemap/")
+		flat := strings.Contains(f, "/sankey/") || strings.Contains(f, "/packet/") || strings.Contains(f, "/radar/") || strings.Contains(f, "/treemap/")
 		if !flat && bytes.Count(styled, []byte(`class="shadow"`)) == 0 {
 			t.Errorf("%s: no shadows were drawn", f)
 		}
@@ -462,7 +465,7 @@ func TestRequirementsCovered(t *testing.T) {
 
 // REQ: SEQ-011
 func TestUnsupportedType(t *testing.T) {
-	for _, src := range []string{"sankey-beta\n a,b,1", "requirementDiagram\n x", "gitGraph\n commit", "flowchart-elk TD\n A-->B"} {
+	for _, src := range []string{"C4Context\n title x", "block-beta\n a", "gitGraph\n commit", "flowchart-elk TD\n A-->B"} {
 		if _, err := Render(src); !errors.Is(err, ErrUnsupportedType) {
 			t.Errorf("%q: want unsupported type error, got %v", src, err)
 		}

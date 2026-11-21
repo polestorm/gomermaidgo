@@ -57,7 +57,7 @@ func requirements() map[string]string {
 	return out
 }
 
-var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji", "pie": "Wykres kołowy", "class": "Diagram klas", "timeline": "Oś czasu", "journey": "Podróż użytkownika", "mindmap": "Mapa myśli", "xychart": "Wykres słupkowy i liniowy", "quadrant": "Wykres ćwiartkowy", "kanban": "Tablica kanban", "packet": "Diagram pakietu", "radar": "Wykres radarowy", "treemap": "Mapa drzewa"}
+var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji", "pie": "Wykres kołowy", "class": "Diagram klas", "timeline": "Oś czasu", "journey": "Podróż użytkownika", "mindmap": "Mapa myśli", "xychart": "Wykres słupkowy i liniowy", "quadrant": "Wykres ćwiartkowy", "kanban": "Tablica kanban", "packet": "Diagram pakietu", "radar": "Wykres radarowy", "treemap": "Mapa drzewa", "requirement": "Diagram wymagań", "sankey": "Wykres Sankeya"}
 
 func main() {
 	fontPath := flag.String("font", "", "font file used to measure text and embedded in the page")
@@ -89,7 +89,7 @@ func main() {
 	defer os.RemoveAll(tmp)
 
 	var entries []entry
-	for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap"} {
+	for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap", "requirement", "sankey"} {
 		files, _ := filepath.Glob("testdata/corpus/" + kind + "/*.mmd")
 		sort.Strings(files)
 		for _, f := range files {

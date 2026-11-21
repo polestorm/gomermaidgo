@@ -4,6 +4,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/kanban"
 	"github.com/polestorm/gomermaidgo/internal/packet"
 	"github.com/polestorm/gomermaidgo/internal/radar"
+	"github.com/polestorm/gomermaidgo/internal/sankey"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/treemap"
 )
@@ -14,6 +15,7 @@ const (
 	TypePacket  = "packet"
 	TypeRadar   = "radar"
 	TypeTreemap = "treemap"
+	TypeSankey  = "sankey"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -55,6 +57,13 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return radar.Layout(c, radar.Options(o)), nil
+	}},
+	{TypeSankey, []string{"sankey-beta", "sankey"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		c, err := sankey.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return sankey.Layout(c, sankey.Options(o)), nil
 	}},
 	{TypeTreemap, []string{"treemap-beta", "treemap"}, func(source string, o layoutOptions) (*scene.Scene, error) {
 		d, err := treemap.Parse(source)

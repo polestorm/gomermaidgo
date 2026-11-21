@@ -371,7 +371,7 @@ func (l *layouter) measure() {
 		for _, it := range lv.items {
 			if it.kind == kindNode && it.node.Shape == graph.Entity {
 				it.w, it.h = l.abstract(l.entitySize(it.node))
-			} else if it.kind == kindNode && it.node.Shape == graph.Class {
+			} else if it.kind == kindNode && (it.node.Shape == graph.Class || it.node.Shape == graph.Requirement) {
 				it.w, it.h = l.abstract(l.classSize(it.node))
 			} else if it.kind == kindNode {
 				it.w, it.h = l.abstract(l.nodeSize(it.node.Shape, it.text))

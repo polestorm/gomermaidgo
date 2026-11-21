@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="788.5" height="720" viewBox="-12 -12 788.5 720" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="edge" d="M188 229 L188 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M357 458 L357 512 L357 519 C357 523.4 360.6 527 365 527 L490 527 C494.4 527 498 530.6 498 535 L498 542" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M526 165 L526 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M678 425 L678 512 L678 519 C678 523.4 674.4 527 670 527 L546 527 C541.6 527 538 530.6 538 535 L538 542" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="140" y="252" width="96" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="313.4" y="490" width="87.2" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="481.2" y="252" width="89.6" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="628.8" y="490" width="98.4" height="20" fill="#ffffff"/>
+<circle class="arrowhead" cx="188" cy="225" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="498" y1="542" x2="504" y2="531" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="498" y1="542" x2="492" y2="531" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="526" y1="304" x2="532" y2="293" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="526" y1="304" x2="520" y2="293" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="538" y1="542" x2="544" y2="531" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="538" y1="542" x2="532" y2="531" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="node" x="0" y="0" width="376" height="220" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="0" y="0" width="376" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="424" y="55" width="204" height="110" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="424" y="55" width="204" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="170.5" y="304" width="373" height="154" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="node-detail" x="170.5" y="304" width="373" height="56" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="node" x="591.5" y="337" width="173" height="88" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="591.5" y="337" width="173" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="398" y="542" width="240" height="154" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="398" y="542" width="240" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="188" y="23.6" text-anchor="middle" fill="#1b1f24">«Requirement»</text>
+<text class="node-label" x="188" y="43.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">sterylnosc</text>
+<text class="member" x="12" y="77.6" fill="#1b1f24">Id: URS-01</text>
+<text class="member" x="12" y="99.6" fill="#1b1f24">Text: Wyrób jest sterylny do końca okresu</text>
+<text class="member" x="12" y="121.6" fill="#1b1f24">  przydatności w opakowaniu jednostkowym</text>
+<text class="member" x="12" y="143.6" fill="#1b1f24">  nienaruszonym przez transport i</text>
+<text class="member" x="12" y="165.6" fill="#1b1f24">  składowanie</text>
+<text class="member" x="12" y="187.6" fill="#1b1f24">Risk: High</text>
+<text class="member" x="12" y="209.6" fill="#1b1f24">Verification: Test</text>
+<text class="node-label" x="526" y="78.6" text-anchor="middle" fill="#1b1f24">«Element»</text>
+<text class="node-label" x="526" y="98.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">walidacja_zgrzewania</text>
+<text class="member" x="436" y="132.6" fill="#1b1f24">Type: raport walidacji</text>
+<text class="member" x="436" y="154.6" fill="#1b1f24">Doc Ref: VAL-2026-004</text>
+<text class="node-label" x="357" y="327.6" text-anchor="middle" fill="#1b1f24">«Functional Requirement»</text>
+<text class="node-label" x="357" y="347.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">szczelność opakowania</text>
+<text class="member" x="182.5" y="381.6" fill="#1b1f24">Id: FRS-07</text>
+<text class="member" x="182.5" y="403.6" fill="#1b1f24">Text: Zgrzew wytrzymuje próbę rozrywania</text>
+<text class="member" x="182.5" y="425.6" fill="#1b1f24">Risk: Medium</text>
+<text class="member" x="182.5" y="447.6" fill="#1b1f24">Verification: Inspection</text>
+<text class="node-label" x="678" y="360.6" text-anchor="middle" fill="#1b1f24">«Element»</text>
+<text class="node-label" x="678" y="380.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">specyfikacja_folii</text>
+<text class="member" x="603.5" y="414.6" fill="#1b1f24">Type: specyfikacja</text>
+<text class="node-label" x="518" y="565.6" text-anchor="middle" fill="#1b1f24">«Design Constraint»</text>
+<text class="node-label" x="518" y="585.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">material</text>
+<text class="member" x="410" y="619.6" fill="#1b1f24">Id: DC-03</text>
+<text class="member" x="410" y="641.6" fill="#1b1f24">Text: Folia zgodna z normą</text>
+<text class="member" x="410" y="663.6" fill="#1b1f24">Risk: Low</text>
+<text class="member" x="410" y="685.6" fill="#1b1f24">Verification: Analysis</text>
+<text class="edge-label" x="188" y="267.6" text-anchor="middle" fill="#1b1f24">«contains»</text>
+<text class="edge-label" x="357" y="505.6" text-anchor="middle" fill="#1b1f24">«derives»</text>
+<text class="edge-label" x="526" y="267.6" text-anchor="middle" fill="#1b1f24">«verifies»</text>
+<text class="edge-label" x="678" y="505.6" text-anchor="middle" fill="#1b1f24">«satisfies»</text>
+</svg>
