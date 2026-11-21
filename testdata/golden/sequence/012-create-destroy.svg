@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="606" height="563" viewBox="-44 -12 606 563" role="img" font-family="Recursive, sans-serif" font-size="16">
-<line class="lifeline" x1="0" y1="68" x2="0" y2="463" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="216" y1="68" x2="216" y2="471" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="466" y1="204" x2="466" y2="375" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="606" height="548" viewBox="-44 -12 606 548" role="img" font-family="Recursive, sans-serif" font-size="16">
+<line class="lifeline" x1="0" y1="68" x2="0" y2="448" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<line class="lifeline" x1="216" y1="68" x2="216" y2="456" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<line class="lifeline" x1="466" y1="204" x2="466" y2="359" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
 <rect class="label-background" x="163.2" y="229" width="139.6" height="18" fill="#ffffff"/>
 <rect class="label-background" x="194" y="282" width="78" height="18" fill="#ffffff"/>
 <circle class="actor" cx="0" cy="8" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
@@ -19,19 +19,17 @@
 <line class="message" x1="0" y1="253" x2="457" y2="253" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="0,306 9,302 9,310" fill="#3b4754"/>
 <line class="message" x1="466" y1="306" x2="9" y2="306" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<line class="arrowhead" x1="456" y1="363" x2="464" y2="355" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="456" y1="355" x2="464" y2="363" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="message" x1="216" y1="359" x2="466" y2="359" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="destroy" x1="459" y1="382" x2="473" y2="368" fill="none" stroke="#3b4754" stroke-width="2"/>
-<line class="destroy" x1="459" y1="368" x2="473" y2="382" fill="none" stroke="#3b4754" stroke-width="2"/>
-<polygon class="arrowhead" points="0,427 9,423 9,431" fill="#3b4754"/>
-<line class="message" x1="216" y1="427" x2="9" y2="427" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<circle class="actor" cx="0" cy="479" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="487" x2="0" y2="503" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="-12" y1="493" x2="12" y2="493" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="503" x2="-10" y2="515" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="503" x2="10" y2="515" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="147.6" y="471" width="136.8" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="destroy" x1="459" y1="366" x2="473" y2="352" fill="none" stroke="#3b4754" stroke-width="2"/>
+<line class="destroy" x1="459" y1="352" x2="473" y2="366" fill="none" stroke="#3b4754" stroke-width="2"/>
+<polygon class="arrowhead" points="0,412 9,408 9,416" fill="#3b4754"/>
+<line class="message" x1="216" y1="412" x2="9" y2="412" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle class="actor" cx="0" cy="464" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="472" x2="0" y2="488" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="-12" y1="478" x2="12" y2="478" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="488" x2="-10" y2="500" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="actor" x1="0" y1="488" x2="10" y2="500" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="147.6" y="456" width="136.8" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="participant-label" x="0" y="63.6" text-anchor="middle" fill="#1b1f24">Audytor</text>
 <text class="participant-label" x="216" y="39.6" text-anchor="middle" fill="#1b1f24">System QMS</text>
 <text class="message-label" x="108" y="107.6" text-anchor="middle" fill="#1b1f24">Otwórz audyt</text>
@@ -50,9 +48,9 @@
 <text class="message-label" x="341" y="349.6" text-anchor="middle" fill="#1b1f24">Zamknij i zarchiwizuj</text>
 <circle class="sequence-number" cx="216" cy="359" r="9" fill="#3b4754"/>
 <text class="sequence-number" x="216" y="362.85" text-anchor="middle" font-size="11" fill="#ffffff">30</text>
-<text class="message-label" x="108" y="417.6" text-anchor="middle" fill="#1b1f24">Audyt zamknięty</text>
-<circle class="sequence-number" cx="216" cy="427" r="9" fill="#3b4754"/>
-<text class="sequence-number" x="216" y="430.85" text-anchor="middle" font-size="11" fill="#ffffff">35</text>
-<text class="participant-label" x="0" y="534.6" text-anchor="middle" fill="#1b1f24">Audytor</text>
-<text class="participant-label" x="216" y="510.6" text-anchor="middle" fill="#1b1f24">System QMS</text>
+<text class="message-label" x="108" y="402.6" text-anchor="middle" fill="#1b1f24">Audyt zamknięty</text>
+<circle class="sequence-number" cx="216" cy="412" r="9" fill="#3b4754"/>
+<text class="sequence-number" x="216" y="415.85" text-anchor="middle" font-size="11" fill="#ffffff">35</text>
+<text class="participant-label" x="0" y="519.6" text-anchor="middle" fill="#1b1f24">Audytor</text>
+<text class="participant-label" x="216" y="495.6" text-anchor="middle" fill="#1b1f24">System QMS</text>
 </svg>

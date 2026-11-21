@@ -525,7 +525,14 @@ func (l *layout) message(e Event) {
 	}
 
 	startX, endX := x1, x2
-	endX -= dir * l.head(e.Head, x2, y, dir)
+	// Komunikat z grotem-krzyżykiem, który kończy życie odbiorcy: jeden krzyżyk na końcu strzałki
+	// zamiast dwóch obok siebie.
+	merged := e.Destroyed-1 == e.To && e.Head == HeadCross && !e.Bidirectional
+	if merged {
+		endX = l.x[e.To]
+	} else {
+		endX -= dir * l.head(e.Head, x2, y, dir)
+	}
 	if e.Bidirectional {
 		startX += dir * l.head(e.Head, x1, y, -dir)
 	}
@@ -547,11 +554,15 @@ func (l *layout) message(e Event) {
 		l.start[c] = y + l.header/2
 		l.cursor = y + l.header/2 + l.u(24)
 	}
-	l.destroy(e, y)
+	if merged {
+		l.destroy(e, y, 0)
+	} else {
+		l.destroy(e, y, l.u(16))
+	}
 }
 
 // destroy kończy linię życia uczestnika krzyżykiem tuż pod jego ostatnim komunikatem.
-func (l *layout) destroy(e Event, y float64) {
+func (l *layout) destroy(e Event, y, below float64) {
 	d := e.Destroyed - 1
 	if d < 0 {
 		return
@@ -559,7 +570,7 @@ func (l *layout) destroy(e Event, y float64) {
 	for len(l.active[d]) > 0 {
 		l.deactivate(d, y)
 	}
-	cy, r := y+l.u(16), l.u(7)
+	cy, r := y+below, l.u(7)
 	l.end[d] = cy
 	for _, s := range []float64{-1, 1} {
 		l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "destroy",
@@ -622,7 +633,7 @@ func (l *layout) selfMessage(e Event) {
 	}
 	l.lastY = y1
 	l.cursor = y1 + l.u(28)
-	l.destroy(e, y1)
+	l.destroy(e, y1, l.u(16))
 }
 
 func (l *layout) note(e Event) {

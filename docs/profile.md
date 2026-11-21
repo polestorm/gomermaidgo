@@ -35,7 +35,8 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 - limity: 50 uczestników, 2000 instrukcji, 20 poziomów zagnieżdżenia bloków;
 - dezaktywacja nieaktywnego uczestnika jest błędem, także w zapisie skróconym;
 - uczestnik zakończony przez `destroy` kończy się krzyżykiem i nie ma stopki; Mermaid rysuje w tym miejscu jego pole
-  po raz drugi. Użycie takiego uczestnika po zakończeniu jest błędem;
+  po raz drugi. Gdy komunikat kończący ma grot-krzyżyk (`-x`), grot i znak zakończenia są jednym krzyżykiem.
+  Użycie takiego uczestnika po zakończeniu jest błędem;
 - etykieta komunikatu do siebie stoi nad pętlą; u ostatniego uczestnika kończy się nad pętlą i rośnie w lewo, żeby
   nie poszerzać rysunku;
 - wygląd jest własny; motywy i zmienne motywu nie są obsługiwane. Kryterium wyglądu jest czytelność, nie zgodność
