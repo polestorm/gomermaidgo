@@ -23,6 +23,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/journey"
 	"github.com/polestorm/gomermaidgo/internal/layered"
+	"github.com/polestorm/gomermaidgo/internal/mindmap"
 	"github.com/polestorm/gomermaidgo/internal/pie"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
@@ -48,11 +49,12 @@ const (
 	TypeClass     = "classDiagram"
 	TypeTimeline  = "timeline"
 	TypeJourney   = "journey"
+	TypeMindmap   = "mindmap"
 )
 
 // SupportedTypes zwraca obsługiwane typy diagramów.
 func SupportedTypes() []string {
-	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney}
+	return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap}
 }
 
 type config struct {
@@ -142,6 +144,8 @@ func DetectType(source string) (string, error) {
 			return TypeTimeline, nil
 		case "journey":
 			return TypeJourney, nil
+		case "mindmap":
+			return TypeMindmap, nil
 		}
 		return "", fmt.Errorf("%w: %q (line %d)", ErrUnsupportedType, word, n+1)
 	}
@@ -193,6 +197,8 @@ func Check(source string) error {
 		_, err = timeline.Parse(source)
 	case TypeJourney:
 		_, err = journey.Parse(source)
+	case TypeMindmap:
+		_, err = mindmap.Parse(source)
 	default:
 		_, err = sequence.Parse(source)
 	}
@@ -276,6 +282,13 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 			return nil, nil, err
 		}
 		return journey.Layout(d, journey.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+	}
+	if kind == TypeMindmap {
+		g, err := mindmap.Parse(source)
+		if err != nil {
+			return nil, nil, err
+		}
+		return mindmap.Layout(g, mindmap.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
 	}
 	if kind != TypeSequence {
 		var g *graph.Graph

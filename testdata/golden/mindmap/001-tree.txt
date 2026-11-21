@@ -1,0 +1,28 @@
+mindmap LR
+node n1 circle "System jakości"
+node n2 round "Dokumenty"
+node n3 round "Procedury"
+node n4 round "Instrukcje"
+node n5 round "Formularze i zapisy"
+node n6 round "Ludzie"
+node n7 round "Szkolenia"
+node n8 round "Wstępne"
+node n9 round "Okresowe"
+node n10 round "Kompetencje"
+node n11 round "Doskonalenie"
+node n12 round "Audyty\nwewnętrzne"
+node n13 round "Działania korygujące"
+node n14 round "Przegląd zarządzania"
+edge n1 -> n2 normal none/none len=1
+edge n2 -> n3 normal none/none len=1
+edge n2 -> n4 normal none/none len=1
+edge n2 -> n5 normal none/none len=1
+edge n1 -> n6 normal none/none len=1
+edge n6 -> n7 normal none/none len=1
+edge n7 -> n8 normal none/none len=1
+edge n7 -> n9 normal none/none len=1
+edge n6 -> n10 normal none/none len=1
+edge n1 -> n11 normal none/none len=1
+edge n11 -> n12 normal none/none len=1
+edge n11 -> n13 normal none/none len=1
+edge n11 -> n14 normal none/none len=1

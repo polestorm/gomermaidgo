@@ -17,6 +17,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/flowchart"
 	"github.com/polestorm/gomermaidgo/internal/gantt"
 	"github.com/polestorm/gomermaidgo/internal/graph"
+	"github.com/polestorm/gomermaidgo/internal/mindmap"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
 )
@@ -47,7 +48,7 @@ func corpusFiles(t *testing.T) []string {
 func graphCorpusFiles(t *testing.T) []string {
 	t.Helper()
 	var files []string
-	for _, dir := range []string{"flowchart", "state", "er", "class"} {
+	for _, dir := range []string{"flowchart", "state", "er", "class", "mindmap"} {
 		m, _ := filepath.Glob("testdata/corpus/" + dir + "/*.mmd")
 		if len(m) == 0 {
 			t.Fatalf("no corpus files for %s", dir)
@@ -68,6 +69,8 @@ func parseGraph(t *testing.T, path string) *graph.Graph {
 		g, err = er.Parse(src)
 	} else if strings.Contains(path, "/class/") {
 		g, err = class.Parse(src)
+	} else if strings.Contains(path, "/mindmap/") {
+		g, err = mindmap.Parse(src)
 	} else {
 		g, err = state.Parse(src)
 	}
@@ -456,7 +459,7 @@ func TestRequirementsCovered(t *testing.T) {
 
 // REQ: SEQ-011
 func TestUnsupportedType(t *testing.T) {
-	for _, src := range []string{"sankey-beta\n a,b,1", "mindmap\n root", "quadrantChart\n title x", "flowchart-elk TD\n A-->B"} {
+	for _, src := range []string{"sankey-beta\n a,b,1", "requirementDiagram\n x", "quadrantChart\n title x", "flowchart-elk TD\n A-->B"} {
 		if _, err := Render(src); !errors.Is(err, ErrUnsupportedType) {
 			t.Errorf("%q: want unsupported type error, got %v", src, err)
 		}

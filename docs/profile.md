@@ -351,3 +351,29 @@ Konfiguracja w bloku `%%{init}%%` (`disableMulticolor`, motywy).
   `WithColors` daje czerwony, bursztynowy i zielony;
 - uczestnicy są wypisani przy każdym kroku, a nie w osobnej legendzie;
 - ocena spoza zakresu 1–5 albo niecałkowita jest błędem.
+
+## Mapa myśli (`mindmap`)
+
+### Obsługiwane
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| nagłówek, hierarchia | `mindmap`; kolejne linie, wcięcie wyznacza rodzica | MND-001 |
+| gałąź | sam tekst; `"tekst w cudzysłowach"`; `<br/>` łamie linię | MND-002 |
+| kształty | `id[kwadrat]`, `id(zaokrąglony)`, `id((koło))`, `id{{sześciokąt}}`, `id))wybuch((`, `id)chmura(` | MND-004 |
+| tekst Markdown | ``"`**pogrubiony** i *pochylony*`"`` | MND-004 |
+| ikony, klasy | `::icon(…)`, `:::klasa` (pomijane) | MND-002 |
+
+### Świadome różnice wobec Mermaid
+
+- układ jest drzewem od lewej do prawej, z gałęziami jednej głębokości w jednej kolumnie; Mermaid rozkłada
+  gałęzie promieniście wokół korzenia. Drzewo czyta się jak konspekt i mieści na stronie; przy wysokim drzewie
+  gałęzie główne stają po obu stronach korzenia;
+- „wybuch” jest rysowany jak sześciokąt, a „chmura” jak pole z półkolami: rysunek ma tylko proste kształty;
+- koło z dłuższym tekstem staje się elipsą, żeby pole nie rosło nad miarę;
+- gałąź bez kształtu jest polem zaokrąglonym (w Mermaid tekstem z podkreśleniem), a korzeń bez kształtu polem
+  z półkolami;
+- cudzysłowy wokół tekstu są zdejmowane (renderer odniesienia rysuje je dosłownie);
+- tabulacja we wcięciu liczy się jak cztery spacje;
+- domyślnie rysunek jest neutralny; `WithColors` nadaje każdej gałęzi głównej ton palety;
+- `accTitle` i `accDescr` nie są częścią składni mapy myśli: taka linia byłaby gałęzią.

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="761" height="430" viewBox="-12 -12 761 430" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="edge" d="M165 203 L179 203 C183.4 203 187 199.4 187 195 L187 69 C187 64.6 190.6 61 195 61 L209 61" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M327 61 L358 61 C362.4 61 366 57.4 366 53 L366 25 C366 20.6 369.6 17 374 17 L388 17" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M327 61 L388 61" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M327 61 L358 61 C362.4 61 366 64.6 366 69 L366 97 C366 101.4 369.6 105 374 105 L388 105" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M165 203 L182 203 C184.75 203 187 200.75 187 198 L187 198 C187 195.25 189.25 193 192 193 L209 193" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M289 193 L358 193 C362.4 193 366 189.4 366 185 L366 179 C366 174.6 369.6 171 374 171 L388 171" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M494 171 L601 171 C605.4 171 609 167.4 609 163 L609 157 C609 152.6 612.6 149 617 149 L631 149" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M494 171 L601 171 C605.4 171 609 174.6 609 179 L609 185 C609 189.4 612.6 193 617 193 L631 193" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M289 193 L358 193 C362.4 193 366 196.6 366 201 L366 229 C366 233.4 369.6 237 374 237 L388 237" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M165 203 L179 203 C183.4 203 187 206.6 187 211 L187 327 C187 331.4 190.6 335 195 335 L209 335" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M344 335 L358 335 C362.4 335 366 331.4 366 327 L366 299 C366 294.6 369.6 291 374 291 L388 291" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M344 335 L361 335 C363.75 335 366 337.25 366 340 L366 340 C366 342.75 368.25 345 371 345 L388 345" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M344 335 L358 335 C362.4 335 366 338.6 366 343 L366 381 C366 385.4 369.6 389 374 389 L388 389" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<ellipse class="node" cx="82.5" cy="203" rx="82.5" ry="24" fill="#dde3ea" stroke="#55657a" stroke-width="2"/>
+<rect class="node" x="209" y="44" width="118" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="388" y="0" width="108" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="388" y="44" width="112" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="388" y="88" width="185" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="209" y="176" width="80" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="388" y="154" width="106" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="631" y="132" width="98" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="631" y="176" width="106" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="388" y="220" width="130" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="209" y="318" width="135" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="388" y="264" width="126" height="54" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="388" y="328" width="195" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="388" y="372" width="199" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="82.5" y="208.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
+<text class="node-label" x="268" y="66.6" text-anchor="middle" fill="#1b1f24">Dokumenty</text>
+<text class="node-label" x="442" y="22.6" text-anchor="middle" fill="#1b1f24">Procedury</text>
+<text class="node-label" x="444" y="66.6" text-anchor="middle" fill="#1b1f24">Instrukcje</text>
+<text class="node-label" x="480.5" y="110.6" text-anchor="middle" fill="#1b1f24">Formularze i zapisy</text>
+<text class="node-label" x="249" y="198.6" text-anchor="middle" fill="#1b1f24">Ludzie</text>
+<text class="node-label" x="441" y="176.6" text-anchor="middle" fill="#1b1f24">Szkolenia</text>
+<text class="node-label" x="680" y="154.6" text-anchor="middle" fill="#1b1f24">Wstępne</text>
+<text class="node-label" x="684" y="198.6" text-anchor="middle" fill="#1b1f24">Okresowe</text>
+<text class="node-label" x="453" y="242.6" text-anchor="middle" fill="#1b1f24">Kompetencje</text>
+<text class="node-label" x="276.5" y="340.6" text-anchor="middle" fill="#1b1f24">Doskonalenie</text>
+<text class="node-label" x="451" y="286.6" text-anchor="middle" fill="#1b1f24">Audyty</text>
+<text class="node-label" x="451" y="306.6" text-anchor="middle" fill="#1b1f24">wewnętrzne</text>
+<text class="node-label" x="485.5" y="350.6" text-anchor="middle" fill="#1b1f24">Działania korygujące</text>
+<text class="node-label" x="487.5" y="394.6" text-anchor="middle" fill="#1b1f24">Przegląd zarządzania</text>
+</svg>
