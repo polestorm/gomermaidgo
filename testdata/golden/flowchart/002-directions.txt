@@ -1,0 +1,6 @@
+flowchart LR
+node Początek rect "Początek"
+node Środek rect "Środek"
+node Koniec rect "Koniec"
+edge Początek -> Środek normal none/arrow len=1
+edge Środek -> Koniec normal none/arrow len=1

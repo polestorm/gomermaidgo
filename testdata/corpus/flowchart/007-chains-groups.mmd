@@ -1,0 +1,7 @@
+%% REQ: FLOW-006
+flowchart LR
+    A --> B --> C -.-> D
+    E & F --> G
+    G --> H & I
+    J & K -->|każdy z każdym| L & M
+    N[Start] --> O{Wybór} -->|tak| P([Koniec])

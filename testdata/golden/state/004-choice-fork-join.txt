@@ -1,0 +1,22 @@
+state TB
+node wybór choice ""
+node rozwidlenie fork ""
+node złączenie join ""
+node [start] state-start ""
+node Ocena round "Ocena"
+node Drobna round "Drobna"
+node AnalizaPrzyczyn round "AnalizaPrzyczyn"
+node DziałaniaDoraźne round "DziałaniaDoraźne"
+node Zamknięcie round "Zamknięcie"
+node [end] state-end ""
+edge [start] -> Ocena normal none/arrow len=1
+edge Ocena -> wybór normal none/arrow len=1
+edge wybór -> Drobna normal none/arrow len=1 "ryzyko niskie"
+edge wybór -> rozwidlenie normal none/arrow len=1 "ryzyko wysokie"
+edge rozwidlenie -> AnalizaPrzyczyn normal none/arrow len=1
+edge rozwidlenie -> DziałaniaDoraźne normal none/arrow len=1
+edge AnalizaPrzyczyn -> złączenie normal none/arrow len=1
+edge DziałaniaDoraźne -> złączenie normal none/arrow len=1
+edge złączenie -> Zamknięcie normal none/arrow len=1
+edge Drobna -> Zamknięcie normal none/arrow len=1
+edge Zamknięcie -> [end] normal none/arrow len=1

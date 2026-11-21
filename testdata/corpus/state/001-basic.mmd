@@ -1,0 +1,6 @@
+%% REQ: STATE-001 STATE-002
+stateDiagram-v2
+    [*] --> Roboczy
+    Roboczy --> Zatwierdzony
+    Zatwierdzony --> Wycofany
+    Wycofany --> [*]

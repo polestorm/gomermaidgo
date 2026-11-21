@@ -1,0 +1,22 @@
+state TB
+subgraph Przegląd title="Przegląd"
+subgraph Zatwierdzanie title="Zatwierdzanie przez dwie osoby" in=Przegląd
+node [start] state-start ""
+node [start]@Przegląd state-start "" in=Przegląd
+node Sprawdzanie round "Sprawdzanie" in=Przegląd
+node [start]@Zatwierdzanie state-start "" in=Zatwierdzanie
+node Pierwszy round "Pierwszy" in=Zatwierdzanie
+node Drugi round "Drugi" in=Zatwierdzanie
+node [end]@Zatwierdzanie state-end "" in=Zatwierdzanie
+node [end]@Przegląd state-end "" in=Przegląd
+node Obowiązujący round "Obowiązujący"
+node [end] state-end ""
+edge [start] -> Przegląd normal none/arrow len=1
+edge [start]@Przegląd -> Sprawdzanie normal none/arrow len=1
+edge Sprawdzanie -> Zatwierdzanie normal none/arrow len=1
+edge [start]@Zatwierdzanie -> Pierwszy normal none/arrow len=1
+edge Pierwszy -> Drugi normal none/arrow len=1
+edge Drugi -> [end]@Zatwierdzanie normal none/arrow len=1
+edge Zatwierdzanie -> [end]@Przegląd normal none/arrow len=1
+edge Przegląd -> Obowiązujący normal none/arrow len=1
+edge Obowiązujący -> [end] normal none/arrow len=1

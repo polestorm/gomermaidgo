@@ -34,6 +34,65 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 - dezaktywacja nieaktywnego uczestnika jest błędem, także w zapisie skróconym;
 - wygląd jest własny; motywy i zmienne motywu nie są obsługiwane.
 
-## Schemat blokowy, diagram stanów
+## Schemat blokowy (`flowchart`, `graph`)
 
-Jeszcze nieobsługiwane (`docs/roadmap.md`).
+Stan: parser i model grafu; rysunek powstanie z układem warstwowym (`docs/roadmap.md`). `Check` sprawdza składnię,
+`Render` zwraca `ErrLayoutPending`.
+
+### Obsługiwane
+
+| Element | Zapis | Wymaganie |
+|---|---|---|
+| nagłówek i kierunek | `flowchart TD`, `graph LR`; kierunki `TB`, `TD`, `BT`, `LR`, `RL` | FLOW-001 |
+| węzeł bez kształtu | `A` (prostokąt, etykietą jest identyfikator) | FLOW-002 |
+| kształty | `A[t]`, `A(t)`, `A([t])`, `A[[t]]`, `A[(t)]`, `A((t))`, `A(((t)))`, `A>t]`, `A{t}`, `A{{t}}`, `A[/t/]`, `A[\t\]`, `A[/t\]`, `A[\t/]` | FLOW-002 |
+| krawędzie | `-->`, `---`, `-.->`, `-.-`, `==>`, `===`, `--o`, `--x`, `<-->`, `o--o`, `x--x`, `~~~` | FLOW-003 |
+| etykieta krawędzi | `A -->\|tekst\| B`, `A -- tekst --> B`, `A == tekst ==> B`, `A -. tekst .-> B` | FLOW-004 |
+| długość krawędzi | dodatkowe znaki: `--->`, `----`, `-..->`, `===>`, `~~~~` | FLOW-005 |
+| łańcuchy i grupy | `A --> B --> C`, `A & B --> C & D` | FLOW-006 |
+| podgrafy | `subgraph id [tytuł]`, `subgraph id`, `subgraph tytuł ze spacjami` … `end`; `direction` w podgrafie; krawędź do podgrafu | FLOW-007 |
+| tekst | cudzysłów dla nawiasów i znaków specjalnych, `<br/>` | FLOW-008 |
+| średnik | rozdziela instrukcje, może kończyć linię | FLOW-009 |
+
+### Poza profilem (błąd `flowchart-unsupported`)
+
+`classDef`, `class`, `style`, `linkStyle`, `:::klasa`, `click`, `accTitle`, `accDescr`, zapis kształtu `@{ shape: … }`,
+teksty Markdown w odwrotnych apostrofach, `flowchart-elk`.
+
+### Świadome różnice wobec Mermaid
+
+- identyfikator węzła składa się z liter, cyfr i podkreślenia; łącznik i kropka w identyfikatorze nie są obsługiwane;
+- węzeł należy do podgrafu, w którym po raz pierwszy wystąpił wewnątrz jakiegokolwiek podgrafu; późniejsze wystąpienia
+  go nie przenoszą;
+- krawędź między podgrafem a jego własną zawartością jest błędem;
+- tekst w nawiasach ostrych (`<znaczniki>`) zostaje na rysunku dosłownie; Mermaid traktuje go jak znacznik HTML i usuwa.
+  Dotyczy też diagramu stanów. Jedynym rozpoznawanym znacznikiem jest `<br/>`;
+- kody encji (`#35;`) nie są rozwijane;
+- limity: 500 węzłów, 1000 krawędzi, 10 poziomów zagnieżdżenia.
+
+## Diagram stanów (`stateDiagram-v2`, `stateDiagram`)
+
+Stan: parser i model grafu, jak wyżej.
+
+### Obsługiwane
+
+| Element | Zapis | Wymaganie |
+|---|---|---|
+| nagłówek | `stateDiagram-v2`, `stateDiagram` | STATE-001 |
+| przejście | `A --> B`, `A --> B : etykieta`; `[*]` jako stan początkowy i końcowy | STATE-002 |
+| opis stanu | `state "Opis" as Id`, `Id : opis` (kolejne linie dopisują) | STATE-003 |
+| stan bez opisu | użyty w przejściu albo sam identyfikator w linii | STATE-004 |
+| stan złożony | `state Id { … }`, `state "Opis" as Id { … }`, zagnieżdżone; przejście do stanu złożonego | STATE-005 |
+| wybór, rozwidlenie, złączenie | `state Id <<choice>>`, `<<fork>>`, `<<join>>` | STATE-006 |
+| notatka | `note right of Id : tekst`, `note left of Id` … `end note` | STATE-007 |
+| kierunek | `direction LR` na poziomie diagramu albo stanu złożonego | STATE-008 |
+
+### Poza profilem (błąd `state-unsupported`)
+
+Regiony współbieżne (`--`), `classDef`, `class`, `style`, `:::klasa`, `click`, `accTitle`, `accDescr`, `scale`, `hide`,
+`state Id` bez opisu, stereotypu i klamry (forma nieopisana w dokumentacji; renderer odniesienia jej nie rysuje).
+
+### Świadome różnice wobec Mermaid
+
+- identyfikator stanu składa się z liter, cyfr i podkreślenia;
+- przejście między stanem złożonym a jego własną zawartością jest błędem.

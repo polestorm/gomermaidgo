@@ -3,6 +3,7 @@ package gomermaidgo
 import (
 	"bytes"
 	"encoding/xml"
+	"errors"
 	"flag"
 	"io"
 	"os"
@@ -11,18 +12,98 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/polestorm/gomermaidgo/internal/flowchart"
+	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
+	"github.com/polestorm/gomermaidgo/internal/state"
 )
 
 var update = flag.Bool("update", false, "rewrite golden SVG files")
 
+// corpusFiles zwraca pliki korpusu typów, które Render już rysuje.
 func corpusFiles(t *testing.T) []string {
 	t.Helper()
-	files, err := filepath.Glob("testdata/corpus/*/*.mmd")
+	files, err := filepath.Glob("testdata/corpus/sequence/*.mmd")
 	if err != nil || len(files) == 0 {
 		t.Fatalf("no corpus files: %v", err)
 	}
 	return files
+}
+
+// graphCorpusFiles zwraca pliki korpusu typów grafowych (na razie tylko parser).
+func graphCorpusFiles(t *testing.T) []string {
+	t.Helper()
+	var files []string
+	for _, dir := range []string{"flowchart", "state"} {
+		m, _ := filepath.Glob("testdata/corpus/" + dir + "/*.mmd")
+		if len(m) == 0 {
+			t.Fatalf("no corpus files for %s", dir)
+		}
+		files = append(files, m...)
+	}
+	return files
+}
+
+func parseGraph(t *testing.T, path string) *graph.Graph {
+	t.Helper()
+	src := readFile(t, path)
+	var g *graph.Graph
+	var err error
+	if strings.Contains(path, "/flowchart/") {
+		g, err = flowchart.Parse(src)
+	} else {
+		g, err = state.Parse(src)
+	}
+	if err != nil {
+		t.Fatalf("%s: %v", path, err)
+	}
+	return g
+}
+
+// REQ: FLOW-001 STATE-001
+// Model grafu z każdego pliku korpusu zgadza się z plikiem wzorcowym.
+func TestGraphCorpusGolden(t *testing.T) {
+	for _, f := range graphCorpusFiles(t) {
+		got := parseGraph(t, f).Dump()
+		golden := strings.TrimSuffix(goldenPath(f), ".svg") + ".txt"
+		if *update {
+			if err := os.MkdirAll(filepath.Dir(golden), 0o755); err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(golden, []byte(got), 0o644); err != nil {
+				t.Fatal(err)
+			}
+			continue
+		}
+		want, err := os.ReadFile(golden)
+		if err != nil {
+			t.Errorf("%s: missing golden file (run go test . -update): %v", f, err)
+			continue
+		}
+		if got != string(want) {
+			t.Errorf("%s: model differs from %s\n--- got\n%s", f, golden, got)
+		}
+	}
+}
+
+// REQ: FLOW-001 STATE-001
+// Dopóki nie ma układu, Render sprawdza składnię i zgłasza brak układu, a Check przechodzi.
+func TestGraphTypesAreCheckedButNotRendered(t *testing.T) {
+	for _, f := range graphCorpusFiles(t) {
+		src := readFile(t, f)
+		if err := Check(src); err != nil {
+			t.Errorf("%s: Check: %v", f, err)
+		}
+		if _, err := Render(src); !errors.Is(err, ErrLayoutPending) || !errors.Is(err, ErrUnsupportedType) {
+			t.Errorf("%s: Render: got %v, want ErrLayoutPending", f, err)
+		}
+	}
+	// Błąd składni ma pierwszeństwo przed brakiem układu.
+	_, err := Render("flowchart TD\n A --> \n")
+	var se *SyntaxError
+	if !errors.As(err, &se) || se.Line != 2 {
+		t.Errorf("syntax error should win, got %v", err)
+	}
 }
 
 func readFile(t *testing.T, path string) string {
@@ -224,14 +305,17 @@ func TestCorpusLabelsPresent(t *testing.T) {
 	}
 }
 
-var reqRef = regexp.MustCompile(`SEQ-\d{3}`)
+var reqRef = regexp.MustCompile(`\b[A-Z]{3,5}-\d{3}\b`)
 
 // Każde wymaganie ma pokrycie w korpusie albo w testach, a każde odwołanie wskazuje istniejące wymaganie.
 func TestRequirementsCovered(t *testing.T) {
 	defined := map[string]bool{}
-	for _, line := range strings.Split(readFile(t, "requirements/sequence.md"), "\n") {
-		if strings.HasPrefix(line, "| SEQ-") {
-			defined[reqRef.FindString(line)] = true
+	docs, _ := filepath.Glob("requirements/*.md")
+	for _, doc := range docs {
+		for _, line := range strings.Split(readFile(t, doc), "\n") {
+			if id := reqRef.FindString(line); id != "" && strings.HasPrefix(line, "| "+id) {
+				defined[id] = true
+			}
 		}
 	}
 	if len(defined) == 0 {
@@ -239,7 +323,8 @@ func TestRequirementsCovered(t *testing.T) {
 	}
 	used := map[string]bool{}
 	var sources []string
-	sources = append(sources, corpusFiles(t)...)
+	all, _ := filepath.Glob("testdata/corpus/*/*.mmd")
+	sources = append(sources, all...)
 	for _, pattern := range []string{"*_test.go", "internal/*/*_test.go"} {
 		m, _ := filepath.Glob(pattern)
 		sources = append(sources, m...)
@@ -262,7 +347,7 @@ func TestRequirementsCovered(t *testing.T) {
 			t.Errorf("requirement %s has no corpus file or test", id)
 		}
 	}
-	for _, f := range corpusFiles(t) {
+	for _, f := range all {
 		if !strings.Contains(readFile(t, f), "REQ:") {
 			t.Errorf("%s has no REQ line", f)
 		}
@@ -271,8 +356,8 @@ func TestRequirementsCovered(t *testing.T) {
 
 // REQ: SEQ-011
 func TestUnsupportedType(t *testing.T) {
-	for _, src := range []string{"flowchart TD\n A-->B", "graph LR\n A-->B", "stateDiagram-v2\n [*] --> A", "pie\n \"a\": 1"} {
-		if _, err := Render(src); err == nil || !strings.Contains(err.Error(), "unsupported diagram type") {
+	for _, src := range []string{"pie\n \"a\": 1", "gantt\n title x", "erDiagram\n A ||--o{ B : x", "flowchart-elk TD\n A-->B"} {
+		if _, err := Render(src); !errors.Is(err, ErrUnsupportedType) || errors.Is(err, ErrLayoutPending) {
 			t.Errorf("%q: want unsupported type error, got %v", src, err)
 		}
 	}
@@ -304,8 +389,12 @@ func FuzzRender(f *testing.F) {
 		f.Add(string(b))
 	}
 	f.Fuzz(func(t *testing.T, src string) {
+		checkErr := Check(src)
 		svg, err := Render(src)
 		if err != nil {
+			if checkErr == nil && !errors.Is(err, ErrLayoutPending) {
+				t.Fatalf("Check accepted a source that Render rejects: %v\nsource: %q", err, src)
+			}
 			return
 		}
 		if err := xml.Unmarshal(svg, new(struct{})); err != nil {

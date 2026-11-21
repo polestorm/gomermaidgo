@@ -1,0 +1,22 @@
+flowchart TB
+node A rect "A"
+node B rect "B"
+node C rect "C"
+node D rect "D"
+node E rect "E"
+node F rect "F"
+node G rect "G"
+node H rect "H"
+node I rect "I"
+node J rect "J"
+node K rect "K"
+edge A -> B normal none/arrow len=1
+edge A -> C normal none/arrow len=2
+edge A -> D normal none/arrow len=3
+edge A -> E normal none/none len=2
+edge A -> F dotted none/arrow len=2
+edge A -> G dotted none/none len=3
+edge A -> H thick none/arrow len=2
+edge A -> I thick none/none len=2
+edge A -> J normal none/arrow len=2 "długa"
+edge A -> K invisible none/none len=2

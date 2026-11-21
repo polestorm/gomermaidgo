@@ -1,0 +1,11 @@
+%% REQ: STATE-003 STATE-004
+stateDiagram-v2
+    state "W sprawdzeniu" as WSprawdzeniu
+    Roboczy : Wersja robocza
+    Obowiązujący : Wersja obowiązująca
+    Obowiązujący : szkolenie ukończone
+    [*] --> Roboczy
+    Roboczy --> WSprawdzeniu : prześlij do sprawdzenia
+    WSprawdzeniu --> Roboczy : zwróć z uwagami
+    WSprawdzeniu --> Obowiązujący: zatwierdź<br/>i opublikuj
+    Samodzielny

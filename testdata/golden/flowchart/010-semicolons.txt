@@ -1,0 +1,11 @@
+flowchart TB
+node A rect "A"
+node B rect "B"
+node C rect "C"
+node D rect "D"
+node E rect "Koniec"
+edge A -> B normal none/arrow len=1
+edge A -> C normal none/arrow len=1
+edge B -> D normal none/arrow len=1
+edge C -> D normal none/arrow len=1
+edge D -> E normal none/arrow len=1

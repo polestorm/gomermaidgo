@@ -1,0 +1,14 @@
+%% REQ: FLOW-002 FLOW-004 FLOW-007
+flowchart TD
+    A([Zgłoszenie niezgodności]) --> B{Czy wymaga działań korygujących?}
+    B -->|Tak| C[Analiza przyczyn źródłowych]
+    B -->|Nie| Z([Zamknięcie zgłoszenia])
+    C --> D[Plan działań: żądany termin, osoba odpowiedzialna]
+    D --> E[/Wdrożenie działań/]
+    E --> F{Ocena skuteczności}
+    F -->|Skuteczne| Z
+    F -->|Nieskuteczne – powtórz| C
+    subgraph Nadzór["Nadzór pełnomocnika ds. jakości"]
+        D
+        E
+    end

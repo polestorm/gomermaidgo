@@ -1,0 +1,7 @@
+%% REQ: FLOW-001 FLOW-002
+flowchart TD
+    A[Zgłoszenie niezgodności] --> B{Czy wymaga działań?}
+    B --> C[Analiza przyczyn]
+    B --> Z[Zamknięcie]
+    C --> Z
+    Samotny

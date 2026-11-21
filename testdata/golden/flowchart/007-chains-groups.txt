@@ -1,0 +1,30 @@
+flowchart LR
+node A rect "A"
+node B rect "B"
+node C rect "C"
+node D rect "D"
+node E rect "E"
+node F rect "F"
+node G rect "G"
+node H rect "H"
+node I rect "I"
+node J rect "J"
+node K rect "K"
+node L rect "L"
+node M rect "M"
+node N rect "Start"
+node O rhombus "Wybór"
+node P stadium "Koniec"
+edge A -> B normal none/arrow len=1
+edge B -> C normal none/arrow len=1
+edge C -> D dotted none/arrow len=1
+edge E -> G normal none/arrow len=1
+edge F -> G normal none/arrow len=1
+edge G -> H normal none/arrow len=1
+edge G -> I normal none/arrow len=1
+edge J -> L normal none/arrow len=1 "każdy z każdym"
+edge J -> M normal none/arrow len=1 "każdy z każdym"
+edge K -> L normal none/arrow len=1 "każdy z każdym"
+edge K -> M normal none/arrow len=1 "każdy z każdym"
+edge N -> O normal none/arrow len=1
+edge O -> P normal none/arrow len=1 "tak"

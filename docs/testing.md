@@ -6,6 +6,7 @@
 |---|---|---|
 | korpus | `testdata/corpus/<typ>/*.mmd` | po pliku na grupę elementów profilu; polskie znaki w każdym; linia `%% REQ:` wskazuje wymagania |
 | pliki wzorcowe | `testdata/golden/<typ>/*.svg` | wynik co do bajta; zmiana przez `go test . -update` i przegląd różnicy |
+| pliki wzorcowe modelu | `testdata/golden/<typ>/*.txt` | dla typów bez układu: model grafu z parsera (`Graph.Dump`) |
 | poprawność SVG | `TestCorpusValidSVG` | poprawny XML, przestrzeń nazw SVG, tylko dozwolone elementy i atrybuty, liczby w atrybutach geometrii |
 | treść | `TestCorpusLabelsPresent` | każdy tekst ze źródła jest w SVG; etykiety uczestników dwa razy (góra i dół) |
 | niezmienniki układu | `internal/sequence/layout_test.go` | teksty nie nachodzą na siebie; nagłówki uczestników nie kolidują ze sobą ani z etykietami |
@@ -39,6 +40,17 @@ Wynik z 2026-11-21, odniesienie: `mmdg` v0.13.0 (port mermaid 12.2.0), uruchomio
 | 010-polish-pangram | 8 | 8 | brak |
 
 Zgodne 10 z 10. Wyników renderera odniesienia nie przechowujemy w repozytorium.
+
+Schemat blokowy i diagram stanów (tylko parser; po naszej stronie teksty z modelu grafu), 2026-11-21, to samo odniesienie:
+
+| Korpus | Pliki | Zgodne | Różnice |
+|---|---:|---:|---|
+| `flowchart` | 11 | 10 | `009-text`: tekst `<znaczniki>` odniesienie usuwa jako znacznik HTML, my zostawiamy (różnica świadoma, `profile.md`) |
+| `state` | 6 | 5 | `006-document-lifecycle`: ta sama różnica |
+
+Pierwsze porównanie wykazało jeszcze dwie różnice, które okazały się naszymi błędnymi założeniami i zostały poprawione:
+linia `%%` wewnątrz notatki wieloliniowej jest komentarzem (nie tekstem notatki), a `state Id` bez opisu nie jest rysowane
+przez odniesienie i nie ma go w dokumentacji (teraz błąd `state-unsupported`).
 
 ## Przejście przez gopdfgo
 

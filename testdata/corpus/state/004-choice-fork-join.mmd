@@ -1,0 +1,16 @@
+%% REQ: STATE-006
+stateDiagram-v2
+    state wybór <<choice>>
+    state rozwidlenie <<fork>>
+    state złączenie <<join>>
+    [*] --> Ocena
+    Ocena --> wybór
+    wybór --> Drobna : ryzyko niskie
+    wybór --> rozwidlenie : ryzyko wysokie
+    rozwidlenie --> AnalizaPrzyczyn
+    rozwidlenie --> DziałaniaDoraźne
+    AnalizaPrzyczyn --> złączenie
+    DziałaniaDoraźne --> złączenie
+    złączenie --> Zamknięcie
+    Drobna --> Zamknięcie
+    Zamknięcie --> [*]

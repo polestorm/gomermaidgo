@@ -1,0 +1,15 @@
+state LR
+node [start] state-start ""
+node Roboczy round "Roboczy"
+node WSprawdzeniu round "W sprawdzeniu"
+node Zatwierdzony round "Zatwierdzony"
+node Obowiązujący round "Zażółć gęślą jaźń — „cudzysłów” & <znaczniki>"
+node Wycofany round "Wycofany"
+node [end] state-end ""
+edge [start] -> Roboczy normal none/arrow len=1
+edge Roboczy -> WSprawdzeniu normal none/arrow len=1 "prześlij do sprawdzenia"
+edge WSprawdzeniu -> Roboczy normal none/arrow len=1 "zwróć z uwagami"
+edge WSprawdzeniu -> Zatwierdzony normal none/arrow len=1 "zatwierdź"
+edge Zatwierdzony -> Obowiązujący normal none/arrow len=1 "data wejścia w życie"
+edge Obowiązujący -> Wycofany normal none/arrow len=1 "zastąpiony nową wersją"
+edge Wycofany -> [end] normal none/arrow len=1

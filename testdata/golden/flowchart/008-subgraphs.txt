@@ -1,0 +1,16 @@
+flowchart TB
+subgraph Nadzór title="Nadzór pełnomocnika ds. jakości" dir=LR
+subgraph Weryfikacja title="Weryfikacja" in=Nadzór
+subgraph subgraph#1 title="Zamknięcie i archiwizacja"
+node Start rect "Start"
+node Rejestracja rect "Rejestracja"
+node Plan rect "Plan działań" in=Nadzór
+node Wdrożenie parallelogram "Wdrożenie" in=Nadzór
+node Ocena rhombus "Ocena skuteczności" in=Weryfikacja
+node Archiwum cylinder "Archiwum" in=subgraph#1
+edge Start -> Rejestracja normal none/arrow len=1
+edge Plan -> Wdrożenie normal none/arrow len=1
+edge Wdrożenie -> Ocena normal none/arrow len=1
+edge Rejestracja -> Nadzór normal none/arrow len=1
+edge Ocena -> Archiwum normal none/arrow len=1 "skuteczne"
+edge Weryfikacja -> Start dotted none/arrow len=1

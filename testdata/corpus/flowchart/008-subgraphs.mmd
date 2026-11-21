@@ -1,0 +1,17 @@
+%% REQ: FLOW-007
+flowchart TB
+    Start --> Rejestracja
+    subgraph Nadzór["Nadzór pełnomocnika ds. jakości"]
+        direction LR
+        Plan[Plan działań] --> Wdrożenie[/Wdrożenie/]
+        subgraph Weryfikacja
+            Ocena{Ocena skuteczności}
+        end
+        Wdrożenie --> Ocena
+    end
+    subgraph Zamknięcie i archiwizacja
+        Archiwum[(Archiwum)]
+    end
+    Rejestracja --> Nadzór
+    Ocena -->|skuteczne| Archiwum
+    Weryfikacja -.-> Start

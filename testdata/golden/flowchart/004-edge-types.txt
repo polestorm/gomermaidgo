@@ -1,0 +1,30 @@
+flowchart LR
+node A rect "A"
+node B rect "B"
+node C rect "C"
+node D rect "D"
+node E rect "E"
+node F rect "F"
+node G rect "G"
+node H rect "H"
+node I rect "I"
+node J rect "J"
+node K rect "K"
+node L rect "L"
+node M rect "M"
+node N rect "N"
+node O rect "O"
+edge A -> B normal none/arrow len=1
+edge A -> C normal none/none len=1
+edge A -> D dotted none/arrow len=1
+edge A -> E dotted none/none len=1
+edge A -> F thick none/arrow len=1
+edge A -> G thick none/none len=1
+edge A -> H normal none/circle len=1
+edge A -> I normal none/cross len=1
+edge A -> J normal arrow/arrow len=1
+edge A -> K normal circle/circle len=1
+edge A -> L normal cross/cross len=1
+edge A -> M invisible none/none len=1
+edge A -> N dotted arrow/arrow len=1
+edge A -> O thick arrow/arrow len=1

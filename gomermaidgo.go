@@ -12,8 +12,10 @@ import (
 	"strings"
 	"unicode/utf8"
 
+	"github.com/polestorm/gomermaidgo/internal/flowchart"
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
+	"github.com/polestorm/gomermaidgo/internal/state"
 	"github.com/polestorm/gomermaidgo/internal/syntax"
 )
 
@@ -23,13 +25,22 @@ type SyntaxError = syntax.Error
 // ErrUnsupportedType oznacza typ diagramu spoza obsługiwanego zakresu.
 var ErrUnsupportedType = errors.New("gomermaidgo: unsupported diagram type")
 
+// ErrLayoutPending oznacza typ, którego składnia jest już sprawdzana (Check), ale rysunek
+// jeszcze nie powstaje. Spełnia errors.Is(err, ErrUnsupportedType).
+var ErrLayoutPending = fmt.Errorf("%w: syntax is checked, layout is not implemented yet", ErrUnsupportedType)
+
 // Typy diagramów.
 const (
-	TypeSequence = "sequenceDiagram"
+	TypeSequence  = "sequenceDiagram"
+	TypeFlowchart = "flowchart"
+	TypeState     = "stateDiagram"
 )
 
-// SupportedTypes zwraca obsługiwane typy diagramów.
+// SupportedTypes zwraca typy diagramów, które Render zamienia na SVG.
 func SupportedTypes() []string { return []string{TypeSequence} }
+
+// CheckableTypes zwraca typy diagramów, których składnię sprawdza Check.
+func CheckableTypes() []string { return []string{TypeSequence, TypeFlowchart, TypeState} }
 
 type config struct {
 	fontData   []byte
@@ -72,8 +83,13 @@ func DetectType(source string) (string, error) {
 		if i := strings.IndexAny(s, " \t"); i >= 0 {
 			word = s[:i]
 		}
-		if word == TypeSequence {
+		switch strings.TrimRight(word, ";") {
+		case "sequenceDiagram":
 			return TypeSequence, nil
+		case "flowchart", "graph":
+			return TypeFlowchart, nil
+		case "stateDiagram-v2", "stateDiagram":
+			return TypeState, nil
 		}
 		return "", fmt.Errorf("%w: %q (line %d)", ErrUnsupportedType, word, n+1)
 	}
@@ -97,6 +113,26 @@ func checkCharacters(source string) error {
 		i += size
 	}
 	return nil
+}
+
+// Check sprawdza składnię źródła bez rysowania. Zwraca nil, *SyntaxError albo ErrUnsupportedType.
+func Check(source string) error {
+	if err := checkCharacters(source); err != nil {
+		return err
+	}
+	kind, err := DetectType(source)
+	if err != nil {
+		return err
+	}
+	switch kind {
+	case TypeFlowchart:
+		_, err = flowchart.Parse(source)
+	case TypeState:
+		_, err = state.Parse(source)
+	default:
+		_, err = sequence.Parse(source)
+	}
+	return err
 }
 
 // Render zamienia źródło diagramu na dokument SVG.
@@ -125,8 +161,16 @@ func Render(source string, opts ...Option) ([]byte, error) {
 	if err := checkCharacters(source); err != nil {
 		return nil, err
 	}
-	if _, err := DetectType(source); err != nil {
+	kind, err := DetectType(source)
+	if err != nil {
 		return nil, err
+	}
+	if kind != TypeSequence {
+		// Błąd składni jest ważniejszy niż brak układu: autor ma go zobaczyć już teraz.
+		if err := Check(source); err != nil {
+			return nil, err
+		}
+		return nil, ErrLayoutPending
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {

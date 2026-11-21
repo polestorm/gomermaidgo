@@ -1,0 +1,15 @@
+%% REQ: STATE-005
+stateDiagram-v2
+    [*] --> Przegląd
+    state Przegląd {
+        [*] --> Sprawdzanie
+        Sprawdzanie --> Zatwierdzanie
+        state "Zatwierdzanie przez dwie osoby" as Zatwierdzanie {
+            [*] --> Pierwszy
+            Pierwszy --> Drugi
+            Drugi --> [*]
+        }
+        Zatwierdzanie --> [*]
+    }
+    Przegląd --> Obowiązujący
+    Obowiązujący --> [*]

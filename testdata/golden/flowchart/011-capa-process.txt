@@ -1,0 +1,17 @@
+flowchart TB
+subgraph Nadzór title="Nadzór pełnomocnika ds. jakości"
+node A stadium "Zgłoszenie niezgodności"
+node B rhombus "Czy wymaga działań korygujących?"
+node C rect "Analiza przyczyn źródłowych"
+node Z stadium "Zamknięcie zgłoszenia"
+node D rect "Plan działań: żądany termin, osoba odpowiedzialna" in=Nadzór
+node E parallelogram "Wdrożenie działań" in=Nadzór
+node F rhombus "Ocena skuteczności"
+edge A -> B normal none/arrow len=1
+edge B -> C normal none/arrow len=1 "Tak"
+edge B -> Z normal none/arrow len=1 "Nie"
+edge C -> D normal none/arrow len=1
+edge D -> E normal none/arrow len=1
+edge E -> F normal none/arrow len=1
+edge F -> Z normal none/arrow len=1 "Skuteczne"
+edge F -> C normal none/arrow len=1 "Nieskuteczne – powtórz"

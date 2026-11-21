@@ -1,0 +1,12 @@
+%% REQ: STATE-002 STATE-004 STATE-008
+stateDiagram
+    direction LR
+    [*] --> Roboczy
+    Roboczy --> WSprawdzeniu: prześlij do sprawdzenia
+    WSprawdzeniu --> Roboczy: zwróć z uwagami
+    WSprawdzeniu --> Zatwierdzony: zatwierdź
+    Zatwierdzony --> Obowiązujący: data wejścia w życie
+    Obowiązujący --> Wycofany: zastąpiony nową wersją
+    Wycofany --> [*]
+    state "W sprawdzeniu" as WSprawdzeniu
+    state "Zażółć gęślą jaźń — „cudzysłów” & <znaczniki>" as Obowiązujący

@@ -1,6 +1,7 @@
 // Polecenie refcompare porównuje wynik gomermaidgo z rendererem odniesienia uruchamianym
 // jako osobny program (czarna skrzynka). Nie porównuje pikseli ani geometrii, tylko treść:
-// czy oba rysunki zawierają te same teksty tyle samo razy.
+// czy oba rysunki zawierają te same teksty tyle samo razy. Dla typów, które mają już parser,
+// ale jeszcze nie mają układu, po naszej stronie porównywane są teksty z modelu.
 //
 //	go run ./tools/refcompare -ref 'mmdg -i {in} -o {out}' testdata/corpus/sequence/*.mmd
 //
@@ -11,6 +12,7 @@ package main
 import (
 	"bytes"
 	"encoding/xml"
+	"errors"
 	"flag"
 	"fmt"
 	"io"
@@ -21,7 +23,32 @@ import (
 	"strings"
 
 	"github.com/polestorm/gomermaidgo"
+	"github.com/polestorm/gomermaidgo/internal/flowchart"
+	"github.com/polestorm/gomermaidgo/internal/graph"
+	"github.com/polestorm/gomermaidgo/internal/state"
 )
+
+// modelTexts zwraca teksty z modelu grafu dla typów bez układu.
+func modelTexts(source string) (map[string]int, error) {
+	kind, err := gomermaidgo.DetectType(source)
+	if err != nil {
+		return nil, err
+	}
+	var g *graph.Graph
+	if kind == gomermaidgo.TypeFlowchart {
+		g, err = flowchart.Parse(source)
+	} else {
+		g, err = state.Parse(source)
+	}
+	if err != nil {
+		return nil, err
+	}
+	out := map[string]int{}
+	for _, s := range g.Texts() {
+		out[strings.Join(strings.Fields(s), " ")]++
+	}
+	return out, nil
+}
 
 // texts zwraca teksty rysunku: zawartość elementów text (każdy tspan osobno, jeśli są)
 // oraz akapitów w foreignObject, po znormalizowaniu odstępów.
@@ -116,7 +143,14 @@ func main() {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
+		var ours map[string]int
 		oursSVG, err := gomermaidgo.Render(string(src))
+		switch {
+		case errors.Is(err, gomermaidgo.ErrLayoutPending):
+			ours, err = modelTexts(string(src))
+		case err == nil:
+			ours, err = texts(oursSVG)
+		}
 		if err != nil {
 			fmt.Printf("| %s | błąd: %v | | | |\n", name, err)
 			failed++
@@ -137,10 +171,9 @@ func main() {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
-		ours, err1 := texts(oursSVG)
-		theirs, err2 := texts(refSVG)
-		if err1 != nil || err2 != nil {
-			fmt.Printf("| %s | błąd XML: %v %v | | | |\n", name, err1, err2)
+		theirs, err := texts(refSVG)
+		if err != nil {
+			fmt.Printf("| %s | | błąd XML odniesienia: %v | | |\n", name, err)
 			failed++
 			continue
 		}

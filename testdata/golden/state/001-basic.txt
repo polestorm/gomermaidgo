@@ -1,0 +1,10 @@
+state TB
+node [start] state-start ""
+node Roboczy round "Roboczy"
+node Zatwierdzony round "Zatwierdzony"
+node Wycofany round "Wycofany"
+node [end] state-end ""
+edge [start] -> Roboczy normal none/arrow len=1
+edge Roboczy -> Zatwierdzony normal none/arrow len=1
+edge Zatwierdzony -> Wycofany normal none/arrow len=1
+edge Wycofany -> [end] normal none/arrow len=1

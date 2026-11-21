@@ -1,0 +1,10 @@
+state TB
+node [start] state-start ""
+node Obowiązujący round "Obowiązujący"
+node Wycofany round "Wycofany"
+node [end] state-end ""
+edge [start] -> Obowiązujący normal none/arrow len=1
+edge Obowiązujący -> Wycofany normal none/arrow len=1 "zastąpiony nową wersją"
+edge Wycofany -> [end] normal none/arrow len=1
+note right of Obowiązujący "Szkolenie musi być ukończone"
+note left of Wycofany "Kopie papierowe\ndo zniszczenia"

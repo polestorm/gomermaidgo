@@ -1,0 +1,10 @@
+state TB
+node WSprawdzeniu round "W sprawdzeniu"
+node Roboczy round "Wersja robocza"
+node Obowiązujący round "Wersja obowiązująca\nszkolenie ukończone"
+node [start] state-start ""
+node Samodzielny round "Samodzielny"
+edge [start] -> Roboczy normal none/arrow len=1
+edge Roboczy -> WSprawdzeniu normal none/arrow len=1 "prześlij do sprawdzenia"
+edge WSprawdzeniu -> Roboczy normal none/arrow len=1 "zwróć z uwagami"
+edge WSprawdzeniu -> Obowiązujący normal none/arrow len=1 "zatwierdź\ni opublikuj"

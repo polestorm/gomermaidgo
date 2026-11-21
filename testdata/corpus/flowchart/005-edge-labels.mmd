@@ -1,0 +1,12 @@
+%% REQ: FLOW-004
+flowchart TD
+    A -->|Tak| B
+    A -- Nie --> C
+    B -. może .-> D
+    C == na pewno ==> D
+    D ---|bez grotu| E
+    D -- też bez grotu --- F
+    E -->|"Etykieta z (nawiasami) i | kreską"| G
+    F -->|dwie<br/>linie| G
+    G --o|kółko| H
+    G -- krzyżyk --x I

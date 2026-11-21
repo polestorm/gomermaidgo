@@ -1,0 +1,12 @@
+flowchart TB
+node A rect "Tekst z (nawiasami), [klamrami] i {wąsami}"
+node B rect "„cudzysłów” – półpauza § 7.5.1 <znaczniki> & ampersand"
+node C rect "Zażółć gęślą jaźń\nZAŻÓŁĆ GĘŚLĄ JAŹŃ"
+node D round "Strzałka w tekście --> nie jest krawędzią"
+node E rhombus "Pytanie; ze średnikiem?"
+node Żółw_1 rect "Identyfikator z polskimi znakami"
+edge A -> B normal none/arrow len=1
+edge B -> C normal none/arrow len=1
+edge C -> D normal none/arrow len=1
+edge D -> E normal none/arrow len=1
+edge E -> Żółw_1 normal none/arrow len=1

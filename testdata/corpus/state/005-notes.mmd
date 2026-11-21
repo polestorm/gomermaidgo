@@ -1,0 +1,11 @@
+%% REQ: STATE-007
+stateDiagram-v2
+    [*] --> Obowiązujący
+    Obowiązujący --> Wycofany : zastąpiony nową wersją
+    note right of Obowiązujący : Szkolenie musi być ukończone
+    note left of Wycofany
+        Kopie papierowe
+        do zniszczenia
+        %% komentarz wewnątrz notatki jest pomijany
+    end note
+    Wycofany --> [*]

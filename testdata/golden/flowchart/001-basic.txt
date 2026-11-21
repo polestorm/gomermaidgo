@@ -1,0 +1,10 @@
+flowchart TB
+node A rect "Zgłoszenie niezgodności"
+node B rhombus "Czy wymaga działań?"
+node C rect "Analiza przyczyn"
+node Z rect "Zamknięcie"
+node Samotny rect "Samotny"
+edge A -> B normal none/arrow len=1
+edge B -> C normal none/arrow len=1
+edge B -> Z normal none/arrow len=1
+edge C -> Z normal none/arrow len=1
