@@ -1,0 +1,12 @@
+%% REQ: SEQ-008
+sequenceDiagram
+    autonumber
+    actor Autor
+    participant S as System QMS
+    actor Zat as Zatwierdzający
+    Autor->>S: Przesyła projekt dokumentu
+    S->>Zat: Żądanie zatwierdzenia
+    Zat->>Zat: Lektura
+    Zat-->>S: Zatwierdzam
+    S-->>Autor: Wersja obowiązująca
+    Note over S,Zat: Ślad audytowy: kto, kiedy, dlaczego

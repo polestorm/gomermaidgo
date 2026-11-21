@@ -1,0 +1,2 @@
+go test fuzz v1
+string("sequenceDiagram\n0-x0:\xc40")

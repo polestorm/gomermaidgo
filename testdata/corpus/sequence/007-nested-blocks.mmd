@@ -1,0 +1,27 @@
+%% REQ: SEQ-006 SEQ-007
+sequenceDiagram
+    participant A as Audytor
+    participant O as Obszar
+    participant Q as Dział jakości
+    par Równolegle: dokumenty
+        A->>O: Prośba o zapisy
+    and Równolegle: rozmowy
+        A->>Q: Wywiad
+    end
+    critical Niezgodność krytyczna
+        A->>Q: Zgłoszenie natychmiastowe
+        break Brak osoby odpowiedzialnej
+            Q-->>A: Eskalacja do kierownictwa
+        end
+    option Przekroczony termin
+        Q-->>A: Wniosek o przedłużenie
+    end
+    rect rgb(232, 244, 234)
+        Q->>O: Działania korygujące
+        loop Do zamknięcia
+            O-->>Q: Raport postępu
+        end
+    end
+    rect rgba(200, 220, 255, 0.4)
+        Q->>A: Zamknięcie
+    end

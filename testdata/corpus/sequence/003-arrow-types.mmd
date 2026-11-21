@@ -1,0 +1,15 @@
+%% REQ: SEQ-003
+sequenceDiagram
+    participant A as Nadawca
+    participant B as Odbiorca
+    A->B: linia ciągła bez grotu
+    A-->B: linia kropkowana bez grotu
+    A->>B: linia ciągła z grotem
+    A-->>B: linia kropkowana z grotem
+    A-xB: linia ciągła z krzyżykiem
+    A--xB: linia kropkowana z krzyżykiem
+    A-)B: linia ciągła, grot otwarty
+    A--)B: linia kropkowana, grot otwarty
+    A<<->>B: dwukierunkowa ciągła
+    A<<-->>B: dwukierunkowa kropkowana
+    B->>A: w lewo

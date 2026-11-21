@@ -1,0 +1,9 @@
+%% REQ: SEQ-002 SEQ-010
+sequenceDiagram
+    actor A as Autor
+    participant S as System QMS
+    actor Spr as Sprawdzający
+    participant Arch as Archiwum<br/>dokumentów
+    A->>S: Zgłoszenie
+    S->>Spr: Prośba o sprawdzenie
+    Spr->>Arch: Odłożenie do archiwum

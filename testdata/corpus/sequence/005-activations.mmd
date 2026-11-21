@@ -1,0 +1,16 @@
+%% REQ: SEQ-005
+sequenceDiagram
+    participant U as Użytkownik
+    participant S as System
+    participant B as Baza
+    U->>+S: Zapisz dokument
+    S->>+B: Wstaw wersję
+    B-->>-S: Numer wersji
+    S->>S: Walidacja
+    S-->>-U: Zapisano
+    U->>S: Otwórz
+    activate S
+    S->>+S: Sprawdź uprawnienia
+    S-->>-S: OK
+    S-->>U: Treść
+    deactivate S

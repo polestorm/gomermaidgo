@@ -1,0 +1,22 @@
+%% REQ: SEQ-006
+sequenceDiagram
+    actor Autor
+    participant S as System QMS
+    actor Spr as Sprawdzający
+    actor Zat as Zatwierdzający
+    Autor->>S: Przesyła projekt dokumentu
+    S->>Spr: Powiadomienie: „Proszę o sprawdzenie”
+    alt Uwagi
+        Spr-->>Autor: Zwrot z uwagami (źle opisany zakres)
+        Autor->>S: Poprawiona wersja
+    else Bez uwag
+        Spr->>S: Podpis elektroniczny
+    end
+    loop Co 7 dni, do skutku
+        S->>Zat: Przypomnienie
+    end
+    opt Zmiana istotna
+        S->>Zat: Wniosek o ocenę wpływu
+    end
+    S->>Zat: Żądanie zatwierdzenia
+    Zat->>S: Zatwierdzam – wersja obowiązująca

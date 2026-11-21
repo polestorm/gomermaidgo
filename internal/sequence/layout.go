@@ -1,0 +1,609 @@
+package sequence
+
+import (
+	"math"
+	"regexp"
+	"strconv"
+	"strings"
+
+	"github.com/polestorm/gomermaidgo/internal/scene"
+)
+
+// Measure zwraca szerokość tekstu w pikselach dla podanego rozmiaru pisma.
+type Measure func(text string, size float64) float64
+
+// Options to ustawienia układu.
+type Options struct {
+	Measure    Measure
+	FontSize   float64
+	FontFamily string
+	Background string
+}
+
+// Kolory rysunku. Wygląd jest stały i własny; nie naśladuje motywów Mermaid.
+const (
+	colorText       = "#1b1f24"
+	colorLine       = "#3b4754"
+	colorLifeline   = "#9aa5b1"
+	colorBoxFill    = "#eef2f7"
+	colorBoxStroke  = "#55657a"
+	colorNoteFill   = "#fff6c2"
+	colorNoteStroke = "#b59a1b"
+	colorFrame      = "#6b7785"
+	colorTabFill    = "#e3e8ef"
+	colorActivation = "#dbe3ec"
+	colorBadge      = "#3b4754"
+	colorBadgeText  = "#ffffff"
+)
+
+type frame struct {
+	kind     string
+	title    string
+	color    string
+	y0       float64
+	minX     float64
+	maxX     float64
+	sections []section
+}
+
+type section struct {
+	y    float64
+	text string
+}
+
+type layout struct {
+	d  *Diagram
+	o  Options
+	sc *scene.Scene
+
+	fs, lh float64
+	x      []float64 // środki uczestników
+	boxW   []float64
+	header float64 // wysokość nagłówka uczestników
+
+	cursor float64
+	lastY  float64
+	active [][]float64 // początki otwartych aktywacji
+	frames []*frame
+	fills  []string // kolory tła pod bieżącym miejscem: tło rysunku i otwarte wyróżnienia „rect”
+	number int
+}
+
+// Stałe wymiary w pikselach dla rozmiaru pisma 16; skalują się z rozmiarem pisma.
+func (l *layout) u(v float64) float64 { return math.Round(v * l.fs / 16) }
+
+func (l *layout) width(text string) float64 { return l.o.Measure(text, l.fs) }
+
+func (l *layout) maxWidth(lines []string) float64 {
+	w := 0.0
+	for _, s := range lines {
+		w = math.Max(w, l.width(s))
+	}
+	return w
+}
+
+// baseline zwraca położenie linii bazowej dla wiersza o górnej krawędzi top.
+func (l *layout) baseline(top float64) float64 { return top + l.lh/2 + 0.35*l.fs }
+
+func (l *layout) text(lines []string, x, top float64, anchor, role, fill string, layer int) {
+	if fill == "" {
+		fill = colorText
+	}
+	for k, s := range lines {
+		if s == "" {
+			continue
+		}
+		l.sc.Add(scene.Item{Kind: scene.Text, Layer: layer, Role: role, X: x, Y: l.baseline(top + float64(k)*l.lh),
+			W: l.width(s), H: l.lh, Text: s, Anchor: anchor, Fill: fill})
+	}
+}
+
+// labelBackground kładzie pod etykietą prostokąt w kolorze tła, który przerywa linie życia.
+func (l *layout) labelBackground(x, top, w, h float64) {
+	if w <= 0 {
+		return
+	}
+	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "label-background",
+		X: x - l.u(3), Y: top + l.u(1), W: w + 2*l.u(3), H: h - l.u(2), Fill: l.fills[len(l.fills)-1]})
+}
+
+// extent zgłasza zajęty zakres poziomy do bieżącej ramki.
+func (l *layout) extent(x0, x1 float64) {
+	if len(l.frames) == 0 {
+		return
+	}
+	f := l.frames[len(l.frames)-1]
+	f.minX, f.maxX = math.Min(f.minX, x0), math.Max(f.maxX, x1)
+}
+
+// Layout rozmieszcza diagram i zwraca scenę.
+func Layout(d *Diagram, o Options) *scene.Scene {
+	if o.FontSize <= 0 {
+		o.FontSize = 16
+	}
+	l := &layout{d: d, o: o, fs: o.FontSize}
+	l.lh = math.Round(l.fs * 1.25)
+	l.sc = &scene.Scene{Title: d.Title, FontFamily: o.FontFamily, FontSize: l.fs, Margin: l.u(12), Background: o.Background}
+	l.active = make([][]float64, len(d.Participants))
+	base := o.Background
+	if _, _, _, _, ok := parseColor(base); !ok {
+		base = "#ffffff" // przezroczyste albo nazwane tło: podkłady etykiet zakładają biel
+	}
+	l.fills = []string{base}
+
+	l.columns()
+
+	top := 0.0
+	if d.Title != "" {
+		mid := (l.x[0] + l.x[len(l.x)-1]) / 2
+		l.text([]string{d.Title}, mid, top, "middle", "title", "", scene.LayerLabel)
+		top += l.lh + l.u(12)
+	}
+	l.participants(top)
+	headerBottom := top + l.header
+	l.cursor = headerBottom + l.u(14)
+	l.lastY = l.cursor
+
+	for _, e := range d.Events {
+		switch e.Kind {
+		case EventMessage:
+			if e.From == e.To {
+				l.selfMessage(e)
+			} else {
+				l.message(e)
+			}
+		case EventNote:
+			l.note(e)
+		case EventActivate:
+			l.active[e.Target] = append(l.active[e.Target], l.lastY)
+		case EventDeactivate:
+			l.deactivate(e.Target, l.lastY)
+		case EventBlockStart:
+			l.blockStart(e)
+		case EventBlockSection:
+			l.blockSection(e)
+		case EventBlockEnd:
+			l.blockEnd()
+		}
+	}
+	for i := range l.active {
+		for len(l.active[i]) > 0 {
+			l.deactivate(i, l.cursor)
+		}
+	}
+
+	footerTop := l.cursor + l.u(6)
+	l.participants(footerTop)
+	for i := range d.Participants {
+		l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "lifeline",
+			X: l.x[i], Y: headerBottom, X2: l.x[i], Y2: footerTop, Stroke: colorLifeline, StrokeWidth: 1})
+	}
+	return l.sc
+}
+
+// columns wyznacza środki uczestników tak, żeby etykiety komunikatów i notatki mieściły
+// się między liniami życia.
+func (l *layout) columns() {
+	n := len(l.d.Participants)
+	l.boxW = make([]float64, n)
+	l.header = 0
+	for i, p := range l.d.Participants {
+		w := l.maxWidth(p.Label)
+		lines := float64(len(p.Label))
+		if p.Actor {
+			l.boxW[i] = math.Max(l.u(28), w)
+			l.header = math.Max(l.header, l.u(48)+lines*l.lh)
+		} else {
+			l.boxW[i] = math.Max(l.u(80), w+2*l.u(14))
+			l.header = math.Max(l.header, lines*l.lh+2*l.u(10))
+		}
+	}
+	gap := make([]float64, max(n-1, 0))
+	for i := range gap {
+		gap[i] = l.boxW[i]/2 + l.boxW[i+1]/2 + l.u(36)
+	}
+	atLeast := func(i int, v float64) {
+		if i >= 0 && i < len(gap) {
+			gap[i] = math.Max(gap[i], v)
+		}
+	}
+	// Wymaganie rozłożone na kilka odstępów: brakującą szerokość dzielimy po równo.
+	span := func(lo, hi int, need float64) {
+		sum := 0.0
+		for i := lo; i < hi; i++ {
+			sum += gap[i]
+		}
+		if need > sum && hi > lo {
+			add := (need - sum) / float64(hi-lo)
+			for i := lo; i < hi; i++ {
+				gap[i] += add
+			}
+		}
+	}
+	type wide struct {
+		lo, hi int
+		need   float64
+	}
+	var deferred []wide
+	badge := 0.0
+	if l.d.Autonumber {
+		badge = l.u(24)
+	}
+	for _, e := range l.d.Events {
+		switch e.Kind {
+		case EventMessage:
+			w := l.maxWidth(e.Text)
+			if e.From == e.To {
+				atLeast(e.From, l.selfReach()+w+l.u(16)+l.half(e.From+1))
+				continue
+			}
+			lo, hi := min(e.From, e.To), max(e.From, e.To)
+			need := w + 2*l.u(14) + l.u(12) + badge
+			if hi-lo == 1 {
+				atLeast(lo, need)
+			} else {
+				deferred = append(deferred, wide{lo, hi, need})
+			}
+		case EventNote:
+			w := l.maxWidth(e.Text) + 2*l.u(10)
+			switch e.Placement {
+			case NoteRightOf:
+				atLeast(e.Over[0], l.u(16)+w+l.u(14)+l.half(e.Over[0]+1)/4)
+			case NoteLeftOf:
+				atLeast(e.Over[0]-1, l.u(16)+w+l.u(14)+l.half(e.Over[0]-1)/4)
+			case NoteOver:
+				if e.Over[0] == e.Over[1] {
+					atLeast(e.Over[0]-1, w/2+l.u(12))
+					atLeast(e.Over[0], w/2+l.u(12))
+				} else {
+					deferred = append(deferred, wide{e.Over[0], e.Over[1], w - 2*l.u(20)})
+				}
+			}
+		}
+	}
+	for _, d := range deferred {
+		span(d.lo, d.hi, d.need)
+	}
+	l.x = make([]float64, n)
+	for i := 1; i < n; i++ {
+		l.x[i] = math.Round(l.x[i-1] + gap[i-1])
+	}
+}
+
+func (l *layout) half(i int) float64 {
+	if i < 0 || i >= len(l.boxW) {
+		return 0
+	}
+	return l.boxW[i] / 2
+}
+
+// selfReach to odległość od linii życia do miejsca, gdzie zaczyna się etykieta komunikatu do siebie.
+func (l *layout) selfReach() float64 { return l.u(8) + l.u(36) + l.u(8) }
+
+func (l *layout) participants(top float64) {
+	for i, p := range l.d.Participants {
+		cx := l.x[i]
+		lines := float64(len(p.Label))
+		if !p.Actor {
+			l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "participant",
+				X: cx - l.boxW[i]/2, Y: top, W: l.boxW[i], H: l.header, RX: l.u(3),
+				Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+			l.text(p.Label, cx, top+(l.header-lines*l.lh)/2, "middle", "participant-label", "", scene.LayerLabel)
+			continue
+		}
+		t := top + (l.header-(l.u(48)+lines*l.lh))/2
+		stroke := func(x1, y1, x2, y2 float64) {
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "actor",
+				X: cx + l.u(x1), Y: t + l.u(y1), X2: cx + l.u(x2), Y2: t + l.u(y2), Stroke: colorBoxStroke, StrokeWidth: 1.5})
+		}
+		l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "actor",
+			X: cx, Y: t + l.u(8), R: l.u(8), Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+		stroke(0, 16, 0, 32)
+		stroke(-12, 22, 12, 22)
+		stroke(0, 32, -10, 44)
+		stroke(0, 32, 10, 44)
+		l.text(p.Label, cx, t+l.u(48), "middle", "participant-label", "", scene.LayerLabel)
+	}
+}
+
+// edge zwraca punkt styku komunikatu z linią życia uczestnika po stronie side (-1 lewa, +1 prawa)
+// przy level otwartych aktywacjach.
+func (l *layout) edge(i int, side float64, level int) float64 {
+	if level <= 0 {
+		return l.x[i]
+	}
+	return l.x[i] + side*l.u(5) + float64(level-1)*l.u(4)
+}
+
+func (l *layout) deactivate(i int, y float64) {
+	stack := l.active[i]
+	level := len(stack)
+	start := stack[level-1]
+	l.active[i] = stack[:level-1]
+	h := math.Max(y-start, l.u(8))
+	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerActivation + 0, Role: "activation",
+		X: l.x[i] - l.u(5) + float64(level-1)*l.u(4), Y: start, W: l.u(10), H: h,
+		Fill: colorActivation, Stroke: colorBoxStroke, StrokeWidth: 1})
+}
+
+func dash(s LineStyle) string {
+	if s == Dotted {
+		return "4 3"
+	}
+	return ""
+}
+
+// head rysuje grot w punkcie (x, y) skierowany w stronę dir (+1 w prawo, -1 w lewo)
+// i zwraca, o ile trzeba skrócić linię, żeby nie wystawała spod grotu.
+func (l *layout) head(style HeadStyle, x, y, dir float64) float64 {
+	a, hw := l.u(9), l.u(4)
+	switch style {
+	case HeadArrow:
+		l.sc.Add(scene.Item{Kind: scene.Polygon, Layer: scene.LayerShape, Role: "arrowhead",
+			Points: []scene.Point{{X: x, Y: y}, {X: x - dir*a, Y: y - hw}, {X: x - dir*a, Y: y + hw}}, Fill: colorLine})
+		return a
+	case HeadOpen:
+		l.sc.Add(scene.Item{Kind: scene.Polyline, Layer: scene.LayerShape, Role: "arrowhead",
+			Points: []scene.Point{{X: x - dir*a, Y: y - hw}, {X: x, Y: y}, {X: x - dir*a, Y: y + hw}}, Stroke: colorLine, StrokeWidth: 1.5})
+	case HeadCross:
+		c, r := x-dir*l.u(6), l.u(4)
+		for _, s := range []float64{-1, 1} {
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "arrowhead",
+				X: c - r, Y: y - s*r, X2: c + r, Y2: y + s*r, Stroke: colorLine, StrokeWidth: 1.5})
+		}
+	}
+	return 0
+}
+
+func (l *layout) badge(x, y float64) {
+	if !l.d.Autonumber {
+		return
+	}
+	l.number++
+	s := strconv.Itoa(l.number)
+	size := math.Round(l.fs * 0.7)
+	l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerLabel, Role: "sequence-number", X: x, Y: y, R: l.u(9), Fill: colorBadge})
+	l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "sequence-number", X: x, Y: y + 0.35*size,
+		W: l.o.Measure(s, size), H: size, Text: s, Anchor: "middle", FontSize: size, Fill: colorBadgeText})
+}
+
+func (l *layout) message(e Event) {
+	dir := 1.0
+	if e.To < e.From {
+		dir = -1
+	}
+	fromLevel := len(l.active[e.From])
+	toLevel := len(l.active[e.To])
+	if e.ActivateTo {
+		toLevel++
+	}
+	x1 := l.edge(e.From, dir, fromLevel)
+	x2 := l.edge(e.To, -dir, toLevel)
+
+	lines := float64(len(e.Text))
+	labelTop := l.cursor
+	l.cursor += lines*l.lh + l.u(3)
+	y := l.cursor
+	if len(e.Text) > 0 {
+		mid, w := (x1+x2)/2, l.maxWidth(e.Text)
+		if abs(e.To-e.From) > 1 {
+			// Etykieta przechodzi przez obce linie życia: podkład zapewnia czytelność.
+			l.labelBackground(mid-w/2, labelTop, w, lines*l.lh)
+		}
+		l.text(e.Text, mid, labelTop, "middle", "message-label", "", scene.LayerLabel)
+		l.extent(mid-w/2, mid+w/2)
+	}
+
+	startX, endX := x1, x2
+	endX -= dir * l.head(e.Head, x2, y, dir)
+	if e.Bidirectional {
+		startX += dir * l.head(e.Head, x1, y, -dir)
+	}
+	l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "message",
+		X: startX, Y: y, X2: endX, Y2: y, Stroke: colorLine, StrokeWidth: 1.5, Dash: dash(e.LineStyle)})
+	l.badge(x1, y)
+	l.extent(math.Min(x1, x2), math.Max(x1, x2))
+
+	if e.ActivateTo {
+		l.active[e.To] = append(l.active[e.To], y)
+	}
+	if e.DeactivateFrom {
+		l.deactivate(e.From, y)
+	}
+	l.lastY = y
+	l.cursor = y + l.u(16)
+}
+
+func (l *layout) selfMessage(e Event) {
+	i := e.From
+	reach, drop := l.u(36), l.u(26)
+	lines := float64(len(e.Text))
+	textH := lines * l.lh
+	if textH > drop {
+		l.cursor += (textH - drop) / 2
+	}
+	y0 := l.cursor + l.u(4)
+	y1 := y0 + drop
+	level := len(l.active[i])
+	xs := l.edge(i, 1, level)
+	if e.ActivateTo {
+		level++
+	}
+	xe := l.edge(i, 1, level)
+	out := l.x[i] + l.u(8) + reach
+
+	short := l.head(e.Head, xe, y1, -1)
+	l.sc.Add(scene.Item{Kind: scene.Polyline, Layer: scene.LayerShape, Role: "message",
+		Points: []scene.Point{{X: xs, Y: y0}, {X: out, Y: y0}, {X: out, Y: y1}, {X: xe + short, Y: y1}},
+		Stroke: colorLine, StrokeWidth: 1.5, Dash: dash(e.LineStyle)})
+	l.badge(xs, y0)
+	right := out
+	if len(e.Text) > 0 {
+		tx := out + l.u(8)
+		l.text(e.Text, tx, (y0+y1)/2-textH/2, "start", "message-label", "", scene.LayerLabel)
+		right = tx + l.maxWidth(e.Text)
+	}
+	l.extent(l.x[i], right)
+
+	if e.ActivateTo {
+		l.active[i] = append(l.active[i], y1)
+	}
+	if e.DeactivateFrom {
+		l.deactivate(i, y1)
+	}
+	l.lastY = y1
+	l.cursor = y1 + math.Max(l.u(16), (textH-drop)/2+l.u(8))
+}
+
+func (l *layout) note(e Event) {
+	padX, padY := l.u(10), l.u(8)
+	w := l.maxWidth(e.Text) + 2*padX
+	h := float64(len(e.Text))*l.lh + 2*padY
+	var x0 float64
+	switch e.Placement {
+	case NoteRightOf:
+		x0 = l.x[e.Over[0]] + l.u(16)
+	case NoteLeftOf:
+		x0 = l.x[e.Over[0]] - l.u(16) - w
+	default:
+		lo, hi := l.x[e.Over[0]], l.x[e.Over[1]]
+		if e.Over[0] != e.Over[1] {
+			w = math.Max(w, hi-lo+2*l.u(20))
+		}
+		x0 = (lo+hi)/2 - w/2
+	}
+	y0 := l.cursor
+	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "note", X: x0, Y: y0, W: w, H: h,
+		Fill: colorNoteFill, Stroke: colorNoteStroke, StrokeWidth: 1})
+	l.text(e.Text, x0+w/2, y0+padY, "middle", "note-label", "", scene.LayerLabel)
+	l.extent(x0, x0+w)
+	l.cursor = y0 + h + l.u(12)
+}
+
+func (l *layout) blockStart(e Event) {
+	l.cursor += l.u(4)
+	f := &frame{kind: e.Block, title: strings.Join(e.Text, " "), color: e.Color, y0: l.cursor, minX: math.Inf(1), maxX: math.Inf(-1)}
+	l.frames = append(l.frames, f)
+	if e.Block == "rect" {
+		l.fills = append(l.fills, blend(e.Color, l.fills[len(l.fills)-1]))
+		l.cursor += l.u(8)
+	} else {
+		l.cursor += l.lh + l.u(4) + l.u(6)
+	}
+}
+
+func (l *layout) blockSection(e Event) {
+	f := l.frames[len(l.frames)-1]
+	l.cursor += l.u(2)
+	f.sections = append(f.sections, section{y: l.cursor, text: strings.Join(e.Text, " ")})
+	l.cursor += l.lh + l.u(6)
+}
+
+func (l *layout) blockEnd() {
+	f := l.frames[len(l.frames)-1]
+	l.frames = l.frames[:len(l.frames)-1]
+	n := len(l.x)
+	if math.IsInf(f.minX, 1) {
+		f.minX, f.maxX = l.x[0]-l.boxW[0]/2, l.x[n-1]+l.boxW[n-1]/2
+	}
+	pad := l.u(12)
+	x0, x1 := f.minX-pad, f.maxX+pad
+	y1 := l.cursor + l.u(2)
+
+	if f.kind == "rect" {
+		l.fills = l.fills[:len(l.fills)-1]
+		fill, opacity := splitColor(f.color)
+		if strings.HasPrefix(f.color, "rgba(") && opacity == 0 {
+			fill = "" // w pełni przezroczyste wyróżnienie: prostokąt bez wypełnienia
+		}
+		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "highlight",
+			X: x0, Y: f.y0, W: x1 - x0, H: y1 - f.y0, Fill: fill, FillOpacity: opacity})
+	} else {
+		tabW, tabH := l.width(f.kind)+2*l.u(8), l.lh+l.u(4)
+		bracket := func(s string) string {
+			if s == "" {
+				return ""
+			}
+			return "[" + s + "]"
+		}
+		// Ramka musi pomieścić zakładkę z tytułem i etykiety sekcji.
+		need := tabW + l.u(8) + l.width(bracket(f.title)) + l.u(8)
+		for _, s := range f.sections {
+			need = math.Max(need, l.width(bracket(s.text))+2*l.u(8))
+		}
+		x1 = math.Max(x1, x0+need)
+		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerFrame, Role: "frame",
+			X: x0, Y: f.y0, W: x1 - x0, H: y1 - f.y0, Stroke: colorFrame, StrokeWidth: 1})
+		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerFrame, Role: "frame-tab",
+			X: x0, Y: f.y0, W: tabW, H: tabH, Fill: colorTabFill, Stroke: colorFrame, StrokeWidth: 1})
+		l.text([]string{f.kind}, x0+tabW/2, f.y0+l.u(2), "middle", "frame-kind", "", scene.LayerLabel)
+		l.labelBackground(x0+tabW+l.u(8), f.y0+l.u(2), l.width(bracket(f.title)), l.lh)
+		l.text([]string{bracket(f.title)}, x0+tabW+l.u(8), f.y0+l.u(2), "start", "frame-title", "", scene.LayerLabel)
+		for _, s := range f.sections {
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerFrame, Role: "frame-divider",
+				X: x0, Y: s.y, X2: x1, Y2: s.y, Stroke: colorFrame, StrokeWidth: 1, Dash: "5 4"})
+			l.labelBackground(x0+l.u(8), s.y+l.u(3), l.width(bracket(s.text)), l.lh)
+			l.text([]string{bracket(s.text)}, x0+l.u(8), s.y+l.u(3), "start", "frame-title", "", scene.LayerLabel)
+		}
+	}
+	l.cursor = y1 + l.u(12)
+	l.extent(x0, x1)
+}
+
+var rgbaPattern = regexp.MustCompile(`^rgba\((\d+),(\d+),(\d+),([0-9.]+)\)$`)
+
+// splitColor rozdziela kolor z kanałem alfa na kolor i krycie, bo SVG 1.1 nie zna rgba().
+func splitColor(c string) (fill string, opacity float64) {
+	if m := rgbaPattern.FindStringSubmatch(c); m != nil {
+		a, _ := strconv.ParseFloat(m[4], 64)
+		return "rgb(" + m[1] + "," + m[2] + "," + m[3] + ")", a
+	}
+	return c, 0
+}
+
+var rgbPattern = regexp.MustCompile(`^rgba?\((\d+),(\d+),(\d+)(?:,([0-9.]+))?\)$`)
+
+// parseColor czyta kolor w zapisie #rgb, #rrggbb, rgb() albo rgba().
+func parseColor(c string) (r, g, b, a float64, ok bool) {
+	c = strings.Join(strings.Fields(c), "")
+	if m := rgbPattern.FindStringSubmatch(c); m != nil {
+		r, _ = strconv.ParseFloat(m[1], 64)
+		g, _ = strconv.ParseFloat(m[2], 64)
+		b, _ = strconv.ParseFloat(m[3], 64)
+		a = 1
+		if m[4] != "" {
+			a, _ = strconv.ParseFloat(m[4], 64)
+		}
+		return math.Min(r, 255), math.Min(g, 255), math.Min(b, 255), math.Min(a, 1), true
+	}
+	if strings.HasPrefix(c, "#") && (len(c) == 4 || len(c) == 7) {
+		hex := c[1:]
+		if len(hex) == 3 {
+			hex = string([]byte{hex[0], hex[0], hex[1], hex[1], hex[2], hex[2]})
+		}
+		v, err := strconv.ParseUint(hex, 16, 32)
+		if err != nil {
+			return 0, 0, 0, 0, false
+		}
+		return float64(v >> 16), float64(v >> 8 & 0xFF), float64(v & 0xFF), 1, true
+	}
+	return 0, 0, 0, 0, false
+}
+
+// blend zwraca nieprzezroczysty kolor powstały z nałożenia top na under.
+func blend(top, under string) string {
+	tr, tg, tb, ta, ok := parseColor(top)
+	ur, ug, ub, _, ok2 := parseColor(under)
+	if !ok || !ok2 {
+		return under
+	}
+	mix := func(t, u float64) string { return strconv.Itoa(int(math.Round(t*ta + u*(1-ta)))) }
+	return "rgb(" + mix(tr, ur) + "," + mix(tg, ug) + "," + mix(tb, ub) + ")"
+}
+
+func abs(v int) int {
+	if v < 0 {
+		return -v
+	}
+	return v
+}

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="925.84" height="340" viewBox="-52 -12 925.84 340" role="img" font-family="sans-serif" font-size="16">
+<line class="lifeline" x1="0" y1="40" x2="0" y2="276" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="lifeline" x1="224" y1="40" x2="224" y2="276" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="lifeline" x1="598" y1="40" x2="598" y2="276" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="label-background" x="16.64" y="55" width="564.72" height="18" fill="#ffffff"/>
+<rect class="label-background" x="134.08" y="232" width="329.84" height="18" fill="#ffffff"/>
+<rect class="participant" x="-40" y="0" width="80" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="184" y="0" width="80" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="558" y="0" width="80" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="arrowhead" points="598,77 589,73 589,81" fill="#3b4754"/>
+<line class="message" x1="0" y1="77" x2="589" y2="77" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="224,130 233,126 233,134" fill="#3b4754"/>
+<polyline class="message" points="224,104 268,104 268,130 233,130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="598,176 607,172 607,180" fill="#3b4754"/>
+<polyline class="message" points="598,150 642,150 642,176 607,176" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="224,215 215,211 215,219" fill="#3b4754"/>
+<line class="message" x1="0" y1="215" x2="215" y2="215" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="0,254 9,250 9,258" fill="#3b4754"/>
+<line class="message" x1="598" y1="254" x2="9" y2="254" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect class="participant" x="-40" y="276" width="80" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="184" y="276" width="80" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="558" y="276" width="80" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="participant-label" x="0" y="25.6" text-anchor="middle" fill="#1b1f24">A</text>
+<text class="participant-label" x="224" y="25.6" text-anchor="middle" fill="#1b1f24">B</text>
+<text class="participant-label" x="598" y="25.6" text-anchor="middle" fill="#1b1f24">C</text>
+<text class="message-label" x="299" y="69.6" text-anchor="middle" fill="#1b1f24">Bardzo długa etykieta komunikatu, który przechodzi nad inną linią życia</text>
+<text class="message-label" x="276" y="112.6" fill="#1b1f24">Komunikat do siebie</text>
+<text class="message-label" x="276" y="132.6" fill="#1b1f24">w dwóch liniach</text>
+<text class="message-label" x="650" y="168.6" fill="#1b1f24">Ostatni uczestnik do siebie</text>
+<text class="message-label" x="112" y="207.6" text-anchor="middle" fill="#1b1f24">krótki</text>
+<text class="message-label" x="299" y="246.6" text-anchor="middle" fill="#1b1f24">Odpowiedź przez środkowego uczestnika</text>
+<text class="participant-label" x="0" y="301.6" text-anchor="middle" fill="#1b1f24">A</text>
+<text class="participant-label" x="224" y="301.6" text-anchor="middle" fill="#1b1f24">B</text>
+<text class="participant-label" x="598" y="301.6" text-anchor="middle" fill="#1b1f24">C</text>
+</svg>

@@ -1,0 +1,12 @@
+%% REQ: SEQ-004
+sequenceDiagram
+    participant P as Pełnomocnik
+    participant K as Kierownik
+    participant W as Wykonawca
+    Note left of P: Notatka po lewej
+    Note right of W: Notatka po prawej
+    P->>K: Zlecenie działania
+    Note over K: Ocena ryzyka
+    K->>W: Polecenie
+    Note over P,W: Ślad audytowy: kto, kiedy, dlaczego
+    Note over K,W: Dwie linie<br/>w jednej notatce

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="365.92" height="202" viewBox="-52 -12 365.92 202" role="img" font-family="sans-serif" font-size="16">
+<line class="lifeline" x1="0" y1="40" x2="0" y2="138" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="lifeline" x1="258" y1="40" x2="258" y2="138" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="participant" x="-40" y="0" width="80" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="214.08" y="0" width="87.84" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="arrowhead" points="258,77 249,73 249,81" fill="#3b4754"/>
+<line class="message" x1="0" y1="77" x2="249" y2="77" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="0,116 9,112 9,120" fill="#3b4754"/>
+<line class="message" x1="258" y1="116" x2="9" y2="116" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect class="participant" x="-40" y="138" width="80" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="214.08" y="138" width="87.84" height="40" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="participant-label" x="0" y="25.6" text-anchor="middle" fill="#1b1f24">Autor</text>
+<text class="participant-label" x="258" y="25.6" text-anchor="middle" fill="#1b1f24">System</text>
+<text class="message-label" x="129" y="69.6" text-anchor="middle" fill="#1b1f24">Przesyła projekt dokumentu</text>
+<text class="message-label" x="129" y="108.6" text-anchor="middle" fill="#1b1f24">Potwierdzenie przyjęcia</text>
+<text class="participant-label" x="0" y="163.6" text-anchor="middle" fill="#1b1f24">Autor</text>
+<text class="participant-label" x="258" y="163.6" text-anchor="middle" fill="#1b1f24">System</text>
+</svg>
