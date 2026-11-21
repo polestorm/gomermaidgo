@@ -4,6 +4,14 @@ Renders diagrams written in Mermaid syntax to SVG in pure Go: no JavaScript, no 
 Go standard library. The same source and options always give the same SVG, byte for byte.
 
 ```go
+svg, err := gomermaidgo.Render(source)
+```
+
+By default text is measured with, and the SVG asks for, the bundled Recursive typeface (`fonts.Recursive()`, SIL Open
+Font License 1.1, see `fonts/OFL.txt`). Give the same file to whatever draws the SVG: a page through `@font-face`, a
+PDF converter as an embedded font. To use another typeface, pass both its file and its name:
+
+```go
 svg, err := gomermaidgo.Render(source,
 	gomermaidgo.WithFont(fontBytes),         // measure text with the font that will draw it
 	gomermaidgo.WithFontFamily("Noto Sans"),

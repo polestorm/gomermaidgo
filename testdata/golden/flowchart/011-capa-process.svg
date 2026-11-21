@@ -1,49 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="628.5" height="1097" viewBox="-12 -12 628.5 1097" role="img" font-family="sans-serif" font-size="16">
-<rect class="cluster" x="0" y="484" width="280" height="270" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path class="edge" d="M140.25 622 L140.25 679.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M477 44 L477 76 L477 101.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M477 268 C477 284 456 284 456 300 L456 324 C456 336.85 389 336.85 389 349.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M477 268 C477 284 498 284 498 300 L498 324 L498 356 L498 420 L498 452 C498 468 533 468 533 484 L533 754 L533 786 L533 818 L533 941 L533 973 L533 997 C533 1009.85 410 1009.85 410 1022.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M380 420 L380 452 C380 468 140.25 468 140.25 484 L140.25 514 L140.25 531.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M140.25 730 L140.25 754 L140 786 C140 798.85 269 798.85 269 811.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M269 941 L269 973 L269 997 C269 1009.85 392 1009.85 392 1022.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M398 426.3 L398 452 L398 484 L398 754 L398 786 C398 802 269 802 269 818" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="cluster-title-background" x="8" y="490" width="264" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="436.96" y="302" width="38.08" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="516.2" y="609" width="33.6" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="223.72" y="975" width="90.56" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="299.44" y="609" width="197.12" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="140.25,686 135.25,677 145.25,677" fill="#3b4754"/>
-<polygon class="arrowhead" points="477,108 472,99 482,99" fill="#3b4754"/>
-<polygon class="arrowhead" points="389,356 384,347 394,347" fill="#3b4754"/>
-<polygon class="arrowhead" points="410,1029 405,1020 415,1020" fill="#3b4754"/>
-<polygon class="arrowhead" points="140.25,538 135.25,529 145.25,529" fill="#3b4754"/>
-<polygon class="arrowhead" points="269,818 264,809 274,809" fill="#3b4754"/>
-<polygon class="arrowhead" points="392,1029 387,1020 397,1020" fill="#3b4754"/>
-<polygon class="arrowhead" points="398,420 403,429 393,429" fill="#3b4754"/>
-<rect class="node" x="349.5" y="0" width="255" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="477,108 586,188 477,268 368,188" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="302" y="356" width="174" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="39.75" y="538" width="201" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="49.42,686 245.75,686 231.08,730 34.75,730" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="269,818 364,879.5 269,941 174,879.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="280" y="1029" width="242" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="477" y="27.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie niezgodności</text>
-<text class="node-label" x="477" y="173.6" text-anchor="middle" fill="#1b1f24">Czy wymaga</text>
-<text class="node-label" x="477" y="193.6" text-anchor="middle" fill="#1b1f24">działań</text>
-<text class="node-label" x="477" y="213.6" text-anchor="middle" fill="#1b1f24">korygujących?</text>
-<text class="node-label" x="389" y="383.6" text-anchor="middle" fill="#1b1f24">Analiza przyczyn</text>
-<text class="node-label" x="389" y="403.6" text-anchor="middle" fill="#1b1f24">źródłowych</text>
-<text class="cluster-title" x="140" y="505.6" text-anchor="middle" fill="#1b1f24">Nadzór pełnomocnika ds. jakości</text>
-<text class="node-label" x="140.25" y="565.6" text-anchor="middle" fill="#1b1f24">Plan działań: żądany</text>
-<text class="node-label" x="140.25" y="585.6" text-anchor="middle" fill="#1b1f24">termin, osoba</text>
-<text class="node-label" x="140.25" y="605.6" text-anchor="middle" fill="#1b1f24">odpowiedzialna</text>
-<text class="node-label" x="140.25" y="713.6" text-anchor="middle" fill="#1b1f24">Wdrożenie działań</text>
-<text class="node-label" x="269" y="875.1" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="269" y="895.1" text-anchor="middle" fill="#1b1f24">skuteczności</text>
-<text class="node-label" x="401" y="1056.6" text-anchor="middle" fill="#1b1f24">Zamknięcie zgłoszenia</text>
-<text class="edge-label" x="456" y="317.6" text-anchor="middle" fill="#1b1f24">Tak</text>
-<text class="edge-label" x="533" y="624.6" text-anchor="middle" fill="#1b1f24">Nie</text>
-<text class="edge-label" x="269" y="990.6" text-anchor="middle" fill="#1b1f24">Skuteczne</text>
-<text class="edge-label" x="398" y="624.6" text-anchor="middle" fill="#1b1f24">Nieskuteczne – powtórz</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="635.5" height="1098" viewBox="-12 -12 635.5 1098" role="img" font-family="Recursive, sans-serif" font-size="16">
+<rect class="cluster" x="0" y="485" width="284" height="270" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M142.25 623 L142.25 680.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M483 44 L483 76 L483 101.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M483 269 C483 285 462 285 462 301 L462 325 C462 337.85 394 337.85 394 350.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M483 269 C483 285 504 285 504 301 L504 325 L504 357 L504 421 L504 453 C504 469 540 469 540 485 L540 755 L540 787 L540 819 L540 942 L540 974 L540 998 C540 1010.85 415 1010.85 415 1023.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M385 421 L385 453 C385 469 142.25 469 142.25 485 L142.25 515 L142.25 532.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M142.25 731 L142.25 755 L142 787 C142 799.85 273 799.85 273 812.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M273 942 L273 974 L273 998 C273 1010.85 397 1010.85 397 1023.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M403 427.3 L403 453 L403 485 L403 755 L403 787 C403 803 273 803 273 819" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="cluster-title-background" x="8" y="491" width="268" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="443.6" y="303" width="36.8" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="523.2" y="610" width="33.6" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="227.8" y="976" width="90.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="303" y="610" width="200" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="142.25,687 137.25,678 147.25,678" fill="#3b4754"/>
+<polygon class="arrowhead" points="483,108 478,99 488,99" fill="#3b4754"/>
+<polygon class="arrowhead" points="394,357 389,348 399,348" fill="#3b4754"/>
+<polygon class="arrowhead" points="415,1030 410,1021 420,1021" fill="#3b4754"/>
+<polygon class="arrowhead" points="142.25,539 137.25,530 147.25,530" fill="#3b4754"/>
+<polygon class="arrowhead" points="273,819 268,810 278,810" fill="#3b4754"/>
+<polygon class="arrowhead" points="397,1030 392,1021 402,1021" fill="#3b4754"/>
+<polygon class="arrowhead" points="403,421 408,430 398,430" fill="#3b4754"/>
+<rect class="node" x="354.5" y="0" width="257" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="483,108 593,188.5 483,269 373,188.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="306.5" y="357" width="175" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="39.75" y="539" width="205" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="48.42,687 250.75,687 236.08,731 33.75,731" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="273,819 368.5,880.5 273,942 177.5,880.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="284.5" y="1030" width="243" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="483" y="27.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie niezgodności</text>
+<text class="node-label" x="483" y="174.1" text-anchor="middle" fill="#1b1f24">Czy wymaga</text>
+<text class="node-label" x="483" y="194.1" text-anchor="middle" fill="#1b1f24">działań</text>
+<text class="node-label" x="483" y="214.1" text-anchor="middle" fill="#1b1f24">korygujących?</text>
+<text class="node-label" x="394" y="384.6" text-anchor="middle" fill="#1b1f24">Analiza przyczyn</text>
+<text class="node-label" x="394" y="404.6" text-anchor="middle" fill="#1b1f24">źródłowych</text>
+<text class="cluster-title" x="142" y="506.6" text-anchor="middle" fill="#1b1f24">Nadzór pełnomocnika ds. jakości</text>
+<text class="node-label" x="142.25" y="566.6" text-anchor="middle" fill="#1b1f24">Plan działań: żądany</text>
+<text class="node-label" x="142.25" y="586.6" text-anchor="middle" fill="#1b1f24">termin, osoba</text>
+<text class="node-label" x="142.25" y="606.6" text-anchor="middle" fill="#1b1f24">odpowiedzialna</text>
+<text class="node-label" x="142.25" y="714.6" text-anchor="middle" fill="#1b1f24">Wdrożenie działań</text>
+<text class="node-label" x="273" y="876.1" text-anchor="middle" fill="#1b1f24">Ocena</text>
+<text class="node-label" x="273" y="896.1" text-anchor="middle" fill="#1b1f24">skuteczności</text>
+<text class="node-label" x="406" y="1057.6" text-anchor="middle" fill="#1b1f24">Zamknięcie zgłoszenia</text>
+<text class="edge-label" x="462" y="318.6" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="540" y="625.6" text-anchor="middle" fill="#1b1f24">Nie</text>
+<text class="edge-label" x="273" y="991.6" text-anchor="middle" fill="#1b1f24">Skuteczne</text>
+<text class="edge-label" x="403" y="625.6" text-anchor="middle" fill="#1b1f24">Nieskuteczne – powtórz</text>
 </svg>

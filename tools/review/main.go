@@ -22,6 +22,7 @@ import (
 	"time"
 
 	"github.com/polestorm/gomermaidgo"
+	"github.com/polestorm/gomermaidgo/fonts"
 )
 
 type entry struct {
@@ -66,7 +67,9 @@ func main() {
 	flag.Parse()
 
 	var opts []gomermaidgo.Option
-	fontFace := ""
+	// Bez wskazania fontu rysunki używają kroju dołączonego; strona musi go mieć, żeby tekst
+	// pasował do pól.
+	fontFace := fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", fonts.RecursiveFamily, base64.StdEncoding.EncodeToString(fonts.Recursive()))
 	if *fontPath != "" {
 		data, err := os.ReadFile(*fontPath)
 		if err != nil {

@@ -1,41 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1829.88" height="108" viewBox="-12 -12 1829.88 108" role="img" font-family="sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1839.6" height="108" viewBox="-12 -12 1839.6 108" role="img" font-family="Recursive, sans-serif" font-size="16">
 <path class="edge" d="M16 42 L48 42 L73.7 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M187 35 C203 35 203 21 219 21 L414.28 21 C427.13 21 427.13 35 439.98 35" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M193.3 49 C206.15 49 206.15 63 219 63 L414.28 63 C430.28 63 430.28 49 446.28 49" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M605.28 42 L637.28 42 L725.04 42 L750.74 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M905.04 42 L937.04 42 L1112.8 42 L1138.5 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M1341.8 42 L1373.8 42 L1573.88 42 L1599.58 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M1721.88 42 L1753.88 42 L1779.58 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="220" y="11" width="193.28" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="243.68" y="53" width="145.92" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="638.28" y="32" width="85.76" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="938.04" y="32" width="173.76" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="1374.8" y="32" width="198.08" height="20" fill="#ffffff"/>
+<path class="edge" d="M185 35 C201 35 201 21 217 21 L417.4 21 C430.25 21 430.25 35 443.1 35" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M191.3 49 C204.15 49 204.15 63 217 63 L417.4 63 C433.4 63 433.4 49 449.4 49" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M610.4 42 L642.4 42 L732.4 42 L758.1 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M914.4 42 L946.4 42 L1122 42 L1147.7 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1346 42 L1378 42 L1581.6 42 L1607.3 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1731.6 42 L1763.6 42 L1789.3 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="218" y="11" width="198.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="245.6" y="53" width="143.2" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="643.4" y="32" width="88" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="947.4" y="32" width="173.6" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="1379" y="32" width="201.6" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="80,42 71,37 71,47" fill="#3b4754"/>
-<polygon class="arrowhead" points="446.28,35 437.28,30 437.28,40" fill="#3b4754"/>
-<polygon class="arrowhead" points="187,49 196,54 196,44" fill="#3b4754"/>
-<polygon class="arrowhead" points="757.04,42 748.04,37 748.04,47" fill="#3b4754"/>
-<polygon class="arrowhead" points="1144.8,42 1135.8,37 1135.8,47" fill="#3b4754"/>
-<polygon class="arrowhead" points="1605.88,42 1596.88,37 1596.88,47" fill="#3b4754"/>
-<polygon class="arrowhead" points="1785.88,42 1776.88,37 1776.88,47" fill="#3b4754"/>
+<polygon class="arrowhead" points="449.4,35 440.4,30 440.4,40" fill="#3b4754"/>
+<polygon class="arrowhead" points="185,49 194,54 194,44" fill="#3b4754"/>
+<polygon class="arrowhead" points="764.4,42 755.4,37 755.4,47" fill="#3b4754"/>
+<polygon class="arrowhead" points="1154,42 1145,37 1145,47" fill="#3b4754"/>
+<polygon class="arrowhead" points="1613.6,42 1604.6,37 1604.6,47" fill="#3b4754"/>
+<polygon class="arrowhead" points="1795.6,42 1786.6,37 1786.6,47" fill="#3b4754"/>
 <circle class="node" cx="8" cy="42" r="8" fill="#3b4754"/>
-<rect class="node" x="80" y="20" width="107" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="446.28" y="20" width="159" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="757.04" y="20" width="148" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="1144.8" y="0" width="197" height="84" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="1605.88" y="20" width="116" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="1795.88" cy="42" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="1795.88" cy="42" r="6" fill="#3b4754"/>
-<text class="node-label" x="133.5" y="47.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>
-<text class="node-label" x="525.78" y="47.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
-<text class="node-label" x="831.04" y="47.6" text-anchor="middle" fill="#1b1f24">Zatwierdzony</text>
-<text class="node-label" x="1243.3" y="27.6" text-anchor="middle" fill="#1b1f24">Zażółć gęślą jaźń —</text>
-<text class="node-label" x="1243.3" y="47.6" text-anchor="middle" fill="#1b1f24">„cudzysłów” &amp;</text>
-<text class="node-label" x="1243.3" y="67.6" text-anchor="middle" fill="#1b1f24">&lt;znaczniki&gt;</text>
-<text class="node-label" x="1663.88" y="47.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
-<text class="edge-label" x="316.64" y="26.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
-<text class="edge-label" x="316.64" y="68.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
-<text class="edge-label" x="681.16" y="47.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
-<text class="edge-label" x="1024.92" y="47.6" text-anchor="middle" fill="#1b1f24">data wejścia w życie</text>
-<text class="edge-label" x="1473.84" y="47.6" text-anchor="middle" fill="#1b1f24">zastąpiony nową wersją</text>
+<rect class="node" x="80" y="20" width="105" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="449.4" y="20" width="161" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="764.4" y="20" width="150" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1154" y="0" width="192" height="84" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1613.6" y="20" width="118" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="1805.6" cy="42" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="1805.6" cy="42" r="6" fill="#3b4754"/>
+<text class="node-label" x="132.5" y="47.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>
+<text class="node-label" x="529.9" y="47.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
+<text class="node-label" x="839.4" y="47.6" text-anchor="middle" fill="#1b1f24">Zatwierdzony</text>
+<text class="node-label" x="1250" y="27.6" text-anchor="middle" fill="#1b1f24">Zażółć gęślą jaźń —</text>
+<text class="node-label" x="1250" y="47.6" text-anchor="middle" fill="#1b1f24">„cudzysłów” &amp;</text>
+<text class="node-label" x="1250" y="67.6" text-anchor="middle" fill="#1b1f24">&lt;znaczniki&gt;</text>
+<text class="node-label" x="1672.6" y="47.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
+<text class="edge-label" x="317.2" y="26.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
+<text class="edge-label" x="317.2" y="68.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
+<text class="edge-label" x="687.4" y="47.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
+<text class="edge-label" x="1034.2" y="47.6" text-anchor="middle" fill="#1b1f24">data wejścia w życie</text>
+<text class="edge-label" x="1479.8" y="47.6" text-anchor="middle" fill="#1b1f24">zastąpiony nową wersją</text>
 </svg>

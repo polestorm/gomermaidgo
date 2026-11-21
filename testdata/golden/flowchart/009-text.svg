@@ -1,31 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="250" height="804" viewBox="-12 -12 250 804" role="img" font-family="sans-serif" font-size="16">
-<path class="edge" d="M113 64 L113 121.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M113 212 L113 269.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M113 340 L113 397.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M113 468 L113 525.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M113 652 L113 709.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="113,128 108,119 118,119" fill="#3b4754"/>
-<polygon class="arrowhead" points="113,276 108,267 118,267" fill="#3b4754"/>
-<polygon class="arrowhead" points="113,404 108,395 118,395" fill="#3b4754"/>
-<polygon class="arrowhead" points="113,532 108,523 118,523" fill="#3b4754"/>
-<polygon class="arrowhead" points="113,716 108,707 118,707" fill="#3b4754"/>
-<rect class="node" x="7" y="0" width="212" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="128" width="226" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="2" y="276" width="222" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="6" y="404" width="214" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="113,532 203,592 113,652 23,592" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="1" y="716" width="224" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="113" y="27.6" text-anchor="middle" fill="#1b1f24">Tekst z (nawiasami),</text>
-<text class="node-label" x="113" y="47.6" text-anchor="middle" fill="#1b1f24">[klamrami] i {wąsami}</text>
-<text class="node-label" x="113" y="155.6" text-anchor="middle" fill="#1b1f24">„cudzysłów” – półpauza</text>
-<text class="node-label" x="113" y="175.6" text-anchor="middle" fill="#1b1f24">§ 7.5.1 &lt;znaczniki&gt; &amp;</text>
-<text class="node-label" x="113" y="195.6" text-anchor="middle" fill="#1b1f24">ampersand</text>
-<text class="node-label" x="113" y="303.6" text-anchor="middle" fill="#1b1f24">Zażółć gęślą jaźń</text>
-<text class="node-label" x="113" y="323.6" text-anchor="middle" fill="#1b1f24">ZAŻÓŁĆ GĘŚLĄ JAŹŃ</text>
-<text class="node-label" x="113" y="431.6" text-anchor="middle" fill="#1b1f24">Strzałka w tekście --&gt;</text>
-<text class="node-label" x="113" y="451.6" text-anchor="middle" fill="#1b1f24">nie jest krawędzią</text>
-<text class="node-label" x="113" y="587.6" text-anchor="middle" fill="#1b1f24">Pytanie; ze</text>
-<text class="node-label" x="113" y="607.6" text-anchor="middle" fill="#1b1f24">średnikiem?</text>
-<text class="node-label" x="113" y="743.6" text-anchor="middle" fill="#1b1f24">Identyfikator z polskimi</text>
-<text class="node-label" x="113" y="763.6" text-anchor="middle" fill="#1b1f24">znakami</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="261" height="805" viewBox="-11.5 -12 261 805" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="edge" d="M119 64 L119 121.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M119 212 L119 269.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M119 340 L119 397.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M119 468 L119 525.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M119 653 L119 710.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="119,128 114,119 124,119" fill="#3b4754"/>
+<polygon class="arrowhead" points="119,276 114,267 124,267" fill="#3b4754"/>
+<polygon class="arrowhead" points="119,404 114,395 124,395" fill="#3b4754"/>
+<polygon class="arrowhead" points="119,532 114,523 124,523" fill="#3b4754"/>
+<polygon class="arrowhead" points="119,717 114,708 124,708" fill="#3b4754"/>
+<rect class="node" x="8" y="0" width="222" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="2.5" y="128" width="233" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22" y="276" width="194" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="10" y="404" width="218" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="119,532 210.5,592.5 119,653 27.5,592.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0.5" y="717" width="237" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="119" y="27.6" text-anchor="middle" fill="#1b1f24">Tekst z (nawiasami),</text>
+<text class="node-label" x="119" y="47.6" text-anchor="middle" fill="#1b1f24">[klamrami] i {wąsami}</text>
+<text class="node-label" x="119" y="155.6" text-anchor="middle" fill="#1b1f24">„cudzysłów” – półpauza</text>
+<text class="node-label" x="119" y="175.6" text-anchor="middle" fill="#1b1f24">§ 7.5.1 &lt;znaczniki&gt; &amp;</text>
+<text class="node-label" x="119" y="195.6" text-anchor="middle" fill="#1b1f24">ampersand</text>
+<text class="node-label" x="119" y="303.6" text-anchor="middle" fill="#1b1f24">Zażółć gęślą jaźń</text>
+<text class="node-label" x="119" y="323.6" text-anchor="middle" fill="#1b1f24">ZAŻÓŁĆ GĘŚLĄ JAŹŃ</text>
+<text class="node-label" x="119" y="431.6" text-anchor="middle" fill="#1b1f24">Strzałka w tekście --&gt;</text>
+<text class="node-label" x="119" y="451.6" text-anchor="middle" fill="#1b1f24">nie jest krawędzią</text>
+<text class="node-label" x="119" y="588.1" text-anchor="middle" fill="#1b1f24">Pytanie; ze</text>
+<text class="node-label" x="119" y="608.1" text-anchor="middle" fill="#1b1f24">średnikiem?</text>
+<text class="node-label" x="119" y="744.6" text-anchor="middle" fill="#1b1f24">Identyfikator z polskimi</text>
+<text class="node-label" x="119" y="764.6" text-anchor="middle" fill="#1b1f24">znakami</text>
 </svg>

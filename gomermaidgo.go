@@ -10,8 +10,10 @@ import (
 	"errors"
 	"fmt"
 	"strings"
+	"sync"
 	"unicode/utf8"
 
+	"github.com/polestorm/gomermaidgo/fonts"
 	"github.com/polestorm/gomermaidgo/internal/flowchart"
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -60,7 +62,10 @@ func WithMeasure(f func(text string, size float64) float64) Option {
 	return func(c *config) { c.measure = f }
 }
 
-// WithFontFamily ustawia wartość atrybutu font-family w SVG. Domyślnie "sans-serif".
+// WithFontFamily ustawia wartość atrybutu font-family w SVG. Domyślnie "Recursive, sans-serif":
+// krój dołączony do modułu (pakiet fonts), którym renderer wtedy także mierzy tekst. Kto podaje
+// inny krój, powinien podać też jego plik (WithFont) albo funkcję pomiaru (WithMeasure); bez
+// nich działa miara zastępcza, która zawyża.
 func WithFontFamily(family string) Option { return func(c *config) { c.fontFamily = family } }
 
 // WithFontSize ustawia rozmiar pisma w pikselach. Domyślnie 16.
@@ -140,11 +145,30 @@ func Check(source string) error {
 	return err
 }
 
+// defaultMeasure mierzy krojem dołączonym; plik jest czytany raz na proces.
+var defaultMeasure = sync.OnceValue(func() func(string, float64) float64 {
+	face, err := font.Parse(fonts.Recursive())
+	if err != nil {
+		return font.ApproxTextWidth
+	}
+	return func(text string, size float64) float64 {
+		w, _ := face.TextWidth(text, size)
+		return w
+	}
+})
+
 // Render zamienia źródło diagramu na dokument SVG.
 func Render(source string, opts ...Option) ([]byte, error) {
-	c := config{fontFamily: "sans-serif", fontSize: 16}
+	c := config{fontSize: 16}
 	for _, o := range opts {
 		o(&c)
+	}
+	if c.fontFamily == "" {
+		// Bez wskazania kroju obowiązuje krój dołączony; jego plik służy też do pomiaru.
+		c.fontFamily = fonts.RecursiveFamily + ", sans-serif"
+		if c.fontData == nil && c.measure == nil {
+			c.measure = defaultMeasure()
+		}
 	}
 	if c.fontSize < 6 || c.fontSize > 96 {
 		return nil, fmt.Errorf("gomermaidgo: font size %v is outside 6–96 px", c.fontSize)

@@ -175,10 +175,22 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	}
 
 	footerTop := l.cursor + l.u(6)
+	for _, p := range d.Participants {
+		if p.Actor {
+			// Miejsce na odstęp między końcem linii życia a głową figurki w stopce.
+			footerTop += l.u(10)
+			break
+		}
+	}
 	l.participants(footerTop)
-	for i := range d.Participants {
+	for i, p := range d.Participants {
+		end := footerTop
+		if p.Actor {
+			head := footerTop + (l.header-(l.u(48)+float64(len(p.Label))*l.lh))/2
+			end = math.Min(end, head-l.u(8))
+		}
 		l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "lifeline",
-			X: l.x[i], Y: headerBottom, X2: l.x[i], Y2: footerTop, Stroke: colorLifeline, StrokeWidth: 1})
+			X: l.x[i], Y: headerBottom, X2: l.x[i], Y2: end, Stroke: colorLifeline, StrokeWidth: 1.5})
 	}
 	return l.sc
 }
@@ -236,7 +248,7 @@ func (l *layout) columns() {
 		case EventMessage:
 			w := l.maxWidth(e.Text)
 			if e.From == e.To {
-				atLeast(e.From, l.selfReach()+w+l.u(16)+l.half(e.From+1))
+				atLeast(e.From, math.Max(l.selfReach(), l.u(10)+badge+w)+l.u(16)+l.half(e.From+1))
 				continue
 			}
 			lo, hi := min(e.From, e.To), max(e.From, e.To)
@@ -430,13 +442,6 @@ func (l *layout) message(e Event) {
 func (l *layout) selfMessage(e Event) {
 	i := e.From
 	reach, drop := l.u(36), l.u(26)
-	lines := float64(len(e.Text))
-	textH := lines * l.lh
-	if textH > drop {
-		l.cursor += (textH - drop) / 2
-	}
-	y0 := l.cursor + l.u(4)
-	y1 := y0 + drop
 	level := len(l.active[i])
 	xs := l.edge(i, 1, level)
 	if e.ActivateTo {
@@ -444,6 +449,20 @@ func (l *layout) selfMessage(e Event) {
 	}
 	xe := l.edge(i, 1, level)
 	out := l.x[i] + l.u(8) + reach
+	right := out
+
+	// Etykieta stoi nad pętlą, jak nad każdym innym komunikatem; obok pętli poszerzałaby kolumnę.
+	if len(e.Text) > 0 {
+		tx := xs + l.u(6)
+		if l.d.Autonumber {
+			tx += l.u(10)
+		}
+		l.text(e.Text, tx, l.cursor, "start", "message-label", "", scene.LayerLabel)
+		right = math.Max(right, tx+l.maxWidth(e.Text))
+		l.cursor += float64(len(e.Text))*l.lh + l.u(5)
+	}
+	y0 := l.cursor
+	y1 := y0 + drop
 
 	// Komunikat do siebie jest jedną krzywą: od razu widać, że wraca do tego samego uczestnika.
 	short := l.head(e.Head, xe, y1, -1)
@@ -451,17 +470,11 @@ func (l *layout) selfMessage(e Event) {
 	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerShape, Role: "message",
 		Segments: []scene.Segment{
 			{Cmd: 'M', To: scene.Point{X: xs, Y: y0}},
-			{Cmd: 'C', C1: scene.Point{X: l.x[i] + bulge, Y: y0 - l.u(6)}, C2: scene.Point{X: l.x[i] + bulge, Y: y1}, To: scene.Point{X: xe + short + l.u(6), Y: y1}},
+			{Cmd: 'C', C1: scene.Point{X: l.x[i] + bulge, Y: y0}, C2: scene.Point{X: l.x[i] + bulge, Y: y1}, To: scene.Point{X: xe + short + l.u(6), Y: y1}},
 			{Cmd: 'L', To: scene.Point{X: xe + short, Y: y1}},
 		},
 		Stroke: colorLine, StrokeWidth: 1.5, Dash: dash(e.LineStyle)})
 	l.badge(xs, y0)
-	right := out
-	if len(e.Text) > 0 {
-		tx := out + l.u(8)
-		l.text(e.Text, tx, (y0+y1)/2-textH/2, "start", "message-label", "", scene.LayerLabel)
-		right = tx + l.maxWidth(e.Text)
-	}
 	l.extent(l.x[i], right)
 
 	if e.ActivateTo {
@@ -471,7 +484,7 @@ func (l *layout) selfMessage(e Event) {
 		l.deactivate(i, y1)
 	}
 	l.lastY = y1
-	l.cursor = y1 + math.Max(l.u(28), (textH-drop)/2+l.u(14))
+	l.cursor = y1 + l.u(28)
 }
 
 func (l *layout) note(e Event) {

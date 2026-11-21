@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="714" height="392" viewBox="-12 -12 714 392" role="img" font-family="sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="714" height="392" viewBox="-12 -12 714 392" role="img" font-family="Recursive, sans-serif" font-size="16">
 <path class="edge" d="M123.22 44 C123.22 60 60 60 60 76 C60 88.85 28 88.85 28 101.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M127.67 44 C127.67 60 78 60 78 76 L78 108 L78 152 L78 184 C78 196.85 46 196.85 46 209.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M132.11 44 C132.11 60 96 60 96 76 L96 108 L96 152 L96 184 L96 216 L96 260 L96 292 L96 317.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -7,8 +7,8 @@
 <path class="edge" d="M145.44 44 C145.44 60 150 60 150 76 L150 108 L150 152 L150 184 C150 200 300 200 300 216 L300 260 L300 292 L300 324" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M149.89 44 C149.89 60 168 60 168 76 L168 108 L168 152 L168 184 C168 196.85 350 196.85 350 209.7" fill="none" stroke="#3b4754" stroke-width="3"/>
 <path class="edge" d="M154.33 44 C154.33 60 186 60 186 76 L186 108 L186 152 L186 184 C186 200 454 200 454 216" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="edge" d="M158.78 44 C158.78 60 204 60 204 76 C204 92 234 92 234 108 L234 152 L234 184 C234 196.85 558 196.85 558 209.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="209.04" y="120" width="49.92" height="20" fill="#ffffff"/>
+<path class="edge" d="M158.78 44 C158.78 60 204 60 204 76 C204 92 235 92 235 108 L235 152 L235 184 C235 196.85 558 196.85 558 209.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="209" y="120" width="52" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="28,108 23,99 33,99" fill="#3b4754"/>
 <polygon class="arrowhead" points="46,216 41,207 51,207" fill="#3b4754"/>
 <polygon class="arrowhead" points="96,324 91,315 101,315" fill="#3b4754"/>
@@ -37,5 +37,5 @@
 <text class="node-label" x="662" y="243.6" text-anchor="middle" fill="#1b1f24">K</text>
 <text class="node-label" x="96" y="351.6" text-anchor="middle" fill="#1b1f24">D</text>
 <text class="node-label" x="300" y="351.6" text-anchor="middle" fill="#1b1f24">G</text>
-<text class="edge-label" x="234" y="135.6" text-anchor="middle" fill="#1b1f24">długa</text>
+<text class="edge-label" x="235" y="135.6" text-anchor="middle" fill="#1b1f24">długa</text>
 </svg>

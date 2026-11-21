@@ -1,74 +1,74 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="543.64" height="1006" viewBox="-62.4 -12 543.64 1006" role="img" font-family="sans-serif" font-size="16">
-<rect class="highlight" x="157" y="631" width="266" height="184" fill="rgb(232,244,234)"/>
-<rect class="highlight" x="-12" y="843" width="423" height="61" fill="rgb(200,220,255)" fill-opacity="0.4"/>
-<line class="lifeline" x1="0" y1="48" x2="0" y2="934" fill="none" stroke="#9aa5b1" stroke-width="1"/>
-<line class="lifeline" x1="181" y1="48" x2="181" y2="934" fill="none" stroke="#9aa5b1" stroke-width="1"/>
-<line class="lifeline" x1="399" y1="48" x2="399" y2="934" fill="none" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="label-background" x="165.78" y="212" width="67.44" height="18" fill="#ffffff"/>
-<rect class="label-background" x="33.64" y="79" width="204.4" height="18" fill="#ffffff"/>
-<rect class="label-background" x="-7" y="178" width="190.96" height="18" fill="#ffffff"/>
-<rect class="label-background" x="86.42" y="335" width="226.16" height="18" fill="#ffffff"/>
-<rect class="label-background" x="90.9" y="434" width="217.2" height="18" fill="#ffffff"/>
-<rect class="label-background" x="52.2" y="394" width="236.72" height="18" fill="#ffffff"/>
-<rect class="label-background" x="104.66" y="551" width="189.68" height="18" fill="#ffffff"/>
-<rect class="label-background" x="51.4" y="295" width="199.92" height="18" fill="#ffffff"/>
-<rect class="label-background" x="-19" y="517" width="180.08" height="18" fill="#ffffff"/>
-<rect class="label-background" x="222.64" y="699" width="132.72" height="18" fill="rgb(232,244,234)"/>
-<rect class="label-background" x="150.9" y="852" width="97.2" height="18" fill="rgb(233,241,255)"/>
-<rect class="frame" x="-12" y="76" width="423" height="188" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect class="frame-tab" x="-12" y="76" width="40.64" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
-<line class="frame-divider" x1="-12" y1="171" x2="411" y2="171" fill="none" stroke="#6b7785" stroke-width="1" stroke-dasharray="6 4"/>
-<rect class="frame" x="-12" y="391" width="423" height="95" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect class="frame-tab" x="-12" y="391" width="59.2" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
-<rect class="frame" x="-24" y="292" width="447" height="311" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect class="frame-tab" x="-24" y="292" width="70.4" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
-<line class="frame-divider" x1="-24" y1="510" x2="423" y2="510" fill="none" stroke="#6b7785" stroke-width="1" stroke-dasharray="6 4"/>
-<rect class="frame" x="169" y="696" width="242" height="95" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect class="frame-tab" x="169" y="696" width="48.64" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
-<rect class="participant" x="-50.4" y="0" width="100.8" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="131" y="0" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="328.76" y="0" width="140.48" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="arrowhead" points="181,143 172,139 172,147" fill="#3b4754"/>
-<line class="message" x1="0" y1="143" x2="172" y2="143" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="399,236 390,232 390,240" fill="#3b4754"/>
-<line class="message" x1="0" y1="236" x2="390" y2="236" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="399,359 390,355 390,363" fill="#3b4754"/>
-<line class="message" x1="0" y1="359" x2="390" y2="359" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="551.8" height="1006" viewBox="-64 -12 551.8 1006" role="img" font-family="Recursive, sans-serif" font-size="16">
+<rect class="highlight" x="158" y="631" width="271" height="184" fill="rgb(232,244,234)"/>
+<rect class="highlight" x="-12" y="843" width="429" height="61" fill="rgb(200,220,255)" fill-opacity="0.4"/>
+<line class="lifeline" x1="0" y1="48" x2="0" y2="934" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<line class="lifeline" x1="182" y1="48" x2="182" y2="934" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<line class="lifeline" x1="405" y1="48" x2="405" y2="934" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<rect class="label-background" x="168.3" y="212" width="68.4" height="18" fill="#ffffff"/>
+<rect class="label-background" x="35.4" y="79" width="210.8" height="18" fill="#ffffff"/>
+<rect class="label-background" x="-7" y="178" width="193.2" height="18" fill="#ffffff"/>
+<rect class="label-background" x="87.9" y="335" width="229.2" height="18" fill="#ffffff"/>
+<rect class="label-background" x="93.5" y="434" width="218" height="18" fill="#ffffff"/>
+<rect class="label-background" x="54.6" y="394" width="243.6" height="18" fill="#ffffff"/>
+<rect class="label-background" x="104.3" y="551" width="196.4" height="18" fill="#ffffff"/>
+<rect class="label-background" x="54.6" y="295" width="204.4" height="18" fill="#ffffff"/>
+<rect class="label-background" x="-19" y="517" width="186" height="18" fill="#ffffff"/>
+<rect class="label-background" x="225.4" y="699" width="134.8" height="18" fill="rgb(232,244,234)"/>
+<rect class="label-background" x="154.3" y="852" width="96.4" height="18" fill="rgb(233,241,255)"/>
+<rect class="frame" x="-12" y="76" width="429" height="188" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
+<rect class="frame-tab" x="-12" y="76" width="42.4" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<line class="frame-divider" x1="-12" y1="171" x2="417" y2="171" fill="none" stroke="#6b7785" stroke-width="1" stroke-dasharray="6 4"/>
+<rect class="frame" x="-12" y="391" width="429" height="95" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
+<rect class="frame-tab" x="-12" y="391" width="61.6" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect class="frame" x="-24" y="292" width="453" height="311" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
+<rect class="frame-tab" x="-24" y="292" width="73.6" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<line class="frame-divider" x1="-24" y1="510" x2="429" y2="510" fill="none" stroke="#6b7785" stroke-width="1" stroke-dasharray="6 4"/>
+<rect class="frame" x="170" y="696" width="247" height="95" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
+<rect class="frame-tab" x="170" y="696" width="50.4" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect class="participant" x="-52" y="0" width="104" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="132" y="0" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="334.2" y="0" width="141.6" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="arrowhead" points="182,143 173,139 173,147" fill="#3b4754"/>
+<line class="message" x1="0" y1="143" x2="173" y2="143" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="405,236 396,232 396,240" fill="#3b4754"/>
+<line class="message" x1="0" y1="236" x2="396" y2="236" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="405,359 396,355 396,363" fill="#3b4754"/>
+<line class="message" x1="0" y1="359" x2="396" y2="359" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="0,458 9,454 9,462" fill="#3b4754"/>
-<line class="message" x1="399" y1="458" x2="9" y2="458" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line class="message" x1="405" y1="458" x2="9" y2="458" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
 <polygon class="arrowhead" points="0,575 9,571 9,579" fill="#3b4754"/>
-<line class="message" x1="399" y1="575" x2="9" y2="575" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<polygon class="arrowhead" points="181,664 190,660 190,668" fill="#3b4754"/>
-<line class="message" x1="399" y1="664" x2="190" y2="664" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="399,763 390,759 390,767" fill="#3b4754"/>
-<line class="message" x1="181" y1="763" x2="390" y2="763" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line class="message" x1="405" y1="575" x2="9" y2="575" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon class="arrowhead" points="182,664 191,660 191,668" fill="#3b4754"/>
+<line class="message" x1="405" y1="664" x2="191" y2="664" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="405,763 396,759 396,767" fill="#3b4754"/>
+<line class="message" x1="182" y1="763" x2="396" y2="763" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
 <polygon class="arrowhead" points="0,876 9,872 9,880" fill="#3b4754"/>
-<line class="message" x1="399" y1="876" x2="9" y2="876" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="participant" x="-50.4" y="934" width="100.8" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="131" y="934" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="328.76" y="934" width="140.48" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="message" x1="405" y1="876" x2="9" y2="876" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="participant" x="-52" y="934" width="104" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="132" y="934" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="334.2" y="934" width="141.6" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="participant-label" x="0" y="29.6" text-anchor="middle" fill="#1b1f24">Audytor</text>
-<text class="participant-label" x="181" y="29.6" text-anchor="middle" fill="#1b1f24">Obszar</text>
-<text class="participant-label" x="399" y="29.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
-<text class="message-label" x="90.5" y="133.6" text-anchor="middle" fill="#1b1f24">Prośba o zapisy</text>
-<text class="message-label" x="199.5" y="226.6" text-anchor="middle" fill="#1b1f24">Wywiad</text>
-<text class="frame-kind" x="8.32" y="93.6" text-anchor="middle" fill="#1b1f24">par</text>
-<text class="frame-title" x="36.64" y="93.6" fill="#1b1f24">[Równolegle: dokumenty]</text>
+<text class="participant-label" x="182" y="29.6" text-anchor="middle" fill="#1b1f24">Obszar</text>
+<text class="participant-label" x="405" y="29.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
+<text class="message-label" x="91" y="133.6" text-anchor="middle" fill="#1b1f24">Prośba o zapisy</text>
+<text class="message-label" x="202.5" y="226.6" text-anchor="middle" fill="#1b1f24">Wywiad</text>
+<text class="frame-kind" x="9.2" y="93.6" text-anchor="middle" fill="#1b1f24">par</text>
+<text class="frame-title" x="38.4" y="93.6" fill="#1b1f24">[Równolegle: dokumenty]</text>
 <text class="frame-title" x="-4" y="192.6" fill="#1b1f24">[Równolegle: rozmowy]</text>
-<text class="message-label" x="199.5" y="349.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie natychmiastowe</text>
-<text class="message-label" x="199.5" y="448.6" text-anchor="middle" fill="#1b1f24">Eskalacja do kierownictwa</text>
-<text class="frame-kind" x="17.6" y="408.6" text-anchor="middle" fill="#1b1f24">break</text>
-<text class="frame-title" x="55.2" y="408.6" fill="#1b1f24">[Brak osoby odpowiedzialnej]</text>
-<text class="message-label" x="199.5" y="565.6" text-anchor="middle" fill="#1b1f24">Wniosek o przedłużenie</text>
-<text class="frame-kind" x="11.2" y="309.6" text-anchor="middle" fill="#1b1f24">critical</text>
-<text class="frame-title" x="54.4" y="309.6" fill="#1b1f24">[Niezgodność krytyczna]</text>
+<text class="message-label" x="202.5" y="349.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie natychmiastowe</text>
+<text class="message-label" x="202.5" y="448.6" text-anchor="middle" fill="#1b1f24">Eskalacja do kierownictwa</text>
+<text class="frame-kind" x="18.8" y="408.6" text-anchor="middle" fill="#1b1f24">break</text>
+<text class="frame-title" x="57.6" y="408.6" fill="#1b1f24">[Brak osoby odpowiedzialnej]</text>
+<text class="message-label" x="202.5" y="565.6" text-anchor="middle" fill="#1b1f24">Wniosek o przedłużenie</text>
+<text class="frame-kind" x="12.8" y="309.6" text-anchor="middle" fill="#1b1f24">critical</text>
+<text class="frame-title" x="57.6" y="309.6" fill="#1b1f24">[Niezgodność krytyczna]</text>
 <text class="frame-title" x="-16" y="531.6" fill="#1b1f24">[Przekroczony termin]</text>
-<text class="message-label" x="290" y="654.6" text-anchor="middle" fill="#1b1f24">Działania korygujące</text>
-<text class="message-label" x="290" y="753.6" text-anchor="middle" fill="#1b1f24">Raport postępu</text>
-<text class="frame-kind" x="193.32" y="713.6" text-anchor="middle" fill="#1b1f24">loop</text>
-<text class="frame-title" x="225.64" y="713.6" fill="#1b1f24">[Do zamknięcia]</text>
-<text class="message-label" x="199.5" y="866.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
+<text class="message-label" x="293.5" y="654.6" text-anchor="middle" fill="#1b1f24">Działania korygujące</text>
+<text class="message-label" x="293.5" y="753.6" text-anchor="middle" fill="#1b1f24">Raport postępu</text>
+<text class="frame-kind" x="195.2" y="713.6" text-anchor="middle" fill="#1b1f24">loop</text>
+<text class="frame-title" x="228.4" y="713.6" fill="#1b1f24">[Do zamknięcia]</text>
+<text class="message-label" x="202.5" y="866.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
 <text class="participant-label" x="0" y="963.6" text-anchor="middle" fill="#1b1f24">Audytor</text>
-<text class="participant-label" x="181" y="963.6" text-anchor="middle" fill="#1b1f24">Obszar</text>
-<text class="participant-label" x="399" y="963.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
+<text class="participant-label" x="182" y="963.6" text-anchor="middle" fill="#1b1f24">Obszar</text>
+<text class="participant-label" x="405" y="963.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
 </svg>
