@@ -123,7 +123,7 @@ func TestParseStylesAndIdentifiers(t *testing.T) {
 		t.Fatal(err)
 	}
 	a := g.Node("krok-1.a")
-	if a == nil || a.Label[0] != "Pierwszy krok" || a.Paint != (graph.Paint{Fill: "#fde", Stroke: "#b00", StrokeWidth: 2, Dash: "5 5"}) {
+	if a == nil || graph.Plain(a.Label[0]) != "Pierwszy krok" || !graph.HasMarks(a.Label[0]) || a.Paint != (graph.Paint{Fill: "#fde", Stroke: "#b00", StrokeWidth: 2, Dash: "5 5"}) {
 		t.Errorf("node with a hyphen and a dot: %+v", a)
 	}
 	if c := g.Node("C"); c.Paint.Fill != "rgb(1,2,3)" || c.Paint.Color != "white" || c.Paint.Stroke != "#b00" {

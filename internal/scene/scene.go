@@ -60,6 +60,8 @@ type Item struct {
 	Segments    []Segment
 	Text        string
 	Anchor      string // "start", "middle", "end"
+	Bold        bool   // tekst pogrubiony
+	Italic      bool   // tekst pochylony
 	FontSize    float64
 	Fill        string
 	FillOpacity float64 // 0 oznacza „bez atrybutu”
@@ -373,6 +375,12 @@ func (s *Scene) SVG() []byte {
 			}
 			if it.FontSize > 0 && it.FontSize != s.FontSize {
 				attr(&b, "font-size", num(it.FontSize))
+			}
+			if it.Bold {
+				attr(&b, "font-weight", "bold")
+			}
+			if it.Italic {
+				attr(&b, "font-style", "italic")
 			}
 			attr(&b, "fill", it.Fill)
 			b.WriteString(">")

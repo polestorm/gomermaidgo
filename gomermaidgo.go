@@ -43,6 +43,8 @@ func SupportedTypes() []string { return []string{TypeSequence, TypeFlowchart, Ty
 
 type config struct {
 	fontData   []byte
+	boldData   []byte
+	italicData []byte
 	measure    func(text string, size float64) float64
 	fontFamily string
 	fontSize   float64
@@ -57,6 +59,13 @@ type Option func(*config)
 // WithFont podaje plik fontu (TrueType albo OpenType), z którego renderer czyta szerokości
 // znaków. Ten sam krój musi potem narysować tekst, więc jego nazwę trzeba podać w WithFontFamily.
 func WithFont(data []byte) Option { return func(c *config) { c.fontData = data } }
+
+// WithStyledFonts podaje pliki odmiany pogrubionej i pochylonej kroju z WithFont; służą do
+// pomiaru wyróżnień w tekstach Markdown. Każdy może być nil: pogrubienie jest wtedy mierzone
+// krojem zwykłym z zapasem 6%, kursywa krojem zwykłym.
+func WithStyledFonts(bold, italic []byte) Option {
+	return func(c *config) { c.boldData, c.italicData = bold, italic }
+}
 
 // WithMeasure podaje własną funkcję pomiaru tekstu (szerokość w pikselach dla rozmiaru pisma);
 // ma pierwszeństwo przed WithFont.
@@ -119,7 +128,7 @@ func checkCharacters(source string) error {
 			return &SyntaxError{Line: line, Code: "invalid-utf8", Message: "source is not valid UTF-8"}
 		case c == '\n':
 			line++
-		case c < 0x20 && c != '\t' && c != '\r', c == 0xFFFE, c == 0xFFFF:
+		case c < 0x20 && c != '\t' && c != '\r', c == 0xFFFE, c == 0xFFFF, c == graph.MarkBold, c == graph.MarkItalic:
 			return &SyntaxError{Line: line, Code: "control-character", Message: fmt.Sprintf("control character U+%04X is not allowed", c)}
 		}
 		i += size
@@ -207,13 +216,54 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 		if err != nil {
 			return nil, nil, err
 		}
-		return layered.Layout(g, layered.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+		var styled func(string, float64, bool, bool) float64
+		if face != nil && face == defaultFace() {
+			styled = defaultStyled()
+		} else if styled, err = styledMeasure(c.boldData, c.italicData); err != nil {
+			return nil, nil, err
+		}
+		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {
 		return nil, nil, err
 	}
 	return sequence.Layout(d, sequence.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+}
+
+// defaultStyled mierzy odmianami kroju dołączonego; pliki są czytane raz na proces.
+var defaultStyled = sync.OnceValue(func() func(string, float64, bool, bool) float64 {
+	m, _ := styledMeasure(fonts.RecursiveBold(), fonts.RecursiveItalic())
+	return m
+})
+
+// styledMeasure buduje miarę wyróżnień z plików odmian kroju; nil, gdy nie podano żadnego.
+func styledMeasure(bold, italic []byte) (func(string, float64, bool, bool) float64, error) {
+	if bold == nil && italic == nil {
+		return nil, nil
+	}
+	var faces [2]*font.Face
+	for i, data := range [][]byte{bold, italic} {
+		if data == nil {
+			continue
+		}
+		f, err := font.Parse(data)
+		if err != nil {
+			return nil, fmt.Errorf("gomermaidgo: %w", err)
+		}
+		faces[i] = f
+	}
+	return func(text string, size float64, isBold, isItalic bool) float64 {
+		f := faces[1]
+		if isBold || f == nil {
+			f = faces[0]
+		}
+		if f == nil {
+			f = faces[1]
+		}
+		w, _ := f.TextWidth(text, size)
+		return w
+	}, nil
 }
 
 // Render zamienia źródło diagramu na dokument SVG.

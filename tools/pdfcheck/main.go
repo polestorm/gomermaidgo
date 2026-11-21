@@ -85,8 +85,10 @@ func run() error {
 	if err := os.MkdirAll(fontDir, 0o755); err != nil {
 		return err
 	}
-	if err := os.WriteFile(filepath.Join(fontDir, "Recursive-Regular.ttf"), fonts.Recursive(), 0o644); err != nil {
-		return err
+	for name, data := range map[string][]byte{"Recursive-Regular.ttf": fonts.Recursive(), "Recursive-Bold.ttf": fonts.RecursiveBold(), "Recursive-Italic.ttf": fonts.RecursiveItalic()} {
+		if err := os.WriteFile(filepath.Join(fontDir, name), data, 0o644); err != nil {
+			return err
+		}
 	}
 
 	want := map[string]int{}

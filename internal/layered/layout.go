@@ -21,12 +21,15 @@ import (
 
 // Options to ustawienia układu.
 type Options struct {
-	Measure    func(text string, size float64) float64
-	FontSize   float64
-	FontFamily string
-	Background string
-	Colors     bool // kolor według roli węzła: krok, decyzja, początek i koniec
-	Shadows    bool // cień pod węzłami i notatkami
+	Measure func(text string, size float64) float64
+	// MeasureStyled mierzy tekst pogrubiony albo pochylony; nil oznacza miarę zwykłą,
+	// dla pogrubienia powiększoną o 6%.
+	MeasureStyled func(text string, size float64, bold, italic bool) float64
+	FontSize      float64
+	FontFamily    string
+	Background    string
+	Colors        bool // kolor według roli węzła: krok, decyzja, początek i koniec
+	Shadows       bool // cień pod węzłami i notatkami
 }
 
 type itemKind int
@@ -175,12 +178,34 @@ type layouter struct {
 
 func (l *layouter) u(v float64) float64 { return math.Round(v * l.fs / 16) }
 
-func (l *layouter) width(s string) float64 { return l.o.Measure(s, l.fs) }
+func (l *layouter) width(s string) float64 {
+	if !graph.HasMarks(s) {
+		return l.o.Measure(s, l.fs)
+	}
+	w := 0.0
+	for _, r := range graph.Runs(s) {
+		w += l.runWidth(r)
+	}
+	return w
+}
+
+func (l *layouter) runWidth(r graph.Run) float64 {
+	switch {
+	case !r.Bold && !r.Italic:
+		return l.o.Measure(r.Text, l.fs)
+	case l.o.MeasureStyled != nil:
+		return l.o.MeasureStyled(r.Text, l.fs, r.Bold, r.Italic)
+	case r.Bold:
+		return l.o.Measure(r.Text, l.fs) * 1.06
+	}
+	return l.o.Measure(r.Text, l.fs)
+}
 
 // wrap łamie linie szersze niż limit na granicach wyrazów.
 func (l *layouter) wrap(lines []string, limit float64) []string {
 	var out []string
 	for _, line := range lines {
+		line = graph.PerWord(line)
 		if l.width(line) <= limit {
 			out = append(out, line)
 			continue

@@ -85,8 +85,20 @@ func (l *layouter) textBlock(lines []string, cx, cy float64, role string) {
 		if s == "" {
 			continue
 		}
+		y := top + float64(k)*l.lh + l.lh/2 + 0.35*l.fs
+		if graph.HasMarks(s) {
+			// Linia z wyróżnieniami: fragmenty w różnych stylach stoją jeden za drugim.
+			x := cx - l.width(s)/2
+			for _, r := range graph.Segments(s) {
+				w := l.runWidth(r)
+				l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: role, X: x, Y: y, W: w, H: l.lh,
+					Text: strings.TrimRight(r.Text, " \t"), Anchor: "start", Bold: r.Bold, Italic: r.Italic, Fill: colorText})
+				x += w
+			}
+			continue
+		}
 		l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: role, X: cx,
-			Y: top + float64(k)*l.lh + l.lh/2 + 0.35*l.fs, W: l.width(s), H: l.lh, Text: s, Anchor: "middle", Fill: colorText})
+			Y: y, W: l.width(s), H: l.lh, Text: s, Anchor: "middle", Fill: colorText})
 	}
 }
 

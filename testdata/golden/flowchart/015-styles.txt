@@ -1,7 +1,7 @@
 flowchart TB
 subgraph dzial-jakosci title="Dział jakości" paint[fill=#f3f6fb stroke=#3b6fb6 dash=6,3]
 node wykrycie-1 stadium "Wykrycie niezgodności" paint[fill=#fde8e8 stroke=#b42318 width=2]
-node izolacja.a rect "Izolacja partii"
+node izolacja.a rect "Izolacja **całej partii** i *oznaczenie* wyrobów jako niezgodne z wymaganiami"
 node ocena rhombus "Ocena" in=dzial-jakosci paint[stroke=#b7791f width=3]
 node naprawa rect "Naprawa" in=dzial-jakosci
 node zlom rect "Złomowanie" in=dzial-jakosci paint[fill=#fde8e8 stroke=#b42318 width=2]

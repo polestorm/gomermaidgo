@@ -47,8 +47,9 @@ var (
 	// Instrukcje Mermaid poza profilem: znane, ale świadomie nieobsługiwane.
 	unsupported = []string{"interpolate"}
 
-	// Wyróżnienia w tekście Markdown: znaczniki znikają, tekst zostaje.
-	emphasis = regexp.MustCompile(`\*\*([^*]+)\*\*|\*([^*]+)\*|\b_([^_]+)_\b`)
+	// Wyróżnienia w tekście Markdown: pogrubienie i kursywa.
+	strong   = regexp.MustCompile(`\*\*([^*]+)\*\*|\b__([^_]+)__\b`)
+	emphasis = regexp.MustCompile(`\*([^*]+)\*|\b_([^_]+)_\b`)
 )
 
 // shapes: nawias otwierający, zamykający i kształt; dłuższe otwarcia przed krótszymi.
@@ -91,12 +92,12 @@ func text(raw string, line int) ([]string, error) {
 		s = s[1 : len(s)-1]
 	}
 	if strings.HasPrefix(s, "`") {
-		// Tekst Markdown w odwrotnych apostrofach: rysunek ma jeden krój, więc pogrubienie
-		// i kursywa nie są oddawane; zostaje sam tekst.
+		// Tekst Markdown w odwrotnych apostrofach: pogrubienie i kursywa stają się znacznikami stylu.
 		if len(s) < 2 || !strings.HasSuffix(s, "`") {
 			return nil, syntax.Errorf(line, CodeNode, "markdown string opened with a backtick is not closed in %q", raw)
 		}
-		s = emphasis.ReplaceAllString(s[1:len(s)-1], "$1$2$3")
+		s = strong.ReplaceAllString(s[1:len(s)-1], string(graph.MarkBold)+"$1$2"+string(graph.MarkBold))
+		s = emphasis.ReplaceAllString(s, string(graph.MarkItalic)+"$1$2"+string(graph.MarkItalic))
 	}
 	if strings.Contains(s, `"`) {
 		return nil, syntax.Errorf(line, CodeNode, "unexpected quote in text %q", raw)

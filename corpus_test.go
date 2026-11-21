@@ -168,7 +168,7 @@ var allowedSVG = map[string][]string{
 	"circle":   {"class", "cx", "cy", "r", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"ellipse":  {"class", "cx", "cy", "rx", "ry", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"path":     {"class", "d", "fill", "stroke", "stroke-width", "stroke-dasharray"},
-	"text":     {"class", "x", "y", "text-anchor", "font-size", "fill"},
+	"text":     {"class", "x", "y", "text-anchor", "font-size", "fill", "font-weight", "font-style"},
 }
 
 // pathData dopuszcza tylko polecenia M, L, C z liczbami: bez łuków i poleceń względnych.

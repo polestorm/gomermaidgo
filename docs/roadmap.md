@@ -12,8 +12,8 @@ Zrobione 2026-11-21 po pierwszym przeglądzie: krój domyślny Recursive (ADR 00
 regiony współbieżne, `direction` w podgrafie, zgłaszanie znaków spoza fontu (`MissingGlyphs`), test drogi do PDF
 (`tools/pdfcheck`).
 
-Zostaje: pogrubienie i kursywa w tekstach Markdown (wymaga drugiego kroju i jego pomiaru), kolor podkładu etykiet
-w grupie `box` z kolorem.
+Zrobione też: pogrubienie i kursywa w tekstach Markdown (odmiany Bold i Italic kroju w module), kolor podkładu
+etykiet w grupie `box`, regiony współbieżne w stosie z linią podziału, uzgodnienie punktów na ramce z otoczeniem.
 
 Decyzje etapu 3 (2026-11-21): `direction` w podgrafie zmienia układ tylko w podgrafie niepołączonym z resztą; krawędź do podgrafu kończy się na ramce;
 krawędź niewidoczna jest tylko ograniczeniem rozmieszczenia.
@@ -30,6 +30,5 @@ Do poprawy w układzie, w kolejności wpływu na czytelność:
 3. rozmieszczenie metodą Brandesa i Köpfa (bardziej zwarte i symetryczne niż metoda priorytetowa);
 4. ~~krawędzie wielokrotne między tą samą parą węzłów~~: zrobione 2026-11-21 (FLOW-015);
 5. ~~strona notatki w diagramie stanów~~: zrobione 2026-11-21 (STATE-011);
-6. uzgodnienie kolejności punktów na ramce podgrafu z układem otoczenia (dziś otoczenie dopasowuje się do punktów,
-   nie odwrotnie);
-7. regiony współbieżne jeden pod drugim, z linią podziału zamiast osobnych ramek.
+6. ~~uzgodnienie kolejności punktów na ramce podgrafu z układem otoczenia~~: zrobione 2026-11-21 (jeden poziom
+   w głąb; podgrafy zagnieżdżone głębiej zachowują kolejność z własnego wnętrza).

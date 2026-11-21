@@ -281,7 +281,7 @@ func pick(first bool, a, b string) string {
 	return b
 }
 
-func quote(lines []string) string { return fmt.Sprintf("%q", strings.Join(lines, "\n")) }
+func quote(lines []string) string { return fmt.Sprintf("%q", showMarks(strings.Join(lines, "\n"))) }
 
 // Dump zapisuje graf jako tekst w stałej kolejności; służy za plik wzorcowy parsera.
 func (g *Graph) Dump() string {
@@ -328,7 +328,7 @@ func (g *Graph) Texts() []string {
 	var out []string
 	add := func(lines []string) {
 		for _, s := range lines {
-			if s != "" {
+			if s = Plain(s); s != "" {
 				out = append(out, s)
 			}
 		}

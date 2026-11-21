@@ -15,6 +15,18 @@ const RecursiveFamily = "Recursive"
 //go:embed Recursive-Regular.ttf
 var recursive []byte
 
+//go:embed Recursive-Bold.ttf
+var recursiveBold []byte
+
+//go:embed Recursive-Italic.ttf
+var recursiveItalic []byte
+
+// RecursiveBold zwraca kopię odmiany pogrubionej; rysuje teksty z atrybutem font-weight="bold".
+func RecursiveBold() []byte { return append([]byte(nil), recursiveBold...) }
+
+// RecursiveItalic zwraca kopię odmiany pochylonej; rysuje teksty z atrybutem font-style="italic".
+func RecursiveItalic() []byte { return append([]byte(nil), recursiveItalic...) }
+
 //go:embed OFL.txt
 var license string
 
