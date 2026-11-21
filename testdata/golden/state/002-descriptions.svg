@@ -2,7 +2,7 @@
 <path class="edge" d="M196 16 L196 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M176 124 L176 135.2 C176 139.6 172.4 143.2 168 143.2 L108 143.2 C103.6 143.2 100 146.8 100 151.2 L100 154 L100 178 L100 180.8 C100 185.2 103.6 188.8 108 188.8 L168 188.8 C172.4 188.8 176 192.4 176 196.8 L176 199.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M216 132.4 L216 135.2 C216 139.6 219.6 143.2 224 143.2 L283 143.2 C287.4 143.2 291 146.8 291 151.2 L291 154 L291 178 L291 180.8 C291 185.2 287.4 188.8 283 188.8 L224 188.8 C219.6 188.8 216 192.4 216 196.8 L216 208" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M196 252 L196 282 L196 326 L196 347.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M196 252 L196 347.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="0.8" y="156" width="198.4" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="219.4" y="156" width="143.2" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="149.6" y="284" width="92.8" height="40" fill="#ffffff"/>

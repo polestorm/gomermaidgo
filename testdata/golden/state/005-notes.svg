@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="609" height="344" viewBox="-12 -12 609 344" role="img" font-family="Recursive, sans-serif" font-size="16">
 <line class="note-link" x1="365.5" y1="88" x2="413" y2="88" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
 <line class="note-link" x1="200.5" y1="228" x2="152" y2="228" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M283 16 L283 60 L283 57.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M283 110 L283 116 L283 146 L283 170 L283 200 L283 197.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M283 250 L283 256 L283 291.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M283 16 L283 57.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M283 110 L283 197.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M283 250 L283 291.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="182.2" y="148" width="201.6" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="283,66 277,54 289,54" fill="#3b4754"/>
 <polygon class="arrowhead" points="283,206 277,194 289,194" fill="#3b4754"/>

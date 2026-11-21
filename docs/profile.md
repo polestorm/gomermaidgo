@@ -72,7 +72,7 @@ Stan: rysowany układem warstwowym (`internal/layered`).
 
 ### Poza profilem (błąd `flowchart-unsupported`)
 
-Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`, teksty Markdown rozciągnięte na kilka linii źródła.
+Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`.
 
 ### Świadome różnice wobec Mermaid
 
@@ -80,7 +80,8 @@ Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`, teksty Markdo
 - właściwości stylu inne niż pięć honorowanych (czcionka, zaokrąglenia, przejścia) są pomijane; błędna wartość
   honorowanej właściwości jest błędem. Przy ciemnym wypełnieniu kolor tekstu trzeba podać samemu (`color`);
 - `click` jest przyjmowane i pomijane: rysunek statyczny nie ma odnośników;
-- tekst Markdown musi mieścić się w jednej linii źródła; pogrubienie z kursywą naraz jest rysowane jako pogrubienie
+- tekst Markdown może zajmować kilka linii źródła, koniec linii jest złamaniem tekstu; wyróżnienie musi się
+  zamknąć w tej samej linii; pogrubienie z kursywą naraz jest rysowane jako pogrubienie
   z atrybutem kursywy, mierzone odmianą pogrubioną;
 - węzeł należy do podgrafu, w którym po raz pierwszy wystąpił wewnątrz jakiegokolwiek podgrafu; późniejsze wystąpienia
   go nie przenoszą;
@@ -95,7 +96,9 @@ Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`, teksty Markdo
 Tory nie mają w Mermaid własnej składni. Dyrektywa jest komentarzem, więc to samo źródło w innych narzędziach rysuje
 się jak zwykły schemat z podgrafami. Pas biegnie przez cały rysunek wzdłuż kierunku diagramu (kolumny przy `TB`,
 wiersze przy `LR`), nagłówek z tytułem stoi przy początku. Warstwy są wspólne dla wszystkich pasów: położenie kroku
-wzdłuż pasa mówi o kolejności w całym procesie. Krawędź zmienia pas raz, przy swoim początku. W torach nie ma
+wzdłuż pasa mówi o kolejności w całym procesie. Krawędź zmienia pas raz, przy swoim początku. Pole, które
+w swoim rzędzie jest jedynym polem toru, stoi pośrodku pasa, więc kroki jednej roli tworzą kolumnę. Tory są
+tylko w schemacie blokowym: stan złożony nie jest rolą, więc diagram stanów ich nie ma. W torach nie ma
 podgrafów zagnieżdżonych ani krawędzi do samego toru (błąd), a `direction` w podgrafie nie ma znaczenia.
 
 ### Ograniczenia rysunku (wspólne ze stanami)
@@ -121,7 +124,8 @@ podgrafów zagnieżdżonych ani krawędzi do samego toru (błąd), a `direction`
   przywraca łagodne łuki. Krawędź łamana skręca raz, przy końcu, z którego rozchodzi się kilka krawędzi; jej
   etykieta stoi w osi drugiego końca, a pole z kilkoma gałęziami stoi pośrodku nich;
 - gdzie krawędzie łamane się przecinają, krawędź zapisana w źródle później przeskakuje nad wcześniejszą półokrągłym
-  mostkiem, o ile obok jest na niego miejsce;
+  mostkiem, o ile obok jest na niego miejsce; dotyczy to także krawędzi z różnych poziomów zagnieżdżenia
+  podgrafów;
 - punkt zaczepienia krawędzi przesuwa się w oś jej następnego punktu, jeśli ten leży w zasięgu boku pola: krawędź
   biegnie wtedy prosto, bez drobnego uskoku;
 - zakończenie krawędzi kółkiem albo krzyżykiem stoi przy polu, a linia kończy się na nim, nie na polu;

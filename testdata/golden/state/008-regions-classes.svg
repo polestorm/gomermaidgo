@@ -11,25 +11,22 @@
 <rect class="region" x="301.93" y="248" width="290.1" height="136" rx="6" fill="#f1f4f8" stroke="#8a94a3" stroke-width="1" stroke-dasharray="5 4"/>
 <rect class="region" x="302.23" y="420" width="205.5" height="264" rx="6" fill="#f1f4f8" stroke="#8a94a3" stroke-width="1" stroke-dasharray="5 4"/>
 <path class="edge" d="M140.98 294 L140.98 311.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M140.98 364 L140.98 394 L140.98 418 L140.98 439.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M140.98 492 L140.98 522 L140.98 546 L140.98 567.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M140.98 364 L140.98 439.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M140.98 492 L140.98 567.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M140.98 620 L140.98 637.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M468.83 334 L480.83 334 C510.83 334 510.83 350 480.83 350 L477.23 350" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M395.93 294 L395.93 311.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M405.23 466 L405.23 483.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M405.23 536 L405.23 566 L405.23 590 L405.23 611.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M405.23 536 L405.23 611.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M306 16 L306 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M306 104 L306 134 L306 158 L306 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M306 104 L306 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M243 710 L243 745.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M369 710 L369 754 L369 798 L369 833.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M243 798 L243 842 L243 886 L243 895.8 C243 900.2 246.6 903.8 251 903.8 L298 903.8 C302.4 903.8 306 907.4 306 911.8 L306 921.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M369 710 L369 833.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M243 798 L243 886 L243 895.8 C243 900.2 246.6 903.8 251 903.8 L298 903.8 C302.4 903.8 306 907.4 306 911.8 L306 921.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M369 886 L369 895.8 C369 900.2 365.4 903.8 361 903.8 L314 903.8 C309.6 903.8 306 907.4 306 911.8 L306 921.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="cluster-title-background" x="27.98" y="254" width="8" height="0" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="40.98" y="396" width="200" height="20" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="94.98" y="524" width="92" height="20" fill="#f1f4f8"/>
-<rect class="cluster-title-background" x="309.93" y="254" width="8" height="0" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="504.82" y="332" width="63.2" height="20" fill="#f1f4f8"/>
-<rect class="cluster-title-background" x="310.23" y="426" width="8" height="0" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="340.83" y="568" width="128.8" height="20" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="280.8" y="136" width="50.4" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="337.8" y="766" width="62.4" height="20" fill="#ffffff"/>

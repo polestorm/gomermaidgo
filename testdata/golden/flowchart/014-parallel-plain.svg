@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="444" height="186" viewBox="-12 -12 444 186" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M109 26 L140 26 L210 26 L280 26 L319.35 26" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M109 44 L140 44 L210 44 L280 44 L319.35 44" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M140 131 L210 131 L271.6 131" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M148.4 149 L210 149 L280 149" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M109 26 L319.35 26" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M109 44 L319.35 44" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M140 131 L271.6 131" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M148.4 149 L280 149" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="327.75,26 315.75,20 315.75,32" fill="#3b4754"/>
 <polygon class="arrowhead" points="327.75,44 315.75,38 315.75,50" fill="#3b4754"/>
 <polygon class="arrowhead" points="280,131 268,125 268,137" fill="#3b4754"/>

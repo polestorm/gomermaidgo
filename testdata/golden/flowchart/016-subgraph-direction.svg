@@ -8,14 +8,14 @@
 <path class="edge" d="M672 72 L707.6 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M818.6 280 L854.2 280" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M160.4 286 L196 286" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M326.88 277.23 L343.53 277.23 C346.89 277.23 349.64 274.47 349.64 271.11 L349.64 271.11 C349.64 267.75 352.39 265 355.75 265 L372.4 265 L409.6 265 L431.2 265" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M326.88 294.77 L341.64 294.77 C346.04 294.77 349.64 298.38 349.64 302.77 L349.64 369 C349.64 373.4 353.24 377 357.64 377 L372.4 377 L409.6 377 L431.2 377" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M326.88 277.23 L343.53 277.23 C346.89 277.23 349.64 274.47 349.64 271.11 L349.64 271.11 C349.64 267.75 352.39 265 355.75 265 L372.4 265 L431.2 265" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M326.88 294.77 L341.64 294.77 C346.04 294.77 349.64 298.38 349.64 302.77 L349.64 369 C349.64 373.4 353.24 377 357.64 377 L372.4 377 L431.2 377" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M614.6 265 L650.2 265" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M619 545 L583.4 545" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M562.25 729 L562.25 764.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M563 114 L563 149.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M563 429 L563 464.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M562.25 587 L562.25 631 L562.25 661 L562.25 676.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M562.25 587 L562.25 676.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="cluster-title-background" x="186" y="6" width="102.4" height="20" fill="#ffffff"/>
 <rect class="cluster-title-background" x="8.4" y="164" width="109.6" height="20" fill="#ffffff"/>
 <rect class="cluster-title-background" x="666.6" y="214" width="105.6" height="20" fill="#ffffff"/>

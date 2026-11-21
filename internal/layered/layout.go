@@ -99,11 +99,12 @@ type ledge struct {
 
 // level to układ jednego zakresu: całego diagramu albo wnętrza podgrafu.
 type level struct {
-	sub   *graph.Subgraph
-	items []*item
-	edges []*ledge
-	loops map[*item][]*graph.Edge
-	ranks [][]*item
+	sub    *graph.Subgraph
+	items  []*item
+	edges  []*ledge
+	loops  map[*item][]*graph.Edge
+	routes []*edgeRoute // przebiegi krawędzi poziomu, gotowe do rysowania
+	ranks  [][]*item
 
 	w, h             float64 // rozmiar z marginesami
 	padX0, padY0     float64
@@ -1651,6 +1652,27 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			pull(rows[r], true, false)
 		}
 
+		// Tory: pole, które w swoim rzędzie jest jedynym polem toru, staje pośrodku pasa. Kroki
+		// jednej roli tworzą wtedy kolumnę, a nie schodki ciągnięte ku sąsiadom z innych torów.
+		if l.lanes != nil {
+			for _, row := range rows {
+				count := map[int]int{}
+				for _, it := range row {
+					count[it.lane]++
+				}
+				want := make([]float64, len(row))
+				priority := make([]float64, len(row))
+				for i, it := range row {
+					want[i], priority[i] = it.x, 100
+					if it.real() && count[it.lane] == 1 {
+						ln := l.lanes[it.lane]
+						want[i], priority[i] = (ln.lo+ln.hi)/2+it.loopExtra/2, 2000
+					}
+				}
+				place(row, want, priority)
+			}
+		}
+
 		// Krawędź łamana ma skręcać raz, przy końcu, z którego rozchodzi się kilka krawędzi; jej
 		// punkty pośrednie i etykieta stają w osi drugiego końca, jeśli ten ma po tej stronie
 		// tylko tę jedną krawędź. Pola zostają na miejscu.
@@ -1711,7 +1733,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 					for i, it := range row {
 						want[i], priority[i] = it.x, 1000
 						straight := (len(it.up) == 1 && len(it.up[0].down) == 1) || (len(it.down) == 1 && len(it.down[0].up) == 1)
-						if !it.real() || straight || it.loopExtra > 0 || len(it.up)+len(it.down) < 2 {
+						if !it.real() || straight || it.loopExtra > 0 || len(it.up)+len(it.down) < 2 || l.lanes != nil {
 							continue
 						}
 						up, okUp := mean(it.up)

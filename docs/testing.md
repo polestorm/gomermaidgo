@@ -8,6 +8,7 @@
 | pliki wzorcowe | `testdata/golden/<typ>/*.svg` | wynik co do bajta; zmiana przez `go test . -update` i przegląd różnicy |
 | pliki wzorcowe modelu | `testdata/golden/<typ>/*.txt` | dla typów grafowych: model grafu z parsera (`Graph.Dump`), obok pliku SVG |
 | niezmienniki układu grafu | `internal/layered/layout_test.go` | cały korpus w czterech kierunkach: węzły nie nachodzą na siebie, ramki rozłączne albo zagnieżdżone, etykiety krawędzi nie kolidują, każda krawędź ma ścieżkę i nie przechodzi przez obcy węzeł; cykle i pętle; graf na granicy limitów |
+| reguły wyglądu | `internal/layered/appearance_test.go` | reguły z przeglądu rysunków (`requirements/layout.md`): odcinki krawędzi równoległe do osi, bez cofania i drobnych uskoków; mostek w każdym przecięciu, także między poziomami podgrafów; równe pola w ciągu; wspólna wysokość skrętu gałęzi; paski stanu złożonego i krótsze strzałki w jego wnętrzu; oś pola z pętlą własną; pakowanie ramek bez połączeń; kolumny w torach |
 | poprawność SVG | `TestCorpusValidSVG` | poprawny XML, przestrzeń nazw SVG, tylko dozwolone elementy i atrybuty, liczby w atrybutach geometrii |
 | treść | `TestCorpusLabelsPresent` | każdy tekst ze źródła jest w SVG; etykiety uczestników dwa razy (góra i dół) |
 | niezmienniki układu | `internal/sequence/layout_test.go` | teksty nie nachodzą na siebie; nagłówki uczestników nie kolidują ze sobą ani z etykietami |
@@ -38,7 +39,7 @@ go run ./tools/pdfcheck -pdf 'gopdfgo -in {in} -out {out} -fonts {fonts}' -text 
 ```
 
 Konwerter jest czarną skrzynką jak renderer odniesienia; nie jest zależnością modułu, więc sprawdzenie nie wchodzi
-do `go test`. Wynik z 2026-11-21 (`gopdfgo` 0.1.0-dev, `pdftotext`): 41 diagramów, 30 stron, wszystkie 565 różnych
+do `go test`. Wynik z 2026-11-21 (`gopdfgo` 0.1.0-dev, `pdftotext`): 43 diagramy, 30 stron, wszystkie 588 różnych
 wyrazów jest w PDF tekstem, krój Recursive osadzony (także odmiana pogrubiona i pochylona).
 
 Ustalenie z tego testu: rysunku nie da się podzielić między strony, więc diagram wyższy niż strona jest ucinany.
@@ -84,6 +85,18 @@ Schemat blokowy i diagram stanów, 2026-11-21, to samo odniesienie. Od etapu 3 p
 | `sequence` | 10 | 10 | brak |
 | `flowchart` | 11 | 10 | `009-text`: tekst `<znaczniki>` odniesienie usuwa jako znacznik HTML, my zostawiamy (różnica świadoma, `profile.md`) |
 | `state` | 6 | 5 | `006-document-lifecycle`: ta sama różnica |
+
+Ponowny przebieg na całym korpusie, 2026-11-21 (po torach, mostkach i zmianach układu), to samo odniesienie:
+
+| Korpus | Pliki | Zgodne | Różnice (wszystkie świadome) |
+|---|---:|---:|---|
+| `sequence` | 12 | 11 | `012-create-destroy`: uczestnik kończony ma u nas jedno pole, w odniesieniu dwa |
+| `flowchart` | 18 | 17 | `009-text`: `<znaczniki>` |
+| `state` | 8 | 7 | `006-document-lifecycle`: `<znaczniki>` |
+| `gantt` | 3 | 1 | daty na osi: własny dobór podziałki |
+| `er` | 2 | 1 | zapis kluczy „PK, FK” |
+
+Razem 37 z 43. Pliki z torami zgadzają się, bo dyrektywa jest komentarzem i odniesienie rysuje zwykłe podgrafy.
 
 Pierwsze porównanie parserów wykazało jeszcze dwie różnice, które okazały się naszymi błędnymi założeniami i zostały
 poprawione: linia `%%` wewnątrz notatki wieloliniowej jest komentarzem (nie tekstem notatki), a `state Id` bez opisu nie

@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="169" height="521" viewBox="-12 -12 169 521" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M42 44 L42 104 L42 128 L42 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M60 44 L60 104 L60 128 L60 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M107 44 L107 104 L107 128 L107 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M61 232 L61 262 L61 289.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M79 232 L79 262 L79 289.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M61 359.48 L61 395 L61 417.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M79 359.48 L79 395 L79 417.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M42 44 L42 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M60 44 L60 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M107 44 L107 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 232 L61 289.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M79 232 L79 289.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 359.48 L61 417.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M79 359.48 L79 417.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="83" y="106" width="48" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="42,188 36,176 48,176" fill="#3b4754"/>
 <polygon class="arrowhead" points="60,188 54,176 66,176" fill="#3b4754"/>

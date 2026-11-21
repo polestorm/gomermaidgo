@@ -4,9 +4,9 @@
 <line class="note-link" x1="365.5" y1="216" x2="413" y2="216" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
 <line class="note-link" x1="200.5" y1="356" x2="152" y2="356" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M283 16 L283 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M283 104 L283 134 L283 158 L283 188 L283 185.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M283 238 L283 244 L283 274 L283 298 L283 328 L283 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M283 378 L283 384 L283 419.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M283 104 L283 185.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M283 238 L283 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M283 378 L283 419.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="239" y="136" width="88" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="251.8" y="276" width="62.4" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="283,60 277,48 289,48" fill="#3b4754"/>

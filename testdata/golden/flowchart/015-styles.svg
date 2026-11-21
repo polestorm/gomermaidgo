@@ -2,13 +2,13 @@
 <title>Postępowanie z wyrobem niezgodnym</title>
 <desc>Wyrób niezgodny jest izolowany, oceniany i albo naprawiany, albo złomowany.</desc>
 <rect class="cluster" x="1.25" y="256" width="383.5" height="383" rx="4" fill="#f3f6fb" stroke="#3b6fb6" stroke-width="1" stroke-dasharray="6 3"/>
-<path class="edge" d="M160 371.24 L160 382.12 C160 386.52 156.4 390.12 152 390.12 L103.25 390.12 C98.85 390.12 95.25 393.72 95.25 398.12 L95.25 409 L95.25 433 L95.25 454.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M182.5 371.24 L182.5 382.12 C182.5 386.52 186.1 390.12 190.5 390.12 L281.25 390.12 C285.65 390.12 289.25 393.72 289.25 398.12 L289.25 409 L289.25 433 L289.25 454.6" fill="none" stroke="#b42318" stroke-width="2.5"/>
+<path class="edge" d="M160 371.24 L160 382.12 C160 386.52 156.4 390.12 152 390.12 L103.25 390.12 C98.85 390.12 95.25 393.72 95.25 398.12 L95.25 409 L95.25 454.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M182.5 371.24 L182.5 382.12 C182.5 386.52 186.1 390.12 190.5 390.12 L281.25 390.12 C285.65 390.12 289.25 393.72 289.25 398.12 L289.25 409 L289.25 454.6" fill="none" stroke="#b42318" stroke-width="2.5"/>
 <path class="edge" d="M95.25 507 L95.25 542.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <path class="edge" d="M172 64 L172 99.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M171.25 212 L171.25 256 L171.25 286 L171.25 301.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M82.25 615 L82.25 639 L82.25 699 L82.25 697.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M289.25 507 L289.25 551 L289.25 615 L289.25 639 L289.25 690.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M171.25 212 L171.25 301.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M82.25 615 L82.25 697.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<path class="edge" d="M289.25 507 L289.25 690.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M108.25 615 L108.25 639 L108.25 656.8 C108.25 661.2 111.85 664.8 116.25 664.8 L267.25 664.8 C271.65 664.8 275.25 668.4 275.25 672.8 L275.25 690.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
 <rect class="cluster-title-background" x="9.25" y="262" width="109.6" height="20" fill="#f3f6fb"/>
 <rect class="edge-label-background" x="22.05" y="411" width="146.4" height="20" fill="#f3f6fb"/>

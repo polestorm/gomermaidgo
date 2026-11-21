@@ -56,6 +56,19 @@ func corpusScenes(t *testing.T) map[string]*scene.Scene {
 	return out
 }
 
+// corpusNames zwraca pliki korpusu jednego typu jako ścieżki względem katalogu korpusu.
+func corpusNames(t *testing.T, dir string) []string {
+	t.Helper()
+	files, _ := filepath.Glob("../../testdata/corpus/" + dir + "/*.mmd")
+	if len(files) == 0 {
+		t.Fatalf("no corpus files for %s", dir)
+	}
+	for i, f := range files {
+		files[i] = dir + "/" + filepath.Base(f)
+	}
+	return files
+}
+
 func overlap(a, b scene.Box) bool {
 	const eps = 0.5
 	return a.X0 < b.X1-eps && b.X0 < a.X1-eps && a.Y0 < b.Y1-eps && b.Y0 < a.Y1-eps

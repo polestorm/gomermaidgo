@@ -135,3 +135,28 @@ func TestParseStylesAndIdentifiers(t *testing.T) {
 		t.Errorf("subgraph or link styles: %+v %+v %+v", g.Subgraph("S").Paint, g.Edges[0].Paint, g.Edges[1].Paint)
 	}
 }
+
+// REQ: FLOW-018
+// Tekst Markdown rozciągnięty na kilka linii źródła: koniec linii jest złamaniem tekstu, a numery
+// linii w błędach za takim tekstem się nie przesuwają.
+func TestParseMultilineMarkdownString(t *testing.T) {
+	g, err := Parse("flowchart TD\nA[\"`Pierwsza **linia**\n    druga linia\n  trzecia`\"] --> B\nB --> C")
+	if err != nil {
+		t.Fatal(err)
+	}
+	a := g.Node("A")
+	if len(a.Label) != 3 || graph.Plain(a.Label[0]) != "Pierwsza linia" || a.Label[1] != "druga linia" || a.Label[2] != "trzecia" {
+		t.Errorf("label lines: %q", a.Label)
+	}
+	if len(g.Edges) != 2 {
+		t.Errorf("%d edges, want 2", len(g.Edges))
+	}
+	_, err = Parse("flowchart TD\nA[\"`raz\ndwa`\"] --> B\nB --> C{{")
+	if err == nil || !strings.Contains(err.Error(), "line 4") {
+		t.Errorf("error after a multi-line string should point at line 4: %v", err)
+	}
+	_, err = Parse("flowchart TD\nA[\"`raz\ndwa] --> B")
+	if err == nil || !strings.Contains(err.Error(), "line 2") {
+		t.Errorf("unclosed string should be reported at line 2: %v", err)
+	}
+}

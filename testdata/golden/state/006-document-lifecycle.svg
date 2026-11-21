@@ -2,9 +2,9 @@
 <path class="edge" d="M16 42 L51.6 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M200 35 L212.2 35 C216.05 35 219.2 31.85 219.2 28 L219.2 28 C219.2 24.15 222.35 21 226.2 21 L230 21 L430.4 21 L434.2 21 C438.05 21 441.2 24.15 441.2 28 L441.2 28 C441.2 31.85 444.35 35 448.2 35 L452 35" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M208.4 49 L212.2 49 C216.05 49 219.2 52.15 219.2 56 L219.2 56 C219.2 59.85 222.35 63 226.2 63 L230 63 L430.4 63 L434.2 63 C438.05 63 441.2 59.85 441.2 56 L441.2 56 C441.2 52.15 444.35 49 448.2 49 L460.4 49" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M637.4 42 L667.4 42 L757.4 42 L779 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M953.4 42 L983.4 42 L1159 42 L1180.6 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M1397 42 L1427 42 L1630.6 42 L1652.2 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M637.4 42 L779 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M953.4 42 L1180.6 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1397 42 L1652.2 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M1800.6 42 L1836.2 42" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="231" y="11" width="198.4" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="258.6" y="53" width="143.2" height="20" fill="#ffffff"/>

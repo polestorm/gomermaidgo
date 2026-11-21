@@ -119,6 +119,7 @@ func (l *layouter) draw() {
 	if l.lanes != nil {
 		l.drawLanes()
 	}
+	l.prepareRoutes()
 	l.drawLevel(l.levels[""])
 }
 
@@ -371,9 +372,10 @@ func (l *layouter) drawLevel(lv *level) {
 // drawFrameTitle rysuje tytuł zwykłej ramki: przy lewej górnej krawędzi, z podkładem w kolorze tła.
 func (l *layouter) drawFrameTitle(lv *level, cx, cy, w, h float64, paint graph.Paint) {
 	{
-		if len(lv.titleLines) > 0 {
-			defer func(at int) { l.repaint(at, at+1+len(lv.titleLines), graph.Paint{Color: paint.Color}, "") }(len(l.sc.Items))
+		if len(lv.titleLines) == 0 {
+			return // ramka bez tytułu (region) nie dostaje pustego podkładu
 		}
+		defer func(at int) { l.repaint(at, at+1+len(lv.titleLines), graph.Paint{Color: paint.Color}, "") }(len(l.sc.Items))
 		// Tytuł ma podkład w kolorze tła: krawędź wchodząca do ramki znika pod nim, zamiast go przekreślać.
 		tw, th := l.textSize(lv.titleLines)
 		tx, ty := cx-w/2+l.u(12)+tw/2, cy-h/2+l.u(6)+th/2
@@ -415,8 +417,53 @@ func (l *layouter) drawLevelContent(lv *level) {
 			}
 		}
 	}
-	// Najpierw przebieg każdej krawędzi, potem wspólny przydział torów odcinkom poprzecznym,
-	// na końcu rysowanie.
+	for _, r := range lv.routes {
+		l.drawEdge(r)
+	}
+}
+
+// prepareRoutes wyznacza przebieg krawędzi wszystkich poziomów, zanim cokolwiek zostanie narysowane:
+// najpierw przebieg każdej krawędzi i przydział torów odcinkom poprzecznym na jej poziomie, potem
+// mostki wspólnie dla wszystkich poziomów o tych samych osiach, bo krawędź prowadzona w głąb
+// podgrafu krzyżuje się też z krawędziami tego podgrafu. Kolejność jest kolejnością rysowania:
+// zawartość podgrafu przed krawędziami poziomu, w którym leży.
+func (l *layouter) prepareRoutes() {
+	type frame struct {
+		vertical, flip bool
+		ox, oy         float64
+	}
+	groups := map[frame][]*edgeRoute{}
+	var frames []frame
+	var visit func(lv *level)
+	visit = func(lv *level) {
+		for _, row := range lv.ranks {
+			for _, it := range row {
+				if it.kind == kindCluster {
+					visit(it.child)
+				}
+			}
+		}
+		defer l.enter(lv)()
+		lv.routes = l.routes(lv)
+		if !l.o.CurvedEdges {
+			l.assignTracks(lv.routes)
+		}
+		f := frame{lv.vertical, lv.flip, lv.ox, lv.oy}
+		if _, ok := groups[f]; !ok {
+			frames = append(frames, f)
+		}
+		groups[f] = append(groups[f], lv.routes...)
+	}
+	visit(l.levels[""])
+	if !l.o.CurvedEdges {
+		for _, f := range frames {
+			l.findHops(groups[f])
+		}
+	}
+}
+
+// routes zwraca przebiegi krawędzi jednego poziomu, przygotowane do rysowania.
+func (l *layouter) routes(lv *level) []*edgeRoute {
 	var routes []*edgeRoute
 	for _, e := range lv.edges {
 		if e.part || e.e.Style == graph.Invisible {
@@ -426,20 +473,32 @@ func (l *layouter) drawLevelContent(lv *level) {
 		if e.rev {
 			topHead, bottomHead = bottomHead, topHead
 		}
-		r := &edgeRoute{e: e, pts: l.route(e), topHead: topHead, bottomHead: bottomHead}
-		last := len(r.pts) - 1
-		r.top, r.bottom = r.pts[0], r.pts[last]
-		r.pts[0].y += l.headLength(topHead)
-		r.pts[last].y -= l.headLength(bottomHead)
+		pts := l.route(e)
+		// Różnice położeń poniżej progu to zaokrąglenia: odcinek ma być dokładnie prosty, nie skośny.
+		for i := 1; i < len(pts); i++ {
+			if math.Abs(pts[i].x-pts[i-1].x) < straightTolerance {
+				pts[i].x = pts[i-1].x
+			}
+		}
+		r := &edgeRoute{e: e, topHead: topHead, bottomHead: bottomHead}
+		last := len(pts) - 1
+		r.top, r.bottom = pts[0], pts[last]
+		pts[0].y += l.headLength(topHead)
+		pts[last].y -= l.headLength(bottomHead)
+		// Punkty pośrednie leżące na jednej prostej z sąsiadami są zbędne, a punkt, który po
+		// skróceniu końca o grot znalazł się za nim, cofałby linię.
+		kept := pts[:1]
+		for i := 1; i < last; i++ {
+			prev, next := kept[len(kept)-1], pts[i+1]
+			if prev.x == pts[i].x && pts[i].x == next.x {
+				continue
+			}
+			kept = append(kept, pts[i])
+		}
+		r.pts = append(kept, pts[last])
 		routes = append(routes, r)
 	}
-	if !l.o.CurvedEdges {
-		l.assignTracks(routes)
-		l.findHops(routes)
-	}
-	for _, r := range routes {
-		l.drawEdge(r)
-	}
+	return routes
 }
 
 // tone zwraca kolory węzła w trybie kolorowym: kolor mówi, czym węzeł jest w procesie.

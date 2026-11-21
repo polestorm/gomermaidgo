@@ -133,11 +133,46 @@ func splitStatements(line string) []string {
 	return append(out, line[start:])
 }
 
+// joinMarkdownLines skleja tekst Markdown rozciągnięty na kilka linii źródła w jedną linię: koniec
+// linii wewnątrz "`…`" jest złamaniem tekstu. Puste linie dopisane za sklejoną zachowują numerację
+// linii w komunikatach błędów. Tekst niezamknięty zostaje bez zmian i daje błąd w swojej linii.
+func joinMarkdownLines(source string) string {
+	if !strings.Contains(source, "\"`") {
+		return source
+	}
+	var b strings.Builder
+	inside, pending := false, 0
+	for i := 0; i < len(source); i++ {
+		switch {
+		case !inside && strings.HasPrefix(source[i:], "\"`"):
+			inside = true
+			b.WriteString("\"`")
+			i++
+		case inside && strings.HasPrefix(source[i:], "`\""):
+			inside = false
+			b.WriteString("`\"")
+			i++
+		case inside && source[i] == '\n':
+			b.WriteString("<br/>")
+			pending++
+		case source[i] == '\n':
+			b.WriteString(strings.Repeat("\n", pending+1))
+			pending = 0
+		default:
+			b.WriteByte(source[i])
+		}
+	}
+	if inside {
+		return source
+	}
+	return b.String()
+}
+
 // Parse rozbiera źródło schematu blokowego.
 func Parse(source string) (*graph.Graph, error) {
 	p := &parser{g: graph.New("flowchart")}
 	seenHeader := false
-	source = strings.ReplaceAll(source, "\r\n", "\n")
+	source = joinMarkdownLines(strings.ReplaceAll(source, "\r\n", "\n"))
 	for n, raw := range strings.Split(source, "\n") {
 		line := n + 1
 		s := strings.TrimSpace(raw)
