@@ -1601,11 +1601,11 @@ func (l *layouter) position(lv *level) (width, height float64) {
 					for _, n := range ns {
 						w := weight(it, n)
 						if off, ok := attach[[2]*item{it, n}]; ok {
-							sum += w * (n.x + off) // pod punktem na ramce podgrafu
+							sum += w * (n.nodeX() + off) // pod punktem na ramce podgrafu
 						} else if off, ok := attach[[2]*item{n, it}]; ok {
-							sum += w * (n.x - off)
+							sum += w * (n.nodeX() - off)
 						} else {
-							sum += w * (n.x + fanOffset(it, siblings(n), sep))
+							sum += w * (n.nodeX() + fanOffset(it, siblings(n), sep))
 						}
 						total += w
 						count++
@@ -1619,7 +1619,8 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				}
 				want[i] = it.x
 				if total > 0 {
-					want[i] = sum / total
+					// Osie liczą się między samymi polami: miejsce na pętlę własną stoi z boku.
+					want[i] = sum/total + it.loopExtra/2
 					priority[i] = float64(count)
 					if count == 1 {
 						// Pole z jednym sąsiadem może stanąć dokładnie w jego osi; ma pierwszeństwo
@@ -1696,7 +1697,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 					}
 					sum := 0.0
 					for _, n := range ns {
-						sum += n.x
+						sum += n.nodeX()
 					}
 					return sum / float64(len(ns)), true
 				}
