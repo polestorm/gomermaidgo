@@ -168,6 +168,8 @@ Stan: rysowany tym samym układem warstwowym.
   zaokrąglone narożniki; u dołu ramkę zamyka wąski pasek (4 px) w kolorze paska tytułu, bez tekstu, żeby
   dużą ramkę stanu dało się rozpoznać także od spodu; podgraf schematu blokowego zachowuje tytuł przy lewej
   krawędzi;
+- wewnątrz stanu złożonego (i regionu) proste strzałki bez etykiety są krótsze niż na poziomie głównym
+  (odstęp warstw 26 zamiast 44 px); odstęp przy etykiecie i przy krawędzi ze skrętem zostaje bez zmian;
 - przejście między stanem złożonym a jego własną zawartością jest błędem.
 
 ## Wykres Gantta (`gantt`)

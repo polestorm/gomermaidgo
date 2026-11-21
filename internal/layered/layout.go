@@ -1206,7 +1206,7 @@ func (l *layouter) packBoxes(lv *level) {
 		w, h  float64
 		items []*item
 	}
-	pack := func(limit float64) (rows [][]column, width, height float64) {
+	pack := func(limit, slack float64) (rows [][]column, width, height float64) {
 		var cur []column
 		rowWidth := func() float64 {
 			w := -gapX
@@ -1236,7 +1236,7 @@ func (l *layouter) packBoxes(lv *level) {
 				tallest = math.Max(tallest, cur[i].h)
 			}
 			switch {
-			case last >= 1 && cur[last].h+gapY+it.h <= tallest+0.5:
+			case last >= 1 && cur[last].h+gapY+it.h <= tallest*(1+slack)+0.5:
 				c := &cur[last]
 				c.w, c.h, c.items = math.Max(c.w, it.w), c.h+gapY+it.h, append(c.items, it)
 			case last >= 0 && rowWidth()+gapX+it.w <= limit+0.5:
@@ -1254,10 +1254,13 @@ func (l *layouter) packBoxes(lv *level) {
 	for _, it := range items {
 		limit += gapX + it.w
 		for _, candidate := range []float64{limit, it.w} {
-			rows, w, h := pack(candidate)
-			scale, area := math.Min(1, math.Min(pageW/w, pageH/h)), w*h
-			if scale > bestScale+1e-9 || (scale > bestScale-1e-9 && area < bestArea-0.5) {
-				best, bestScale, bestArea = rows, scale, area
+			// Kolumna może też nieco przerosnąć najwyższą ramkę rzędu, jeśli całość na tym zyskuje.
+			for _, slack := range []float64{0, 0.25} {
+				rows, w, h := pack(candidate, slack)
+				scale, area := math.Min(1, math.Min(pageW/w, pageH/h)), w*h
+				if scale > bestScale+1e-9 || (scale > bestScale-1e-9 && area < bestArea-0.5) {
+					best, bestScale, bestArea = rows, scale, area
+				}
 			}
 		}
 	}
@@ -1835,7 +1838,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		for _, it := range row {
 			band = math.Max(band, it.h)
 			for _, up := range it.up {
-				if math.Abs(up.x-it.x) > 0.5 {
+				if math.Abs(up.nodeX()-it.nodeX()) > 0.5 {
 					turns++
 				}
 			}
@@ -1847,6 +1850,10 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				gap = l.u(24)
 			} else if !anyReal(row) || !anyReal(lv.ranks[r-1]) {
 				gap = l.u(30)
+			} else if turns == 0 && lv.sub != nil && l.g.Kind == "state" {
+				// Wnętrze stanu złożonego: proste strzałki są krótsze niż na poziomie głównym, bo
+				// ramka i tak zajmuje miejsce, a jej zawartość czyta się jako jedną całość.
+				gap = l.u(26)
 			}
 			// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
 			if !l.o.CurvedEdges && turns > 2 {

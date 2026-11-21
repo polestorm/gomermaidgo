@@ -1,53 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="346.2" height="872" viewBox="-12.1 -12 346.2 872" role="img" font-family="Recursive, sans-serif" font-size="16">
-<rect class="cluster" x="-0.1" y="60" width="322.2" height="636" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="346.2" height="764" viewBox="-12.1 -12 346.2 764" role="img" font-family="Recursive, sans-serif" font-size="16">
+<rect class="cluster" x="-0.1" y="60" width="322.2" height="528" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <rect class="cluster-title-strip" x="-0.1" y="60" width="322.2" height="32" rx="8" fill="#eef2f7"/>
 <rect class="cluster-title-strip" x="-0.1" y="76" width="322.2" height="16" fill="#eef2f7"/>
 <line class="cluster-title-rule" x1="-0.1" y1="92" x2="322.1" y2="92" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path class="cluster-foot-strip" d="M0.97 692 C2.4 694.48 5.04 696 7.9 696 L314.1 696 C316.96 696 319.6 694.48 321.03 692 L0.97 692" fill="#eef2f7"/>
-<line class="cluster-title-rule" x1="0.97" y1="692" x2="321.03" y2="692" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-outline" x="-0.1" y="60" width="322.2" height="636" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="19.7" y="268" width="282.4" height="340" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-title-strip" x="19.7" y="268" width="282.4" height="32" rx="8" fill="#eef2f7"/>
-<rect class="cluster-title-strip" x="19.7" y="284" width="282.4" height="16" fill="#eef2f7"/>
-<line class="cluster-title-rule" x1="19.7" y1="300" x2="302.1" y2="300" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path class="cluster-foot-strip" d="M20.77 604 C22.2 606.48 24.84 608 27.7 608 L294.1 608 C296.96 608 299.6 606.48 301.03 604 L20.77 604" fill="#eef2f7"/>
-<line class="cluster-title-rule" x1="20.77" y1="604" x2="301.03" y2="604" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-outline" x="19.7" y="268" width="282.4" height="340" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path class="edge" d="M160.9 344 L160.9 379.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 432 L160.9 467.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 520 L160.9 555.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 136 L160.9 171.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 224 L160.9 259.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 608 L160.9 643.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="cluster-foot-strip" d="M0.97 584 C2.4 586.48 5.04 588 7.9 588 L314.1 588 C316.96 588 319.6 586.48 321.03 584 L0.97 584" fill="#eef2f7"/>
+<line class="cluster-title-rule" x1="0.97" y1="584" x2="321.03" y2="584" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-outline" x="-0.1" y="60" width="322.2" height="528" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster" x="19.7" y="232" width="282.4" height="286" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-title-strip" x="19.7" y="232" width="282.4" height="32" rx="8" fill="#eef2f7"/>
+<rect class="cluster-title-strip" x="19.7" y="248" width="282.4" height="16" fill="#eef2f7"/>
+<line class="cluster-title-rule" x1="19.7" y1="264" x2="302.1" y2="264" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="cluster-foot-strip" d="M20.77 514 C22.2 516.48 24.84 518 27.7 518 L294.1 518 C296.96 518 299.6 516.48 301.03 514 L20.77 514" fill="#eef2f7"/>
+<line class="cluster-title-rule" x1="20.77" y1="514" x2="301.03" y2="514" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-outline" x="19.7" y="232" width="282.4" height="286" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M160.9 308 L160.9 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M160.9 378 L160.9 395.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M160.9 448 L160.9 465.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M160.9 136 L160.9 153.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M160.9 206 L160.9 223.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M160.9 518 L160.9 535.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M161 16 L161 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M161 696 L161 731.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M161 784 L161 819.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="160.9,388 154.9,376 166.9,376" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,476 154.9,464 166.9,464" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,564 154.9,552 166.9,552" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,180 154.9,168 166.9,168" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,268 154.9,256 166.9,256" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,652 154.9,640 166.9,640" fill="#3b4754"/>
+<path class="edge" d="M161 588 L161 623.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M161 676 L161 711.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="160.9,334 154.9,322 166.9,322" fill="#3b4754"/>
+<polygon class="arrowhead" points="160.9,404 154.9,392 166.9,392" fill="#3b4754"/>
+<polygon class="arrowhead" points="160.9,474 154.9,462 166.9,462" fill="#3b4754"/>
+<polygon class="arrowhead" points="160.9,162 154.9,150 166.9,150" fill="#3b4754"/>
+<polygon class="arrowhead" points="160.9,232 154.9,220 166.9,220" fill="#3b4754"/>
+<polygon class="arrowhead" points="160.9,544 154.9,532 166.9,532" fill="#3b4754"/>
 <polygon class="arrowhead" points="161,60 155,48 167,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="161,740 155,728 167,728" fill="#3b4754"/>
-<polygon class="arrowhead" points="161,828 155,816 167,816" fill="#3b4754"/>
+<polygon class="arrowhead" points="161,632 155,620 167,620" fill="#3b4754"/>
+<polygon class="arrowhead" points="161,720 155,708 167,708" fill="#3b4754"/>
 <circle class="node" cx="161" cy="8" r="8" fill="#3b4754"/>
 <circle class="node" cx="160.9" cy="128" r="8" fill="#3b4754"/>
-<rect class="node" x="81.9" y="180" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="160.9" cy="336" r="8" fill="#3b4754"/>
-<rect class="node" x="90.9" y="388" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="90.9" y="476" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="160.9" cy="574" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="160.9" cy="574" r="6" fill="#3b4754"/>
-<circle class="node" cx="160.9" cy="662" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="160.9" cy="662" r="6" fill="#3b4754"/>
-<rect class="node" x="78.5" y="740" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="161" cy="838" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="161" cy="838" r="6" fill="#3b4754"/>
+<rect class="node" x="81.9" y="162" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="160.9" cy="300" r="8" fill="#3b4754"/>
+<rect class="node" x="90.9" y="334" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="90.9" y="404" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="160.9" cy="484" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="160.9" cy="484" r="6" fill="#3b4754"/>
+<circle class="node" cx="160.9" cy="554" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="160.9" cy="554" r="6" fill="#3b4754"/>
+<rect class="node" x="78.5" y="632" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="161" cy="730" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="161" cy="730" r="6" fill="#3b4754"/>
 <text class="cluster-title" x="161" y="81.6" text-anchor="middle" fill="#1b1f24">Przegląd</text>
-<text class="node-label" x="160.9" y="207.6" text-anchor="middle" fill="#1b1f24">Sprawdzanie</text>
-<text class="cluster-title" x="160.9" y="289.6" text-anchor="middle" fill="#1b1f24">Zatwierdzanie przez dwie osoby</text>
-<text class="node-label" x="160.9" y="415.6" text-anchor="middle" fill="#1b1f24">Pierwszy</text>
-<text class="node-label" x="160.9" y="503.6" text-anchor="middle" fill="#1b1f24">Drugi</text>
-<text class="node-label" x="161" y="767.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
+<text class="node-label" x="160.9" y="189.6" text-anchor="middle" fill="#1b1f24">Sprawdzanie</text>
+<text class="cluster-title" x="160.9" y="253.6" text-anchor="middle" fill="#1b1f24">Zatwierdzanie przez dwie osoby</text>
+<text class="node-label" x="160.9" y="361.6" text-anchor="middle" fill="#1b1f24">Pierwszy</text>
+<text class="node-label" x="160.9" y="431.6" text-anchor="middle" fill="#1b1f24">Drugi</text>
+<text class="node-label" x="161" y="659.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
 </svg>
