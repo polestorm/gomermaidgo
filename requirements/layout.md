@@ -14,3 +14,4 @@ diagram stanów, diagram encji). Testy są w `internal/layered/appearance_test.g
 | LAY-007 | Pętla własna stoi z boku pola i nie przesuwa osi: sąsiad wyrównuje się do środka samego pola. |
 | LAY-008 | Ramki bez połączeń między sobą (regiony współbieżne, osobne podgrafy) są upakowane w kolejności ze źródła: niższa staje pod poprzednią, obok wysokiej. |
 | LAY-009 | Romb decyzji, z którego jedna gałąź biegnie prosto w osi pola: pozostałe gałęzie wychodzą z bocznych wierzchołków (najwyżej jedna z każdego), biegną w poprzek na wysokości środka pola i skręcają raz. Warunki: gałąź skręca poza obrysem rombu i w rzędzie rombu nic nie stoi na jej drodze; inaczej wychodzi z boku przy dolnym wierzchołku (LAY-005). |
+| LAY-010 | Rysunek nie ma pustych kolumn: pas w poprzek osi warstw, w którym w żadnej warstwie nic nie stoi, jest zamykany do zwykłego odstępu między polami. Nie dotyczy torów, których szerokość wyznacza pas. |

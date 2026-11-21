@@ -80,6 +80,8 @@ Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`.
 - właściwości stylu inne niż pięć honorowanych (czcionka, zaokrąglenia, przejścia) są pomijane; błędna wartość
   honorowanej właściwości jest błędem. Przy ciemnym wypełnieniu kolor tekstu trzeba podać samemu (`color`);
 - `click` jest przyjmowane i pomijane: rysunek statyczny nie ma odnośników;
+- znaczniki `<b>`, `<strong>`, `<i>` i `<em>` w etykiecie schematu blokowego dają pogrubienie i kursywę, także gdy
+  obejmują złamanie linii; pozostałe znaczniki HTML są rysowane jako tekst (renderer odniesienia je usuwa);
 - tekst Markdown może zajmować kilka linii źródła, koniec linii jest złamaniem tekstu; wyróżnienie musi się
   zamknąć w tej samej linii; pogrubienie z kursywą naraz jest rysowane jako pogrubienie
   z atrybutem kursywy, mierzone odmianą pogrubioną;
@@ -129,6 +131,8 @@ podgrafów zagnieżdżonych ani krawędzi do samego toru (błąd), a `direction`
   dolnym wierzchołku. Krawędzi wstecznej (w górę) i łuków (`WithCurvedEdges`) reguła nie dotyczy;
 - w torach kolejność pól jednego toru jest po pogrupowaniu poprawiana tak, żeby nie dodawać przecięć; punkty
   pośrednie krawędzi, której oba końce mają po kilka krawędzi, stoją w jednej osi przy dolnym końcu;
+- puste kolumny są zamykane: pas, w którym w żadnej warstwie nic nie stoi, kurczy się do zwykłego odstępu,
+  a krawędzie, które go przecinały, są krótsze;
 - gdzie krawędzie łamane się przecinają, krawędź zapisana w źródle później przeskakuje nad wcześniejszą półokrągłym
   mostkiem, o ile obok jest na niego miejsce; dotyczy to także krawędzi z różnych poziomów zagnieżdżenia
   podgrafów;

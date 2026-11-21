@@ -160,3 +160,32 @@ func TestParseMultilineMarkdownString(t *testing.T) {
 		t.Errorf("unclosed string should be reported at line 2: %v", err)
 	}
 }
+
+// REQ: FLOW-018
+// Znaczniki <b>, <strong>, <i> i <em> w etykiecie dają pogrubienie i kursywę, także gdy obejmują
+// złamanie linii; inne znaczniki zostają tekstem.
+func TestParseEmphasisTags(t *testing.T) {
+	g, err := Parse("flowchart TD\nA[\"<b>Nazwa</b><br/><i>opis w<br/>dwóch liniach</i>\"] -->|<EM>może</EM>| B[<u>inne</u>]")
+	if err != nil {
+		t.Fatal(err)
+	}
+	a := g.Node("A")
+	want := []string{"Nazwa", "opis w", "dwóch liniach"}
+	if len(a.Label) != 3 {
+		t.Fatalf("label lines: %q", a.Label)
+	}
+	for i, line := range a.Label {
+		if graph.Plain(line) != want[i] || !graph.HasMarks(line) || strings.Count(line, string(graph.MarkBold))%2 != 0 || strings.Count(line, string(graph.MarkItalic))%2 != 0 {
+			t.Errorf("line %d: %q", i, line)
+		}
+	}
+	if !strings.Contains(a.Label[0], string(graph.MarkBold)) || !strings.Contains(a.Label[2], string(graph.MarkItalic)) {
+		t.Errorf("wrong kind of emphasis: %q", a.Label)
+	}
+	if e := g.Edges[0]; graph.Plain(e.Label[0]) != "może" || !graph.HasMarks(e.Label[0]) {
+		t.Errorf("edge label: %q", e.Label)
+	}
+	if b := g.Node("B"); b.Label[0] != "<u>inne</u>" {
+		t.Errorf("other tags should stay as text: %q", b.Label)
+	}
+}

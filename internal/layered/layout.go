@@ -1840,6 +1840,25 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		}
 	}
 
+	// Puste kolumny: pas w poprzek osi warstw, w którym w żadnej warstwie nic nie stoi, tylko
+	// wydłuża krawędzie, które go przecinają. Wszystko za takim pasem dosuwa się do zwykłego odstępu.
+	if l.lanes == nil {
+		var all []*item
+		for _, row := range lv.ranks {
+			all = append(all, row...)
+		}
+		sort.SliceStable(all, func(a, b int) bool { return all[a].x-all[a].w/2 < all[b].x-all[b].w/2 })
+		shift, reach, keep := 0.0, math.Inf(-1), l.u(48)
+		for _, it := range all {
+			lo, hi := it.x-it.w/2, it.x+it.w/2
+			if !math.IsInf(reach, -1) && lo-reach > keep {
+				shift += lo - reach - keep
+			}
+			reach = math.Max(reach, hi)
+			it.x -= shift
+		}
+	}
+
 	left := math.Inf(1)
 	for _, row := range lv.ranks {
 		for _, it := range row {

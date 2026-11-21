@@ -2,8 +2,12 @@ package layered
 
 import (
 	"math"
+	"os"
+	"sort"
+	"strings"
 	"testing"
 
+	"github.com/polestorm/gomermaidgo/internal/er"
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 )
@@ -302,5 +306,51 @@ func TestDecisionBranchLeavesSideVertex(t *testing.T) {
 		if side != 1 || down != 1 {
 			t.Errorf("%s: %d branches from the side vertex and %d straight down, want 1 and 1", label, side, down)
 		}
+	}
+}
+
+// widestEmptyColumn zwraca szerokość najszerszego pionowego pasa, w którym nie stoi żadne pole,
+// ramka ani etykieta.
+func widestEmptyColumn(sc *scene.Scene) float64 {
+	items := byRole(sc, "node", "note", "cluster", "region", "edge-label")
+	sort.Slice(items, func(a, b int) bool { return items[a].Bounds().X0 < items[b].Bounds().X0 })
+	widest, reach := 0.0, math.Inf(-1)
+	for _, it := range items {
+		b := it.Bounds()
+		if !math.IsInf(reach, -1) {
+			widest = math.Max(widest, b.X0-reach)
+		}
+		reach = math.Max(reach, b.X1)
+	}
+	return widest
+}
+
+// REQ: LAY-010
+// Rysunek nie ma pustych kolumn: pas, w którym w żadnej warstwie nic nie stoi, jest zamykany do
+// zwykłego odstępu. Sprawdzane na korpusie i na dużym diagramie encji z prawdziwej dokumentacji.
+func TestNoEmptyColumns(t *testing.T) {
+	const limit = 60
+	for name, sc := range corpusScenes(t) {
+		if !strings.HasSuffix(name, " TB") || strings.Contains(name, "swimlanes") {
+			continue
+		}
+		if w := widestEmptyColumn(sc); w > limit {
+			t.Errorf("%s: empty column %.0f px wide", name, w)
+		}
+	}
+	src, err := os.ReadFile("testdata/wide-er.mmd")
+	if err != nil {
+		t.Fatal(err)
+	}
+	g, err := er.Parse(string(src))
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	if w := widestEmptyColumn(sc); w > limit {
+		t.Errorf("wide entity diagram: empty column %.0f px wide", w)
+	}
+	if b := sc.Bounds(); b.X1-b.X0 > 3000 {
+		t.Errorf("wide entity diagram is %.0f px wide", b.X1-b.X0)
 	}
 }

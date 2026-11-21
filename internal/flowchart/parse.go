@@ -25,6 +25,8 @@ const idPattern = `[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*`
 
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+	boldTag   = regexp.MustCompile(`(?i)</?(b|strong)>`)
+	italicTag = regexp.MustCompile(`(?i)</?(i|em)>`)
 	swimlanes = regexp.MustCompile(`^%%\s*layout:\s*swimlanes\s*$`)
 	// Identyfikator: litery, cyfry i podkreślenie; łącznik i kropka tylko między nimi, żeby
 	// „A-->B” i „A-.->B” nadal zaczynały krawędź.
@@ -103,7 +105,22 @@ func text(raw string, line int) ([]string, error) {
 	if strings.Contains(s, `"`) {
 		return nil, syntax.Errorf(line, CodeNode, "unexpected quote in text %q", raw)
 	}
+	// Znaczniki HTML wyróżnienia, częste w etykietach: pogrubienie i kursywa. Inne znaczniki zostają tekstem.
+	s = boldTag.ReplaceAllString(s, string(graph.MarkBold))
+	s = italicTag.ReplaceAllString(s, string(graph.MarkItalic))
 	parts := lineBreak.Split(s, -1)
+	// Wyróżnienie otwarte w jednej linii i zamknięte w następnej: każda linia dostaje własną parę znaków.
+	for _, mark := range []string{string(graph.MarkBold), string(graph.MarkItalic)} {
+		open := false
+		for i := range parts {
+			if open {
+				parts[i] = mark + parts[i]
+			}
+			if open = strings.Count(parts[i], mark)%2 == 1; open {
+				parts[i] += mark
+			}
+		}
+	}
 	for i := range parts {
 		parts[i] = strings.TrimSpace(parts[i])
 	}

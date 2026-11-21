@@ -102,6 +102,18 @@ Pierwsze porównanie parserów wykazało jeszcze dwie różnice, które okazały
 poprawione: linia `%%` wewnątrz notatki wieloliniowej jest komentarzem (nie tekstem notatki), a `state Id` bez opisu nie
 jest rysowane przez odniesienie i nie ma go w dokumentacji (teraz błąd `state-unsupported`).
 
+## Próba na cudzych diagramach
+
+2026-11-21: 150 plików Markdown z publicznych repozytoriów GitHuba (wyszukiwanie bloków `mermaid`), 70 bloków. Pliki
+są danymi roboczymi i nie trafiają do repozytorium. Narysowane 62 (schemat blokowy 53, sekwencja 4, stany 3, encje 2);
+4 bloki to typy spoza profilu (`journey`, `pie`), 4 mają `...` zamiast treści i nie są poprawnym Mermaid. Treść
+wszystkich 62 rysunków zgadza się z odniesieniem po dodaniu znaczników `<b>` i `<i>` (przedtem 61). W 28 diagramach
+są znaki, których krój Recursive nie ma (emoji). Rysunki są przeciętnie o 15% szersze niż w odniesieniu i o 4% niższe.
+Próba jest mała i przechylona ku prostym schematom blokowym.
+
+Diagram encji z dokumentacji produktu (35 encji, 36 relacji, `internal/layered/testdata/wide-er.mmd`) pokazał pustą
+kolumnę szerokości 1744 px; po jej zamknięciu (LAY-010) rysunek ma 2607 px zamiast 4197. Odniesienie: 2551 px.
+
 ## Przejście przez gopdfgo
 
 2026-11-21: cztery diagramy korpusu (aktywacje, bloki, bloki zagnieżdżone, numeracja), renderowane z fontem Noto Sans,
