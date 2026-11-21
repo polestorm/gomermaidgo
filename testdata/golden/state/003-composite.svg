@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="334.2" height="848" viewBox="-12.1 -12 334.2 848" role="img" font-family="sans-serif" font-size="16">
+<rect class="cluster" x="-0.1" y="64" width="310.2" height="604" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster" x="15.7" y="262" width="278.4" height="322" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M154.9 324 L154.9 365.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M154.9 412 L154.9 453.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M154.9 500 L154.9 541.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M154.9 126 L154.9 167.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M154.9 214 L154.9 255.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M154.9 584 L154.9 625.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M155 16 L155 57.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M155 668 L155 709.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M155 756 L155 797.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="cluster-title-background" x="7.9" y="70" width="76.8" height="20" fill="#ffffff"/>
+<rect class="cluster-title-background" x="23.7" y="268" width="262.4" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="154.9,372 149.9,363 159.9,363" fill="#3b4754"/>
+<polygon class="arrowhead" points="154.9,460 149.9,451 159.9,451" fill="#3b4754"/>
+<polygon class="arrowhead" points="154.9,548 149.9,539 159.9,539" fill="#3b4754"/>
+<polygon class="arrowhead" points="154.9,174 149.9,165 159.9,165" fill="#3b4754"/>
+<polygon class="arrowhead" points="154.9,262 149.9,253 159.9,253" fill="#3b4754"/>
+<polygon class="arrowhead" points="154.9,632 149.9,623 159.9,623" fill="#3b4754"/>
+<polygon class="arrowhead" points="155,64 150,55 160,55" fill="#3b4754"/>
+<polygon class="arrowhead" points="155,716 150,707 160,707" fill="#3b4754"/>
+<polygon class="arrowhead" points="155,804 150,795 160,795" fill="#3b4754"/>
+<circle class="node" cx="155" cy="8" r="8" fill="#3b4754"/>
+<circle class="node" cx="154.9" cy="118" r="8" fill="#3b4754"/>
+<rect class="node" x="87.9" y="174" width="134" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="154.9" cy="316" r="8" fill="#3b4754"/>
+<rect class="node" x="101.9" y="372" width="106" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="118.4" y="460" width="73" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="154.9" cy="558" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="154.9" cy="558" r="6" fill="#3b4754"/>
+<circle class="node" cx="154.9" cy="642" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="154.9" cy="642" r="6" fill="#3b4754"/>
+<rect class="node" x="84" y="716" width="142" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="155" cy="814" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="155" cy="814" r="6" fill="#3b4754"/>
+<text class="cluster-title" x="46.3" y="85.6" text-anchor="middle" fill="#1b1f24">Przegląd</text>
+<text class="node-label" x="154.9" y="199.6" text-anchor="middle" fill="#1b1f24">Sprawdzanie</text>
+<text class="cluster-title" x="154.9" y="283.6" text-anchor="middle" fill="#1b1f24">Zatwierdzanie przez dwie osoby</text>
+<text class="node-label" x="154.9" y="397.6" text-anchor="middle" fill="#1b1f24">Pierwszy</text>
+<text class="node-label" x="154.9" y="485.6" text-anchor="middle" fill="#1b1f24">Drugi</text>
+<text class="node-label" x="155" y="741.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
+</svg>

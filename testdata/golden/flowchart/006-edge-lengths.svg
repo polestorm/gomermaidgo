@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="610" height="328" viewBox="-12 -12 610 328" role="img" font-family="sans-serif" font-size="16">
+<path class="edge" d="M118.78 40 C118.78 52 52 52 52 64 C52 72.85 24 72.85 24 81.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M122.33 40 C122.33 52 70 52 70 64 L70 88 L70 128 L70 152 C70 160.85 42 160.85 42 169.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M125.89 40 C125.89 52 88 52 88 64 L88 88 L88 128 L88 152 L88 176 L88 216 L88 240 L88 257.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M129.44 40 C129.44 52 106 52 106 64 L106 88 L106 128 L106 152 C106 164 134 164 134 176" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M133 40 C133 52 124 52 124 64 L124 88 L124 128 L124 152 C124 160.85 218 160.85 218 169.7" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M136.56 40 C136.56 52 142 52 142 64 L142 88 L142 128 L142 152 C142 164 264 164 264 176 L264 216 L264 240 L264 264" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M140.11 40 C140.11 52 160 52 160 64 L160 88 L160 128 L160 152 C160 160.85 310 160.85 310 169.7" fill="none" stroke="#3b4754" stroke-width="3"/>
+<path class="edge" d="M143.67 40 C143.67 52 178 52 178 64 L178 88 L178 128 L178 152 C178 164 394 164 394 176" fill="none" stroke="#3b4754" stroke-width="3"/>
+<path class="edge" d="M147.22 40 C147.22 52 196 52 196 64 C196 76 226 76 226 88 L226 128 L226 152 C226 160.85 478 160.85 478 169.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="201.04" y="98" width="49.92" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="24,88 19,79 29,79" fill="#3b4754"/>
+<polygon class="arrowhead" points="42,176 37,167 47,167" fill="#3b4754"/>
+<polygon class="arrowhead" points="88,264 83,255 93,255" fill="#3b4754"/>
+<polygon class="arrowhead" points="218,176 213,167 223,167" fill="#3b4754"/>
+<polygon class="arrowhead" points="310,176 305,167 315,167" fill="#3b4754"/>
+<polygon class="arrowhead" points="478,176 473,167 483,167" fill="#3b4754"/>
+<rect class="node" x="109" y="0" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="88" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="18" y="176" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="110" y="176" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="194" y="176" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="286" y="176" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="370" y="176" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="454" y="176" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="538" y="176" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="64" y="264" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="240" y="264" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="133" y="25.6" text-anchor="middle" fill="#1b1f24">A</text>
+<text class="node-label" x="24" y="113.6" text-anchor="middle" fill="#1b1f24">B</text>
+<text class="node-label" x="42" y="201.6" text-anchor="middle" fill="#1b1f24">C</text>
+<text class="node-label" x="134" y="201.6" text-anchor="middle" fill="#1b1f24">E</text>
+<text class="node-label" x="218" y="201.6" text-anchor="middle" fill="#1b1f24">F</text>
+<text class="node-label" x="310" y="201.6" text-anchor="middle" fill="#1b1f24">H</text>
+<text class="node-label" x="394" y="201.6" text-anchor="middle" fill="#1b1f24">I</text>
+<text class="node-label" x="478" y="201.6" text-anchor="middle" fill="#1b1f24">J</text>
+<text class="node-label" x="562" y="201.6" text-anchor="middle" fill="#1b1f24">K</text>
+<text class="node-label" x="88" y="289.6" text-anchor="middle" fill="#1b1f24">D</text>
+<text class="node-label" x="264" y="289.6" text-anchor="middle" fill="#1b1f24">G</text>
+<text class="edge-label" x="226" y="113.6" text-anchor="middle" fill="#1b1f24">długa</text>
+</svg>

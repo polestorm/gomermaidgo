@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="164" height="372" viewBox="-12 -12 164 372" role="img" font-family="sans-serif" font-size="16">
+<path class="edge" d="M70 16 L70 57.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 104 L70 145.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 192 L70 233.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 280 L70 321.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="70,64 65,55 75,55" fill="#3b4754"/>
+<polygon class="arrowhead" points="70,152 65,143 75,143" fill="#3b4754"/>
+<polygon class="arrowhead" points="70,240 65,231 75,231" fill="#3b4754"/>
+<polygon class="arrowhead" points="70,328 65,319 75,319" fill="#3b4754"/>
+<circle class="node" cx="70" cy="8" r="8" fill="#3b4754"/>
+<rect class="node" x="20.5" y="64" width="99" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="152" width="140" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="16" y="240" width="108" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="70" cy="338" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="70" cy="338" r="6" fill="#3b4754"/>
+<text class="node-label" x="70" y="89.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>
+<text class="node-label" x="70" y="177.6" text-anchor="middle" fill="#1b1f24">Zatwierdzony</text>
+<text class="node-label" x="70" y="265.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
+</svg>

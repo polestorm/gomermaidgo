@@ -1,6 +1,5 @@
 # Wymagania: schemat blokowy
 
-Stan: parser (etap 2). Wymagania dotyczące rysunku dojdą z układem warstwowym (etap 3).
 
 | Id | Wymaganie |
 |---|---|
@@ -15,3 +14,5 @@ Stan: parser (etap 2). Wymagania dotyczące rysunku dojdą z układem warstwowym
 | FLOW-009 | Średnik rozdziela instrukcje w linii i może kończyć linię. |
 | FLOW-010 | Element spoza profilu albo błąd składni daje błąd z numerem linii i stałym kodem. |
 | FLOW-011 | Spójność grafu: krawędź łącząca podgraf z jego własną zawartością, identyfikator użyty jako węzeł z kształtem i jako podgraf oraz przekroczenie limitów (500 węzłów, 1000 krawędzi, 10 poziomów) są błędami. |
+| FLOW-012 | Każdy tekst ze źródła jest na rysunku; etykiety szersze niż limit (200 px przy piśmie 16 px, 150 px dla rombu i koła) są łamane na granicach wyrazów. |
+| FLOW-013 | Układ warstwowy w czterech kierunkach: kształty węzłów nie nachodzą na siebie; ramki podgrafów są rozłączne albo zagnieżdżone i zawierają swoje węzły w całości; etykiety krawędzi nie nachodzą na węzły ani na siebie; każda krawędź poza niewidoczną ma ścieżkę; cykle, pętle własne i krawędzie wielokrotne są rysowane. |

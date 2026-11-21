@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="698.64" height="216" viewBox="-10.64 -12 698.64 216" role="img" font-family="sans-serif" font-size="16">
+<path class="edge" d="M500 28 L500 64 L500 108 C500 121.85 313 121.85 313 135.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M243 46.3 C243 55.15 98 55.15 98 64 L98 108 C98 125 277 125 277 142" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M261 40 C261 52 287 52 287 64 L287 108 C287 121.85 295 121.85 295 135.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M279 40 C279 52 424 52 424 64 L424 108 C424 116.85 505 116.85 505 125.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="1.36" y="76" width="193.28" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="214.04" y="76" width="145.92" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="380.16" y="66" width="87.68" height="40" fill="#ffffff"/>
+<polygon class="arrowhead" points="313,142 308,133 318,133" fill="#3b4754"/>
+<polygon class="arrowhead" points="243,40 248,49 238,49" fill="#3b4754"/>
+<polygon class="arrowhead" points="295,142 290,133 300,133" fill="#3b4754"/>
+<polygon class="arrowhead" points="505,132 500,123 510,123" fill="#3b4754"/>
+<rect class="node" x="185.5" y="0" width="151" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="500" cy="20" r="8" fill="#3b4754"/>
+<rect class="node" x="544" y="0" width="132" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="219" y="142" width="152" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="406.5" y="132" width="197" height="60" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="261" y="25.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
+<text class="node-label" x="610" y="25.6" text-anchor="middle" fill="#1b1f24">Samodzielny</text>
+<text class="node-label" x="295" y="167.6" text-anchor="middle" fill="#1b1f24">Wersja robocza</text>
+<text class="node-label" x="505" y="157.6" text-anchor="middle" fill="#1b1f24">Wersja obowiązująca</text>
+<text class="node-label" x="505" y="177.6" text-anchor="middle" fill="#1b1f24">szkolenie ukończone</text>
+<text class="edge-label" x="98" y="91.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
+<text class="edge-label" x="287" y="91.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
+<text class="edge-label" x="424" y="81.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
+<text class="edge-label" x="424" y="101.6" text-anchor="middle" fill="#1b1f24">i opublikuj</text>
+</svg>

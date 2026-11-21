@@ -1,7 +1,6 @@
 // Polecenie refcompare porównuje wynik gomermaidgo z rendererem odniesienia uruchamianym
 // jako osobny program (czarna skrzynka). Nie porównuje pikseli ani geometrii, tylko treść:
-// czy oba rysunki zawierają te same teksty tyle samo razy. Dla typów, które mają już parser,
-// ale jeszcze nie mają układu, po naszej stronie porównywane są teksty z modelu.
+// czy oba rysunki zawierają te same wyrazy tyle samo razy.
 //
 //	go run ./tools/refcompare -ref 'mmdg -i {in} -o {out}' testdata/corpus/sequence/*.mmd
 //
@@ -12,7 +11,6 @@ package main
 import (
 	"bytes"
 	"encoding/xml"
-	"errors"
 	"flag"
 	"fmt"
 	"io"
@@ -23,35 +21,9 @@ import (
 	"strings"
 
 	"github.com/polestorm/gomermaidgo"
-	"github.com/polestorm/gomermaidgo/internal/flowchart"
-	"github.com/polestorm/gomermaidgo/internal/graph"
-	"github.com/polestorm/gomermaidgo/internal/state"
 )
 
-// modelTexts zwraca teksty z modelu grafu dla typów bez układu.
-func modelTexts(source string) (map[string]int, error) {
-	kind, err := gomermaidgo.DetectType(source)
-	if err != nil {
-		return nil, err
-	}
-	var g *graph.Graph
-	if kind == gomermaidgo.TypeFlowchart {
-		g, err = flowchart.Parse(source)
-	} else {
-		g, err = state.Parse(source)
-	}
-	if err != nil {
-		return nil, err
-	}
-	out := map[string]int{}
-	for _, s := range g.Texts() {
-		out[strings.Join(strings.Fields(s), " ")]++
-	}
-	return out, nil
-}
-
-// texts zwraca teksty rysunku: zawartość elementów text (każdy tspan osobno, jeśli są)
-// oraz akapitów w foreignObject, po znormalizowaniu odstępów.
+// texts zwraca wyrazy rysunku z krotnością: zawartość elementów text oraz foreignObject.
 func texts(svg []byte) (map[string]int, error) {
 	out := map[string]int{}
 	dec := xml.NewDecoder(bytes.NewReader(svg))
@@ -59,12 +31,12 @@ func texts(svg []byte) (map[string]int, error) {
 	dec.Entity = xml.HTMLEntity
 	var stack []string
 	var buf strings.Builder
+	// Liczymy wyrazy, nie linie: renderery łamią długie etykiety w różnych miejscach.
 	flush := func() {
-		s := strings.Join(strings.Fields(buf.String()), " ")
-		buf.Reset()
-		if s != "" {
-			out[s]++
+		for _, w := range strings.Fields(buf.String()) {
+			out[w]++
 		}
+		buf.Reset()
 	}
 	inside := func() bool {
 		for _, n := range stack {
@@ -134,7 +106,7 @@ func main() {
 	defer os.RemoveAll(tmp)
 
 	same, differ, failed := 0, 0, 0
-	fmt.Println("| Plik | Teksty u nas | Teksty w odniesieniu | Brakuje u nas | Nadmiar u nas |")
+	fmt.Println("| Plik | Wyrazy u nas | Wyrazy w odniesieniu | Brakuje u nas | Nadmiar u nas |")
 	fmt.Println("|---|---:|---:|---|---|")
 	for _, in := range flag.Args() {
 		name := filepath.Base(in)
@@ -145,10 +117,7 @@ func main() {
 		}
 		var ours map[string]int
 		oursSVG, err := gomermaidgo.Render(string(src))
-		switch {
-		case errors.Is(err, gomermaidgo.ErrLayoutPending):
-			ours, err = modelTexts(string(src))
-		case err == nil:
+		if err == nil {
 			ours, err = texts(oursSVG)
 		}
 		if err != nil {

@@ -16,7 +16,8 @@ w całości przeczytać, zwalidować i połączyć statycznie z produktem zamkni
 3. Każdy typ diagramu przechodzi tę samą ścieżkę: tekst → model → scena (`internal/scene`) → SVG. Testy niezmienników
    pracują na scenie.
 4. SVG składa się z elementów podstawowych z atrybutami prezentacji: bez `foreignObject`, arkuszy stylów, skryptów,
-   odnośników i identyfikatorów (groty strzałek są wielokątami, nie znacznikami `marker`).
+   odnośników i identyfikatorów (groty strzałek są wielokątami, nie znacznikami `marker`); `path` tylko z poleceniami
+   M, L i C.
 5. Szerokość tekstu pochodzi z fontu podanego przez wywołującego (własny czytnik `cmap` i `hmtx`) albo z jego funkcji
    pomiaru; bez nich działa miara zastępcza, która zawyża.
 6. Wygląd jest własny i stały. Zgodność z Mermaid oznacza zgodność znaczenia zapisu i treści rysunku, nie pikseli.

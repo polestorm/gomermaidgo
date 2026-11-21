@@ -1,6 +1,5 @@
 # Wymagania: diagram stanów
 
-Stan: parser (etap 2). Wymagania dotyczące rysunku dojdą z układem warstwowym (etap 3).
 
 | Id | Wymaganie |
 |---|---|
@@ -13,3 +12,5 @@ Stan: parser (etap 2). Wymagania dotyczące rysunku dojdą z układem warstwowym
 | STATE-007 | Notatki `note right of Id : tekst`, `note left of Id : tekst` oraz wieloliniowe, zamykane `end note`; komentarze wewnątrz notatki są pomijane. |
 | STATE-008 | `direction` ustawia kierunek diagramu albo stanu złożonego. |
 | STATE-009 | Element spoza profilu albo błąd składni daje błąd z numerem linii i stałym kodem. |
+| STATE-010 | Każdy tekst ze źródła jest na rysunku; stan początkowy, końcowy, wybór, rozwidlenie i złączenie mają własne kształty bez tekstu. |
+| STATE-011 | Układ warstwowy jak dla schematu blokowego (FLOW-013); notatka jest polem połączonym z celem linią kropkowaną. |

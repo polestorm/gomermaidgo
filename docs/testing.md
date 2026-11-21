@@ -6,7 +6,8 @@
 |---|---|---|
 | korpus | `testdata/corpus/<typ>/*.mmd` | po pliku na grupę elementów profilu; polskie znaki w każdym; linia `%% REQ:` wskazuje wymagania |
 | pliki wzorcowe | `testdata/golden/<typ>/*.svg` | wynik co do bajta; zmiana przez `go test . -update` i przegląd różnicy |
-| pliki wzorcowe modelu | `testdata/golden/<typ>/*.txt` | dla typów bez układu: model grafu z parsera (`Graph.Dump`) |
+| pliki wzorcowe modelu | `testdata/golden/<typ>/*.txt` | dla typów grafowych: model grafu z parsera (`Graph.Dump`), obok pliku SVG |
+| niezmienniki układu grafu | `internal/layered/layout_test.go` | cały korpus w czterech kierunkach: węzły nie nachodzą na siebie, ramki rozłączne albo zagnieżdżone, etykiety krawędzi nie kolidują, każda krawędź ma ścieżkę; cykle i pętle; graf na granicy limitów |
 | poprawność SVG | `TestCorpusValidSVG` | poprawny XML, przestrzeń nazw SVG, tylko dozwolone elementy i atrybuty, liczby w atrybutach geometrii |
 | treść | `TestCorpusLabelsPresent` | każdy tekst ze źródła jest w SVG; etykiety uczestników dwa razy (góra i dół) |
 | niezmienniki układu | `internal/sequence/layout_test.go` | teksty nie nachodzą na siebie; nagłówki uczestników nie kolidują ze sobą ani z etykietami |
@@ -41,19 +42,25 @@ Wynik z 2026-11-21, odniesienie: `mmdg` v0.13.0 (port mermaid 12.2.0), uruchomio
 
 Zgodne 10 z 10. Wyników renderera odniesienia nie przechowujemy w repozytorium.
 
-Schemat blokowy i diagram stanów (tylko parser; po naszej stronie teksty z modelu grafu), 2026-11-21, to samo odniesienie:
+Schemat blokowy i diagram stanów, 2026-11-21, to samo odniesienie. Od etapu 3 porównywane są **wyrazy** z krotnością
+(nie linie), bo renderery łamią długie etykiety w różnych miejscach:
 
 | Korpus | Pliki | Zgodne | Różnice |
 |---|---:|---:|---|
+| `sequence` | 10 | 10 | brak |
 | `flowchart` | 11 | 10 | `009-text`: tekst `<znaczniki>` odniesienie usuwa jako znacznik HTML, my zostawiamy (różnica świadoma, `profile.md`) |
 | `state` | 6 | 5 | `006-document-lifecycle`: ta sama różnica |
 
-Pierwsze porównanie wykazało jeszcze dwie różnice, które okazały się naszymi błędnymi założeniami i zostały poprawione:
-linia `%%` wewnątrz notatki wieloliniowej jest komentarzem (nie tekstem notatki), a `state Id` bez opisu nie jest rysowane
-przez odniesienie i nie ma go w dokumentacji (teraz błąd `state-unsupported`).
+Pierwsze porównanie parserów wykazało jeszcze dwie różnice, które okazały się naszymi błędnymi założeniami i zostały
+poprawione: linia `%%` wewnątrz notatki wieloliniowej jest komentarzem (nie tekstem notatki), a `state Id` bez opisu nie
+jest rysowane przez odniesienie i nie ma go w dokumentacji (teraz błąd `state-unsupported`).
 
 ## Przejście przez gopdfgo
 
 2026-11-21: cztery diagramy korpusu (aktywacje, bloki, bloki zagnieżdżone, numeracja), renderowane z fontem Noto Sans,
 osadzone w HTML i zamienione na PDF przez `gopdfgo` (webrender 0.1.0-dev): 4 strony, 25 kB, układ i polskie znaki
 zgodne z podglądem w przeglądarce. Próba ręczna; automatyczny test wymaga decyzji, po której stronie ma żyć.
+
+2026-11-21, grafy: sześć diagramów (proces z podgrafem, podgrafy zagnieżdżone, wszystkie kształty węzłów, wybór
+z rozwidleniem i złączeniem, stany złożone, cykl życia dokumentu w układzie poziomym), te same ustawienia: 4 strony,
+23 kB; krzywe (`path` z poleceniami M, L, C), elipsy walca, groty i etykiety zgodne z podglądem w przeglądarce.

@@ -36,8 +36,7 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 
 ## Schemat blokowy (`flowchart`, `graph`)
 
-Stan: parser i model grafu; rysunek powstanie z układem warstwowym (`docs/roadmap.md`). `Check` sprawdza składnię,
-`Render` zwraca `ErrLayoutPending`.
+Stan: rysowany układem warstwowym (`internal/layered`).
 
 ### Obsługiwane
 
@@ -53,6 +52,7 @@ Stan: parser i model grafu; rysunek powstanie z układem warstwowym (`docs/roadm
 | podgrafy | `subgraph id [tytuł]`, `subgraph id`, `subgraph tytuł ze spacjami` … `end`; `direction` w podgrafie; krawędź do podgrafu | FLOW-007 |
 | tekst | cudzysłów dla nawiasów i znaków specjalnych, `<br/>` | FLOW-008 |
 | średnik | rozdziela instrukcje, może kończyć linię | FLOW-009 |
+| rysunek | kształty, układ w czterech kierunkach, teksty z łamaniem | FLOW-012, FLOW-013 |
 
 ### Poza profilem (błąd `flowchart-unsupported`)
 
@@ -70,9 +70,20 @@ teksty Markdown w odwrotnych apostrofach, `flowchart-elk`.
 - kody encji (`#35;`) nie są rozwijane;
 - limity: 500 węzłów, 1000 krawędzi, 10 poziomów zagnieżdżenia.
 
+### Ograniczenia rysunku (wspólne ze stanami)
+
+- `direction` w podgrafie i w stanie złożonym jest przyjmowane, ale nie zmienia układu: wnętrze ma kierunek diagramu;
+- krawędź wskazująca podgraf kończy się na jego ramce; krawędź do węzła wewnątrz podgrafu wchodzi przez ramkę i może
+  przejść pod tytułem ramki albo przeciąć inne węzły tego podgrafu, jeśli węzeł docelowy nie leży przy wejściu;
+- krawędź niewidoczna (`~~~`) wpływa tylko na rozmieszczenie;
+- dwie krawędzie bez etykiet między tą samą parą sąsiednich węzłów pokrywają się;
+- notatka diagramu stanów jest polem w następnej warstwie, połączonym linią kropkowaną; strona (`left`, `right`)
+  nie wpływa na położenie;
+- etykiety szersze niż 200 px (150 px w rombie i kole) są łamane na granicach wyrazów.
+
 ## Diagram stanów (`stateDiagram-v2`, `stateDiagram`)
 
-Stan: parser i model grafu, jak wyżej.
+Stan: rysowany tym samym układem warstwowym.
 
 ### Obsługiwane
 
@@ -85,6 +96,7 @@ Stan: parser i model grafu, jak wyżej.
 | stan złożony | `state Id { … }`, `state "Opis" as Id { … }`, zagnieżdżone; przejście do stanu złożonego | STATE-005 |
 | wybór, rozwidlenie, złączenie | `state Id <<choice>>`, `<<fork>>`, `<<join>>` | STATE-006 |
 | notatka | `note right of Id : tekst`, `note left of Id` … `end note` | STATE-007 |
+| rysunek | kształty stanów, układ, teksty | STATE-010, STATE-011 |
 | kierunek | `direction LR` na poziomie diagramu albo stanu złożonego | STATE-008 |
 
 ### Poza profilem (błąd `state-unsupported`)

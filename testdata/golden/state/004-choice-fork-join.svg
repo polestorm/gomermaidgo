@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="498" height="618" viewBox="-11 -12 498 618" role="img" font-family="sans-serif" font-size="16">
+<path class="edge" d="M128 16 L128 40 L128 57.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M128 104 L128 128 L128 145.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M128 182 C128 194 57 194 57 206 L57 230 L57 247.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M128 182 C128 194 198 194 198 206 L198 230 L198 263.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M189 278 L189 318 L189 335.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M207 278 L207 318 C207 326.85 391 326.85 391 335.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M189 382 L189 406 C189 414.85 281 414.85 281 423.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M391 382 L391 406 C391 414.85 299 414.85 299 423.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M290 438 L290 462 C290 470.85 183 470.85 183 479.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M57 294 L57 318 L57 342 L57 382 L57 406 L57 430 L57 438 L57 462 C57 470.85 165 470.85 165 479.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M174 526 L174 550 L174 567.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="1" y="208" width="112" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="132.56" y="208" width="130.88" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="128,64 123,55 133,55" fill="#3b4754"/>
+<polygon class="arrowhead" points="128,152 123,143 133,143" fill="#3b4754"/>
+<polygon class="arrowhead" points="57,254 52,245 62,245" fill="#3b4754"/>
+<polygon class="arrowhead" points="198,270 193,261 203,261" fill="#3b4754"/>
+<polygon class="arrowhead" points="189,342 184,333 194,333" fill="#3b4754"/>
+<polygon class="arrowhead" points="391,342 386,333 396,333" fill="#3b4754"/>
+<polygon class="arrowhead" points="281,430 276,421 286,421" fill="#3b4754"/>
+<polygon class="arrowhead" points="299,430 294,421 304,421" fill="#3b4754"/>
+<polygon class="arrowhead" points="183,486 178,477 188,477" fill="#3b4754"/>
+<polygon class="arrowhead" points="165,486 160,477 170,477" fill="#3b4754"/>
+<polygon class="arrowhead" points="174,574 169,565 179,565" fill="#3b4754"/>
+<circle class="node" cx="128" cy="8" r="8" fill="#3b4754"/>
+<rect class="node" x="87.5" y="64" width="81" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="128,152 143,167 128,182 113,167" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="13.5" y="254" width="87" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="162" y="270" width="72" height="8" rx="2" fill="#3b4754"/>
+<rect class="node" x="107" y="342" width="164" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="307" y="342" width="168" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="254" y="430" width="72" height="8" rx="2" fill="#3b4754"/>
+<rect class="node" x="112.5" y="486" width="123" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="174" cy="584" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="174" cy="584" r="6" fill="#3b4754"/>
+<text class="node-label" x="128" y="89.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
+<text class="node-label" x="57" y="279.6" text-anchor="middle" fill="#1b1f24">Drobna</text>
+<text class="node-label" x="189" y="367.6" text-anchor="middle" fill="#1b1f24">AnalizaPrzyczyn</text>
+<text class="node-label" x="391" y="367.6" text-anchor="middle" fill="#1b1f24">DziałaniaDoraźne</text>
+<text class="node-label" x="174" y="511.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
+<text class="edge-label" x="57" y="223.6" text-anchor="middle" fill="#1b1f24">ryzyko niskie</text>
+<text class="edge-label" x="198" y="223.6" text-anchor="middle" fill="#1b1f24">ryzyko wysokie</text>
+</svg>

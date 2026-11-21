@@ -14,6 +14,8 @@ import (
 
 	"github.com/polestorm/gomermaidgo/internal/flowchart"
 	"github.com/polestorm/gomermaidgo/internal/font"
+	"github.com/polestorm/gomermaidgo/internal/graph"
+	"github.com/polestorm/gomermaidgo/internal/layered"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
 	"github.com/polestorm/gomermaidgo/internal/syntax"
@@ -25,10 +27,6 @@ type SyntaxError = syntax.Error
 // ErrUnsupportedType oznacza typ diagramu spoza obsługiwanego zakresu.
 var ErrUnsupportedType = errors.New("gomermaidgo: unsupported diagram type")
 
-// ErrLayoutPending oznacza typ, którego składnia jest już sprawdzana (Check), ale rysunek
-// jeszcze nie powstaje. Spełnia errors.Is(err, ErrUnsupportedType).
-var ErrLayoutPending = fmt.Errorf("%w: syntax is checked, layout is not implemented yet", ErrUnsupportedType)
-
 // Typy diagramów.
 const (
 	TypeSequence  = "sequenceDiagram"
@@ -36,11 +34,8 @@ const (
 	TypeState     = "stateDiagram"
 )
 
-// SupportedTypes zwraca typy diagramów, które Render zamienia na SVG.
-func SupportedTypes() []string { return []string{TypeSequence} }
-
-// CheckableTypes zwraca typy diagramów, których składnię sprawdza Check.
-func CheckableTypes() []string { return []string{TypeSequence, TypeFlowchart, TypeState} }
+// SupportedTypes zwraca obsługiwane typy diagramów.
+func SupportedTypes() []string { return []string{TypeSequence, TypeFlowchart, TypeState} }
 
 type config struct {
 	fontData   []byte
@@ -166,11 +161,17 @@ func Render(source string, opts ...Option) ([]byte, error) {
 		return nil, err
 	}
 	if kind != TypeSequence {
-		// Błąd składni jest ważniejszy niż brak układu: autor ma go zobaczyć już teraz.
-		if err := Check(source); err != nil {
+		var g *graph.Graph
+		if kind == TypeFlowchart {
+			g, err = flowchart.Parse(source)
+		} else {
+			g, err = state.Parse(source)
+		}
+		if err != nil {
 			return nil, err
 		}
-		return nil, ErrLayoutPending
+		sc := layered.Layout(g, layered.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background})
+		return sc.SVG(), nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {

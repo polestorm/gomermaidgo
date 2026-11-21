@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="409.5" height="410" viewBox="-12 -12 409.5 410" role="img" font-family="sans-serif" font-size="16">
+<path class="edge" d="M136 40 L136 81.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M136 210 C136 230.85 83 230.85 83 251.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M136 210 C136 234 188 234 188 258 L188 298 C188 318.85 162 318.85 162 339.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M83 298 C83 318.85 144 318.85 144 339.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="136,88 131,79 141,79" fill="#3b4754"/>
+<polygon class="arrowhead" points="83,258 78,249 88,249" fill="#3b4754"/>
+<polygon class="arrowhead" points="162,346 157,337 167,337" fill="#3b4754"/>
+<polygon class="arrowhead" points="144,346 139,337 149,337" fill="#3b4754"/>
+<rect class="node" x="23.5" y="0" width="225" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="284.5" y="0" width="101" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="136,88 229,149 136,210 43,149" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="258" width="166" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="91.5" y="346" width="123" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="136" y="25.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie niezgodności</text>
+<text class="node-label" x="335" y="25.6" text-anchor="middle" fill="#1b1f24">Samotny</text>
+<text class="node-label" x="136" y="144.6" text-anchor="middle" fill="#1b1f24">Czy wymaga</text>
+<text class="node-label" x="136" y="164.6" text-anchor="middle" fill="#1b1f24">działań?</text>
+<text class="node-label" x="83" y="283.6" text-anchor="middle" fill="#1b1f24">Analiza przyczyn</text>
+<text class="node-label" x="153" y="371.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
+</svg>

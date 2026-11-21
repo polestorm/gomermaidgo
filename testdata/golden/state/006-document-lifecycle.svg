@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1693.88" height="104" viewBox="-12 -12 1693.88 104" role="img" font-family="sans-serif" font-size="16">
+<path class="edge" d="M16 40 L40 40 L57.7 40" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 34 C175 34 175 19 187 19 L382.28 19 C391.13 19 391.13 34 399.98 34" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M169.3 46 C178.15 46 178.15 61 187 61 L382.28 61 C394.28 61 394.28 46 406.28 46" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M557.28 40 L581.28 40 L669.04 40 L686.74 40" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M833.04 40 L857.04 40 L1032.8 40 L1050.5 40" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1245.8 40 L1269.8 40 L1469.88 40 L1487.58 40" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1601.88 40 L1625.88 40 L1643.58 40" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="188" y="9" width="193.28" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="211.68" y="51" width="145.92" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="582.28" y="30" width="85.76" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="858.04" y="30" width="173.76" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="1270.8" y="30" width="198.08" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="64,40 55,35 55,45" fill="#3b4754"/>
+<polygon class="arrowhead" points="406.28,34 397.28,29 397.28,39" fill="#3b4754"/>
+<polygon class="arrowhead" points="163,46 172,51 172,41" fill="#3b4754"/>
+<polygon class="arrowhead" points="693.04,40 684.04,35 684.04,45" fill="#3b4754"/>
+<polygon class="arrowhead" points="1056.8,40 1047.8,35 1047.8,45" fill="#3b4754"/>
+<polygon class="arrowhead" points="1493.88,40 1484.88,35 1484.88,45" fill="#3b4754"/>
+<polygon class="arrowhead" points="1649.88,40 1640.88,35 1640.88,45" fill="#3b4754"/>
+<circle class="node" cx="8" cy="40" r="8" fill="#3b4754"/>
+<rect class="node" x="64" y="20" width="99" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="406.28" y="20" width="151" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="693.04" y="20" width="140" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1056.8" y="0" width="189" height="80" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1493.88" y="20" width="108" height="40" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="1659.88" cy="40" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="1659.88" cy="40" r="6" fill="#3b4754"/>
+<text class="node-label" x="113.5" y="45.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>
+<text class="node-label" x="481.78" y="45.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
+<text class="node-label" x="763.04" y="45.6" text-anchor="middle" fill="#1b1f24">Zatwierdzony</text>
+<text class="node-label" x="1151.3" y="25.6" text-anchor="middle" fill="#1b1f24">Zażółć gęślą jaźń —</text>
+<text class="node-label" x="1151.3" y="45.6" text-anchor="middle" fill="#1b1f24">„cudzysłów” &amp;</text>
+<text class="node-label" x="1151.3" y="65.6" text-anchor="middle" fill="#1b1f24">&lt;znaczniki&gt;</text>
+<text class="node-label" x="1547.88" y="45.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
+<text class="edge-label" x="284.64" y="24.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
+<text class="edge-label" x="284.64" y="66.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
+<text class="edge-label" x="625.16" y="45.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
+<text class="edge-label" x="944.92" y="45.6" text-anchor="middle" fill="#1b1f24">data wejścia w życie</text>
+<text class="edge-label" x="1369.84" y="45.6" text-anchor="middle" fill="#1b1f24">zastąpiony nową wersją</text>
+</svg>

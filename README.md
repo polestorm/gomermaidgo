@@ -14,11 +14,12 @@ svg, err := gomermaidgo.Render(source,
 go run ./cmd/gomermaidgo -font NotoSans-Regular.ttf -family "Noto Sans" -o diagram.svg diagram.mmd
 ```
 
-Status: early. `sequenceDiagram` is rendered. `flowchart`/`graph` and `stateDiagram-v2` are parsed and validated
-(`Check`), but not drawn yet: `Render` returns `ErrLayoutPending` until the layered layout exists (see `docs/roadmap.md`). A construct outside the supported profile (`docs/profile.md`) is an error with a line number,
+Status: early. Supported diagram types: `sequenceDiagram`, `flowchart`/`graph` and `stateDiagram-v2`. Graphs use a
+layered layout written from the published algorithms; its current limits are listed in `docs/profile.md`. A construct outside the supported profile (`docs/profile.md`) is an error with a line number,
 never a partial drawing.
 
-The output uses only basic SVG 1.1 elements (`rect`, `line`, `polyline`, `polygon`, `circle`, `text`) with presentation
+The output uses only basic SVG 1.1 elements (`rect`, `line`, `polyline`, `polygon`, `circle`, `ellipse`, `text` and
+`path` restricted to M, L and C commands) with presentation
 attributes: no `foreignObject`, no style sheets, no scripts, no links, no ids.
 
 Documentation (in Polish): `docs/profile.md` (supported syntax), `docs/provenance.md` (sources and clean-room rules),

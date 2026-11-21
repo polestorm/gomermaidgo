@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="293.56" height="644" viewBox="-10.52 -12 293.56 644" role="img" font-family="sans-serif" font-size="16">
+<path class="edge" d="M135 40 C135 52 115 52 115 64 L115 88 L115 105.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M151 40 C151 52 171 52 171 64 L171 88 C171 96.85 199 96.85 199 105.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M115 152 L115 176 L115 200 C115 208.85 150 208.85 150 217.7" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M199 152 C199 164 201 164 201 176 L201 200 C201 208.85 166 208.85 166 217.7" fill="none" stroke="#3b4754" stroke-width="3"/>
+<path class="edge" d="M150 264 C150 276 101 276 101 288 L101 312 L101 336" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M166 264 C166 276 216 276 216 288 L216 312 L216 336" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M101 376 L101 400 L101 444 C101 452.85 164 452.85 164 461.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M216 376 C216 388 243 388 243 400 L243 444 C243 452.85 180 452.85 180 461.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M164 508 C164 520 132 520 132 532 L132 556 L132 570" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M180 508 C180 520 212 520 212 532 L212 556 C212 568 216 568 216 580" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="95.96" y="66" width="38.08" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="154.2" y="66" width="33.6" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="89.88" y="178" width="50.24" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="159.56" y="178" width="82.88" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="60.68" y="290" width="80.64" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="160.96" y="290" width="110.08" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="1.48" y="402" width="199.04" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="220.12" y="402" width="45.76" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="107.04" y="534" width="49.92" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="177.12" y="534" width="69.76" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="115,112 110,103 120,103" fill="#3b4754"/>
+<polygon class="arrowhead" points="199,112 194,103 204,103" fill="#3b4754"/>
+<polygon class="arrowhead" points="150,224 145,215 155,215" fill="#3b4754"/>
+<polygon class="arrowhead" points="166,224 161,215 171,215" fill="#3b4754"/>
+<polygon class="arrowhead" points="164,468 159,459 169,459" fill="#3b4754"/>
+<polygon class="arrowhead" points="180,468 175,459 185,459" fill="#3b4754"/>
+<circle class="arrowhead" cx="132" cy="575" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="221" y1="579" x2="211" y2="569" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="211" y1="579" x2="221" y2="569" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="node" x="119" y="0" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="91" y="112" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="175" y="112" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="134" y="224" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="77" y="336" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="192" y="336" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="148" y="468" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="108" y="580" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="192" y="580" width="48" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="143" y="25.6" text-anchor="middle" fill="#1b1f24">A</text>
+<text class="node-label" x="115" y="137.6" text-anchor="middle" fill="#1b1f24">B</text>
+<text class="node-label" x="199" y="137.6" text-anchor="middle" fill="#1b1f24">C</text>
+<text class="node-label" x="158" y="249.6" text-anchor="middle" fill="#1b1f24">D</text>
+<text class="node-label" x="101" y="361.6" text-anchor="middle" fill="#1b1f24">E</text>
+<text class="node-label" x="216" y="361.6" text-anchor="middle" fill="#1b1f24">F</text>
+<text class="node-label" x="172" y="493.6" text-anchor="middle" fill="#1b1f24">G</text>
+<text class="node-label" x="132" y="605.6" text-anchor="middle" fill="#1b1f24">H</text>
+<text class="node-label" x="216" y="605.6" text-anchor="middle" fill="#1b1f24">I</text>
+<text class="edge-label" x="115" y="81.6" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="171" y="81.6" text-anchor="middle" fill="#1b1f24">Nie</text>
+<text class="edge-label" x="115" y="193.6" text-anchor="middle" fill="#1b1f24">może</text>
+<text class="edge-label" x="201" y="193.6" text-anchor="middle" fill="#1b1f24">na pewno</text>
+<text class="edge-label" x="101" y="305.6" text-anchor="middle" fill="#1b1f24">bez grotu</text>
+<text class="edge-label" x="216" y="305.6" text-anchor="middle" fill="#1b1f24">też bez grotu</text>
+<text class="edge-label" x="101" y="417.6" text-anchor="middle" fill="#1b1f24">Etykieta z (nawiasami) i</text>
+<text class="edge-label" x="101" y="437.6" text-anchor="middle" fill="#1b1f24">| kreską</text>
+<text class="edge-label" x="243" y="417.6" text-anchor="middle" fill="#1b1f24">dwie</text>
+<text class="edge-label" x="243" y="437.6" text-anchor="middle" fill="#1b1f24">linie</text>
+<text class="edge-label" x="132" y="549.6" text-anchor="middle" fill="#1b1f24">kółko</text>
+<text class="edge-label" x="212" y="549.6" text-anchor="middle" fill="#1b1f24">krzyżyk</text>
+</svg>

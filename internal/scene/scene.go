@@ -20,7 +20,17 @@ const (
 	Polygon
 	Circle
 	Text
+	Ellipse
+	Path
 )
+
+// Segment to odcinek ścieżki: przesunięcie (M), linia (L) albo krzywa Béziera trzeciego stopnia (C).
+// Dla M i L liczy się tylko To; dla C także punkty kontrolne C1 i C2.
+type Segment struct {
+	Cmd    byte
+	C1, C2 Point
+	To     Point
+}
 
 // Warstwy rysowania, od spodu.
 const (
@@ -38,7 +48,7 @@ type Point struct{ X, Y float64 }
 
 // Item to jeden kształt. Znaczenie pól zależy od Kind:
 // Rect: X, Y, W, H, RX; Line: X, Y, X2, Y2; Polyline i Polygon: Points;
-// Circle: X, Y (środek), R; Text: X, Y (punkt zaczepienia na linii bazowej), W, H (zmierzone pole).
+// Circle: X, Y (środek), R; Ellipse: X, Y (środek), W, H (średnice); Path: Segments; Text: X, Y (punkt zaczepienia na linii bazowej), W, H (zmierzone pole).
 type Item struct {
 	Kind        Kind
 	Layer       int
@@ -47,6 +57,7 @@ type Item struct {
 	X2, Y2      float64
 	R, RX       float64
 	Points      []Point
+	Segments    []Segment
 	Text        string
 	Anchor      string // "start", "middle", "end"
 	FontSize    float64
@@ -86,6 +97,23 @@ func (it Item) Bounds() Box {
 		return Box{math.Min(it.X, it.X2), math.Min(it.Y, it.Y2), math.Max(it.X, it.X2), math.Max(it.Y, it.Y2)}
 	case Circle:
 		return Box{it.X - it.R, it.Y - it.R, it.X + it.R, it.Y + it.R}
+	case Ellipse:
+		return Box{it.X - it.W/2, it.Y - it.H/2, it.X + it.W/2, it.Y + it.H/2}
+	case Path:
+		// Punkty kontrolne otaczają krzywą, więc pole jest co najwyżej nieco za duże.
+		b := Box{math.Inf(1), math.Inf(1), math.Inf(-1), math.Inf(-1)}
+		grow := func(p Point) {
+			b.X0, b.Y0 = math.Min(b.X0, p.X), math.Min(b.Y0, p.Y)
+			b.X1, b.Y1 = math.Max(b.X1, p.X), math.Max(b.Y1, p.Y)
+		}
+		for _, sg := range it.Segments {
+			if sg.Cmd == 'C' {
+				grow(sg.C1)
+				grow(sg.C2)
+			}
+			grow(sg.To)
+		}
+		return b
 	case Text:
 		x0 := it.X
 		switch it.Anchor {
@@ -163,6 +191,29 @@ func (it Item) paint(b *strings.Builder) {
 		attr(b, "stroke-width", num(w))
 		attr(b, "stroke-dasharray", it.Dash)
 	}
+}
+
+func pathData(segments []Segment) string {
+	var b strings.Builder
+	pt := func(p Point) {
+		b.WriteString(num(p.X))
+		b.WriteByte(' ')
+		b.WriteString(num(p.Y))
+	}
+	for i, sg := range segments {
+		if i > 0 {
+			b.WriteByte(' ')
+		}
+		b.WriteByte(sg.Cmd)
+		if sg.Cmd == 'C' {
+			pt(sg.C1)
+			b.WriteByte(' ')
+			pt(sg.C2)
+			b.WriteByte(' ')
+		}
+		pt(sg.To)
+	}
+	return b.String()
 }
 
 func points(ps []Point) string {
@@ -251,6 +302,21 @@ func (s *Scene) SVG() []byte {
 			attr(&b, "cx", num(it.X))
 			attr(&b, "cy", num(it.Y))
 			attr(&b, "r", num(it.R))
+			it.paint(&b)
+			b.WriteString("/>\n")
+		case Ellipse:
+			b.WriteString("<ellipse")
+			attr(&b, "class", it.Role)
+			attr(&b, "cx", num(it.X))
+			attr(&b, "cy", num(it.Y))
+			attr(&b, "rx", num(it.W/2))
+			attr(&b, "ry", num(it.H/2))
+			it.paint(&b)
+			b.WriteString("/>\n")
+		case Path:
+			b.WriteString("<path")
+			attr(&b, "class", it.Role)
+			attr(&b, "d", pathData(it.Segments))
 			it.paint(&b)
 			b.WriteString("/>\n")
 		case Text:

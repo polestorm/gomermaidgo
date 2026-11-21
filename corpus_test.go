@@ -20,8 +20,8 @@ import (
 
 var update = flag.Bool("update", false, "rewrite golden SVG files")
 
-// corpusFiles zwraca pliki korpusu typów, które Render już rysuje.
-func corpusFiles(t *testing.T) []string {
+// sequenceFiles zwraca pliki korpusu diagramów sekwencji.
+func sequenceFiles(t *testing.T) []string {
 	t.Helper()
 	files, err := filepath.Glob("testdata/corpus/sequence/*.mmd")
 	if err != nil || len(files) == 0 {
@@ -30,7 +30,17 @@ func corpusFiles(t *testing.T) []string {
 	return files
 }
 
-// graphCorpusFiles zwraca pliki korpusu typów grafowych (na razie tylko parser).
+// corpusFiles zwraca wszystkie pliki korpusu.
+func corpusFiles(t *testing.T) []string {
+	t.Helper()
+	files, err := filepath.Glob("testdata/corpus/*/*.mmd")
+	if err != nil || len(files) == 0 {
+		t.Fatalf("no corpus files: %v", err)
+	}
+	return files
+}
+
+// graphCorpusFiles zwraca pliki korpusu typów grafowych.
 func graphCorpusFiles(t *testing.T) []string {
 	t.Helper()
 	var files []string
@@ -83,26 +93,6 @@ func TestGraphCorpusGolden(t *testing.T) {
 		if got != string(want) {
 			t.Errorf("%s: model differs from %s\n--- got\n%s", f, golden, got)
 		}
-	}
-}
-
-// REQ: FLOW-001 STATE-001
-// Dopóki nie ma układu, Render sprawdza składnię i zgłasza brak układu, a Check przechodzi.
-func TestGraphTypesAreCheckedButNotRendered(t *testing.T) {
-	for _, f := range graphCorpusFiles(t) {
-		src := readFile(t, f)
-		if err := Check(src); err != nil {
-			t.Errorf("%s: Check: %v", f, err)
-		}
-		if _, err := Render(src); !errors.Is(err, ErrLayoutPending) || !errors.Is(err, ErrUnsupportedType) {
-			t.Errorf("%s: Render: got %v, want ErrLayoutPending", f, err)
-		}
-	}
-	// Błąd składni ma pierwszeństwo przed brakiem układu.
-	_, err := Render("flowchart TD\n A --> \n")
-	var se *SyntaxError
-	if !errors.As(err, &se) || se.Line != 2 {
-		t.Errorf("syntax error should win, got %v", err)
 	}
 }
 
@@ -175,8 +165,13 @@ var allowedSVG = map[string][]string{
 	"polyline": {"class", "points", "fill", "stroke", "stroke-width", "stroke-dasharray"},
 	"polygon":  {"class", "points", "fill", "stroke", "stroke-width", "stroke-dasharray"},
 	"circle":   {"class", "cx", "cy", "r", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
+	"ellipse":  {"class", "cx", "cy", "rx", "ry", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
+	"path":     {"class", "d", "fill", "stroke", "stroke-width", "stroke-dasharray"},
 	"text":     {"class", "x", "y", "text-anchor", "font-size", "fill"},
 }
+
+// pathData dopuszcza tylko polecenia M, L, C z liczbami: bez łuków i poleceń względnych.
+var pathSyntax = regexp.MustCompile(`^M-?\d+(\.\d+)? -?\d+(\.\d+)?( [LC]-?\d+(\.\d+)?( -?\d+(\.\d+)?)+)+$`)
 
 var numberList = regexp.MustCompile(`^-?\d+(\.\d+)?([ ,]-?\d+(\.\d+)?)*$`)
 
@@ -215,8 +210,11 @@ func checkSVG(t *testing.T, name string, svg []byte) (texts []string) {
 				if !found {
 					t.Errorf("%s: attribute %s on <%s> is not allowed", name, a.Name.Local, el.Name.Local)
 				}
+				if a.Name.Local == "d" && !pathSyntax.MatchString(a.Value) {
+					t.Errorf("%s: path data %q uses more than M, L, C with numbers", name, a.Value)
+				}
 				switch a.Name.Local {
-				case "x", "y", "width", "height", "x1", "y1", "x2", "y2", "cx", "cy", "r", "rx", "points", "viewBox", "stroke-width", "fill-opacity", "font-size", "stroke-dasharray":
+				case "rx", "ry", "x", "y", "width", "height", "x1", "y1", "x2", "y2", "cx", "cy", "r", "points", "viewBox", "stroke-width", "fill-opacity", "font-size", "stroke-dasharray":
 					if !numberList.MatchString(a.Value) {
 						t.Errorf("%s: attribute %s=%q is not a plain number list", name, a.Name.Local, a.Value)
 					}
@@ -257,7 +255,7 @@ func TestCorpusValidSVG(t *testing.T) {
 // REQ: SEQ-002 SEQ-003 SEQ-004 SEQ-006 SEQ-010
 // Każdy tekst ze źródła (etykiety uczestników, komunikatów, notatek, tytuły bloków) jest w SVG.
 func TestCorpusLabelsPresent(t *testing.T) {
-	for _, f := range corpusFiles(t) {
+	for _, f := range sequenceFiles(t) {
 		src := readFile(t, f)
 		d, err := sequence.Parse(src)
 		if err != nil {
@@ -300,6 +298,39 @@ func TestCorpusLabelsPresent(t *testing.T) {
 				if e.Kind == sequence.EventBlockStart && e.Block != "rect" {
 					need(e.Block)
 				}
+			}
+		}
+	}
+}
+
+// REQ: FLOW-012 STATE-010
+// Każdy wyraz z modelu grafu jest na rysunku tyle samo razy (etykiety bywają łamane na linie).
+func TestGraphCorpusWordsPresent(t *testing.T) {
+	for _, f := range graphCorpusFiles(t) {
+		svg, err := Render(readFile(t, f))
+		if err != nil {
+			t.Fatalf("%s: %v", f, err)
+		}
+		have := map[string]int{}
+		for _, s := range checkSVG(t, f, svg) {
+			for _, w := range strings.Fields(s) {
+				have[w]++
+			}
+		}
+		want := map[string]int{}
+		for _, s := range parseGraph(t, f).Texts() {
+			for _, w := range strings.Fields(s) {
+				want[w]++
+			}
+		}
+		for w, n := range want {
+			if have[w] != n {
+				t.Errorf("%s: word %q appears %d times in the SVG, want %d", f, w, have[w], n)
+			}
+		}
+		for w, n := range have {
+			if want[w] == 0 {
+				t.Errorf("%s: word %q (%d times) is in the SVG but not in the source", f, w, n)
 			}
 		}
 	}
@@ -357,7 +388,7 @@ func TestRequirementsCovered(t *testing.T) {
 // REQ: SEQ-011
 func TestUnsupportedType(t *testing.T) {
 	for _, src := range []string{"pie\n \"a\": 1", "gantt\n title x", "erDiagram\n A ||--o{ B : x", "flowchart-elk TD\n A-->B"} {
-		if _, err := Render(src); !errors.Is(err, ErrUnsupportedType) || errors.Is(err, ErrLayoutPending) {
+		if _, err := Render(src); !errors.Is(err, ErrUnsupportedType) {
 			t.Errorf("%q: want unsupported type error, got %v", src, err)
 		}
 	}
@@ -392,7 +423,7 @@ func FuzzRender(f *testing.F) {
 		checkErr := Check(src)
 		svg, err := Render(src)
 		if err != nil {
-			if checkErr == nil && !errors.Is(err, ErrLayoutPending) {
+			if checkErr == nil {
 				t.Fatalf("Check accepted a source that Render rejects: %v\nsource: %q", err, src)
 			}
 			return

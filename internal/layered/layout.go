@@ -1,0 +1,812 @@
+// Package layered rozmieszcza graf metodą warstwową i tworzy scenę.
+//
+// Kroki pochodzą z publikacji o rysowaniu grafów skierowanych (Sugiyama, Tagawa, Toda 1981;
+// Gansner, Koutsofios, North, Vo 1993): usunięcie cykli, podział na warstwy, węzły pomocnicze
+// na długich krawędziach, redukcja przecięć metodą barycentryczną z zamianą sąsiadów,
+// rozmieszczenie w warstwie przez iteracyjne dociąganie do sąsiadów. Podgrafy są rozmieszczane
+// rekurencyjnie: wnętrze podgrafu jest osobnym układem, a w układzie rodzica jednym polem.
+//
+// Układ liczy w osiach umownych: x to oś kolejności w warstwie, y to oś warstw. Kierunek
+// diagramu (TB, BT, LR, RL) jest nakładany dopiero przy rysowaniu.
+package layered
+
+import (
+	"math"
+	"sort"
+	"strings"
+
+	"github.com/polestorm/gomermaidgo/internal/graph"
+	"github.com/polestorm/gomermaidgo/internal/scene"
+)
+
+// Options to ustawienia układu.
+type Options struct {
+	Measure    func(text string, size float64) float64
+	FontSize   float64
+	FontFamily string
+	Background string
+}
+
+type itemKind int
+
+const (
+	kindNode itemKind = iota
+	kindCluster
+	kindDummy
+	kindLabel
+)
+
+// item to pole w układzie jednego poziomu: węzeł, podgraf, punkt pomocniczy albo etykieta krawędzi.
+type item struct {
+	kind  itemKind
+	node  *graph.Node
+	child *level   // dla podgrafu
+	text  []string // linie etykiety (węzła albo krawędzi)
+
+	w, h      float64 // rozmiar w osiach umownych
+	loopExtra float64 // miejsce po stronie +x na pętle własne
+	band      float64 // wysokość warstwy, w której leży pole
+
+	rank, order int
+	x, y        float64
+	up, down    []*item
+}
+
+// nodeX to środek samego kształtu (bez miejsca na pętle).
+func (it *item) nodeX() float64 { return it.x - it.loopExtra/2 }
+
+// nodeW to szerokość samego kształtu.
+func (it *item) nodeW() float64 { return it.w - it.loopExtra }
+
+func (it *item) real() bool { return it.kind == kindNode || it.kind == kindCluster }
+
+// ledge to krawędź na poziomie, na którym spotykają się jej końce.
+type ledge struct {
+	e     *graph.Edge
+	u, v  *item // górny i dolny koniec w układzie (po odwróceniu krawędzi wstecznych)
+	rev   bool
+	chain []*item
+	label *item
+
+	// Przesunięcia punktów zaczepienia wzdłuż krawędzi pola: górnego końca i dolnego.
+	upperPort, lowerPort float64
+}
+
+// level to układ jednego zakresu: całego diagramu albo wnętrza podgrafu.
+type level struct {
+	sub    *graph.Subgraph
+	items  []*item
+	edges  []*ledge
+	loops  map[*item][]*graph.Edge
+	ranks  [][]*item
+	factor int
+
+	w, h             float64 // rozmiar z marginesami
+	padX0, padY0     float64
+	offsetX, offsetY float64 // położenie początku poziomu w osiach umownych diagramu
+	titleLines       []string
+}
+
+type layouter struct {
+	g  *graph.Graph
+	o  Options
+	sc *scene.Scene
+
+	fs, lh   float64
+	vertical bool // TB albo BT: oś warstw jest pionowa
+	flip     bool // BT albo RL: oś warstw odwrócona
+
+	levels map[string]*level
+	itemOf map[string]*item // węzeł albo podgraf → jego pole na poziomie rodzica
+}
+
+func (l *layouter) u(v float64) float64 { return math.Round(v * l.fs / 16) }
+
+func (l *layouter) width(s string) float64 { return l.o.Measure(s, l.fs) }
+
+// wrap łamie linie szersze niż limit na granicach wyrazów.
+func (l *layouter) wrap(lines []string, limit float64) []string {
+	var out []string
+	for _, line := range lines {
+		if l.width(line) <= limit {
+			out = append(out, line)
+			continue
+		}
+		current := ""
+		for _, word := range strings.Fields(line) {
+			candidate := word
+			if current != "" {
+				candidate = current + " " + word
+			}
+			if current != "" && l.width(candidate) > limit {
+				out = append(out, current)
+				current = word
+			} else {
+				current = candidate
+			}
+		}
+		if current != "" {
+			out = append(out, current)
+		}
+	}
+	return out
+}
+
+func (l *layouter) textSize(lines []string) (w, h float64) {
+	for _, s := range lines {
+		w = math.Max(w, l.width(s))
+	}
+	return w, float64(len(lines)) * l.lh
+}
+
+// abstract zamienia rozmiar rzeczywisty (szerokość, wysokość) na osie umowne.
+func (l *layouter) abstract(w, h float64) (float64, float64) {
+	if l.vertical {
+		return w, h
+	}
+	return h, w
+}
+
+// point zamienia punkt z osi umownych na współrzędne rysunku.
+func (l *layouter) point(x, y float64) scene.Point {
+	if l.flip {
+		y = -y
+	}
+	if l.vertical {
+		return scene.Point{X: x, Y: y}
+	}
+	return scene.Point{X: y, Y: x}
+}
+
+// Layout rozmieszcza graf i zwraca scenę.
+func Layout(g *graph.Graph, o Options) *scene.Scene {
+	if o.FontSize <= 0 {
+		o.FontSize = 16
+	}
+	l := &layouter{g: g, o: o, fs: o.FontSize, levels: map[string]*level{}, itemOf: map[string]*item{}}
+	l.lh = math.Round(l.fs * 1.25)
+	l.vertical = g.Direction == graph.TopBottom || g.Direction == graph.BottomTop
+	l.flip = g.Direction == graph.BottomTop || g.Direction == graph.RightLeft
+	l.sc = &scene.Scene{FontFamily: o.FontFamily, FontSize: l.fs, Margin: l.u(12), Background: o.Background}
+
+	l.build()
+	l.assignEdges()
+	l.layoutLevel(l.levels[""])
+	l.place(l.levels[""], 0, 0)
+	l.draw()
+	return l.sc
+}
+
+// build tworzy poziomy i pola węzłów; noty diagramu stanów stają się węzłami z krawędzią do celu.
+func (l *layouter) build() {
+	l.levels[""] = &level{loops: map[*item][]*graph.Edge{}}
+	for _, s := range l.g.Subgraphs {
+		l.levels[s.ID] = &level{sub: s, loops: map[*item][]*graph.Edge{}, titleLines: l.wrap(s.Title, l.u(260))}
+	}
+	type entry struct {
+		line  int
+		order int
+		it    *item
+		scope string
+	}
+	var entries []entry
+	for i, s := range l.g.Subgraphs {
+		it := &item{kind: kindCluster, child: l.levels[s.ID]}
+		l.itemOf[s.ID] = it
+		entries = append(entries, entry{s.Line, i, it, s.Parent})
+	}
+	for i, n := range l.g.Nodes {
+		it := &item{kind: kindNode, node: n}
+		it.text = l.wrap(n.Label, l.wrapLimit(n.Shape))
+		it.w, it.h = l.abstract(l.nodeSize(n.Shape, it.text))
+		l.itemOf[n.ID] = it
+		entries = append(entries, entry{n.Line, len(l.g.Subgraphs) + i, it, n.Parent})
+	}
+	sort.SliceStable(entries, func(a, b int) bool {
+		if entries[a].line != entries[b].line {
+			return entries[a].line < entries[b].line
+		}
+		return entries[a].order < entries[b].order
+	})
+	for _, e := range entries {
+		lv := l.levels[e.scope]
+		lv.items = append(lv.items, e.it)
+	}
+}
+
+// scopeOf zwraca zakres, w którym leży pole węzła albo podgrafu.
+func (l *layouter) scopeOf(id string) string {
+	if n := l.g.Node(id); n != nil {
+		return n.Parent
+	}
+	return l.g.Subgraph(id).Parent
+}
+
+// assignEdges przypisuje każdą krawędź do najgłębszego poziomu wspólnego dla obu końców
+// i podnosi końce do pól tego poziomu.
+func (l *layouter) assignEdges() {
+	chain := func(id string) []string {
+		var scopes []string
+		for s := l.scopeOf(id); ; s = l.g.Subgraph(s).Parent {
+			scopes = append(scopes, s)
+			if s == "" {
+				return scopes
+			}
+		}
+	}
+	lift := func(id, scope string) *item {
+		for l.scopeOf(id) != scope {
+			id = l.scopeOf(id)
+		}
+		return l.itemOf[id]
+	}
+	add := func(e *graph.Edge) {
+		if e.From == e.To {
+			lv := l.levels[l.scopeOf(e.From)]
+			it := l.itemOf[e.From]
+			lv.loops[it] = append(lv.loops[it], e)
+			return
+		}
+		a, b := chain(e.From), chain(e.To)
+		in := map[string]bool{}
+		for _, s := range b {
+			in[s] = true
+		}
+		scope := ""
+		for _, s := range a {
+			if in[s] {
+				scope = s
+				break
+			}
+		}
+		lv := l.levels[scope]
+		le := &ledge{e: e, u: lift(e.From, scope), v: lift(e.To, scope)}
+		if le.u == le.v {
+			return // nie występuje po kontroli spójności grafu; krawędź bez rysunku
+		}
+		lv.edges = append(lv.edges, le)
+	}
+	for _, e := range l.g.Edges {
+		add(e)
+	}
+	for _, n := range l.g.Notes {
+		id := "[note]" + n.Target + "#" + n.Side
+		for l.itemOf[id] != nil {
+			id += "'"
+		}
+		scope := l.scopeOf(n.Target)
+		it := &item{kind: kindNode, node: &graph.Node{ID: id, Shape: "note", Parent: scope}}
+		it.text = l.wrap(n.Text, l.u(200))
+		it.w, it.h = l.abstract(l.nodeSize("note", it.text))
+		l.itemOf[id] = it
+		lv := l.levels[scope]
+		lv.items = append(lv.items, it)
+		lv.edges = append(lv.edges, &ledge{u: l.itemOf[n.Target], v: it,
+			e: &graph.Edge{From: n.Target, To: id, Style: graph.Dotted, StartHead: graph.NoHead, EndHead: graph.NoHead, MinLen: 1}})
+	}
+}
+
+// layoutLevel rozmieszcza poziom po rozmieszczeniu jego podgrafów.
+func (l *layouter) layoutLevel(lv *level) {
+	for _, it := range lv.items {
+		if it.kind == kindCluster {
+			l.layoutLevel(it.child)
+			it.w, it.h = it.child.w, it.child.h
+		}
+		for _, e := range lv.loops[it] {
+			extra := l.u(40)
+			if len(e.Label) > 0 {
+				w, h := l.abstract(l.textSize(l.wrap(e.Label, l.u(200))))
+				_ = h
+				extra += w + l.u(8)
+			}
+			if extra > it.loopExtra {
+				it.w += extra - it.loopExtra
+				it.loopExtra = extra
+			}
+		}
+	}
+	l.rank(lv)
+	l.order(lv)
+	contentW, contentH := l.position(lv)
+
+	// Marginesy podgrafu: tytuł leży przy rzeczywistej górnej krawędzi ramki.
+	pad := l.u(16)
+	padX0, padX1, padY0, padY1 := pad, pad, pad, pad
+	if lv.sub != nil {
+		titleW, titleH := l.textSize(lv.titleLines)
+		top := titleH + l.u(10)
+		switch {
+		case l.vertical && !l.flip:
+			padY0 += top
+		case l.vertical:
+			padY1 += top
+		default:
+			padX0 += top
+		}
+		// Ramka musi pomieścić tytuł na szerokość rzeczywistą.
+		need := titleW + 2*l.u(12)
+		if l.vertical {
+			if extra := need - (contentW + padX0 + padX1); extra > 0 {
+				padX0, padX1 = padX0+extra/2, padX1+extra/2
+			}
+		} else if extra := need - (contentH + padY0 + padY1); extra > 0 {
+			padY0, padY1 = padY0+extra/2, padY1+extra/2
+		}
+	} else {
+		padX0, padX1, padY0, padY1 = 0, 0, 0, 0
+	}
+	lv.padX0, lv.padY0 = padX0, padY0
+	lv.w, lv.h = contentW+padX0+padX1, contentH+padY0+padY1
+}
+
+// rank usuwa cykle, dzieli pola na warstwy i wstawia punkty pomocnicze na długich krawędziach.
+func (l *layouter) rank(lv *level) {
+	lv.factor = 1
+	for _, e := range lv.edges {
+		if len(e.e.Label) > 0 {
+			lv.factor = 2 // warstwy pośrednie dają miejsce na etykiety krawędzi
+		}
+	}
+	index := map[*item]int{}
+	for i, it := range lv.items {
+		index[it] = i
+	}
+	out := make([][]*ledge, len(lv.items))
+	for _, e := range lv.edges {
+		out[index[e.u]] = append(out[index[e.u]], e)
+	}
+
+	// Usunięcie cykli: krawędź prowadząca do pola będącego na ścieżce przeszukiwania jest odwracana.
+	const white, gray, black = 0, 1, 2
+	color := make([]int, len(lv.items))
+	var visit func(i int)
+	visit = func(i int) {
+		color[i] = gray
+		for _, e := range out[i] {
+			switch j := index[e.v]; color[j] {
+			case white:
+				visit(j)
+			case gray:
+				e.rev = true
+			}
+		}
+		color[i] = black
+	}
+	for i := range lv.items {
+		if color[i] == white {
+			visit(i)
+		}
+	}
+	for _, e := range lv.edges {
+		if e.rev {
+			e.u, e.v = e.v, e.u
+		}
+	}
+
+	// Warstwy: najdłuższa ścieżka od źródeł, z minimalną długością krawędzi.
+	minLen := func(e *ledge) int { return e.e.MinLen * lv.factor }
+	indeg := make([]int, len(lv.items))
+	succ := make([][]*ledge, len(lv.items))
+	for _, e := range lv.edges {
+		indeg[index[e.v]]++
+		succ[index[e.u]] = append(succ[index[e.u]], e)
+	}
+	rank := make([]int, len(lv.items))
+	var queue []int
+	for i := range lv.items {
+		if indeg[i] == 0 {
+			queue = append(queue, i)
+		}
+	}
+	for len(queue) > 0 {
+		i := queue[0]
+		queue = queue[1:]
+		for _, e := range succ[i] {
+			j := index[e.v]
+			rank[j] = max(rank[j], rank[i]+minLen(e))
+			if indeg[j]--; indeg[j] == 0 {
+				queue = append(queue, j)
+			}
+		}
+	}
+	// Źródła dosuwamy do następników, żeby nie wisiały wysoko nad resztą.
+	for i := range lv.items {
+		if len(succ[i]) == 0 {
+			continue
+		}
+		hasIn := false
+		for _, e := range lv.edges {
+			if e.v == lv.items[i] {
+				hasIn = true
+				break
+			}
+		}
+		if hasIn {
+			continue
+		}
+		best := math.MaxInt
+		for _, e := range succ[i] {
+			best = min(best, rank[index[e.v]]-minLen(e))
+		}
+		rank[i] = max(rank[i], best)
+	}
+	maxRank := 0
+	for i, it := range lv.items {
+		it.rank = rank[i]
+		maxRank = max(maxRank, rank[i])
+	}
+
+	// Punkty pomocnicze i pole etykiety na każdej krawędzi dłuższej niż jedna warstwa.
+	for _, e := range lv.edges {
+		span := e.v.rank - e.u.rank
+		labelRank := -1
+		if len(e.e.Label) > 0 {
+			labelRank = e.u.rank + span/2
+		}
+		prev := e.u
+		for r := e.u.rank + 1; r < e.v.rank; r++ {
+			d := &item{kind: kindDummy, rank: r, w: l.u(8)}
+			if r == labelRank {
+				d.kind = kindLabel
+				d.text = l.wrap(e.e.Label, l.u(200))
+				tw, th := l.textSize(d.text)
+				d.w, d.h = l.abstract(tw+l.u(10), th+l.u(4))
+				e.label = d
+			}
+			e.chain = append(e.chain, d)
+			prev.down = append(prev.down, d)
+			d.up = append(d.up, prev)
+			prev = d
+		}
+		prev.down = append(prev.down, e.v)
+		e.v.up = append(e.v.up, prev)
+	}
+
+	// Kolejność początkowa: przeszukiwanie w głąb od pól w kolejności źródła.
+	lv.ranks = make([][]*item, maxRank+1)
+	seen := map[*item]bool{}
+	var walk func(it *item)
+	walk = func(it *item) {
+		if seen[it] {
+			return
+		}
+		seen[it] = true
+		lv.ranks[it.rank] = append(lv.ranks[it.rank], it)
+		for _, d := range it.down {
+			walk(d)
+		}
+	}
+	for _, it := range lv.items {
+		walk(it)
+	}
+	for _, r := range lv.ranks {
+		for i, it := range r {
+			it.order = i
+		}
+	}
+}
+
+// crossings liczy przecięcia krawędzi między sąsiednimi warstwami.
+func crossings(ranks [][]*item) int {
+	total := 0
+	for r := 0; r+1 < len(ranks); r++ {
+		var pairs [][2]int
+		for _, it := range ranks[r] {
+			for _, d := range it.down {
+				pairs = append(pairs, [2]int{it.order, d.order})
+			}
+		}
+		sort.Slice(pairs, func(a, b int) bool {
+			if pairs[a][0] != pairs[b][0] {
+				return pairs[a][0] < pairs[b][0]
+			}
+			return pairs[a][1] < pairs[b][1]
+		})
+		// Liczba inwersji drugiej współrzędnej, drzewem Fenwicka.
+		tree := make([]int, len(ranks[r+1])+1)
+		for k, p := range pairs {
+			seenLE := 0
+			for i := p[1] + 1; i > 0; i -= i & -i {
+				seenLE += tree[i]
+			}
+			total += k - seenLE
+			for i := p[1] + 1; i < len(tree); i += i & -i {
+				tree[i]++
+			}
+		}
+	}
+	return total
+}
+
+// order zmniejsza liczbę przecięć: przebiegi barycentryczne w dół i w górę, potem zamiany sąsiadów.
+func (l *layouter) order(lv *level) {
+	snapshot := func() [][]*item {
+		out := make([][]*item, len(lv.ranks))
+		for i, r := range lv.ranks {
+			out[i] = append([]*item(nil), r...)
+		}
+		return out
+	}
+	restore := func(s [][]*item) {
+		for i, r := range s {
+			lv.ranks[i] = append(lv.ranks[i][:0], r...)
+			for k, it := range lv.ranks[i] {
+				it.order = k
+			}
+		}
+	}
+	sweep := func(r int, neighbours func(*item) []*item) {
+		row := lv.ranks[r]
+		type keyed struct {
+			it  *item
+			key float64
+		}
+		var movable []keyed
+		fixed := make([]bool, len(row))
+		for i, it := range row {
+			ns := neighbours(it)
+			if len(ns) == 0 {
+				fixed[i] = true // pole bez sąsiadów zostaje na swoim miejscu
+				continue
+			}
+			sum := 0.0
+			for _, n := range ns {
+				sum += float64(n.order)
+			}
+			movable = append(movable, keyed{it, sum / float64(len(ns))})
+		}
+		sort.SliceStable(movable, func(a, b int) bool { return movable[a].key < movable[b].key })
+		next := make([]*item, len(row))
+		k := 0
+		for i := range row {
+			if fixed[i] {
+				next[i] = row[i]
+			} else {
+				next[i] = movable[k].it
+				k++
+			}
+		}
+		copy(row, next)
+		for i, it := range row {
+			it.order = i
+		}
+	}
+	best, bestCount := snapshot(), crossings(lv.ranks)
+	for iter := 0; iter < 24 && bestCount > 0; iter++ {
+		if iter%2 == 0 {
+			for r := 1; r < len(lv.ranks); r++ {
+				sweep(r, func(it *item) []*item { return it.up })
+			}
+		} else {
+			for r := len(lv.ranks) - 2; r >= 0; r-- {
+				sweep(r, func(it *item) []*item { return it.down })
+			}
+		}
+		if c := crossings(lv.ranks); c < bestCount {
+			best, bestCount = snapshot(), c
+		}
+	}
+	restore(best)
+
+	// Zamiana sąsiadów: para zamienia się miejscami, jeśli zmniejsza to liczbę przecięć jej krawędzi.
+	cross := func(a, b []*item) int {
+		n := 0
+		for _, x := range a {
+			for _, y := range b {
+				if x.order > y.order {
+					n++
+				}
+			}
+		}
+		return n
+	}
+	for round := 0; round < 8 && bestCount > 0; round++ {
+		improved := false
+		for _, row := range lv.ranks {
+			for i := 0; i+1 < len(row); i++ {
+				a, b := row[i], row[i+1]
+				now := cross(a.up, b.up) + cross(a.down, b.down)
+				swapped := cross(b.up, a.up) + cross(b.down, a.down)
+				if swapped < now {
+					row[i], row[i+1] = b, a
+					a.order, b.order = i+1, i
+					improved = true
+				}
+			}
+		}
+		if !improved {
+			break
+		}
+	}
+}
+
+// position wyznacza współrzędne pól poziomu i zwraca rozmiar zawartości.
+func (l *layouter) position(lv *level) (width, height float64) {
+	gap := func(a, b *item) float64 {
+		switch {
+		case a.real() && b.real():
+			return l.u(36)
+		case a.kind == kindDummy && b.kind == kindDummy:
+			return l.u(10)
+		}
+		return l.u(18)
+	}
+	sep := func(a, b *item) float64 { return a.w/2 + b.w/2 + gap(a, b) }
+	for _, row := range lv.ranks {
+		for i, it := range row {
+			if i == 0 {
+				it.x = it.w / 2
+			} else {
+				it.x = row[i-1].x + sep(row[i-1], it)
+			}
+		}
+	}
+	weight := func(a, b *item) float64 {
+		switch {
+		case !a.real() && !b.real():
+			return 8 // długie krawędzie mają biec prosto
+		case !a.real() || !b.real():
+			return 2
+		}
+		return 1
+	}
+	// Metoda priorytetowa (Sugiyama, Tagawa, Toda 1981): pola warstwy są ustawiane w kolejności
+	// malejącego priorytetu; każde przesuwa się do pozycji pożądanej tak daleko, jak pozwalają
+	// pola już ustawione, i odsuwa pola o niższym priorytecie. Punkty pomocnicze mają najwyższy
+	// priorytet, dzięki czemu długie krawędzie biegną prosto.
+	place := func(row []*item, want []float64, priority []float64) {
+		n := len(row)
+		fixed := make([]bool, n)
+		idx := make([]int, n)
+		for i := range idx {
+			idx[i] = i
+		}
+		sort.SliceStable(idx, func(a, b int) bool { return priority[idx[a]] > priority[idx[b]] })
+		for _, i := range idx {
+			target := want[i]
+			if target > row[i].x {
+				// Granica: najbliższe ustawione pole po prawej minus odstępy pól pomiędzy.
+				limit, need := math.Inf(1), 0.0
+				for j := i + 1; j < n; j++ {
+					need += sep(row[j-1], row[j])
+					if fixed[j] {
+						limit = row[j].x - need
+						break
+					}
+				}
+				row[i].x = math.Max(row[i].x, math.Min(target, limit))
+				for j := i + 1; j < n && !fixed[j]; j++ {
+					row[j].x = math.Max(row[j].x, row[j-1].x+sep(row[j-1], row[j]))
+				}
+			} else if target < row[i].x {
+				limit, need := math.Inf(-1), 0.0
+				for j := i - 1; j >= 0; j-- {
+					need += sep(row[j], row[j+1])
+					if fixed[j] {
+						limit = row[j].x + need
+						break
+					}
+				}
+				row[i].x = math.Min(row[i].x, math.Max(target, limit))
+				for j := i - 1; j >= 0 && !fixed[j]; j-- {
+					row[j].x = math.Min(row[j].x, row[j+1].x-sep(row[j], row[j+1]))
+				}
+			}
+			fixed[i] = true
+		}
+	}
+	pull := func(row []*item, useUp, useDown bool) {
+		want := make([]float64, len(row))
+		priority := make([]float64, len(row))
+		for i, it := range row {
+			sum, total, count := 0.0, 0.0, 0
+			add := func(ns []*item, siblings func(*item) []*item) {
+				for _, n := range ns {
+					w := weight(it, n)
+					sum += w * (n.x + fanOffset(it, siblings(n), sep))
+					total += w
+					count++
+				}
+			}
+			if useUp {
+				add(it.up, func(n *item) []*item { return n.down })
+			}
+			if useDown {
+				add(it.down, func(n *item) []*item { return n.up })
+			}
+			want[i] = it.x
+			if total > 0 {
+				want[i] = sum / total
+				priority[i] = float64(count)
+				if !it.real() {
+					priority[i] += 1000
+				}
+			} else {
+				priority[i] = -1 // pole bez sąsiadów po tej stronie ustępuje wszystkim
+			}
+		}
+		place(row, want, priority)
+	}
+	for iter := 0; iter < 4; iter++ {
+		for r := 1; r < len(lv.ranks); r++ {
+			pull(lv.ranks[r], true, false)
+		}
+		for r := len(lv.ranks) - 2; r >= 0; r-- {
+			pull(lv.ranks[r], false, true)
+		}
+	}
+	for r := 1; r < len(lv.ranks); r++ {
+		pull(lv.ranks[r], true, false)
+	}
+
+	left := math.Inf(1)
+	for _, row := range lv.ranks {
+		for _, it := range row {
+			left = math.Min(left, it.x-it.w/2)
+		}
+	}
+	if math.IsInf(left, 1) {
+		left = 0
+	}
+	rankGap := l.u(48) / float64(lv.factor)
+	y := 0.0
+	for r, row := range lv.ranks {
+		band := 0.0
+		for _, it := range row {
+			band = math.Max(band, it.h)
+		}
+		if r > 0 {
+			y += rankGap
+		}
+		for _, it := range row {
+			it.x = math.Round(it.x - left)
+			it.y = y + band/2
+			it.band = band
+			width = math.Max(width, it.x+it.w/2)
+		}
+		y += band
+	}
+	return width, y
+}
+
+// fanOffset zwraca przesunięcie pola względem wspólnego sąsiada: pola połączone z tym samym
+// sąsiadem mają się rozłożyć symetrycznie wokół niego, a nie ustawić w jednym miejscu.
+func fanOffset(it *item, siblings []*item, sep func(a, b *item) float64) float64 {
+	if len(siblings) < 2 {
+		return 0
+	}
+	group := make([]*item, 0, len(siblings))
+	seen := map[*item]bool{}
+	for _, s := range siblings {
+		if !seen[s] {
+			seen[s] = true
+			group = append(group, s)
+		}
+	}
+	sort.SliceStable(group, func(a, b int) bool { return group[a].order < group[b].order })
+	pos, at := 0.0, 0.0
+	for i, s := range group {
+		if i > 0 {
+			pos += sep(group[i-1], s)
+		}
+		if s == it {
+			at = pos
+		}
+	}
+	return at - pos/2
+}
+
+// place przelicza położenia pól na osie umowne całego diagramu.
+func (l *layouter) place(lv *level, ox, oy float64) {
+	lv.offsetX, lv.offsetY = ox, oy
+	for _, row := range lv.ranks {
+		for _, it := range row {
+			it.x += ox + lv.padX0
+			it.y += oy + lv.padY0
+			if it.kind == kindCluster {
+				l.place(it.child, it.x-it.w/2, it.y-it.h/2)
+			}
+		}
+	}
+}
