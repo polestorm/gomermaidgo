@@ -185,6 +185,8 @@ type layouter struct {
 
 	lanes  []*lane        // tory; nil = zwykły układ
 	laneOf map[string]int // węzeł → numer toru
+	// rankLimit: mnożnik limitu szerokości warstwy w diagramie encji; 0 = bez limitu.
+	rankLimit float64
 
 	levels map[string]*level
 	itemOf map[string]*item // węzeł albo podgraf → jego pole na poziomie rodzica
@@ -275,12 +277,40 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	if o.FontSize <= 0 {
 		o.FontSize = 16
 	}
+	if g.Kind != "er" {
+		return layout(g, o, 0)
+	}
+	// Diagram encji: kierunek nie niesie znaczenia, więc wygrywa układ, który mieści się na stronie
+	// w największej skali. Kandydaci różnią się limitem szerokości warstwy; pierwszy jest bez limitu
+	// i zostaje, gdy rysunek i tak mieści się na stronie.
+	u := o.FontSize / 16
+	pageW, pageH := 650*u, 870*u
+	var best *scene.Scene
+	bestScale := 0.0
+	for _, factor := range []float64{0, 1.4, 1, 0.75, 0.55} {
+		sc := layout(g, o, factor)
+		b := sc.Bounds()
+		w, h := b.X1-b.X0, b.Y1-b.Y0
+		scale := math.Min(1, math.Min(pageW/w, pageH/h))
+		// Limit wygrywa tylko wyraźną poprawą skali: drobna różnica nie jest warta dłuższych krawędzi.
+		if best == nil || scale > bestScale+0.02 {
+			best, bestScale = sc, scale
+		}
+		if factor == 0 && scale >= 1 {
+			break
+		}
+	}
+	return best
+}
+
+// layout rozmieszcza graf przy podanym limicie szerokości warstwy (0: bez limitu).
+func layout(g *graph.Graph, o Options, rankLimit float64) *scene.Scene {
 	var lanes []*lane
 	var laneOf map[string]int
 	if g.Layout == "swimlanes" && len(g.Subgraphs) > 0 {
 		g, lanes, laneOf = flattenLanes(g)
 	}
-	l := &layouter{g: g, o: o, fs: o.FontSize, levels: map[string]*level{}, itemOf: map[string]*item{}, lanes: lanes, laneOf: laneOf}
+	l := &layouter{g: g, o: o, fs: o.FontSize, levels: map[string]*level{}, itemOf: map[string]*item{}, lanes: lanes, laneOf: laneOf, rankLimit: rankLimit}
 	l.lh = math.Round(l.fs * 1.25)
 	l.vertical = g.Direction == graph.TopBottom || g.Direction == graph.BottomTop
 	l.flip = g.Direction == graph.BottomTop || g.Direction == graph.RightLeft
@@ -929,6 +959,9 @@ func (l *layouter) rank(lv *level) {
 			rank[i] = local[k] + base
 		}
 	}
+	if l.rankLimit > 0 {
+		l.boundRankWidth(lv, rank, succ, index, minLen)
+	}
 	// Punkty wyjścia leżą w osobnej, ostatniej warstwie, pod całą zawartością podgrafu.
 	last := 0
 	for i, it := range lv.items {
@@ -1031,6 +1064,80 @@ func crossings(ranks [][]*item) int {
 		}
 	}
 	return total
+}
+
+// boundRankWidth ogranicza szerokość warstw diagramu encji. Kierunek takiego diagramu nie niesie
+// znaczenia, więc o układzie mogą decydować proporcje strony: gdy warstwa jest za szeroka, pola,
+// których przesunięcie wydłuża najmniej krawędzi (najpierw liście), schodzą do warstwy niżej,
+// a rysunek rośnie wzdłuż osi warstw zamiast w poprzek. Minimalne długości krawędzi zostają.
+func (l *layouter) boundRankWidth(lv *level, rank []int, succ [][]*ledge, index map[*item]int, minLen func(*ledge) int) {
+	n := len(lv.items)
+	if n < 2 {
+		return
+	}
+	gapX, gapY := l.u(48), l.u(110)
+	// Szerokość docelowa: pole zajęte przez wszystkie encje ułożone w proporcjach strony.
+	area, widest := 0.0, 0.0
+	for _, it := range lv.items {
+		area += (it.w + gapX) * (it.h + gapY)
+		widest = math.Max(widest, it.w+gapX)
+	}
+	pageW, pageH := l.u(650), l.u(870)
+	if !l.vertical {
+		pageW, pageH = pageH, pageW
+	}
+	limit := math.Max(2*widest, l.rankLimit*math.Max(pageW, math.Sqrt(area*pageW/pageH)))
+	indeg := make([]int, n)
+	for _, e := range lv.edges {
+		indeg[index[e.v]]++
+	}
+	var push func(i, to int)
+	push = func(i, to int) {
+		if rank[i] >= to {
+			return
+		}
+		rank[i] = to
+		for _, e := range succ[i] {
+			push(index[e.v], to+minLen(e))
+		}
+	}
+	// Szerokość warstwy: jej pola oraz punkty i etykiety krawędzi, które przez nią przechodzą.
+	width := func(r int) (total float64, members []int) {
+		for i, it := range lv.items {
+			if rank[i] == r {
+				total += it.w + gapX
+				members = append(members, i)
+			}
+		}
+		for _, e := range lv.edges {
+			a, b := rank[index[e.u]], rank[index[e.v]]
+			if a < r && r < b {
+				total += l.u(18)
+				if len(e.e.Label) > 0 && r == a+(b-a)/2 {
+					tw, _ := l.abstract(l.textSize(l.wrap(e.e.Label, l.u(200))))
+					total += tw + l.u(10)
+				}
+			}
+		}
+		return total, members
+	}
+	for r := 0; r <= 4*n; r++ {
+		for {
+			total, members := width(r)
+			if total <= limit || len(members) < 2 {
+				break
+			}
+			// Schodzi pole, którego przesunięcie kosztuje najmniej: mało krawędzi wchodzących
+			// (te się wydłużają), dużo wychodzących; przy remisie późniejsze w źródle.
+			best := members[0]
+			for _, i := range members[1:] {
+				if indeg[i]-len(succ[i]) <= indeg[best]-len(succ[best]) {
+					best = i
+				}
+			}
+			push(best, r+1)
+		}
+	}
 }
 
 // shelve układa części poziomu niepołączone krawędziami w rzędy, tak żeby całość miała proporcje

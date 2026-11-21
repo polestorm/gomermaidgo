@@ -163,7 +163,8 @@ func TestCrossingsHaveBridges(t *testing.T) {
 				if math.Abs(h.a.Y-h.b.Y) > 0.01 || math.Abs(v.a.X-v.b.X) > 0.01 {
 					continue
 				}
-				const in = 1.0 // przecięcie właściwe: we wnętrzu obu odcinków
+				// Mostek potrzebuje miejsca: przecięcie tuż przy narożniku albo końcu krawędzi zostaje zwykłe.
+				const in = 15.0
 				x, y := v.a.X, h.a.Y
 				if x > math.Min(h.a.X, h.b.X)+in && x < math.Max(h.a.X, h.b.X)-in &&
 					y > math.Min(v.a.Y, v.b.Y)+in && y < math.Max(v.a.Y, v.b.Y)-in {
@@ -338,7 +339,7 @@ func TestNoEmptyColumns(t *testing.T) {
 			t.Errorf("%s: empty column %.0f px wide", name, w)
 		}
 	}
-	src, err := os.ReadFile("testdata/wide-er.mmd")
+	src, err := os.ReadFile("testdata/er/wide-er.mmd")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -352,5 +353,35 @@ func TestNoEmptyColumns(t *testing.T) {
 	}
 	if b := sc.Bounds(); b.X1-b.X0 > 3000 {
 		t.Errorf("wide entity diagram is %.0f px wide", b.X1-b.X0)
+	}
+}
+
+// REQ: LAY-011
+// Duży diagram encji jest układany pod proporcje strony: warstwy mają limit szerokości, a wygrywa
+// układ, który mieści się na stronie w największej skali. Mały diagram zostaje bez zmian.
+func TestEntityDiagramFitsPage(t *testing.T) {
+	src, err := os.ReadFile("testdata/er/wide-er.mmd")
+	if err != nil {
+		t.Fatal(err)
+	}
+	g, err := er.Parse(string(src))
+	if err != nil {
+		t.Fatal(err)
+	}
+	o := Options{Measure: font.ApproxTextWidth, FontSize: 16}
+	fit := func(sc *scene.Scene) float64 {
+		b := sc.Bounds()
+		return math.Min(1, math.Min(650/(b.X1-b.X0), 870/(b.Y1-b.Y0)))
+	}
+	free, bound := fit(layout(g, o, 0)), fit(Layout(g, o))
+	if bound < 0.33 || bound < free*1.3 {
+		t.Errorf("page fit %.3f with the width limit, %.3f without", bound, free)
+	}
+	for _, f := range corpusNames(t, "er") {
+		g := parse(t, "../../testdata/corpus/"+f)
+		a, b := layout(g, o, 0).Bounds(), Layout(parse(t, "../../testdata/corpus/"+f), o).Bounds()
+		if a != b {
+			t.Errorf("%s: a diagram that fits the page changed: %+v, %+v", f, a, b)
+		}
 	}
 }

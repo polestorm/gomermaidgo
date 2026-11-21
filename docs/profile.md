@@ -131,6 +131,8 @@ podgrafów zagnieżdżonych ani krawędzi do samego toru (błąd), a `direction`
   dolnym wierzchołku. Krawędzi wstecznej (w górę) i łuków (`WithCurvedEdges`) reguła nie dotyczy;
 - w torach kolejność pól jednego toru jest po pogrupowaniu poprawiana tak, żeby nie dodawać przecięć; punkty
   pośrednie krawędzi, której oba końce mają po kilka krawędzi, stoją w jednej osi przy dolnym końcu;
+- diagram encji jest układany pod proporcje strony: zbyt szeroka warstwa oddaje pola (najpierw encje z jedną
+  relacją) warstwie niżej, więc duży model rośnie w dół zamiast w bok; mały diagram zostaje bez zmian;
 - puste kolumny są zamykane: pas, w którym w żadnej warstwie nic nie stoi, kurczy się do zwykłego odstępu,
   a krawędzie, które go przecinały, są krótsze;
 - gdzie krawędzie łamane się przecinają, krawędź zapisana w źródle później przeskakuje nad wcześniejszą półokrągłym

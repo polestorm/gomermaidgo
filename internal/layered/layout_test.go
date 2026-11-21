@@ -45,6 +45,10 @@ func corpusScenes(t *testing.T) map[string]*scene.Scene {
 		if len(files) == 0 {
 			t.Fatalf("no corpus files for %s", dir)
 		}
+		if dir == "er" {
+			// Duży diagram z prawdziwej dokumentacji: jedyny, w którym działa limit szerokości warstwy.
+			files = append(files, "testdata/er/wide-er.mmd")
+		}
 		for _, f := range files {
 			for _, d := range []graph.Direction{graph.TopBottom, graph.BottomTop, graph.LeftRight, graph.RightLeft} {
 				g := parse(t, f)
