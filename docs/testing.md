@@ -45,6 +45,11 @@ Ustalenie z tego testu: rysunku nie da się podzielić między strony, więc dia
 Strona musi ograniczać także wysokość rysunku (`max-height` razem z `width:auto; height:auto`); rysunek skaluje się
 wtedy z zachowaniem proporcji.
 
+Próba ręczna całej drogi z 2026-11-21: dokument Markdown z trzema blokami `mermaid` (jeden błędny) przez
+`markdown.Embed`, parser `goldmark` z przepuszczaniem HTML (moduł próbny poza repozytorium) i `gopdfgo`: dwa rysunki
+i komunikat błędu na stronie, akapity i lista wokół nienaruszone. Ta próba nie jest zautomatyzowana, bo parser Markdown
+byłby zależnością.
+
 ## Porównanie z rendererem odniesienia
 
 `tools/refcompare` uruchamia cudzy renderer jako osobny program i porównuje **treść** obu rysunków: zbiór tekstów

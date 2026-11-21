@@ -25,6 +25,14 @@ and white.
 go run ./cmd/gomermaidgo -font NotoSans-Regular.ttf -family "Noto Sans" -o diagram.svg diagram.mmd
 ```
 
+Diagrams inside a Markdown document: `markdown.Embed` replaces every fenced `mermaid` block with an inline SVG figure
+before the document reaches a Markdown parser (the parser must pass raw HTML blocks through), and `markdown.CSS` holds
+the page rules, including the height limit that keeps a tall diagram from being cut at a page break.
+
+```go
+md, problems := markdown.Embed(source, markdown.Options{})
+```
+
 Status: early. Supported diagram types: `sequenceDiagram`, `flowchart`/`graph` and `stateDiagram-v2`. Graphs use a
 layered layout written from the published algorithms; its current limits are listed in `docs/profile.md`. A construct outside the supported profile (`docs/profile.md`) is an error with a line number,
 never a partial drawing.
