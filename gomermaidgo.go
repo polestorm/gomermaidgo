@@ -17,6 +17,7 @@ import (
 	"github.com/polestorm/gomermaidgo/fonts"
 	"github.com/polestorm/gomermaidgo/internal/flowchart"
 	"github.com/polestorm/gomermaidgo/internal/font"
+	"github.com/polestorm/gomermaidgo/internal/gantt"
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/layered"
 	"github.com/polestorm/gomermaidgo/internal/scene"
@@ -36,10 +37,11 @@ const (
 	TypeSequence  = "sequenceDiagram"
 	TypeFlowchart = "flowchart"
 	TypeState     = "stateDiagram"
+	TypeGantt     = "gantt"
 )
 
 // SupportedTypes zwraca obsługiwane typy diagramów.
-func SupportedTypes() []string { return []string{TypeSequence, TypeFlowchart, TypeState} }
+func SupportedTypes() []string { return []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt} }
 
 type config struct {
 	fontData   []byte
@@ -111,6 +113,8 @@ func DetectType(source string) (string, error) {
 			return TypeFlowchart, nil
 		case "stateDiagram-v2", "stateDiagram":
 			return TypeState, nil
+		case "gantt":
+			return TypeGantt, nil
 		}
 		return "", fmt.Errorf("%w: %q (line %d)", ErrUnsupportedType, word, n+1)
 	}
@@ -150,6 +154,8 @@ func Check(source string) error {
 		_, err = flowchart.Parse(source)
 	case TypeState:
 		_, err = state.Parse(source)
+	case TypeGantt:
+		_, err = gantt.Parse(source)
 	default:
 		_, err = sequence.Parse(source)
 	}
@@ -205,6 +211,13 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 	kind, err := DetectType(source)
 	if err != nil {
 		return nil, nil, err
+	}
+	if kind == TypeGantt {
+		d, err := gantt.Parse(source)
+		if err != nil {
+			return nil, nil, err
+		}
+		return gantt.Layout(d, gantt.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
 	}
 	if kind != TypeSequence {
 		var g *graph.Graph

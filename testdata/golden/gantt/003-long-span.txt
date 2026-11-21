@@ -1,0 +1,8 @@
+gantt title="Cykl życia wyrobu" axis="%Y-%m"
+section "Projekt"
+task "Projektowanie i rozwój" 2026-01-01T00:00 2027-07-01T00:00 id=p1
+task "Badania kliniczne" 2027-07-01T00:00 2029-07-01T00:00 id=p2
+section "Rynek"
+task "Certyfikacja" 2029-07-01T00:00 2030-01-01T00:00 id=c1 crit
+task "Nadzór po wprowadzeniu do obrotu" 2030-01-01T00:00 2035-01-01T00:00
+task "Przegląd okresowy" 2033-06-01T00:00 2033-06-01T00:00 milestone

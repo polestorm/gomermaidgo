@@ -1,0 +1,17 @@
+%% REQ: GANTT-001 GANTT-002 GANTT-003 GANTT-005
+%% Tytuł: Plan walidacji procesu
+%% Sprawdza: sekcje, zadania z datą i czasem trwania, zależności after, stany done, active i crit, kamień milowy, nazwy dłuższe niż pasek, tytuł.
+gantt
+    title Walidacja procesu sterylizacji
+    dateFormat YYYY-MM-DD
+    section Przygotowanie
+    Plan walidacji               :done, plan, 2026-01-05, 10d
+    Przegląd ryzyka              :done, ryzyko, after plan, 5d
+    section Kwalifikacja
+    Kwalifikacja instalacyjna    :active, iq, after ryzyko, 2w
+    Kwalifikacja operacyjna      :oq, after iq, 3w
+    Kwalifikacja procesowa       :crit, pq, after oq, 4w
+    section Zamknięcie
+    Raport z walidacji           :raport, after pq, 10d
+    Zatwierdzenie                :milestone, after raport, 0d
+    Szkolenie operatorów         :after pq, 2d

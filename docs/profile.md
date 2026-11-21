@@ -132,3 +132,35 @@ Stan: rysowany tym samym układem warstwowym.
 
 - identyfikator stanu składa się z liter, cyfr i podkreślenia; łącznik jest błędem, tak jak w Mermaid;
 - przejście między stanem złożonym a jego własną zawartością jest błędem.
+
+## Wykres Gantta (`gantt`)
+
+### Obsługiwane
+
+| Element | Zapis | Wymaganie |
+|---|---|---|
+| nagłówek, tytuł, sekcje | `gantt`, `title Tekst`, `section Nazwa` | GANTT-001 |
+| zadanie | `Nazwa : [znaczniki,] [id,] [początek,] koniec` | GANTT-002 |
+| początek | data w zapisie `dateFormat`, `after id1 id2`, albo brak (po poprzednim zadaniu) | GANTT-002 |
+| koniec | data, czas trwania (`3d`, `2w`, `12h`, `1.5d`, `6M`, `1y`), `until id` | GANTT-002 |
+| znaczniki | `done`, `active`, `crit`, `milestone` | GANTT-003 |
+| zapis dat | `dateFormat` ze znaczników `YYYY`, `YY`, `MM`, `M`, `DD`, `D`, `HH`, `mm`, `ss` | GANTT-002 |
+| dni wyłączone | `excludes weekends`, nazwy dni, daty `YYYY-MM-DD`; `weekend friday`; `inclusiveEndDates` | GANTT-004 |
+| podziałka | `axisFormat` (strftime: `%Y %y %m %d %e %H %M %S %j %b %B %a %A`), `tickInterval 1day`/`week`/`month`/`year` | GANTT-006 |
+| dostępność | `accTitle`, `accDescr` | GANTT-001 |
+
+### Poza profilem (błąd `gantt-unsupported`)
+
+`includes`, `displayMode compact`, znaczniki pionowe `vert`.
+
+### Świadome różnice wobec Mermaid
+
+- znacznik „dziś” nie jest rysowany nigdy (`todayMarker` jest przyjmowane i pomijane): ten sam tekst ma zawsze dawać
+  ten sam rysunek;
+- czas trwania przy `excludes` liczy czas pracy: dni wyłączone się nie liczą, także gdy zadanie na takim dniu się
+  zaczyna; koniec podany datą nie jest przesuwany;
+- `tickInterval` jest honorowany, o ile opisy podziałki się nie stykają; inaczej odstęp rośnie;
+- nazwy miesięcy i dni w `axisFormat` są angielskie; `topAxis` i `click` są przyjmowane i pomijane;
+- nazwa zadania kończy się na pierwszym dwukropku;
+- limity: 500 zadań, lata 1900–2200, rozpiętość do 100 lat.
+

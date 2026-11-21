@@ -1,0 +1,12 @@
+gantt title="Walidacja procesu sterylizacji" axis="%Y-%m-%d"
+section "Przygotowanie"
+task "Plan walidacji" 2026-01-05T00:00 2026-01-15T00:00 id=plan done
+task "Przegląd ryzyka" 2026-01-15T00:00 2026-01-20T00:00 id=ryzyko done
+section "Kwalifikacja"
+task "Kwalifikacja instalacyjna" 2026-01-20T00:00 2026-02-03T00:00 id=iq active
+task "Kwalifikacja operacyjna" 2026-02-03T00:00 2026-02-24T00:00 id=oq
+task "Kwalifikacja procesowa" 2026-02-24T00:00 2026-03-24T00:00 id=pq crit
+section "Zamknięcie"
+task "Raport z walidacji" 2026-03-24T00:00 2026-04-03T00:00 id=raport
+task "Zatwierdzenie" 2026-04-03T00:00 2026-04-03T00:00 milestone
+task "Szkolenie operatorów" 2026-03-24T00:00 2026-03-26T00:00

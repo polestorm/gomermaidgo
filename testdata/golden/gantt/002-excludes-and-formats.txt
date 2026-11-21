@@ -1,0 +1,6 @@
+gantt axis="%d.%m" tick=1day
+task "Przygotowanie listy pytań" 2026-11-02T00:00 2026-11-05T00:00 id=a1
+task "Audyt na miejscu" 2026-11-05T00:00 2026-11-13T00:00 id=a2 crit
+task "Raport" 2026-11-13T00:00 2026-11-16T00:00 id=a3
+task "Uzgodnienie działań" 2026-11-09T00:00 2026-11-17T00:00 id=a4
+task "Spotkanie zamykające" 2026-11-17T00:00 2026-11-17T00:00 id=a5 milestone

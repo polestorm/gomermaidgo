@@ -1,0 +1,15 @@
+%% REQ: GANTT-002 GANTT-004 GANTT-006
+%% Tytuł: Dni wyłączone, zapis dat i podziałka
+%% Sprawdza: dateFormat DD.MM.YYYY, axisFormat, tickInterval, excludes weekends i data: czas trwania liczy dni robocze, dni wyłączone są zacieniowane; koniec podany datą i przez until; zadania bez sekcji; opis dostępności.
+gantt
+    accTitle: Audyt wewnętrzny
+    accDescr: Dwa tygodnie audytu z dniem wolnym w środku.
+    dateFormat DD.MM.YYYY
+    axisFormat %d.%m
+    tickInterval 1day
+    excludes weekends, 2026-11-11
+    Przygotowanie listy pytań   :a1, 02.11.2026, 3d
+    Audyt na miejscu            :crit, a2, after a1, 5d
+    Raport                      :a3, after a2, 16.11.2026
+    Uzgodnienie działań         :a4, 09.11.2026, until a5
+    Spotkanie zamykające        :milestone, a5, 17.11.2026, 0d

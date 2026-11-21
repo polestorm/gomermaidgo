@@ -13,6 +13,7 @@ import (
 	"testing"
 
 	"github.com/polestorm/gomermaidgo/internal/flowchart"
+	"github.com/polestorm/gomermaidgo/internal/gantt"
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
@@ -68,6 +69,50 @@ func parseGraph(t *testing.T, path string) *graph.Graph {
 		t.Fatalf("%s: %v", path, err)
 	}
 	return g
+}
+
+// REQ: GANTT-001
+// Model wykresu Gantta z każdego pliku korpusu zgadza się z plikiem wzorcowym.
+func TestGanttCorpusGolden(t *testing.T) {
+	files, _ := filepath.Glob("testdata/corpus/gantt/*.mmd")
+	if len(files) == 0 {
+		t.Fatal("no corpus files for gantt")
+	}
+	for _, f := range files {
+		d, err := gantt.Parse(readFile(t, f))
+		if err != nil {
+			t.Fatalf("%s: %v", f, err)
+		}
+		got := d.Dump()
+		golden := strings.TrimSuffix(goldenPath(f), ".svg") + ".txt"
+		if *update {
+			if err := os.WriteFile(golden, []byte(got), 0o644); err != nil {
+				t.Fatal(err)
+			}
+			continue
+		}
+		if want, err := os.ReadFile(golden); err != nil || string(want) != got {
+			t.Errorf("%s: model differs from %s (run go test . -update and review the diff): %v", f, golden, err)
+		}
+		// Każda nazwa zadania, sekcji i tytuł są na rysunku.
+		svg, err := Render(readFile(t, f))
+		if err != nil {
+			t.Fatalf("%s: %v", f, err)
+		}
+		have := map[string]bool{}
+		for _, s := range checkSVG(t, f, svg) {
+			have[s] = true
+		}
+		want := append([]string{d.Title}, d.Sections...)
+		for _, task := range d.Tasks {
+			want = append(want, task.Name)
+		}
+		for _, s := range want {
+			if s != "" && !have[s] {
+				t.Errorf("%s: text %q is missing from the SVG", f, s)
+			}
+		}
+	}
 }
 
 // REQ: FLOW-001 STATE-001
@@ -405,7 +450,7 @@ func TestRequirementsCovered(t *testing.T) {
 
 // REQ: SEQ-011
 func TestUnsupportedType(t *testing.T) {
-	for _, src := range []string{"pie\n \"a\": 1", "gantt\n title x", "erDiagram\n A ||--o{ B : x", "flowchart-elk TD\n A-->B"} {
+	for _, src := range []string{"pie\n \"a\": 1", "mindmap\n root", "classDiagram\n A <|-- B", "flowchart-elk TD\n A-->B"} {
 		if _, err := Render(src); !errors.Is(err, ErrUnsupportedType) {
 			t.Errorf("%q: want unsupported type error, got %v", src, err)
 		}

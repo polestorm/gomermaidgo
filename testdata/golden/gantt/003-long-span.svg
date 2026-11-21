@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="773.52" height="246.65" viewBox="-12 -12.4 773.52 246.65" role="img" font-family="Recursive, sans-serif" font-size="16">
+<title>Cykl życia wyrobu</title>
+<rect class="gantt-section" x="0" y="52.25" width="723.2" height="68" fill="#f6f8fa"/>
+<line class="gantt-grid" x1="83.2" y1="52.25" x2="83.2" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="154.27" y1="52.25" x2="154.27" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="225.34" y1="52.25" x2="225.34" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="296.6" y1="52.25" x2="296.6" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="367.67" y1="52.25" x2="367.67" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="438.73" y1="52.25" x2="438.73" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="509.8" y1="52.25" x2="509.8" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="581.06" y1="52.25" x2="581.06" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="652.13" y1="52.25" x2="652.13" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="gantt-grid" x1="723.2" y1="52.25" x2="723.2" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<rect class="gantt-frame" x="83.2" y="52.25" width="640" height="170" fill="none" stroke="#6b7785" stroke-width="1"/>
+<rect class="gantt-task" x="83.2" y="58.25" width="106.31" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="gantt-task" x="189.51" y="92.25" width="142.33" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="gantt-task" x="331.84" y="126.25" width="35.83" height="22" rx="3" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="gantt-task" x="367.67" y="160.25" width="355.53" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="gantt-milestone" points="610.46,195.25 620.46,205.25 610.46,215.25 600.46,205.25" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
+<text class="title" x="403.2" y="15.6" text-anchor="middle" fill="#1b1f24">Cykl życia wyrobu</text>
+<text class="gantt-section-label" x="12" y="91.85" fill="#1b1f24">Projekt</text>
+<text class="gantt-section-label" x="12" y="176.85" fill="#1b1f24">Rynek</text>
+<text class="gantt-tick-label" x="83.2" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2026-01</text>
+<text class="gantt-tick-label" x="154.27" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2027-01</text>
+<text class="gantt-tick-label" x="225.34" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2028-01</text>
+<text class="gantt-tick-label" x="296.6" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2029-01</text>
+<text class="gantt-tick-label" x="367.67" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2030-01</text>
+<text class="gantt-tick-label" x="438.73" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2031-01</text>
+<text class="gantt-tick-label" x="509.8" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2032-01</text>
+<text class="gantt-tick-label" x="581.06" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2033-01</text>
+<text class="gantt-tick-label" x="652.13" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2034-01</text>
+<text class="gantt-tick-label" x="723.2" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2035-01</text>
+<text class="gantt-task-label" x="195.51" y="74.85" fill="#1b1f24">Projektowanie i rozwój</text>
+<text class="gantt-task-label" x="337.84" y="108.85" fill="#1b1f24">Badania kliniczne</text>
+<text class="gantt-task-label" x="373.67" y="142.85" fill="#1b1f24">Certyfikacja</text>
+<text class="gantt-task-label" x="545.43" y="176.85" text-anchor="middle" fill="#1b1f24">Nadzór po wprowadzeniu do obrotu</text>
+<text class="gantt-task-label" x="594.46" y="210.85" text-anchor="end" fill="#1b1f24">Przegląd okresowy</text>
+</svg>

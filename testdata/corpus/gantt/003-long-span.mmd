@@ -1,0 +1,14 @@
+%% REQ: GANTT-003 GANTT-006
+%% Tytuł: Plan wieloletni
+%% Sprawdza: podziałka dobierana do rozpiętości (miesiące, lata), czasy trwania w miesiącach i latach, zadania krótkie przy długiej osi, nazwa przed paskiem przy prawej krawędzi.
+gantt
+    title Cykl życia wyrobu
+    dateFormat YYYY-MM-DD
+    axisFormat %Y-%m
+    section Projekt
+    Projektowanie i rozwój          :p1, 2026-01-01, 18M
+    Badania kliniczne               :p2, after p1, 2y
+    section Rynek
+    Certyfikacja                    :crit, c1, after p2, 6M
+    Nadzór po wprowadzeniu do obrotu :after c1, 5y
+    Przegląd okresowy               :milestone, 2033-06-01, 0d
