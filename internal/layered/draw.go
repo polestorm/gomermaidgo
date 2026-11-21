@@ -333,6 +333,24 @@ func (l *layouter) drawLevel(lv *level) {
 				l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster-title-strip", X: x0, Y: y0 + sh/2, W: w, H: sh / 2, Fill: colorNodeFill})
 			}
 			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "cluster-title-rule", X: x0, Y: y0 + sh, X2: x0 + w, Y2: y0 + sh, Stroke: colorFrame, StrokeWidth: 1})
+			// Pasek u dołu, bez tekstu: duża ramka stanu jest rozpoznawalna także od spodu.
+			// Jest niższy od promienia narożnika, więc jego dolne rogi idą łukiem obrysu.
+			x1, y1, fh, r := x0+w, y0+h, l.u(footStrip), frame.RX
+			dx := math.Sqrt(r*r - (r-fh)*(r-fh))
+			if frame.Fill == "" {
+				// Punkty kontrolne łuku: styczne w obu końcach, długość dla kąta łuku.
+				k := 4.0 / 3 * math.Tan(math.Acos((r-fh)/r)/4) * r
+				tx, ty := (r-fh)/r, dx/r // styczna w górnym końcu łuku, w stronę dołu
+				l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerBackground, Role: "cluster-foot-strip", Fill: colorNodeFill,
+					Segments: []scene.Segment{
+						{Cmd: 'M', To: scene.Point{X: x0 + r - dx, Y: y1 - fh}},
+						{Cmd: 'C', C1: scene.Point{X: x0 + r - dx + k*tx, Y: y1 - fh + k*ty}, C2: scene.Point{X: x0 + r - k, Y: y1}, To: scene.Point{X: x0 + r, Y: y1}},
+						{Cmd: 'L', To: scene.Point{X: x1 - r, Y: y1}},
+						{Cmd: 'C', C1: scene.Point{X: x1 - r + k, Y: y1}, C2: scene.Point{X: x1 - r + dx - k*tx, Y: y1 - fh + k*ty}, To: scene.Point{X: x1 - r + dx, Y: y1 - fh}},
+						{Cmd: 'L', To: scene.Point{X: x0 + r - dx, Y: y1 - fh}},
+					}})
+			}
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "cluster-title-rule", X: x0 + r - dx, Y: y1 - fh, X2: x1 - r + dx, Y2: y1 - fh, Stroke: colorFrame, StrokeWidth: 1})
 			// Obrys jeszcze raz, na wierzchu: pasek zakrył jego wewnętrzną połowę.
 			outline := frame
 			outline.Fill, outline.Role = "", "cluster-outline"

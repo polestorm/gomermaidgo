@@ -345,6 +345,9 @@ func (l *layouter) measure() {
 	}
 }
 
+// footStrip to wysokość paska zamykającego stan złożony od dołu, w pikselach przy czcionce 16.
+const footStrip = 4
+
 // titleStrip mówi, czy tytuł ramki stoi w osobnym pasku u góry: tak wyglądają stany złożone.
 func (l *layouter) titleStrip(lv *level) bool {
 	return l.g.Kind == "state" && lv.sub != nil && !lv.sub.Region && len(lv.titleLines) > 0
@@ -726,13 +729,18 @@ func (l *layouter) finish(lv *level) {
 		if l.titleStrip(lv) {
 			top = titleH + 2*l.u(6) + l.u(8) // pasek tytułu i odstęp pod nim
 		}
+		// Stan złożony ma też wąski pasek u dołu, w kolorze paska tytułu.
+		bottom := 0.0
+		if l.titleStrip(lv) {
+			bottom = l.u(footStrip)
+		}
 		switch {
 		case l.vertical && !l.flip:
-			padY0 += top
+			padY0, padY1 = padY0+top, padY1+bottom
 		case l.vertical:
-			padY1 += top
+			padY1, padY0 = padY1+top, padY0+bottom
 		default:
-			padX0 += top
+			padX0, padX1 = padX0+top, padX1+bottom
 		}
 		// Ramka musi pomieścić tytuł na szerokość rzeczywistą.
 		need := titleW + 2*l.u(12)

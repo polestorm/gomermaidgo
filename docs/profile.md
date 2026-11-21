@@ -165,7 +165,9 @@ Stan: rysowany tym samym układem warstwowym.
 
 - identyfikator stanu składa się z liter, cyfr i podkreślenia; łącznik jest błędem, tak jak w Mermaid;
 - stan złożony ma tytuł w osobnym pasku u góry ramki, z lekkim tłem i linią pod spodem, a ramka ma mocniej
-  zaokrąglone narożniki; podgraf schematu blokowego zachowuje tytuł przy lewej krawędzi;
+  zaokrąglone narożniki; u dołu ramkę zamyka wąski pasek (4 px) w kolorze paska tytułu, bez tekstu, żeby
+  dużą ramkę stanu dało się rozpoznać także od spodu; podgraf schematu blokowego zachowuje tytuł przy lewej
+  krawędzi;
 - przejście między stanem złożonym a jego własną zawartością jest błędem.
 
 ## Wykres Gantta (`gantt`)
