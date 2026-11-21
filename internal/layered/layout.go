@@ -1215,6 +1215,88 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			pull(rows[r], true, false)
 		}
 
+		// Krawędź łamana ma skręcać raz, przy końcu, z którego rozchodzi się kilka krawędzi; jej
+		// punkty pośrednie i etykieta stają w osi drugiego końca, jeśli ten ma po tej stronie
+		// tylko tę jedną krawędź. Pola zostają na miejscu.
+		if !l.o.CurvedEdges {
+			here := map[*item]bool{}
+			for _, row := range rows {
+				for _, it := range row {
+					here[it] = true
+				}
+			}
+			axis := map[*item]float64{}
+			for _, e := range lv.edges {
+				if len(e.chain) == 0 || !here[e.chain[0]] || !e.u.real() || !e.v.real() {
+					continue
+				}
+				out, in := len(e.u.down), len(e.v.up)
+				switch {
+				case in == 1 && out >= 1:
+					for _, d := range e.chain {
+						axis[d] = e.v.x - e.v.loopExtra/2
+					}
+				case out == 1:
+					for _, d := range e.chain {
+						axis[d] = e.u.x - e.u.loopExtra/2
+					}
+				}
+			}
+			if len(axis) > 0 {
+				for _, row := range rows {
+					want := make([]float64, len(row))
+					priority := make([]float64, len(row))
+					for i, it := range row {
+						want[i], priority[i] = it.x, 100
+						if x, ok := axis[it]; ok {
+							want[i], priority[i] = x, 500
+						} else if it.real() {
+							priority[i] = 1000
+						}
+					}
+					place(row, want, priority)
+				}
+				// Pole, z którego krawędzie się rozchodzą albo w którym się schodzą, staje pośrodku
+				// swoich sąsiadów; pole połączone z sąsiadem jedną prostą krawędzią zostaje w jego osi.
+				mean := func(ns []*item) (float64, bool) {
+					if len(ns) == 0 {
+						return 0, false
+					}
+					sum := 0.0
+					for _, n := range ns {
+						sum += n.x
+					}
+					return sum / float64(len(ns)), true
+				}
+				for _, row := range rows {
+					want := make([]float64, len(row))
+					priority := make([]float64, len(row))
+					moved := false
+					for i, it := range row {
+						want[i], priority[i] = it.x, 1000
+						straight := (len(it.up) == 1 && len(it.up[0].down) == 1) || (len(it.down) == 1 && len(it.down[0].up) == 1)
+						if !it.real() || straight || it.loopExtra > 0 || len(it.up)+len(it.down) < 2 {
+							continue
+						}
+						up, okUp := mean(it.up)
+						down, okDown := mean(it.down)
+						switch {
+						case okUp && okDown:
+							want[i] = (up + down) / 2
+						case okUp:
+							want[i] = up
+						default:
+							want[i] = down
+						}
+						priority[i], moved = 500, true
+					}
+					if moved {
+						place(row, want, priority)
+					}
+				}
+			}
+		}
+
 		// Notatki dosuwamy do pól, których dotyczą; mają pierwszeństwo przed resztą warstwy.
 		for _, row := range rows {
 			want := make([]float64, len(row))

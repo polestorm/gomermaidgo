@@ -192,7 +192,7 @@ func (l *layouter) spreadPorts() {
 			return
 		}
 		sort.SliceStable(ends, func(a, b int) bool { return ends[a].key < ends[b].key })
-		step := math.Min(l.u(18), usable/float64(k))
+		step := math.Min(l.u(40), usable/float64(k))
 		for i, en := range ends {
 			off := (float64(i) - float64(k-1)/2) * step
 			if en.upper {

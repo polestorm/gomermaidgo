@@ -9,7 +9,7 @@
 <path class="edge" d="M878.6 280 L914.2 280" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M160.4 286 L192.4 286 L216 286" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M346.88 277.23 L364.53 277.23 C367.89 277.23 370.64 274.47 370.64 271.11 L370.64 271.11 C370.64 267.75 373.39 265 376.75 265 L394.4 265 L431.6 265 L455.2 265" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M346.88 294.77 L364.53 294.77 C367.89 294.77 370.64 297.53 370.64 300.89 L370.64 300.89 C370.64 304.25 373.39 307 376.75 307 L394.4 307 L431.6 307 L439.6 307 C444 307 447.6 310.6 447.6 315 L447.6 359 C447.6 363.4 451.2 367 455.6 367 L463.6 367 L463.2 367" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M346.88 294.77 L362.64 294.77 C367.04 294.77 370.64 298.38 370.64 302.77 L370.64 359 C370.64 363.4 374.24 367 378.64 367 L394.4 367 L431.6 367 L463.6 367 L463.2 367" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M654.6 265 L686.6 265 L710.2 265" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M649 535 L613.4 535" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M592.25 719 L592.25 754.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -20,7 +20,7 @@
 <rect class="cluster-title-background" x="8.4" y="164" width="109.6" height="20" fill="#ffffff"/>
 <rect class="cluster-title-background" x="726.6" y="214" width="105.6" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="395.4" y="255" width="35.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="396.6" y="297" width="32.8" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="396.6" y="357" width="32.8" height="20" fill="#ffffff"/>
 <rect class="cluster-title-background" x="381" y="469" width="92.8" height="20" fill="#ffffff"/>
 <rect class="cluster-title-background" x="468.4" y="627" width="247.2" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="489,72 477,66 477,78" fill="#3b4754"/>
@@ -62,7 +62,7 @@
 <text class="node-label" x="808.6" y="285.6" text-anchor="middle" fill="#1b1f24">Korekcja</text>
 <text class="node-label" x="1034.1" y="285.6" text-anchor="middle" fill="#1b1f24">Działanie korygujące</text>
 <text class="edge-label" x="413" y="270.6" text-anchor="middle" fill="#1b1f24">tak</text>
-<text class="edge-label" x="413" y="312.6" text-anchor="middle" fill="#1b1f24">nie</text>
+<text class="edge-label" x="413" y="372.6" text-anchor="middle" fill="#1b1f24">nie</text>
 <text class="cluster-title" x="427.4" y="484.6" text-anchor="middle" fill="#1b1f24">Wdrożenie</text>
 <text class="node-label" x="721" y="540.6" text-anchor="middle" fill="#1b1f24">Wykonanie</text>
 <text class="node-label" x="499" y="540.6" text-anchor="middle" fill="#1b1f24">Ocena skuteczności</text>

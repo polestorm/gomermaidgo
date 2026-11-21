@@ -2,10 +2,10 @@
 <path class="edge" d="M140 22 L198 22 L334.4 22 L398 22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M546.4 22 L578.4 22 L615.6 22 L647.6 22 L650.2 22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M798.6 22 L809.6 22 L841.6 22 L865.2 22" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M140 114 L198 114 L334.4 114 L365.2 114 C369.6 114 373.2 117.6 373.2 122 L373.2 145 C373.2 149.4 376.8 153 381.2 153 L398 153" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M140 206 L198 206 L334.4 206 L365.2 206 C369.6 206 373.2 202.4 373.2 198 L373.2 175 C373.2 170.6 376.8 167 381.2 167 L398 167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M546.4 153 L561.4 153 C561.95 153 562.4 152.55 562.4 152 L562.4 152 C562.4 151.45 562.85 151 563.4 151 L578.4 151 L615.6 151 L647.6 151 L650.2 151" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M546.4 167 L561.4 167 C561.95 167 562.4 167.45 562.4 168 L562.4 168 C562.4 168.55 562.85 169 563.4 169 L578.4 169 L615.6 169 L623.6 169 C628 169 631.6 172.6 631.6 177 L631.6 235 C631.6 239.4 635.2 243 639.6 243 L647.6 243 L650.2 243" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M140 114 L198 114 L334.4 114 L365.2 114 C369.6 114 373.2 117.6 373.2 122 L373.2 164 C373.2 168.4 376.8 172 381.2 172 L398 172" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M140 206 L198 206 L334.4 206 L365.2 206 C369.6 206 373.2 202.4 373.2 198 L373.2 194 C373.2 189.6 376.8 186 381.2 186 L398 186" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M546.4 172 L554.4 172 C558.8 172 562.4 168.4 562.4 164 L562.4 159 C562.4 154.6 566 151 570.4 151 L578.4 151 L615.6 151 L647.6 151 L650.2 151" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M546.4 186 L554.4 186 C558.8 186 562.4 189.6 562.4 194 L562.4 235 C562.4 239.4 566 243 570.4 243 L578.4 243 L615.6 243 L647.6 243 L650.2 243" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M140 339 L162 339 C165.85 339 169 335.85 169 332 L169 332 C169 328.15 172.15 325 176 325 L198 325 L334.4 325 L365.2 325 C369.6 325 373.2 328.6 373.2 333 L373.2 365 C373.2 369.4 376.8 373 381.2 373 L398 373" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M140 353 L162 353 C165.85 353 169 356.15 169 360 L169 360 C169 363.85 172.15 367 176 367 L198 367 L334.4 367 L358.2 367 C362.6 367 366.2 370.6 366.2 375 L366.2 457 C366.2 461.4 369.8 465 374.2 465 L398 465" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M140 448 L162 448 C165.85 448 169 444.85 169 441 L169 441 C169 437.15 172.15 434 176 434 L198 434 L334.4 434 L351.2 434 C355.6 434 359.2 430.4 359.2 426 L359.2 395 C359.2 390.6 362.8 387 367.2 387 L398 387" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -20,8 +20,8 @@
 <polygon class="arrowhead" points="406.4,22 394.4,16 394.4,28" fill="#3b4754"/>
 <polygon class="arrowhead" points="658.6,22 646.6,16 646.6,28" fill="#3b4754"/>
 <polygon class="arrowhead" points="873.6,22 861.6,16 861.6,28" fill="#3b4754"/>
-<polygon class="arrowhead" points="406.4,153 394.4,147 394.4,159" fill="#3b4754"/>
-<polygon class="arrowhead" points="406.4,167 394.4,161 394.4,173" fill="#3b4754"/>
+<polygon class="arrowhead" points="406.4,172 394.4,166 394.4,178" fill="#3b4754"/>
+<polygon class="arrowhead" points="406.4,186 394.4,180 394.4,192" fill="#3b4754"/>
 <polygon class="arrowhead" points="658.6,151 646.6,145 646.6,157" fill="#3b4754"/>
 <polygon class="arrowhead" points="658.6,243 646.6,237 646.6,249" fill="#3b4754"/>
 <polygon class="arrowhead" points="406.4,373 394.4,367 394.4,379" fill="#3b4754"/>
@@ -37,7 +37,7 @@
 <rect class="node" x="0" y="433" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="555" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="406.4" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="406.4" y="138" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="406.4" y="157" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="406.4" y="358" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="406.4" y="450" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <polygon class="node" points="476.4,542 528.9,577 476.4,612 423.9,577" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
@@ -53,7 +53,7 @@
 <text class="node-label" x="70" y="460.6" text-anchor="middle" fill="#1b1f24">K</text>
 <text class="node-label" x="70" y="582.6" text-anchor="middle" fill="#1b1f24">Start</text>
 <text class="node-label" x="476.4" y="27.6" text-anchor="middle" fill="#1b1f24">B</text>
-<text class="node-label" x="476.4" y="165.6" text-anchor="middle" fill="#1b1f24">G</text>
+<text class="node-label" x="476.4" y="184.6" text-anchor="middle" fill="#1b1f24">G</text>
 <text class="node-label" x="476.4" y="385.6" text-anchor="middle" fill="#1b1f24">L</text>
 <text class="node-label" x="476.4" y="477.6" text-anchor="middle" fill="#1b1f24">M</text>
 <text class="node-label" x="476.4" y="582.6" text-anchor="middle" fill="#1b1f24">Wybór</text>
