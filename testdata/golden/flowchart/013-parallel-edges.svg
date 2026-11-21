@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="144" height="419" viewBox="-12 -12 144 419" role="img" font-family="sans-serif" font-size="16">
+<path class="edge" d="M47 40 C47 52 33 52 33 64 L33 88 C33 96.85 42 96.85 42 105.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M65 40 C65 52 51 52 51 64 L51 88 C51 96.85 60 96.85 60 105.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M83 40 C83 52 96 52 96 64 L96 88 C96 96.85 78 96.85 78 105.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M51 152 L51 176 C51 184.85 60 184.85 60 193.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M69 152 L69 176 C69 184.85 60 184.85 60 193.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M60 274 C60 286 51 286 51 298 C51 306.85 60 306.85 60 315.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M60 274 C60 286 69 286 69 298 C69 306.85 60 306.85 60 315.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="73.28" y="66" width="45.44" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="42,112 37,103 47,103" fill="#3b4754"/>
+<polygon class="arrowhead" points="60,112 55,103 65,103" fill="#3b4754"/>
+<polygon class="arrowhead" points="78,112 73,103 83,103" fill="#3b4754"/>
+<polygon class="arrowhead" points="60,200 55,191 65,191" fill="#3b4754"/>
+<polygon class="arrowhead" points="60,200 55,191 65,191" fill="#3b4754"/>
+<polygon class="arrowhead" points="60,322 55,313 65,313" fill="#3b4754"/>
+<polygon class="arrowhead" points="60,322 55,313 65,313" fill="#3b4754"/>
+<rect class="node" x="16" y="0" width="98" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="19.5" y="112" width="81" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="60,200 120,237 60,274 0,237" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="60" cy="358.5" r="36.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="65" y="25.6" text-anchor="middle" fill="#1b1f24">Wniosek</text>
+<text class="node-label" x="60" y="137.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
+<text class="node-label" x="60" y="242.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
+<text class="node-label" x="60" y="364.1" text-anchor="middle" fill="#1b1f24">Koniec</text>
+<text class="edge-label" x="96" y="81.6" text-anchor="middle" fill="#1b1f24">pilne</text>
+</svg>

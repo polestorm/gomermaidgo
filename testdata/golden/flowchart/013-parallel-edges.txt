@@ -1,0 +1,12 @@
+flowchart TB
+node A rect "Wniosek"
+node B rect "Ocena"
+node C rhombus "Decyzja"
+node D circle "Koniec"
+edge A -> B normal none/arrow len=1
+edge A -> B normal none/arrow len=1
+edge A -> B normal none/arrow len=1 "pilne"
+edge B -> C normal none/arrow len=1
+edge B -> C normal none/arrow len=1
+edge C -> D normal none/arrow len=1
+edge C -> D normal none/arrow len=1

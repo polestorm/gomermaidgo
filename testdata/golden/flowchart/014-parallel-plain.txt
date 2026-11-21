@@ -1,0 +1,9 @@
+flowchart LR
+node A rhombus "Wybór"
+node B circle "Cel"
+node C rect "Nadawca"
+node D rect "Odbiorca"
+edge A -> B normal none/arrow len=1
+edge A -> B normal none/arrow len=1
+edge C -> D normal none/arrow len=1
+edge D -> C normal none/arrow len=1

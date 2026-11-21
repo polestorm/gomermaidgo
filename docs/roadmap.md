@@ -24,6 +24,7 @@ Do poprawy w układzie, w kolejności wpływu na czytelność:
    uzgadniana z układem rodzica, więc dwie krawędzie mogą się skrzyżować tuż przed ramką;
 2. podział na warstwy metodą sympleksu sieciowego zamiast najdłuższej ścieżki (krótsze krawędzie, węższy rysunek);
 3. rozmieszczenie metodą Brandesa i Köpfa (bardziej zwarte i symetryczne niż metoda priorytetowa);
-4. krawędzie wielokrotne między tą samą parą węzłów;
-5. strona notatki w diagramie stanów; `direction` we wnętrzu podgrafu;
+4. ~~krawędzie wielokrotne między tą samą parą węzłów~~: zrobione 2026-11-21 (FLOW-015);
+5. ~~strona notatki w diagramie stanów~~: zrobione 2026-11-21 (STATE-011); `direction` we wnętrzu podgrafu nadal
+   nie zmienia układu;
 6. regiony współbieżne stanów i identyfikatory z łącznikiem, jeśli okażą się potrzebne.

@@ -213,6 +213,13 @@ func (l *layouter) drawLevel(lv *level) {
 			case kindNode:
 				cx, cy, w, h := l.rect(it.nodeX(), it.y, it.nodeW(), it.h)
 				l.drawNode(it.node.Shape, it.text, cx, cy, w, h)
+				if a := it.anchor; a != nil {
+					// Łącznik notatki: krótka linia kropkowana między bokami pola i notatki.
+					from := l.point(a.nodeX()+it.anchorSide*a.nodeW()/2, it.y)
+					to := l.point(it.x-it.anchorSide*it.w/2, it.y)
+					l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "note-link",
+						X: from.X, Y: from.Y, X2: to.X, Y2: to.Y, Stroke: colorNoteStroke, StrokeWidth: 1.5, Dash: "3 3"})
+				}
 				for i, e := range lv.loops[it] {
 					l.drawLoop(it, e, i)
 				}

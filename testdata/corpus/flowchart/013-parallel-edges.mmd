@@ -1,0 +1,11 @@
+%% REQ: FLOW-015
+%% Tytuł: Krawędzie wielokrotne
+%% Sprawdza: Dwie i trzy krawędzie między tą samą parą węzłów, z etykietą i bez, także przy rombie i kole, które mają jeden punkt zaczepienia.
+flowchart TD
+    A[Wniosek] --> B[Ocena]
+    A --> B
+    A -->|pilne| B
+    B --> C{Decyzja}
+    B --> C
+    C --> D((Koniec))
+    C --> D

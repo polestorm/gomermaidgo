@@ -52,6 +52,10 @@ type item struct {
 	x, y        float64
 	up, down    []*item
 	portTop     bool // punkt wejścia przy początku osi warstw (w przeciwnym razie przy końcu)
+
+	// Notatka stoi w warstwie pola, którego dotyczy, tuż obok niego: po stronie +x (1) albo −x (−1).
+	anchor     *item
+	anchorSide float64
 }
 
 // nodeX to środek samego kształtu (bez miejsca na pętle).
@@ -285,10 +289,12 @@ func (l *layouter) assignEdges() {
 		it.text = l.wrap(n.Text, l.u(200))
 		it.w, it.h = l.abstract(l.nodeSize("note", it.text))
 		l.itemOf[id] = it
+		it.anchor, it.anchorSide = l.itemOf[n.Target], 1
+		if n.Side == "left" {
+			it.anchorSide = -1
+		}
 		lv := l.levels[scope]
 		lv.items = append(lv.items, it)
-		lv.edges = append(lv.edges, &ledge{u: l.itemOf[n.Target], v: it, lv: lv,
-			e: &graph.Edge{From: n.Target, To: id, Style: graph.Dotted, StartHead: graph.NoHead, EndHead: graph.NoHead, MinLen: 1}})
 	}
 }
 
@@ -401,10 +407,20 @@ func (l *layouter) sizeAll(lv *level) {
 // rank usuwa cykle, dzieli pola na warstwy i wstawia punkty pomocnicze na długich krawędziach.
 func (l *layouter) rank(lv *level) {
 	lv.factor = 1
+	pairs := map[[2]*item]bool{}
 	for _, e := range lv.edges {
 		if len(e.e.Label) > 0 {
 			lv.factor = 2 // warstwy pośrednie dają miejsce na etykiety krawędzi
 		}
+		// Krawędzie wielokrotne też potrzebują warstwy pośredniej: każda dostaje w niej własny punkt.
+		key := [2]*item{e.u, e.v}
+		if e.u == e.v {
+			continue
+		}
+		if pairs[key] || pairs[[2]*item{e.v, e.u}] {
+			lv.factor = 2
+		}
+		pairs[key] = true
 	}
 	index := map[*item]int{}
 	for i, it := range lv.items {
@@ -521,6 +537,11 @@ func (l *layouter) rank(lv *level) {
 		}
 		it.rank = rank[i]
 		maxRank = max(maxRank, rank[i])
+	}
+	for _, it := range lv.items {
+		if it.anchor != nil {
+			it.rank = it.anchor.rank
+		}
 	}
 
 	// Punkty pomocnicze i pole etykiety na każdej krawędzi dłuższej niż jedna warstwa.
@@ -705,6 +726,37 @@ func (l *layouter) order(lv *level) {
 			break
 		}
 	}
+
+	// Notatki nie mają krawędzi, więc porządkowanie ich nie rusza: stawiamy je obok pola, którego dotyczą.
+	for _, row := range lv.ranks {
+		var notes []*item
+		for _, it := range row {
+			if it.anchor != nil {
+				notes = append(notes, it)
+			}
+		}
+		for _, n := range notes {
+			rest := make([]*item, 0, len(row))
+			for _, it := range row {
+				if it != n {
+					rest = append(rest, it)
+				}
+			}
+			at := 0
+			for i, it := range rest {
+				if it == n.anchor {
+					at = i
+					if n.anchorSide > 0 {
+						at = i + 1
+					}
+				}
+			}
+			copy(row, append(rest[:at:at], append([]*item{n}, rest[at:]...)...))
+		}
+		for i, it := range row {
+			it.order = i
+		}
+	}
 }
 
 // position wyznacza współrzędne pól poziomu i zwraca rozmiar zawartości.
@@ -824,6 +876,24 @@ func (l *layouter) position(lv *level) (width, height float64) {
 	}
 	for r := 1; r < len(lv.ranks); r++ {
 		pull(lv.ranks[r], true, false)
+	}
+
+	// Notatki dosuwamy do pól, których dotyczą; mają pierwszeństwo przed resztą warstwy.
+	for _, row := range lv.ranks {
+		want := make([]float64, len(row))
+		priority := make([]float64, len(row))
+		any := false
+		for i, it := range row {
+			want[i], priority[i] = it.x, 0
+			if it.anchor != nil {
+				want[i] = it.anchor.x + it.anchorSide*sep(it.anchor, it)
+				priority[i] = 1
+				any = true
+			}
+		}
+		if any {
+			place(row, want, priority)
+		}
 	}
 
 	left := math.Inf(1)

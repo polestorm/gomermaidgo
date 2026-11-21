@@ -1,0 +1,8 @@
+%% REQ: FLOW-015
+%% Tytuł: Krawędzie wielokrotne bez etykiet
+%% Sprawdza: Pary krawędzi bez etykiet między rombem a kołem oraz w obu kierunkach między dwoma prostokątami.
+flowchart LR
+    A{Wybór} --> B((Cel))
+    A --> B
+    C[Nadawca] --> D[Odbiorca]
+    D --> C

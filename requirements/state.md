@@ -13,4 +13,4 @@
 | STATE-008 | `direction` ustawia kierunek diagramu albo stanu złożonego. |
 | STATE-009 | Element spoza profilu albo błąd składni daje błąd z numerem linii i stałym kodem. |
 | STATE-010 | Każdy tekst ze źródła jest na rysunku; stan początkowy, końcowy, wybór, rozwidlenie i złączenie mają własne kształty bez tekstu. |
-| STATE-011 | Układ warstwowy jak dla schematu blokowego (FLOW-013); notatka jest polem połączonym z celem linią kropkowaną. |
+| STATE-011 | Układ warstwowy jak dla schematu blokowego (FLOW-013); notatka stoi w warstwie swojego stanu, po wskazanej stronie (w układzie pionowym: po lewej albo po prawej), połączona z nim krótką linią kropkowaną. |

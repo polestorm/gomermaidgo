@@ -1,0 +1,15 @@
+%% REQ: STATE-007 STATE-011
+%% Tytuł: Notatki po obu stronach
+%% Sprawdza: Notatki po lewej i po prawej tego samego stanu oraz przy kolejnych stanach; notatka stoi obok stanu, nie pod nim.
+stateDiagram-v2
+    [*] --> Roboczy
+    Roboczy --> Obowiązujący : zatwierdź
+    Obowiązujący --> Wycofany : zastąp
+    note right of Obowiązujący : Szkolenie musi być ukończone
+    note left of Wycofany
+        Kopie papierowe
+        do zniszczenia
+    end note
+    note right of Roboczy : Tylko autor
+    note left of Roboczy : Wersja 0.x
+    Wycofany --> [*]
