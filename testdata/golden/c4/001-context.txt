@@ -1,13 +1,13 @@
 c4 TB
-subgraph firma title="Wytwórca wyrobów medycznych\n[Enterprise]" in=c4 title paint[dash=6,4]
-subgraph it title="Infrastruktura\n[System]" in=firma paint[dash=6,4]
+subgraph firma title="Wytwórca wyrobów medycznych\n[ENTERPRISE]" in=c4 title paint[dash=6,4]
+subgraph it title="Infrastruktura\n[SYSTEM]" in=firma paint[dash=6,4]
 subgraph c4 title title="System zarządzania jakością w otoczeniu"
-node pracownik stadium "**Pracownik**\n«Person»\nCzyta procedury i potwierdza zapoznanie" in=c4 title
-node audytor stadium "**Audytor zewnętrzny**\n«External Person»\nPrzegląda zapisy podczas audytu" in=c4 title paint[fill=#f6f8fa stroke=#7b8794 dash=5,4]
-node qms rect "**System jakości**\n«System»\nDokumenty, zapisy, szkolenia, działania korygujące" in=firma
-node baza cylinder "**Baza danych**\n«System»\nZapisy i ich historia" in=it
-node poczta rect "**Poczta**\n«System»\nPowiadomienia" in=it
-node erp rect "**ERP**\n«External System»\nPartie, dostawcy, zamówienia" in=c4 title paint[fill=#f6f8fa stroke=#7b8794 dash=5,4]
+node pracownik stadium "**Pracownik**\n[Person]\nCzyta procedury i potwierdza zapoznanie" in=c4 title
+node audytor stadium "**Audytor zewnętrzny**\n[Person]\nPrzegląda zapisy podczas audytu" in=c4 title paint[fill=#f6f8fa stroke=#7b8794 dash=5,4]
+node qms rect "**System jakości**\n[Software System]\nDokumenty, zapisy, szkolenia, działania korygujące" in=firma
+node baza cylinder "**Baza danych**\n[Software System]\nZapisy i ich historia" in=it
+node poczta rect "**Poczta**\n[Software System]\nPowiadomienia" in=it
+node erp rect "**ERP**\n[Software System]\nPartie, dostawcy, zamówienia" in=c4 title paint[fill=#f6f8fa stroke=#7b8794 dash=5,4]
 edge pracownik -> qms normal none/arrow len=1 "Korzysta\n[HTTPS]"
 edge audytor -> qms normal none/arrow len=1 "Przegląda zapisy"
 edge qms -> baza normal none/arrow len=1 "Zapisuje"

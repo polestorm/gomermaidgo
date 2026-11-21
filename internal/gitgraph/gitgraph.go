@@ -184,7 +184,12 @@ func Parse(source string) (*Graph, error) {
 			if g.Commits[src].Branch == current {
 				return nil, syntax.Errorf(line, CodeCommit, "cherry-pick takes a commit from another branch")
 			}
-			if err := add(Commit{Tag: opts["tag"], Merged: -1, Picked: src}); err != nil {
+			// Kopia bez własnego znacznika dostaje znacznik ze źródłem, żeby było widać, co skopiowano.
+			tag := opts["tag"]
+			if tag == "" {
+				tag = "cherry-pick:" + opts["id"]
+			}
+			if err := add(Commit{Tag: tag, Merged: -1, Picked: src}); err != nil {
 				return nil, err
 			}
 		default:

@@ -551,7 +551,7 @@ Rysowane tym samym układem warstwowym co schemat blokowy.
 Świadome różnice wobec Mermaid: układ jest warstwowy, wyznaczony przez relacje, a nie siatką o stałej liczbie
 kształtów w rzędzie, więc wskazówki kierunku (`Rel_U`, `Rel_L`) i `UpdateLayoutConfig` nie wpływają na położenie;
 tytuł jest ramką wokół diagramu; osoba jest polem z półkolami bez ikony; element zewnętrzny odróżnia linia przerywana
-i jaśniejsze tło, a nie kolor; wszystkie pięć nagłówków rysuje się tak samo.
+i jaśniejsze tło, a nie kolor; rodzaj elementu jest zapisany jak w Mermaid (`[Person]`, `[Software System]`); wszystkie pięć nagłówków rysuje się tak samo.
 
 ## Graf historii Gita (`gitGraph`)
 

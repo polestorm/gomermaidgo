@@ -16,20 +16,20 @@ func TestParse(t *testing.T) {
 	}
 	label := func(id string) string { return strings.Join(g.Node(id).Label, "|") }
 	bold := string(graph.MarkBold)
-	if label("u") != bold+"Użytkownik"+bold+"|«Person»|Opis, z przecinkiem" || g.Node("u").Shape != graph.Stadium {
+	if label("u") != bold+"Użytkownik"+bold+"|[Person]|Opis, z przecinkiem" || g.Node("u").Shape != graph.Stadium {
 		t.Errorf("person: %q %s", label("u"), g.Node("u").Shape)
 	}
-	if label("app") != bold+"Aplikacja"+bold+"|«Container: Go»|Robi rzeczy" || g.Node("app").Parent != "b" {
+	if label("app") != bold+"Aplikacja"+bold+"|[Container: Go]|Robi rzeczy" || g.Node("app").Parent != "b" {
 		t.Errorf("container: %q in %q", label("app"), g.Node("app").Parent)
 	}
-	if db := g.Node("db"); label("db") != bold+"Baza"+bold+"|«External Container: SQL»" || db.Shape != graph.Cylinder || db.Paint.Dash == "" {
+	if db := g.Node("db"); label("db") != bold+"Baza"+bold+"|[Container: SQL]" || db.Shape != graph.Cylinder || db.Paint.Dash == "" {
 		t.Errorf("external database: %q %+v", label("db"), db)
 	}
-	if q := g.Node("q"); q.Parent != "w" || q.Shape != graph.Round || label("q") != bold+"Kolejka"+bold+"|«Component»" {
+	if q := g.Node("q"); q.Parent != "w" || q.Shape != graph.Round || label("q") != bold+"Kolejka"+bold+"|[Component]" {
 		t.Errorf("queue in a nested boundary: %+v", q)
 	}
 	title := func(id string) string { return strings.Join(g.Subgraph(id).Title, "|") }
-	if title("b") != "Granica|[System]" || title("w") != "Wewnętrzna|[strefa]" || g.Subgraph("w").Parent != "b" || title("n") != "Serwer|[Linux]" {
+	if title("b") != "Granica|[SYSTEM]" || title("w") != "Wewnętrzna|[STREFA]" || g.Subgraph("w").Parent != "b" || title("n") != "Serwer|[LINUX]" {
 		t.Errorf("boundaries: %q %q %q", title("b"), title("w"), title("n"))
 	}
 	frame := g.Subgraph("c4 title")

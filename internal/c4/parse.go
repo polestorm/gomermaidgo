@@ -28,7 +28,7 @@ var (
 		label string
 		tech  bool
 	}{
-		"Person": {"Person", false}, "System": {"System", false},
+		"Person": {"Person", false}, "System": {"Software System", false},
 		"Container": {"Container", true}, "Component": {"Component", true},
 	}
 )
@@ -144,7 +144,7 @@ func Parse(source string) (*graph.Graph, error) {
 			}
 			lines := []string{args[1]}
 			if kind != "" {
-				lines = append(lines, "["+kind+"]")
+				lines = append(lines, "["+strings.ToUpper(kind)+"]")
 			}
 			sub := &graph.Subgraph{ID: args[0], Title: lines, Parent: scope(), Line: line, Paint: graph.Paint{Dash: "6 4"}}
 			if err := g.AddSubgraph(sub); err != nil {
@@ -203,10 +203,8 @@ func Parse(source string) (*graph.Graph, error) {
 			if err := need(2); err != nil {
 				return nil, err
 			}
+			// Rodzaj jak w notacji C4; element zewnętrzny odróżnia linia przerywana, nie tekst.
 			kind, description := base.label, arg(args, 2)
-			if external {
-				kind = "External " + kind
-			}
 			if base.tech {
 				description = arg(args, 3)
 				if tech := arg(args, 2); tech != "" {
@@ -221,7 +219,7 @@ func Parse(source string) (*graph.Graph, error) {
 				return nil, syntax.Errorf(line, CodeArguments, "element %q is defined twice", args[0])
 			}
 			node.Explicit = true
-			node.Label = []string{string(graph.MarkBold) + args[1] + string(graph.MarkBold), "«" + kind + "»"}
+			node.Label = []string{string(graph.MarkBold) + args[1] + string(graph.MarkBold), "[" + kind + "]"}
 			if description != "" {
 				node.Label = append(node.Label, description)
 			}

@@ -1,59 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="711" height="922" viewBox="-11.5 -12 711 922" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="704" height="902" viewBox="-12 -12 704 902" role="img" font-family="Recursive, sans-serif" font-size="16">
 <title>Kontenery systemu jakości</title>
-<rect class="cluster" x="0.5" y="168" width="687" height="562" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
-<path class="edge" d="M495.5 326 L495.5 341 C495.5 345.4 491.9 349 487.5 349 L156.5 349 C152.1 349 148.5 352.6 148.5 357 L148.5 386 L148.5 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M535.5 326 L535.5 355 C535.5 359.4 531.9 363 527.5 363 L443.5 363 C439.1 363 435.5 366.6 435.5 371 L435.5 386 L435.5 458.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M401.5 551 L401.5 633.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M616.5 334.4 L616.5 612 L616.5 619 C616.5 623.4 612.9 627 608.5 627 L423.5 627 C419.1 627 415.5 630.6 415.5 635 L415.5 642" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M535 64 L535 71 C535 75.4 531.4 79 527 79 L352 79 C347.6 79 344 82.6 344 87 L344 94 L344 138 L344 145 C344 149.4 347.6 153 352 153 L527.5 153 C531.9 153 535.5 156.6 535.5 161 L535.5 168 L535.5 233.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M469.5 551 L469.5 621 C466.2 621 463.5 623.7 463.5 627 C463.5 630.3 466.2 633 469.5 633 L469.5 805.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="cluster-title-background" x="8.5" y="174" width="128.8" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="80.5" y="388" width="136" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="410.3" y="398" width="50.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="355.9" y="590" width="91.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="566.5" y="499" width="100" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="247.2" y="96" width="193.6" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="435.8" y="762" width="66.4" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="148.5,460 142.5,448 154.5,448" fill="#3b4754"/>
-<polygon class="arrowhead" points="435.5,467 429.5,455 441.5,455" fill="#3b4754"/>
-<polygon class="arrowhead" points="401.5,642 395.5,630 407.5,630" fill="#3b4754"/>
-<polygon class="arrowhead" points="616.5,326 622.5,338 610.5,338" fill="#3b4754"/>
-<polygon class="arrowhead" points="535.5,242 529.5,230 541.5,230" fill="#3b4754"/>
-<polygon class="arrowhead" points="469.5,814 463.5,802 475.5,802" fill="#3b4754"/>
-<rect class="node" x="444" y="0" width="182" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="415.5" y="242" width="240" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="148.5" cy="551" rx="127.5" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="21" y="467" width="255" height="84" fill="#eef2f7"/>
-<line class="node-detail" x1="21" y1="467" x2="21" y2="551" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="276" y1="467" x2="276" y2="551" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="148.5" cy="467" rx="127.5" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="323.5" y="467" width="224" height="84" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="219.5" y="642" width="228" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="358" y="814" width="222" height="84" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
-<text class="node-label" x="488.2" y="27.6" font-weight="bold" fill="#1b1f24">Użytkownik</text>
-<text class="node-label" x="535" y="47.6" text-anchor="middle" fill="#1b1f24">«Person»</text>
-<text class="cluster-title" x="72.9" y="189.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
-<text class="cluster-title" x="72.9" y="209.6" text-anchor="middle" fill="#1b1f24">[Container]</text>
-<text class="node-label" x="498.7" y="269.6" font-weight="bold" fill="#1b1f24">Aplikacja</text>
-<text class="node-label" x="535.5" y="289.6" text-anchor="middle" fill="#1b1f24">«Container: Go, HTMX»</text>
-<text class="node-label" x="535.5" y="309.6" text-anchor="middle" fill="#1b1f24">Formularze i przeglądy</text>
-<text class="node-label" x="129.7" y="498.1" font-weight="bold" fill="#1b1f24">Baza</text>
-<text class="node-label" x="148.5" y="518.1" text-anchor="middle" fill="#1b1f24">«Container: PostgreSQL»</text>
-<text class="node-label" x="148.5" y="538.1" text-anchor="middle" fill="#1b1f24">Dokumenty i zapisy</text>
-<text class="node-label" x="379.9" y="494.6" font-weight="bold" fill="#1b1f24">Kolejka zadań</text>
-<text class="node-label" x="435.5" y="514.6" text-anchor="middle" fill="#1b1f24">«Container: tabela w</text>
-<text class="node-label" x="435.5" y="534.6" text-anchor="middle" fill="#1b1f24">bazie»</text>
-<text class="node-label" x="280.7" y="669.6" font-weight="bold" fill="#1b1f24">Renderer PDF</text>
-<text class="node-label" x="333.5" y="689.6" text-anchor="middle" fill="#1b1f24">«Container: gopdfgo»</text>
-<text class="edge-label" x="148.5" y="403.6" text-anchor="middle" fill="#1b1f24">Czyta i zapisuje</text>
-<text class="edge-label" x="148.5" y="423.6" text-anchor="middle" fill="#1b1f24">[SQL]</text>
-<text class="edge-label" x="435.5" y="413.6" text-anchor="middle" fill="#1b1f24">Zleca</text>
-<text class="edge-label" x="401.5" y="605.6" text-anchor="middle" fill="#1b1f24">Uruchamia</text>
-<text class="edge-label" x="616.5" y="514.6" text-anchor="middle" fill="#1b1f24">Zwraca plik</text>
-<text class="node-label" x="411.8" y="841.6" font-weight="bold" fill="#1b1f24">Serwer poczty</text>
-<text class="node-label" x="469" y="861.6" text-anchor="middle" fill="#1b1f24">«External Container:</text>
-<text class="node-label" x="469" y="881.6" text-anchor="middle" fill="#1b1f24">SMTP»</text>
-<text class="edge-label" x="344" y="111.6" text-anchor="middle" fill="#1b1f24">Pracuje w przeglądarce</text>
-<text class="edge-label" x="344" y="131.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
-<text class="edge-label" x="469" y="777.6" text-anchor="middle" fill="#1b1f24">Wysyła</text>
+<rect class="cluster" x="0" y="168" width="680" height="562" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
+<path class="edge" d="M488 326 L488 341 C488 345.4 484.4 349 480 349 L153 349 C148.6 349 145 352.6 145 357 L145 386 L145 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M528 326 L528 355 C528 359.4 524.4 363 520 363 L437 363 C432.6 363 429 366.6 429 371 L429 386 L429 458.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M395 551 L395 633.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M609 334.4 L609 612 L609 619 C609 623.4 605.4 627 601 627 L417 627 C412.6 627 409 630.6 409 635 L409 642" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M528 64 L528 71 C528 75.4 524.4 79 520 79 L348 79 C343.6 79 340 82.6 340 87 L340 94 L340 138 L340 145 C340 149.4 343.6 153 348 153 L520 153 C524.4 153 528 156.6 528 161 L528 168 L528 233.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M463 551 L463 621 C459.7 621 457 623.7 457 627 C457 630.3 459.7 633 463 633 L463 805.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="cluster-title-background" x="8" y="174" width="128.8" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="77" y="388" width="136" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="403.8" y="398" width="50.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="349.4" y="590" width="91.2" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="559" y="499" width="100" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="243.2" y="96" width="193.6" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="429.8" y="762" width="66.4" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="145,460 139,448 151,448" fill="#3b4754"/>
+<polygon class="arrowhead" points="429,467 423,455 435,455" fill="#3b4754"/>
+<polygon class="arrowhead" points="395,642 389,630 401,630" fill="#3b4754"/>
+<polygon class="arrowhead" points="609,326 615,338 603,338" fill="#3b4754"/>
+<polygon class="arrowhead" points="528,242 522,230 534,230" fill="#3b4754"/>
+<polygon class="arrowhead" points="463,814 457,802 469,802" fill="#3b4754"/>
+<rect class="node" x="437" y="0" width="182" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="408" y="242" width="240" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="145" cy="551" rx="125" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="20" y="467" width="250" height="84" fill="#eef2f7"/>
+<line class="node-detail" x1="20" y1="467" x2="20" y2="551" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="270" y1="467" x2="270" y2="551" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="145" cy="467" rx="125" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="318" y="467" width="222" height="84" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="218.5" y="642" width="223" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="362.5" y="814" width="201" height="64" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text class="node-label" x="481.2" y="27.6" font-weight="bold" fill="#1b1f24">Użytkownik</text>
+<text class="node-label" x="528" y="47.6" text-anchor="middle" fill="#1b1f24">[Person]</text>
+<text class="cluster-title" x="72.4" y="189.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
+<text class="cluster-title" x="72.4" y="209.6" text-anchor="middle" fill="#1b1f24">[CONTAINER]</text>
+<text class="node-label" x="491.2" y="269.6" font-weight="bold" fill="#1b1f24">Aplikacja</text>
+<text class="node-label" x="528" y="289.6" text-anchor="middle" fill="#1b1f24">[Container: Go, HTMX]</text>
+<text class="node-label" x="528" y="309.6" text-anchor="middle" fill="#1b1f24">Formularze i przeglądy</text>
+<text class="node-label" x="126.2" y="498.1" font-weight="bold" fill="#1b1f24">Baza</text>
+<text class="node-label" x="145" y="518.1" text-anchor="middle" fill="#1b1f24">[Container: PostgreSQL]</text>
+<text class="node-label" x="145" y="538.1" text-anchor="middle" fill="#1b1f24">Dokumenty i zapisy</text>
+<text class="node-label" x="373.4" y="494.6" font-weight="bold" fill="#1b1f24">Kolejka zadań</text>
+<text class="node-label" x="429" y="514.6" text-anchor="middle" fill="#1b1f24">[Container: tabela w</text>
+<text class="node-label" x="429" y="534.6" text-anchor="middle" fill="#1b1f24">bazie]</text>
+<text class="node-label" x="277.2" y="669.6" font-weight="bold" fill="#1b1f24">Renderer PDF</text>
+<text class="node-label" x="330" y="689.6" text-anchor="middle" fill="#1b1f24">[Container: gopdfgo]</text>
+<text class="edge-label" x="145" y="403.6" text-anchor="middle" fill="#1b1f24">Czyta i zapisuje</text>
+<text class="edge-label" x="145" y="423.6" text-anchor="middle" fill="#1b1f24">[SQL]</text>
+<text class="edge-label" x="429" y="413.6" text-anchor="middle" fill="#1b1f24">Zleca</text>
+<text class="edge-label" x="395" y="605.6" text-anchor="middle" fill="#1b1f24">Uruchamia</text>
+<text class="edge-label" x="609" y="514.6" text-anchor="middle" fill="#1b1f24">Zwraca plik</text>
+<text class="node-label" x="405.8" y="841.6" font-weight="bold" fill="#1b1f24">Serwer poczty</text>
+<text class="node-label" x="463" y="861.6" text-anchor="middle" fill="#1b1f24">[Container: SMTP]</text>
+<text class="edge-label" x="340" y="111.6" text-anchor="middle" fill="#1b1f24">Pracuje w przeglądarce</text>
+<text class="edge-label" x="340" y="131.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
+<text class="edge-label" x="463" y="777.6" text-anchor="middle" fill="#1b1f24">Wysyła</text>
 </svg>
