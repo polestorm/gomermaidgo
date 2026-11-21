@@ -7,22 +7,22 @@
 <rect class="lane-header" x="585" y="-52" width="273" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
 <path class="edge" d="M150 44 L150 53.8 C150 58.2 153.6 61.8 158 61.8 L434 61.8 C438.4 61.8 442 65.4 442 69.8 L442 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M442 132 L442 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M423.89 249.66 L423.89 261.33 C423.89 265.73 420.29 269.33 415.89 269.33 L236 269.33 C231.6 269.33 228 272.93 228 277.33 L228 289 L228 334.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M422 140.4 L422 150.2 C422 154.6 418.4 158.2 414 158.2 L275 158.2 C270.6 158.2 267 161.8 267 166.2 L267 176 L267 263.33 C263.7 263.33 261 266.03 261 269.33 C261 272.63 263.7 275.33 267 275.33 L267 313 L267 320 C267 324.4 263.4 328 259 328 L250 328 C245.6 328 242 331.6 242 336 L242 343" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M361.5 217.5 L262 217.5 C257.6 217.5 254 221.1 254 225.5 L254 259 L254 334.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M422 140.4 L422 150.2 C422 154.6 418.4 158.2 414 158.2 L222 158.2 C217.6 158.2 214 161.8 214 166.2 L214 176 L214 343" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M442 259 L442 334.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M442 387 L442 396.8 C442 401.2 445.6 404.8 450 404.8 L714 404.8 C718.4 404.8 722 408.4 722 412.8 L722 422.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M722 524 L722 599.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M722 672 L722 707.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M722 780 L722 796.8 C722 801.2 718.4 804.8 714 804.8 L470 804.8 C465.6 804.8 462 808.4 462 812.8 L462 815.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M702 515.43 L702 526.71 C702 531.11 698.4 534.71 694 534.71 L561 534.71 C556.6 534.71 553 538.31 553 542.71 L553 554 L553 578 L553 586.5 C553 590.08 550.08 593 546.5 593 L546.5 593 C542.92 593 540 595.92 540 599.5 L540 608 L540 780 L540 782.8 C540 787.2 536.4 790.8 532 790.8 L430 790.8 C425.6 790.8 422 794.4 422 798.8 L422 815.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M613.5 477.5 L548 477.5 C543.6 477.5 540 481.1 540 485.5 L540 524 L540 780 L540 782.8 C540 787.2 536.4 790.8 532 790.8 L430 790.8 C425.6 790.8 422 794.4 422 798.8 L422 815.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M442 868 L442 877.8 C442 882.2 438.4 885.8 434 885.8 L158 885.8 C153.6 885.8 150 889.4 150 893.8 L150 903.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="211.6" y="291" width="32.8" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="237.6" y="291" width="32.8" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="424.4" y="291" width="35.2" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="704.4" y="556" width="35.2" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="523.6" y="630" width="32.8" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="442,88 436,76 448,76" fill="#3b4754"/>
 <polygon class="arrowhead" points="442,176 436,164 448,164" fill="#3b4754"/>
-<polygon class="arrowhead" points="228,343 222,331 234,331" fill="#3b4754"/>
+<polygon class="arrowhead" points="254,343 248,331 260,331" fill="#3b4754"/>
 <polygon class="arrowhead" points="422,132 428,144 416,144" fill="#3b4754"/>
 <polygon class="arrowhead" points="442,343 436,331 448,331" fill="#3b4754"/>
 <polygon class="arrowhead" points="722,431 716,419 728,419" fill="#3b4754"/>
@@ -57,7 +57,7 @@
 <text class="node-label" x="442" y="851.6" text-anchor="middle" fill="#1b1f24">Zamyka zgłoszenie</text>
 <text class="node-label" x="150" y="939.6" text-anchor="middle" fill="#1b1f24">Otrzymuje</text>
 <text class="node-label" x="150" y="959.6" text-anchor="middle" fill="#1b1f24">informację</text>
-<text class="edge-label" x="228" y="306.6" text-anchor="middle" fill="#1b1f24">nie</text>
+<text class="edge-label" x="254" y="306.6" text-anchor="middle" fill="#1b1f24">nie</text>
 <text class="edge-label" x="442" y="306.6" text-anchor="middle" fill="#1b1f24">tak</text>
 <text class="edge-label" x="722" y="571.6" text-anchor="middle" fill="#1b1f24">tak</text>
 <text class="edge-label" x="540" y="645.6" text-anchor="middle" fill="#1b1f24">nie</text>

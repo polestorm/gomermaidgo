@@ -278,3 +278,29 @@ func TestLaneNodesFormColumn(t *testing.T) {
 		}
 	}
 }
+
+// REQ: LAY-009
+// Romb decyzji z gałęzią biegnącą prosto w osi: pozostałe gałęzie wychodzą z bocznych wierzchołków
+// i biegną w poprzek na wysokości środka pola.
+func TestDecisionBranchLeavesSideVertex(t *testing.T) {
+	sc := natural(t, "flowchart/017-swimlanes.mmd")
+	for _, label := range []string{"Kompletne?", "Wymaga działań?"} {
+		node := nodeOf(t, sc, label)
+		side, down := 0, 0
+		for _, e := range byRole(sc, "edge") {
+			p := e.Segments[0].To
+			switch {
+			case math.Abs(p.X-node.X0) < 0.5 && math.Abs(p.Y-(node.Y0+node.Y1)/2) < 0.5:
+				side++
+				if q := e.Segments[1].To; math.Abs(q.Y-p.Y) > 0.01 || q.X >= p.X {
+					t.Errorf("%s: the side branch does not run outwards from the vertex", label)
+				}
+			case math.Abs(p.X-centerX(node)) < 0.5 && math.Abs(p.Y-node.Y1) < 0.5:
+				down++
+			}
+		}
+		if side != 1 || down != 1 {
+			t.Errorf("%s: %d branches from the side vertex and %d straight down, want 1 and 1", label, side, down)
+		}
+	}
+}

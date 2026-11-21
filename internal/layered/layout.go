@@ -87,6 +87,9 @@ type ledge struct {
 
 	// Przesunięcia punktów zaczepienia wzdłuż krawędzi pola: górnego końca i dolnego.
 	upperPort, lowerPort float64
+	// sideExit: krawędź wychodzi z bocznego wierzchołka rombu (−1: po stronie −x, +1: po stronie +x)
+	// i biegnie w poprzek na wysokości środka pola, zanim skręci wzdłuż osi warstw.
+	sideExit float64
 
 	lv *level
 	// Identyfikatory pól ze źródła na górnym i dolnym końcu (po odwróceniu); pusty dla punktu na ramce.
@@ -1697,6 +1700,12 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				case out == 1:
 					for _, d := range e.chain {
 						axis[d] = e.u.x - e.u.loopExtra/2
+					}
+				case len(e.chain) > 1:
+					// Oba końce mają po kilka krawędzi: punkty pośrednie stają w jednej osi, tej
+					// przy dolnym końcu, żeby krawędź skręcała raz, a nie po drodze.
+					for _, d := range e.chain {
+						axis[d] = e.chain[len(e.chain)-1].x
 					}
 				}
 			}

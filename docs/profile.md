@@ -123,6 +123,12 @@ podgrafów zagnieżdżonych ani krawędzi do samego toru (błąd), a `direction`
   warstwami dostają osobne tory, a odstęp rośnie z ich liczbą. Opcja `WithCurvedEdges` (w programie `-curved`)
   przywraca łagodne łuki. Krawędź łamana skręca raz, przy końcu, z którego rozchodzi się kilka krawędzi; jej
   etykieta stoi w osi drugiego końca, a pole z kilkoma gałęziami stoi pośrodku nich;
+- romb decyzji, z którego jedna gałąź biegnie prosto w dół: pozostałe gałęzie wychodzą z bocznych wierzchołków
+  i biegną w bok na wysokości środka rombu, jak w klasycznym schemacie blokowym (główny przebieg osią,
+  odgałęzienie w bok). Gdy żadna gałąź nie biegnie prosto albo coś stoi na drodze, gałęzie wychodzą z boków przy
+  dolnym wierzchołku. Krawędzi wstecznej (w górę) i łuków (`WithCurvedEdges`) reguła nie dotyczy;
+- w torach kolejność pól jednego toru jest po pogrupowaniu poprawiana tak, żeby nie dodawać przecięć; punkty
+  pośrednie krawędzi, której oba końce mają po kilka krawędzi, stoją w jednej osi przy dolnym końcu;
 - gdzie krawędzie łamane się przecinają, krawędź zapisana w źródle później przeskakuje nad wcześniejszą półokrągłym
   mostkiem, o ile obok jest na niego miejsce; dotyczy to także krawędzi z różnych poziomów zagnieżdżenia
   podgrafów;

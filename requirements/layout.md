@@ -13,3 +13,4 @@ diagram stanów, diagram encji). Testy są w `internal/layered/appearance_test.g
 | LAY-006 | Stan złożony ma tytuł w pasku u góry i wąski pasek u dołu; proste strzałki bez etykiety w jego wnętrzu są krótsze niż na poziomie głównym. |
 | LAY-007 | Pętla własna stoi z boku pola i nie przesuwa osi: sąsiad wyrównuje się do środka samego pola. |
 | LAY-008 | Ramki bez połączeń między sobą (regiony współbieżne, osobne podgrafy) są upakowane w kolejności ze źródła: niższa staje pod poprzednią, obok wysokiej. |
+| LAY-009 | Romb decyzji, z którego jedna gałąź biegnie prosto w osi pola: pozostałe gałęzie wychodzą z bocznych wierzchołków (najwyżej jedna z każdego), biegną w poprzek na wysokości środka pola i skręcają raz. Warunki: gałąź skręca poza obrysem rombu i w rzędzie rombu nic nie stoi na jej drodze; inaczej wychodzi z boku przy dolnym wierzchołku (LAY-005). |

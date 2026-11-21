@@ -277,6 +277,13 @@ func (l *layouter) spreadPorts() {
 			}
 		}
 	}
+	// Romb decyzji: gdy jedna gałąź biegnie prosto w dół, pozostałe wychodzą z bocznych wierzchołków,
+	// jak w klasycznym schemacie blokowym: główny przebieg idzie osią, odgałęzienie w bok.
+	if !l.o.CurvedEdges {
+		for _, it := range order {
+			bottom[it] = sideExitsOf(l, it, bottom[it], func(en end) (*ledge, float64) { return en.e, en.key })
+		}
+	}
 	for _, it := range order {
 		assign(it, bottom[it])
 		assign(it, top[it])
@@ -288,6 +295,62 @@ func (l *layouter) spreadPorts() {
 			straighten(it, top[it])
 		}
 	}
+}
+
+// sideExitsOf wybiera spośród krawędzi wychodzących z dolnego boku rombu te, które wyjdą z bocznych
+// wierzchołków, oznacza je i zwraca pozostałe. Warunki: jedna z krawędzi biegnie prosto w osi pola;
+// krawędź boczna skręca poza obrysem pola; w rzędzie pola nic nie stoi na jej drodze; z każdego
+// wierzchołka wychodzi najwyżej jedna krawędź.
+func sideExitsOf[E any](l *layouter, it *item, ends []E, of func(E) (*ledge, float64)) []E {
+	if it.kind != kindNode || (it.node.Shape != graph.Rhombus && it.node.Shape != graph.Choice) || len(ends) < 2 {
+		return ends
+	}
+	axis := it.nodeX()
+	straight := false
+	for _, en := range ends {
+		if _, key := of(en); math.Abs(key-axis) < l.u(3) {
+			straight = true
+		}
+	}
+	if !straight {
+		return ends
+	}
+	var row []*item
+	first, _ := of(ends[0])
+	for _, r := range first.lv.ranks {
+		for _, o := range r {
+			if o == it {
+				row = r
+			}
+		}
+	}
+	half := it.nodeW() / 2
+	used := map[float64]bool{}
+	kept := ends[:0:0]
+	for _, en := range ends {
+		e, key := of(en)
+		side := 1.0
+		if key < axis {
+			side = -1
+		}
+		free := !e.rev && (e.e.StartHead == graph.NoHead || e.e.StartHead == "") && !used[side] &&
+			math.Abs(key-axis) > half+l.u(16)
+		if free {
+			lo, hi := math.Min(key, axis+side*half)-l.u(12), math.Max(key, axis+side*half)+l.u(12)
+			for _, o := range row {
+				if o != it && o.x+o.w/2 > lo && o.x-o.w/2 < hi {
+					free = false
+				}
+			}
+		}
+		if !free {
+			kept = append(kept, en)
+			continue
+		}
+		used[side] = true
+		e.sideExit = side
+	}
+	return kept
 }
 
 func (l *layouter) subgraphIDs() []string {
@@ -481,6 +544,11 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 			}
 		}
 		r := &edgeRoute{e: e, topHead: topHead, bottomHead: bottomHead}
+		first := e
+		for first.upperCont != nil {
+			first = first.upperCont
+		}
+		r.side = first.sideExit != 0
 		last := len(pts) - 1
 		r.top, r.bottom = pts[0], pts[last]
 		pts[0].y += l.headLength(topHead)
@@ -490,7 +558,7 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 		kept := pts[:1]
 		for i := 1; i < last; i++ {
 			prev, next := kept[len(kept)-1], pts[i+1]
-			if prev.x == pts[i].x && pts[i].x == next.x {
+			if prev.x == pts[i].x && pts[i].x == next.x && !(r.side && i == 1) {
 				continue
 			}
 			kept = append(kept, pts[i])
@@ -835,6 +903,9 @@ func (l *layouter) route(e *ledge) []routePoint {
 		if e.u.y-border > 0.5 {
 			pts = append(pts, routePoint{e.u.x, e.u.y})
 		}
+	case e.sideExit != 0:
+		// Początek w bocznym wierzchołku; drugi punkt, pod miejscem skrętu, dopisuje koniec funkcji.
+		pts = append(pts, routePoint{e.u.nodeX() + e.sideExit*e.u.nodeW()/2, e.u.y})
 	default:
 		x := e.u.nodeX() + e.upperPort
 		pts = append(pts, routePoint{x, e.u.y + e.u.h/2 - inset(e.u, e.upperPort)})
@@ -867,6 +938,10 @@ func (l *layouter) route(e *ledge) []routePoint {
 		}
 		pts = append(pts, routePoint{x, e.v.y - e.v.h/2 + inset(e.v, e.lowerPort)})
 	}
+	if e.sideExit != 0 && e.upperCont == nil && len(pts) > 1 {
+		turn := routePoint{pts[1].x, e.u.y + math.Max(e.u.band, e.u.h)/2}
+		pts = append(pts[:1], append([]routePoint{turn}, pts[1:]...)...)
+	}
 	return pts
 }
 
@@ -882,7 +957,8 @@ type edgeRoute struct {
 	// runHops: to samo dla odcinków wzdłuż osi warstw; klucz to numer odcinka i jego część
 	// (0: przed odcinkiem poprzecznym albo cały odcinek prosty, 1: za odcinkiem poprzecznym).
 	runHops map[[2]int][]float64
-	order   int // kolejność rysowania: krawędź późniejsza przeskakuje nad wcześniejszą
+	side    bool // pierwszy odcinek wychodzi w poprzek z bocznego wierzchołka rombu
+	order   int  // kolejność rysowania: krawędź późniejsza przeskakuje nad wcześniejszą
 }
 
 // findHops wyznacza przecięcia krawędzi łamanych: odcinek poprzeczny jednej krawędzi z odcinkiem
@@ -978,6 +1054,10 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 		r.track = map[int]float64{}
 		for i := 0; i+1 < len(r.pts); i++ {
 			a, b := r.pts[i], r.pts[i+1]
+			if i == 0 && r.side {
+				r.track[0] = a.y // odcinek poprzeczny na wysokości wierzchołka, poza odstępem warstw
+				continue
+			}
 			if math.Abs(a.x-b.x) >= straightTolerance {
 				jogs = append(jogs, &jog{r: r, seg: i, a: a, b: b, lo: math.Min(a.x, b.x) - l.u(5), hi: math.Max(a.x, b.x) + l.u(5)})
 			}
@@ -1063,6 +1143,32 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 	}
 	for i := 0; i+1 < len(pts); i++ {
 		a, b := pts[i], pts[i+1]
+		if i == 0 && route.side {
+			// Wyjście z bocznego wierzchołka: w poprzek do miejsca skrętu, jeden narożnik, dalej prosto.
+			dir := 1.0
+			if b.x < a.x {
+				dir = -1
+			}
+			rad := math.Max(0, math.Min(l.u(8), math.Min(math.Abs(b.x-a.x)/2, b.y-a.y)))
+			hops := append([]float64(nil), route.hops[0]...)
+			if dir < 0 {
+				sort.Sort(sort.Reverse(sort.Float64Slice(hops)))
+			}
+			for _, x := range hops {
+				const q = 0.55
+				hh := l.u(6)
+				segments = append(segments,
+					scene.Segment{Cmd: 'L', To: l.point(x-dir*hh, a.y)},
+					scene.Segment{Cmd: 'C', C1: l.point(x-dir*hh, a.y-hh*q), C2: l.point(x-dir*hh*q, a.y-hh), To: l.point(x, a.y-hh)},
+					scene.Segment{Cmd: 'C', C1: l.point(x+dir*hh*q, a.y-hh), C2: l.point(x+dir*hh, a.y-hh*q), To: l.point(x+dir*hh, a.y)})
+			}
+			const k = 0.45
+			segments = append(segments,
+				scene.Segment{Cmd: 'L', To: l.point(b.x-dir*rad, a.y)},
+				scene.Segment{Cmd: 'C', C1: l.point(b.x-dir*rad*k, a.y), C2: l.point(b.x, a.y+rad*k), To: l.point(b.x, a.y+rad)})
+			run(b.x, b.y, [2]int{0, 1})
+			continue
+		}
 		if math.Abs(a.x-b.x) < straightTolerance {
 			run(b.x, b.y, [2]int{i, 0})
 			continue

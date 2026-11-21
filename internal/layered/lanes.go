@@ -112,6 +112,38 @@ func (l *layouter) groupByLane(lv *level) {
 			it.order = i
 		}
 	}
+	// Grupowanie przestawia pola względem kolejności z porządkowania i może dodać przecięcia.
+	// Sąsiedzi z jednego toru zamieniają się miejscami, jeśli zmniejsza to liczbę przecięć.
+	cross := func(a, b []*item) int {
+		n := 0
+		for _, x := range a {
+			for _, y := range b {
+				if x.order > y.order {
+					n++
+				}
+			}
+		}
+		return n
+	}
+	for round := 0; round < 8; round++ {
+		improved := false
+		for _, row := range lv.ranks {
+			for i := 0; i+1 < len(row); i++ {
+				a, b := row[i], row[i+1]
+				if a.lane != b.lane {
+					continue
+				}
+				if cross(b.up, a.up)+cross(b.down, a.down) < cross(a.up, b.up)+cross(a.down, b.down) {
+					row[i], row[i+1] = b, a
+					a.order, b.order = i+1, i
+					improved = true
+				}
+			}
+		}
+		if !improved {
+			break
+		}
+	}
 }
 
 // drawLanes rysuje pasy torów z nagłówkami przy początku osi warstw.
