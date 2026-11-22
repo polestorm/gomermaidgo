@@ -37,6 +37,15 @@ go run ./cmd/gomermaidgo -o diagram.pdf diagram.mmd   # the extension selects th
 go build -tags nopdf ./cmd/gomermaidgo                # a build without the PDF writer
 ```
 
+The command also takes a Markdown document and the flags of `mermaid-cli` (`-i`, `-o`, `-e`, `-b`, `-q`, `-a`), so it
+can stand in for `mmdc` in a script. Flags with no counterpart here (`-t`, `-w`, `-H`, `-s`, `-c`, `-C`, `-p`, `-I`)
+are accepted and ignored with a note.
+
+```sh
+gomermaidgo -i README.template.md -o README.md   # README-1.svg, README-2.svg … and the document with images
+gomermaidgo -i diagram.mmd -e pdf                # writes diagram.mmd.pdf
+```
+
 Diagrams inside a Markdown document: `markdown.Embed` replaces every fenced `mermaid` block with an inline SVG figure
 before the document reaches a Markdown parser (the parser must pass raw HTML blocks through), and `markdown.CSS` holds
 the page rules, including the height limit that keeps a tall diagram from being cut at a page break.

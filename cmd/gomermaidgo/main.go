@@ -1,94 +1,279 @@
-// Polecenie gomermaidgo renderuje plik z diagramem do SVG albo PDF.
+// Polecenie gomermaidgo renderuje diagram albo wszystkie diagramy dokumentu Markdown do SVG albo PDF.
 //
-//	gomermaidgo [-font plik.ttf] [-family nazwa] [-size 16] [-background kolor] [-colors] [-shadows] [-curved] [-o wynik.svg] [wejście.mmd]
+//	gomermaidgo [flagi] [-o wynik] [wejście.mmd | wejście.md]
 //
-// Bez pliku wejściowego czyta standardowe wejście; bez -o pisze SVG na standardowe wyjście.
-// Plik wyniku z rozszerzeniem .pdf dostaje dokument PDF; program zbudowany ze znacznikiem nopdf
-// (go build -tags nopdf) nie zawiera tego formatu i zapisuje wtedy SVG.
+// Wejście: plik podany jako argument albo flagą -i; bez pliku (albo „-”) standardowe wejście.
+// Wynik: plik z -o; bez -o SVG trafia na standardowe wyjście, a przy wejściu podanym flagą -i,
+// tak jak w mermaid-cli, do pliku o nazwie wejścia z dopisanym rozszerzeniem formatu.
+// Format wynika z flagi -e albo z rozszerzenia pliku wyniku: .svg (domyślnie) albo .pdf; program
+// zbudowany ze znacznikiem nopdf (go build -tags nopdf) nie zawiera PDF.
+//
+// Wejście Markdown (.md, .markdown): każdy blok „mermaid” trafia do osobnego pliku wynik-N.format.
+// Gdy wynik też jest plikiem Markdown, dostaje treść dokumentu z blokami zamienionymi na obrazki.
+//
+// Flagi mermaid-cli (-i, -o, -e, -b, -q, -a i ich długie nazwy) działają tak samo; pozostałe
+// (-t, -w, -H, -s, -c, -C, -p, -f, -I) są przyjmowane i pomijane z uwagą na wyjściu błędów.
 package main
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"io"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo"
+	"github.com/polestorm/gomermaidgo/markdown"
 )
 
 // formats to dodatkowe formaty wyniku według rozszerzenia pliku. Rejestrują je pliki kompilowane
 // warunkowo (np. pdf.go), więc program zbudowany bez nich zna tylko SVG.
 var formats = map[string]func(string, ...gomermaidgo.Option) ([]byte, error){}
 
-func main() {
-	fontPath := flag.String("font", "", "font file (TTF/OTF) used to measure text")
-	family := flag.String("family", "", "font-family written to the SVG")
-	size := flag.Float64("size", 16, "font size in px")
-	background := flag.String("background", "", "background colour (default: transparent)")
-	out := flag.String("o", "", "output file; the extension selects the format: .svg (default) or .pdf (default: SVG to stdout)")
-	colors := flag.Bool("colors", false, "colour participants and nodes")
-	shadows := flag.Bool("shadows", false, "draw shadows under participants, nodes and notes")
-	curved := flag.Bool("curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
-	flag.Parse()
+// job to jedno uruchomienie programu po rozbiorze flag.
+type job struct {
+	in, out   string
+	fromFlag  bool   // wejście podane flagą -i: brak -o oznacza plik obok wejścia
+	format    string // "svg", "pdf" albo pusty: według rozszerzenia wyniku
+	artefacts string // katalog na obrazki dokumentu Markdown
+	quiet     bool
+	opts      []gomermaidgo.Option
+	stdin     io.Reader
+	stdout    io.Writer
+	stderr    io.Writer
+}
 
-	var extra []gomermaidgo.Option
-	if *colors {
-		extra = append(extra, gomermaidgo.WithColors())
+func main() {
+	j, err := parse(os.Args[1:], os.Stderr)
+	if err == nil {
+		j.stdin, j.stdout, j.stderr = os.Stdin, os.Stdout, os.Stderr
+		err = j.run()
 	}
-	if *curved {
-		extra = append(extra, gomermaidgo.WithCurvedEdges())
+	if errors.Is(err, flag.ErrHelp) {
+		os.Exit(0)
 	}
-	if *shadows {
-		extra = append(extra, gomermaidgo.WithShadows())
-	}
-	if err := run(*fontPath, *family, *size, *background, *out, flag.Arg(0), extra); err != nil {
+	if err != nil {
 		fmt.Fprintln(os.Stderr, "gomermaidgo:", err)
 		os.Exit(1)
 	}
 }
 
-func run(fontPath, family string, size float64, background, out, in string, extra []gomermaidgo.Option) error {
-	var source []byte
-	var err error
-	if in == "" || in == "-" {
-		source, err = io.ReadAll(os.Stdin)
-	} else {
-		source, err = os.ReadFile(in)
+// parse rozbiera argumenty. Każda flaga mermaid-cli ma nazwę krótką i długą.
+func parse(args []string, stderr io.Writer) (*job, error) {
+	fs := flag.NewFlagSet("gomermaidgo", flag.ContinueOnError)
+	fs.SetOutput(stderr)
+	j := &job{}
+	var fontPath, family, background, input string
+	var size float64
+	var colors, shadows, curved bool
+	both := func(p *string, short, long, usage string) {
+		fs.StringVar(p, short, "", usage)
+		fs.StringVar(p, long, "", "same as -"+short)
 	}
-	if err != nil {
-		return err
+	both(&input, "i", "input", "input file: a diagram or a Markdown document (\"-\" for stdin)")
+	both(&j.out, "o", "output", "output file; the extension selects the format: .svg (default), .pdf or .md for Markdown input")
+	both(&j.format, "e", "outputFormat", "output format: svg or pdf (default: from the output extension)")
+	both(&background, "b", "backgroundColor", "background colour (default: transparent)")
+	both(&j.artefacts, "a", "artefacts", "directory for the images of a Markdown document (default: next to the output)")
+	fs.StringVar(&background, "background", "", "same as -b")
+	fs.BoolVar(&j.quiet, "q", false, "no notes or warnings on stderr")
+	fs.BoolVar(&j.quiet, "quiet", false, "same as -q")
+	fs.StringVar(&fontPath, "font", "", "font file (TTF/OTF) used to measure text")
+	fs.StringVar(&family, "family", "", "font-family written to the SVG")
+	fs.Float64Var(&size, "size", 16, "font size in px")
+	fs.BoolVar(&colors, "colors", false, "colour participants and nodes")
+	fs.BoolVar(&shadows, "shadows", false, "draw shadows under participants, nodes and notes")
+	fs.BoolVar(&curved, "curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
+	// Flagi mermaid-cli bez odpowiednika: wygląd jest własny, a wynik wektorowy.
+	ignored := map[string]*string{}
+	for _, names := range [][2]string{{"t", "theme"}, {"w", "width"}, {"H", "height"}, {"s", "scale"}, {"c", "configFile"},
+		{"C", "cssFile"}, {"p", "puppeteerConfigFile"}, {"I", "svgId"}} {
+		v := new(string)
+		ignored[names[1]] = v
+		fs.StringVar(v, names[0], "", "accepted for mermaid-cli compatibility and ignored")
+		fs.StringVar(v, names[1], "", "same as -"+names[0])
 	}
-	opts := append([]gomermaidgo.Option{gomermaidgo.WithFontSize(size)}, extra...)
+	var fit bool
+	fs.BoolVar(&fit, "f", false, "accepted for mermaid-cli compatibility; the PDF page always fits the drawing")
+	fs.BoolVar(&fit, "pdfFit", false, "same as -f")
+	if err := fs.Parse(args); err != nil {
+		return nil, err
+	}
+	switch {
+	case input != "" && fs.NArg() > 0:
+		return nil, fmt.Errorf("input given twice: -i %s and %s", input, fs.Arg(0))
+	case fs.NArg() > 1:
+		return nil, fmt.Errorf("more than one input file: %s", strings.Join(fs.Args(), " "))
+	case input != "":
+		j.in, j.fromFlag = input, true
+	default:
+		j.in = fs.Arg(0)
+	}
+	j.format = strings.ToLower(j.format)
+	if j.format != "" && j.format != "svg" {
+		if _, ok := formats["."+j.format]; !ok {
+			return nil, fmt.Errorf("output format %q is not supported (svg%s)", j.format, known())
+		}
+	}
+	if !j.quiet {
+		for _, name := range []string{"theme", "width", "height", "scale", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
+			if *ignored[name] != "" {
+				fmt.Fprintf(stderr, "gomermaidgo: note: --%s is accepted for compatibility and ignored\n", name)
+			}
+		}
+	}
+	j.opts = []gomermaidgo.Option{gomermaidgo.WithFontSize(size)}
+	if colors {
+		j.opts = append(j.opts, gomermaidgo.WithColors())
+	}
+	if curved {
+		j.opts = append(j.opts, gomermaidgo.WithCurvedEdges())
+	}
+	if shadows {
+		j.opts = append(j.opts, gomermaidgo.WithShadows())
+	}
 	if fontPath != "" {
 		data, err := os.ReadFile(fontPath)
 		if err != nil {
-			return err
+			return nil, err
 		}
-		opts = append(opts, gomermaidgo.WithFont(data))
+		j.opts = append(j.opts, gomermaidgo.WithFont(data))
 	}
 	if family != "" {
-		opts = append(opts, gomermaidgo.WithFontFamily(family))
+		j.opts = append(j.opts, gomermaidgo.WithFontFamily(family))
 	}
-	if background != "" {
-		opts = append(opts, gomermaidgo.WithBackground(background))
+	if background != "" && background != "transparent" {
+		j.opts = append(j.opts, gomermaidgo.WithBackground(background))
 	}
-	// Format wyniku wynika z rozszerzenia pliku; bez dopasowania powstaje SVG.
-	render := gomermaidgo.Render
-	if alt, ok := formats[strings.ToLower(filepath.Ext(out))]; ok {
-		render = alt
+	return j, nil
+}
+
+// known wylicza formaty dodatkowe wbudowane w program, do komunikatu błędu.
+func known() string {
+	s := ""
+	for _, ext := range []string{".pdf"} {
+		if _, ok := formats[ext]; ok {
+			s += ", " + ext[1:]
+		}
 	}
-	svg, err := render(string(source), opts...)
+	return s
+}
+
+// isMarkdown mówi, czy nazwa pliku wskazuje na dokument Markdown.
+func isMarkdown(name string) bool {
+	ext := strings.ToLower(filepath.Ext(name))
+	return ext == ".md" || ext == ".markdown"
+}
+
+// renderer zwraca funkcję rysującą i rozszerzenie dla wyniku o podanej nazwie.
+func (j *job) renderer(out string) (func(string, ...gomermaidgo.Option) ([]byte, error), string) {
+	ext := strings.ToLower(filepath.Ext(out))
+	if j.format != "" {
+		ext = "." + j.format
+	}
+	if alt, ok := formats[ext]; ok {
+		return alt, ext
+	}
+	return gomermaidgo.Render, ".svg"
+}
+
+func (j *job) run() error {
+	var source []byte
+	var err error
+	if j.in == "" || j.in == "-" {
+		source, err = io.ReadAll(j.stdin)
+	} else {
+		source, err = os.ReadFile(j.in)
+	}
 	if err != nil {
 		return err
 	}
-	if missing, _ := gomermaidgo.MissingGlyphs(string(source), opts...); len(missing) > 0 {
-		fmt.Fprintf(os.Stderr, "gomermaidgo: warning: the font has no glyphs for %q\n", string(missing))
+	out := j.out
+	if out == "" && j.fromFlag && j.in != "-" {
+		// Jak w mermaid-cli: wynik obok wejścia, z dopisanym rozszerzeniem formatu.
+		_, ext := j.renderer("")
+		out = j.in + ext
 	}
-	if out == "" {
-		_, err = os.Stdout.Write(svg)
+	if isMarkdown(j.in) {
+		return j.document(string(source), out)
+	}
+	render, _ := j.renderer(out)
+	data, err := render(string(source), j.opts...)
+	if err != nil {
 		return err
 	}
-	return os.WriteFile(out, svg, 0o644)
+	j.warn(string(source), "")
+	if out == "" || out == "-" {
+		_, err = j.stdout.Write(data)
+		return err
+	}
+	return os.WriteFile(out, data, 0o644)
+}
+
+// warn ostrzega o znakach, których nie ma w kroju.
+func (j *job) warn(source, where string) {
+	if j.quiet {
+		return
+	}
+	if missing, _ := gomermaidgo.MissingGlyphs(source, j.opts...); len(missing) > 0 {
+		fmt.Fprintf(j.stderr, "gomermaidgo: warning: %sthe font has no glyphs for %q\n", where, string(missing))
+	}
+}
+
+// document rysuje wszystkie diagramy dokumentu Markdown do plików wynik-N.format. Gdy wynik jest
+// plikiem Markdown, zapisuje też dokument z blokami zamienionymi na obrazki. Blok z błędem
+// zostaje w dokumencie bez zmian, a program kończy się błędem po przejściu całego dokumentu.
+func (j *job) document(source, out string) error {
+	if out == "" || out == "-" {
+		return errors.New("a Markdown input needs an output file (-o)")
+	}
+	toMarkdown := isMarkdown(out)
+	stem := strings.TrimSuffix(out, filepath.Ext(out))
+	render, ext := j.renderer(out)
+	if toMarkdown {
+		render, ext = j.renderer("")
+	}
+	dir := filepath.Dir(out)
+	if j.artefacts != "" {
+		if err := os.MkdirAll(j.artefacts, 0o755); err != nil {
+			return err
+		}
+		stem = filepath.Join(j.artefacts, filepath.Base(stem))
+	}
+	count := 0
+	result, problems := markdown.Replace(source, func(b markdown.Block) ([]string, error) {
+		data, err := render(b.Source, j.opts...)
+		if err != nil {
+			return nil, err
+		}
+		j.warn(b.Source, "diagram "+strconv.Itoa(b.Index)+": ")
+		name := stem + "-" + strconv.Itoa(b.Index) + ext
+		if err := os.WriteFile(name, data, 0o644); err != nil {
+			return nil, err
+		}
+		count++
+		link, err := filepath.Rel(dir, name)
+		if err != nil {
+			link = name
+		}
+		return []string{"![diagram](./" + filepath.ToSlash(link) + ")"}, nil
+	})
+	if toMarkdown {
+		if err := os.WriteFile(out, []byte(result), 0o644); err != nil {
+			return err
+		}
+	}
+	if !j.quiet {
+		fmt.Fprintf(j.stderr, "gomermaidgo: %d diagrams written\n", count)
+	}
+	for _, p := range problems {
+		fmt.Fprintf(j.stderr, "gomermaidgo: %s: %v\n", j.in, p)
+	}
+	if len(problems) > 0 {
+		return fmt.Errorf("%d of %d diagrams could not be drawn", len(problems), count+len(problems))
+	}
+	return nil
 }

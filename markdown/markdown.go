@@ -68,9 +68,42 @@ func Embed(source string, o Options) (string, []Problem) {
 	if prefix == "" {
 		prefix = "Diagram error"
 	}
+	return Replace(source, func(b Block) ([]string, error) {
+		svg, err := gomermaidgo.Render(b.Source, o.Render...)
+		if err != nil {
+			at, message := b.Line, err.Error()
+			var se *gomermaidgo.SyntaxError
+			if errors.As(err, &se) {
+				message = se.Message // numer linii podajemy sami, w numeracji dokumentu
+				if se.Line > 0 {
+					at += se.Line
+				}
+			}
+			// Blok „pre” kończy się dopiero na swoim znaczniku zamykającym, więc puste linie
+			// źródła go nie przerywają.
+			return []string{"", fmt.Sprintf(`<pre class="diagram-error"><strong>%s (line %d): %s</strong>%s</pre>`,
+				html.EscapeString(prefix), at, html.EscapeString(message), html.EscapeString(b.Source)), ""}, err
+		}
+		return []string{"", `<figure class="diagram">`, strings.TrimRight(string(svg), "\n"), `</figure>`, ""}, nil
+	})
+}
+
+// Block to jeden blok „mermaid” znaleziony w dokumencie.
+type Block struct {
+	Index  int    // numer bloku w dokumencie, od 1
+	Line   int    // linia dokumentu z ogrodzeniem otwierającym
+	Source string // źródło diagramu
+}
+
+// Replace zamienia każdy blok „mermaid” na linie zwrócone przez funkcję. Błąd funkcji trafia do
+// wyniku z numerem linii dokumentu (dla błędu składni: linii, w której leży); linie zwrócone
+// razem z błędem i tak zastępują blok, a gdy funkcja nie zwróci żadnych, blok zostaje bez zmian.
+// Reguły rozpoznawania bloków są te same co w Embed.
+func Replace(source string, replace func(Block) ([]string, error)) (string, []Problem) {
 	lines := strings.Split(source, "\n")
 	var out []string
 	var problems []Problem
+	index := 0
 	for i := 0; i < len(lines); i++ {
 		char, length, info, ok := fence(strings.TrimRight(lines[i], "\r"))
 		if !ok {
@@ -93,25 +126,20 @@ func Embed(source string, o Options) (string, []Problem) {
 		for _, l := range lines[i+1 : end] {
 			body = append(body, strings.TrimRight(l, "\r"))
 		}
-		diagram := strings.Join(body, "\n")
-		svg, err := gomermaidgo.Render(diagram, o.Render...)
+		index++
+		with, err := replace(Block{Index: index, Line: i + 1, Source: strings.Join(body, "\n")})
 		if err != nil {
-			at, message := i+1, err.Error()
+			at := i + 1
 			var se *gomermaidgo.SyntaxError
-			if errors.As(err, &se) {
-				message = se.Message // numer linii podajemy sami, w numeracji dokumentu
-				if se.Line > 0 {
-					at += se.Line
-				}
+			if errors.As(err, &se) && se.Line > 0 {
+				at += se.Line
 			}
 			problems = append(problems, Problem{Line: at, Err: err})
-			// Blok „pre” kończy się dopiero na swoim znaczniku zamykającym, więc puste linie
-			// źródła go nie przerywają.
-			out = append(out, "", fmt.Sprintf(`<pre class="diagram-error"><strong>%s (line %d): %s</strong>%s</pre>`,
-				html.EscapeString(prefix), at, html.EscapeString(message), html.EscapeString(diagram)), "")
-		} else {
-			out = append(out, "", `<figure class="diagram">`, strings.TrimRight(string(svg), "\n"), `</figure>`, "")
 		}
+		if with == nil {
+			with = lines[i : end+1]
+		}
+		out = append(out, with...)
 		i = end
 	}
 	return strings.Join(out, "\n"), problems
