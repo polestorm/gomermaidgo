@@ -234,6 +234,13 @@ func (l *layouter) spreadPorts() {
 			if math.Abs(off) > usable/2 {
 				continue
 			}
+			// Jedyna krawędź wchodząca do pola od góry trafia w środek jego boku. Przesunięcie zostaje
+			// tylko wtedy, gdy jest drobne: krawędź biegnie wtedy prosto, a uskok byłby gorszy niż
+			// zaczepienie odrobinę obok środka.
+			// Wyjątek: krawędzie z belki rozwidlenia albo złączenia biegną z niej pionowo, jak w UML.
+			if !en.upper && len(ends) == 1 && it.kind == kindNode && math.Abs(off) >= l.u(12) && !bar(en.e.u) {
+				continue
+			}
 			set := func(en end, v float64) {
 				if en.upper {
 					en.e.upperPort = v
@@ -1394,4 +1401,9 @@ func (l *layouter) drawLoop(it *item, e *graph.Edge, index int) {
 		w, _ := l.abstract(l.textSize(lines))
 		l.drawLabel(lines, edge+l.u(40)+w/2, it.y)
 	}
+}
+
+// bar mówi, czy pole jest belką rozwidlenia albo złączenia.
+func bar(it *item) bool {
+	return it.kind == kindNode && (it.node.Shape == graph.Fork || it.node.Shape == graph.Join)
 }

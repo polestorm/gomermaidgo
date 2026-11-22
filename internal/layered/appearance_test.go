@@ -506,3 +506,22 @@ func TestPassingEdgeTakesFreeSide(t *testing.T) {
 		}
 	}
 }
+
+// REQ: LAY-014
+// Jedyna krawędź wchodząca do pola od góry trafia w środek jego górnego boku, także gdy wychodzi
+// z rombu obok innej gałęzi; krawędzie z belki rozwidlenia zostają pionowe.
+func TestSingleIncomingEdgeHitsCentre(t *testing.T) {
+	sc := natural(t, "flowchart/001-basic.mmd")
+	box := nodeOf(t, sc, "Analiza przyczyn")
+	end := edgeInto(t, sc, box).Segments
+	if x := end[len(end)-1].To.X; math.Abs(x-centerX(box)) > 0.5 {
+		t.Errorf("the edge ends at x=%.1f, the centre is %.1f", x, centerX(box))
+	}
+	// Belka rozwidlenia: krawędź do pola pod nią biegnie pionowo, bez załamania.
+	sc = natural(t, "state/004-choice-fork-join.mmd")
+	for _, sg := range edgeInto(t, sc, nodeOf(t, sc, "AnalizaPrzyczyn")).Segments {
+		if sg.Cmd == 'C' {
+			t.Errorf("the edge from the fork bar should be straight")
+		}
+	}
+}
