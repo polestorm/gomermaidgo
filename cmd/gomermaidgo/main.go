@@ -72,7 +72,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	j := &job{}
 	var fontPath, family, background, input, themeName string
 	var size float64
-	var colors, shadows, curved bool
+	var colors, shadows, curved, emojiText bool
 	both := func(p *string, short, long, usage string) {
 		fs.StringVar(p, short, "", usage)
 		fs.StringVar(p, long, "", "same as -"+short)
@@ -92,6 +92,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	fs.BoolVar(&colors, "colors", false, "colour participants and nodes")
 	fs.BoolVar(&shadows, "shadows", false, "draw shadows under participants, nodes and notes")
 	fs.BoolVar(&curved, "curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
+	fs.BoolVar(&emojiText, "emoji-text", false, "keep emoji in SVG as text set in the Noto Emoji font instead of outlines")
 	// Flagi mermaid-cli bez odpowiednika: wygląd jest własny, a wynik wektorowy.
 	ignored := map[string]*string{}
 	for _, names := range [][2]string{{"w", "width"}, {"H", "height"}, {"c", "configFile"},
@@ -139,6 +140,9 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	j.opts = []gomermaidgo.Option{gomermaidgo.WithFontSize(size)}
 	if colors {
 		j.opts = append(j.opts, gomermaidgo.WithColors())
+	}
+	if emojiText {
+		j.opts = append(j.opts, gomermaidgo.WithEmojiText())
 	}
 	if curved {
 		j.opts = append(j.opts, gomermaidgo.WithCurvedEdges())

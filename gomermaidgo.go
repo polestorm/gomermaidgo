@@ -79,6 +79,7 @@ type config struct {
 	background string
 	colors     bool
 	shadows    bool
+	emojiText  bool
 	curved     bool
 	theme      string
 	themeSet   bool
@@ -127,6 +128,12 @@ func WithColors() Option { return func(c *config) { c.colors = true } }
 
 // WithShadows dodaje cień pod uczestnikami, węzłami i notatkami. Cień jest zwykłym kształtem, nie filtrem.
 func WithShadows() Option { return func(c *config) { c.shadows = true } }
+
+// WithEmojiText zostawia w SVG emoji (znaki kroju zapasowego) jako tekst z nazwą kroju „Noto Emoji”.
+// Domyślnie są zapisane jako kontury: rysunek wygląda wtedy tak samo w każdym programie i nie
+// potrzebuje pliku kroju zapasowego, ale samego emoji nie da się skopiować ani wyszukać (słowa
+// obok zostają tekstem). PDF i PNG ta opcja nie dotyczy.
+func WithEmojiText() Option { return func(c *config) { c.emojiText = true } }
 
 // DetectType zwraca typ diagramu z pierwszej znaczącej linii źródła.
 func DetectType(source string) (string, error) {
@@ -489,6 +496,13 @@ func Render(source string, opts ...Option) ([]byte, error) {
 	sc, _, err := build(source, opts)
 	if err != nil {
 		return nil, err
+	}
+	var c config
+	for _, o := range opts {
+		o(&c)
+	}
+	if !c.emojiText {
+		outlineFallback(sc)
 	}
 	return sc.SVG(), nil
 }

@@ -16,16 +16,20 @@ szerokości niż zmierzona.
 2. Dołączony plik to odmiana domyślna kroju zmiennego, bez tabel odmian i tabel niepotrzebnych do rysowania konturów
    (`tools/staticfont`): 0,84 MB zamiast 1,98 MB. Kontury i odwzorowanie znaków są bez zmian.
 3. Emoji są jednobarwne. Kolorowe wymagają formatów kroju, których nie czytamy, i osobnej obsługi w PDF.
-4. W scenie napis ze znakami kroju zapasowego jest dzielony na odcinki jednego kroju. W SVG nazwę kroju zapasowego
-   niesie tylko odcinek z tymi znakami, nie lista krojów całego rysunku: Noto Emoji ma własne cyfry i program
-   rysujący SVG mógłby po nie sięgnąć.
-5. W PDF krój zapasowy jest osadzany jako osobny podzbiór tylko wtedy, gdy rysunek go używa.
+4. W SVG emoji są domyślnie konturami: napis ze znakami kroju zapasowego jest dzielony na odcinki jednego kroju,
+   a odcinek z emoji jest zapisywany jako ścieżka w kolorze tekstu (łuki kroju jako krzywe Béziera). Rysunek wygląda
+   wtedy tak samo w każdym programie i nie potrzebuje pliku kroju zapasowego. Samego emoji nie da się skopiować ani
+   wyszukać, ale słowa obok zostają tekstem; wyszukiwanie po znaku emoji uznaliśmy za nieistotne. `WithEmojiText`
+   (flaga `-emoji-text`) zostawia emoji jako tekst; nazwę kroju zapasowego niesie wtedy tylko odcinek z emoji, nie
+   lista krojów całego rysunku, bo Noto Emoji ma własne cyfry i program rysujący mógłby po nie sięgnąć.
+5. W PDF (pakiet `pdf`) emoji pozostają tekstem: krój zapasowy jest osadzany jako osobny podzbiór tylko wtedy, gdy
+   rysunek go używa. PNG rysuje kontury.
 
 ## Skutki
 
 - Program z linii poleceń rośnie z 6,9 do 7,8 MB, paczka modułu z 1,05 do 1,62 MB.
-- Kto rysuje SVG poza przeglądarką (konwerter do PDF), musi dać mu oba kroje i nazwać je wprost (`@font-face`).
-  Konwerter, który sam dobiera kroje z katalogu plików, może narysować cyfry krojem zapasowym.
+- SVG z emoji jest większy: kontur to około 2 kB na każde wystąpienie znaku (diagram z 11 emoji: 28 kB zamiast
+  6 kB). Z `WithEmojiText` program rysujący SVG poza przeglądarką musi dostać oba kroje nazwane wprost (`@font-face`).
 - Nie czytamy tabel podstawień, więc sekwencje złożone (flagi, odcienie skóry, rodziny) wychodzą jako osobne znaki.
 - Znaki, których nie ma żaden z krojów (np. pismo chińskie), nadal są pustym polem i są zgłaszane przez
   `MissingGlyphs`.

@@ -126,35 +126,60 @@ func (f *Font) contours(gid, depth int) [][]Point {
 	if len(g) < 10 || depth > maxDepth {
 		return nil
 	}
-	n := s16(g, 0)
-	if n < 0 {
-		return f.composite(g, depth)
+	if s16(g, 0) < 0 {
+		var out [][]Point
+		f.components(g, func(child int, a, b, c, d, dx, dy float64) {
+			for _, contour := range f.contours(child, depth+1) {
+				moved := make([]Point, len(contour))
+				for i, q := range contour {
+					moved[i] = Point{a*q.X + c*q.Y + dx, b*q.X + d*q.Y + dy}
+				}
+				out = append(out, moved)
+			}
+		})
+		return out
 	}
+	xs, ys, flags, ends := f.points(g)
+	var out [][]Point
+	start := 0
+	for _, end := range ends {
+		if end >= start && end < len(xs) {
+			out = append(out, outline(xs[start:end+1], ys[start:end+1], flags[start:end+1]))
+		}
+		start = end + 1
+	}
+	return out
+}
+
+// points czyta punkty glifu prostego: współrzędne, flagi i końce konturów. Dane uszkodzone dają
+// brak punktów.
+func (f *Font) points(g []byte) (xs, ys []float64, flags []byte, ends []int) {
+	n := s16(g, 0)
 	p := 10
 	if p+2*n+2 > len(g) || n == 0 {
-		return nil
+		return nil, nil, nil, nil
 	}
-	ends := make([]int, n)
+	ends = make([]int, n)
 	for i := range ends {
 		ends[i] = u16(g, p+2*i)
 		if i > 0 && ends[i] < ends[i-1] {
-			return nil
+			return nil, nil, nil, nil
 		}
 	}
 	count := ends[n-1] + 1
 	p += 2 * n
 	p += 2 + u16(g, p) // instrukcje
-	flags := make([]byte, 0, count)
+	flags = make([]byte, 0, count)
 	for len(flags) < count {
 		if p >= len(g) {
-			return nil
+			return nil, nil, nil, nil
 		}
 		fl := g[p]
 		p++
 		flags = append(flags, fl)
 		if fl&repeat != 0 {
 			if p >= len(g) {
-				return nil
+				return nil, nil, nil, nil
 			}
 			for k := int(g[p]); k > 0 && len(flags) < count; k-- {
 				flags = append(flags, fl)
@@ -188,33 +213,36 @@ func (f *Font) contours(gid, depth int) [][]Point {
 		}
 		return out
 	}
-	xs := coords(xShort, xSame)
-	if xs == nil {
-		return nil
+	if xs = coords(xShort, xSame); xs == nil {
+		return nil, nil, nil, nil
 	}
-	ys := coords(yShort, ySame)
-	if ys == nil {
-		return nil
+	if ys = coords(yShort, ySame); ys == nil {
+		return nil, nil, nil, nil
 	}
-	var out [][]Point
-	start := 0
-	for _, end := range ends {
-		if end >= start {
-			out = append(out, outline(xs[start:end+1], ys[start:end+1], flags[start:end+1]))
-		}
-		start = end + 1
-	}
-	return out
+	return xs, ys, flags, ends
 }
 
-// outline zamienia punkty jednego konturu na wielokąt. Dwa kolejne punkty poza krzywą mają między
-// sobą domyślny punkt na krzywej, w połowie drogi.
-func outline(xs, ys []float64, flags []byte) []Point {
+// Segment to odcinek konturu: prosty (Ctrl równe To) albo łuk drugiego stopnia z punktem
+// sterującym Ctrl. Kontur zaczyna się w punkcie Start i kończy w nim ostatnim odcinkiem.
+type Segment struct {
+	Ctrl, To Point
+	Curve    bool
+}
+
+// Path to jeden zamknięty kontur glifu.
+type Path struct {
+	Start    Point
+	Segments []Segment
+}
+
+// outlinePath zamienia punkty jednego konturu na odcinki. Dwa kolejne punkty poza krzywą mają
+// między sobą domyślny punkt na krzywej, w połowie drogi.
+func outlinePath(xs, ys []float64, flags []byte) Path {
 	n := len(xs)
 	at := func(i int) Point { return Point{xs[i%n], ys[i%n]} }
 	on := func(i int) bool { return flags[i%n]&onCurve != 0 }
 	mid := func(a, b Point) Point { return Point{(a.X + b.X) / 2, (a.Y + b.Y) / 2} }
-	// Początek: pierwszy punkt na krzywej, a gdy takiego nie ma, środek między dwoma pierwszymi.
+	// Początek: pierwszy punkt na krzywej, a gdy takiego nie ma, środek między ostatnim a pierwszym.
 	first := -1
 	for i := 0; i < n; i++ {
 		if on(i) {
@@ -222,24 +250,18 @@ func outline(xs, ys []float64, flags []byte) []Point {
 			break
 		}
 	}
-	var cur Point
+	var path Path
 	if first < 0 {
-		first = 0
-		cur = mid(at(n-1), at(0))
-		first-- // pętla zaczyna od punktu 0, który jest punktem sterującym
+		path.Start = mid(at(n-1), at(0))
+		first = -1 // pętla zaczyna od punktu 0, który jest punktem sterującym
 	} else {
-		cur = at(first)
+		path.Start = at(first)
 	}
-	poly := []Point{cur}
 	for k := 1; k <= n; k++ {
 		i := first + k
-		if i < 0 {
-			continue
-		}
 		p := at(i)
 		if on(i) {
-			poly = append(poly, p)
-			cur = p
+			path.Segments = append(path.Segments, Segment{Ctrl: p, To: p})
 			continue
 		}
 		// Punkt sterujący: koniec łuku to następny punkt na krzywej albo środek do następnego sterującego.
@@ -250,36 +272,51 @@ func outline(xs, ys []float64, flags []byte) []Point {
 		} else {
 			k++ // koniec łuku zużywa następny punkt
 		}
+		path.Segments = append(path.Segments, Segment{Ctrl: p, To: end, Curve: true})
+	}
+	return path
+}
+
+// outline spłaszcza kontur do wielokąta.
+func outline(xs, ys []float64, flags []byte) []Point {
+	path := outlinePath(xs, ys, flags)
+	poly := []Point{path.Start}
+	cur := path.Start
+	for _, sg := range path.Segments {
+		if !sg.Curve {
+			poly = append(poly, sg.To)
+			cur = sg.To
+			continue
+		}
 		for s := 1; s <= curveSteps; s++ {
 			t := float64(s) / curveSteps
 			u := 1 - t
-			poly = append(poly, Point{u*u*cur.X + 2*u*t*p.X + t*t*end.X, u*u*cur.Y + 2*u*t*p.Y + t*t*end.Y})
+			poly = append(poly, Point{u*u*cur.X + 2*u*t*sg.Ctrl.X + t*t*sg.To.X, u*u*cur.Y + 2*u*t*sg.Ctrl.Y + t*t*sg.To.Y})
 		}
-		cur = end
+		cur = sg.To
 	}
 	return poly
 }
 
-// composite składa glif z innych glifów, przesuniętych i przeskalowanych.
-func (f *Font) composite(g []byte, depth int) [][]Point {
-	var out [][]Point
+// components przechodzi składniki glifu złożonego: numer glifu, macierz (a b c d) i przesunięcie.
+func (f *Font) components(g []byte, visit func(child int, a, b, c, d, dx, dy float64)) {
 	p := 10
 	for {
 		if p+4 > len(g) {
-			return out
+			return
 		}
 		flags, gid := u16(g, p), u16(g, p+2)
 		p += 4
 		var dx, dy float64
 		if flags&argsAreWords != 0 {
 			if p+4 > len(g) {
-				return out
+				return
 			}
 			dx, dy = float64(s16(g, p)), float64(s16(g, p+2))
 			p += 4
 		} else {
 			if p+2 > len(g) {
-				return out
+				return
 			}
 			dx, dy = float64(int8(g[p])), float64(int8(g[p+1]))
 			p += 2
@@ -292,32 +329,63 @@ func (f *Font) composite(g []byte, depth int) [][]Point {
 		switch {
 		case flags&haveScale != 0:
 			if p+2 > len(g) {
-				return out
+				return
 			}
 			a, d = f2(p), f2(p)
 			p += 2
 		case flags&haveXYScale != 0:
 			if p+4 > len(g) {
-				return out
+				return
 			}
 			a, d = f2(p), f2(p+2)
 			p += 4
 		case flags&haveTwoByTwo != 0:
 			if p+8 > len(g) {
-				return out
+				return
 			}
 			a, b, c, d = f2(p), f2(p+2), f2(p+4), f2(p+6)
 			p += 8
 		}
-		for _, contour := range f.contours(gid, depth+1) {
-			moved := make([]Point, len(contour))
-			for i, q := range contour {
-				moved[i] = Point{a*q.X + c*q.Y + dx, b*q.X + d*q.Y + dy}
+		visit(gid, a, b, c, d, dx, dy)
+		if flags&more == 0 {
+			return
+		}
+	}
+}
+
+// Paths zwraca kontury glifu jako odcinki z łukami, bez spłaszczania: do zapisu w formacie
+// wektorowym. Glif złożony jest składany ze składników jak w Contours.
+func (f *Font) Paths(gid int) []Path {
+	return f.paths(gid, 0)
+}
+
+func (f *Font) paths(gid, depth int) []Path {
+	g := f.raw(gid)
+	if len(g) < 10 || depth > maxDepth {
+		return nil
+	}
+	if s16(g, 0) >= 0 {
+		xs, ys, flags, ends := f.points(g)
+		var out []Path
+		start := 0
+		for _, end := range ends {
+			if end >= start && end < len(xs) {
+				out = append(out, outlinePath(xs[start:end+1], ys[start:end+1], flags[start:end+1]))
+			}
+			start = end + 1
+		}
+		return out
+	}
+	var out []Path
+	f.components(g, func(child int, a, b, c, d, dx, dy float64) {
+		move := func(q Point) Point { return Point{a*q.X + c*q.Y + dx, b*q.X + d*q.Y + dy} }
+		for _, p := range f.paths(child, depth+1) {
+			moved := Path{Start: move(p.Start)}
+			for _, sg := range p.Segments {
+				moved.Segments = append(moved.Segments, Segment{Ctrl: move(sg.Ctrl), To: move(sg.To), Curve: sg.Curve})
 			}
 			out = append(out, moved)
 		}
-		if flags&more == 0 {
-			return out
-		}
-	}
+	})
+	return out
 }

@@ -231,8 +231,9 @@ var allowedSVG = map[string][]string{
 	"text":     {"class", "x", "y", "text-anchor", "font-size", "font-family", "fill", "font-weight", "font-style", "transform"},
 }
 
-// pathData dopuszcza tylko polecenia M, L, C z liczbami: bez łuków i poleceń względnych.
-var pathSyntax = regexp.MustCompile(`^M-?\d+(\.\d+)? -?\d+(\.\d+)?( [LC]-?\d+(\.\d+)?( -?\d+(\.\d+)?)+)+$`)
+// pathData dopuszcza tylko polecenia M, L, C z liczbami: bez łuków i poleceń względnych. Kolejne M
+// zaczynają następne części ścieżki (kontury emoji).
+var pathSyntax = regexp.MustCompile(`^M-?\d+(\.\d+)? -?\d+(\.\d+)?( [MLC]-?\d+(\.\d+)?( -?\d+(\.\d+)?)+)+$`)
 
 var numberList = regexp.MustCompile(`^-?\d+(\.\d+)?([ ,]-?\d+(\.\d+)?)*$`)
 
@@ -388,7 +389,7 @@ func TestCorpusLabelsPresent(t *testing.T) {
 // Każdy wyraz z modelu grafu jest na rysunku tyle samo razy (etykiety bywają łamane na linie).
 func TestGraphCorpusWordsPresent(t *testing.T) {
 	for _, f := range graphCorpusFiles(t) {
-		svg, err := Render(readFile(t, f))
+		svg, err := Render(readFile(t, f), WithEmojiText()) // emoji jako tekst, żeby dało się je policzyć
 		if err != nil {
 			t.Fatalf("%s: %v", f, err)
 		}

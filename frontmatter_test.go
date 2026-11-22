@@ -84,8 +84,14 @@ func TestEmojiFallback(t *testing.T) {
 	if with := width("flowchart TD\nA[⚠\ufe0fNazwa pola abcd]"); math.Abs(with-width("flowchart TD\nA[⚠Nazwa pola abcd]")) > 0.01 {
 		t.Errorf("the variation selector should take no room")
 	}
-	svg, _ := Render("flowchart TD\nA[🚀 Start]")
-	// Nazwę kroju zapasowego niesie tylko odcinek z emoji; reszta napisu i rysunek zostają przy
+	// Domyślnie emoji jest konturem w kolorze tekstu, bez nazwy kroju zapasowego; słowo obok zostaje tekstem.
+	outlined, _ := Render("flowchart TD\nA[🚀 Start]")
+	o := string(outlined)
+	if strings.Contains(o, "🚀") || strings.Contains(o, "Noto Emoji") || !regexp.MustCompile(`<path class="node-label emoji" d="M[^"]+" fill="#1b1f24"/>`).MatchString(o) || !strings.Contains(o, ">Start</text>") {
+		t.Errorf("the emoji should be an outline: %s", o)
+	}
+	svg, _ := Render("flowchart TD\nA[🚀 Start]", WithEmojiText())
+	// Z WithEmojiText nazwę kroju zapasowego niesie tylko odcinek z emoji; reszta napisu i rysunek zostają przy
 	// kroju głównym, a odcinki stoją jeden za drugim.
 	out := string(svg)
 	m := regexp.MustCompile(`<text[^>]* x="([\d.]+)"[^>]* font-family="Noto Emoji"[^>]*>🚀</text>\s*<text[^>]* x="([\d.]+)"[^>]*>Start</text>`).FindStringSubmatch(out)

@@ -155,7 +155,7 @@ func TestCorpus(t *testing.T) {
 			continue
 		}
 		objs := objects(t, f, doc)
-		svg, err := gomermaidgo.Render(src)
+		svg, err := gomermaidgo.Render(src, gomermaidgo.WithEmojiText()) // PDF trzyma emoji jako tekst
 		if err != nil {
 			t.Fatal(err)
 		}

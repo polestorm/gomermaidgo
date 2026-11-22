@@ -38,8 +38,9 @@ go build -tags nopdf ./cmd/gomermaidgo                # a build without the PDF 
 ```
 
 Emoji and other characters the main typeface lacks are drawn with a bundled fallback, a static cut of Noto Emoji
-(monochrome, OFL 1.1). In SVG only the emoji runs name that family; a program that renders the SVG outside a browser
-needs both font files declared with `@font-face`.
+(monochrome, OFL 1.1). In SVG they are written as outlines, so the drawing looks the same everywhere and needs no
+font file for them; `WithEmojiText` (`-emoji-text`) keeps them as text instead. PDF keeps them as text with the
+font embedded.
 
 Themes: `neutral` (the default, made for print), `default` (colours), `forest`, `dark` and `base`. They are this
 library's own looks under Mermaid's theme names, so a source that selects a theme in its front matter or `init`
