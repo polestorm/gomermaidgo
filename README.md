@@ -47,7 +47,7 @@ md, problems := markdown.Embed(source, markdown.Options{})
 
 Status: early. Supported diagram types: `sequenceDiagram`, `flowchart`/`graph`, `stateDiagram-v2`, `gantt`,
 `erDiagram`, `classDiagram`, `pie`, `timeline`, `journey`, `mindmap`, `xychart-beta`, `quadrantChart`,
-`kanban`, `packet-beta`, `radar-beta`, `treemap-beta`, `requirementDiagram`, `sankey-beta`, C4 diagrams, `gitGraph` and `block-beta`. Graphs use a
+`kanban`, `packet-beta`, `radar-beta`, `treemap-beta`, `requirementDiagram`, `sankey-beta`, C4 diagrams, `gitGraph`, `block-beta` and `architecture-beta`. Graphs use a
 layered layout written from the published algorithms; its current limits are listed in `docs/profile.md`. A construct outside the supported profile (`docs/profile.md`) is an error with a line number,
 never a partial drawing.
 

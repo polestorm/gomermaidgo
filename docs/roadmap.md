@@ -9,6 +9,7 @@
 | 6 | tory (`%% layout: swimlanes`), krawędzie łamane z mostkami, wyrównywanie pól, rzędy pod proporcje strony | zrobione 2026-11-21 po przeglądzie rysunków |
 | 7 | próba na cudzych diagramach; diagram encji pod proporcje strony; nowe typy: wykres kołowy (`pie`), diagram klas (`classDiagram`), oś czasu (`timeline`), podróż użytkownika (`journey`), mapa myśli (`mindmap`), wykres słupkowy i liniowy (`xychart-beta`), wykres ćwiartkowy (`quadrantChart`) | zrobione 2026-11-21 |
 | 8 | wynik PDF bez pośrednictwa SVG i HTML: opcjonalny pakiet `pdf`, krój osadzony jako podzbiór (ADR 0003) | zrobione 2026-11-21 |
+| 9 | pozostałe typy Mermaid: `kanban`, `packet`, `radar`, `treemap`, `requirementDiagram`, `sankey`, C4, `gitGraph`, `block`, `architecture`; rejestr typów w `types.go` | zrobione 2026-11-22 |
 | 5 | diagramy w dokumencie Markdown (`markdown.Embed`, reguły CSS dla wydruku) | zrobione 2026-11-21 |
 
 Zrobione 2026-11-21 po pierwszym przeglądzie: krój domyślny Recursive (ADR 0002), `box`, `create`/`destroy`,

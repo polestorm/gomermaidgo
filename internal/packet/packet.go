@@ -161,8 +161,8 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 			x, w := float64(from%rowBits)*bit, float64(to-from+1)*bit
 			top := y0 + float64(row)*(numH+rowH+u(10))
 			if to > from {
-				number(from, x+u(2), top, "start")
-				number(to, x+w-u(2), top, "end")
+				number(from, x+u(4), top, "start")
+				number(to, x+w-u(4), top, "end")
 			} else {
 				number(from, x+w/2, top, "middle")
 			}

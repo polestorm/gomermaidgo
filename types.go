@@ -1,6 +1,7 @@
 package gomermaidgo
 
 import (
+	"github.com/polestorm/gomermaidgo/internal/architecture"
 	"github.com/polestorm/gomermaidgo/internal/block"
 	"github.com/polestorm/gomermaidgo/internal/gitgraph"
 	"github.com/polestorm/gomermaidgo/internal/kanban"
@@ -13,13 +14,14 @@ import (
 
 // Typy diagramów dodane po pierwszych dwunastu.
 const (
-	TypeKanban  = "kanban"
-	TypePacket  = "packet"
-	TypeRadar   = "radar"
-	TypeTreemap = "treemap"
-	TypeSankey  = "sankey"
-	TypeGit     = "gitGraph"
-	TypeBlock   = "block"
+	TypeKanban       = "kanban"
+	TypePacket       = "packet"
+	TypeRadar        = "radar"
+	TypeTreemap      = "treemap"
+	TypeSankey       = "sankey"
+	TypeGit          = "gitGraph"
+	TypeBlock        = "block"
+	TypeArchitecture = "architecture"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -61,6 +63,13 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return radar.Layout(c, radar.Options(o)), nil
+	}},
+	{TypeArchitecture, []string{"architecture-beta", "architecture"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		d, err := architecture.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return architecture.Layout(d, architecture.Options(o)), nil
 	}},
 	{TypeBlock, []string{"block-beta", "block"}, func(source string, o layoutOptions) (*scene.Scene, error) {
 		d, err := block.Parse(source)

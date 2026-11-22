@@ -1,0 +1,19 @@
+%% REQ: ARC-001 ARC-002 ARC-003
+%% Tytuł: Diagram architektury
+%% Sprawdza: grupy, grupa zagnieżdżona, usługi z ikonami i bez, usługa poza grupą, węzeł rozgałęzienia, krawędzie z czterech boków, groty, etykieta, koniec przy ramce grupy.
+architecture-beta
+    group serwer(cloud)[Serwer aplikacji]
+    group dane(cloud)[Dane] in serwer
+    service przegladarka(internet)[Przeglądarka]
+    service proxy(server)[Reverse proxy] in serwer
+    service qms(server)[System jakości] in serwer
+    service baza(database)[Baza danych] in dane
+    service pliki(disk)[Załączniki] in dane
+    service poczta[Poczta]
+    junction rozdzial in serwer
+    przegladarka:R --> L:proxy
+    proxy:R --> L:qms
+    qms:B -- T:rozdzial
+    rozdzial:L --> T:baza
+    rozdzial:R --> T:pliki
+    qms:R -[SMTP]-> L:poczta

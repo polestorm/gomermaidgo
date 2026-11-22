@@ -103,6 +103,21 @@ Pierwsze porównanie parserów wykazało jeszcze dwie różnice, które okazały
 poprawione: linia `%%` wewnątrz notatki wieloliniowej jest komentarzem (nie tekstem notatki), a `state Id` bez opisu nie
 jest rysowane przez odniesienie i nie ma go w dokumentacji (teraz błąd `state-unsupported`).
 
+## Stan po dodaniu wszystkich typów (2026-11-22)
+
+Korpus ma 69 diagramów w 22 typach, a wymagań z testami jest 159.
+
+- Porównanie treści z `mmdg`: 49 plików zgodnych, 18 różnych, 2 bez wyniku odniesienia. Różnice są opisane
+  w `profile.md` przy każdym typie (podziałki osi, skala ocen w podróży, znaczniki priorytetu, numery pod mapą
+  drzewa i podobne). Bez wyniku: `sankey/001` (Mermaid odrzuca w tym typie polskie litery) i `block/001`
+  (odniesienie kończy się własnym błędem przy połączeniu do rombu).
+- Droga HTML → `gopdfgo`: 69 diagramów, wszystkie 1058 różnych wyrazów jest w PDF tekstem.
+- Bezpośredni PDF (`pdf.Render`): 69 plików, Ghostscript czyta wszystkie bez ostrzeżeń.
+
+Kontrola drogi przez `gopdfgo` znalazła przy okazji jedną rzecz w rysunku: numery sąsiednich bitów w diagramie
+pakietu stały tak blisko siebie, że wyciąganie tekstu sklejało je w jedną liczbę („7” i „8” w „78”). Odstęp został
+zwiększony.
+
 ## Wynik PDF w cudzych czytnikach
 
 2026-11-21: 57 plików korpusu zapisanych przez `pdf.Render`. `pdftotext` (poppler) wyciąga z każdego te same wyrazy,

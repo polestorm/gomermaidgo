@@ -582,3 +582,19 @@ kolory palety.
 Świadome różnice wobec Mermaid: połączenie jest prostym odcinkiem między brzegami kształtów i może przejść nad
 innym blokiem; gdy diagram ma połączenia, odstępy między blokami rosną tak, żeby zmieściły się groty i etykiety;
 strzałka blokowa z kierunkiem `y` jest rysowana w prawo.
+
+## Diagram architektury (`architecture-beta`, `architecture`)
+
+| Element | Składnia | Wymaganie |
+|---|---|---|
+| usługa | `service id(ikona)[Podpis]`, z `in grupa` | ARC-001 |
+| grupa | `group id(ikona)[Podpis]`, z `in grupa` | ARC-001 |
+| rozgałęzienie | `junction id` | ARC-001 |
+| krawędź | `a:R -- L:b`, `a:B --> T:b`, `a:R <-[tekst]-> L:b`, `a{group}:R -- L:b` | ARC-002 |
+| tytuł, dostępność | `title Tekst`; `accTitle`, `accDescr` | ARC-001 |
+
+Świadome różnice wobec Mermaid: ikony są własnymi, uproszczonymi znakami pięciu wbudowanych nazw (`database`,
+`server`, `disk`, `cloud`, `internet`); ikona o innej nazwie, także z zestawów zewnętrznych, jest pustym polem;
+ikona grupy nie jest rysowana, grupa ma sam podpis; położenie usług wynika wyłącznie z boków krawędzi, a usługa
+spoza grupy, która wypadłaby w obrębie jej ramki, odsuwa się dalej w swoim kierunku; krawędź jest łamaną
+z najwyżej dwoma zagięciami i może przejść nad inną usługą.
