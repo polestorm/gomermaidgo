@@ -60,7 +60,7 @@ func main() {
 		os.Exit(0)
 	}
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "gomermaidgo:", err)
+		fmt.Fprintln(os.Stderr, "gomermaidgo:", strings.TrimPrefix(err.Error(), "gomermaidgo: "))
 		os.Exit(1)
 	}
 }

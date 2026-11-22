@@ -59,6 +59,14 @@ func requirements() map[string]string {
 	return out
 }
 
+// typeKinds przypisuje typom rozpoznanym w źródle nazwy katalogów korpusu, od których zależą nagłówki.
+var typeKinds = map[string]string{gomermaidgo.TypeSequence: "sequence", gomermaidgo.TypeFlowchart: "flowchart", gomermaidgo.TypeState: "state",
+	gomermaidgo.TypeGantt: "gantt", gomermaidgo.TypeER: "er", gomermaidgo.TypePie: "pie", gomermaidgo.TypeClass: "class", gomermaidgo.TypeTimeline: "timeline",
+	gomermaidgo.TypeJourney: "journey", gomermaidgo.TypeMindmap: "mindmap", gomermaidgo.TypeXYChart: "xychart", gomermaidgo.TypeQuadrant: "quadrant",
+	gomermaidgo.TypeRequirement: "requirement", gomermaidgo.TypeKanban: "kanban", gomermaidgo.TypePacket: "packet", gomermaidgo.TypeRadar: "radar",
+	gomermaidgo.TypeTreemap: "treemap", gomermaidgo.TypeSankey: "sankey", gomermaidgo.TypeGit: "gitgraph", gomermaidgo.TypeBlock: "block",
+	gomermaidgo.TypeArchitecture: "architecture", gomermaidgo.TypeC4: "c4"}
+
 // sampleThemes to motywy pokazywane wyrywkowo; kolorowy (default) ma własną kolumnę.
 var sampleThemes = []string{gomermaidgo.ThemeForest, gomermaidgo.ThemeDark}
 
@@ -73,6 +81,7 @@ func main() {
 	ref := flag.String("ref", "", "reference renderer command with {in} and {out} (optional)")
 	out := flag.String("o", "out/review.html", "output file")
 	themes := flag.Bool("themes", false, "also show a sample of diagrams in the forest and dark themes")
+	dir := flag.String("dir", "", "draw every .mmd file of this directory instead of the corpus, grouped by detected type")
 	flag.Parse()
 
 	var opts []gomermaidgo.Option
@@ -120,9 +129,48 @@ func main() {
 
 	var entries []entry
 	themed := 0
-	for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap", "requirement", "sankey", "c4", "gitgraph", "block", "architecture"} {
-		files, _ := filepath.Glob("testdata/corpus/" + kind + "/*.mmd")
+	// Grupy rysunków: korpus według katalogów typów albo, z flagą -dir, dowolne pliki .mmd według
+	// typu rozpoznanego w źródle.
+	type group struct {
+		kind  string
+		files []string
+	}
+	var groups []group
+	skipped := 0
+	if *dir == "" {
+		for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap", "requirement", "sankey", "c4", "gitgraph", "block", "architecture"} {
+			files, _ := filepath.Glob("testdata/corpus/" + kind + "/*.mmd")
+			sort.Strings(files)
+			groups = append(groups, group{kind, files})
+		}
+	} else {
+		files, _ := filepath.Glob(filepath.Join(*dir, "*.mmd"))
 		sort.Strings(files)
+		byKind := map[string][]string{}
+		var kinds []string
+		for _, f := range files {
+			data, _ := os.ReadFile(f)
+			kind, err := gomermaidgo.DetectType(string(data))
+			if err != nil {
+				skipped++ // bez nagłówka typu: fragment, którego nie narysuje żaden renderer
+				continue
+			}
+			if alias, ok := typeKinds[kind]; ok {
+				kind = alias
+			}
+			if byKind[kind] == nil {
+				kinds = append(kinds, kind)
+			}
+			byKind[kind] = append(byKind[kind], f)
+		}
+		// Najliczniejsze typy najpierw.
+		sort.SliceStable(kinds, func(a, b int) bool { return len(byKind[kinds[a]]) > len(byKind[kinds[b]]) })
+		for _, k := range kinds {
+			groups = append(groups, group{k, byKind[k]})
+		}
+	}
+	for _, g := range groups {
+		kind, files := g.kind, g.files
 		for _, f := range files {
 			data, err := os.ReadFile(f)
 			if err != nil {
@@ -145,6 +193,9 @@ func main() {
 				}
 			}
 			e.Shown = strings.Join(shown, "\n")
+			if e.Title == "" {
+				e.Title = filepath.Base(f)
+			}
 			if svg, err := gomermaidgo.Render(e.Source, opts...); err != nil {
 				e.Err = err.Error()
 			} else {
@@ -185,6 +236,9 @@ func main() {
 	reqs := requirements()
 	var b strings.Builder
 	fmt.Fprintf(&b, pageHead, fontFace, time.Now().Format("2006-01-02 15:04"), len(entries))
+	if skipped > 0 {
+		*note += fmt.Sprintf(" Pominięto %d bloków bez nagłówka typu (fragmenty, których nie rysuje żaden renderer).", skipped)
+	}
 	if *note != "" {
 		fmt.Fprintf(&b, "<p class=\"checks\" style=\"margin:8px 16px\"><b>%s</b></p>\n", html.EscapeString(*note))
 	}
@@ -192,7 +246,11 @@ func main() {
 	for i, e := range entries {
 		if e.Kind != current {
 			current = e.Kind
-			fmt.Fprintf(&b, "<h2 id=%q>%s</h2>\n", e.Kind, kindNames[e.Kind])
+			name := kindNames[e.Kind]
+			if name == "" {
+				name = e.Kind
+			}
+			fmt.Fprintf(&b, "<h2 id=%q>%s</h2>\n", e.Kind, html.EscapeString(name))
 		}
 		id := e.Kind + "/" + strings.TrimSuffix(filepath.Base(e.Path), ".mmd")
 		fmt.Fprintf(&b, "<article class=\"card\" data-id=%q>\n<header><span class=\"num\">%d</span><h3>%s</h3><code class=\"path\">%s</code></header>\n",
