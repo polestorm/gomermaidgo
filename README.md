@@ -93,18 +93,19 @@ same 70 sources (43 kB in all).
 | | | gomermaidgo | mmdg[^ref] | Difference |
 |---|---|---:|---:|---|
 | Binary | size | 6.9 MB | 53.4 MB | 87% smaller |
-| | dependencies outside the standard library | 0 | 10 | - |
-| SVG | time | 7 ms | 32 ms | 77% less |
-| | memory | 14 MB | 43 MB | 68% less |
-| | output of all 70 files | 0.34 MB | 11.8 MB | 97% smaller |
-| PDF | time | 9 ms | 33 ms | 73% less |
-| | memory | 19 MB | 55 MB | 65% less |
-| | output of all 70 files | 1.0 MB | 10.9 MB | 91% smaller |
-| PNG | time | 16 ms | 38 ms | 57% less |
-| | memory | 21 MB | 46 MB | 54% less |
-| | output of all 70 files | 2.7 MB | 2.3 MB | 16% larger |
+| | dependencies | 0 | 10 | - |
+| SVG | conversion time | 7 ms | 32 ms | 77% faster |
+| | memory usage | 14 MB | 43 MB | 68% less |
+| | output size[^out] | 0.34 MB | 11.8 MB | 97% smaller |
+| PDF | conversion time | 9 ms | 33 ms | 73% faster |
+| | memory usage | 19 MB | 55 MB | 65% less |
+| | output size[^out] | 1.0 MB | 10.9 MB | 91% smaller |
+| PNG | conversion time | 16 ms | 38 ms | 57% faster |
+| | memory usage | 21 MB | 46 MB | 54% less |
+| | output size[^out] | 2.7 MB | 2.3 MB | 16% larger |
 
 [^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
+[^out]: Total size of the 70 files written, one per corpus diagram.
 
 PNG is measured at scale 1 in both programs (one image pixel per drawing pixel); this library's default is scale 2.
 Percentages are computed from the unrounded measurements.
