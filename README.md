@@ -90,15 +90,23 @@ of the command-line program per file, process start included; memory is the peak
 are medians over the files; the output figure is the total size of the 70 files written. Both programs read the
 same 70 sources (43 kB in all).
 
-| | gomermaidgo | mmdg | Difference |
-|---|---:|---:|---|
-| binary | 6.9 MB | 53.4 MB | 87% smaller |
-| dependencies outside the standard library | 0 | 10 | none |
-| SVG: time / memory / output of all 70 files | 7 ms / 14 MB / 0.34 MB | 32 ms / 43 MB / 11.8 MB | 77% less time, 68% less memory, 97% smaller |
-| PDF: time / memory / output of all 70 files | 9 ms / 19 MB / 1.0 MB | 33 ms / 55 MB / 10.9 MB | 73% less time, 65% less memory, 91% smaller |
-| PNG at scale 1: time / memory / output of all 70 files | 16 ms / 21 MB / 2.7 MB | 38 ms / 46 MB / 2.3 MB | 57% less time, 54% less memory, 16% larger |
-| PNG at scale 2: time / memory / output of all 70 files | 34 ms / 31 MB / 6.0 MB | 72 ms / 58 MB / 5.8 MB | 52% less time, 46% less memory, 3% larger |
+| | | gomermaidgo | mmdg[^ref] | Difference |
+|---|---|---:|---:|---|
+| Binary | size | 6.9 MB | 53.4 MB | 87% smaller |
+| | dependencies outside the standard library | 0 | 10 | - |
+| SVG | time | 7 ms | 32 ms | 77% less |
+| | memory | 14 MB | 43 MB | 68% less |
+| | output of all 70 files | 0.34 MB | 11.8 MB | 97% smaller |
+| PDF | time | 9 ms | 33 ms | 73% less |
+| | memory | 19 MB | 55 MB | 65% less |
+| | output of all 70 files | 1.0 MB | 10.9 MB | 91% smaller |
+| PNG | time | 16 ms | 38 ms | 57% less |
+| | memory | 21 MB | 46 MB | 54% less |
+| | output of all 70 files | 2.7 MB | 2.3 MB | 16% larger |
 
+[^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
+
+PNG is measured at scale 1 in both programs (one image pixel per drawing pixel); this library's default is scale 2.
 Percentages are computed from the unrounded measurements.
 
 The corpus is written for this library's profile, so it says nothing about coverage: Mermaid accepts syntax this
