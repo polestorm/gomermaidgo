@@ -41,7 +41,7 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 ### Świadome różnice wobec Mermaid
 
 - średnik nie rozdziela instrukcji i kody encji (`#35;`) nie są rozwijane: tekst trafia do rysunku dosłownie;
-- nie ma zawijania tekstu (`wrap`), dyrektyw `%%{init}%%` ani bloku konfiguracji `---`;
+- nie ma zawijania tekstu (`wrap`); dyrektywy `%%{init}%%` i blok `---` działają jak dla wszystkich typów (patrz wyżej);
 - limity: 50 uczestników, 2000 instrukcji, 20 poziomów zagnieżdżenia bloków;
 - dezaktywacja nieaktywnego uczestnika jest błędem, także w zapisie skróconym;
 - uczestnik zakończony przez `destroy` kończy się krzyżykiem i nie ma stopki; Mermaid rysuje w tym miejscu jego pole
@@ -347,7 +347,7 @@ zdarzenia każdego okresu jedno pod drugim, nagłówek sekcji nad jej okresami. 
 w szerokości strony i jest pomniejszana.
 
 Układ listowy (`%% layout: list`) prowadzi oś z góry na dół: okresy stoją przy osi, a zdarzenia okresu po prawej,
-zawijane w szerokości strony. Rysunek rośnie w dół i mieści się na stronie przy dowolnej liczbie okresów. Dyrektywa
+jedno pod drugim w kolejności ze źródła, połączone linią przerywaną. Rysunek rośnie w dół i mieści się na stronie przy dowolnej liczbie okresów. Dyrektywa
 jest komentarzem, więc to samo źródło w innych narzędziach rysuje układ domyślny.
 
 ### Świadome różnice wobec Mermaid
