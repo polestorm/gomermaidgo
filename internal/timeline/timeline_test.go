@@ -188,56 +188,45 @@ func TestRowLayout(t *testing.T) {
 }
 
 // REQ: TML-006
-// Układ listowy: zdarzenia okresu zawinięte do kolejnych rzędów są połączone w kolejności ze
-// źródła, sąsiednie w rzędzie łącznikiem, a każdy następny rząd odgałęzieniem od linii przy okresie.
-func TestListLayoutLinksWrappedEvents(t *testing.T) {
-	d, err := Parse("timeline\n%% layout: list\nOkres : Pierwsze zdarzenie okresu : Drugie zdarzenie okresu : Trzecie zdarzenie okresu : Czwarte zdarzenie okresu : Piąte zdarzenie okresu : Szóste zdarzenie okresu")
+// Układ listowy: zdarzenia okresu stoją jedno pod drugim w kolejności ze źródła, w kolumnie
+// o wspólnej szerokości, a linia przerywana przez kolumnę łączy pierwsze z ostatnim.
+func TestListLayoutStacksEvents(t *testing.T) {
+	d, err := Parse("timeline\n%% layout: list\nOkres : Pierwsze : Drugie zdarzenie okresu o dłuższej nazwie : Trzecie\nNastępny : Jedno")
 	if err != nil {
 		t.Fatal(err)
 	}
 	sc := Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})
-	var events, links []scene.Item
+	var events, stems, periods []scene.Item
+	var texts []string
 	for _, it := range sc.Items {
 		switch it.Role {
 		case "timeline-event":
 			events = append(events, it)
-		case "timeline-link":
-			links = append(links, it)
+		case "timeline-stem":
+			stems = append(stems, it)
+		case "timeline-period":
+			periods = append(periods, it)
+		case "timeline-event-label":
+			texts = append(texts, it.Text)
 		}
 	}
-	rows := map[float64]int{}
-	for _, e := range events {
-		rows[e.Y]++
+	if len(events) != 4 || len(stems) != 1 || len(periods) != 2 {
+		t.Fatalf("%d events, %d stems, %d periods", len(events), len(stems), len(periods))
 	}
-	if len(events) != 6 || len(rows) < 2 {
-		t.Fatalf("%d events in %d rows; the test needs wrapped rows", len(events), len(rows))
-	}
-	// Każde zdarzenie poza pierwszym ma łącznik kończący się na jego lewej krawędzi.
-	for i, e := range events[1:] {
-		found := false
-		for _, l := range links {
-			end := scene.Point{X: l.X2, Y: l.Y2}
-			if l.Kind == scene.Polyline {
-				end = l.Points[len(l.Points)-1]
-			}
-			if math.Abs(end.X-e.X) < 0.01 && end.Y > e.Y && end.Y < e.Y+e.H {
-				found = true
-			}
+	for i, e := range events {
+		if e.X != events[0].X || e.W != events[0].W || e.X < periods[0].X+periods[0].W {
+			t.Errorf("event %d should stand in the common column right of the periods: %+v", i, e)
 		}
-		if !found {
-			t.Errorf("event %d has no link", i+2)
+		if i > 0 && e.Y < events[i-1].Y+events[i-1].H {
+			t.Errorf("event %d should stand below event %d", i, i-1)
 		}
 	}
-	branches := 0
-	for _, l := range links {
-		if l.Kind == scene.Polyline {
-			branches++
-			if l.Points[0].X != l.Points[1].X || l.Points[1].Y != l.Points[2].Y {
-				t.Errorf("a branch should go down and then across: %+v", l.Points)
-			}
-		}
+	if texts[0] != "Pierwsze" || texts[len(texts)-1] != "Jedno" {
+		t.Errorf("events are out of source order: %q", texts)
 	}
-	if branches != len(rows)-1 {
-		t.Errorf("%d branches for %d rows", branches, len(rows))
+	// Linia biegnie pionowo od pierwszego do ostatniego zdarzenia okresu, a następny okres zaczyna się pod nią.
+	st := stems[0]
+	if st.X != st.X2 || st.Dash == "" || math.Abs(st.Y-(events[0].Y+events[0].H)) > 0.01 || math.Abs(st.Y2-events[2].Y) > 0.01 || periods[1].Y < events[2].Y+events[2].H {
+		t.Errorf("stem: %+v", st)
 	}
 }

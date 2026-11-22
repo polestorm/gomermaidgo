@@ -188,10 +188,18 @@ func layoutList(d *Diagram, o Options) *scene.Scene {
 		periodW = math.Max(periodW, w)
 	}
 	eventsX := periodX + periodW + u(22)
-	room := u(650) - eventsX
+	room := math.Min(u(650)-eventsX, u(300))
 	type tile struct {
 		lines      []string
 		x, y, w, h float64
+	}
+	// Wspólna szerokość pól zdarzeń: najszersze zdarzenie po złamaniu.
+	eventW := u(120)
+	for _, p := range d.Periods {
+		for _, ev := range p.Events {
+			w, _ := size(textwrap.Lines(ev, room-2*u(10), width), u(10), 0)
+			eventW = math.Max(eventW, w)
+		}
 	}
 	y := 0.0
 	if d.Title != "" {
@@ -225,19 +233,20 @@ func layoutList(d *Diagram, o Options) *scene.Scene {
 		section = p.Section
 		_, ph := size(labels[i], u(12), u(8))
 		r := row{top: y, h: ph, tone: tone}
-		x, lineTop, lineH := 0.0, 0.0, 0.0
-		for _, ev := range p.Events {
-			lines := textwrap.Lines(ev, u(190), width)
-			w, h := size(lines, u(10), u(7))
-			if x > 0 && x+w > room {
-				x, lineTop, lineH = 0, lineTop+lineH+u(8), 0
+		// Zdarzenia okresu stoją jedno pod drugim, w kolejności ze źródła, w kolumnie o wspólnej
+		// szerokości: tak jak w układzie domyślnym, tylko obok okresu zamiast pod nim.
+		top := 0.0
+		for k, ev := range p.Events {
+			lines := textwrap.Lines(ev, room-2*u(10), width)
+			_, h := size(lines, u(10), u(7))
+			if k > 0 {
+				top += u(6)
 			}
-			r.tiles = append(r.tiles, tile{lines, eventsX + x, y + lineTop, w, h})
-			right = math.Max(right, eventsX+x+w)
-			x += w + u(8)
-			lineH = math.Max(lineH, h)
+			r.tiles = append(r.tiles, tile{lines, eventsX, y + top, eventW, h})
+			top += h
 		}
-		r.h = math.Max(r.h, lineTop+lineH)
+		right = math.Max(right, eventsX+eventW)
+		r.h = math.Max(r.h, top)
 		rows[i] = r
 		y += r.h + u(16)
 	}
@@ -283,19 +292,12 @@ func layoutList(d *Diagram, o Options) *scene.Scene {
 		if o.Colors {
 			eventLine = line
 		}
-		// Zdarzenia okresu są połączone w kolejności ze źródła: sąsiednie w rzędzie krótkim łącznikiem,
-		// a pierwsze zdarzenie każdego następnego rzędu odgałęzieniem od wspólnej linii przy okresie.
-		stemX := (periodX + periodW + eventsX) / 2
-		for k := 1; k < len(r.tiles); k++ {
-			a, b := r.tiles[k-1], r.tiles[k]
-			if a.y == b.y {
-				at := a.y + math.Min(a.h, b.h)/2
-				sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "timeline-link", X: a.x + a.w, Y: at, X2: b.x, Y2: at, Stroke: line, StrokeWidth: 1})
-				continue
-			}
-			at := b.y + b.h/2
-			sc.Add(scene.Item{Kind: scene.Polyline, Layer: scene.LayerLifeline, Role: "timeline-link", Stroke: line, StrokeWidth: 1,
-				Points: []scene.Point{{X: stemX, Y: mid}, {X: stemX, Y: at}, {X: b.x, Y: at}}})
+		// Linia przerywana przez kolumnę zdarzeń, widoczna w odstępach między polami, pokazuje ich
+		// kolejność, tak jak w układzie domyślnym.
+		if n := len(r.tiles); n > 1 {
+			first, last := r.tiles[0], r.tiles[n-1]
+			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "timeline-stem", X: first.x + first.w/2, Y: first.y + first.h, X2: first.x + first.w/2, Y2: last.y,
+				Stroke: line, StrokeWidth: 1.5, Dash: "4 4"})
 		}
 		for _, t := range r.tiles {
 			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "timeline-event", X: t.x, Y: t.y, W: t.w, H: t.h, RX: u(4),
