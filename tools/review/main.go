@@ -77,7 +77,8 @@ func main() {
 	// pasował do pól.
 	fontFace := fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", fonts.RecursiveFamily, base64.StdEncoding.EncodeToString(fonts.Recursive())) +
 		fmt.Sprintf("@font-face{font-family:%q;font-weight:bold;src:url(data:font/ttf;base64,%s)}", fonts.RecursiveFamily, base64.StdEncoding.EncodeToString(fonts.RecursiveBold())) +
-		fmt.Sprintf("@font-face{font-family:%q;font-style:italic;src:url(data:font/ttf;base64,%s)}", fonts.RecursiveFamily, base64.StdEncoding.EncodeToString(fonts.RecursiveItalic()))
+		fmt.Sprintf("@font-face{font-family:%q;font-style:italic;src:url(data:font/ttf;base64,%s)}", fonts.RecursiveFamily, base64.StdEncoding.EncodeToString(fonts.RecursiveItalic())) +
+		fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", fonts.EmojiFamily, base64.StdEncoding.EncodeToString(fonts.NotoEmoji()))
 	if *fontPath != "" {
 		data, err := os.ReadFile(*fontPath)
 		if err != nil {

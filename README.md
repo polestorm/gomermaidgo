@@ -37,6 +37,10 @@ go run ./cmd/gomermaidgo -o diagram.pdf diagram.mmd   # the extension selects th
 go build -tags nopdf ./cmd/gomermaidgo                # a build without the PDF writer
 ```
 
+Emoji and other characters the main typeface lacks are drawn with a bundled fallback, a static cut of Noto Emoji
+(monochrome, OFL 1.1). In SVG only the emoji runs name that family; a program that renders the SVG outside a browser
+needs both font files declared with `@font-face`.
+
 Themes: `neutral` (the default, made for print), `default` (colours), `forest`, `dark` and `base`. They are this
 library's own looks under Mermaid's theme names, so a source that selects a theme in its front matter or `init`
 directive gets the counterpart. `WithTheme` (or `-t`) overrides the source.
@@ -92,7 +96,7 @@ same 70 sources (43 kB in all).
 
 | | | gomermaidgo | mmdg[^ref] | Difference |
 |---|---|---:|---:|---|
-| Binary | size | 6.9 MB | 53.4 MB | 87% smaller |
+| Binary | size | 7.8 MB | 53.4 MB | 85% smaller |
 | | dependencies | 0 | 10 | - |
 | SVG | conversion time | 7 ms | 32 ms | 77% faster |
 | | memory usage | 14 MB | 43 MB | 68% less |

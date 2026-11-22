@@ -65,6 +65,7 @@ type Item struct {
 	Italic      bool   // tekst pochylony
 	Vertical    bool   // tekst obrócony o ćwierć obrotu wokół punktu X, Y: czytany z dołu do góry
 	FontSize    float64
+	Family      string // krój inny niż krój rysunku (odcinek kroju zapasowego); pusty = krój rysunku
 	Fill        string
 	FillOpacity float64 // 0 oznacza „bez atrybutu”
 	Stroke      string
@@ -428,6 +429,9 @@ func (s *Scene) SVG() []byte {
 			}
 			if it.FontSize > 0 && it.FontSize != s.FontSize {
 				attr(&b, "font-size", num(it.FontSize))
+			}
+			if it.Family != "" {
+				attr(&b, "font-family", it.Family)
 			}
 			if it.Bold {
 				attr(&b, "font-weight", "bold")

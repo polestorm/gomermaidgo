@@ -72,10 +72,11 @@ func num(v float64) string {
 }
 
 type writer struct {
-	buf     bytes.Buffer // strumień treści strony
-	faces   []*face
-	byData  map[string]*face
-	opacity map[string]string // wartość /ca → nazwa stanu graficznego
+	buf      bytes.Buffer // strumień treści strony
+	faces    []*face
+	byData   map[string]*face
+	opacity  map[string]string // wartość /ca → nazwa stanu graficznego
+	fallback *face             // krój zapasowy; nil, gdy go nie ma
 }
 
 func (w *writer) op(format string, args ...any) { fmt.Fprintf(&w.buf, format+"\n", args...) }
@@ -185,25 +186,46 @@ func (w *writer) text(it scene.Item, size float64, f *face) {
 	if !ok || it.Text == "" {
 		return
 	}
-	var hex strings.Builder
-	units := 0
+	// Napis dzieli się na odcinki jednego kroju: znak, którego krój nie ma, bierze krój zapasowy,
+	// jeśli ten go ma; selektory wariantu i łącznik zerowej szerokości są pomijane.
+	type run struct {
+		f   *face
+		hex strings.Builder
+	}
+	var runs []*run
+	width := 0.0
 	exact := true
 	for _, c := range it.Text {
-		gid := f.gid(c)
-		units += f.ttf.advance(gid)
-		fmt.Fprintf(&hex, "%04X", gid)
+		use := f
+		if !f.cmap.Has(c) {
+			if font.Ignorable(c) {
+				exact = false
+				continue
+			}
+			if w.fallback != nil && w.fallback.cmap.Has(c) {
+				use = w.fallback
+			}
+		}
+		gid := use.gid(c)
+		width += float64(use.ttf.advance(gid)) / float64(use.ttf.unitsPerEm) * size
+		if len(runs) == 0 || runs[len(runs)-1].f != use {
+			runs = append(runs, &run{f: use})
+		}
+		fmt.Fprintf(&runs[len(runs)-1].hex, "%04X", gid)
 		// Tabela ToUnicode przypisuje glifowi jeden znak. Gdy glif rysuje tu inny znak (brak
 		// znaku w kroju albo dwa znaki o wspólnym glifie), tekst do kopiowania i wyszukiwania
 		// podajemy wprost.
-		if f.used[gid] != c {
+		if use.used[gid] != c {
 			exact = false
 		}
+	}
+	if len(runs) == 0 {
+		return
 	}
 	if !exact {
 		w.op("/Span << /ActualText %s >> BDC", str(it.Text))
 		defer w.op("EMC")
 	}
-	width := float64(units) / float64(f.ttf.unitsPerEm) * size
 	x := it.X
 	switch it.Anchor {
 	case "middle":
@@ -213,12 +235,20 @@ func (w *writer) text(it scene.Item, size float64, f *face) {
 	}
 	w.op("%s %s %s rg", num(r), num(g), num(b))
 	// Układ strony ma oś y w dół; tekst odwraca ją z powrotem, żeby litery nie stały do góry nogami.
+	matrix := fmt.Sprintf("1 0 0 -1 %s %s", num(x), num(it.Y))
 	if it.Vertical {
 		// Ćwierć obrotu wokół punktu zaczepienia: kierunek pisma biegnie w górę strony.
-		w.op("BT /F%d %s Tf 0 -1 -1 0 %s %s Tm <%s> Tj ET", f.index, num(size), num(it.X), num(it.Y-(x-it.X)), hex.String())
-		return
+		matrix = fmt.Sprintf("0 -1 -1 0 %s %s", num(it.X), num(it.Y-(x-it.X)))
 	}
-	w.op("BT /F%d %s Tf 1 0 0 -1 %s %s Tm <%s> Tj ET", f.index, num(size), num(x), num(it.Y), hex.String())
+	var show strings.Builder
+	for i, rn := range runs {
+		fmt.Fprintf(&show, "/F%d %s Tf ", rn.f.index, num(size))
+		if i == 0 {
+			show.WriteString(matrix + " Tm ")
+		}
+		fmt.Fprintf(&show, "<%s> Tj ", rn.hex.String())
+	}
+	w.op("BT %sET", show.String())
 }
 
 func (w *writer) item(it scene.Item, fontSize float64, fonts [3]*face) {
@@ -319,6 +349,12 @@ func write(sc *scene.Scene, data bridge.Fonts) ([]byte, error) {
 			return nil, err
 		}
 		fonts[i] = f
+	}
+	if len(data.Fallback) > 0 {
+		// Krój zapasowy bez konturów TrueType jest pomijany: znak spoza kroju zostaje wtedy pustym polem.
+		if f, err := w.face(data.Fallback); err == nil {
+			w.fallback = f
+		}
 	}
 	bounds := sc.Bounds()
 	x0, y0 := bounds.X0-sc.Margin, bounds.Y0-sc.Margin

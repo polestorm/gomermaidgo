@@ -254,12 +254,22 @@ func Check(source string) error {
 	return err
 }
 
+// emojiFace to krój zapasowy z emoji; nil, gdyby pliku nie dało się odczytać.
+var emojiFace = sync.OnceValue(func() *font.Face {
+	face, err := font.Parse(fonts.NotoEmoji())
+	if err != nil {
+		return nil
+	}
+	return face
+})
+
 // defaultFace to krój dołączony; plik jest czytany raz na proces.
 var defaultFace = sync.OnceValue(func() *font.Face {
 	face, err := font.Parse(fonts.Recursive())
 	if err != nil {
 		return nil
 	}
+	face.SetFallback(emojiFace())
 	return face
 })
 
@@ -298,6 +308,13 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 	}
 	addTitle(sc, title, measure)
 	th.apply(sc)
+	if face != nil && emojiFace() != nil {
+		styled := defaultStyled()
+		if c.fontData != nil {
+			styled, _ = styledMeasure(c.boldData, c.italicData)
+		}
+		splitFallback(sc, face, emojiFace(), styled)
+	}
 	return sc, face, nil
 }
 
@@ -318,6 +335,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 		if face, err = font.Parse(c.fontData); err != nil {
 			return nil, nil, fmt.Errorf("gomermaidgo: %w", err)
 		}
+		face.SetFallback(emojiFace())
 	case c.fontFamily == "":
 		face = defaultFace() // bez wskazania kroju mierzy krój dołączony
 	}
@@ -450,6 +468,7 @@ func styledMeasure(bold, italic []byte) (func(string, float64, bool, bool) float
 		if err != nil {
 			return nil, fmt.Errorf("gomermaidgo: %w", err)
 		}
+		f.SetFallback(emojiFace())
 		faces[i] = f
 	}
 	return func(text string, size float64, isBold, isItalic bool) float64 {

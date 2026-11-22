@@ -77,10 +77,11 @@ type face struct {
 
 // painter rysuje scenę na obrazie.
 type painter struct {
-	c      *raster.Canvas
-	scale  float64
-	dx, dy float64 // przesunięcie początku rysunku
-	faces  map[string]*face
+	c        *raster.Canvas
+	scale    float64
+	dx, dy   float64 // przesunięcie początku rysunku
+	faces    map[string]*face
+	fallback *face // krój zapasowy; nil, gdy go nie ma
 }
 
 func (p *painter) face(data []byte) (*face, error) {
@@ -187,24 +188,39 @@ func (p *painter) text(it scene.Item, size float64, f *face) {
 	if !ok || it.Text == "" {
 		return
 	}
-	em := float64(f.outlines.UnitsPerEm)
-	var gids []int
-	units := 0
+	// Znak, którego krój nie ma, bierze krój zapasowy, jeśli ten go ma; selektory wariantu
+	// i łącznik zerowej szerokości są pomijane.
+	type glyph struct {
+		f   *face
+		gid int
+	}
+	var glyphs []glyph
+	total := 0.0
 	for _, c := range it.Text {
-		gid := int(f.cmap.GlyphID(c))
-		gids = append(gids, gid)
-		units += f.outlines.Advance(gid)
+		use := f
+		if !f.cmap.Has(c) {
+			if font.Ignorable(c) {
+				continue
+			}
+			if p.fallback != nil && p.fallback.cmap.Has(c) {
+				use = p.fallback
+			}
+		}
+		gid := int(use.cmap.GlyphID(c))
+		glyphs = append(glyphs, glyph{use, gid})
+		total += float64(use.outlines.Advance(gid)) / float64(use.outlines.UnitsPerEm) * size
 	}
 	x := it.X
 	switch it.Anchor {
 	case "middle":
-		x -= float64(units) / em * size / 2
+		x -= total / 2
 	case "end":
-		x -= float64(units) / em * size
+		x -= total
 	}
-	k := size / em
 	var polygons [][]raster.Point
-	for _, gid := range gids {
+	for _, gl := range glyphs {
+		f, gid := gl.f, gl.gid
+		k := size / float64(f.outlines.UnitsPerEm)
 		contours, seen := f.cache[gid]
 		if !seen {
 			contours = f.outlines.Contours(gid)
@@ -298,6 +314,11 @@ func draw(sc *scene.Scene, data bridge.Fonts, scale float64) (*image.RGBA, error
 			return nil, err
 		}
 		fonts[i] = f
+	}
+	if len(data.Fallback) > 0 {
+		if f, err := p.face(data.Fallback); err == nil {
+			p.fallback = f
+		}
 	}
 	if sc.Background != "" {
 		p.item(scene.Item{Kind: scene.Rect, X: x0, Y: y0, W: width, H: height, Fill: sc.Background}, sc.FontSize, fonts)

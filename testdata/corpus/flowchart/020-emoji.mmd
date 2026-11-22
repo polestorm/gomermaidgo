@@ -1,0 +1,15 @@
+%% REQ: COM-005
+%% Tytuł: Emoji w etykietach
+%% Sprawdza: znaki spoza kroju głównego rysowane krojem zapasowym (jednobarwne emoji), w polach, na krawędziach i w tytule podgrafu; selektor wariantu pomijany; emoji obok polskich liter.
+flowchart TD
+    A["📝 Projekt dokumentu"] --> B{"🔍 Przegląd"}
+    B -- "✅ zgoda" --> C["🚀 Wdrożenie"]
+    B -- "❌ uwagi" --> D["⚠️ Poprawki"]
+    D --> A
+    subgraph Arch["📁 Archiwum"]
+        E[("💾 Rejestr")]
+        F["🔒 Wersje wycofane"]
+    end
+    C --> E
+    C -. "📧 powiadomienie" .-> G(["👥 Odbiorcy"])
+    E --> F

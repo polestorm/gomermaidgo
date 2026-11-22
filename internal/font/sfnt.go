@@ -17,7 +17,8 @@ type Face struct {
 	segments   []segment // cmap format 4
 	groups     []group   // cmap format 12
 	data       []byte
-	cmap4      int // przesunięcie podtabeli formatu 4 (dla idRangeOffset), 0 gdy brak
+	cmap4      int   // przesunięcie podtabeli formatu 4 (dla idRangeOffset), 0 gdy brak
+	fallback   *Face // krój zapasowy dla znaków, których ten nie ma
 }
 
 type segment struct {
@@ -276,6 +277,14 @@ func (f *Face) glyph(c rune) uint32 {
 // czy font ma ten znak. Dla brakującego znaku zwraca szerokość glifu zastępczego.
 func (f *Face) Advance(c rune) (em float64, ok bool) {
 	g := f.glyph(c)
+	if g == 0 {
+		switch {
+		case Ignorable(c):
+			return 0, true
+		case f.fallback != nil && f.fallback.glyph(c) != 0:
+			return f.fallback.Advance(c)
+		}
+	}
 	idx := int(g)
 	if idx >= len(f.advances) {
 		// Glify poza tabelą dziedziczą ostatnią zapisaną szerokość (specyfikacja hmtx).
@@ -296,3 +305,14 @@ func (f *Face) TextWidth(text string, size float64) (width float64, missing int)
 	}
 	return width, missing
 }
+
+// SetFallback podaje krój zapasowy: znak, którego krój nie ma, jest mierzony krojem zapasowym,
+// jeśli ten go ma.
+func (f *Face) SetFallback(fb *Face) { f.fallback = fb }
+
+// Has mówi, czy krój ma własny glif znaku (bez kroju zapasowego).
+func (f *Face) Has(c rune) bool { return f.glyph(c) != 0 }
+
+// Ignorable mówi, czy znak tylko steruje wyglądem sąsiadów i sam nie ma szerokości: selektory
+// wariantu (tekstowy, emoji) i łącznik zerowej szerokości. Krój, który ich nie ma, pomija je.
+func Ignorable(c rune) bool { return c == 0xFE0E || c == 0xFE0F || c == 0x200D }

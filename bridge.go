@@ -29,6 +29,7 @@ func init() {
 		default:
 			return nil, f, ErrFontRequired
 		}
+		f.Fallback = fonts.NotoEmoji()
 		if f.Bold == nil {
 			f.Bold = f.Regular
 		}

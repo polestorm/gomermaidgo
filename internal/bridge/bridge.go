@@ -8,6 +8,7 @@ import "github.com/polestorm/gomermaidgo/internal/scene"
 // Odmiana niepodana przez wywołującego jest równa krojowi zwykłemu.
 type Fonts struct {
 	Regular, Bold, Italic []byte
+	Fallback              []byte // krój zapasowy dla znaków spoza powyższych; może być nil
 }
 
 // Build buduje scenę ze źródła. Opcje są wartościami typu gomermaidgo.Option.

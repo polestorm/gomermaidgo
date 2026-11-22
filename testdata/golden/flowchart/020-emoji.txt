@@ -1,0 +1,16 @@
+flowchart TB
+subgraph Arch title="📁 Archiwum"
+node A rect "📝 Projekt dokumentu"
+node B rhombus "🔍 Przegląd"
+node C rect "🚀 Wdrożenie"
+node D rect "⚠️ Poprawki"
+node E cylinder "💾 Rejestr" in=Arch
+node F rect "🔒 Wersje wycofane" in=Arch
+node G stadium "👥 Odbiorcy"
+edge A -> B normal none/arrow len=1
+edge B -> C normal none/arrow len=1 "✅ zgoda"
+edge B -> D normal none/arrow len=1 "❌ uwagi"
+edge D -> A normal none/arrow len=1
+edge C -> E normal none/arrow len=1
+edge C -> G dotted none/arrow len=1 "📧 powiadomienie"
+edge E -> F normal none/arrow len=1

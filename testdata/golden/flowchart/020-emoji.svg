@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="550.25" height="695" viewBox="-11.75 -12 550.25 695" role="img" font-family="Recursive, sans-serif" font-size="16">
+<rect class="cluster" x="0.25" y="363" width="257.5" height="220" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M129.25 475 L129.25 510.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M302 64 L302 99.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M283.89 181.66 L283.89 193.33 C283.89 197.73 280.29 201.33 275.89 201.33 L249 201.33 C244.6 201.33 241 204.93 241 209.33 L241 221 L241 266.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M320.11 181.66 L320.11 193.33 C320.11 197.73 323.71 201.33 328.11 201.33 L333 201.33 C337.4 201.33 341 204.93 341 209.33 L341 221 L341 245 L341 247.8 C341 252.2 344.6 255.8 349 255.8 L382 255.8 C386.4 255.8 390 259.4 390 263.8 L390 266.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M404 72.4 L404 275" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M221 319 L221 333 C221 337.4 217.4 341 213 341 L137.25 341 C132.85 341 129.25 344.6 129.25 349 L129.25 363 L129.25 408.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M261 319 L261 333 C261 337.4 264.6 341 269 341 L345 341 C349.4 341 353 344.6 353 349 L353 363 L353 618.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect class="cluster-title-background" x="8.25" y="369" width="109.91" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="200.84" y="223" width="80.31" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="300.84" y="223" width="80.31" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="276.44" y="463" width="153.11" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="129.25,519 123.25,507 135.25,507" fill="#3b4754"/>
+<polygon class="arrowhead" points="302,108 296,96 308,96" fill="#3b4754"/>
+<polygon class="arrowhead" points="241,275 235,263 247,263" fill="#3b4754"/>
+<polygon class="arrowhead" points="390,275 384,263 396,263" fill="#3b4754"/>
+<polygon class="arrowhead" points="404,64 410,76 398,76" fill="#3b4754"/>
+<polygon class="arrowhead" points="129.25,417 123.25,405 135.25,405" fill="#3b4754"/>
+<polygon class="arrowhead" points="353,627 347,615 359,615" fill="#3b4754"/>
+<rect class="node" x="270.5" y="0" width="155" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="302,108 382.5,149.5 302,191 221.5,149.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="158" y="275" width="166" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="371.5" y="275" width="155" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="129.25" cy="468" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="59.25" y="424" width="140" height="44" fill="#eef2f7"/>
+<line class="node-detail" x1="59.25" y1="424" x2="59.25" y2="468" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="199.25" y1="424" x2="199.25" y2="468" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="129.25" cy="424" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="20.75" y="519" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="266.5" y="627" width="173" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="305.84" y="27.6" font-family="Noto Emoji" fill="#1b1f24">📝</text>
+<text class="node-label" x="330.96" y="27.6" fill="#1b1f24">Projekt</text>
+<text class="node-label" x="348" y="47.6" text-anchor="middle" fill="#1b1f24">dokumentu</text>
+<text class="node-label" x="254.64" y="155.1" font-family="Noto Emoji" fill="#1b1f24">🔍</text>
+<text class="node-label" x="279.76" y="155.1" fill="#1b1f24">Przegląd</text>
+<text class="node-label" x="186.04" y="302.6" font-family="Noto Emoji" fill="#1b1f24">🚀</text>
+<text class="node-label" x="211.16" y="302.6" fill="#1b1f24">Wdrożenie</text>
+<text class="node-label" x="399.64" y="302.6" font-family="Noto Emoji" fill="#1b1f24">⚠️</text>
+<text class="node-label" x="424.76" y="302.6" fill="#1b1f24">Poprawki</text>
+<text class="cluster-title" x="12.25" y="384.6" font-family="Noto Emoji" fill="#1b1f24">📁</text>
+<text class="cluster-title" x="37.36" y="384.6" fill="#1b1f24">Archiwum</text>
+<text class="node-label" x="87.49" y="455.1" font-family="Noto Emoji" fill="#1b1f24">💾</text>
+<text class="node-label" x="112.61" y="455.1" fill="#1b1f24">Rejestr</text>
+<text class="node-label" x="48.69" y="546.6" font-family="Noto Emoji" fill="#1b1f24">🔒</text>
+<text class="node-label" x="73.81" y="546.6" fill="#1b1f24">Wersje wycofane</text>
+<text class="node-label" x="305.64" y="654.6" font-family="Noto Emoji" fill="#1b1f24">👥</text>
+<text class="node-label" x="330.76" y="654.6" fill="#1b1f24">Odbiorcy</text>
+<text class="edge-label" x="204.84" y="238.6" font-family="Noto Emoji" fill="#1b1f24">✅</text>
+<text class="edge-label" x="229.96" y="238.6" fill="#1b1f24">zgoda</text>
+<text class="edge-label" x="304.84" y="238.6" font-family="Noto Emoji" fill="#1b1f24">❌</text>
+<text class="edge-label" x="329.96" y="238.6" fill="#1b1f24">uwagi</text>
+<text class="edge-label" x="280.44" y="478.6" font-family="Noto Emoji" fill="#1b1f24">📧</text>
+<text class="edge-label" x="305.56" y="478.6" fill="#1b1f24">powiadomienie</text>
+</svg>

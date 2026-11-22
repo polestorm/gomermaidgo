@@ -5,6 +5,10 @@
 //
 // Recursive jest dziełem The Recursive Project Authors, na licencji SIL Open Font License 1.1
 // (plik OFL.txt). Plik fontu jest niezmieniony.
+//
+// Krojem zapasowym dla znaków, których Recursive nie ma, jest Noto Emoji (jednobarwne emoji),
+// dzieło Google LLC na tej samej licencji (plik OFL-NotoEmoji.txt). Plik jest zmieniony: to
+// odmiana domyślna kroju zmiennego, bez tabel odmian (tools/staticfont).
 package fonts
 
 import _ "embed"
@@ -35,3 +39,18 @@ func Recursive() []byte { return append([]byte(nil), recursive...) }
 
 // RecursiveLicense zwraca tekst licencji fontu; trzeba go dołączyć, rozpowszechniając font.
 func RecursiveLicense() string { return license }
+
+// EmojiFamily to nazwa kroju zapasowego wpisywana do atrybutu font-family.
+const EmojiFamily = "Noto Emoji"
+
+//go:embed NotoEmoji-Regular.ttf
+var notoEmoji []byte
+
+//go:embed OFL-NotoEmoji.txt
+var emojiLicense string
+
+// NotoEmoji zwraca kopię kroju zapasowego z jednobarwnymi emoji (TrueType).
+func NotoEmoji() []byte { return append([]byte(nil), notoEmoji...) }
+
+// NotoEmojiLicense zwraca tekst licencji kroju zapasowego.
+func NotoEmojiLicense() string { return emojiLicense }

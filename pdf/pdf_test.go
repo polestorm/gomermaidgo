@@ -46,7 +46,8 @@ var (
 	fontRef  = regexp.MustCompile(`/F(\d+) (\d+) 0 R`)
 	toUni    = regexp.MustCompile(`/ToUnicode (\d+) 0 R`)
 	bfchar   = regexp.MustCompile(`<([0-9A-F]{4})> <([0-9A-F]+)>`)
-	showText = regexp.MustCompile(`BT /F(\d+) [\d.]+ Tf [^<]*<([0-9A-F]*)> Tj ET`)
+	showText = regexp.MustCompile(`BT ((?:/F\d+ [\d.]+ Tf [^<]*<[0-9A-F]*> Tj )+)ET`)
+	showRun  = regexp.MustCompile(`/F(\d+) [\d.]+ Tf [^<]*<([0-9A-F]*)> Tj`)
 )
 
 // objects dzieli dokument na obiekty według tabeli odsyłaczy i sprawdza, że każdy wpis tabeli
@@ -121,14 +122,17 @@ func texts(t *testing.T, objs map[int][]byte) []string {
 		tables[string(m[1])] = table
 	}
 	var out []string
-	for _, m := range showText.FindAllSubmatch(inflate(t, objs[4]), -1) {
+	// Napis może składać się z kilku odcinków, każdy swoim krojem (krój główny i zapasowy).
+	for _, text := range showText.FindAllSubmatch(inflate(t, objs[4]), -1) {
 		var s strings.Builder
-		for i := 0; i+4 <= len(m[2]); i += 4 {
-			c, ok := tables[string(m[1])][string(m[2][i:i+4])]
-			if !ok {
-				t.Fatalf("glyph %s of font F%s is not in its ToUnicode table", m[2][i:i+4], m[1])
+		for _, m := range showRun.FindAllSubmatch(text[1], -1) {
+			for i := 0; i+4 <= len(m[2]); i += 4 {
+				c, ok := tables[string(m[1])][string(m[2][i:i+4])]
+				if !ok {
+					t.Fatalf("glyph %s of font F%s is not in its ToUnicode table", m[2][i:i+4], m[1])
+				}
+				s.WriteString(c)
 			}
-			s.WriteString(c)
 		}
 		out = append(out, s.String())
 	}
@@ -165,7 +169,8 @@ func TestCorpus(t *testing.T) {
 		}
 		var want []string
 		for _, m := range svgText.FindAllSubmatch(svg, -1) {
-			if s := unescape(string(m[1])); s != "" {
+			// Selektor wariantu nie ma glifu i w PDF jest pomijany.
+			if s := strings.ReplaceAll(unescape(string(m[1])), "\ufe0f", ""); s != "" {
 				want = append(want, s)
 			}
 		}
@@ -335,7 +340,7 @@ func FuzzRender(f *testing.F) {
 // i wyszukiwania zostaje prawdziwy: napis z takim znakiem niesie go wprost (ActualText), a tabela
 // ToUnicode nie przypisuje glifowi braku żadnego konkretnego znaku.
 func TestMissingGlyphsKeepTheirText(t *testing.T) {
-	doc, err := Render("flowchart LR\nA[\"✅ Zgoda\"] --> B[\"🚀 Start\"]\nB --> C[Zwykły]")
+	doc, err := Render("flowchart LR\nA[\"漢 Zgoda\"] --> B[\"語 Start\"]\nB --> C[Zwykły]")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -355,7 +360,7 @@ func TestMissingGlyphsKeepTheirText(t *testing.T) {
 		}
 		return b.String()
 	}
-	for _, want := range []string{"✅ Zgoda", "🚀 Start"} {
+	for _, want := range []string{"漢 Zgoda", "語 Start"} {
 		if !strings.Contains(content, "/ActualText <FEFF"+encode(want)+"> >> BDC") {
 			t.Errorf("text %q should be carried as ActualText", want)
 		}
@@ -364,8 +369,45 @@ func TestMissingGlyphsKeepTheirText(t *testing.T) {
 		t.Errorf("only the two texts with missing glyphs should be wrapped")
 	}
 	for _, got := range texts(t, objs) {
-		if strings.Contains(got, "✅") && strings.Contains(got, "Start") {
+		if strings.Contains(got, "漢") && strings.Contains(got, "Start") {
 			t.Errorf("the missing-glyph slot should not stand for the first missing character: %q", got)
 		}
+	}
+}
+
+// REQ: COM-005
+// Emoji są w PDF tekstem zapisanym krojem zapasowym, osadzonym jako drugi podzbiór; napis mieszany
+// składa się z odcinków obu krojów.
+func TestEmojiUseTheFallbackFont(t *testing.T) {
+	src := "flowchart LR\nA[\"🚀 Start ✅\"] --> B[Zwykły]"
+	doc, err := Render(src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	objs := objects(t, "emoji", doc)
+	if n := len(fontRef.FindAllSubmatch(objs[3], -1)); n != 2 {
+		t.Fatalf("the page should use two fonts, has %d", n)
+	}
+	if !bytes.Contains(doc, []byte("+NotoEmoji")) {
+		t.Errorf("the fallback font should be embedded as a subset")
+	}
+	got := texts(t, objs)
+	if strings.Join(got, "|") != "🚀|Start|✅|Zwykły" {
+		t.Errorf("texts: %q", got)
+	}
+	var content string
+	for _, o := range objs {
+		if bytes.Contains(o, []byte("/FlateDecode")) {
+			if s := string(inflate(t, o)); strings.Contains(s, " Tj ET") {
+				content = s
+			}
+		}
+	}
+	if strings.Contains(content, "ActualText") || len(showRun.FindAllString(content, -1)) != 4 {
+		t.Errorf("a mixed text should be three texts without ActualText: %d texts", len(showRun.FindAllString(content, -1)))
+	}
+	plain, _ := Render("flowchart LR\nA[Zwykły]")
+	if bytes.Contains(plain, []byte("NotoEmoji")) {
+		t.Errorf("a drawing without emoji should not embed the fallback font")
 	}
 }

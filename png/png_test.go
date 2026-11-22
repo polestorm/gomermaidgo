@@ -159,7 +159,7 @@ func ink(t *testing.T, src string, opts ...gomermaidgo.Option) int {
 	return n
 }
 
-// REQ: PNG-003
+// REQ: PNG-003 COM-005
 // Tekst jest rysowany konturami: więcej liter to więcej farby, pogrubienie ją pogrubia, znak
 // diakrytyczny dokłada swoją część; bez pliku kroju format zwraca błąd.
 func TestText(t *testing.T) {
@@ -175,6 +175,10 @@ func TestText(t *testing.T) {
 	}
 	if custom := ink(t, "flowchart TD\nA[\"mmmm\"]", gomermaidgo.WithFont(fonts.RecursiveBold())); custom <= base {
 		t.Errorf("WithFont: %d against %d", custom, base)
+	}
+	// Emoji rysuje krój zapasowy: rakieta zostawia inną ilość farby niż puste pole braku znaku.
+	if emoji, box := ink(t, "flowchart TD\nA[\"🚀🚀🚀🚀\"]"), ink(t, "flowchart TD\nA[\"漢漢漢漢\"]"); emoji < 200 || emoji == box {
+		t.Errorf("emoji ink %d, missing-glyph ink %d", emoji, box)
 	}
 	measure := gomermaidgo.WithMeasure(func(s string, size float64) float64 { return float64(len(s)) * size / 2 })
 	if _, err := Render("flowchart TD\nA --> B", measure); !errors.Is(err, gomermaidgo.ErrFontRequired) {

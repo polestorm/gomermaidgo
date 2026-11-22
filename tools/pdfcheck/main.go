@@ -85,7 +85,7 @@ func run() error {
 	if err := os.MkdirAll(fontDir, 0o755); err != nil {
 		return err
 	}
-	for name, data := range map[string][]byte{"Recursive-Regular.ttf": fonts.Recursive(), "Recursive-Bold.ttf": fonts.RecursiveBold(), "Recursive-Italic.ttf": fonts.RecursiveItalic()} {
+	for name, data := range map[string][]byte{"Recursive-Regular.ttf": fonts.Recursive(), "Recursive-Bold.ttf": fonts.RecursiveBold(), "Recursive-Italic.ttf": fonts.RecursiveItalic(), "NotoEmoji-Regular.ttf": fonts.NotoEmoji()} {
 		if err := os.WriteFile(filepath.Join(fontDir, name), data, 0o644); err != nil {
 			return err
 		}
@@ -96,7 +96,13 @@ func run() error {
 	// Diagram wyższy niż strona zostałby ucięty, bo rysunku nie da się podzielić między strony:
 	// strona ogranicza też jego wysokość, a rysunek skaluje się z zachowaniem proporcji.
 	page.WriteString(`<!doctype html><html lang="pl"><head><meta charset="utf-8"><title>gomermaidgo: korpus</title>` +
-		`<style>body{font-family:"Recursive";font-size:10pt} h2{font-size:11pt;margin:12pt 0 4pt} h2{break-after:avoid} svg{display:block;max-width:100%;max-height:230mm;width:auto;height:auto}</style></head><body>` + "\n")
+		// Kroje są nazwane wprost: konwerter nie musi zgadywać ich z plików w katalogu, a krój
+		// zapasowy z emoji (który ma własne cyfry) rysuje tylko to, co go wskazuje.
+		`<style>@font-face{font-family:"Recursive";src:url(fonts/Recursive-Regular.ttf)}` +
+		`@font-face{font-family:"Recursive";font-weight:bold;src:url(fonts/Recursive-Bold.ttf)}` +
+		`@font-face{font-family:"Recursive";font-style:italic;src:url(fonts/Recursive-Italic.ttf)}` +
+		`@font-face{font-family:"Noto Emoji";src:url(fonts/NotoEmoji-Regular.ttf)}` +
+		`body{font-family:"Recursive";font-size:10pt} h2{font-size:11pt;margin:12pt 0 4pt} h2{break-after:avoid} svg{display:block;max-width:100%;max-height:230mm;width:auto;height:auto}</style></head><body>` + "\n")
 	for _, f := range flag.Args() {
 		source, err := os.ReadFile(f)
 		if err != nil {
