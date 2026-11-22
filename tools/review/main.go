@@ -36,6 +36,8 @@ type entry struct {
 	RefWidth                  string // szerokość naturalna rysunku odniesienia w px
 	Shown                     string // źródło bez linii opisowych korpusu
 	RefErr                    string
+	Theme                     string // motyw rysunku wyrywkowego
+	Themed                    string
 }
 
 var viewBoxWidth = regexp.MustCompile(`viewBox="[-\d.]+ [-\d.]+ ([\d.]+) [\d.]+"`)
@@ -56,6 +58,9 @@ func requirements() map[string]string {
 	}
 	return out
 }
+
+// sampleThemes to motywy pokazywane wyrywkowo; kolorowy (default) ma własną kolumnę.
+var sampleThemes = []string{gomermaidgo.ThemeForest, gomermaidgo.ThemeDark}
 
 var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji", "pie": "Wykres kołowy", "class": "Diagram klas", "timeline": "Oś czasu", "journey": "Podróż użytkownika", "mindmap": "Mapa myśli", "xychart": "Wykres słupkowy i liniowy", "quadrant": "Wykres ćwiartkowy", "kanban": "Tablica kanban", "packet": "Diagram pakietu", "radar": "Wykres radarowy", "treemap": "Mapa drzewa", "requirement": "Diagram wymagań", "sankey": "Wykres Sankeya", "c4": "Diagram C4", "gitgraph": "Graf historii Gita", "block": "Diagram blokowy", "architecture": "Diagram architektury"}
 
@@ -89,6 +94,7 @@ func main() {
 	defer os.RemoveAll(tmp)
 
 	var entries []entry
+	themed := 0
 	for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap", "requirement", "sankey", "c4", "gitgraph", "block", "architecture"} {
 		files, _ := filepath.Glob("testdata/corpus/" + kind + "/*.mmd")
 		sort.Strings(files)
@@ -120,6 +126,15 @@ func main() {
 				e.SVG = string(svg)
 				styled, _ := gomermaidgo.Render(e.Source, append(opts[:len(opts):len(opts)], gomermaidgo.WithColors(), gomermaidgo.WithShadows())...)
 				e.Styled = string(styled)
+				// Wyrywkowo: pierwszy diagram każdego typu i co czwarty z kolei dostają rysunek w jednym
+				// z motywów, na zmianę, żeby dało się je ocenić bez osobnej strony.
+				if first := len(entries) == 0 || entries[len(entries)-1].Kind != kind; first || len(entries)%4 == 0 {
+					e.Theme = sampleThemes[themed%len(sampleThemes)]
+					themed++
+					if drawn, err := gomermaidgo.Render(e.Source, append(opts[:len(opts):len(opts)], gomermaidgo.WithTheme(e.Theme))...); err == nil {
+						e.Themed = string(drawn)
+					}
+				}
 			}
 			if *ref != "" {
 				target := filepath.Join(tmp, kind+"-"+filepath.Base(f)+".svg")
@@ -169,6 +184,9 @@ func main() {
 		b.WriteString("</div></section>\n")
 		if e.Styled != "" {
 			b.WriteString("<section><h4>gomermaidgo, kolory i cienie (opcje)</h4><div class=\"draw\">" + e.Styled + "</div></section>\n")
+		}
+		if e.Themed != "" {
+			b.WriteString("<section><h4>gomermaidgo, motyw: " + e.Theme + "</h4><div class=\"draw\">" + e.Themed + "</div></section>\n")
 		}
 		if *ref != "" {
 			b.WriteString("<section><h4>Odniesienie</h4><div class=\"draw\">")

@@ -6,7 +6,7 @@
 <line class="git-lane" x1="281.92" y1="140" x2="281.92" y2="184" fill="none" stroke="#3b4754" stroke-width="3"/>
 <line class="git-lane" x1="469.87" y1="272" x2="469.87" y2="272" fill="none" stroke="#3b4754" stroke-width="3"/>
 <path class="git-fork" d="M93.97 96 L271.92 96 C277.42 96 281.92 100.5 281.92 106 L281.92 140" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="git-fork" d="M93.97 228 L459.87 228 C465.37 228 469.87 232.5 469.87 238 L469.87 272" fill="none" stroke="#3b4754" stroke-width="3"/>
+<path class="git-fork" d="M93.97 228 L276.92 228 C276.92 225.24 279.16 223 281.92 223 C284.69 223 286.92 225.24 286.92 228 L459.87 228 C465.37 228 469.87 232.5 469.87 238 L469.87 272" fill="none" stroke="#3b4754" stroke-width="3"/>
 <path class="git-merge" d="M281.92 184 L281.92 306 C281.92 311.5 277.42 316 271.92 316 L93.97 316" fill="none" stroke="#3b4754" stroke-width="3"/>
 <path class="git-pick" d="M469.87 272 L469.87 350 C469.87 355.5 465.37 360 459.87 360 L93.97 360" fill="none" stroke="#3b4754" stroke-width="2" stroke-dasharray="4 3"/>
 <rect class="git-branch" x="64.77" y="0" width="58.4" height="28" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="1.5"/>

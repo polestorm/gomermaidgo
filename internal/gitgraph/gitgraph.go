@@ -5,6 +5,7 @@ package gitgraph
 import (
 	"math"
 	"regexp"
+	"sort"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/scene"
@@ -274,6 +275,7 @@ func Layout(g *Graph, o Options) *scene.Scene {
 	}
 
 	// Tory: etykieta gałęzi z lewej i linia od pierwszego do ostatniego commitu gałęzi.
+	spanOf := map[int]*laneSpan{} // grube odcinki torów: łącznik, który je przecina, dostaje mostek
 	first, last := map[int]int{}, map[int]int{}
 	for i, c := range g.Commits {
 		if _, ok := first[c.Branch]; !ok {
@@ -301,9 +303,34 @@ func Layout(g *Graph, o Options) *scene.Scene {
 			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "git-guide", X: labelW + 2*u(10) + u(8), Y: y, X2: xe + u(36), Y2: y, Stroke: colorGuide, StrokeWidth: 1, Dash: "2 4"})
 		}
 		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "git-lane", X: xa, Y: y, X2: xb, Y2: y, Stroke: tone(b), StrokeWidth: 3})
+		spanOf[b] = &laneSpan{at: y, lo: xa, hi: xb}
 	}
 	// elbow rysuje łącznik między torami: wzdłuż toru źródła, potem w poprzek do celu, z jednym
 	// zaokrąglonym narożnikiem. Gdy turnAtStart, najpierw w poprzek, potem wzdłuż toru celu.
+	// Tor gałęzi sięga od miejsca odejścia do miejsca scalenia albo kopii: tam biegną wzdłuż niego łączniki.
+	for i, c := range g.Commits {
+		v, _ := at(i)
+		grow := func(branch int, v float64) {
+			if sp := spanOf[branch]; sp != nil {
+				sp.lo, sp.hi = math.Min(sp.lo, v), math.Max(sp.hi, v)
+			}
+		}
+		if c.Parent >= 0 && g.Commits[c.Parent].Branch != c.Branch {
+			pv, _ := at(c.Parent)
+			grow(c.Branch, pv)
+		}
+		for _, other := range []int{c.Merged, c.Picked} {
+			if other >= 0 {
+				grow(g.Commits[other].Branch, v)
+			}
+		}
+	}
+	var spans []laneSpan
+	for b := range g.Branches {
+		if sp := spanOf[b]; sp != nil {
+			spans = append(spans, *sp)
+		}
+	}
 	elbow := func(xa, ya, xb, yb float64, turnAtStart bool, stroke, dash, role string) {
 		r := math.Min(u(10), math.Min(math.Abs(xb-xa), math.Abs(yb-ya)))
 		dy := 1.0
@@ -326,7 +353,7 @@ func Layout(g *Graph, o Options) *scene.Scene {
 		if dash != "" {
 			thickness = 2
 		}
-		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: segments, Stroke: stroke, StrokeWidth: thickness, Dash: dash})
+		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: hops(segments, spans, false, u(5)), Stroke: stroke, StrokeWidth: thickness, Dash: dash})
 	}
 	for i, c := range g.Commits {
 		x, y := at(i)
@@ -432,6 +459,7 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 		}
 		return colorLine
 	}
+	spanOf := map[int]*laneSpan{} // grube odcinki torów: łącznik, który je przecina, dostaje mostek
 	first, last := map[int]int{}, map[int]int{}
 	for i, c := range g.Commits {
 		if _, ok := first[c.Branch]; !ok {
@@ -463,9 +491,34 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "git-guide", X: x, Y: gy, X2: x, Y2: ye, Stroke: colorGuide, StrokeWidth: 1, Dash: "2 4"})
 		}
 		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "git-lane", X: x, Y: ya, X2: x, Y2: yb, Stroke: tone(b), StrokeWidth: 3})
+		spanOf[b] = &laneSpan{at: x, lo: math.Min(ya, yb), hi: math.Max(ya, yb)}
 	}
 	// elbow: łącznik z jednym zaokrąglonym narożnikiem. crossFirst: najpierw w poprzek kolumn,
 	// potem wzdłuż kolumny celu; inaczej wzdłuż kolumny źródła i w poprzek do celu.
+	// Tor gałęzi sięga od miejsca odejścia do miejsca scalenia albo kopii: tam biegną wzdłuż niego łączniki.
+	for i, c := range g.Commits {
+		_, v := at(i)
+		grow := func(branch int, v float64) {
+			if sp := spanOf[branch]; sp != nil {
+				sp.lo, sp.hi = math.Min(sp.lo, v), math.Max(sp.hi, v)
+			}
+		}
+		if c.Parent >= 0 && g.Commits[c.Parent].Branch != c.Branch {
+			_, pv := at(c.Parent)
+			grow(c.Branch, pv)
+		}
+		for _, other := range []int{c.Merged, c.Picked} {
+			if other >= 0 {
+				grow(g.Commits[other].Branch, v)
+			}
+		}
+	}
+	var spans []laneSpan
+	for b := range g.Branches {
+		if sp := spanOf[b]; sp != nil {
+			spans = append(spans, *sp)
+		}
+	}
 	elbow := func(xa, ya, xb, yb float64, crossFirst bool, stroke, dash, role string) {
 		rr := math.Min(u(10), math.Min(math.Abs(xb-xa), math.Abs(yb-ya)))
 		dx, dy := 1.0, 1.0
@@ -491,7 +544,7 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 		if dash != "" {
 			thickness = 2
 		}
-		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: segments, Stroke: stroke, StrokeWidth: thickness, Dash: dash})
+		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: hops(segments, spans, true, u(5)), Stroke: stroke, StrokeWidth: thickness, Dash: dash})
 	}
 	for i, c := range g.Commits {
 		x, y := at(i)
@@ -542,4 +595,70 @@ func tag(sc *scene.Scene, o Options, text string, x, top, small float64, u func(
 	tw := o.Measure(text, small)
 	sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-tag-label", X: x + w - u(5) - tw/2, Y: top + h/2 + small*0.35, W: tw, H: small * 1.25,
 		Text: text, Anchor: "middle", FontSize: small, Fill: colorText})
+}
+
+// laneSpan to gruby odcinek toru gałęzi: jego położenie w poprzek torów i zakres wzdłuż nich.
+type laneSpan struct{ at, lo, hi float64 }
+
+// hops wstawia mostki w odcinki łącznika, które przecinają tor innej gałęzi: półokrąg o promieniu
+// h, jak na rysunku technicznym, zamiast przecięcia dwóch linii. Dla torów poziomych (upright
+// fałszywe) mostek dostają odcinki pionowe i wybrzusza się w prawo; dla torów pionowych odcinki
+// poziome, a mostek wybrzusza się w górę.
+func hops(segments []scene.Segment, spans []laneSpan, upright bool, h float64) []scene.Segment {
+	const kappa = 0.5523
+	// along i across: współrzędna wzdłuż odcinka łącznika i w poprzek niego.
+	split := func(p scene.Point) (along, across float64) {
+		if upright {
+			return p.X, p.Y
+		}
+		return p.Y, p.X
+	}
+	join := func(along, across float64) scene.Point {
+		if upright {
+			return scene.Point{X: along, Y: across}
+		}
+		return scene.Point{X: across, Y: along}
+	}
+	bulge := h
+	if upright {
+		bulge = -h // w górę
+	}
+	out := []scene.Segment{segments[0]}
+	at := segments[0].To
+	for _, sg := range segments[1:] {
+		a0, c0 := split(at)
+		a1, c1 := split(sg.To)
+		if sg.Cmd == 'L' && math.Abs(c0-c1) < 0.01 && math.Abs(a1-a0) > 2*h {
+			dir := 1.0
+			if a1 < a0 {
+				dir = -1
+			}
+			var crossings []float64
+			for _, sp := range spans {
+				if (sp.at-a0)*dir > h+1 && (a1-sp.at)*dir > h+1 && c0 > sp.lo+1 && c0 < sp.hi-1 {
+					crossings = append(crossings, sp.at)
+				}
+			}
+			sort.Float64s(crossings)
+			if dir < 0 {
+				for i, j := 0, len(crossings)-1; i < j; i, j = i+1, j-1 {
+					crossings[i], crossings[j] = crossings[j], crossings[i]
+				}
+			}
+			last := math.Inf(-1) * dir
+			for _, x := range crossings {
+				if (x-last)*dir < 2*h+1 {
+					continue // tory tuż obok siebie: jeden mostek
+				}
+				last = x
+				out = append(out,
+					scene.Segment{Cmd: 'L', To: join(x-dir*h, c0)},
+					scene.Segment{Cmd: 'C', C1: join(x-dir*h, c0+bulge*kappa), C2: join(x-dir*h*kappa, c0+bulge), To: join(x, c0+bulge)},
+					scene.Segment{Cmd: 'C', C1: join(x+dir*h*kappa, c0+bulge), C2: join(x+dir*h, c0+bulge*kappa), To: join(x+dir*h, c0)})
+			}
+		}
+		out = append(out, sg)
+		at = sg.To
+	}
+	return out
 }

@@ -293,3 +293,51 @@ func TestGuideGapsAndTagShape(t *testing.T) {
 		}
 	}
 }
+
+// REQ: GIT-007
+// Łącznik, który przecina tor innej gałęzi, ma w tym miejscu mostek: dwa łuki wokół punktu
+// przecięcia. Łącznik, który niczego nie przecina, mostka nie ma.
+func TestConnectorBridgesOverLanes(t *testing.T) {
+	src := "commit id: \"a\"\nbranch srodek\ncommit id: \"b\"\ncheckout main\ncommit id: \"c\"\nbranch dol\ncommit id: \"d\"\ncheckout main\nmerge srodek"
+	for _, header := range []string{"gitGraph\n", "gitGraph TB:\n"} {
+		g, err := Parse(header + src)
+		if err != nil {
+			t.Fatal(err)
+		}
+		sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+		curves := map[string][]int{}
+		var lanes []scene.Item
+		var crossing scene.Item
+		for _, it := range sc.Items {
+			switch it.Role {
+			case "git-fork", "git-merge":
+				n := 0
+				for _, sg := range it.Segments {
+					if sg.Cmd == 'C' {
+						n++
+					}
+				}
+				curves[it.Role] = append(curves[it.Role], n)
+				if n == 3 {
+					crossing = it
+				}
+			case "git-lane":
+				lanes = append(lanes, it)
+			}
+		}
+		// Odejścia: do gałęzi środkowej (bez przecięcia, sam narożnik) i do dolnej (narożnik i mostek).
+		if len(curves["git-fork"]) != 2 || curves["git-fork"][0] != 1 || curves["git-fork"][1] != 3 || len(curves["git-merge"]) != 1 || curves["git-merge"][0] != 1 {
+			t.Fatalf("%q: curve counts %v", header, curves)
+		}
+		// Szczyt mostka leży na torze gałęzi środkowej, odsunięty w poprzek łącznika.
+		top := crossing.Segments[2].To
+		mid := lanes[1]
+		if header == "gitGraph\n" {
+			if math.Abs(top.Y-mid.Y) > 0.01 || top.X <= crossing.Segments[0].To.X {
+				t.Errorf("horizontal: the bridge peak %+v should lie on the middle lane y=%.1f, to the right of the connector", top, mid.Y)
+			}
+		} else if math.Abs(top.X-mid.X) > 0.01 || top.Y >= crossing.Segments[0].To.Y {
+			t.Errorf("vertical: the bridge peak %+v should lie on the middle lane x=%.1f, above the connector", top, mid.X)
+		}
+	}
+}
