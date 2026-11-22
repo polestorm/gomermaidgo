@@ -240,3 +240,56 @@ func TestGuidesSpacingAndPickMark(t *testing.T) {
 		}
 	}
 }
+
+// REQ: GIT-006
+// Linia prowadząca nie dotyka nazwy gałęzi i wybiega poza ostatni commit; gruba linia gałęzi
+// głównej zaczyna się w jej pierwszym commicie; znacznik jest pięciokątem ze szpicem z lewej.
+func TestGuideGapsAndTagShape(t *testing.T) {
+	for _, header := range []string{"gitGraph\n", "gitGraph TB:\n", "gitGraph BT:\n"} {
+		g, err := Parse(header + "commit id: \"a\" tag: \"v1\"\ncommit id: \"b\"")
+		if err != nil {
+			t.Fatal(err)
+		}
+		sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+		var guide, lane, label, tag scene.Item
+		var commits []scene.Item
+		for _, it := range sc.Items {
+			switch it.Role {
+			case "git-guide":
+				guide = it
+			case "git-lane":
+				lane = it
+			case "git-branch":
+				label = it
+			case "git-tag":
+				tag = it
+			case "git-commit":
+				commits = append(commits, it)
+			}
+		}
+		gb, lb, nb := guide.Bounds(), lane.Bounds(), label.Bounds()
+		along := func(b scene.Box) (float64, float64) {
+			if header == "gitGraph\n" {
+				return b.X0, b.X1
+			}
+			return b.Y0, b.Y1
+		}
+		g0, g1 := along(gb)
+		l0, l1 := along(lb)
+		n0, n1 := along(nb)
+		// Odstęp od nazwy: linia nie zaczyna się na jej krawędzi.
+		if gap := math.Min(math.Abs(g0-n1), math.Abs(n0-g1)); gap < 4 || gap > 20 {
+			t.Errorf("%q: gap between the branch name and its guide is %.1f", header, gap)
+		}
+		if g0 > l0-4 || g1 < l1+4 || (g0 > l0-20 && g1 < l1+20) {
+			t.Errorf("%q: the guide %v..%v should run past the lane %v..%v", header, g0, g1, l0, l1)
+		}
+		c0, c1 := along(commits[0].Bounds())
+		if mid := (c0 + c1) / 2; math.Abs(l0-mid) > 0.5 && math.Abs(l1-mid) > 0.5 {
+			t.Errorf("%q: the lane of main should start at its first commit", header)
+		}
+		if tag.Kind != scene.Polygon || len(tag.Points) != 5 || tag.Points[0].X >= tag.Points[1].X || tag.Points[0].Y <= tag.Points[1].Y || tag.Points[0].Y >= tag.Points[4].Y {
+			t.Errorf("%q: the tag should be a pentagon pointing left: %+v", header, tag.Points)
+		}
+	}
+}

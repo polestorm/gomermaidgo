@@ -251,7 +251,7 @@ func Layout(g *Graph, o Options) *scene.Scene {
 	half := func(c Commit) float64 {
 		w := o.Measure(c.ID, small)
 		if c.Tag != "" {
-			w = math.Max(w, o.Measure(c.Tag, small)+u(12))
+			w = math.Max(w, tagWidth(o, c.Tag, small, u))
 		}
 		return w / 2
 	}
@@ -294,14 +294,11 @@ func Layout(g *Graph, o Options) *scene.Scene {
 			Text: name, Anchor: "middle", Fill: colorText})
 		xa, _ := at(f)
 		xb, _ := at(last[b])
-		if b == 0 {
-			xa = labelW + 2*u(10) // tor gałęzi głównej zaczyna się przy jej etykiecie
-		}
 		// Cienka linia przerywana przez cały graf pokazuje tor gałęzi także tam, gdzie gałąź
 		// jeszcze nie istnieje albo już się skończyła; odcinek życia gałęzi jest gruby.
 		if n := len(g.Commits); n > 0 {
 			xe, _ := at(n - 1)
-			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "git-guide", X: labelW + 2*u(10), Y: y, X2: xe + u(16), Y2: y, Stroke: colorGuide, StrokeWidth: 1, Dash: "2 4"})
+			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "git-guide", X: labelW + 2*u(10) + u(8), Y: y, X2: xe + u(36), Y2: y, Stroke: colorGuide, StrokeWidth: 1, Dash: "2 4"})
 		}
 		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "git-lane", X: xa, Y: y, X2: xb, Y2: y, Stroke: tone(b), StrokeWidth: 3})
 	}
@@ -358,11 +355,7 @@ func Layout(g *Graph, o Options) *scene.Scene {
 				Text: c.ID, Anchor: "middle", FontSize: small, Fill: colorMuted})
 		}
 		if c.Tag != "" {
-			w := o.Measure(c.Tag, small) + u(12)
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "git-tag", X: x - w/2, Y: y - r - u(6) - small*1.4, W: w, H: small * 1.4, RX: u(3),
-				Fill: colorTag, Stroke: colorLine, StrokeWidth: 1})
-			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-tag-label", X: x, Y: y - r - u(6) - small*0.4, W: o.Measure(c.Tag, small), H: small * 1.25,
-				Text: c.Tag, Anchor: "middle", FontSize: small, Fill: colorText})
+			tag(sc, o, c.Tag, x-tagWidth(o, c.Tag, small, u)/2, y-r-u(6)-small*1.4, small, u)
 		}
 	}
 	return sc
@@ -411,7 +404,7 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 	for _, c := range g.Commits {
 		w := r + u(6) + o.Measure(c.ID, small)
 		if c.Tag != "" {
-			w += u(8) + o.Measure(c.Tag, small) + u(12)
+			w += u(8) + tagWidth(o, c.Tag, small, u)
 		}
 		lane = math.Max(lane, w+r+u(16))
 	}
@@ -458,20 +451,14 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 			Fill: colorLabel, Stroke: tone(b), StrokeWidth: 1.5})
 		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-branch-label", X: x, Y: labelY + labelH/2 + 0.35*fs, W: o.Measure(name, fs), H: lh,
 			Text: name, Anchor: "middle", Fill: colorText})
-		if b == 0 {
-			// Tor gałęzi głównej zaczyna się przy jej etykiecie.
-			ya = labelY
-			if down {
-				ya = labelY + labelH
-			}
-		}
 		if n := len(g.Commits); n > 0 {
 			_, ye := at(n - 1)
-			gy := labelY + labelH
+			// Linia zaczyna się z odstępem od nazwy gałęzi i wybiega poza ostatni commit.
+			gy := labelY + labelH + u(8)
 			if !down {
-				gy, ye = labelY, ye-u(16)
+				gy, ye = labelY-u(8), ye-u(36)
 			} else {
-				ye += u(16)
+				ye += u(36)
 			}
 			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "git-guide", X: x, Y: gy, X2: x, Y2: ye, Stroke: colorGuide, StrokeWidth: 1, Dash: "2 4"})
 		}
@@ -533,11 +520,26 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 			tx += w + u(8)
 		}
 		if c.Tag != "" {
-			w := o.Measure(c.Tag, small) + u(12)
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "git-tag", X: tx, Y: y - small*0.7, W: w, H: small * 1.4, RX: u(3),
-				Fill: colorTag, Stroke: colorLine, StrokeWidth: 1})
-			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-tag-label", X: tx + w/2, Y: y + small*0.35, W: o.Measure(c.Tag, small), H: small * 1.25,
-				Text: c.Tag, Anchor: "middle", FontSize: small, Fill: colorText})
+			tag(sc, o, c.Tag, tx, y-small*0.7, small, u)
 		}
 	}
+}
+
+// tagWidth to szerokość znacznika: tekst, marginesy i szpic z lewej strony.
+func tagWidth(o Options, text string, small float64, u func(float64) float64) float64 {
+	return o.Measure(text, small) + u(10) + small*0.9
+}
+
+// tag rysuje znacznik w kształcie przywieszki: prostokąt ze szpicem z lewej strony i otworem
+// przy szpicu. x i top to lewy górny róg pola znacznika.
+func tag(sc *scene.Scene, o Options, text string, x, top, small float64, u func(float64) float64) {
+	h := small * 1.4
+	w := tagWidth(o, text, small, u)
+	tip := small * 0.7
+	sc.Add(scene.Item{Kind: scene.Polygon, Layer: scene.LayerShape, Role: "git-tag", Fill: colorTag, Stroke: colorLine, StrokeWidth: 1,
+		Points: []scene.Point{{X: x, Y: top + h/2}, {X: x + tip, Y: top}, {X: x + w, Y: top}, {X: x + w, Y: top + h}, {X: x + tip, Y: top + h}}})
+	sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-tag-hole", X: x + tip*0.85, Y: top + h/2, R: small * 0.14, Fill: colorLine})
+	tw := o.Measure(text, small)
+	sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-tag-label", X: x + w - u(5) - tw/2, Y: top + h/2 + small*0.35, W: tw, H: small * 1.25,
+		Text: text, Anchor: "middle", FontSize: small, Fill: colorText})
 }
