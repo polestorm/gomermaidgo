@@ -4,6 +4,7 @@
 package scene
 
 import (
+	"fmt"
 	"math"
 	"sort"
 	"strconv"
@@ -93,6 +94,53 @@ var Palette = []Tone{
 	{"#7a56b3", "#f0eafa"}, // fioletowy
 	{"#b8456b", "#fbe9ef"}, // malinowy
 	{"#4d8a2f", "#ebf5e4"}, // zielony
+}
+
+// distinctOrder to kolejność palety, w której każdy następny kolor leży możliwie daleko w barwie
+// od wszystkich wcześniejszych: niebieski, bursztynowy, zielony, malinowy, fioletowy, morski.
+var distinctOrder = [...]int{0, 2, 5, 4, 3, 1}
+
+// Distinct zwraca kolor dla i-tego elementu serii (uczestnika, gałęzi, wycinka): sąsiednie
+// numery dostają kolory daleko od siebie w barwie, więc dwa pierwsze nigdy nie są podobne.
+// Po wyczerpaniu palety kolory powstają przez obrót barwy o złoty kąt, na zmianę ciemniejsze
+// i jaśniejsze, i nadal różnią się od sąsiadów.
+func Distinct(i int) Tone {
+	if i < 0 {
+		i = -i
+	}
+	if i < len(distinctOrder) {
+		return Palette[distinctOrder[i]]
+	}
+	hue := math.Mod(215+float64(i)*137.508, 360)
+	light := 0.34
+	if i%2 == 1 {
+		light = 0.52
+	}
+	return Tone{hslHex(hue, 0.5, light), hslHex(hue, 0.6, 0.94)}
+}
+
+// hslHex zamienia barwę w stopniach, nasycenie i jasność na zapis #rrggbb.
+func hslHex(h, s, l float64) string {
+	c := (1 - math.Abs(2*l-1)) * s
+	x := c * (1 - math.Abs(math.Mod(h/60, 2)-1))
+	m := l - c/2
+	var r, g, b float64
+	switch {
+	case h < 60:
+		r, g = c, x
+	case h < 120:
+		r, g = x, c
+	case h < 180:
+		g, b = c, x
+	case h < 240:
+		g, b = x, c
+	case h < 300:
+		r, b = x, c
+	default:
+		r, b = c, x
+	}
+	q := func(v float64) int { return int(math.Round(math.Min(math.Max(v+m, 0), 1) * 255)) }
+	return fmt.Sprintf("#%02x%02x%02x", q(r), q(g), q(b))
 }
 
 // AddShadows dopisuje cień pod każdym kształtem dodanym od pozycji from, którego rola jest na

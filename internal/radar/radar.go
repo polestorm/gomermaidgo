@@ -289,7 +289,7 @@ func Layout(c *Chart, o Options) *scene.Scene {
 	for k, cv := range c.Curves {
 		stroke := colorLine
 		if o.Colors {
-			stroke = scene.Palette[k%len(scene.Palette)].Stroke
+			stroke = scene.Distinct(k).Stroke
 		}
 		pts := make([]scene.Point, n)
 		for i, v := range cv.Values {
@@ -307,7 +307,7 @@ func Layout(c *Chart, o Options) *scene.Scene {
 		for k, cv := range c.Curves {
 			stroke := colorLine
 			if o.Colors {
-				stroke = scene.Palette[k%len(scene.Palette)].Stroke
+				stroke = scene.Distinct(k).Stroke
 			}
 			mid := y + float64(k)*(lh+u(4)) + lh/2
 			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "radar-swatch", X: x, Y: mid, X2: x + u(22), Y2: mid, Stroke: stroke, StrokeWidth: 2, Dash: dashes[k%len(dashes)]})

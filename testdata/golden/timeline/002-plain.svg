@@ -7,6 +7,10 @@
 <line class="timeline-link" x1="137" y1="18" x2="159" y2="18" fill="none" stroke="#55657a" stroke-width="1"/>
 <line class="timeline-link" x1="8" y1="70" x2="30" y2="70" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="timeline-link" x1="137" y1="70" x2="159" y2="70" fill="none" stroke="#55657a" stroke-width="1"/>
+<line class="timeline-link" x1="365" y1="69" x2="373" y2="69" fill="none" stroke="#55657a" stroke-width="1"/>
+<polyline class="timeline-link" points="148,70 148,131 159,131" fill="none" stroke="#55657a" stroke-width="1"/>
+<line class="timeline-link" x1="324" y1="131" x2="332" y2="131" fill="none" stroke="#55657a" stroke-width="1"/>
+<polyline class="timeline-link" points="148,70 148,193 159,193" fill="none" stroke="#55657a" stroke-width="1"/>
 <line class="timeline-link" x1="8" y1="244" x2="30" y2="244" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="timeline-link" x1="137" y1="244" x2="159" y2="244" fill="none" stroke="#55657a" stroke-width="1"/>
 <circle class="timeline-mark" cx="8" cy="18" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>

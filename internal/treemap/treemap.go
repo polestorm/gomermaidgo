@@ -266,7 +266,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 				fill = colorSection
 			}
 			if o.Colors {
-				p := scene.Palette[t%len(scene.Palette)]
+				p := scene.Distinct(t)
 				fill, line = p.Fill, p.Stroke
 			}
 			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "treemap-node", X: b.x, Y: b.y, W: b.w, H: b.h, Fill: fill, Stroke: line, StrokeWidth: 1})

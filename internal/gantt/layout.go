@@ -268,7 +268,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 		x0, x1 := xOf(t.Start), xOf(t.End)
 		fill, stroke, strokeW, ink := colorTaskFill, colorTaskStroke, 1.5, colorText
 		if o.Colors && t.Section >= 0 {
-			tone := scene.Palette[t.Section%len(scene.Palette)]
+			tone := scene.Distinct(t.Section)
 			fill, stroke = tone.Fill, tone.Stroke
 		}
 		switch {

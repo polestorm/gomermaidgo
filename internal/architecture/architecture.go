@@ -420,7 +420,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 		}
 		fill, stroke := "", colorFrame
 		if o.Colors && g.Parent == "" {
-			t := scene.Palette[i%len(scene.Palette)]
+			t := scene.Distinct(i)
 			fill, stroke = t.Fill, t.Stroke
 		}
 		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "architecture-group", X: f.x0, Y: f.y0, W: f.x1 - f.x0, H: f.y1 - f.y0, RX: u(6),

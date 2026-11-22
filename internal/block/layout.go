@@ -213,7 +213,7 @@ func (l *layouter) shape(it *Item, b [4]float64, column int) {
 	cx, cy := x+w/2, y+h/2
 	fill, stroke, sw := colorFill, colorStroke, 1.5
 	if l.o.Colors {
-		t := scene.Palette[column%len(scene.Palette)]
+		t := scene.Distinct(column)
 		fill, stroke = t.Fill, t.Stroke
 	}
 	if it.Paint.Fill != "" {

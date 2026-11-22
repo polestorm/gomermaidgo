@@ -74,7 +74,7 @@ func layoutRow(d *Diagram, o Options) *scene.Scene {
 		if !o.Colors {
 			return colorPeriodFill, colorPeriodLine
 		}
-		p := scene.Palette[t%len(scene.Palette)]
+		p := scene.Distinct(t)
 		return p.Fill, p.Stroke
 	}
 

@@ -399,7 +399,7 @@ func Layout(c *Chart, o Options) *scene.Scene {
 		}
 		for i, name := range c.Nodes {
 			if name == n {
-				return scene.Palette[i%len(scene.Palette)].Stroke
+				return scene.Distinct(i).Stroke
 			}
 		}
 		return ""

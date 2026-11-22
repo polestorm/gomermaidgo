@@ -1,6 +1,7 @@
 package timeline
 
 import (
+	"math"
 	"strings"
 	"testing"
 
@@ -183,5 +184,60 @@ func TestRowLayout(t *testing.T) {
 				t.Errorf("text %q drawn %d times, want once", want, texts[want])
 			}
 		}
+	}
+}
+
+// REQ: TML-006
+// Układ listowy: zdarzenia okresu zawinięte do kolejnych rzędów są połączone w kolejności ze
+// źródła, sąsiednie w rzędzie łącznikiem, a każdy następny rząd odgałęzieniem od linii przy okresie.
+func TestListLayoutLinksWrappedEvents(t *testing.T) {
+	d, err := Parse("timeline\n%% layout: list\nOkres : Pierwsze zdarzenie okresu : Drugie zdarzenie okresu : Trzecie zdarzenie okresu : Czwarte zdarzenie okresu : Piąte zdarzenie okresu : Szóste zdarzenie okresu")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	var events, links []scene.Item
+	for _, it := range sc.Items {
+		switch it.Role {
+		case "timeline-event":
+			events = append(events, it)
+		case "timeline-link":
+			links = append(links, it)
+		}
+	}
+	rows := map[float64]int{}
+	for _, e := range events {
+		rows[e.Y]++
+	}
+	if len(events) != 6 || len(rows) < 2 {
+		t.Fatalf("%d events in %d rows; the test needs wrapped rows", len(events), len(rows))
+	}
+	// Każde zdarzenie poza pierwszym ma łącznik kończący się na jego lewej krawędzi.
+	for i, e := range events[1:] {
+		found := false
+		for _, l := range links {
+			end := scene.Point{X: l.X2, Y: l.Y2}
+			if l.Kind == scene.Polyline {
+				end = l.Points[len(l.Points)-1]
+			}
+			if math.Abs(end.X-e.X) < 0.01 && end.Y > e.Y && end.Y < e.Y+e.H {
+				found = true
+			}
+		}
+		if !found {
+			t.Errorf("event %d has no link", i+2)
+		}
+	}
+	branches := 0
+	for _, l := range links {
+		if l.Kind == scene.Polyline {
+			branches++
+			if l.Points[0].X != l.Points[1].X || l.Points[1].Y != l.Points[2].Y {
+				t.Errorf("a branch should go down and then across: %+v", l.Points)
+			}
+		}
+	}
+	if branches != len(rows)-1 {
+		t.Errorf("%d branches for %d rows", branches, len(rows))
 	}
 }

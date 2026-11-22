@@ -247,7 +247,7 @@ func layoutList(d *Diagram, o Options) *scene.Scene {
 		if !o.Colors {
 			return colorPeriodFill, colorPeriodLine
 		}
-		p := scene.Palette[t%len(scene.Palette)]
+		p := scene.Distinct(t)
 		return p.Fill, p.Stroke
 	}
 	for _, s := range strips {
@@ -282,6 +282,20 @@ func layoutList(d *Diagram, o Options) *scene.Scene {
 		eventLine := colorEventLine
 		if o.Colors {
 			eventLine = line
+		}
+		// Zdarzenia okresu są połączone w kolejności ze źródła: sąsiednie w rzędzie krótkim łącznikiem,
+		// a pierwsze zdarzenie każdego następnego rzędu odgałęzieniem od wspólnej linii przy okresie.
+		stemX := (periodX + periodW + eventsX) / 2
+		for k := 1; k < len(r.tiles); k++ {
+			a, b := r.tiles[k-1], r.tiles[k]
+			if a.y == b.y {
+				at := a.y + math.Min(a.h, b.h)/2
+				sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "timeline-link", X: a.x + a.w, Y: at, X2: b.x, Y2: at, Stroke: line, StrokeWidth: 1})
+				continue
+			}
+			at := b.y + b.h/2
+			sc.Add(scene.Item{Kind: scene.Polyline, Layer: scene.LayerLifeline, Role: "timeline-link", Stroke: line, StrokeWidth: 1,
+				Points: []scene.Point{{X: stemX, Y: mid}, {X: stemX, Y: at}, {X: b.x, Y: at}}})
 		}
 		for _, t := range r.tiles {
 			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "timeline-event", X: t.x, Y: t.y, W: t.w, H: t.h, RX: u(4),

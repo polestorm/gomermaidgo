@@ -268,7 +268,7 @@ func Layout(c *Chart, o Options) *scene.Scene {
 	centre := func(i int) float64 { return plotX + band*(float64(i)+0.5) }
 	tone := func(i int) string {
 		if o.Colors {
-			return scene.Palette[i%len(scene.Palette)].Stroke
+			return scene.Distinct(i).Stroke
 		}
 		return barGrays[i%len(barGrays)]
 	}
@@ -477,7 +477,7 @@ func layoutHorizontal(c *Chart, o Options) *scene.Scene {
 	centre := func(i int) float64 { return plotY + band*(float64(i)+0.5) }
 	tone := func(i int) string {
 		if o.Colors {
-			return scene.Palette[i%len(scene.Palette)].Stroke
+			return scene.Distinct(i).Stroke
 		}
 		return barGrays[i%len(barGrays)]
 	}

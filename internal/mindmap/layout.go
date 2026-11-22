@@ -216,7 +216,7 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 // tones zwraca wypełnienie i obrys gałęzi.
 func (l *layouter) tones(b *branch, root bool) (fill, stroke string) {
 	if l.o.Colors && b.tone >= 0 {
-		t := scene.Palette[b.tone%len(scene.Palette)]
+		t := scene.Distinct(b.tone)
 		return t.Fill, t.Stroke
 	}
 	if root {

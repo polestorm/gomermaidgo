@@ -176,11 +176,11 @@ func Layout(c *Chart, o Options) *scene.Scene {
 	colors := grays
 	if o.Colors {
 		colors = nil
-		for _, t := range scene.Palette {
-			colors = append(colors, t.Stroke)
+		for i := range scene.Palette {
+			colors = append(colors, scene.Distinct(i).Stroke)
 		}
-		for _, t := range scene.Palette {
-			colors = append(colors, t.Fill)
+		for i := range scene.Palette {
+			colors = append(colors, scene.Distinct(i).Fill)
 		}
 	}
 

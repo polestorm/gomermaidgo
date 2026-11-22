@@ -404,7 +404,7 @@ func (l *layout) participants(top float64, keep func(*Participant) bool) {
 		lines := float64(len(p.Label))
 		colorBoxFill, colorBoxStroke := colorBoxFill, colorBoxStroke
 		if l.o.Colors {
-			tone := scene.Palette[i%len(scene.Palette)]
+			tone := scene.Distinct(i)
 			colorBoxFill, colorBoxStroke = tone.Fill, tone.Stroke
 		}
 		if !p.Actor {

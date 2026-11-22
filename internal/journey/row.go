@@ -54,7 +54,7 @@ func layoutRow(d *Diagram, o Options) *scene.Scene {
 	}
 	actorColor := func(i int) string {
 		if o.Colors {
-			return scene.Palette[i%len(scene.Palette)].Stroke
+			return scene.Distinct(i).Stroke
 		}
 		return actorGrays[i%len(actorGrays)]
 	}
@@ -102,7 +102,7 @@ func layoutRow(d *Diagram, o Options) *scene.Scene {
 	left := func(i int) float64 { return x0 + float64(i)*(taskW+gap) }
 	tone := func(k int) (fill, line string) {
 		if o.Colors {
-			p := scene.Palette[k%len(scene.Palette)]
+			p := scene.Distinct(k)
 			return p.Fill, p.Stroke
 		}
 		return colorTaskFill, colorTaskLine

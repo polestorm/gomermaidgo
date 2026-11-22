@@ -268,7 +268,7 @@ func Layout(g *Graph, o Options) *scene.Scene {
 	at := func(i int) (x, y float64) { return x0 + xs[i], float64(g.Commits[i].Branch)*lane + u(28) }
 	tone := func(branch int) string {
 		if o.Colors {
-			return scene.Palette[branch%len(scene.Palette)].Stroke
+			return scene.Distinct(branch).Stroke
 		}
 		return colorLine
 	}
@@ -428,7 +428,7 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 	}
 	tone := func(branch int) string {
 		if o.Colors {
-			return scene.Palette[branch%len(scene.Palette)].Stroke
+			return scene.Distinct(branch).Stroke
 		}
 		return colorLine
 	}

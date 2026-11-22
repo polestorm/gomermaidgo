@@ -225,7 +225,7 @@ func Layout(b *Board, o Options) *scene.Scene {
 	for _, f := range frames {
 		fill, line := colorColumn, colorLine
 		if o.Colors {
-			t := scene.Palette[f.tone%len(scene.Palette)]
+			t := scene.Distinct(f.tone)
 			fill, line = t.Fill, t.Stroke
 		}
 		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "kanban-column", X: f.x, Y: 0, W: colW, H: bottom, RX: u(6),

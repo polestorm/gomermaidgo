@@ -153,7 +153,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	for i, f := range d.Fields {
 		fill := colorFill
 		if o.Colors {
-			fill = scene.Palette[i%len(scene.Palette)].Fill
+			fill = scene.Distinct(i).Fill
 		}
 		for from := f.From; from <= f.To; {
 			row := from / rowBits
