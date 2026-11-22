@@ -82,6 +82,26 @@ attributes: no `foreignObject`, no style sheets, no scripts, no links, no ids.
 Documentation (in Polish): `docs/profile.md` (supported syntax), `docs/provenance.md` (sources and clean-room rules),
 `docs/testing.md` (corpus, invariants, comparison with reference renderers), `requirements/` (numbered requirements).
 
+## Compared with a Mermaid-based renderer
+
+Measured on 2026-11-22 against `mmdg` 0.13.0 (Mermaid 12.2.0 with an embedded JavaScript engine), on the 70 diagrams
+of this repository's corpus that both programs render, on one Apple-silicon laptop. Time is the best of three runs
+of the command-line program per file, process start included; memory is the peak resident size. Numbers are medians
+over the files.
+
+| | gomermaidgo | mmdg |
+|---|---:|---:|
+| binary | 6.9 MB | 53.4 MB |
+| dependencies outside the standard library | 0 | 10 |
+| SVG: time / memory / corpus size | 7 ms / 14 MB / 0.34 MB | 32 ms / 43 MB / 11.8 MB |
+| PDF: time / memory / corpus size | 9 ms / 19 MB / 1.0 MB | 33 ms / 55 MB / 10.9 MB |
+| PNG at scale 1: time / memory / corpus size | 16 ms / 21 MB / 2.7 MB | 38 ms / 46 MB / 2.3 MB |
+| PNG at scale 2: time / memory / corpus size | 34 ms / 31 MB / 6.0 MB | 72 ms / 58 MB / 5.8 MB |
+
+The corpus is written for this library's profile, so it says nothing about coverage: Mermaid accepts syntax this
+library rejects (see `docs/profile.md`), and the drawings differ on purpose. Three corpus diagrams are left out
+because the other program does not render them.
+
 ## License
 
 Apache License 2.0, see `LICENSE` and `NOTICE`. The bundled Recursive typeface is distributed under the SIL Open Font
