@@ -41,7 +41,7 @@ func TestParse(t *testing.T) {
 	if a.From != "E" || a.To != "R1" || a.Label[0] != "«satisfies»" || a.EndHead != graph.OpenArrow {
 		t.Errorf("forward relation: %+v", a)
 	}
-	if b.From != "R1" || b.To != "Drugie wymaganie" || b.Label[0] != "«contains»" || b.StartHead != graph.CircleHead || b.EndHead != graph.NoHead {
+	if b.From != "R1" || b.To != "Drugie wymaganie" || b.Label[0] != "«contains»" || b.StartHead != graph.CircleHead || b.EndHead != graph.NoHead || b.Style != graph.Normal || g.Edges[0].Style != graph.Dotted {
 		t.Errorf("backward contains relation: %+v", b)
 	}
 }

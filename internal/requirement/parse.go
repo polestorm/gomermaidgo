@@ -202,11 +202,12 @@ func Parse(source string) (*graph.Graph, error) {
 		if err != nil {
 			return nil, err
 		}
-		e := &graph.Edge{From: a.ID, To: b.ID, Style: graph.Normal, StartHead: graph.NoHead, EndHead: graph.OpenArrow,
+		// Zależności (derives, satisfies, verifies, refines, traces, copies) są w SysML liniami
+		// przerywanymi z otwartym grotem; zawieranie linią ciągłą z kółkiem przy elemencie zawierającym.
+		e := &graph.Edge{From: a.ID, To: b.ID, Style: graph.Dotted, StartHead: graph.NoHead, EndHead: graph.OpenArrow,
 			Label: []string{"«" + strings.ToLower(relation) + "»"}, Line: line}
 		if strings.EqualFold(relation, "contains") {
-			// Zawieranie: kółko przy elemencie zawierającym, bez grotu.
-			e.StartHead, e.EndHead = graph.CircleHead, graph.NoHead
+			e.Style, e.StartHead, e.EndHead = graph.Normal, graph.CircleHead, graph.NoHead
 		}
 		if err := g.AddEdge(e); err != nil {
 			return nil, err

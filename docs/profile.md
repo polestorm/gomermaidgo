@@ -466,8 +466,8 @@ kategorii jest obrócony wzdłuż osi.
 
 ### Świadome różnice wobec Mermaid
 
-- nazwa punktu ma własny podkład i nie wychodzi poza wykres: przy bocznej krawędzi jest dosunięta, a przy dolnej
-  stoi nad kropką;
+- nazwa punktu szuka miejsca: pod kropką, a gdy nachodziłaby tam na tytuł ćwiartki, inną kropkę albo nazwę, nad
+  kropką albo obok; tytuł ćwiartki, na którym leży kropka, zaczyna się tuż pod nią (w Mermaid napisy się nakładają);
 - ćwiartki stykające się bokiem różnią się jasnością; `WithColors` nadaje im tony palety;
 - współrzędna spoza zakresu 0–1 jest błędem.
 
@@ -537,8 +537,7 @@ Rysowany tym samym układem warstwowym co schemat blokowy i diagram klas.
 | dostępność | `accTitle`, `accDescr` | RQD-001 |
 
 Świadome różnice wobec Mermaid: długi tekst wymagania jest łamany na linie o około 44 znakach; relacja `contains`
-ma kółko przy elemencie zawierającym (w Mermaid kółko z krzyżykiem); pozostałe relacje mają otwarty grot i linię
-ciągłą; nazwa użyta w relacji musi być zdefiniowana blokiem; wartość pola przyjmujemy także bez cudzysłowów,
+ma kółko przy elemencie zawierającym (w Mermaid kółko z krzyżykiem); nazwa użyta w relacji musi być zdefiniowana blokiem; wartość pola przyjmujemy także bez cudzysłowów,
 gdy ma łącznik albo kropkę (Mermaid wymaga wtedy cudzysłowów).
 
 ## Wykres Sankeya (`sankey-beta`, `sankey`)

@@ -263,7 +263,37 @@ func Layout(c *Chart, o Options) *scene.Scene {
 		block([]string{c.Title}, x0+half, lh/2, "middle", "title", colorText, false)
 		y0 = lh + u(12)
 	}
-	// Ćwiartki: 0 prawa górna, 1 lewa górna, 2 lewa dolna, 3 prawa dolna. Tytuł stoi u góry ćwiartki.
+	type box struct{ x0, y0, x1, y1 float64 }
+	hits := func(a, b box) bool { return a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1 }
+	small := math.Round(fs * 0.75)
+	smallH := math.Round(small * 1.25)
+	// Kropki: położenie i wygląd ze źródła.
+	type dot struct {
+		x, y, r        float64
+		fill, stroke   string
+		strokeW, nameW float64
+	}
+	dots := make([]dot, len(c.Points))
+	var taken []box // kropki, a potem tytuły ćwiartek i nazwy już postawione
+	for i, p := range c.Points {
+		d := dot{x: x0 + p.X*size, y: y0 + (1-p.Y)*size, r: u(5), fill: colorPoint, stroke: "#ffffff", strokeW: 1, nameW: o.Measure(p.Name, small)}
+		if p.Radius > 0 {
+			d.r = u(p.Radius)
+		}
+		if p.Color != "" {
+			d.fill = p.Color
+		}
+		if p.StrokeColor != "" {
+			d.stroke = p.StrokeColor
+		}
+		if p.StrokeWidth > 0 {
+			d.strokeW = u(p.StrokeWidth)
+		}
+		dots[i] = d
+		taken = append(taken, box{d.x - d.r - u(2), d.y - d.r - u(2), d.x + d.r + u(2), d.y + d.r + u(2)})
+	}
+	// Ćwiartki: 0 prawa górna, 1 lewa górna, 2 lewa dolna, 3 prawa dolna. Tytuł stoi u góry
+	// ćwiartki; gdy leży tam kropka, zsuwa się tuż pod nią, najwyżej do połowy ćwiartki.
 	corner := [4][2]float64{{x0 + half, y0}, {x0, y0}, {x0, y0 + half}, {x0 + half, y0 + half}}
 	for q := 0; q < 4; q++ {
 		fill := grays[q]
@@ -271,46 +301,69 @@ func Layout(c *Chart, o Options) *scene.Scene {
 			fill = scene.Palette[q].Fill
 		}
 		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "quadrant", X: corner[q][0], Y: corner[q][1], W: half, H: half, Fill: fill})
-		for k, line := range wrap(c.Quadrants[q], half-2*u(12)) {
-			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerShape, Role: "quadrant-title", X: corner[q][0] + half/2,
-				Y: corner[q][1] + u(10) + float64(k)*lh + lh/2 + 0.35*fs, W: width(line), H: lh, Text: line, Anchor: "middle", Bold: true, Fill: colorMuted})
+		lines := wrap(c.Quadrants[q], half-2*u(12))
+		if len(lines) == 0 {
+			continue
+		}
+		tw, th := 0.0, float64(len(lines))*lh
+		for _, line := range lines {
+			tw = math.Max(tw, width(line))
+		}
+		cx := corner[q][0] + half/2
+		top := corner[q][1] + u(10)
+		for moved := true; moved; {
+			moved = false
+			for _, d := range taken[:len(dots)] {
+				if at := (box{cx - tw/2, top, cx + tw/2, top + th}); hits(at, d) && d.y1+u(2)+th <= corner[q][1]+half/2+th {
+					top, moved = d.y1+u(2), true
+				}
+			}
+		}
+		taken = append(taken, box{cx - tw/2, top, cx + tw/2, top + th})
+		for k, line := range lines {
+			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerShape, Role: "quadrant-title", X: cx,
+				Y: top + float64(k)*lh + lh/2 + 0.35*fs, W: width(line), H: lh, Text: line, Anchor: "middle", Bold: true, Fill: colorMuted})
 		}
 	}
 	sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "quadrant-frame", X: x0, Y: y0, W: size, H: size, Stroke: colorLine, StrokeWidth: 1.5})
 	sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "quadrant-frame", X: x0 + half, Y: y0, X2: x0 + half, Y2: y0 + size, Stroke: colorLine, StrokeWidth: 1})
 	sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "quadrant-frame", X: x0, Y: y0 + half, X2: x0 + size, Y2: y0 + half, Stroke: colorLine, StrokeWidth: 1})
 
-	// Punkty: kropka, a pod nią nazwa mniejszym pismem, na własnym podkładzie.
-	small := math.Round(fs * 0.75)
-	smallH := math.Round(small * 1.25)
+	// Nazwa punktu mniejszym pismem: pod kropką, a gdy nachodziłaby tam na tytuł ćwiartki, inną
+	// kropkę albo nazwę, nad kropką, z prawej albo z lewej. Wygrywa miejsce bez kolizji, w obrębie
+	// wykresu i, jeśli się da, bez przecinania linii podziału.
 	from := len(sc.Items)
-	for _, p := range c.Points {
-		px, py := x0+p.X*size, y0+(1-p.Y)*size
-		r, fill, stroke, sw := u(5), colorPoint, "#ffffff", 1.0
-		if p.Radius > 0 {
-			r = u(p.Radius)
+	for i, p := range c.Points {
+		d := dots[i]
+		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerLabel, Role: "quadrant-point", X: d.x, Y: d.y, R: d.r, Fill: d.fill, Stroke: d.stroke, StrokeWidth: d.strokeW})
+		w, gap := d.nameW, d.r+u(3)
+		clampX := func(cx float64) float64 { return math.Min(math.Max(cx, x0+w/2+u(4)), x0+size-w/2-u(4)) }
+		candidates := []box{
+			{clampX(d.x) - w/2, d.y + gap, clampX(d.x) + w/2, d.y + gap + smallH},
+			{clampX(d.x) - w/2, d.y - gap - smallH, clampX(d.x) + w/2, d.y - gap},
+			{d.x + gap + u(1), d.y - smallH/2, d.x + gap + u(1) + w, d.y + smallH/2},
+			{d.x - gap - u(1) - w, d.y - smallH/2, d.x - gap - u(1), d.y + smallH/2},
 		}
-		if p.Color != "" {
-			fill = p.Color
+		best, bestCost := candidates[0], math.Inf(1)
+		for k, cand := range candidates {
+			cost := float64(k)
+			if cand.x0 < x0+u(2) || cand.x1 > x0+size-u(2) || cand.y0 < y0+u(2) || cand.y1 > y0+size-u(2) {
+				cost += 1000
+			}
+			for j, t := range taken {
+				if j != i && hits(cand, t) {
+					cost += 100
+				}
+			}
+			if (cand.x0 < x0+half && cand.x1 > x0+half) || (cand.y0 < y0+half && cand.y1 > y0+half) {
+				cost += 10
+			}
+			if cost < bestCost {
+				best, bestCost = cand, cost
+			}
 		}
-		if p.StrokeColor != "" {
-			stroke = p.StrokeColor
-		}
-		if p.StrokeWidth > 0 {
-			sw = u(p.StrokeWidth)
-		}
-		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerLabel, Role: "quadrant-point", X: px, Y: py, R: r, Fill: fill, Stroke: stroke, StrokeWidth: sw})
-		w := o.Measure(p.Name, small)
-		// Nazwa wyśrodkowana pod kropką; przy krawędzi wykresu dosunięta tak, żeby z niego nie wyszła,
-		// a przy dolnej krawędzi przeniesiona nad kropkę.
-		cx := math.Min(math.Max(px, x0+w/2+u(4)), x0+size-w/2-u(4))
-		ty := py + r + u(3)
-		if ty+smallH > y0+size-u(2) {
-			ty = py - r - u(3) - smallH
-		}
-		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "quadrant-point-background", X: cx - w/2 - u(2), Y: ty, W: w + u(4), H: smallH,
-			RX: u(3), Fill: "#ffffff", FillOpacity: 0.85})
-		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "quadrant-point-label", X: cx, Y: ty + smallH/2 + 0.35*small,
+		taken = append(taken, best)
+		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "quadrant-point-label", X: (best.x0 + best.x1) / 2, Y: (best.y0+best.y1)/2 + 0.35*small,
 			W: w, H: smallH, Text: p.Name, Anchor: "middle", FontSize: small, Fill: colorText})
 	}
 	if o.Shadows {

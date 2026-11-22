@@ -66,7 +66,7 @@ func TestParseErrors(t *testing.T) {
 // Punkt stoi w swoim miejscu kwadratu z wyglądem ze źródła, nazwa mniejszym pismem pod kropką
 // i w obrębie wykresu, tytuł ćwiartki u jej góry, opisy osi pionowej obrócone.
 func TestLayout(t *testing.T) {
-	c, err := Parse("quadrantChart\ntitle T\nx-axis Lewo --> Prawo\ny-axis Dół --> Góra\nquadrant-1 Q1\nquadrant-2 Q2\nquadrant-3 Q3\nquadrant-4 Q4\nŚrodek: [0.5, 0.5]\nRóg: [1, 1] radius: 10, color: #b42318, stroke-color: #000000, stroke-width: 3\nGóra ćwiartki: [0.75, 0.93]\nLewy dół: [0, 0]")
+	c, err := Parse("quadrantChart\ntitle T\nx-axis Lewo --> Prawo\ny-axis Dół --> Góra\nquadrant-1 Q1\nquadrant-2 Q2\nquadrant-3 Q3\nquadrant-4 Q4\nŚrodek: [0.5, 0.5]\nRóg: [1, 1] radius: 10, color: #b42318, stroke-color: #000000, stroke-width: 3\nGóra ćwiartki: [0.75, 0.95]\nLewy dół: [0, 0]")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -110,26 +110,48 @@ func TestLayout(t *testing.T) {
 	if p := points[1]; p.R != 10 || p.Fill != "#b42318" || p.Stroke != "#000000" || p.StrokeWidth != 3 || points[0].R != 5 || points[0].Fill == p.Fill {
 		t.Errorf("point style from the source: %+v, default %+v", p, points[0])
 	}
+	if len(grounds) != 0 {
+		t.Errorf("point names should have no ground: %d", len(grounds))
+	}
+	overlap := func(a, b scene.Box) bool { return a.X0 < b.X1 && b.X0 < a.X1 && a.Y0 < b.Y1 && b.Y0 < a.Y1 }
 	for i, name := range names {
-		b, g := name.Bounds(), grounds[i].Bounds()
-		if name.FontSize != 12 || name.Anchor != "middle" {
-			t.Errorf("name %q: size %v, anchor %q", name.Text, name.FontSize, name.Anchor)
+		b := name.Bounds()
+		if name.FontSize != 12 {
+			t.Errorf("name %q: size %v", name.Text, name.FontSize)
 		}
-		if g.X0 < frame.X0-0.5 || g.X1 > frame.X1+0.5 || g.Y0 < frame.Y0-0.5 || g.Y1 > frame.Y1+0.5 {
-			t.Errorf("the name of point %d leaves the chart: %+v", i, g)
+		if b.X0 < frame.X0-0.5 || b.X1 > frame.X1+0.5 || b.Y0 < frame.Y0-0.5 || b.Y1 > frame.Y1+0.5 {
+			t.Errorf("the name of point %d leaves the chart: %+v", i, b)
 		}
-		// Nazwa stoi pod kropką, a przy dolnej krawędzi wykresu nad nią.
-		placed := b.Y0 >= points[i].Y+points[i].R-1
-		if i == 3 {
-			placed = b.Y1 <= points[i].Y-points[i].R+1
+		// Nazwa nie nachodzi na tytuł ćwiartki, żadną kropkę ani inną nazwę.
+		for _, title := range titles {
+			if overlap(b, title.Bounds()) {
+				t.Errorf("name %q lies on the quadrant title %q", name.Text, title.Text)
+			}
 		}
-		if !placed {
-			t.Errorf("name %q should stand under its point (over it at the bottom edge)", name.Text)
+		for j := range points {
+			if overlap(b, points[j].Bounds()) || (j != i && overlap(b, names[j].Bounds())) {
+				t.Errorf("name %q lies on point %d or its name", name.Text, j)
+			}
 		}
 	}
-	// Tytuły stoją u góry swoich ćwiartek, na jednej wysokości w każdym rzędzie.
-	if titles[0].Y != titles[1].Y || titles[2].Y != titles[3].Y || titles[0].Y > frame.Y0+40 || titles[2].Y < frame.Y0+size/2 || titles[2].Y > frame.Y0+size/2+40 {
+	// Nazwa stoi pod kropką, gdy nic jej tam nie przeszkadza.
+	if b := names[0].Bounds(); b.Y0 < points[0].Y+points[0].R-1 || math.Abs((b.X0+b.X1)/2-points[0].X) > 0.01 {
+		t.Errorf("the name of the middle point should stand under it: %+v", b)
+	}
+	// Tytuły stoją u góry swoich ćwiartek; tytuł pierwszej ustąpił kropce leżącej u jej góry
+	// i zaczyna się tuż pod nią, a żaden nie leży pod kropką.
+	if titles[1].Y > frame.Y0+40 || titles[2].Y != titles[3].Y || titles[2].Y < frame.Y0+size/2 || titles[2].Y > frame.Y0+size/2+40 {
 		t.Errorf("quadrant titles: %v %v %v %v", titles[0].Y, titles[1].Y, titles[2].Y, titles[3].Y)
+	}
+	if tb := titles[0].Bounds(); tb.Y0 < points[2].Y+points[2].R-4 || tb.Y0 > points[2].Y+points[2].R+12 {
+		t.Errorf("the title of the first quadrant should start just under the point at its top: %+v", tb)
+	}
+	for _, title := range titles {
+		for j := range points {
+			if overlap(title.Bounds(), points[j].Bounds()) {
+				t.Errorf("quadrant title %q lies under point %d", title.Text, j)
+			}
+		}
 	}
 	// Opisy osi pionowej: obrócone, z lewej strony wykresu, każdy na wysokości swojej połowy.
 	vertical := 0

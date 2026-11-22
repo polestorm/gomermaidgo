@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="788.5" height="720" viewBox="-12 -12 788.5 720" role="img" font-family="Recursive, sans-serif" font-size="16">
 <path class="edge" d="M188 229 L188 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M357 458 L357 512 L357 519 C357 523.4 360.6 527 365 527 L490 527 C494.4 527 498 530.6 498 535 L498 542" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M526 165 L526 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M678 425 L678 512 L678 519 C678 523.4 674.4 527 670 527 L546 527 C541.6 527 538 530.6 538 535 L538 542" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M357 458 L357 512 L357 519 C357 523.4 360.6 527 365 527 L490 527 C494.4 527 498 530.6 498 535 L498 542" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M526 165 L526 304" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M678 425 L678 512 L678 519 C678 523.4 674.4 527 670 527 L546 527 C541.6 527 538 530.6 538 535 L538 542" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <rect class="edge-label-background" x="140" y="252" width="96" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="313.4" y="490" width="87.2" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="481.2" y="252" width="89.6" height="20" fill="#ffffff"/>
