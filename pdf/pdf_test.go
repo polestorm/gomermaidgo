@@ -329,3 +329,43 @@ func FuzzRender(f *testing.F) {
 		}
 	})
 }
+
+// REQ: PDF-002
+// Znak, którego nie ma w kroju, jest rysowany glifem „brak znaku”, ale tekst do kopiowania
+// i wyszukiwania zostaje prawdziwy: napis z takim znakiem niesie go wprost (ActualText), a tabela
+// ToUnicode nie przypisuje glifowi braku żadnego konkretnego znaku.
+func TestMissingGlyphsKeepTheirText(t *testing.T) {
+	doc, err := Render("flowchart LR\nA[\"✅ Zgoda\"] --> B[\"🚀 Start\"]\nB --> C[Zwykły]")
+	if err != nil {
+		t.Fatal(err)
+	}
+	objs := objects(t, "missing", doc)
+	var content string
+	for _, o := range objs {
+		if bytes.Contains(o, []byte("/FlateDecode")) {
+			if s := string(inflate(t, o)); strings.Contains(s, " Tj ET") {
+				content = s
+			}
+		}
+	}
+	encode := func(s string) string {
+		var b strings.Builder
+		for _, u := range utf16.Encode([]rune(s)) {
+			fmt.Fprintf(&b, "%04X", u)
+		}
+		return b.String()
+	}
+	for _, want := range []string{"✅ Zgoda", "🚀 Start"} {
+		if !strings.Contains(content, "/ActualText <FEFF"+encode(want)+"> >> BDC") {
+			t.Errorf("text %q should be carried as ActualText", want)
+		}
+	}
+	if strings.Count(content, "BDC") != 2 || strings.Count(content, "EMC") != 2 || strings.Contains(content, encode("Zwykły")) {
+		t.Errorf("only the two texts with missing glyphs should be wrapped")
+	}
+	for _, got := range texts(t, objs) {
+		if strings.Contains(got, "✅") && strings.Contains(got, "Start") {
+			t.Errorf("the missing-glyph slot should not stand for the first missing character: %q", got)
+		}
+	}
+}

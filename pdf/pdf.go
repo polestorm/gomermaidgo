@@ -55,6 +55,9 @@ func (f *face) gid(r rune) int {
 	g := int(f.cmap.GlyphID(r))
 	if _, seen := f.used[g]; !seen {
 		f.used[g] = r
+		if g == 0 {
+			f.used[g] = '\uFFFD' // glif „brak znaku” nie oznacza żadnego konkretnego znaku
+		}
 	}
 	return g
 }
@@ -184,10 +187,21 @@ func (w *writer) text(it scene.Item, size float64, f *face) {
 	}
 	var hex strings.Builder
 	units := 0
+	exact := true
 	for _, c := range it.Text {
 		gid := f.gid(c)
 		units += f.ttf.advance(gid)
 		fmt.Fprintf(&hex, "%04X", gid)
+		// Tabela ToUnicode przypisuje glifowi jeden znak. Gdy glif rysuje tu inny znak (brak
+		// znaku w kroju albo dwa znaki o wspólnym glifie), tekst do kopiowania i wyszukiwania
+		// podajemy wprost.
+		if f.used[gid] != c {
+			exact = false
+		}
+	}
+	if !exact {
+		w.op("/Span << /ActualText %s >> BDC", str(it.Text))
+		defer w.op("EMC")
 	}
 	width := float64(units) / float64(f.ttf.unitsPerEm) * size
 	x := it.X
