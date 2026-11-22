@@ -346,7 +346,7 @@ Domyślny układ jest taki jak w Mermaid: okresy w rzędzie od lewej do prawej, 
 zdarzenia każdego okresu jedno pod drugim, nagłówek sekcji nad jej okresami. Dłuższa oś nie mieści się wtedy
 w szerokości strony i jest pomniejszana.
 
-Układ listowy (`%% layout: list`) prowadzi oś z góry na dół: okresy stoją przy osi, a zdarzenia okresu po prawej,
+Układ listowy (`%% layout: list`) prowadzi oś z góry na dół: okresy stoją po lewej stronie osi, a zdarzenia okresu po prawej,
 jedno pod drugim w kolejności ze źródła, połączone linią przerywaną. Rysunek rośnie w dół i mieści się na stronie przy dowolnej liczbie okresów. Dyrektywa
 jest komentarzem, więc to samo źródło w innych narzędziach rysuje układ domyślny.
 

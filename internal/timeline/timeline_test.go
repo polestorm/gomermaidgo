@@ -210,6 +210,12 @@ func TestListLayoutStacksEvents(t *testing.T) {
 			texts = append(texts, it.Text)
 		}
 	}
+	// Oś biegnie między okresami a zdarzeniami.
+	for _, it := range sc.Items {
+		if it.Role == "timeline-axis" && it.Kind == scene.Line && (it.X <= periods[0].X+periods[0].W || it.X >= events[0].X) {
+			t.Errorf("the axis at x=%.0f should run between the periods and the events", it.X)
+		}
+	}
 	if len(events) != 4 || len(stems) != 1 || len(periods) != 2 {
 		t.Fatalf("%d events, %d stems, %d periods", len(events), len(stems), len(periods))
 	}

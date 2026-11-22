@@ -179,7 +179,9 @@ func layoutList(d *Diagram, o Options) *scene.Scene {
 	}
 
 	// Kolumna okresów ma wspólną szerokość; zdarzenia zajmują resztę szerokości strony.
-	axisX, periodX := u(8), u(30)
+	// Okresy stoją po lewej stronie osi, zdarzenia po prawej, tak jak w układzie domyślnym
+	// okresy nad osią, a zdarzenia pod nią.
+	periodX := 0.0
 	periodW := u(90)
 	labels := make([][]string, len(d.Periods))
 	for i, p := range d.Periods {
@@ -187,7 +189,8 @@ func layoutList(d *Diagram, o Options) *scene.Scene {
 		w, _ := size(labels[i], u(12), 0)
 		periodW = math.Max(periodW, w)
 	}
-	eventsX := periodX + periodW + u(22)
+	axisX := periodX + periodW + u(20)
+	eventsX := axisX + u(20)
 	room := math.Min(u(650)-eventsX, u(300))
 	type tile struct {
 		lines      []string
@@ -280,13 +283,13 @@ func layoutList(d *Diagram, o Options) *scene.Scene {
 		fill, line := palette(r.tone)
 		_, ph := size(labels[i], u(12), u(8))
 		mid := r.top + ph/2
-		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "timeline-link", X: axisX, Y: mid, X2: periodX, Y2: mid, Stroke: colorAxis, StrokeWidth: 1.5})
+		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "timeline-link", X: periodX + periodW, Y: mid, X2: axisX, Y2: mid, Stroke: colorAxis, StrokeWidth: 1.5})
 		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "timeline-mark", X: axisX, Y: mid, R: u(5), Fill: colorEventFill, Stroke: colorAxis, StrokeWidth: 2})
 		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "timeline-period", X: periodX, Y: r.top, W: periodW, H: ph, RX: u(4),
 			Fill: fill, Stroke: line, StrokeWidth: 1.5})
 		block(labels[i], periodX+periodW/2, r.top+u(8), "timeline-period-label")
 		if len(r.tiles) > 0 {
-			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "timeline-link", X: periodX + periodW, Y: mid, X2: eventsX, Y2: mid, Stroke: line, StrokeWidth: 1})
+			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "timeline-link", X: axisX, Y: mid, X2: eventsX, Y2: mid, Stroke: line, StrokeWidth: 1})
 		}
 		eventLine := colorEventLine
 		if o.Colors {

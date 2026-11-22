@@ -1,37 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="453" height="362" viewBox="-10 -12 453 362" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="443" height="362" viewBox="-12 -12 443 362" role="img" font-family="Recursive, sans-serif" font-size="16">
 <title>Historia wydań procedury</title>
 <desc>Kolejne wydania procedury nadzoru nad dokumentami.</desc>
-<line class="timeline-axis" x1="8" y1="18" x2="8" y2="326" fill="none" stroke="#3b4754" stroke-width="2"/>
-<polygon class="timeline-axis" points="8,338 2,326 14,326" fill="#3b4754"/>
-<line class="timeline-link" x1="8" y1="18" x2="30" y2="18" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="timeline-link" x1="137" y1="18" x2="159" y2="18" fill="none" stroke="#55657a" stroke-width="1"/>
-<line class="timeline-link" x1="8" y1="70" x2="30" y2="70" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="timeline-link" x1="137" y1="70" x2="159" y2="70" fill="none" stroke="#55657a" stroke-width="1"/>
-<line class="timeline-stem" x1="295" y1="86" x2="295" y2="232" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="timeline-link" x1="8" y1="300" x2="30" y2="300" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="timeline-link" x1="137" y1="300" x2="159" y2="300" fill="none" stroke="#55657a" stroke-width="1"/>
-<circle class="timeline-mark" cx="8" cy="18" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<rect class="timeline-period" x="30" y="0" width="107" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<rect class="timeline-event" x="159" y="0" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<circle class="timeline-mark" cx="8" cy="70" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<rect class="timeline-period" x="30" y="52" width="107" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<rect class="timeline-event" x="159" y="52" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-event" x="159" y="92" width="272" height="54" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-event" x="159" y="152" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-event" x="159" y="192" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-event" x="159" y="232" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<circle class="timeline-mark" cx="8" cy="300" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<rect class="timeline-period" x="30" y="282" width="107" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<rect class="timeline-event" x="159" y="282" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<text class="timeline-period-label" x="83.5" y="23.6" text-anchor="middle" fill="#1b1f24">Wydanie 1</text>
-<text class="timeline-event-label" x="295" y="22.6" text-anchor="middle" fill="#1b1f24">Pierwsza wersja</text>
-<text class="timeline-period-label" x="83.5" y="75.6" text-anchor="middle" fill="#1b1f24">Wydanie 2</text>
-<text class="timeline-event-label" x="295" y="74.6" text-anchor="middle" fill="#1b1f24">Nowy wzór karty zmian</text>
-<text class="timeline-event-label" x="295" y="114.6" text-anchor="middle" fill="#1b1f24">Rejestr dokumentów</text>
-<text class="timeline-event-label" x="295" y="134.6" text-anchor="middle" fill="#1b1f24">zewnętrznych</text>
-<text class="timeline-event-label" x="295" y="174.6" text-anchor="middle" fill="#1b1f24">Lista rozdzielnika</text>
-<text class="timeline-event-label" x="295" y="214.6" text-anchor="middle" fill="#1b1f24">Okres przechowywania zapisów</text>
-<text class="timeline-event-label" x="295" y="254.6" text-anchor="middle" fill="#1b1f24">Zasady archiwizacji</text>
-<text class="timeline-period-label" x="83.5" y="305.6" text-anchor="middle" fill="#1b1f24">Wydanie 3</text>
-<text class="timeline-event-label" x="295" y="304.6" text-anchor="middle" fill="#1b1f24">Podpis elektroniczny</text>
+<line class="timeline-axis" x1="127" y1="18" x2="127" y2="326" fill="none" stroke="#3b4754" stroke-width="2"/>
+<polygon class="timeline-axis" points="127,338 121,326 133,326" fill="#3b4754"/>
+<line class="timeline-link" x1="107" y1="18" x2="127" y2="18" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="timeline-link" x1="127" y1="18" x2="147" y2="18" fill="none" stroke="#55657a" stroke-width="1"/>
+<line class="timeline-link" x1="107" y1="70" x2="127" y2="70" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="timeline-link" x1="127" y1="70" x2="147" y2="70" fill="none" stroke="#55657a" stroke-width="1"/>
+<line class="timeline-stem" x1="283" y1="86" x2="283" y2="232" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="timeline-link" x1="107" y1="300" x2="127" y2="300" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="timeline-link" x1="127" y1="300" x2="147" y2="300" fill="none" stroke="#55657a" stroke-width="1"/>
+<circle class="timeline-mark" cx="127" cy="18" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<rect class="timeline-period" x="0" y="0" width="107" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
+<rect class="timeline-event" x="147" y="0" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<circle class="timeline-mark" cx="127" cy="70" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<rect class="timeline-period" x="0" y="52" width="107" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
+<rect class="timeline-event" x="147" y="52" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="timeline-event" x="147" y="92" width="272" height="54" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="timeline-event" x="147" y="152" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="timeline-event" x="147" y="192" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="timeline-event" x="147" y="232" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<circle class="timeline-mark" cx="127" cy="300" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<rect class="timeline-period" x="0" y="282" width="107" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
+<rect class="timeline-event" x="147" y="282" width="272" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<text class="timeline-period-label" x="53.5" y="23.6" text-anchor="middle" fill="#1b1f24">Wydanie 1</text>
+<text class="timeline-event-label" x="283" y="22.6" text-anchor="middle" fill="#1b1f24">Pierwsza wersja</text>
+<text class="timeline-period-label" x="53.5" y="75.6" text-anchor="middle" fill="#1b1f24">Wydanie 2</text>
+<text class="timeline-event-label" x="283" y="74.6" text-anchor="middle" fill="#1b1f24">Nowy wzór karty zmian</text>
+<text class="timeline-event-label" x="283" y="114.6" text-anchor="middle" fill="#1b1f24">Rejestr dokumentów</text>
+<text class="timeline-event-label" x="283" y="134.6" text-anchor="middle" fill="#1b1f24">zewnętrznych</text>
+<text class="timeline-event-label" x="283" y="174.6" text-anchor="middle" fill="#1b1f24">Lista rozdzielnika</text>
+<text class="timeline-event-label" x="283" y="214.6" text-anchor="middle" fill="#1b1f24">Okres przechowywania zapisów</text>
+<text class="timeline-event-label" x="283" y="254.6" text-anchor="middle" fill="#1b1f24">Zasady archiwizacji</text>
+<text class="timeline-period-label" x="53.5" y="305.6" text-anchor="middle" fill="#1b1f24">Wydanie 3</text>
+<text class="timeline-event-label" x="283" y="304.6" text-anchor="middle" fill="#1b1f24">Podpis elektroniczny</text>
 </svg>
