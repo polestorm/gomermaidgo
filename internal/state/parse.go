@@ -21,7 +21,8 @@ const (
 )
 
 // Identyfikator: litery, cyfry i podkreślenie. Łącznika Mermaid w diagramie stanów nie przyjmuje.
-const idPattern = `[\p{L}\p{N}_]+`
+// Identyfikator stanu: litery, cyfry i podkreślenia; także sam wielokropek (`...` albo `…`).
+const idPattern = `(?:[\p{L}\p{N}_]+|\.{3,}|…)`
 
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
@@ -329,6 +330,9 @@ func (p *parser) statement(s string, line int) error {
 	if bareID.MatchString(s) {
 		_, err := p.g.EnsureNode(s, p.scope(), graph.Round, line)
 		return err
+	}
+	if strings.HasPrefix(s, "subgraph ") || s == "subgraph" {
+		return syntax.Errorf(line, CodeStatement, "subgraph belongs to flowcharts; in a state diagram group states with: state Name { ... }")
 	}
 	return syntax.Errorf(line, CodeStatement, "unrecognised statement %q", s)
 }

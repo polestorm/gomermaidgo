@@ -383,6 +383,26 @@ func (l *layouter) drawLevel(lv *level) {
 			l.bg = colorRegion
 		}
 		paint := lv.sub.Paint
+		// Tryb kolorowy: ramka podgrafu dostaje jasne tło i obrys w kolejnym kolorze serii, od drugiego:
+		// pierwszy (niebieski) mają pola, więc pole nie ginie na tle ramki. Kolor ze źródła wygrywa.
+		if l.o.Colors && !lv.sub.Region && !l.titleStrip(lv) && (paint.Fill == "" || paint.Fill == "none") {
+			// Kolor nie może być kolorem żadnego pola stojącego bezpośrednio w ramce: kolejny z serii.
+			used := map[string]bool{}
+			for _, it := range lv.items {
+				if it.kind == kindNode {
+					fill, _ := l.tone(it.node.Shape)
+					used[fill] = true
+				}
+			}
+			k := l.subgraphIndex(lv.sub.ID) + 1
+			for used[scene.Distinct(k).Fill] {
+				k++
+			}
+			tone := scene.Distinct(k)
+			frame.Fill, frame.Stroke = tone.Fill, tone.Stroke
+			defer func(prev string) { l.bg = prev }(l.bg)
+			l.bg = frame.Fill
+		}
 		if paint.Fill != "" && paint.Fill != "none" {
 			// Wnętrze ramki ma własne tło: podkłady etykiet w środku biorą jego kolor.
 			frame.Fill = paint.Fill
@@ -1406,4 +1426,14 @@ func (l *layouter) drawLoop(it *item, e *graph.Edge, index int) {
 // bar mówi, czy pole jest belką rozwidlenia albo złączenia.
 func bar(it *item) bool {
 	return it.kind == kindNode && (it.node.Shape == graph.Fork || it.node.Shape == graph.Join)
+}
+
+// subgraphIndex zwraca numer podgrafu w kolejności ze źródła.
+func (l *layouter) subgraphIndex(id string) int {
+	for i, s := range l.g.Subgraphs {
+		if s.ID == id {
+			return i
+		}
+	}
+	return 0
 }

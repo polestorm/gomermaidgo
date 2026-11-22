@@ -193,6 +193,8 @@ Stan: rysowany tym samym układem warstwowym.
 
 ### Świadome różnice wobec Mermaid
 
+- `subgraph` ze schematu blokowego jest błędem z podpowiedzią (Mermaid rysuje wtedy słowa „subgraph”, nazwę
+  grupy i „end” jako trzy osobne stany);
 - identyfikator stanu składa się z liter, cyfr i podkreślenia; łącznik jest błędem, tak jak w Mermaid;
 - stan złożony ma tytuł w osobnym pasku u góry ramki, z lekkim tłem i linią pod spodem, a ramka ma mocniej
   zaokrąglone narożniki; u dołu ramkę zamyka wąski pasek (4 px) w kolorze paska tytułu, bez tekstu, żeby
@@ -314,6 +316,7 @@ Zagnieżdżone przestrzenie nazw, nazwy klas w odwrotnych apostrofach, konfigura
 
 ### Świadome różnice wobec Mermaid
 
+- notatka rozpisana na kilka linii pokazuje cały tekst (Mermaid rysuje tylko pierwszą linię);
 - klasa bez składowych jest prostym polem z nazwą; renderer odniesienia rysuje zawsze trzy przedziały;
 - klasa ze składowymi ma dwa przedziały; pusty zostaje jako wąski pasek;
 - asocjacja skierowana i zależność mają otwarty grot (dwie kreski), jak w UML, a nie grot wypełniony;

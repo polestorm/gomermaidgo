@@ -240,3 +240,25 @@ func TestParseTightLabelsAndIcons(t *testing.T) {
 		t.Errorf("icon tags: %q %q %q", g.Node("I").Label, g.Node("J").Label, g.Node("K").Label)
 	}
 }
+
+// REQ: FLOW-024
+// Wielokropek (`...` albo `…`) jest identyfikatorem węzła, także na końcu krawędzi.
+func TestParseEllipsisNodes(t *testing.T) {
+	g, err := Parse("flowchart TD\n  ...\nA --> ...\n... --> B\nB --> …\nv1.2 --> v1.3")
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, id := range []string{"...", "…", "v1.2", "v1.3"} {
+		if g.Node(id) == nil || g.Node(id).Label[0] != id {
+			t.Errorf("node %q is missing", id)
+		}
+	}
+	if len(g.Edges) != 4 {
+		t.Errorf("edges: %d", len(g.Edges))
+	}
+	// Krawędź kropkowana nadal jest krawędzią, a nie węzłem z kropek.
+	g, err = Parse("flowchart TD\nA -.-> B\nA -..-> C")
+	if err != nil || len(g.Edges) != 2 || g.Edges[0].Style != graph.Dotted || g.Node("...") != nil {
+		t.Errorf("dotted edges: %v %+v", err, g)
+	}
+}

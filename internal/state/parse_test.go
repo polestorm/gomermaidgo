@@ -2,6 +2,7 @@ package state
 
 import (
 	"errors"
+	"strings"
 	"testing"
 
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -90,5 +91,19 @@ func TestParseRegionsClasses(t *testing.T) {
 	}
 	if g.Node("[start]@Wtoku#2") == nil || g.Subgraph("Wtoku").Paint.Fill != "#fde" {
 		t.Errorf("region start or composite paint missing")
+	}
+}
+
+// REQ: STATE-015
+// Wielokropek jest nazwą stanu; `subgraph` ze schematu blokowego daje błąd z podpowiedzią.
+func TestParseEllipsisAndSubgraph(t *testing.T) {
+	g, err := Parse("stateDiagram-v2\n[*] --> A\nA --> ...\n...\n… --> [*]")
+	if err != nil || g.Node("...") == nil || g.Node("…") == nil {
+		t.Fatalf("ellipsis states: %v", err)
+	}
+	_, err = Parse("stateDiagram\n[*] --> S1\nstate S1 {\n  subgraph G\n    a --> b\n  end\n}")
+	var se *syntax.Error
+	if !errors.As(err, &se) || se.Line != 4 || se.Code != CodeStatement || !strings.Contains(se.Message, "state Name {") {
+		t.Errorf("subgraph: %v", err)
 	}
 }

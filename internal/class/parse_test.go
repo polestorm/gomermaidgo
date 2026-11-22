@@ -160,3 +160,19 @@ func TestParseNamespacesNotesLollipops(t *testing.T) {
 		t.Errorf("lollipops: %+v %+v", a, b)
 	}
 }
+
+// REQ: CLS-010
+// Tekst notatki w cudzysłowach może ciągnąć się przez kilka linii; podziały linii zostają.
+func TestParseMultilineNote(t *testing.T) {
+	g, err := Parse("classDiagram\n    note \"Pierwsza linia\n    druga linia\n    trzecia.\"\n    A <|-- B")
+	if err != nil {
+		t.Fatal(err)
+	}
+	n := g.Node("[note] 1")
+	if n == nil || strings.Join(n.Label, "|") != "Pierwsza linia|druga linia|trzecia." || len(g.Edges) != 1 {
+		t.Errorf("note: %+v", n)
+	}
+	if _, err := Parse("classDiagram\nnote \"bez końca\nA <|-- B"); err == nil {
+		t.Errorf("an unclosed note should be an error")
+	}
+}

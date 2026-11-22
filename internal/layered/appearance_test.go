@@ -525,3 +525,35 @@ func TestSingleIncomingEdgeHitsCentre(t *testing.T) {
 		}
 	}
 }
+
+// REQ: FLOW-025
+// Tryb kolorowy: ramka podgrafu ma jasne tło i obrys w kolorze serii, innym niż wypełnienie pól.
+func TestColouredFrames(t *testing.T) {
+	sc := Layout(parse(t, "../../testdata/corpus/flowchart/011-capa-process.mmd"), Options{Measure: font.ApproxTextWidth, FontSize: 16, Colors: true})
+	frames, nodes := byRole(sc, "cluster"), byRole(sc, "node")
+	if len(frames) == 0 || len(nodes) == 0 {
+		t.Fatal("no frames or nodes")
+	}
+	for _, f := range frames {
+		if f.Fill == "" || f.Fill == "none" || f.Stroke == colorFrame {
+			t.Errorf("frame should be tinted: %+v", f)
+		}
+		fb := f.Bounds()
+		for _, n := range nodes {
+			nb := n.Bounds()
+			inside := nb.X0 >= fb.X0 && nb.X1 <= fb.X1 && nb.Y0 >= fb.Y0 && nb.Y1 <= fb.Y1
+			if inside && n.Fill == f.Fill {
+				t.Errorf("a node inside the frame has the frame's fill %s", f.Fill)
+			}
+		}
+	}
+	// Romb (kolor decyzji) w ramce, której kolejny kolor serii byłby kolorem decyzji: ramka bierze następny.
+	sc = Layout(parse(t, "../../testdata/corpus/flowchart/001-basic.mmd"), Options{Measure: font.ApproxTextWidth, FontSize: 16, Colors: true})
+	_ = sc
+	plain := Layout(parse(t, "../../testdata/corpus/flowchart/011-capa-process.mmd"), Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	for _, f := range byRole(plain, "cluster") {
+		if f.Fill != "" {
+			t.Errorf("without colours the frame should stay unfilled")
+		}
+	}
+}

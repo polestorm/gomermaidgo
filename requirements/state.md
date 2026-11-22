@@ -17,3 +17,4 @@
 | STATE-012 | Regiony współbieżne: separator `--` wewnątrz stanu złożonego dzieli go na regiony rysowane ramkami przerywanymi bez tytułu; `[*]` ma zasięg regionu. |
 | STATE-013 | Wygląd ze źródła: `classDef`, `class`, skrót `:::` przy identyfikatorze stanu i `style`, z tymi samymi właściwościami co w schemacie blokowym (FLOW-017). |
 | STATE-014 | `accTitle` i `accDescr` trafiają do `title` i `desc`; identyfikator stanu składa się z liter, cyfr i podkreślenia (łącznik jest błędem, jak w Mermaid). |
+| STATE-015 | Nazwą stanu może być sam wielokropek (`...` albo `…`). `subgraph` ze schematu blokowego nie należy do składni diagramu stanów: daje błąd z numerem linii i podpowiedzią, że grupę stanów zapisuje się `state Nazwa { … }`. |

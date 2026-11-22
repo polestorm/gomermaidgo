@@ -21,7 +21,9 @@ const (
 	CodeSubgraph    = "flowchart-subgraph"
 )
 
-const idPattern = `[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*`
+// Identyfikator: litery, cyfry i podkreślenia, z łącznikami albo kropkami w środku; także sam
+// wielokropek (`...` albo `…`), którym autorzy oznaczają pominiętą część schematu.
+const idPattern = `(?:[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*|\.{3,}|…)`
 
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)

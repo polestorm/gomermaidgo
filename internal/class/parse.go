@@ -92,9 +92,22 @@ func Parse(source string) (*graph.Graph, error) {
 	p := &parser{g: graph.New("class")}
 	seenHeader := false
 	source = strings.ReplaceAll(source, "\r\n", "\n")
-	for n, raw := range strings.Split(source, "\n") {
+	lines := strings.Split(source, "\n")
+	for n := 0; n < len(lines); n++ {
 		line := n + 1
-		s := strings.TrimSpace(raw)
+		s := strings.TrimSpace(lines[n])
+		// Tekst notatki w cudzysłowach może ciągnąć się przez kolejne linie: łączymy je aż do
+		// cudzysłowu zamykającego, a podziały linii zostają podziałami w notatce.
+		if strings.HasPrefix(s, "note") && strings.Count(s, `"`) == 1 {
+			for k := n + 1; k < len(lines); k++ {
+				next := strings.TrimSpace(lines[k])
+				s += `\n` + next
+				if strings.Contains(next, `"`) {
+					n = k
+					break
+				}
+			}
+		}
 		if s == "" || strings.HasPrefix(s, "%%") {
 			continue
 		}
