@@ -84,16 +84,16 @@ func TestInputAndOutput(t *testing.T) {
 // Flagi mermaid-cli: tło, tryb cichy, flagi bez odpowiednika przyjmowane z uwagą.
 func TestCompatibilityFlags(t *testing.T) {
 	src := "flowchart TD\nA --> B"
-	out, errs, err := start(t, src, "-b", "#fff8e1", "-t", "dark", "--width", "800", "-H", "600", "-c", "c.json", "-C", "s.css", "-p", "p.json", "-f", "-I", "id")
+	out, errs, err := start(t, src, "-b", "#fff8e1", "--width", "800", "-H", "600", "-c", "c.json", "-C", "s.css", "-p", "p.json", "-f", "-I", "id")
 	if err != nil || !strings.Contains(out, "#fff8e1") {
 		t.Fatalf("background: %v", err)
 	}
-	for _, name := range []string{"theme", "width", "height", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
+	for _, name := range []string{"width", "height", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
 		if !strings.Contains(errs, "--"+name+" is accepted") {
 			t.Errorf("note about --%s is missing", name)
 		}
 	}
-	out, errs, err = start(t, src, "--backgroundColor", "transparent", "--theme", "dark", "--quiet")
+	out, errs, err = start(t, src, "--backgroundColor", "transparent", "--width", "5", "--quiet")
 	if err != nil || errs != "" || strings.Contains(out, "transparent") {
 		t.Errorf("quiet run: stderr %q, error %v", errs, err)
 	}
@@ -183,5 +183,26 @@ func TestPNGOutput(t *testing.T) {
 	}
 	if out, _, err := start(t, "", "-e", "png", in); err != nil || !strings.HasPrefix(out, "\x89PNG") {
 		t.Errorf("-e png to stdout: %v", err)
+	}
+}
+
+// REQ: THM-004
+// Flaga -t wybiera motyw i ma pierwszeństwo przed źródłem; nazwa nieznana jest błędem.
+func TestThemeFlag(t *testing.T) {
+	src := "%%{init: {\"theme\": \"dark\"}}%%\nflowchart TD\nA --> B"
+	fromSource, _, err := start(t, src)
+	if err != nil || !strings.Contains(fromSource, "#14181d") {
+		t.Fatalf("theme from the source: %v", err)
+	}
+	locked, _, err := start(t, src, "-t", "neutral")
+	plain, _, _ := start(t, "\nflowchart TD\nA --> B")
+	if err != nil || locked != plain {
+		t.Errorf("-t neutral should override the source theme: %v", err)
+	}
+	if forest, _, err := start(t, src, "--theme", "forest"); err != nil || forest == plain || strings.Contains(forest, "#14181d") {
+		t.Errorf("--theme forest: %v", err)
+	}
+	if _, _, err := start(t, src, "-t", "tęcza"); err == nil {
+		t.Errorf("unknown theme: want an error")
 	}
 }

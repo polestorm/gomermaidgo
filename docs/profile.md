@@ -4,10 +4,12 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 
 ## Wspólne dla wszystkich typów
 
-- Blok nagłówkowy YAML między liniami `---` jest przyjmowany; `title` daje tytuł nad rysunkiem, a reszta
-  (`config`, motywy) jest pomijana (COM-001).
-- Dyrektywa `%%{init: … }%%`, także wieloliniowa, jest przyjmowana i pomijana: wygląd rysunku jest własny
-  i nie zależy od ustawień Mermaid (COM-002).
+- Blok nagłówkowy YAML między liniami `---` jest przyjmowany; `title` daje tytuł nad rysunkiem (COM-001).
+- Dyrektywa `%%{init: … }%%`, także wieloliniowa, jest przyjmowana (COM-002).
+- Z bloku nagłówkowego i dyrektywy czytany jest motyw (`theme`) i cztery zmienne motywu (`primaryColor`,
+  `lineColor`, `primaryTextColor`, `background`); reszta konfiguracji jest pomijana. Motywy są własne, pod nazwami
+  Mermaid: `neutral` (domyślny), `default` (kolorowy), `forest`, `dark`, `base`. Wywołujący może narzucić motyw
+  (`WithTheme`, flaga `-t`), co wyłącza wybór ze źródła (THM-001…004, ADR 0005).
 - Numery linii w komunikatach błędów liczą się od początku źródła, razem z nagłówkiem (COM-003).
 
 ## Diagram sekwencji (`sequenceDiagram`)

@@ -37,6 +37,10 @@ go run ./cmd/gomermaidgo -o diagram.pdf diagram.mmd   # the extension selects th
 go build -tags nopdf ./cmd/gomermaidgo                # a build without the PDF writer
 ```
 
+Themes: `neutral` (the default, made for print), `default` (colours), `forest`, `dark` and `base`. They are this
+library's own looks under Mermaid's theme names, so a source that selects a theme in its front matter or `init`
+directive gets the counterpart. `WithTheme` (or `-t`) overrides the source.
+
 PNG output is another optional package, with its own rasteriser and glyph outlines read from the font file:
 
 ```go
@@ -48,8 +52,8 @@ go run ./cmd/gomermaidgo -o diagram.png -s 3 diagram.mmd
 go build -tags nopdf,nopng ./cmd/gomermaidgo   # SVG only
 ```
 
-The command also takes a Markdown document and the flags of `mermaid-cli` (`-i`, `-o`, `-e`, `-b`, `-s`, `-q`, `-a`), so it
-can stand in for `mmdc` in a script. Flags with no counterpart here (`-t`, `-w`, `-H`, `-c`, `-C`, `-p`, `-I`)
+The command also takes a Markdown document and the flags of `mermaid-cli` (`-i`, `-o`, `-e`, `-b`, `-t`, `-s`, `-q`, `-a`), so it
+can stand in for `mmdc` in a script. Flags with no counterpart here (`-w`, `-H`, `-c`, `-C`, `-p`, `-I`)
 are accepted and ignored with a note.
 
 ```sh

@@ -12,8 +12,8 @@
 // Wejście Markdown (.md, .markdown): każdy blok „mermaid” trafia do osobnego pliku wynik-N.format.
 // Gdy wynik też jest plikiem Markdown, dostaje treść dokumentu z blokami zamienionymi na obrazki.
 //
-// Flagi mermaid-cli (-i, -o, -e, -b, -q, -a i ich długie nazwy) działają tak samo; pozostałe
-// (-t, -w, -H, -c, -C, -p, -f, -I) są przyjmowane i pomijane z uwagą na wyjściu błędów.
+// Flagi mermaid-cli (-i, -o, -e, -b, -t, -s, -q, -a i ich długie nazwy) działają tak samo; pozostałe
+// (-w, -H, -c, -C, -p, -f, -I) są przyjmowane i pomijane z uwagą na wyjściu błędów.
 package main
 
 import (
@@ -70,7 +70,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	fs := flag.NewFlagSet("gomermaidgo", flag.ContinueOnError)
 	fs.SetOutput(stderr)
 	j := &job{}
-	var fontPath, family, background, input string
+	var fontPath, family, background, input, themeName string
 	var size float64
 	var colors, shadows, curved bool
 	both := func(p *string, short, long, usage string) {
@@ -81,6 +81,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	both(&j.out, "o", "output", "output file; the extension selects the format: .svg (default), .pdf, .png or .md for Markdown input")
 	both(&j.format, "e", "outputFormat", "output format: svg, pdf or png (default: from the output extension)")
 	both(&background, "b", "backgroundColor", "background colour (default: transparent)")
+	both(&themeName, "t", "theme", "theme: "+strings.Join(gomermaidgo.Themes(), ", ")+" (default: the theme named in the source, else neutral)")
 	both(&j.artefacts, "a", "artefacts", "directory for the images of a Markdown document (default: next to the output)")
 	fs.StringVar(&background, "background", "", "same as -b")
 	fs.BoolVar(&j.quiet, "q", false, "no notes or warnings on stderr")
@@ -93,7 +94,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	fs.BoolVar(&curved, "curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
 	// Flagi mermaid-cli bez odpowiednika: wygląd jest własny, a wynik wektorowy.
 	ignored := map[string]*string{}
-	for _, names := range [][2]string{{"t", "theme"}, {"w", "width"}, {"H", "height"}, {"c", "configFile"},
+	for _, names := range [][2]string{{"w", "width"}, {"H", "height"}, {"c", "configFile"},
 		{"C", "cssFile"}, {"p", "puppeteerConfigFile"}, {"I", "svgId"}} {
 		v := new(string)
 		ignored[names[1]] = v
@@ -129,7 +130,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 		}
 	}
 	if !j.quiet {
-		for _, name := range []string{"theme", "width", "height", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
+		for _, name := range []string{"width", "height", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
 			if *ignored[name] != "" {
 				fmt.Fprintf(stderr, "gomermaidgo: note: --%s is accepted for compatibility and ignored\n", name)
 			}
@@ -144,6 +145,9 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	}
 	if shadows {
 		j.opts = append(j.opts, gomermaidgo.WithShadows())
+	}
+	if themeName != "" {
+		j.opts = append(j.opts, gomermaidgo.WithTheme(themeName))
 	}
 	if fontPath != "" {
 		data, err := os.ReadFile(fontPath)

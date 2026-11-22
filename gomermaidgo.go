@@ -80,6 +80,8 @@ type config struct {
 	colors     bool
 	shadows    bool
 	curved     bool
+	theme      string
+	themeSet   bool
 }
 
 // Option zmienia ustawienia renderowania.
@@ -128,7 +130,7 @@ func WithShadows() Option { return func(c *config) { c.shadows = true } }
 
 // DetectType zwraca typ diagramu z pierwszej znaczącej linii źródła.
 func DetectType(source string) (string, error) {
-	source, _, err := preamble(source)
+	source, _, _, err := preamble(source)
 	if err != nil {
 		return "", err
 	}
@@ -205,7 +207,7 @@ func Check(source string) error {
 	if err := checkCharacters(source); err != nil {
 		return err
 	}
-	source, _, err := preamble(source)
+	source, _, _, err := preamble(source)
 	if err != nil {
 		return err
 	}
@@ -267,19 +269,26 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 	if err := checkCharacters(source); err != nil {
 		return nil, nil, err
 	}
-	clean, title, err := preamble(source)
+	clean, title, settings, err := preamble(source)
 	if err != nil {
 		return nil, nil, err
+	}
+	var c config
+	for _, o := range opts {
+		o(&c)
+	}
+	th, err := resolveTheme(c, settings)
+	if err != nil {
+		return nil, nil, err
+	}
+	if th.colors {
+		opts = append(append([]Option{}, opts...), WithColors())
 	}
 	sc, face, err := buildScene(clean, opts)
 	if err != nil {
 		return nil, nil, err
 	}
 	// Tytuł z bloku nagłówkowego mierzy ten sam krój co resztę rysunku.
-	var c config
-	for _, o := range opts {
-		o(&c)
-	}
 	measure := c.measure
 	if measure == nil && face != nil {
 		measure = func(text string, size float64) float64 {
@@ -288,6 +297,7 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 		}
 	}
 	addTitle(sc, title, measure)
+	th.apply(sc)
 	return sc, face, nil
 }
 

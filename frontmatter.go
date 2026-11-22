@@ -12,10 +12,9 @@ import (
 // blok nagłówkowy YAML między liniami „---” oraz dyrektywy „%%{ … }%%”, także wieloliniowe.
 // Zdjęte linie zostają puste, więc numery linii w komunikatach błędów się nie zmieniają.
 //
-// Z bloku nagłówkowego czytany jest tylko tytuł (klucz title na najwyższym poziomie); konfiguracja
-// (config, motywy) jest przyjmowana i pomijana, tak jak zawartość dyrektyw: wygląd rysunku jest
-// własny i nie zależy od ustawień Mermaid.
-func preamble(source string) (clean, title string, err error) {
+// Z bloku nagłówkowego czytany jest tytuł (klucz title na najwyższym poziomie). Reszta bloku
+// i zawartość dyrektyw wracają jako settings: czytany jest z nich tylko motyw (theme.go).
+func preamble(source string) (clean, title, settings string, err error) {
 	// Znaki o zerowej szerokości (wklejane z edytorów i stron) nie należą do składni.
 	source = strings.NewReplacer("\r\n", "\n", "\u200b", "", "\ufeff", "").Replace(source)
 	lines := strings.Split(source, "\n")
@@ -28,10 +27,11 @@ func preamble(source string) (clean, title string, err error) {
 		lines[i] = ""
 		for i++; ; i++ {
 			if i >= len(lines) {
-				return "", "", &SyntaxError{Line: start + 1, Code: "frontmatter", Message: "front matter opened with \"---\" is not closed"}
+				return "", "", "", &SyntaxError{Line: start + 1, Code: "frontmatter", Message: "front matter opened with \"---\" is not closed"}
 			}
 			text := lines[i]
 			lines[i] = ""
+			settings += text + "\n"
 			if strings.TrimSpace(text) == "---" {
 				break
 			}
@@ -52,16 +52,17 @@ func preamble(source string) (clean, title string, err error) {
 		start := k
 		for ; k < len(lines); k++ {
 			closed := strings.Contains(lines[k], "}%%")
+			settings += lines[k] + "\n"
 			lines[k] = ""
 			if closed {
 				break
 			}
 		}
 		if k >= len(lines) {
-			return "", "", &SyntaxError{Line: start + 1, Code: "directive", Message: "directive opened with \"%%{\" is not closed with \"}%%\""}
+			return "", "", "", &SyntaxError{Line: start + 1, Code: "directive", Message: "directive opened with \"%%{\" is not closed with \"}%%\""}
 		}
 	}
-	return strings.Join(lines, "\n"), title, nil
+	return strings.Join(lines, "\n"), title, settings, nil
 }
 
 // addTitle dopisuje tytuł z bloku nagłówkowego nad rysunkiem, wyśrodkowany. Tytuł trafia też do
