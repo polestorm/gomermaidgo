@@ -1,34 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="483.4" height="536" viewBox="-12 -12 483.4 536" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="476" height="536" viewBox="-12 -12 476 536" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <path class="edge" d="M165 170 L165 204 C165 208.4 161.4 212 157 212 L68 212 C63.6 212 60 215.6 60 220 L60 236" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M191 170 L191 236" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M116 50 L116 90 L116 97 C116 101.4 119.6 105 124 105 L176 105 C180.4 105 184 108.6 184 113 L184 120" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M243 174 L243 190 C243 194.4 246.6 198 251 198 L341 198 C345.4 198 349 201.6 349 206 L349 236 L349 316" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M293 54 L293 90 L293 97 C293 101.4 289.4 105 285 105 L232 105 C227.6 105 224 108.6 224 113 L224 120" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M118 50 L118 90 L118 97 C118 101.4 121.6 105 126 105 L176 105 C180.4 105 184 108.6 184 113 L184 120" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M243 174 L243 190 C243 194.4 246.6 198 251 198 L340 198 C344.4 198 348 201.6 348 206 L348 236 L348 316" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M291 54 L291 90 L291 97 C291 101.4 287.4 105 283 105 L232 105 C227.6 105 224 108.6 224 113 L224 120" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M392 352 L392 476" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M60 272 L60 396" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M228 272 L228 316" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M60 432 L60 446 C60 450.4 63.6 454 68 454 L157 454 C161.4 454 165 457.6 165 462 L165 476" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M217 170 L217 204 C217 208.4 220.6 212 225 212 L302 212 C306.4 212 310 215.6 310 220 L310 236 L310 432 L310 446 C310 450.4 306.4 454 302 454 L213 454 C208.6 454 205 457.6 205 462 L205 476" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M421 156 L421 316" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="76.4" y="68" width="79.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="333.4" y="244" width="31.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="342.4" y="404" width="99.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="30.8" y="324" width="58.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="384.6" y="244" width="72.8" height="20" fill="#ffffff"/>
+<path class="edge" d="M417 156 L417 316" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="84.21" y="68" width="67.59" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="332.89" y="244" width="30.23" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="350.66" y="404" width="82.69" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="33.32" y="324" width="53.35" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="383.21" y="244" width="67.58" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="165,156 173,170 157,170" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="191,156 199,170 183,170" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="116,36 124,50 108,50" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="118,36 126,50 110,50" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="243,156 249,165 243,174 237,165" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="293,36 299,45 293,54 287,45" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="291,36 297,45 291,54 285,45" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="392" y1="476" x2="398" y2="465" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="392" y1="476" x2="386" y2="465" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="60" y1="396" x2="66" y2="385" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="60" y1="396" x2="54" y2="385" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="217,156 225,170 209,170" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="421" y1="156" x2="415" y2="167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="421" y1="156" x2="427" y2="167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="node" x="46.5" y="0" width="139" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="233" y="0" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="arrowhead" x1="417" y1="156" x2="411" y2="167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="417" y1="156" x2="423" y2="167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="node" x="53" y="0" width="130" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="231" y="0" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="144" y="120" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="312" y="120" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="236" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
@@ -38,8 +38,8 @@
 <rect class="node" x="0" y="396" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="125" y="476" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="332" y="476" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="116" y="23.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zatwierdzalny</text>
-<text class="node-label" x="293" y="23.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rejestr</text>
+<text class="node-label" x="118" y="23.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zatwierdzalny</text>
+<text class="node-label" x="291" y="23.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rejestr</text>
 <text class="node-label" x="204" y="143.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Dokument</text>
 <text class="node-label" x="372" y="143.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Szkolenie</text>
 <text class="node-label" x="60" y="259.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Procedura</text>
@@ -49,15 +49,15 @@
 <text class="node-label" x="60" y="419.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Formularz</text>
 <text class="node-label" x="185" y="499.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zapis</text>
 <text class="node-label" x="392" y="499.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Osoba</text>
-<text class="edge-label" x="116" y="83.6" text-anchor="middle" fill="#1b1f24">realizuje</text>
-<text class="edge-end-label" x="255.8" y="174.6" text-anchor="middle" fill="#1b1f24">1</text>
-<text class="edge-end-label" x="372.2" y="308.6" text-anchor="middle" fill="#1b1f24">1..*</text>
-<text class="edge-label" x="349" y="259.6" text-anchor="middle" fill="#1b1f24">ma</text>
-<text class="edge-end-label" x="305.8" y="54.6" text-anchor="middle" fill="#1b1f24">1</text>
-<text class="edge-end-label" x="236.8" y="112.6" text-anchor="middle" fill="#1b1f24">*</text>
+<text class="edge-label" x="118" y="83.6" text-anchor="middle" fill="#1b1f24">realizuje</text>
+<text class="edge-end-label" x="255.45" y="174.6" text-anchor="middle" fill="#1b1f24">1</text>
+<text class="edge-end-label" x="368.01" y="308.6" text-anchor="middle" fill="#1b1f24">1..*</text>
+<text class="edge-label" x="348" y="259.6" text-anchor="middle" fill="#1b1f24">ma</text>
+<text class="edge-end-label" x="303.45" y="54.6" text-anchor="middle" fill="#1b1f24">1</text>
+<text class="edge-end-label" x="235.11" y="112.6" text-anchor="middle" fill="#1b1f24">*</text>
 <text class="edge-label" x="392" y="419.6" text-anchor="middle" fill="#1b1f24">zatwierdził</text>
 <text class="edge-label" x="60" y="339.6" text-anchor="middle" fill="#1b1f24">używa</text>
-<text class="edge-end-label" x="444.2" y="174.6" text-anchor="middle" fill="#1b1f24">0..*</text>
-<text class="edge-end-label" x="433.8" y="308.6" text-anchor="middle" fill="#1b1f24">1</text>
-<text class="edge-label" x="421" y="259.6" text-anchor="middle" fill="#1b1f24">wymaga</text>
+<text class="edge-end-label" x="437.01" y="174.6" text-anchor="middle" fill="#1b1f24">0..*</text>
+<text class="edge-end-label" x="429.45" y="308.6" text-anchor="middle" fill="#1b1f24">1</text>
+<text class="edge-label" x="417" y="259.6" text-anchor="middle" fill="#1b1f24">wymaga</text>
 </svg>

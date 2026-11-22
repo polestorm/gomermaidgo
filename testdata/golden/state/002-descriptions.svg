@@ -1,28 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="386.1" height="532" viewBox="-11.5 -12 386.1 532" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M196 16 L196 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M176 124 L176 135.2 C176 139.6 172.4 143.2 168 143.2 L108 143.2 C103.6 143.2 100 146.8 100 151.2 L100 154 L100 178 L100 180.8 C100 185.2 103.6 188.8 108 188.8 L168 188.8 C172.4 188.8 176 192.4 176 196.8 L176 199.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M216 132.4 L216 135.2 C216 139.6 219.6 143.2 224 143.2 L283 143.2 C287.4 143.2 291 146.8 291 151.2 L291 154 L291 178 L291 180.8 C291 185.2 287.4 188.8 283 188.8 L224 188.8 C219.6 188.8 216 192.4 216 196.8 L216 208" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M196 252 L196 347.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="0.8" y="156" width="198.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="219.4" y="156" width="143.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="149.6" y="284" width="92.8" height="40" fill="#ffffff"/>
-<polygon class="arrowhead" points="196,60 190,48 202,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="176,208 170,196 182,196" fill="#3b4754"/>
-<polygon class="arrowhead" points="216,124 222,136 210,136" fill="#3b4754"/>
-<polygon class="arrowhead" points="196,356 190,344 202,344" fill="#3b4754"/>
-<circle class="node" cx="196" cy="8" r="8" fill="#3b4754"/>
-<rect class="node" x="107.5" y="60" width="177" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="107.5" y="208" width="177" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="83.5" y="356" width="225" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0.5" y="464" width="157" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="196" y="87.6" text-anchor="middle" fill="#1b1f24">Wersja</text>
-<text class="node-label" x="196" y="107.6" text-anchor="middle" fill="#1b1f24">robocza</text>
-<text class="node-label" x="196" y="235.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
-<text class="node-label" x="196" y="383.6" text-anchor="middle" fill="#1b1f24">Wersja obowiązująca</text>
-<text class="node-label" x="196" y="403.6" text-anchor="middle" fill="#1b1f24">szkolenie ukończone</text>
-<text class="node-label" x="79" y="491.6" text-anchor="middle" fill="#1b1f24">Samodzielny</text>
-<text class="edge-label" x="100" y="171.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
-<text class="edge-label" x="291" y="171.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
-<text class="edge-label" x="196" y="299.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
-<text class="edge-label" x="196" y="319.6" text-anchor="middle" fill="#1b1f24">i opublikuj</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="350.35" height="532" viewBox="-12 -12 350.35 532" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<path class="edge" d="M174 16 L174 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M154 124 L154 135.2 C154 139.6 150.4 143.2 146 143.2 L96 143.2 C91.6 143.2 88 146.8 88 151.2 L88 154 L88 178 L88 180.8 C88 185.2 91.6 188.8 96 188.8 L146 188.8 C150.4 188.8 154 192.4 154 196.8 L154 199.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M194 132.4 L194 135.2 C194 139.6 197.6 143.2 202 143.2 L253 143.2 C257.4 143.2 261 146.8 261 151.2 L261 154 L261 178 L261 180.8 C261 185.2 257.4 188.8 253 188.8 L202 188.8 C197.6 188.8 194 192.4 194 196.8 L194 208" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M174 252 L174 347.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="0.85" y="156" width="174.3" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="195.65" y="156" width="130.7" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="134.42" y="284" width="79.16" height="40" fill="#ffffff"/>
+<polygon class="arrowhead" points="174,60 168,48 180,48" fill="#3b4754"/>
+<polygon class="arrowhead" points="154,208 148,196 160,196" fill="#3b4754"/>
+<polygon class="arrowhead" points="194,124 200,136 188,136" fill="#3b4754"/>
+<polygon class="arrowhead" points="174,356 168,344 180,344" fill="#3b4754"/>
+<circle class="node" cx="174" cy="8" r="8" fill="#3b4754"/>
+<rect class="node" x="91.5" y="60" width="165" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="91.5" y="208" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="70.5" y="356" width="207" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="464" width="148" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="174" y="87.6" text-anchor="middle" fill="#1b1f24">Wersja</text>
+<text class="node-label" x="174" y="107.6" text-anchor="middle" fill="#1b1f24">robocza</text>
+<text class="node-label" x="174" y="235.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
+<text class="node-label" x="174" y="383.6" text-anchor="middle" fill="#1b1f24">Wersja obowiązująca</text>
+<text class="node-label" x="174" y="403.6" text-anchor="middle" fill="#1b1f24">szkolenie ukończone</text>
+<text class="node-label" x="74" y="491.6" text-anchor="middle" fill="#1b1f24">Samodzielny</text>
+<text class="edge-label" x="88" y="171.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
+<text class="edge-label" x="261" y="171.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
+<text class="edge-label" x="174" y="299.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
+<text class="edge-label" x="174" y="319.6" text-anchor="middle" fill="#1b1f24">i opublikuj</text>
 </svg>

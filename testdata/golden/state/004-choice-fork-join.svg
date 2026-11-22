@@ -1,44 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="624.5" height="622" viewBox="-12 -12 624.5 622" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M142 16 L142 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M142 104 L142 139.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M138.63 174.63 L138.63 183.31 C138.63 187.71 135.03 191.31 130.63 191.31 L78 191.31 C73.6 191.31 70 194.91 70 199.31 L70 208 L70 253.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M145.38 174.63 L145.38 183.31 C145.38 187.71 148.98 191.31 153.38 191.31 L216 191.31 C220.4 191.31 224 194.91 224 199.31 L224 208 L224 271.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="598" height="622" viewBox="-12 -12 598 622" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<path class="edge" d="M134 16 L134 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M134 104 L134 139.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M130.63 174.63 L130.63 183.31 C130.63 187.71 127.03 191.31 122.63 191.31 L78 191.31 C73.6 191.31 70 194.91 70 199.31 L70 208 L70 253.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M137.38 174.63 L137.38 183.31 C137.38 187.71 140.98 191.31 145.38 191.31 L216 191.31 C220.4 191.31 224 194.91 224 199.31 L224 208 L224 271.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M210 288 L210 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M238 288 L238 306 L238 315.8 C238 320.2 241.6 323.8 246 323.8 L495 323.8 C499.4 323.8 503 327.4 503 331.8 L503 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M252 394 L252 429.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M503 394 L503 403.8 C503 408.2 499.4 411.8 495 411.8 L288 411.8 C283.6 411.8 280 415.4 280 419.8 L280 429.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M266 446 L266 455.8 C266 460.2 262.4 463.8 258 463.8 L176 463.8 C171.6 463.8 168 467.4 168 471.8 L168 481.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M70 306 L70 446 L70 455.8 C70 460.2 73.6 463.8 78 463.8 L120 463.8 C124.4 463.8 128 467.4 128 471.8 L128 481.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M148 534 L148 569.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="12" y="210" width="116" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="157.6" y="210" width="132.8" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="142,60 136,48 148,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="142,148 136,136 148,136" fill="#3b4754"/>
+<path class="edge" d="M238 288 L238 306 L238 315.8 C238 320.2 241.6 323.8 246 323.8 L475 323.8 C479.4 323.8 483 327.4 483 331.8 L483 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M243 394 L243 429.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M483 394 L483 403.8 C483 408.2 479.4 411.8 475 411.8 L279 411.8 C274.6 411.8 271 415.4 271 419.8 L271 429.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M257 446 L257 455.8 C257 460.2 253.4 463.8 249 463.8 L172 463.8 C167.6 463.8 164 467.4 164 471.8 L164 481.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 306 L70 446 L70 455.8 C70 460.2 73.6 463.8 78 463.8 L116 463.8 C120.4 463.8 124 467.4 124 471.8 L124 481.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M144 534 L144 569.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="20.21" y="210" width="99.58" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="166.21" y="210" width="115.58" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="134,60 128,48 140,48" fill="#3b4754"/>
+<polygon class="arrowhead" points="134,148 128,136 140,136" fill="#3b4754"/>
 <polygon class="arrowhead" points="70,262 64,250 76,250" fill="#3b4754"/>
 <polygon class="arrowhead" points="224,280 218,268 230,268" fill="#3b4754"/>
 <polygon class="arrowhead" points="210,350 204,338 216,338" fill="#3b4754"/>
-<polygon class="arrowhead" points="503,350 497,338 509,338" fill="#3b4754"/>
-<polygon class="arrowhead" points="252,438 246,426 258,426" fill="#3b4754"/>
-<polygon class="arrowhead" points="280,438 274,426 286,426" fill="#3b4754"/>
-<polygon class="arrowhead" points="168,490 162,478 174,478" fill="#3b4754"/>
-<polygon class="arrowhead" points="128,490 122,478 134,478" fill="#3b4754"/>
-<polygon class="arrowhead" points="148,578 142,566 154,566" fill="#3b4754"/>
-<circle class="node" cx="142" cy="8" r="8" fill="#3b4754"/>
-<rect class="node" x="72" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="142,148 157,163 142,178 127,163" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="arrowhead" points="483,350 477,338 489,338" fill="#3b4754"/>
+<polygon class="arrowhead" points="243,438 237,426 249,426" fill="#3b4754"/>
+<polygon class="arrowhead" points="271,438 265,426 277,426" fill="#3b4754"/>
+<polygon class="arrowhead" points="164,490 158,478 170,478" fill="#3b4754"/>
+<polygon class="arrowhead" points="124,490 118,478 130,478" fill="#3b4754"/>
+<polygon class="arrowhead" points="144,578 138,566 150,566" fill="#3b4754"/>
+<circle class="node" cx="134" cy="8" r="8" fill="#3b4754"/>
+<rect class="node" x="64" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="134,148 149,163 134,178 119,163" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="262" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="188" y="280" width="72" height="8" rx="2" fill="#3b4754"/>
-<rect class="node" x="171" y="350" width="186" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="405.5" y="350" width="195" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="230" y="438" width="72" height="8" rx="2" fill="#3b4754"/>
-<rect class="node" x="75" y="490" width="146" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="148" cy="588" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="148" cy="588" r="6" fill="#3b4754"/>
-<text class="node-label" x="142" y="87.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
+<rect class="node" x="171.5" y="350" width="173" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="392" y="350" width="182" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="221" y="438" width="72" height="8" rx="2" fill="#3b4754"/>
+<rect class="node" x="74" y="490" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="144" cy="588" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="144" cy="588" r="6" fill="#3b4754"/>
+<text class="node-label" x="134" y="87.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
 <text class="node-label" x="70" y="289.6" text-anchor="middle" fill="#1b1f24">Drobna</text>
-<text class="node-label" x="264" y="377.6" text-anchor="middle" fill="#1b1f24">AnalizaPrzyczyn</text>
-<text class="node-label" x="503" y="377.6" text-anchor="middle" fill="#1b1f24">DziałaniaDoraźne</text>
-<text class="node-label" x="148" y="517.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
+<text class="node-label" x="258" y="377.6" text-anchor="middle" fill="#1b1f24">AnalizaPrzyczyn</text>
+<text class="node-label" x="483" y="377.6" text-anchor="middle" fill="#1b1f24">DziałaniaDoraźne</text>
+<text class="node-label" x="144" y="517.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
 <text class="edge-label" x="70" y="225.6" text-anchor="middle" fill="#1b1f24">ryzyko niskie</text>
 <text class="edge-label" x="224" y="225.6" text-anchor="middle" fill="#1b1f24">ryzyko wysokie</text>
 </svg>

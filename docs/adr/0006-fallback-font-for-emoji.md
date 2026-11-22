@@ -4,7 +4,7 @@ Status: przyjęta · 2026-11-23
 
 ## Kontekst
 
-Krój domyślny Recursive (ADR 0002) nie ma emoji. W próbie na publicznych diagramach miało je 28 z 62 narysowanych
+Krój domyślny (Recursive z ADR 0002, potem Arimo z ADR 0007) nie ma emoji. W próbie na publicznych diagramach miało je 28 z 62 narysowanych
 bloków. Taki znak wychodził w PDF i PNG jako puste pole, a w SVG rysował go krój zastępczy przeglądarki o innej
 szerokości niż zmierzona.
 

@@ -1,34 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="697.6" height="388" viewBox="-12 -12.4 697.6 388" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="682.9" height="388" viewBox="-12 -12.4 682.9 388" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Niezgodności według działu</title>
-<line class="chart-grid" x1="144" y1="32" x2="144" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="chart-grid" x1="274" y1="32" x2="274" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="chart-grid" x1="404" y1="32" x2="404" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="chart-grid" x1="534" y1="32" x2="534" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="chart-grid" x1="664" y1="32" x2="664" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<rect class="chart-bar" x="144" y="40.4" width="442" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
-<rect class="chart-bar" x="144" y="96.4" width="156" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
-<rect class="chart-bar" x="144" y="152.4" width="91" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
-<rect class="chart-bar" x="144" y="208.4" width="247" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
-<rect class="chart-bar" x="144" y="264.4" width="52" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
-<polyline class="chart-line" points="534,60 339,116 274,172 339,228 248,284" fill="none" stroke="#3b4754" stroke-width="2"/>
-<text class="title" x="404" y="15.6" text-anchor="middle" fill="#1b1f24">Niezgodności według działu</text>
-<text class="axis-label" x="144" y="335.6" text-anchor="middle" fill="#5b6570">0</text>
-<text class="axis-label" x="274" y="335.6" text-anchor="middle" fill="#5b6570">10</text>
-<text class="axis-label" x="404" y="335.6" text-anchor="middle" fill="#5b6570">20</text>
-<text class="axis-label" x="534" y="335.6" text-anchor="middle" fill="#5b6570">30</text>
-<text class="axis-label" x="664" y="335.6" text-anchor="middle" fill="#5b6570">40</text>
-<circle class="chart-point" cx="534" cy="60" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="chart-point" cx="339" cy="116" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="chart-point" cx="274" cy="172" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="chart-point" cx="339" cy="228" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="chart-point" cx="248" cy="284" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="chart-axis" x1="144" y1="312" x2="664" y2="312" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="chart-axis" x1="144" y1="32" x2="144" y2="312" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="axis-label" x="136" y="65.6" text-anchor="end" fill="#5b6570">Produkcja</text>
-<text class="axis-label" x="136" y="121.6" text-anchor="end" fill="#5b6570">Magazyn</text>
-<text class="axis-label" x="136" y="177.6" text-anchor="end" fill="#5b6570">Zakupy</text>
-<text class="axis-label" x="136" y="233.6" text-anchor="end" fill="#5b6570">Laboratorium</text>
-<text class="axis-label" x="136" y="289.6" text-anchor="end" fill="#5b6570">Serwis</text>
+<line class="chart-grid" x1="130" y1="32" x2="130" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="chart-grid" x1="260" y1="32" x2="260" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="chart-grid" x1="390" y1="32" x2="390" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="chart-grid" x1="520" y1="32" x2="520" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<line class="chart-grid" x1="650" y1="32" x2="650" y2="312" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<rect class="chart-bar" x="130" y="40.4" width="442" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="130" y="96.4" width="156" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="130" y="152.4" width="91" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="130" y="208.4" width="247" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<rect class="chart-bar" x="130" y="264.4" width="52" height="39.2" fill="#66727f" stroke="#3b4754" stroke-width="1"/>
+<polyline class="chart-line" points="520,60 325,116 260,172 325,228 234,284" fill="none" stroke="#3b4754" stroke-width="2"/>
+<text class="title" x="390" y="15.6" text-anchor="middle" fill="#1b1f24">Niezgodności według działu</text>
+<text class="axis-label" x="130" y="335.6" text-anchor="middle" fill="#5b6570">0</text>
+<text class="axis-label" x="260" y="335.6" text-anchor="middle" fill="#5b6570">10</text>
+<text class="axis-label" x="390" y="335.6" text-anchor="middle" fill="#5b6570">20</text>
+<text class="axis-label" x="520" y="335.6" text-anchor="middle" fill="#5b6570">30</text>
+<text class="axis-label" x="650" y="335.6" text-anchor="middle" fill="#5b6570">40</text>
+<circle class="chart-point" cx="520" cy="60" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="325" cy="116" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="260" cy="172" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="325" cy="228" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="chart-point" cx="234" cy="284" r="3.5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="chart-axis" x1="130" y1="312" x2="650" y2="312" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="chart-axis" x1="130" y1="32" x2="130" y2="312" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="axis-label" x="122" y="65.6" text-anchor="end" fill="#5b6570">Produkcja</text>
+<text class="axis-label" x="122" y="121.6" text-anchor="end" fill="#5b6570">Magazyn</text>
+<text class="axis-label" x="122" y="177.6" text-anchor="end" fill="#5b6570">Zakupy</text>
+<text class="axis-label" x="122" y="233.6" text-anchor="end" fill="#5b6570">Laboratorium</text>
+<text class="axis-label" x="122" y="289.6" text-anchor="end" fill="#5b6570">Serwis</text>
 <text class="axis-title" x="16" y="172" text-anchor="middle" fill="#5b6570" transform="rotate(-90 16 172)">Dział</text>
-<text class="axis-title" x="404" y="359.6" text-anchor="middle" fill="#5b6570">Liczba niezgodności</text>
+<text class="axis-title" x="390" y="359.6" text-anchor="middle" fill="#5b6570">Liczba niezgodności</text>
 </svg>

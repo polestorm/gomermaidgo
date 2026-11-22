@@ -1,53 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="346.2" height="764" viewBox="-12.1 -12 346.2 764" role="img" font-family="Recursive, sans-serif" font-size="16">
-<rect class="cluster" x="-0.1" y="60" width="322.2" height="528" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-title-strip" x="-0.1" y="60" width="322.2" height="32" rx="8" fill="#eef2f7"/>
-<rect class="cluster-title-strip" x="-0.1" y="76" width="322.2" height="16" fill="#eef2f7"/>
-<line class="cluster-title-rule" x1="-0.1" y1="92" x2="322.1" y2="92" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path class="cluster-foot-strip" d="M0.97 584 C2.4 586.48 5.04 588 7.9 588 L314.1 588 C316.96 588 319.6 586.48 321.03 584 L0.97 584" fill="#eef2f7"/>
-<line class="cluster-title-rule" x1="0.97" y1="584" x2="321.03" y2="584" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-outline" x="-0.1" y="60" width="322.2" height="528" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="19.7" y="232" width="282.4" height="286" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-title-strip" x="19.7" y="232" width="282.4" height="32" rx="8" fill="#eef2f7"/>
-<rect class="cluster-title-strip" x="19.7" y="248" width="282.4" height="16" fill="#eef2f7"/>
-<line class="cluster-title-rule" x1="19.7" y1="264" x2="302.1" y2="264" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path class="cluster-foot-strip" d="M20.77 514 C22.2 516.48 24.84 518 27.7 518 L294.1 518 C296.96 518 299.6 516.48 301.03 514 L20.77 514" fill="#eef2f7"/>
-<line class="cluster-title-rule" x1="20.77" y1="514" x2="301.03" y2="514" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster-outline" x="19.7" y="232" width="282.4" height="286" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path class="edge" d="M160.9 308 L160.9 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 378 L160.9 395.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 448 L160.9 465.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 136 L160.9 153.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 206 L160.9 223.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M160.9 518 L160.9 535.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M161 16 L161 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M161 588 L161 623.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M161 676 L161 711.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="160.9,334 154.9,322 166.9,322" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,404 154.9,392 166.9,392" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,474 154.9,462 166.9,462" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,162 154.9,150 166.9,150" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,232 154.9,220 166.9,220" fill="#3b4754"/>
-<polygon class="arrowhead" points="160.9,544 154.9,532 166.9,532" fill="#3b4754"/>
-<polygon class="arrowhead" points="161,60 155,48 167,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="161,632 155,620 167,620" fill="#3b4754"/>
-<polygon class="arrowhead" points="161,720 155,708 167,708" fill="#3b4754"/>
-<circle class="node" cx="161" cy="8" r="8" fill="#3b4754"/>
-<circle class="node" cx="160.9" cy="128" r="8" fill="#3b4754"/>
-<rect class="node" x="81.9" y="162" width="158" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="160.9" cy="300" r="8" fill="#3b4754"/>
-<rect class="node" x="90.9" y="334" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="90.9" y="404" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="160.9" cy="484" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="160.9" cy="484" r="6" fill="#3b4754"/>
-<circle class="node" cx="160.9" cy="554" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="160.9" cy="554" r="6" fill="#3b4754"/>
-<rect class="node" x="78.5" y="632" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="161" cy="730" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="161" cy="730" r="6" fill="#3b4754"/>
-<text class="cluster-title" x="161" y="81.6" text-anchor="middle" fill="#1b1f24">Przegląd</text>
-<text class="node-label" x="160.9" y="189.6" text-anchor="middle" fill="#1b1f24">Sprawdzanie</text>
-<text class="cluster-title" x="160.9" y="253.6" text-anchor="middle" fill="#1b1f24">Zatwierdzanie przez dwie osoby</text>
-<text class="node-label" x="160.9" y="361.6" text-anchor="middle" fill="#1b1f24">Pierwszy</text>
-<text class="node-label" x="160.9" y="431.6" text-anchor="middle" fill="#1b1f24">Drugi</text>
-<text class="node-label" x="161" y="659.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="315.83" height="764" viewBox="-11.92 -12 315.83 764" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect class="cluster" x="0.08" y="60" width="291.83" height="528" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-title-strip" x="0.08" y="60" width="291.83" height="32" rx="8" fill="#eef2f7"/>
+<rect class="cluster-title-strip" x="0.08" y="76" width="291.83" height="16" fill="#eef2f7"/>
+<line class="cluster-title-rule" x1="0.08" y1="92" x2="291.92" y2="92" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="cluster-foot-strip" d="M1.16 584 C2.58 586.48 5.23 588 8.08 588 L283.92 588 C286.77 588 289.42 586.48 290.84 584 L1.16 584" fill="#eef2f7"/>
+<line class="cluster-title-rule" x1="1.16" y1="584" x2="290.84" y2="584" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-outline" x="0.08" y="60" width="291.83" height="528" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster" x="20.25" y="232" width="251.66" height="286" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-title-strip" x="20.25" y="232" width="251.66" height="32" rx="8" fill="#eef2f7"/>
+<rect class="cluster-title-strip" x="20.25" y="248" width="251.66" height="16" fill="#eef2f7"/>
+<line class="cluster-title-rule" x1="20.25" y1="264" x2="271.92" y2="264" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="cluster-foot-strip" d="M21.32 514 C22.75 516.48 25.39 518 28.25 518 L263.92 518 C266.77 518 269.42 516.48 270.84 514 L21.32 514" fill="#eef2f7"/>
+<line class="cluster-title-rule" x1="21.32" y1="514" x2="270.84" y2="514" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster-outline" x="20.25" y="232" width="251.66" height="286" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M146.08 308 L146.08 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146.08 378 L146.08 395.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146.08 448 L146.08 465.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146.08 136 L146.08 153.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146.08 206 L146.08 223.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146.08 518 L146.08 535.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146 16 L146 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146 588 L146 623.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146 676 L146 711.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="146.08,334 140.08,322 152.08,322" fill="#3b4754"/>
+<polygon class="arrowhead" points="146.08,404 140.08,392 152.08,392" fill="#3b4754"/>
+<polygon class="arrowhead" points="146.08,474 140.08,462 152.08,462" fill="#3b4754"/>
+<polygon class="arrowhead" points="146.08,162 140.08,150 152.08,150" fill="#3b4754"/>
+<polygon class="arrowhead" points="146.08,232 140.08,220 152.08,220" fill="#3b4754"/>
+<polygon class="arrowhead" points="146.08,544 140.08,532 152.08,532" fill="#3b4754"/>
+<polygon class="arrowhead" points="146,60 140,48 152,48" fill="#3b4754"/>
+<polygon class="arrowhead" points="146,632 140,620 152,620" fill="#3b4754"/>
+<polygon class="arrowhead" points="146,720 140,708 152,708" fill="#3b4754"/>
+<circle class="node" cx="146" cy="8" r="8" fill="#3b4754"/>
+<circle class="node" cx="146.08" cy="128" r="8" fill="#3b4754"/>
+<rect class="node" x="71.58" y="162" width="149" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="146.08" cy="300" r="8" fill="#3b4754"/>
+<rect class="node" x="76.08" y="334" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="76.08" y="404" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="146.08" cy="484" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="146.08" cy="484" r="6" fill="#3b4754"/>
+<circle class="node" cx="146.08" cy="554" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="146.08" cy="554" r="6" fill="#3b4754"/>
+<rect class="node" x="68" y="632" width="156" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="146" cy="730" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="146" cy="730" r="6" fill="#3b4754"/>
+<text class="cluster-title" x="146" y="81.6" text-anchor="middle" fill="#1b1f24">Przegląd</text>
+<text class="node-label" x="146.08" y="189.6" text-anchor="middle" fill="#1b1f24">Sprawdzanie</text>
+<text class="cluster-title" x="146.08" y="253.6" text-anchor="middle" fill="#1b1f24">Zatwierdzanie przez dwie osoby</text>
+<text class="node-label" x="146.08" y="361.6" text-anchor="middle" fill="#1b1f24">Pierwszy</text>
+<text class="node-label" x="146.08" y="431.6" text-anchor="middle" fill="#1b1f24">Drugi</text>
+<text class="node-label" x="146" y="659.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
 </svg>

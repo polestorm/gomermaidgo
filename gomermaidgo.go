@@ -105,7 +105,7 @@ func WithMeasure(f func(text string, size float64) float64) Option {
 	return func(c *config) { c.measure = f }
 }
 
-// WithFontFamily ustawia wartość atrybutu font-family w SVG. Domyślnie "Recursive, sans-serif":
+// WithFontFamily ustawia wartość atrybutu font-family w SVG. Domyślnie fonts.DefaultFamily:
 // krój dołączony do modułu (pakiet fonts), którym renderer wtedy także mierzy tekst. Kto podaje
 // inny krój, powinien podać też jego plik (WithFont) albo funkcję pomiaru (WithMeasure); bez
 // nich działa miara zastępcza, która zawyża.
@@ -272,7 +272,7 @@ var emojiFace = sync.OnceValue(func() *font.Face {
 
 // defaultFace to krój dołączony; plik jest czytany raz na proces.
 var defaultFace = sync.OnceValue(func() *font.Face {
-	face, err := font.Parse(fonts.Recursive())
+	face, err := font.Parse(fonts.Arimo())
 	if err != nil {
 		return nil
 	}
@@ -347,7 +347,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 		face = defaultFace() // bez wskazania kroju mierzy krój dołączony
 	}
 	if c.fontFamily == "" {
-		c.fontFamily = fonts.RecursiveFamily + ", sans-serif"
+		c.fontFamily = fonts.DefaultFamily
 	}
 	measure := c.measure
 	if measure == nil && face != nil {
@@ -457,7 +457,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 
 // defaultStyled mierzy odmianami kroju dołączonego; pliki są czytane raz na proces.
 var defaultStyled = sync.OnceValue(func() func(string, float64, bool, bool) float64 {
-	m, _ := styledMeasure(fonts.RecursiveBold(), fonts.RecursiveItalic())
+	m, _ := styledMeasure(fonts.ArimoBold(), fonts.ArimoItalic())
 	return m
 })
 

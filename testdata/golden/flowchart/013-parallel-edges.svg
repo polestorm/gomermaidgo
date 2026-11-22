@@ -1,26 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="169" height="521" viewBox="-12 -12 169 521" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M42 44 L42 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M60 44 L60 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M107 44 L107 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M61 232 L61 289.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M79 232 L79 289.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M61 359.48 L61 417.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M79 359.48 L79 417.74" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="83" y="106" width="48" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="42,188 36,176 48,176" fill="#3b4754"/>
-<polygon class="arrowhead" points="60,188 54,176 66,176" fill="#3b4754"/>
-<polygon class="arrowhead" points="107,188 101,176 113,176" fill="#3b4754"/>
-<polygon class="arrowhead" points="61,297.52 55,285.52 67,285.52" fill="#3b4754"/>
-<polygon class="arrowhead" points="79,297.52 73,285.52 85,285.52" fill="#3b4754"/>
-<polygon class="arrowhead" points="61,426.14 55,414.14 67,414.14" fill="#3b4754"/>
-<polygon class="arrowhead" points="79,426.14 73,414.14 85,414.14" fill="#3b4754"/>
-<rect class="node" x="5" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="168" height="517" viewBox="-12 -12 168 517" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<path class="edge" d="M43 44 L43 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 44 L61 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M105 44 L105 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 232 L61 289.33" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M79 232 L79 289.33" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 358.27 L61 416.79" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M79 358.27 L79 416.79" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="84.1" y="106" width="41.8" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="43,188 37,176 49,176" fill="#3b4754"/>
+<polygon class="arrowhead" points="61,188 55,176 67,176" fill="#3b4754"/>
+<polygon class="arrowhead" points="105,188 99,176 111,176" fill="#3b4754"/>
+<polygon class="arrowhead" points="61,297.73 55,285.73 67,285.73" fill="#3b4754"/>
+<polygon class="arrowhead" points="79,297.73 73,285.73 85,285.73" fill="#3b4754"/>
+<polygon class="arrowhead" points="61,425.19 55,413.19 67,413.19" fill="#3b4754"/>
+<polygon class="arrowhead" points="79,425.19 73,413.19 85,413.19" fill="#3b4754"/>
+<rect class="node" x="4" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="188" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="70,292 129.5,328.5 70,365 10.5,328.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="70" cy="461" r="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="75" y="27.6" text-anchor="middle" fill="#1b1f24">Wniosek</text>
+<polygon class="node" points="70,292 126.5,328 70,364 13.5,328" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="70" cy="458.5" r="34.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="74" y="27.6" text-anchor="middle" fill="#1b1f24">Wniosek</text>
 <text class="node-label" x="70" y="215.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="70" y="334.1" text-anchor="middle" fill="#1b1f24">Decyzja</text>
-<text class="node-label" x="70" y="466.6" text-anchor="middle" fill="#1b1f24">Koniec</text>
-<text class="edge-label" x="107" y="121.6" text-anchor="middle" fill="#1b1f24">pilne</text>
+<text class="node-label" x="70" y="333.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
+<text class="node-label" x="70" y="464.1" text-anchor="middle" fill="#1b1f24">Koniec</text>
+<text class="edge-label" x="105" y="121.6" text-anchor="middle" fill="#1b1f24">pilne</text>
 </svg>

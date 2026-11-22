@@ -1,31 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="642" height="348.67" viewBox="-12 -16.67 642 348.67" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="sankey-link" d="M14 17.78 C86.53 17.78 86.53 17.96 159.07 17.96 L159.07 309.96 C86.53 309.96 86.53 309.78 14 309.78 L14 17.78" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M173.07 17.96 C245.6 17.96 245.6 14 318.13 14 L318.13 208.67 C245.6 208.67 245.6 212.63 173.07 212.63 L173.07 17.96" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M173.07 212.63 C245.6 212.63 245.6 222.67 318.13 222.67 L332.13 222.67 C404.67 222.67 404.67 222.67 477.2 222.67 L477.2 320 C404.67 320 404.67 320 332.13 320 L318.13 320 C245.6 320 245.6 309.96 173.07 309.96 L173.07 212.63" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M332.13 62.67 C404.67 62.67 404.67 62.67 477.2 62.67 L477.2 208.67 C404.67 208.67 404.67 208.67 332.13 208.67 L332.13 62.67" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M332.13 14 C404.67 14 404.67 0 477.2 0 L477.2 48.67 C404.67 48.67 404.67 62.67 332.13 62.67 L332.13 14" fill="#7b8794" fill-opacity="0.35"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="642" height="348.67" viewBox="-12 -16.67 642 348.67" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<path class="sankey-link" d="M14 17.78 C88.28 17.78 88.28 17.96 162.57 17.96 L162.57 309.96 C88.28 309.96 88.28 309.78 14 309.78 L14 17.78" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M176.57 17.96 C250.85 17.96 250.85 14 325.14 14 L325.14 208.67 C250.85 208.67 250.85 212.63 176.57 212.63 L176.57 17.96" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M176.57 212.63 C250.85 212.63 250.85 222.67 325.14 222.67 L339.14 222.67 C413.42 222.67 413.42 222.67 487.7 222.67 L487.7 320 C413.42 320 413.42 320 339.14 320 L325.14 320 C250.85 320 250.85 309.96 176.57 309.96 L176.57 212.63" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M339.14 62.67 C413.42 62.67 413.42 62.67 487.7 62.67 L487.7 208.67 C413.42 208.67 413.42 208.67 339.14 208.67 L339.14 62.67" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M339.14 14 C413.42 14 413.42 0 487.7 0 L487.7 48.67 C413.42 48.67 413.42 62.67 339.14 62.67 L339.14 14" fill="#7b8794" fill-opacity="0.35"/>
 <rect class="sankey-node" x="0" y="17.78" width="14" height="292" fill="#3b4754"/>
-<rect class="sankey-node" x="159.07" y="17.96" width="14" height="292" fill="#3b4754"/>
-<rect class="sankey-node" x="318.13" y="14" width="14" height="194.67" fill="#3b4754"/>
-<rect class="sankey-node" x="477.2" y="222.67" width="14" height="97.33" fill="#3b4754"/>
-<rect class="sankey-node" x="477.2" y="62.67" width="14" height="146" fill="#3b4754"/>
-<rect class="sankey-node" x="477.2" y="0" width="14" height="48.67" fill="#3b4754"/>
+<rect class="sankey-node" x="162.57" y="17.96" width="14" height="292" fill="#3b4754"/>
+<rect class="sankey-node" x="325.14" y="14" width="14" height="194.67" fill="#3b4754"/>
+<rect class="sankey-node" x="487.7" y="222.67" width="14" height="97.33" fill="#3b4754"/>
+<rect class="sankey-node" x="487.7" y="62.67" width="14" height="146" fill="#3b4754"/>
+<rect class="sankey-node" x="487.7" y="0" width="14" height="48.67" fill="#3b4754"/>
 <text class="sankey-label" x="20" y="160.78" fill="#1b1f24">Zgłoszenia</text>
 <text class="sankey-value" x="20" y="178.78" font-size="13" fill="#5b6570">90</text>
-<text class="sankey-label" x="179.07" y="160.96" fill="#1b1f24">Ocena wstępna</text>
-<text class="sankey-value" x="179.07" y="178.96" font-size="13" fill="#5b6570">90</text>
-<text class="sankey-label" x="338.13" y="98.33" fill="#1b1f24">Postępowanie</text>
-<text class="sankey-label" x="338.13" y="118.33" fill="#1b1f24">wyjaśniające</text>
-<text class="sankey-value" x="338.13" y="136.33" font-size="13" fill="#5b6570">60</text>
-<text class="sankey-label" x="497.2" y="248.34" fill="#1b1f24">Odrzucone</text>
-<text class="sankey-label" x="497.2" y="268.34" fill="#1b1f24">jako</text>
-<text class="sankey-label" x="497.2" y="288.34" fill="#1b1f24">niezasadne</text>
-<text class="sankey-value" x="497.2" y="306.34" font-size="13" fill="#5b6570">30</text>
-<text class="sankey-label" x="497.2" y="112.67" fill="#1b1f24">Działania</text>
-<text class="sankey-label" x="497.2" y="132.67" fill="#1b1f24">korygujące i</text>
-<text class="sankey-label" x="497.2" y="152.67" fill="#1b1f24">zapobiegawcze</text>
-<text class="sankey-value" x="497.2" y="170.67" font-size="13" fill="#5b6570">45</text>
-<text class="sankey-label" x="497.2" y="11.33" fill="#1b1f24">Zamknięte bez</text>
-<text class="sankey-label" x="497.2" y="31.33" fill="#1b1f24">działań</text>
-<text class="sankey-value" x="497.2" y="49.33" font-size="13" fill="#5b6570">15</text>
+<text class="sankey-label" x="182.57" y="160.96" fill="#1b1f24">Ocena wstępna</text>
+<text class="sankey-value" x="182.57" y="178.96" font-size="13" fill="#5b6570">90</text>
+<text class="sankey-label" x="345.14" y="98.33" fill="#1b1f24">Postępowanie</text>
+<text class="sankey-label" x="345.14" y="118.33" fill="#1b1f24">wyjaśniające</text>
+<text class="sankey-value" x="345.14" y="136.33" font-size="13" fill="#5b6570">60</text>
+<text class="sankey-label" x="507.7" y="248.34" fill="#1b1f24">Odrzucone</text>
+<text class="sankey-label" x="507.7" y="268.34" fill="#1b1f24">jako</text>
+<text class="sankey-label" x="507.7" y="288.34" fill="#1b1f24">niezasadne</text>
+<text class="sankey-value" x="507.7" y="306.34" font-size="13" fill="#5b6570">30</text>
+<text class="sankey-label" x="507.7" y="112.67" fill="#1b1f24">Działania</text>
+<text class="sankey-label" x="507.7" y="132.67" fill="#1b1f24">korygujące i</text>
+<text class="sankey-label" x="507.7" y="152.67" fill="#1b1f24">zapobiegawcze</text>
+<text class="sankey-value" x="507.7" y="170.67" font-size="13" fill="#5b6570">45</text>
+<text class="sankey-label" x="507.7" y="11.33" fill="#1b1f24">Zamknięte bez</text>
+<text class="sankey-label" x="507.7" y="31.33" fill="#1b1f24">działań</text>
+<text class="sankey-value" x="507.7" y="49.33" font-size="13" fill="#5b6570">15</text>
 </svg>

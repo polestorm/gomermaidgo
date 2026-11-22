@@ -1,42 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="335.75" height="871" viewBox="-11.88 -12 335.75 871" role="img" font-family="Recursive, sans-serif" font-size="16">
-<rect class="cluster" x="0.13" y="176" width="311.75" height="455" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="60.38" y="406" width="231.5" height="201" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="62.2" y="715" width="229.6" height="132" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="349.75" height="842" viewBox="-11.88 -12 349.75 842" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect class="cluster" x="0.13" y="176" width="325.75" height="426" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster" x="44.38" y="406" width="261.5" height="172" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster" x="73.3" y="686" width="205.39" height="132" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <path class="edge" d="M105.13 274 L105.13 309.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M105.13 362 L105.13 376 C105.13 380.4 108.73 384 113.13 384 L168.38 384 C172.78 384 176.38 387.6 176.38 392 L176.38 406 L176.38 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M130 44 L130 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M130 132 L130 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M176.38 583 L176.38 760.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M225 52.4 L225 132 L225 147.56 C225 151.1 222.1 154 218.56 154 L218.56 154 C215.02 154 212.13 156.9 212.13 160.44 L212.13 176 L212.13 406" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect class="cluster-title-background" x="8.13" y="182" width="268" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="68.38" y="412" width="104" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="70.2" y="721" width="213.6" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="132.2" y="663" width="89.6" height="20" fill="#ffffff"/>
+<path class="edge" d="M105.13 362 L105.13 376 C105.13 380.4 108.73 384 113.13 384 L167.38 384 C171.78 384 175.38 387.6 175.38 392 L175.38 406 L175.38 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M134 44 L134 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M134 132 L134 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M175.38 554 L175.38 731.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M226 52.4 L226 132 L226 146.56 C226 150.65 222.65 154 218.56 154 L218.56 154 C214.47 154 211.13 157.35 211.13 161.44 L211.13 176 L211.13 406" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect class="cluster-title-background" x="8.13" y="182" width="241.89" height="20" fill="#ffffff"/>
+<rect class="cluster-title-background" x="52.38" y="412" width="90.68" height="20" fill="#ffffff"/>
+<rect class="cluster-title-background" x="81.3" y="692" width="189.39" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="135.98" y="634" width="80.04" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="105.13,318 99.13,306 111.13,306" fill="#3b4754"/>
-<polygon class="arrowhead" points="176.38,460 170.38,448 182.38,448" fill="#3b4754"/>
-<polygon class="arrowhead" points="130,88 124,76 136,76" fill="#3b4754"/>
-<polygon class="arrowhead" points="130,176 124,164 136,164" fill="#3b4754"/>
-<polygon class="arrowhead" points="176.38,769 170.38,757 182.38,757" fill="#3b4754"/>
-<polygon class="arrowhead" points="225,44 231,56 219,56" fill="#3b4754"/>
-<rect class="node" x="103.5" y="0" width="147" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="56.5" y="88" width="147" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="28.13" y="230" width="154" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="34.79,318 190.13,318 175.46,362 20.13,362" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="176.38,460 271.88,521.5 176.38,583 80.88,521.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="177" cy="820" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="107" y="776" width="140" height="44" fill="#eef2f7"/>
-<line class="node-detail" x1="107" y1="776" x2="107" y2="820" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="247" y1="776" x2="247" y2="820" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="177" cy="776" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="177" y="27.6" text-anchor="middle" fill="#1b1f24">Start</text>
-<text class="node-label" x="130" y="115.6" text-anchor="middle" fill="#1b1f24">Rejestracja</text>
-<text class="cluster-title" x="142.13" y="197.6" text-anchor="middle" fill="#1b1f24">Nadzór pełnomocnika ds. jakości</text>
+<polygon class="arrowhead" points="175.38,460 169.38,448 181.38,448" fill="#3b4754"/>
+<polygon class="arrowhead" points="134,88 128,76 140,76" fill="#3b4754"/>
+<polygon class="arrowhead" points="134,176 128,164 140,164" fill="#3b4754"/>
+<polygon class="arrowhead" points="175.38,740 169.38,728 181.38,728" fill="#3b4754"/>
+<polygon class="arrowhead" points="226,44 232,56 220,56" fill="#3b4754"/>
+<rect class="node" x="110" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="64" y="88" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="33.63" y="230" width="143" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="35.29,318 189.63,318 174.96,362 20.63,362" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="175.38,460 285.88,507 175.38,554 64.88,507" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="176" cy="791" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="106" y="747" width="140" height="44" fill="#eef2f7"/>
+<line class="node-detail" x1="106" y1="747" x2="106" y2="791" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="246" y1="747" x2="246" y2="791" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="176" cy="747" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="180" y="27.6" text-anchor="middle" fill="#1b1f24">Start</text>
+<text class="node-label" x="134" y="115.6" text-anchor="middle" fill="#1b1f24">Rejestracja</text>
+<text class="cluster-title" x="129.07" y="197.6" text-anchor="middle" fill="#1b1f24">Nadzór pełnomocnika ds. jakości</text>
 <text class="node-label" x="105.13" y="257.6" text-anchor="middle" fill="#1b1f24">Plan działań</text>
 <text class="node-label" x="105.13" y="345.6" text-anchor="middle" fill="#1b1f24">Wdrożenie</text>
-<text class="cluster-title" x="120.38" y="427.6" text-anchor="middle" fill="#1b1f24">Weryfikacja</text>
-<text class="node-label" x="176.38" y="517.1" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="176.38" y="537.1" text-anchor="middle" fill="#1b1f24">skuteczności</text>
-<text class="cluster-title" x="177" y="736.6" text-anchor="middle" fill="#1b1f24">Zamknięcie i archiwizacja</text>
-<text class="node-label" x="177" y="807.1" text-anchor="middle" fill="#1b1f24">Archiwum</text>
-<text class="edge-label" x="177" y="678.6" text-anchor="middle" fill="#1b1f24">skuteczne</text>
+<text class="cluster-title" x="97.71" y="427.6" text-anchor="middle" fill="#1b1f24">Weryfikacja</text>
+<text class="node-label" x="175.38" y="512.6" text-anchor="middle" fill="#1b1f24">Ocena skuteczności</text>
+<text class="cluster-title" x="176" y="707.6" text-anchor="middle" fill="#1b1f24">Zamknięcie i archiwizacja</text>
+<text class="node-label" x="176" y="778.1" text-anchor="middle" fill="#1b1f24">Archiwum</text>
+<text class="edge-label" x="176" y="649.6" text-anchor="middle" fill="#1b1f24">skuteczne</text>
 </svg>

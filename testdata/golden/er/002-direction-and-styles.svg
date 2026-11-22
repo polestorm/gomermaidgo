@@ -1,54 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="996.6" height="214" viewBox="-12 -12 996.6 214" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="922.63" height="214" viewBox="-12 -12 922.63 214" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Struktura organizacyjna</title>
-<path class="edge" d="M497.1 130 L497.1 142 C497.1 172 513.1 172 513.1 142 L513.1 130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M178 65 L325.6 65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M684.6 65 L794.6 65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="431.9" y="170" width="146.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="209" y="55" width="85.6" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="715.6" y="55" width="48" height="20" fill="#ffffff"/>
-<line class="arrowhead" x1="491.1" y1="137" x2="503.1" y2="137" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="497.1" cy="147" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="513.1" y1="141" x2="507.1" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="513.1" y1="141" x2="519.1" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="513.1" cy="150" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="185" y1="71" x2="185" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="191" y1="71" x2="191" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="314.6" y1="65" x2="325.6" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="314.6" y1="65" x2="325.6" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="305.6" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="695.6" y1="65" x2="684.6" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="695.6" y1="65" x2="684.6" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="704.6" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="783.6" y1="65" x2="794.6" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="783.6" y1="65" x2="794.6" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="774.6" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="node" x="0" y="15" width="178" height="100" fill="#e8f0fb" stroke="#3b6fb6" stroke-width="2"/>
-<rect class="node-detail" x="0" y="15" width="178" height="40" fill="#e8f0fb" stroke="#3b6fb6" stroke-width="2"/>
-<line class="node-detail" x1="0" y1="85" x2="178" y2="85" fill="none" stroke="#3b6fb6" stroke-width="2"/>
-<rect class="node" x="325.6" y="0" width="359" height="130" fill="#ffffff" stroke="#b7791f" stroke-width="1.5"/>
-<rect class="node-detail" x="325.6" y="0" width="359" height="40" fill="#eef2f7" stroke="#b7791f" stroke-width="1.5"/>
-<line class="node-detail" x1="325.6" y1="70" x2="684.6" y2="70" fill="none" stroke="#b7791f" stroke-width="1"/>
-<line class="node-detail" x1="325.6" y1="100" x2="684.6" y2="100" fill="none" stroke="#b7791f" stroke-width="1"/>
-<rect class="node" x="794.6" y="45" width="178" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="89" y="40.6" text-anchor="middle" fill="#1b1f24">DZIAL</text>
+<path class="edge" d="M458.82 130 L458.82 142 C458.82 172 474.82 172 474.82 142 L474.82 130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M167 65 L302.82 65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M630.82 65 L734.63 65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="402.8" y="170" width="128.05" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="198" y="55" width="73.82" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="661.82" y="55" width="41.8" height="20" fill="#ffffff"/>
+<line class="arrowhead" x1="452.82" y1="137" x2="464.82" y2="137" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="458.82" cy="147" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="474.82" y1="141" x2="468.82" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="474.82" y1="141" x2="480.82" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="474.82" cy="150" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="174" y1="71" x2="174" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="180" y1="71" x2="180" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="291.82" y1="65" x2="302.82" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="291.82" y1="65" x2="302.82" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="282.82" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="641.82" y1="65" x2="630.82" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="641.82" y1="65" x2="630.82" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="650.82" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="723.63" y1="65" x2="734.63" y2="59" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="723.63" y1="65" x2="734.63" y2="71" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="714.63" cy="65" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="node" x="0" y="15" width="167" height="100" fill="#e8f0fb" stroke="#3b6fb6" stroke-width="2"/>
+<rect class="node-detail" x="0" y="15" width="167" height="40" fill="#e8f0fb" stroke="#3b6fb6" stroke-width="2"/>
+<line class="node-detail" x1="0" y1="85" x2="167" y2="85" fill="none" stroke="#3b6fb6" stroke-width="2"/>
+<rect class="node" x="302.82" y="0" width="328" height="130" fill="#ffffff" stroke="#b7791f" stroke-width="1.5"/>
+<rect class="node-detail" x="302.82" y="0" width="328" height="40" fill="#eef2f7" stroke="#b7791f" stroke-width="1.5"/>
+<line class="node-detail" x1="302.82" y1="70" x2="630.82" y2="70" fill="none" stroke="#b7791f" stroke-width="1"/>
+<line class="node-detail" x1="302.82" y1="100" x2="630.82" y2="100" fill="none" stroke="#b7791f" stroke-width="1"/>
+<rect class="node" x="734.63" y="45" width="164" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="83.5" y="40.6" text-anchor="middle" fill="#1b1f24">DZIAL</text>
 <text class="attribute" x="10" y="75.6" fill="#1b1f24">int</text>
-<text class="attribute" x="78.8" y="75.6" fill="#1b1f24">id</text>
-<text class="attribute" x="149.2" y="75.6" fill="#1b1f24">PK</text>
+<text class="attribute" x="69.13" y="75.6" fill="#1b1f24">id</text>
+<text class="attribute" x="135.38" y="75.6" fill="#1b1f24">PK</text>
 <text class="attribute" x="10" y="105.6" fill="#1b1f24">string</text>
-<text class="attribute" x="78.8" y="105.6" fill="#1b1f24">nazwa</text>
-<text class="node-label" x="505.1" y="25.6" text-anchor="middle" fill="#1b1f24">PRACOWNIK</text>
-<text class="attribute" x="335.6" y="60.6" fill="#1b1f24">int</text>
-<text class="attribute" x="378.8" y="60.6" fill="#1b1f24">id</text>
-<text class="attribute" x="511.6" y="60.6" fill="#1b1f24">PK</text>
-<text class="attribute" x="335.6" y="90.6" fill="#1b1f24">int</text>
-<text class="attribute" x="378.8" y="90.6" fill="#1b1f24">dzial_id</text>
-<text class="attribute" x="511.6" y="90.6" fill="#1b1f24">FK</text>
-<text class="attribute" x="335.6" y="120.6" fill="#1b1f24">int</text>
-<text class="attribute" x="378.8" y="120.6" fill="#1b1f24">przelozony_id</text>
-<text class="attribute" x="511.6" y="120.6" fill="#1b1f24">FK</text>
-<text class="attribute" x="550.8" y="120.6" fill="#1b1f24">może być pusty</text>
-<text class="edge-label" x="505.1" y="185.6" text-anchor="middle" fill="#1b1f24">jest przełożonym</text>
-<text class="node-label" x="883.6" y="70.6" text-anchor="middle" fill="#1b1f24">Rola w systemie</text>
-<text class="edge-label" x="251.8" y="70.6" text-anchor="middle" fill="#1b1f24">zatrudnia</text>
-<text class="edge-label" x="739.6" y="70.6" text-anchor="middle" fill="#1b1f24">pełni</text>
+<text class="attribute" x="69.13" y="105.6" fill="#1b1f24">nazwa</text>
+<text class="node-label" x="466.82" y="25.6" text-anchor="middle" fill="#1b1f24">PRACOWNIK</text>
+<text class="attribute" x="312.82" y="60.6" fill="#1b1f24">int</text>
+<text class="attribute" x="349.72" y="60.6" fill="#1b1f24">id</text>
+<text class="attribute" x="468.45" y="60.6" fill="#1b1f24">PK</text>
+<text class="attribute" x="312.82" y="90.6" fill="#1b1f24">int</text>
+<text class="attribute" x="349.72" y="90.6" fill="#1b1f24">dzial_id</text>
+<text class="attribute" x="468.45" y="90.6" fill="#1b1f24">FK</text>
+<text class="attribute" x="312.82" y="120.6" fill="#1b1f24">int</text>
+<text class="attribute" x="349.72" y="120.6" fill="#1b1f24">przelozony_id</text>
+<text class="attribute" x="468.45" y="120.6" fill="#1b1f24">FK</text>
+<text class="attribute" x="509.79" y="120.6" fill="#1b1f24">może być pusty</text>
+<text class="edge-label" x="466.82" y="185.6" text-anchor="middle" fill="#1b1f24">jest przełożonym</text>
+<text class="node-label" x="816.63" y="70.6" text-anchor="middle" fill="#1b1f24">Rola w systemie</text>
+<text class="edge-label" x="234.91" y="70.6" text-anchor="middle" fill="#1b1f24">zatrudnia</text>
+<text class="edge-label" x="682.72" y="70.6" text-anchor="middle" fill="#1b1f24">pełni</text>
 </svg>

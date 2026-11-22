@@ -95,7 +95,7 @@ func TestEmojiFallback(t *testing.T) {
 	// kroju głównym, a odcinki stoją jeden za drugim.
 	out := string(svg)
 	m := regexp.MustCompile(`<text[^>]* x="([\d.]+)"[^>]* font-family="Noto Emoji"[^>]*>🚀</text>\s*<text[^>]* x="([\d.]+)"[^>]*>Start</text>`).FindStringSubmatch(out)
-	if m == nil || !strings.Contains(out, `<svg xmlns="http://www.w3.org/2000/svg" version="1.1"`) || strings.Count(out, "Noto Emoji") != 1 || !strings.Contains(out, `font-family="Recursive, sans-serif"`) {
+	if m == nil || !strings.Contains(out, `<svg xmlns="http://www.w3.org/2000/svg" version="1.1"`) || strings.Count(out, "Noto Emoji") != 1 || !strings.Contains(out, `font-family="Arimo, Arial, 'Liberation Sans', sans-serif"`) {
 		t.Fatalf("the emoji should be its own text with the fallback family: %s", out)
 	}
 	x0, _ := strconv.ParseFloat(m[1], 64)
@@ -108,7 +108,7 @@ func TestEmojiFallback(t *testing.T) {
 		t.Errorf("missing glyphs: %q %v", string(missing), err)
 	}
 	// Krój podany przez wywołującego też dostaje krój zapasowy.
-	if m, err := MissingGlyphs("flowchart TD\nA[🚀]", WithFont(fonts.RecursiveBold()), WithFontFamily("X")); err != nil || len(m) != 0 {
+	if m, err := MissingGlyphs("flowchart TD\nA[🚀]", WithFont(fonts.ArimoBold()), WithFontFamily("X")); err != nil || len(m) != 0 {
 		t.Errorf("caller's font: %q %v", string(m), err)
 	}
 }

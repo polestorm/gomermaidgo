@@ -1,30 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="381.5" height="431" viewBox="-12 -12 381.5 431" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="edge" d="M97 44 L97 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M70 164.48 L70 252.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M124 164.48 L124 231 L124 245 C124 249.4 127.6 253 132 253 L245 253 C249.4 253 253 256.6 253 261 L253 261 L253 259.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M215 52.4 L215 231 L215 231 C215 235.4 218.6 239 223 239 L285 239 C289.4 239 293 242.6 293 247 L293 261 L293 268" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M70 319 L70 354.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="52.4" y="209" width="35.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="107.6" y="209" width="32.8" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="97,88 91,76 103,76" fill="#3b4754"/>
-<polygon class="arrowhead" points="70,261 64,249 76,249" fill="#3b4754"/>
-<polygon class="arrowhead" points="253,268 247,256 259,256" fill="#3b4754"/>
-<polygon class="arrowhead" points="215,44 221,56 209,56" fill="#3b4754"/>
-<polygon class="arrowhead" points="70,363 64,351 76,351" fill="#3b4754"/>
-<rect class="node" x="40.5" y="0" width="231" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="97,88 193,132.5 97,177 1,132.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="70" cy="312" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="268" width="140" height="44" fill="#eef2f7"/>
-<line class="node-detail" x1="0" y1="268" x2="0" y2="312" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="140" y1="268" x2="140" y2="312" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="70" cy="268" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="203.17,268 357.5,268 342.83,312 188.5,312" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="363" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="156" y="27.6" text-anchor="middle" fill="#1b1f24">Projekt dokumentu</text>
-<text class="node-label" x="97" y="138.1" text-anchor="middle" fill="#1b1f24">Zatwierdzony?</text>
-<text class="node-label" x="70" y="299.1" text-anchor="middle" fill="#1b1f24">Rejestr</text>
-<text class="node-label" x="273" y="295.6" text-anchor="middle" fill="#1b1f24">Uwagi</text>
-<text class="node-label" x="70" y="390.6" text-anchor="middle" fill="#1b1f24">Odbiorcy</text>
-<text class="edge-label" x="70" y="224.6" text-anchor="middle" fill="#1b1f24">tak</text>
-<text class="edge-label" x="124" y="224.6" text-anchor="middle" fill="#1b1f24">nie</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="381.5" height="427" viewBox="-12 -12 381.5 427" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<path class="edge" d="M95 44 L95 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 160.72 L70 248.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M119 161.21 L119 227 L119 241 C119 245.4 122.6 249 127 249 L245 249 C249.4 249 253 252.6 253 257 L253 257 L253 255.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M203 52.4 L203 227 L203 227 C203 231.4 206.6 235 211 235 L285 235 C289.4 235 293 238.6 293 243 L293 257 L293 264" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 315 L70 350.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="55.33" y="205" width="29.34" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="104.32" y="205" width="29.35" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="95,88 89,76 101,76" fill="#3b4754"/>
+<polygon class="arrowhead" points="70,257 64,245 76,245" fill="#3b4754"/>
+<polygon class="arrowhead" points="253,264 247,252 259,252" fill="#3b4754"/>
+<polygon class="arrowhead" points="203,44 209,56 197,56" fill="#3b4754"/>
+<polygon class="arrowhead" points="70,359 64,347 76,347" fill="#3b4754"/>
+<rect class="node" x="43.5" y="0" width="211" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="95,88 181.5,130.5 95,173 8.5,130.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="70" cy="308" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="264" width="140" height="44" fill="#eef2f7"/>
+<line class="node-detail" x1="0" y1="264" x2="0" y2="308" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="140" y1="264" x2="140" y2="308" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="70" cy="264" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="203.17,264 357.5,264 342.83,308 188.5,308" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="359" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="149" y="27.6" text-anchor="middle" fill="#1b1f24">Projekt dokumentu</text>
+<text class="node-label" x="95" y="136.1" text-anchor="middle" fill="#1b1f24">Zatwierdzony?</text>
+<text class="node-label" x="70" y="295.1" text-anchor="middle" fill="#1b1f24">Rejestr</text>
+<text class="node-label" x="273" y="291.6" text-anchor="middle" fill="#1b1f24">Uwagi</text>
+<text class="node-label" x="70" y="386.6" text-anchor="middle" fill="#1b1f24">Odbiorcy</text>
+<text class="edge-label" x="70" y="220.6" text-anchor="middle" fill="#1b1f24">tak</text>
+<text class="edge-label" x="119" y="220.6" text-anchor="middle" fill="#1b1f24">nie</text>
 </svg>

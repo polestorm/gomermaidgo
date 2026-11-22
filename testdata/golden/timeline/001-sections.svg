@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="994" height="392.4" viewBox="-12 -12.4 994 392.4" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="994" height="392.4" viewBox="-12 -12.4 994 392.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Wdrożenie systemu zarządzania jakością</title>
 <line class="timeline-axis" x1="0" y1="130" x2="958" y2="130" fill="none" stroke="#3b4754" stroke-width="2"/>
 <polygon class="timeline-axis" points="970,130 958,124 958,136" fill="#3b4754"/>
 <line class="timeline-link" x1="75" y1="110" x2="75" y2="266" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4"/>
 <line class="timeline-link" x1="235" y1="110" x2="235" y2="226" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4"/>
 <line class="timeline-link" x1="395" y1="110" x2="395" y2="368" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="timeline-link" x1="555" y1="110" x2="555" y2="244" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="timeline-link" x1="715" y1="110" x2="715" y2="204" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="timeline-link" x1="555" y1="110" x2="555" y2="224" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="timeline-link" x1="715" y1="110" x2="715" y2="184" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4"/>
 <line class="timeline-link" x1="875" y1="110" x2="875" y2="130" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4"/>
 <rect class="timeline-section" x="0" y="34" width="310" height="32" rx="4" fill="#f1f4f8" stroke="#55657a" stroke-width="1.5"/>
 <rect class="timeline-section" x="320" y="34" width="310" height="32" rx="4" fill="#f1f4f8" stroke="#55657a" stroke-width="1.5"/>
@@ -26,10 +26,10 @@
 <rect class="timeline-event" x="320" y="314" width="150" height="54" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
 <rect class="timeline-period" x="480" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
 <circle class="timeline-mark" cx="555" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<rect class="timeline-event" x="480" y="150" width="150" height="94" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="timeline-event" x="480" y="150" width="150" height="74" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
 <rect class="timeline-period" x="640" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
 <circle class="timeline-mark" cx="715" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<rect class="timeline-event" x="640" y="150" width="150" height="54" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect class="timeline-event" x="640" y="150" width="150" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
 <rect class="timeline-period" x="800" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
 <circle class="timeline-mark" cx="875" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
 <text class="title" x="0" y="15.6" fill="#1b1f24">Wdrożenie systemu zarządzania jakością</text>
@@ -37,8 +37,8 @@
 <text class="timeline-section-title" x="475" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Wdrożenie</text>
 <text class="timeline-section-title" x="795" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Certyfikacja</text>
 <text class="timeline-period-label" x="75" y="97.6" text-anchor="middle" fill="#1b1f24">Styczeń</text>
-<text class="timeline-event-label" x="75" y="172.6" text-anchor="middle" fill="#1b1f24">Analiza luk</text>
-<text class="timeline-event-label" x="75" y="192.6" text-anchor="middle" fill="#1b1f24">wobec normy</text>
+<text class="timeline-event-label" x="75" y="172.6" text-anchor="middle" fill="#1b1f24">Analiza luk wobec</text>
+<text class="timeline-event-label" x="75" y="192.6" text-anchor="middle" fill="#1b1f24">normy</text>
 <text class="timeline-event-label" x="75" y="234.6" text-anchor="middle" fill="#1b1f24">Powołanie</text>
 <text class="timeline-event-label" x="75" y="254.6" text-anchor="middle" fill="#1b1f24">pełnomocnika</text>
 <text class="timeline-period-label" x="235" y="97.6" text-anchor="middle" fill="#1b1f24">Luty</text>
@@ -54,12 +54,10 @@
 <text class="timeline-event-label" x="395" y="336.6" text-anchor="middle" fill="#1b1f24">Pierwsze</text>
 <text class="timeline-event-label" x="395" y="356.6" text-anchor="middle" fill="#1b1f24">przeglądy</text>
 <text class="timeline-period-label" x="555" y="97.6" text-anchor="middle" fill="#1b1f24">Czerwiec</text>
-<text class="timeline-event-label" x="555" y="172.6" text-anchor="middle" fill="#1b1f24">Audyt</text>
-<text class="timeline-event-label" x="555" y="192.6" text-anchor="middle" fill="#1b1f24">wewnętrzny</text>
-<text class="timeline-event-label" x="555" y="212.6" text-anchor="middle" fill="#1b1f24">wszystkich</text>
-<text class="timeline-event-label" x="555" y="232.6" text-anchor="middle" fill="#1b1f24">procesów</text>
+<text class="timeline-event-label" x="555" y="172.6" text-anchor="middle" fill="#1b1f24">Audyt wewnętrzny</text>
+<text class="timeline-event-label" x="555" y="192.6" text-anchor="middle" fill="#1b1f24">wszystkich</text>
+<text class="timeline-event-label" x="555" y="212.6" text-anchor="middle" fill="#1b1f24">procesów</text>
 <text class="timeline-period-label" x="715" y="97.6" text-anchor="middle" fill="#1b1f24">Wrzesień</text>
-<text class="timeline-event-label" x="715" y="172.6" text-anchor="middle" fill="#1b1f24">Audyt</text>
-<text class="timeline-event-label" x="715" y="192.6" text-anchor="middle" fill="#1b1f24">certyfikujący</text>
+<text class="timeline-event-label" x="715" y="172.6" text-anchor="middle" fill="#1b1f24">Audyt certyfikujący</text>
 <text class="timeline-period-label" x="875" y="97.6" text-anchor="middle" fill="#1b1f24">Październik</text>
 </svg>

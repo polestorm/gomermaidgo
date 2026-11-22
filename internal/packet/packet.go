@@ -176,9 +176,16 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 					break
 				}
 			}
-			if f.Label != "" {
+			switch tw := o.Measure(f.Label, size); {
+			case f.Label == "":
+			case tw > w-u(4) && tw <= rowH-u(6):
+				// Pole węższe niż nazwa nawet najmniejszym pismem (zwykle jednobitowe): nazwa stoi
+				// pionowo, czytana z dołu do góry, i nie wchodzi na sąsiednie pola.
+				sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "packet-label", X: x + w/2 + 0.35*size, Y: top + numH + rowH/2,
+					W: tw, H: size * 1.25, Text: f.Label, Anchor: "middle", Vertical: true, FontSize: size, Fill: colorText})
+			default:
 				sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "packet-label", X: x + w/2, Y: top + numH + rowH/2 + 0.35*size,
-					W: o.Measure(f.Label, size), H: size * 1.25, Text: f.Label, Anchor: "middle", FontSize: size, Fill: colorText})
+					W: tw, H: size * 1.25, Text: f.Label, Anchor: "middle", FontSize: size, Fill: colorText})
 			}
 			from = to + 1
 		}

@@ -3,9 +3,9 @@ Copyright 2026 Michał Głębowski
 
 This product is licensed under the Apache License, Version 2.0 (see LICENSE).
 
-It bundles the Recursive typeface (fonts/Recursive-*.ttf), copyright
-The Recursive Project Authors, distributed under the SIL Open Font License 1.1;
-the license text is in fonts/OFL.txt.
+It bundles the Arimo typeface (fonts/Arimo-*.ttf), copyright
+The Arimo Project Authors, distributed under the SIL Open Font License 1.1;
+the license text is in fonts/OFL-Arimo.txt.
 
 It also bundles a static cut of the Noto Emoji typeface (fonts/NotoEmoji-Regular.ttf),
 copyright Google LLC, distributed under the SIL Open Font License 1.1; the license

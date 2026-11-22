@@ -1,82 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1306" height="362.4" viewBox="-12 -12.4 1306 362.4" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1293" height="362.4" viewBox="-12 -12.4 1293 362.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Obsługa reklamacji okiem klienta</title>
-<line class="journey-axis" x1="152" y1="332" x2="1270" y2="332" fill="none" stroke="#3b4754" stroke-width="2"/>
-<polygon class="journey-axis" points="1282,332 1270,326 1270,338" fill="#3b4754"/>
-<line class="journey-drop" x1="227" y1="170" x2="227" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="387" y1="170" x2="387" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="547" y1="170" x2="547" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="707" y1="170" x2="707" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="867" y1="170" x2="867" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="1027" y1="170" x2="1027" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="1187" y1="170" x2="1187" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<rect class="journey-section" x="152" y="34" width="470" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
-<rect class="journey-section" x="632" y="34" width="470" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
-<rect class="journey-section" x="1112" y="34" width="150" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
-<rect class="journey-task" x="152" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="227" cy="277" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="312" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="387" cy="225" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="472" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="547" cy="199" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="632" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="707" cy="303" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="792" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="867" cy="251" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="952" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="1027" cy="225" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="1112" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="1187" cy="199" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<line class="journey-axis" x1="139" y1="332" x2="1257" y2="332" fill="none" stroke="#3b4754" stroke-width="2"/>
+<polygon class="journey-axis" points="1269,332 1257,326 1257,338" fill="#3b4754"/>
+<line class="journey-drop" x1="214" y1="170" x2="214" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="journey-drop" x1="374" y1="170" x2="374" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="journey-drop" x1="534" y1="170" x2="534" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="journey-drop" x1="694" y1="170" x2="694" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="journey-drop" x1="854" y1="170" x2="854" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="journey-drop" x1="1014" y1="170" x2="1014" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
+<line class="journey-drop" x1="1174" y1="170" x2="1174" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
+<rect class="journey-section" x="139" y="34" width="470" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
+<rect class="journey-section" x="619" y="34" width="470" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
+<rect class="journey-section" x="1099" y="34" width="150" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
+<rect class="journey-task" x="139" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="journey-face" cx="214" cy="277" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="journey-task" x="299" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="journey-face" cx="374" cy="225" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="journey-task" x="459" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="journey-face" cx="534" cy="199" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="journey-task" x="619" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="journey-face" cx="694" cy="303" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="journey-task" x="779" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="journey-face" cx="854" cy="251" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="journey-task" x="939" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="journey-face" cx="1014" cy="225" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="journey-task" x="1099" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="journey-face" cx="1174" cy="199" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <circle class="journey-actor" cx="7" cy="84" r="7" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <circle class="journey-actor" cx="7" cy="108" r="7" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
-<text class="title" x="152" y="15.6" fill="#1b1f24">Obsługa reklamacji okiem klienta</text>
-<text class="journey-section-title" x="387" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zgłoszenie</text>
-<text class="journey-section-title" x="867" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rozpatrzenie</text>
-<text class="journey-section-title" x="1187" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zamknięcie</text>
-<text class="journey-task-label" x="227" y="107.6" text-anchor="middle" fill="#1b1f24">Znalezienie</text>
-<text class="journey-task-label" x="227" y="127.6" text-anchor="middle" fill="#1b1f24">formularza na</text>
-<text class="journey-task-label" x="227" y="147.6" text-anchor="middle" fill="#1b1f24">stronie</text>
-<circle class="journey-actor" cx="164" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="221.75" cy="273.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="232.25" cy="273.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M220.25 285.7 C224 279.4 230 279.4 233.75 285.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="387" y="117.6" text-anchor="middle" fill="#1b1f24">Opisanie</text>
-<text class="journey-task-label" x="387" y="137.6" text-anchor="middle" fill="#1b1f24">problemu</text>
-<circle class="journey-actor" cx="324" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="381.75" cy="221.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="392.25" cy="221.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M380.25 228 C384 234.3 390 234.3 393.75 228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="547" y="117.6" text-anchor="middle" fill="#1b1f24">Potwierdzenie</text>
-<text class="journey-task-label" x="547" y="137.6" text-anchor="middle" fill="#1b1f24">przyjęcia</text>
-<circle class="journey-actor" cx="484" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-actor" cx="497" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="541.75" cy="195.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="552.25" cy="195.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M540.25 202 C544 208.3 550 208.3 553.75 202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="707" y="97.6" text-anchor="middle" fill="#1b1f24">Oczekiwanie na</text>
-<text class="journey-task-label" x="707" y="117.6" text-anchor="middle" fill="#1b1f24">odpowiedź bez</text>
-<text class="journey-task-label" x="707" y="137.6" text-anchor="middle" fill="#1b1f24">informacji o</text>
-<text class="journey-task-label" x="707" y="157.6" text-anchor="middle" fill="#1b1f24">postępie sprawy</text>
-<circle class="journey-actor" cx="644" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="701.75" cy="299.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="712.25" cy="299.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M700.25 311.7 C704 305.4 710 305.4 713.75 311.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="867" y="117.6" text-anchor="middle" fill="#1b1f24">Dodatkowe</text>
-<text class="journey-task-label" x="867" y="137.6" text-anchor="middle" fill="#1b1f24">pytania</text>
-<circle class="journey-actor" cx="804" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-actor" cx="817" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="861.75" cy="247.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="872.25" cy="247.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M861 257 L873 257" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="1027" y="127.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
-<circle class="journey-actor" cx="964" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="1021.75" cy="221.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="1032.25" cy="221.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M1020.25 228 C1024 234.3 1030 234.3 1033.75 228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="1187" y="117.6" text-anchor="middle" fill="#1b1f24">Wymiana</text>
-<text class="journey-task-label" x="1187" y="137.6" text-anchor="middle" fill="#1b1f24">wyrobu</text>
-<circle class="journey-face-detail" cx="1181.75" cy="195.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="1192.25" cy="195.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M1180.25 202 C1184 208.3 1190 208.3 1193.75 202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="title" x="139" y="15.6" fill="#1b1f24">Obsługa reklamacji okiem klienta</text>
+<text class="journey-section-title" x="374" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zgłoszenie</text>
+<text class="journey-section-title" x="854" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rozpatrzenie</text>
+<text class="journey-section-title" x="1174" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zamknięcie</text>
+<text class="journey-task-label" x="214" y="107.6" text-anchor="middle" fill="#1b1f24">Znalezienie</text>
+<text class="journey-task-label" x="214" y="127.6" text-anchor="middle" fill="#1b1f24">formularza na</text>
+<text class="journey-task-label" x="214" y="147.6" text-anchor="middle" fill="#1b1f24">stronie</text>
+<circle class="journey-actor" cx="151" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle class="journey-face-detail" cx="208.75" cy="273.25" r="1.5" fill="#3b4754"/>
+<circle class="journey-face-detail" cx="219.25" cy="273.25" r="1.5" fill="#3b4754"/>
+<path class="journey-face-detail" d="M207.25 285.7 C211 279.4 217 279.4 220.75 285.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="journey-task-label" x="374" y="117.6" text-anchor="middle" fill="#1b1f24">Opisanie</text>
+<text class="journey-task-label" x="374" y="137.6" text-anchor="middle" fill="#1b1f24">problemu</text>
+<circle class="journey-actor" cx="311" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle class="journey-face-detail" cx="368.75" cy="221.25" r="1.5" fill="#3b4754"/>
+<circle class="journey-face-detail" cx="379.25" cy="221.25" r="1.5" fill="#3b4754"/>
+<path class="journey-face-detail" d="M367.25 228 C371 234.3 377 234.3 380.75 228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="journey-task-label" x="534" y="117.6" text-anchor="middle" fill="#1b1f24">Potwierdzenie</text>
+<text class="journey-task-label" x="534" y="137.6" text-anchor="middle" fill="#1b1f24">przyjęcia</text>
+<circle class="journey-actor" cx="471" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle class="journey-actor" cx="484" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<circle class="journey-face-detail" cx="528.75" cy="195.25" r="1.5" fill="#3b4754"/>
+<circle class="journey-face-detail" cx="539.25" cy="195.25" r="1.5" fill="#3b4754"/>
+<path class="journey-face-detail" d="M527.25 202 C531 208.3 537 208.3 540.75 202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="journey-task-label" x="694" y="97.6" text-anchor="middle" fill="#1b1f24">Oczekiwanie na</text>
+<text class="journey-task-label" x="694" y="117.6" text-anchor="middle" fill="#1b1f24">odpowiedź bez</text>
+<text class="journey-task-label" x="694" y="137.6" text-anchor="middle" fill="#1b1f24">informacji o</text>
+<text class="journey-task-label" x="694" y="157.6" text-anchor="middle" fill="#1b1f24">postępie sprawy</text>
+<circle class="journey-actor" cx="631" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle class="journey-face-detail" cx="688.75" cy="299.25" r="1.5" fill="#3b4754"/>
+<circle class="journey-face-detail" cx="699.25" cy="299.25" r="1.5" fill="#3b4754"/>
+<path class="journey-face-detail" d="M687.25 311.7 C691 305.4 697 305.4 700.75 311.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="journey-task-label" x="854" y="117.6" text-anchor="middle" fill="#1b1f24">Dodatkowe</text>
+<text class="journey-task-label" x="854" y="137.6" text-anchor="middle" fill="#1b1f24">pytania</text>
+<circle class="journey-actor" cx="791" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle class="journey-actor" cx="804" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<circle class="journey-face-detail" cx="848.75" cy="247.25" r="1.5" fill="#3b4754"/>
+<circle class="journey-face-detail" cx="859.25" cy="247.25" r="1.5" fill="#3b4754"/>
+<path class="journey-face-detail" d="M848 257 L860 257" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="journey-task-label" x="1014" y="127.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
+<circle class="journey-actor" cx="951" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<circle class="journey-face-detail" cx="1008.75" cy="221.25" r="1.5" fill="#3b4754"/>
+<circle class="journey-face-detail" cx="1019.25" cy="221.25" r="1.5" fill="#3b4754"/>
+<path class="journey-face-detail" d="M1007.25 228 C1011 234.3 1017 234.3 1020.75 228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text class="journey-task-label" x="1174" y="127.6" text-anchor="middle" fill="#1b1f24">Wymiana wyrobu</text>
+<circle class="journey-face-detail" cx="1168.75" cy="195.25" r="1.5" fill="#3b4754"/>
+<circle class="journey-face-detail" cx="1179.25" cy="195.25" r="1.5" fill="#3b4754"/>
+<path class="journey-face-detail" d="M1167.25 202 C1171 208.3 1177 208.3 1180.75 202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <text class="journey-actor-name" x="22" y="89.6" fill="#1b1f24">Klient</text>
 <text class="journey-actor-name" x="22" y="113.6" fill="#1b1f24">Dział jakości</text>
 </svg>

@@ -67,6 +67,9 @@ var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": 
 func main() {
 	fontPath := flag.String("font", "", "font file used to measure text and embedded in the page")
 	family := flag.String("family", "sans-serif", "font-family for our drawings")
+	bold := flag.String("bold", "", "bold variant of -font (optional)")
+	italic := flag.String("italic", "", "italic variant of -font (optional)")
+	note := flag.String("note", "", "a line shown under the page title")
 	ref := flag.String("ref", "", "reference renderer command with {in} and {out} (optional)")
 	out := flag.String("o", "out/review.html", "output file")
 	themes := flag.Bool("themes", false, "also show a sample of diagrams in the forest and dark themes")
@@ -75,9 +78,9 @@ func main() {
 	var opts []gomermaidgo.Option
 	// Bez wskazania fontu rysunki używają kroju dołączonego; strona musi go mieć, żeby tekst
 	// pasował do pól.
-	fontFace := fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", fonts.RecursiveFamily, base64.StdEncoding.EncodeToString(fonts.Recursive())) +
-		fmt.Sprintf("@font-face{font-family:%q;font-weight:bold;src:url(data:font/ttf;base64,%s)}", fonts.RecursiveFamily, base64.StdEncoding.EncodeToString(fonts.RecursiveBold())) +
-		fmt.Sprintf("@font-face{font-family:%q;font-style:italic;src:url(data:font/ttf;base64,%s)}", fonts.RecursiveFamily, base64.StdEncoding.EncodeToString(fonts.RecursiveItalic())) +
+	fontFace := fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", fonts.ArimoFamily, base64.StdEncoding.EncodeToString(fonts.Arimo())) +
+		fmt.Sprintf("@font-face{font-family:%q;font-weight:bold;src:url(data:font/ttf;base64,%s)}", fonts.ArimoFamily, base64.StdEncoding.EncodeToString(fonts.ArimoBold())) +
+		fmt.Sprintf("@font-face{font-family:%q;font-style:italic;src:url(data:font/ttf;base64,%s)}", fonts.ArimoFamily, base64.StdEncoding.EncodeToString(fonts.ArimoItalic())) +
 		fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", fonts.EmojiFamily, base64.StdEncoding.EncodeToString(fonts.NotoEmoji()))
 	if *fontPath != "" {
 		data, err := os.ReadFile(*fontPath)
@@ -86,7 +89,27 @@ func main() {
 			os.Exit(1)
 		}
 		opts = append(opts, gomermaidgo.WithFont(data), gomermaidgo.WithFontFamily(*family))
-		fontFace = fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", *family, base64.StdEncoding.EncodeToString(data))
+		// Nazwa kroju strony: pierwsza pozycja listy font-family, bez cudzysłowów.
+		name := strings.Trim(strings.TrimSpace(strings.Split(*family, ",")[0]), `'"`)
+		fontFace = fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", name, base64.StdEncoding.EncodeToString(data))
+		var styled [2][]byte
+		for i, path := range []string{*bold, *italic} {
+			if path == "" {
+				continue
+			}
+			if styled[i], err = os.ReadFile(path); err != nil {
+				fmt.Fprintln(os.Stderr, err)
+				os.Exit(1)
+			}
+			rule := "font-weight:bold"
+			if i == 1 {
+				rule = "font-style:italic"
+			}
+			fontFace += fmt.Sprintf("@font-face{font-family:%q;%s;src:url(data:font/ttf;base64,%s)}", name, rule, base64.StdEncoding.EncodeToString(styled[i]))
+		}
+		if styled[0] != nil || styled[1] != nil {
+			opts = append(opts, gomermaidgo.WithStyledFonts(styled[0], styled[1]))
+		}
 	}
 	tmp, err := os.MkdirTemp("", "review")
 	if err != nil {
@@ -162,6 +185,9 @@ func main() {
 	reqs := requirements()
 	var b strings.Builder
 	fmt.Fprintf(&b, pageHead, fontFace, time.Now().Format("2006-01-02 15:04"), len(entries))
+	if *note != "" {
+		fmt.Fprintf(&b, "<p class=\"checks\" style=\"margin:8px 16px\"><b>%s</b></p>\n", html.EscapeString(*note))
+	}
 	current := ""
 	for i, e := range entries {
 		if e.Kind != current {

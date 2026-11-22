@@ -1,47 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="441.6" height="733" viewBox="-66.8 -12 441.6 733" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="400.81" height="733" viewBox="-65.35 -12 400.81 733" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <line class="lifeline" x1="0" y1="48" x2="0" y2="661" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="308" y1="48" x2="308" y2="661" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<rect class="participant" x="-54.8" y="0" width="109.6" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="253.2" y="0" width="109.6" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="message" x1="0" y1="97" x2="308" y2="97" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="message" x1="0" y1="150" x2="308" y2="150" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<polygon class="arrowhead" points="308,203 299,199 299,207" fill="#3b4754"/>
-<line class="message" x1="0" y1="203" x2="299" y2="203" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="308,256 299,252 299,260" fill="#3b4754"/>
-<line class="message" x1="0" y1="256" x2="299" y2="256" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<line class="arrowhead" x1="298" y1="313" x2="306" y2="305" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="298" y1="305" x2="306" y2="313" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="message" x1="0" y1="309" x2="308" y2="309" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="298" y1="366" x2="306" y2="358" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="298" y1="358" x2="306" y2="366" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="message" x1="0" y1="362" x2="308" y2="362" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<polyline class="arrowhead" points="299,411 308,415 299,419" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="message" x1="0" y1="415" x2="308" y2="415" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polyline class="arrowhead" points="299,464 308,468 299,472" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="message" x1="0" y1="468" x2="308" y2="468" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<polygon class="arrowhead" points="308,521 299,517 299,525" fill="#3b4754"/>
+<line class="lifeline" x1="271" y1="48" x2="271" y2="661" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+<rect class="participant" x="-53.35" y="0" width="106.7" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="218.54" y="0" width="104.92" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="message" x1="0" y1="97" x2="271" y2="97" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="message" x1="0" y1="150" x2="271" y2="150" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon class="arrowhead" points="271,203 262,199 262,207" fill="#3b4754"/>
+<line class="message" x1="0" y1="203" x2="262" y2="203" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="271,256 262,252 262,260" fill="#3b4754"/>
+<line class="message" x1="0" y1="256" x2="262" y2="256" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line class="arrowhead" x1="261" y1="313" x2="269" y2="305" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="261" y1="305" x2="269" y2="313" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="message" x1="0" y1="309" x2="271" y2="309" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="261" y1="366" x2="269" y2="358" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="261" y1="358" x2="269" y2="366" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="message" x1="0" y1="362" x2="271" y2="362" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polyline class="arrowhead" points="262,411 271,415 262,419" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="message" x1="0" y1="415" x2="271" y2="415" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline class="arrowhead" points="262,464 271,468 262,472" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="message" x1="0" y1="468" x2="271" y2="468" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon class="arrowhead" points="271,521 262,517 262,525" fill="#3b4754"/>
 <polygon class="arrowhead" points="0,521 9,517 9,525" fill="#3b4754"/>
-<line class="message" x1="9" y1="521" x2="299" y2="521" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="308,574 299,570 299,578" fill="#3b4754"/>
+<line class="message" x1="9" y1="521" x2="262" y2="521" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="271,574 262,570 262,578" fill="#3b4754"/>
 <polygon class="arrowhead" points="0,574 9,570 9,578" fill="#3b4754"/>
-<line class="message" x1="9" y1="574" x2="299" y2="574" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line class="message" x1="9" y1="574" x2="262" y2="574" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
 <polygon class="arrowhead" points="0,627 9,623 9,631" fill="#3b4754"/>
-<line class="message" x1="308" y1="627" x2="9" y2="627" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="participant" x="-54.8" y="661" width="109.6" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="253.2" y="661" width="109.6" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="message" x1="271" y1="627" x2="9" y2="627" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="participant" x="-53.35" y="661" width="106.7" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="participant" x="218.54" y="661" width="104.92" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="participant-label" x="0" y="29.6" text-anchor="middle" fill="#1b1f24">Nadawca</text>
-<text class="participant-label" x="308" y="29.6" text-anchor="middle" fill="#1b1f24">Odbiorca</text>
-<text class="message-label" x="154" y="87.6" text-anchor="middle" fill="#1b1f24">linia ciągła bez grotu</text>
-<text class="message-label" x="154" y="140.6" text-anchor="middle" fill="#1b1f24">linia kropkowana bez grotu</text>
-<text class="message-label" x="154" y="193.6" text-anchor="middle" fill="#1b1f24">linia ciągła z grotem</text>
-<text class="message-label" x="154" y="246.6" text-anchor="middle" fill="#1b1f24">linia kropkowana z grotem</text>
-<text class="message-label" x="154" y="299.6" text-anchor="middle" fill="#1b1f24">linia ciągła z krzyżykiem</text>
-<text class="message-label" x="154" y="352.6" text-anchor="middle" fill="#1b1f24">linia kropkowana z krzyżykiem</text>
-<text class="message-label" x="154" y="405.6" text-anchor="middle" fill="#1b1f24">linia ciągła, grot otwarty</text>
-<text class="message-label" x="154" y="458.6" text-anchor="middle" fill="#1b1f24">linia kropkowana, grot otwarty</text>
-<text class="message-label" x="154" y="511.6" text-anchor="middle" fill="#1b1f24">dwukierunkowa ciągła</text>
-<text class="message-label" x="154" y="564.6" text-anchor="middle" fill="#1b1f24">dwukierunkowa kropkowana</text>
-<text class="message-label" x="154" y="617.6" text-anchor="middle" fill="#1b1f24">w lewo</text>
+<text class="participant-label" x="271" y="29.6" text-anchor="middle" fill="#1b1f24">Odbiorca</text>
+<text class="message-label" x="135.5" y="87.6" text-anchor="middle" fill="#1b1f24">linia ciągła bez grotu</text>
+<text class="message-label" x="135.5" y="140.6" text-anchor="middle" fill="#1b1f24">linia kropkowana bez grotu</text>
+<text class="message-label" x="135.5" y="193.6" text-anchor="middle" fill="#1b1f24">linia ciągła z grotem</text>
+<text class="message-label" x="135.5" y="246.6" text-anchor="middle" fill="#1b1f24">linia kropkowana z grotem</text>
+<text class="message-label" x="135.5" y="299.6" text-anchor="middle" fill="#1b1f24">linia ciągła z krzyżykiem</text>
+<text class="message-label" x="135.5" y="352.6" text-anchor="middle" fill="#1b1f24">linia kropkowana z krzyżykiem</text>
+<text class="message-label" x="135.5" y="405.6" text-anchor="middle" fill="#1b1f24">linia ciągła, grot otwarty</text>
+<text class="message-label" x="135.5" y="458.6" text-anchor="middle" fill="#1b1f24">linia kropkowana, grot otwarty</text>
+<text class="message-label" x="135.5" y="511.6" text-anchor="middle" fill="#1b1f24">dwukierunkowa ciągła</text>
+<text class="message-label" x="135.5" y="564.6" text-anchor="middle" fill="#1b1f24">dwukierunkowa kropkowana</text>
+<text class="message-label" x="135.5" y="617.6" text-anchor="middle" fill="#1b1f24">w lewo</text>
 <text class="participant-label" x="0" y="690.6" text-anchor="middle" fill="#1b1f24">Nadawca</text>
-<text class="participant-label" x="308" y="690.6" text-anchor="middle" fill="#1b1f24">Odbiorca</text>
+<text class="participant-label" x="271" y="690.6" text-anchor="middle" fill="#1b1f24">Odbiorca</text>
 </svg>

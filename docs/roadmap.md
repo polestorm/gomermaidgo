@@ -14,6 +14,7 @@
 | 11 | wynik PNG: opcjonalny pakiet `png`, własny rasteryzator i kontury glifów (ADR 0004) | zrobione 2026-11-22 |
 | 12 | motywy: własne, pod nazwami Mermaid, wybierane opcją, flagą `-t` albo w źródle; tekst obrócony w scenie (ADR 0005) | zrobione 2026-11-22 |
 | 13 | krój zapasowy z emoji (Noto Emoji, jednobarwne) w pomiarze, SVG, PDF i PNG (ADR 0006) | zrobione 2026-11-23 |
+| 14 | krój domyślny Arimo (szerokości jak Arial i Liberation Sans) zamiast Recursive (ADR 0007) | zrobione 2026-11-23 |
 | 5 | diagramy w dokumencie Markdown (`markdown.Embed`, reguły CSS dla wydruku) | zrobione 2026-11-21 |
 
 Zrobione 2026-11-21 po pierwszym przeglądzie: krój domyślny Recursive (ADR 0002), `box`, `create`/`destroy`,

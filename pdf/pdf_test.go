@@ -209,7 +209,7 @@ func TestDeterministicAndOptions(t *testing.T) {
 // Krój jest osadzony jako podzbiór: kontury tylko użytych glifów, numery glifów bez zmian,
 // poprawna suma kontrolna pliku; plik jest wielokrotnie mniejszy od całego kroju.
 func TestSubset(t *testing.T) {
-	data := fonts.Recursive()
+	data := fonts.Arimo()
 	f, err := parseTTF(data)
 	if err != nil {
 		t.Fatal(err)
@@ -275,7 +275,7 @@ func TestFonts(t *testing.T) {
 	if _, err := Render(src, gomermaidgo.WithFontFamily("Arial")); !errors.Is(err, gomermaidgo.ErrFontRequired) {
 		t.Errorf("font known by name only: got %v", err)
 	}
-	doc, err := Render(src, gomermaidgo.WithFont(fonts.RecursiveItalic()), gomermaidgo.WithFontFamily("Własny"))
+	doc, err := Render(src, gomermaidgo.WithFont(fonts.ArimoItalic()), gomermaidgo.WithFontFamily("Własny"))
 	if err != nil {
 		t.Fatal(err)
 	}

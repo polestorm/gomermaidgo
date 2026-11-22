@@ -1,73 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="781" height="1098" viewBox="-11.5 -12 781 1098" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="761" height="1078" viewBox="-11.5 -12 761 1078" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>System zarządzania jakością w otoczeniu</title>
-<rect class="cluster" x="0.5" y="0" width="757" height="1074" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="20.5" y="278" width="578" height="548" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
-<rect class="cluster" x="40.75" y="610" width="511.5" height="192" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
-<path class="edge" d="M397.5 476 L397.5 498 C397.5 502.4 393.9 506 389.5 506 L309.5 506 C305.1 506 301.5 509.6 301.5 514 L301.5 536 L301.5 580 L301.5 587 C301.5 591.4 297.9 595 293.5 595 L176.75 595 C172.35 595 168.75 598.6 168.75 603 L168.75 610 L168.75 675.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M455.5 476 L455.5 580 L455.5 587 C455.5 591.4 451.9 595 447.5 595 L436.75 595 C432.35 595 428.75 598.6 428.75 603 L428.75 610 L428.75 682.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M272.5 174 L272.5 248 L272.5 255 C272.5 259.4 276.1 263 280.5 263 L416.5 263 C420.9 263 424.5 266.6 424.5 271 L424.5 278 L424.5 343.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M602.5 174 L602.5 248 L602.5 255 C602.5 259.4 598.9 263 594.5 263 L458.5 263 C454.1 263 450.5 266.6 450.5 271 L450.5 278 L450.5 343.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M477.5 484.4 L477.5 502.2 C477.5 506.6 481.1 510.2 485.5 510.2 L566.5 510.2 C570.9 510.2 574.5 513.8 574.5 518.2 L574.5 536 L574.5 941.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="cluster-title-background" x="8.5" y="6" width="257.6" height="40" fill="#ffffff"/>
-<rect class="cluster-title-background" x="28.5" y="284" width="264.8" height="40" fill="#ffffff"/>
-<rect class="cluster-title-background" x="48.75" y="616" width="126.4" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="263.5" y="548" width="76" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="359.9" y="538" width="191.2" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="232.9" y="206" width="79.2" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="530.5" y="216" width="144" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="502.5" y="858" width="144" height="60" fill="#ffffff"/>
-<polygon class="arrowhead" points="168.75,684 162.75,672 174.75,672" fill="#3b4754"/>
-<polygon class="arrowhead" points="428.75,691 422.75,679 434.75,679" fill="#3b4754"/>
-<polygon class="arrowhead" points="424.5,352 418.5,340 430.5,340" fill="#3b4754"/>
-<polygon class="arrowhead" points="450.5,352 444.5,340 456.5,340" fill="#3b4754"/>
-<polygon class="arrowhead" points="477.5,476 483.5,488 471.5,488" fill="#3b4754"/>
-<polygon class="arrowhead" points="574.5,950 568.5,938 580.5,938" fill="#3b4754"/>
-<rect class="node" x="125.5" y="70" width="294" height="104" rx="52" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="467.5" y="70" width="270" height="104" rx="52" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
-<rect class="node" x="329" y="352" width="217" height="124" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="168.75" cy="775" rx="108" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="60.75" y="691" width="216" height="84" fill="#eef2f7"/>
-<line class="node-detail" x1="60.75" y1="691" x2="60.75" y2="775" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="276.75" y1="691" x2="276.75" y2="775" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="168.75" cy="691" rx="108" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="325.25" y="691" width="207" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="471" y="950" width="207" height="104" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
-<text class="cluster-title" x="137.3" y="21.6" text-anchor="middle" fill="#1b1f24">System zarządzania jakością w</text>
-<text class="cluster-title" x="137.3" y="41.6" text-anchor="middle" fill="#1b1f24">otoczeniu</text>
-<text class="node-label" x="231.7" y="97.6" font-weight="bold" fill="#1b1f24">Pracownik</text>
-<text class="node-label" x="272.5" y="117.6" text-anchor="middle" fill="#1b1f24">[Person]</text>
-<text class="node-label" x="272.5" y="137.6" text-anchor="middle" fill="#1b1f24">Czyta procedury i</text>
-<text class="node-label" x="272.5" y="157.6" text-anchor="middle" fill="#1b1f24">potwierdza zapoznanie</text>
-<text class="node-label" x="521.3" y="97.6" font-weight="bold" fill="#1b1f24">Audytor zewnętrzny</text>
-<text class="node-label" x="602.5" y="117.6" text-anchor="middle" fill="#1b1f24">[Person]</text>
-<text class="node-label" x="602.5" y="137.6" text-anchor="middle" fill="#1b1f24">Przegląda zapisy</text>
-<text class="node-label" x="602.5" y="157.6" text-anchor="middle" fill="#1b1f24">podczas audytu</text>
-<text class="cluster-title" x="160.9" y="299.6" text-anchor="middle" fill="#1b1f24">Wytwórca wyrobów medycznych</text>
-<text class="cluster-title" x="160.9" y="319.6" text-anchor="middle" fill="#1b1f24">[ENTERPRISE]</text>
-<text class="node-label" x="377.1" y="379.6" font-weight="bold" fill="#1b1f24">System jakości</text>
-<text class="node-label" x="437.5" y="399.6" text-anchor="middle" fill="#1b1f24">[Software System]</text>
-<text class="node-label" x="437.5" y="419.6" text-anchor="middle" fill="#1b1f24">Dokumenty, zapisy,</text>
-<text class="node-label" x="437.5" y="439.6" text-anchor="middle" fill="#1b1f24">szkolenia, działania</text>
-<text class="node-label" x="437.5" y="459.6" text-anchor="middle" fill="#1b1f24">korygujące</text>
-<text class="cluster-title" x="111.95" y="631.6" text-anchor="middle" fill="#1b1f24">Infrastruktura</text>
-<text class="cluster-title" x="111.95" y="651.6" text-anchor="middle" fill="#1b1f24">[SYSTEM]</text>
-<text class="node-label" x="119.55" y="722.1" font-weight="bold" fill="#1b1f24">Baza danych</text>
-<text class="node-label" x="168.75" y="742.1" text-anchor="middle" fill="#1b1f24">[Software System]</text>
-<text class="node-label" x="168.75" y="762.1" text-anchor="middle" fill="#1b1f24">Zapisy i ich historia</text>
-<text class="node-label" x="401.95" y="718.6" font-weight="bold" fill="#1b1f24">Poczta</text>
-<text class="node-label" x="428.75" y="738.6" text-anchor="middle" fill="#1b1f24">[Software System]</text>
-<text class="node-label" x="428.75" y="758.6" text-anchor="middle" fill="#1b1f24">Powiadomienia</text>
-<text class="edge-label" x="301.5" y="563.6" text-anchor="middle" fill="#1b1f24">Zapisuje</text>
-<text class="edge-label" x="455.5" y="553.6" text-anchor="middle" fill="#1b1f24">Wysyła powiadomienia</text>
-<text class="edge-label" x="455.5" y="573.6" text-anchor="middle" fill="#1b1f24">[SMTP]</text>
-<text class="node-label" x="560.5" y="977.6" font-weight="bold" fill="#1b1f24">ERP</text>
-<text class="node-label" x="574.5" y="997.6" text-anchor="middle" fill="#1b1f24">[Software System]</text>
-<text class="node-label" x="574.5" y="1017.6" text-anchor="middle" fill="#1b1f24">Partie, dostawcy,</text>
-<text class="node-label" x="574.5" y="1037.6" text-anchor="middle" fill="#1b1f24">zamówienia</text>
-<text class="edge-label" x="272.5" y="221.6" text-anchor="middle" fill="#1b1f24">Korzysta</text>
-<text class="edge-label" x="272.5" y="241.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
-<text class="edge-label" x="602.5" y="231.6" text-anchor="middle" fill="#1b1f24">Przegląda zapisy</text>
-<text class="edge-label" x="574.5" y="873.6" text-anchor="middle" fill="#1b1f24">Wymienia dane o</text>
-<text class="edge-label" x="574.5" y="893.6" text-anchor="middle" fill="#1b1f24">partiach</text>
-<text class="edge-label" x="574.5" y="913.6" text-anchor="middle" fill="#1b1f24">[API]</text>
+<rect class="cluster" x="0.5" y="0" width="737" height="1054" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="cluster" x="20.5" y="278" width="532" height="548" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
+<rect class="cluster" x="40.5" y="610" width="466" height="192" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
+<path class="edge" d="M364.5 476 L364.5 498 C364.5 502.4 360.9 506 356.5 506 L288.5 506 C284.1 506 280.5 509.6 280.5 514 L280.5 536 L280.5 580 L280.5 587 C280.5 591.4 276.9 595 272.5 595 L164.5 595 C160.1 595 156.5 598.6 156.5 603 L156.5 610 L156.5 675.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M420.5 476 L420.5 580 L420.5 587 C420.5 591.4 416.9 595 412.5 595 L401.5 595 C397.1 595 393.5 598.6 393.5 603 L393.5 610 L393.5 682.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M239.5 174 L239.5 248 L239.5 255 C239.5 259.4 243.1 263 247.5 263 L383.5 263 C387.9 263 391.5 266.6 391.5 271 L391.5 278 L391.5 343.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M570.5 174 L570.5 248 L570.5 255 C570.5 259.4 566.9 263 562.5 263 L425.5 263 C421.1 263 417.5 266.6 417.5 271 L417.5 278 L417.5 343.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M444.5 484.4 L444.5 502.2 C444.5 506.6 448.1 510.2 452.5 510.2 L520.5 510.2 C524.9 510.2 528.5 513.8 528.5 518.2 L528.5 536 L528.5 921.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="cluster-title-background" x="8.5" y="6" width="230.31" height="40" fill="#ffffff"/>
+<rect class="cluster-title-background" x="28.5" y="284" width="239.17" height="40" fill="#ffffff"/>
+<rect class="cluster-title-background" x="48.5" y="616" width="102.26" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="246.26" y="548" width="68.48" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="335.13" y="538" width="170.73" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="204.38" y="206" width="70.24" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="505.58" y="216" width="129.84" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="432.01" y="858" width="192.98" height="40" fill="#ffffff"/>
+<polygon class="arrowhead" points="156.5,684 150.5,672 162.5,672" fill="#3b4754"/>
+<polygon class="arrowhead" points="393.5,691 387.5,679 399.5,679" fill="#3b4754"/>
+<polygon class="arrowhead" points="391.5,352 385.5,340 397.5,340" fill="#3b4754"/>
+<polygon class="arrowhead" points="417.5,352 411.5,340 423.5,340" fill="#3b4754"/>
+<polygon class="arrowhead" points="444.5,476 450.5,488 438.5,488" fill="#3b4754"/>
+<polygon class="arrowhead" points="528.5,930 522.5,918 534.5,918" fill="#3b4754"/>
+<rect class="node" x="103.5" y="70" width="272" height="104" rx="52" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="423.5" y="70" width="294" height="104" rx="52" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
+<rect class="node" x="306.5" y="352" width="196" height="124" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="156.5" cy="775" rx="96" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="60.5" y="691" width="192" height="84" fill="#eef2f7"/>
+<line class="node-detail" x1="60.5" y1="691" x2="60.5" y2="775" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="252.5" y1="691" x2="252.5" y2="775" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="156.5" cy="691" rx="96" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="300.5" y="691" width="186" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="435.5" y="930" width="186" height="104" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text class="cluster-title" x="123.66" y="21.6" text-anchor="middle" fill="#1b1f24">System zarządzania jakością w</text>
+<text class="cluster-title" x="123.66" y="41.6" text-anchor="middle" fill="#1b1f24">otoczeniu</text>
+<text class="node-label" x="199.48" y="97.6" font-weight="bold" fill="#1b1f24">Pracownik</text>
+<text class="node-label" x="239.5" y="117.6" text-anchor="middle" fill="#1b1f24">[Person]</text>
+<text class="node-label" x="239.5" y="137.6" text-anchor="middle" fill="#1b1f24">Czyta procedury i</text>
+<text class="node-label" x="239.5" y="157.6" text-anchor="middle" fill="#1b1f24">potwierdza zapoznanie</text>
+<text class="node-label" x="494.49" y="97.6" font-weight="bold" fill="#1b1f24">Audytor zewnętrzny</text>
+<text class="node-label" x="570.5" y="117.6" text-anchor="middle" fill="#1b1f24">[Person]</text>
+<text class="node-label" x="570.5" y="137.6" text-anchor="middle" fill="#1b1f24">Przegląda zapisy podczas</text>
+<text class="node-label" x="570.5" y="157.6" text-anchor="middle" fill="#1b1f24">audytu</text>
+<text class="cluster-title" x="148.09" y="299.6" text-anchor="middle" fill="#1b1f24">Wytwórca wyrobów medycznych</text>
+<text class="cluster-title" x="148.09" y="319.6" text-anchor="middle" fill="#1b1f24">[ENTERPRISE]</text>
+<text class="node-label" x="346.69" y="379.6" font-weight="bold" fill="#1b1f24">System jakości</text>
+<text class="node-label" x="404.5" y="399.6" text-anchor="middle" fill="#1b1f24">[Software System]</text>
+<text class="node-label" x="404.5" y="419.6" text-anchor="middle" fill="#1b1f24">Dokumenty, zapisy,</text>
+<text class="node-label" x="404.5" y="439.6" text-anchor="middle" fill="#1b1f24">szkolenia, działania</text>
+<text class="node-label" x="404.5" y="459.6" text-anchor="middle" fill="#1b1f24">korygujące</text>
+<text class="cluster-title" x="99.63" y="631.6" text-anchor="middle" fill="#1b1f24">Infrastruktura</text>
+<text class="cluster-title" x="99.63" y="651.6" text-anchor="middle" fill="#1b1f24">[SYSTEM]</text>
+<text class="node-label" x="107.59" y="722.1" font-weight="bold" fill="#1b1f24">Baza danych</text>
+<text class="node-label" x="156.5" y="742.1" text-anchor="middle" fill="#1b1f24">[Software System]</text>
+<text class="node-label" x="156.5" y="762.1" text-anchor="middle" fill="#1b1f24">Zapisy i ich historia</text>
+<text class="node-label" x="367.71" y="718.6" font-weight="bold" fill="#1b1f24">Poczta</text>
+<text class="node-label" x="393.5" y="738.6" text-anchor="middle" fill="#1b1f24">[Software System]</text>
+<text class="node-label" x="393.5" y="758.6" text-anchor="middle" fill="#1b1f24">Powiadomienia</text>
+<text class="edge-label" x="280.5" y="563.6" text-anchor="middle" fill="#1b1f24">Zapisuje</text>
+<text class="edge-label" x="420.5" y="553.6" text-anchor="middle" fill="#1b1f24">Wysyła powiadomienia</text>
+<text class="edge-label" x="420.5" y="573.6" text-anchor="middle" fill="#1b1f24">[SMTP]</text>
+<text class="node-label" x="512.05" y="957.6" font-weight="bold" fill="#1b1f24">ERP</text>
+<text class="node-label" x="528.5" y="977.6" text-anchor="middle" fill="#1b1f24">[Software System]</text>
+<text class="node-label" x="528.5" y="997.6" text-anchor="middle" fill="#1b1f24">Partie, dostawcy,</text>
+<text class="node-label" x="528.5" y="1017.6" text-anchor="middle" fill="#1b1f24">zamówienia</text>
+<text class="edge-label" x="239.5" y="221.6" text-anchor="middle" fill="#1b1f24">Korzysta</text>
+<text class="edge-label" x="239.5" y="241.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
+<text class="edge-label" x="570.5" y="231.6" text-anchor="middle" fill="#1b1f24">Przegląda zapisy</text>
+<text class="edge-label" x="528.5" y="873.6" text-anchor="middle" fill="#1b1f24">Wymienia dane o partiach</text>
+<text class="edge-label" x="528.5" y="893.6" text-anchor="middle" fill="#1b1f24">[API]</text>
 </svg>

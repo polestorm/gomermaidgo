@@ -25,7 +25,7 @@ func init() {
 		case c.fontData != nil:
 			f = bridge.Fonts{Regular: c.fontData, Bold: c.boldData, Italic: c.italicData}
 		case c.measure == nil && c.fontFamily == "":
-			f = bridge.Fonts{Regular: fonts.Recursive(), Bold: fonts.RecursiveBold(), Italic: fonts.RecursiveItalic()}
+			f = bridge.Fonts{Regular: fonts.Arimo(), Bold: fonts.ArimoBold(), Italic: fonts.ArimoItalic()}
 		default:
 			return nil, f, ErrFontRequired
 		}

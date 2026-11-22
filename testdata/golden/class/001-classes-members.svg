@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="280" height="644" viewBox="-12 -12 280 644" role="img" font-family="Recursive, sans-serif" font-size="16">
-<rect class="node" x="0" y="0" width="256" height="230" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="0" y="0" width="256" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="0" y1="154" x2="256" y2="154" fill="none" stroke="#55657a" stroke-width="1"/>
-<rect class="node" x="0.5" y="274" width="227" height="122" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="0.5" y="274" width="227" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="0.5" y1="342" x2="227.5" y2="342" fill="none" stroke="#55657a" stroke-width="1"/>
-<rect class="node" x="0" y="440" width="202" height="100" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="0" y="440" width="202" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="0" y1="508" x2="202" y2="508" fill="none" stroke="#55657a" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="252" height="644" viewBox="-12 -12 252 644" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect class="node" x="0" y="0" width="228" height="230" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="0" y="0" width="228" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="0" y1="154" x2="228" y2="154" fill="none" stroke="#55657a" stroke-width="1"/>
+<rect class="node" x="0.5" y="274" width="205" height="122" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="0.5" y="274" width="205" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="0.5" y1="342" x2="205.5" y2="342" fill="none" stroke="#55657a" stroke-width="1"/>
+<rect class="node" x="0" y="440" width="190" height="100" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="0" y="440" width="190" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="0" y1="508" x2="190" y2="508" fill="none" stroke="#55657a" stroke-width="1"/>
 <rect class="node" x="0" y="584" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="128" y="23.6" text-anchor="middle" fill="#1b1f24">«abstract»</text>
-<text class="node-label" x="128" y="43.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Dokument</text>
+<text class="node-label" x="114" y="23.6" text-anchor="middle" fill="#1b1f24">«abstract»</text>
+<text class="node-label" x="114" y="43.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Dokument</text>
 <text class="member" x="12" y="77.6" fill="#1b1f24">+String numer</text>
 <text class="member" x="12" y="99.6" fill="#1b1f24">+int wydanie</text>
 <text class="member" x="12" y="121.6" fill="#1b1f24">#Status status</text>
@@ -18,14 +18,14 @@
 <text class="member" x="12" y="175.6" fill="#1b1f24">+zatwierdz(Osoba kto) : bool</text>
 <text class="member" x="12" y="197.6" font-style="italic" fill="#1b1f24">+wycofaj()</text>
 <text class="member" x="12" y="219.6" fill="#1b1f24">+nastepnyNumer() : String</text>
-<line class="member-underline" x1="12" y1="222.6" x2="224" y2="222.6" fill="none" stroke="#1b1f24" stroke-width="1"/>
-<text class="node-label" x="114" y="297.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rejestr&lt;T&gt;</text>
+<line class="member-underline" x1="12" y1="222.6" x2="200.08" y2="222.6" fill="none" stroke="#1b1f24" stroke-width="1"/>
+<text class="node-label" x="103" y="297.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rejestr&lt;T&gt;</text>
 <text class="member" x="12.5" y="363.6" fill="#1b1f24">+dodaj(T zapis)</text>
 <text class="member" x="12.5" y="385.6" fill="#1b1f24">+znajdz(String numer) : T</text>
 <text class="member" x="12.5" y="331.6" fill="#1b1f24">-int licznik</text>
-<line class="member-underline" x1="12.5" y1="334.6" x2="100.5" y2="334.6" fill="none" stroke="#1b1f24" stroke-width="1"/>
-<text class="node-label" x="101" y="463.6" text-anchor="middle" fill="#1b1f24">«interface»</text>
-<text class="node-label" x="101" y="483.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Osoba zatwierdzająca</text>
+<line class="member-underline" x1="12.5" y1="334.6" x2="82.73" y2="334.6" fill="none" stroke="#1b1f24" stroke-width="1"/>
+<text class="node-label" x="95" y="463.6" text-anchor="middle" fill="#1b1f24">«interface»</text>
+<text class="node-label" x="95" y="483.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Osoba zatwierdzająca</text>
 <text class="member" x="12" y="529.6" fill="#1b1f24">+podpisz(Dokument d)</text>
 <text class="node-label" x="60" y="607.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Uwaga</text>
 </svg>

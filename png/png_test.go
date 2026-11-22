@@ -173,7 +173,7 @@ func TestText(t *testing.T) {
 	if plain, marked := ink(t, "flowchart TD\nA[\"oooooooo\"]"), ink(t, "flowchart TD\nA[\"óóóóóóóó\"]"); marked < plain+40 {
 		t.Errorf("letters with marks: %d against %d", marked, plain)
 	}
-	if custom := ink(t, "flowchart TD\nA[\"mmmm\"]", gomermaidgo.WithFont(fonts.RecursiveBold())); custom <= base {
+	if custom := ink(t, "flowchart TD\nA[\"mmmm\"]", gomermaidgo.WithFont(fonts.ArimoBold())); custom <= base {
 		t.Errorf("WithFont: %d against %d", custom, base)
 	}
 	// Emoji rysuje krój zapasowy: rakieta zostawia inną ilość farby niż puste pole braku znaku.

@@ -10,7 +10,7 @@ import (
 // REQ: PNG-003
 // Kontury z dołączonego kroju: litera z otworem, litera złożona ze znakiem diakrytycznym, odstęp.
 func TestContours(t *testing.T) {
-	data := fonts.Recursive()
+	data := fonts.Arimo()
 	f, err := Parse(data)
 	if err != nil {
 		t.Fatal(err)

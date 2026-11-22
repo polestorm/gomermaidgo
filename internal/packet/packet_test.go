@@ -89,3 +89,39 @@ func TestLayout(t *testing.T) {
 		}
 	}
 }
+
+// REQ: PKT-003
+// Nazwa pola, która nie mieści się w poziomie nawet najmniejszym pismem, stoi pionowo w obrębie
+// swojego pola i nie nachodzi na nazwy sąsiadów.
+func TestNarrowFieldLabelsStayInside(t *testing.T) {
+	d, err := Parse("packet-beta\n0-7: \"Początek\"\n8: \"ACK\"\n9: \"ERR\"\n10: \"SYN\"\n11-31: \"Reszta\"")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	var fields, labels []scene.Item
+	for _, it := range sc.Items {
+		switch it.Role {
+		case "packet-field":
+			fields = append(fields, it)
+		case "packet-label":
+			labels = append(labels, it)
+		}
+	}
+	if len(fields) != len(labels) {
+		t.Fatalf("%d fields, %d labels", len(fields), len(labels))
+	}
+	vertical := 0
+	for i, l := range labels {
+		b, f := l.Bounds(), fields[i].Bounds()
+		if b.X0 < f.X0-0.5 || b.X1 > f.X1+0.5 || b.Y0 < f.Y0-0.5 || b.Y1 > f.Y1+0.5 {
+			t.Errorf("label %q leaves its field: %+v in %+v", l.Text, b, f)
+		}
+		if l.Vertical {
+			vertical++
+		}
+	}
+	if vertical != 3 || labels[0].Vertical || labels[4].Vertical {
+		t.Errorf("only the three one-bit labels should be vertical, got %d", vertical)
+	}
+}

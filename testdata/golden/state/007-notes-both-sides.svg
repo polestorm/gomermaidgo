@@ -1,37 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="609" height="472" viewBox="-12 -12 609 472" role="img" font-family="Recursive, sans-serif" font-size="16">
-<line class="note-link" x1="200.5" y1="82" x2="151.8" y2="82" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<line class="note-link" x1="365.5" y1="82" x2="412.6" y2="82" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<line class="note-link" x1="365.5" y1="216" x2="413" y2="216" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<line class="note-link" x1="200.5" y1="356" x2="152" y2="356" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M283 16 L283 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M283 104 L283 185.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M283 238 L283 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M283 378 L283 419.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="239" y="136" width="88" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="251.8" y="276" width="62.4" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="283,60 277,48 289,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="283,194 277,182 289,182" fill="#3b4754"/>
-<polygon class="arrowhead" points="283,334 277,322 289,322" fill="#3b4754"/>
-<polygon class="arrowhead" points="283,428 277,416 289,416" fill="#3b4754"/>
-<circle class="node" cx="283" cy="8" r="8" fill="#3b4754"/>
-<rect class="note" x="46.2" y="64" width="105.6" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<rect class="node" x="200.5" y="60" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="note" x="412.6" y="64" width="112.8" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<rect class="node" x="200.5" y="194" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="note" x="413" y="188" width="172" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<rect class="note" x="0" y="328" width="152" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<rect class="node" x="200.5" y="334" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="283" cy="438" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="283" cy="438" r="6" fill="#3b4754"/>
-<text class="note-label" x="99" y="87.6" text-anchor="middle" fill="#1b1f24">Wersja 0.x</text>
-<text class="node-label" x="283" y="87.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>
-<text class="note-label" x="469" y="87.6" text-anchor="middle" fill="#1b1f24">Tylko autor</text>
-<text class="node-label" x="283" y="221.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
-<text class="note-label" x="499" y="211.6" text-anchor="middle" fill="#1b1f24">Szkolenie musi być</text>
-<text class="note-label" x="499" y="231.6" text-anchor="middle" fill="#1b1f24">ukończone</text>
-<text class="note-label" x="76" y="351.6" text-anchor="middle" fill="#1b1f24">Kopie papierowe</text>
-<text class="note-label" x="76" y="371.6" text-anchor="middle" fill="#1b1f24">do zniszczenia</text>
-<text class="node-label" x="283" y="361.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
-<text class="edge-label" x="283" y="151.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
-<text class="edge-label" x="283" y="291.6" text-anchor="middle" fill="#1b1f24">zastąp</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="572.07" height="472" viewBox="-11.6 -12 572.07 472" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<line class="note-link" x1="187" y1="82" x2="138.79" y2="82" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
+<line class="note-link" x1="343" y1="82" x2="391.43" y2="82" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
+<line class="note-link" x1="343" y1="216" x2="391.53" y2="216" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
+<line class="note-link" x1="187" y1="356" x2="139.6" y2="356" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M265 16 L265 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M265 104 L265 185.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M265 238 L265 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M265 378 L265 419.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="227.21" y="136" width="75.58" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="237.43" y="276" width="55.14" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="265,60 259,48 271,48" fill="#3b4754"/>
+<polygon class="arrowhead" points="265,194 259,182 271,182" fill="#3b4754"/>
+<polygon class="arrowhead" points="265,334 259,322 271,322" fill="#3b4754"/>
+<polygon class="arrowhead" points="265,428 259,416 271,416" fill="#3b4754"/>
+<circle class="node" cx="265" cy="8" r="8" fill="#3b4754"/>
+<rect class="note" x="43.21" y="64" width="95.57" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<rect class="node" x="187" y="60" width="156" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="note" x="391.43" y="64" width="99.14" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<rect class="node" x="187" y="194" width="156" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="note" x="391.53" y="188" width="156.95" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<rect class="note" x="0.4" y="328" width="139.2" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<rect class="node" x="187" y="334" width="156" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="265" cy="438" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="265" cy="438" r="6" fill="#3b4754"/>
+<text class="note-label" x="91" y="87.6" text-anchor="middle" fill="#1b1f24">Wersja 0.x</text>
+<text class="node-label" x="265" y="87.6" text-anchor="middle" fill="#1b1f24">Roboczy</text>
+<text class="note-label" x="441" y="87.6" text-anchor="middle" fill="#1b1f24">Tylko autor</text>
+<text class="node-label" x="265" y="221.6" text-anchor="middle" fill="#1b1f24">Obowiązujący</text>
+<text class="note-label" x="470" y="211.6" text-anchor="middle" fill="#1b1f24">Szkolenie musi być</text>
+<text class="note-label" x="470" y="231.6" text-anchor="middle" fill="#1b1f24">ukończone</text>
+<text class="note-label" x="70" y="351.6" text-anchor="middle" fill="#1b1f24">Kopie papierowe</text>
+<text class="note-label" x="70" y="371.6" text-anchor="middle" fill="#1b1f24">do zniszczenia</text>
+<text class="node-label" x="265" y="361.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
+<text class="edge-label" x="265" y="151.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
+<text class="edge-label" x="265" y="291.6" text-anchor="middle" fill="#1b1f24">zastąp</text>
 </svg>

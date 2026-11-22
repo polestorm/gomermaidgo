@@ -7,9 +7,11 @@ Go standard library. The same source and options always give the same SVG, byte 
 svg, err := gomermaidgo.Render(source)
 ```
 
-By default text is measured with, and the SVG asks for, the bundled Recursive typeface (`fonts.Recursive()`, SIL Open
-Font License 1.1, see `fonts/OFL.txt`). Give the same file to whatever draws the SVG: a page through `@font-face`, a
-PDF converter as an embedded font. To use another typeface, pass both its file and its name:
+By default text is measured with the bundled Arimo typeface (`fonts.Arimo()`, SIL Open Font License 1.1, see
+`fonts/OFL-Arimo.txt`), and the SVG asks for `Arimo, Arial, 'Liberation Sans', sans-serif`. Arimo has the same
+character widths as Arial and Liberation Sans, so the drawing keeps its layout on Windows, macOS and most Linux
+desktops without any font file; elsewhere, give the file to whatever draws the SVG (a page through `@font-face`, a PDF
+converter as an embedded font). To use another typeface, pass both its file and its name:
 
 ```go
 svg, err := gomermaidgo.Render(source,
@@ -97,7 +99,7 @@ same 70 sources (43 kB in all).
 
 | | | gomermaidgo | mmdg[^ref] | Difference |
 |---|---|---:|---:|---|
-| Binary | size | 7.8 MB | 53.4 MB | 85% smaller |
+| Binary | size | 8.0 MB | 53.4 MB | 85% smaller |
 | | dependencies | 0 | 10 | - |
 | SVG | conversion time | 7 ms | 32 ms | 77% faster |
 | | memory usage | 14 MB | 43 MB | 68% less |
@@ -121,5 +123,5 @@ because the other program does not render them.
 
 ## License
 
-Apache License 2.0, see `LICENSE` and `NOTICE`. The bundled Recursive typeface is distributed under the SIL Open Font
-License 1.1 (`fonts/OFL.txt`).
+Apache License 2.0, see `LICENSE` and `NOTICE`. The bundled Arimo and Noto Emoji typefaces are distributed under the
+SIL Open Font License 1.1 (`fonts/OFL-Arimo.txt`, `fonts/OFL-NotoEmoji.txt`).

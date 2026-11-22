@@ -1,6 +1,6 @@
 # 0002 Dołączony krój domyślny: Recursive
 
-Status: przyjęta (robocza) · 2026-11-21
+Status: zastąpiona przez ADR 0007 · 2026-11-21
 
 ## Kontekst
 
