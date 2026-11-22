@@ -434,3 +434,75 @@ func TestClassDrawing(t *testing.T) {
 		t.Errorf("%d triangles and %d diamonds, want 4 and 2", heads[3], heads[4])
 	}
 }
+
+// edgeInto zwraca krawędź, która kończy się na górnej krawędzi pola.
+func edgeInto(t *testing.T, sc *scene.Scene, box scene.Box) scene.Item {
+	t.Helper()
+	for _, e := range byRole(sc, "edge") {
+		end := e.Segments[len(e.Segments)-1].To
+		if end.X > box.X0 && end.X < box.X1 && math.Abs(end.Y-box.Y0) < 12 {
+			return e
+		}
+	}
+	t.Fatalf("no edge ends at the top of %+v", box)
+	return scene.Item{}
+}
+
+// REQ: LAY-012
+// Krawędź z etykietą do pola w podgrafie, które nie stoi pośrodku ramki: etykieta i punkty pośrednie
+// stają w osi punktu wejścia do ramki, więc krawędź między polami stojącymi jedno pod drugim jest prosta.
+func TestLabelledEdgeIntoFrameIsStraight(t *testing.T) {
+	sc := natural(t, "c4/002-container.mmd")
+	user, app := nodeOf(t, sc, "Użytkownik"), nodeOf(t, sc, "Aplikacja")
+	if math.Abs(centerX(user)-centerX(app)) > 0.5 {
+		t.Fatalf("the nodes should share an axis: %.1f and %.1f", centerX(user), centerX(app))
+	}
+	for _, sg := range edgeInto(t, sc, app).Segments {
+		if math.Abs(sg.To.X-centerX(app)) > 0.5 {
+			t.Errorf("the edge leaves the axis at (%.1f, %.1f)", sg.To.X, sg.To.Y)
+		}
+	}
+}
+
+// REQ: LAY-013
+// Dwie krawędzie z jednego pola, z których jedna mija pole celu drugiej: mijająca staje po tej
+// stronie, po której nie przecina krawędzi wracającej z tego pola. Rysunek nie ma wtedy przecięć.
+func TestPassingEdgeTakesFreeSide(t *testing.T) {
+	sc := natural(t, "c4/002-container.mmd")
+	renderer, mail, app := nodeOf(t, sc, "Renderer PDF"), nodeOf(t, sc, "Serwer poczty"), nodeOf(t, sc, "Aplikacja")
+	for _, sg := range edgeInto(t, sc, mail).Segments {
+		if sg.To.X > renderer.X0 {
+			t.Errorf("the edge to the mail server should pass the renderer on its free side: x=%.1f", sg.To.X)
+		}
+	}
+	// Krawędź wracająca z pola Renderer do Aplikacji biegnie prosto w górę.
+	back := false
+	for _, e := range byRole(sc, "edge") {
+		first, last := e.Segments[0].To, e.Segments[len(e.Segments)-1].To
+		lo, hi := math.Min(first.Y, last.Y), math.Max(first.Y, last.Y)
+		if math.Abs(first.X-last.X) < 0.5 && first.X > renderer.X0 && first.X < renderer.X1 && math.Abs(lo-app.Y1) < 12 && math.Abs(hi-renderer.Y0) < 12 {
+			back = true
+		}
+	}
+	if !back {
+		t.Errorf("the edge back from the renderer should run straight up")
+	}
+	ss := straights(sc)
+	for i, p := range ss {
+		for _, q := range ss[i+1:] {
+			if p.edge == q.edge {
+				continue
+			}
+			h, v := p, q
+			if math.Abs(h.a.Y-h.b.Y) > 0.01 {
+				h, v = q, p
+			}
+			if math.Abs(h.a.Y-h.b.Y) > 0.01 || math.Abs(v.a.X-v.b.X) > 0.01 {
+				continue
+			}
+			if x, y := v.a.X, h.a.Y; x > math.Min(h.a.X, h.b.X)-8 && x < math.Max(h.a.X, h.b.X)+8 && y > math.Min(v.a.Y, v.b.Y)-8 && y < math.Max(v.a.Y, v.b.Y)+8 {
+				t.Errorf("edges still cross or touch near (%.1f, %.1f)", x, y)
+			}
+		}
+	}
+}

@@ -1445,6 +1445,10 @@ func (l *layouter) order(lv *level) {
 			}
 		}
 	}
+	// flipTies: pola o równym położeniu sąsiadów zamieniają kolejność. Zwykły przebieg zostawia je
+	// tak, jak stały, i potrafi utknąć w układzie, z którego wyprowadza dopiero zamiana w dwóch
+	// warstwach naraz (np. dwie krawędzie z jednego pola, z których jedna mija pole celu drugiej).
+	flipTies := false
 	sweep := func(r int, neighbours func(*item) []*item) {
 		row := lv.ranks[r]
 		if lv.pinPorts && portsOnly(row) {
@@ -1468,6 +1472,11 @@ func (l *layouter) order(lv *level) {
 			}
 			movable = append(movable, keyed{it, sum / float64(len(ns))})
 		}
+		if flipTies {
+			for i, j := 0, len(movable)-1; i < j; i, j = i+1, j-1 {
+				movable[i], movable[j] = movable[j], movable[i]
+			}
+		}
 		sort.SliceStable(movable, func(a, b int) bool { return movable[a].key < movable[b].key })
 		next := make([]*item, len(row))
 		k := 0
@@ -1488,7 +1497,13 @@ func (l *layouter) order(lv *level) {
 	if lv.pinPorts {
 		bestCount = math.MaxInt // kolejność zastana powstała przy innych punktach na ramce
 	}
-	for iter := 0; iter < 24 && bestCount > 0; iter++ {
+	for iter := 0; iter < 32 && bestCount > 0; iter++ {
+		// Po zwykłych przebiegach, jeśli przecięcia zostały: od najlepszego układu jeden przebieg
+		// z odwróconymi remisami, potem znów zwykłe.
+		if iter >= 24 && iter%4 == 0 {
+			restore(best)
+		}
+		flipTies = iter >= 24 && iter%4 < 2
 		if iter%2 == 0 {
 			for r := 1; r < len(lv.ranks); r++ {
 				sweep(r, func(it *item) []*item { return it.up })
@@ -1804,12 +1819,15 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				out, in := len(e.u.down), len(e.v.up)
 				switch {
 				case in == 1 && out >= 1:
+					// Koniec w podgrafie: osią jest punkt na jego ramce, nie środek ramki.
+					off := attach[[2]*item{e.chain[len(e.chain)-1], e.v}]
 					for _, d := range e.chain {
-						axis[d] = e.v.x - e.v.loopExtra/2
+						axis[d] = e.v.x - e.v.loopExtra/2 + off
 					}
 				case out == 1:
+					off := attach[[2]*item{e.chain[0], e.u}]
 					for _, d := range e.chain {
-						axis[d] = e.u.x - e.u.loopExtra/2
+						axis[d] = e.u.x - e.u.loopExtra/2 + off
 					}
 				case len(e.chain) > 1:
 					// Oba końce mają po kilka krawędzi: punkty pośrednie stają w jednej osi, tej

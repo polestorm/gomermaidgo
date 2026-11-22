@@ -1,58 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="704" height="902" viewBox="-12 -12 704 902" role="img" font-family="Recursive, sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="677.5" height="902" viewBox="-11.5 -12 677.5 902" role="img" font-family="Recursive, sans-serif" font-size="16">
 <title>Kontenery systemu jakości</title>
-<rect class="cluster" x="0" y="168" width="680" height="562" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
-<path class="edge" d="M488 326 L488 341 C488 345.4 484.4 349 480 349 L153 349 C148.6 349 145 352.6 145 357 L145 386 L145 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M528 326 L528 355 C528 359.4 524.4 363 520 363 L437 363 C432.6 363 429 366.6 429 371 L429 386 L429 458.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M395 551 L395 633.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M609 334.4 L609 612 L609 619 C609 623.4 605.4 627 601 627 L417 627 C412.6 627 409 630.6 409 635 L409 642" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M528 64 L528 71 C528 75.4 524.4 79 520 79 L348 79 C343.6 79 340 82.6 340 87 L340 94 L340 138 L340 145 C340 149.4 343.6 153 348 153 L520 153 C524.4 153 528 156.6 528 161 L528 168 L528 233.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M463 551 L463 621 C459.7 621 457 623.7 457 627 C457 630.3 459.7 633 463 633 L463 805.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="cluster-title-background" x="8" y="174" width="128.8" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="77" y="388" width="136" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="403.8" y="398" width="50.4" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="349.4" y="590" width="91.2" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="559" y="499" width="100" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="243.2" y="96" width="193.6" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="429.8" y="762" width="66.4" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="145,460 139,448 151,448" fill="#3b4754"/>
-<polygon class="arrowhead" points="429,467 423,455 435,455" fill="#3b4754"/>
-<polygon class="arrowhead" points="395,642 389,630 401,630" fill="#3b4754"/>
-<polygon class="arrowhead" points="609,326 615,338 603,338" fill="#3b4754"/>
-<polygon class="arrowhead" points="528,242 522,230 534,230" fill="#3b4754"/>
-<polygon class="arrowhead" points="463,814 457,802 469,802" fill="#3b4754"/>
-<rect class="node" x="437" y="0" width="182" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="408" y="242" width="240" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="145" cy="551" rx="125" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="20" y="467" width="250" height="84" fill="#eef2f7"/>
-<line class="node-detail" x1="20" y1="467" x2="20" y2="551" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="270" y1="467" x2="270" y2="551" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="145" cy="467" rx="125" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="318" y="467" width="222" height="84" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="218.5" y="642" width="223" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="362.5" y="814" width="201" height="64" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
-<text class="node-label" x="481.2" y="27.6" font-weight="bold" fill="#1b1f24">Użytkownik</text>
-<text class="node-label" x="528" y="47.6" text-anchor="middle" fill="#1b1f24">[Person]</text>
-<text class="cluster-title" x="72.4" y="189.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
-<text class="cluster-title" x="72.4" y="209.6" text-anchor="middle" fill="#1b1f24">[CONTAINER]</text>
-<text class="node-label" x="491.2" y="269.6" font-weight="bold" fill="#1b1f24">Aplikacja</text>
-<text class="node-label" x="528" y="289.6" text-anchor="middle" fill="#1b1f24">[Container: Go, HTMX]</text>
-<text class="node-label" x="528" y="309.6" text-anchor="middle" fill="#1b1f24">Formularze i przeglądy</text>
-<text class="node-label" x="126.2" y="498.1" font-weight="bold" fill="#1b1f24">Baza</text>
-<text class="node-label" x="145" y="518.1" text-anchor="middle" fill="#1b1f24">[Container: PostgreSQL]</text>
-<text class="node-label" x="145" y="538.1" text-anchor="middle" fill="#1b1f24">Dokumenty i zapisy</text>
-<text class="node-label" x="373.4" y="494.6" font-weight="bold" fill="#1b1f24">Kolejka zadań</text>
-<text class="node-label" x="429" y="514.6" text-anchor="middle" fill="#1b1f24">[Container: tabela w</text>
-<text class="node-label" x="429" y="534.6" text-anchor="middle" fill="#1b1f24">bazie]</text>
-<text class="node-label" x="277.2" y="669.6" font-weight="bold" fill="#1b1f24">Renderer PDF</text>
-<text class="node-label" x="330" y="689.6" text-anchor="middle" fill="#1b1f24">[Container: gopdfgo]</text>
-<text class="edge-label" x="145" y="403.6" text-anchor="middle" fill="#1b1f24">Czyta i zapisuje</text>
-<text class="edge-label" x="145" y="423.6" text-anchor="middle" fill="#1b1f24">[SQL]</text>
-<text class="edge-label" x="429" y="413.6" text-anchor="middle" fill="#1b1f24">Zleca</text>
-<text class="edge-label" x="395" y="605.6" text-anchor="middle" fill="#1b1f24">Uruchamia</text>
-<text class="edge-label" x="609" y="514.6" text-anchor="middle" fill="#1b1f24">Zwraca plik</text>
-<text class="node-label" x="405.8" y="841.6" font-weight="bold" fill="#1b1f24">Serwer poczty</text>
-<text class="node-label" x="463" y="861.6" text-anchor="middle" fill="#1b1f24">[Container: SMTP]</text>
-<text class="edge-label" x="340" y="111.6" text-anchor="middle" fill="#1b1f24">Pracuje w przeglądarce</text>
-<text class="edge-label" x="340" y="131.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
-<text class="edge-label" x="463" y="777.6" text-anchor="middle" fill="#1b1f24">Wysyła</text>
+<rect class="cluster" x="4" y="168" width="650" height="562" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
+<path class="edge" d="M376 326 L376 348 C376 352.4 379.6 356 384 356 L501 356 C505.4 356 509 359.6 509 364 L509 386 L509 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M296 326 L296 348 C296 352.4 292.4 356 288 356 L143 356 C138.6 356 135 359.6 135 364 L135 386 L135 458.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M169 551 L169 633.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M315 334.4 L315 642" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M336 64 L336 233.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M101 551 L101 805.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="cluster-title-background" x="12" y="174" width="128.8" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="441" y="388" width="136" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="109.8" y="398" width="50.4" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="123.4" y="590" width="91.2" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="265" y="499" width="100" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="239.2" y="96" width="193.6" height="40" fill="#ffffff"/>
+<rect class="edge-label-background" x="67.8" y="762" width="66.4" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="509,460 503,448 515,448" fill="#3b4754"/>
+<polygon class="arrowhead" points="135,467 129,455 141,455" fill="#3b4754"/>
+<polygon class="arrowhead" points="169,642 163,630 175,630" fill="#3b4754"/>
+<polygon class="arrowhead" points="315,326 321,338 309,338" fill="#3b4754"/>
+<polygon class="arrowhead" points="336,242 330,230 342,230" fill="#3b4754"/>
+<polygon class="arrowhead" points="101,814 95,802 107,802" fill="#3b4754"/>
+<rect class="node" x="245" y="0" width="182" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="216" y="242" width="240" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="24" y="467" width="222" height="84" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="509" cy="551" rx="125" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="384" y="467" width="250" height="84" fill="#eef2f7"/>
+<line class="node-detail" x1="384" y1="467" x2="384" y2="551" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="634" y1="467" x2="634" y2="551" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="509" cy="467" rx="125" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="130.5" y="642" width="223" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0.5" y="814" width="201" height="64" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text class="node-label" x="289.2" y="27.6" font-weight="bold" fill="#1b1f24">Użytkownik</text>
+<text class="node-label" x="336" y="47.6" text-anchor="middle" fill="#1b1f24">[Person]</text>
+<text class="cluster-title" x="76.4" y="189.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
+<text class="cluster-title" x="76.4" y="209.6" text-anchor="middle" fill="#1b1f24">[CONTAINER]</text>
+<text class="node-label" x="299.2" y="269.6" font-weight="bold" fill="#1b1f24">Aplikacja</text>
+<text class="node-label" x="336" y="289.6" text-anchor="middle" fill="#1b1f24">[Container: Go, HTMX]</text>
+<text class="node-label" x="336" y="309.6" text-anchor="middle" fill="#1b1f24">Formularze i przeglądy</text>
+<text class="node-label" x="79.4" y="494.6" font-weight="bold" fill="#1b1f24">Kolejka zadań</text>
+<text class="node-label" x="135" y="514.6" text-anchor="middle" fill="#1b1f24">[Container: tabela w</text>
+<text class="node-label" x="135" y="534.6" text-anchor="middle" fill="#1b1f24">bazie]</text>
+<text class="node-label" x="490.2" y="498.1" font-weight="bold" fill="#1b1f24">Baza</text>
+<text class="node-label" x="509" y="518.1" text-anchor="middle" fill="#1b1f24">[Container: PostgreSQL]</text>
+<text class="node-label" x="509" y="538.1" text-anchor="middle" fill="#1b1f24">Dokumenty i zapisy</text>
+<text class="node-label" x="189.2" y="669.6" font-weight="bold" fill="#1b1f24">Renderer PDF</text>
+<text class="node-label" x="242" y="689.6" text-anchor="middle" fill="#1b1f24">[Container: gopdfgo]</text>
+<text class="edge-label" x="509" y="403.6" text-anchor="middle" fill="#1b1f24">Czyta i zapisuje</text>
+<text class="edge-label" x="509" y="423.6" text-anchor="middle" fill="#1b1f24">[SQL]</text>
+<text class="edge-label" x="135" y="413.6" text-anchor="middle" fill="#1b1f24">Zleca</text>
+<text class="edge-label" x="169" y="605.6" text-anchor="middle" fill="#1b1f24">Uruchamia</text>
+<text class="edge-label" x="315" y="514.6" text-anchor="middle" fill="#1b1f24">Zwraca plik</text>
+<text class="node-label" x="43.8" y="841.6" font-weight="bold" fill="#1b1f24">Serwer poczty</text>
+<text class="node-label" x="101" y="861.6" text-anchor="middle" fill="#1b1f24">[Container: SMTP]</text>
+<text class="edge-label" x="336" y="111.6" text-anchor="middle" fill="#1b1f24">Pracuje w przeglądarce</text>
+<text class="edge-label" x="336" y="131.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
+<text class="edge-label" x="101" y="777.6" text-anchor="middle" fill="#1b1f24">Wysyła</text>
 </svg>
