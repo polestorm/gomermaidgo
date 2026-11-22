@@ -69,6 +69,7 @@ func main() {
 	family := flag.String("family", "sans-serif", "font-family for our drawings")
 	ref := flag.String("ref", "", "reference renderer command with {in} and {out} (optional)")
 	out := flag.String("o", "out/review.html", "output file")
+	themes := flag.Bool("themes", false, "also show a sample of diagrams in the forest and dark themes")
 	flag.Parse()
 
 	var opts []gomermaidgo.Option
@@ -126,9 +127,9 @@ func main() {
 				e.SVG = string(svg)
 				styled, _ := gomermaidgo.Render(e.Source, append(opts[:len(opts):len(opts)], gomermaidgo.WithColors(), gomermaidgo.WithShadows())...)
 				e.Styled = string(styled)
-				// Wyrywkowo: pierwszy diagram każdego typu i co czwarty z kolei dostają rysunek w jednym
+				// Z flagą -themes, wyrywkowo: pierwszy diagram każdego typu i co czwarty z kolei dostają rysunek w jednym
 				// z motywów, na zmianę, żeby dało się je ocenić bez osobnej strony.
-				if first := len(entries) == 0 || entries[len(entries)-1].Kind != kind; first || len(entries)%4 == 0 {
+				if first := len(entries) == 0 || entries[len(entries)-1].Kind != kind; *themes && (first || len(entries)%4 == 0) {
 					e.Theme = sampleThemes[themed%len(sampleThemes)]
 					themed++
 					if drawn, err := gomermaidgo.Render(e.Source, append(opts[:len(opts):len(opts)], gomermaidgo.WithTheme(e.Theme))...); err == nil {
