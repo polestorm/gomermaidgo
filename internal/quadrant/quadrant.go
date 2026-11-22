@@ -26,6 +26,53 @@ type Point struct {
 	Name string
 	X, Y float64
 	Line int
+	Style
+}
+
+// Style to wygląd punktu ze źródła: z klasy (classDef) albo z zapisu po współrzędnych.
+// Wartość zerowa pola oznacza wygląd domyślny.
+type Style struct {
+	Radius      float64
+	Color       string
+	StrokeColor string
+	StrokeWidth float64
+}
+
+// apply dopisuje do stylu własności z zapisu „radius: 8, color: #b42318, stroke-width: 2px”.
+// Własność nieznana albo o złej wartości jest pomijana.
+func (st *Style) apply(list string) {
+	for _, part := range strings.Split(list, ",") {
+		key, value, ok := strings.Cut(part, ":")
+		if !ok {
+			continue
+		}
+		key, value = strings.TrimSpace(key), strings.TrimSpace(value)
+		number := func() float64 {
+			v, err := strconv.ParseFloat(strings.TrimSuffix(value, "px"), 64)
+			if err != nil || !(v > 0 && v <= 40) {
+				return 0
+			}
+			return v
+		}
+		switch key {
+		case "radius":
+			if v := number(); v > 0 {
+				st.Radius = v
+			}
+		case "stroke-width":
+			if v := number(); v > 0 {
+				st.StrokeWidth = v
+			}
+		case "color":
+			if paint.MatchString(value) {
+				st.Color = value
+			}
+		case "stroke-color":
+			if paint.MatchString(value) {
+				st.StrokeColor = value
+			}
+		}
+	}
 }
 
 // Chart to wykres ćwiartkowy. Quadrants: 0 prawa górna, 1 lewa górna, 2 lewa dolna, 3 prawa dolna.
@@ -40,7 +87,10 @@ type Chart struct {
 }
 
 var (
-	point    = regexp.MustCompile(`^(.+?)(?::::[\p{L}\p{N}_-]+)?\s*:\s*\[\s*([^,\]]+?)\s*,\s*([^,\]]+?)\s*\](.*)$`)
+	point    = regexp.MustCompile(`^(.+?)(?::::([\p{L}\p{N}_-]+))?\s*:\s*\[\s*([^,\]]+?)\s*,\s*([^,\]]+?)\s*\](.*)$`)
+	classDef = regexp.MustCompile(`^classDef\s+([\p{L}\p{N}_-]+)\s+(.+)$`)
+	// Kolor: zapis szesnastkowy albo nazwa; nic, co mogłoby wyjść poza atrybut.
+	paint    = regexp.MustCompile(`^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|[a-zA-Z]+)$`)
 	quadrant = regexp.MustCompile(`^quadrant-([1-4])\s+(.+)$`)
 )
 
@@ -57,6 +107,8 @@ func Parse(source string) (*Chart, error) {
 	c := &Chart{}
 	var acc syntax.Accessibility
 	seenHeader := false
+	classes := map[string]Style{}
+	var classOf []string // klasa każdego punktu; definicja może stać po punkcie
 	source = strings.ReplaceAll(source, "\r\n", "\n")
 	for n, raw := range strings.Split(source, "\n") {
 		line := n + 1
@@ -92,7 +144,13 @@ func Parse(source string) (*Chart, error) {
 				c.YBottom, c.YTop = lo, unquote(hi)
 			}
 		case word == "classDef":
-			// wygląd punktów ze źródła nie jest rysowany
+			m := classDef.FindStringSubmatch(s)
+			if m == nil {
+				return nil, syntax.Errorf(line, CodeStatement, "classDef needs a name and properties, found %q", s)
+			}
+			st := classes[m[1]]
+			st.apply(m[2])
+			classes[m[1]] = st
 		case quadrant.MatchString(s):
 			m := quadrant.FindStringSubmatch(s)
 			c.Quadrants[m[1][0]-'1'] = unquote(m[2])
@@ -101,15 +159,18 @@ func Parse(source string) (*Chart, error) {
 			if m == nil {
 				return nil, syntax.Errorf(line, CodeStatement, "unrecognised statement %q", s)
 			}
-			x, errX := strconv.ParseFloat(m[2], 64)
-			y, errY := strconv.ParseFloat(m[3], 64)
+			x, errX := strconv.ParseFloat(m[3], 64)
+			y, errY := strconv.ParseFloat(m[4], 64)
 			if errX != nil || errY != nil || !(x >= 0 && x <= 1) || !(y >= 0 && y <= 1) {
-				return nil, syntax.Errorf(line, CodePoint, "point coordinates must be numbers from 0 to 1, found [%s, %s]", m[2], m[3])
+				return nil, syntax.Errorf(line, CodePoint, "point coordinates must be numbers from 0 to 1, found [%s, %s]", m[3], m[4])
 			}
 			if len(c.Points) >= maxPoints {
 				return nil, syntax.Errorf(line, CodePoint, "too many points (limit %d)", maxPoints)
 			}
-			c.Points = append(c.Points, Point{Name: unquote(m[1]), X: x, Y: y, Line: line})
+			pt := Point{Name: unquote(m[1]), X: x, Y: y, Line: line}
+			pt.Style.apply(m[5])
+			classOf = append(classOf, m[2])
+			c.Points = append(c.Points, pt)
 		}
 	}
 	if !seenHeader {
@@ -117,6 +178,23 @@ func Parse(source string) (*Chart, error) {
 	}
 	if acc.Open() {
 		return nil, syntax.Errorf(0, CodeStatement, "accDescr is not closed with \"}\"")
+	}
+	// Własności zapisane przy punkcie mają pierwszeństwo przed klasą.
+	for i := range c.Points {
+		own, st := c.Points[i].Style, classes[classOf[i]]
+		if own.Radius > 0 {
+			st.Radius = own.Radius
+		}
+		if own.Color != "" {
+			st.Color = own.Color
+		}
+		if own.StrokeColor != "" {
+			st.StrokeColor = own.StrokeColor
+		}
+		if own.StrokeWidth > 0 {
+			st.StrokeWidth = own.StrokeWidth
+		}
+		c.Points[i].Style = st
 	}
 	c.AccTitle, c.AccDescr = acc.Title, acc.Descr
 	return c, nil
@@ -173,42 +251,19 @@ func Layout(c *Chart, o Options) *scene.Scene {
 
 	size := u(400)
 	half := size / 2
-	// Opisy osi pionowej stoją poziomo z lewej strony, każdy przy swojej połowie wykresu.
-	bottom, top := wrap(c.YBottom, u(120)), wrap(c.YTop, u(120))
-	sideW := 0.0
-	for _, s := range append(append([]string{}, bottom...), top...) {
-		sideW = math.Max(sideW, width(s))
-	}
+	// Opisy osi pionowej są obrócone i czytane z dołu do góry, każdy przy swojej połowie wykresu.
+	bottom, top := wrap(c.YBottom, half-u(12)), wrap(c.YTop, half-u(12))
+	columns := max(len(bottom), len(top))
 	x0 := 0.0
-	if sideW > 0 {
-		x0 = math.Round(sideW + u(12))
+	if columns > 0 {
+		x0 = float64(columns)*lh + u(8)
 	}
 	y0 := 0.0
 	if c.Title != "" {
 		block([]string{c.Title}, x0+half, lh/2, "middle", "title", colorText, false)
 		y0 = lh + u(12)
 	}
-	// Miejsca zajęte przez punkty i ich nazwy: tytuł ćwiartki staje tam, gdzie ich nie zasłania.
-	type box struct{ x0, y0, x1, y1 float64 }
-	type label struct {
-		x      float64
-		anchor string
-		w      float64
-	}
-	labels := make([]label, len(c.Points))
-	var taken []box
-	for i, p := range c.Points {
-		px, py := x0+p.X*size, y0+(1-p.Y)*size
-		w := width(p.Name)
-		// Nazwa stoi po prawej stronie punktu, a przy prawej krawędzi wykresu po lewej.
-		l := label{px + u(9), "start", w}
-		if l.x+w > x0+size-u(4) {
-			l = label{px - u(9) - w, "end", w}
-		}
-		labels[i] = l
-		taken = append(taken, box{math.Min(l.x, px-u(5)) - u(2), py - lh/2, math.Max(l.x+w, px+u(5)) + u(2), py + lh/2})
-	}
-	// Ćwiartki: 0 prawa górna, 1 lewa górna, 2 lewa dolna, 3 prawa dolna.
+	// Ćwiartki: 0 prawa górna, 1 lewa górna, 2 lewa dolna, 3 prawa dolna. Tytuł stoi u góry ćwiartki.
 	corner := [4][2]float64{{x0 + half, y0}, {x0, y0}, {x0, y0 + half}, {x0 + half, y0 + half}}
 	for q := 0; q < 4; q++ {
 		fill := grays[q]
@@ -216,63 +271,62 @@ func Layout(c *Chart, o Options) *scene.Scene {
 			fill = scene.Palette[q].Fill
 		}
 		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "quadrant", X: corner[q][0], Y: corner[q][1], W: half, H: half, Fill: fill})
-		lines := wrap(c.Quadrants[q], half-2*u(12))
-		if len(lines) == 0 {
-			continue
-		}
-		tw, th := 0.0, float64(len(lines))*lh
-		for _, line := range lines {
-			tw = math.Max(tw, width(line))
-		}
-		cx := corner[q][0] + half/2
-		// Tytuł u góry ćwiartki; gdy stoją tam punkty, u dołu, a w ostateczności pośrodku.
-		top := corner[q][1] + u(10)
-		for _, candidate := range []float64{top, corner[q][1] + half - u(10) - th, corner[q][1] + (half-th)/2} {
-			free := true
-			for _, t := range taken {
-				if t.x0 < cx+tw/2 && cx-tw/2 < t.x1 && t.y0 < candidate+th && candidate < t.y1 {
-					free = false
-					break
-				}
-			}
-			if free {
-				top = candidate
-				break
-			}
-		}
-		for k, line := range lines {
-			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerShape, Role: "quadrant-title", X: cx, Y: top + float64(k)*lh + lh/2 + 0.35*fs,
-				W: width(line), H: lh, Text: line, Anchor: "middle", Bold: true, Fill: colorMuted})
+		for k, line := range wrap(c.Quadrants[q], half-2*u(12)) {
+			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerShape, Role: "quadrant-title", X: corner[q][0] + half/2,
+				Y: corner[q][1] + u(10) + float64(k)*lh + lh/2 + 0.35*fs, W: width(line), H: lh, Text: line, Anchor: "middle", Bold: true, Fill: colorMuted})
 		}
 	}
 	sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "quadrant-frame", X: x0, Y: y0, W: size, H: size, Stroke: colorLine, StrokeWidth: 1.5})
 	sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "quadrant-frame", X: x0 + half, Y: y0, X2: x0 + half, Y2: y0 + size, Stroke: colorLine, StrokeWidth: 1})
 	sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "quadrant-frame", X: x0, Y: y0 + half, X2: x0 + size, Y2: y0 + half, Stroke: colorLine, StrokeWidth: 1})
 
+	// Punkty: kropka, a pod nią nazwa mniejszym pismem, na własnym podkładzie.
+	small := math.Round(fs * 0.75)
+	smallH := math.Round(small * 1.25)
 	from := len(sc.Items)
-	for i, p := range c.Points {
+	for _, p := range c.Points {
 		px, py := x0+p.X*size, y0+(1-p.Y)*size
-		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerLabel, Role: "quadrant-point", X: px, Y: py, R: u(5), Fill: colorPoint, Stroke: "#ffffff", StrokeWidth: 1})
-		l := labels[i]
-		// Podkład pod nazwą: linie podziału i tytuł ćwiartki nie przekreślają tekstu.
-		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "quadrant-point-background", X: l.x - u(2), Y: py - lh/2, W: l.w + u(4), H: lh,
-			RX: u(3), Fill: "#ffffff", FillOpacity: 0.85})
-		lx := l.x
-		if l.anchor == "end" {
-			lx += l.w
+		r, fill, stroke, sw := u(5), colorPoint, "#ffffff", 1.0
+		if p.Radius > 0 {
+			r = u(p.Radius)
 		}
-		block([]string{p.Name}, lx, py, l.anchor, "quadrant-point-label", colorText, false)
+		if p.Color != "" {
+			fill = p.Color
+		}
+		if p.StrokeColor != "" {
+			stroke = p.StrokeColor
+		}
+		if p.StrokeWidth > 0 {
+			sw = u(p.StrokeWidth)
+		}
+		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerLabel, Role: "quadrant-point", X: px, Y: py, R: r, Fill: fill, Stroke: stroke, StrokeWidth: sw})
+		w := o.Measure(p.Name, small)
+		// Nazwa wyśrodkowana pod kropką; przy krawędzi wykresu dosunięta tak, żeby z niego nie wyszła,
+		// a przy dolnej krawędzi przeniesiona nad kropkę.
+		cx := math.Min(math.Max(px, x0+w/2+u(4)), x0+size-w/2-u(4))
+		ty := py + r + u(3)
+		if ty+smallH > y0+size-u(2) {
+			ty = py - r - u(3) - smallH
+		}
+		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "quadrant-point-background", X: cx - w/2 - u(2), Y: ty, W: w + u(4), H: smallH,
+			RX: u(3), Fill: "#ffffff", FillOpacity: 0.85})
+		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "quadrant-point-label", X: cx, Y: ty + smallH/2 + 0.35*small,
+			W: w, H: smallH, Text: p.Name, Anchor: "middle", FontSize: small, Fill: colorText})
 	}
 	if o.Shadows {
 		sc.AddShadows(from, u(2), "quadrant-point")
 	}
 
-	if len(bottom) > 0 {
-		block(bottom, x0-u(12), y0+half+half/2, "end", "axis-label", colorMuted, false)
+	// Opis osi pionowej: linie stoją obok siebie, pierwsza najdalej od wykresu.
+	vertical := func(lines []string, mid float64) {
+		for k, s := range lines {
+			x := x0 - u(8) - float64(len(lines)-1-k)*lh - 0.3*fs
+			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "axis-label", X: x, Y: mid, W: width(s), H: lh,
+				Text: s, Anchor: "middle", Vertical: true, Fill: colorMuted})
+		}
 	}
-	if len(top) > 0 {
-		block(top, x0-u(12), y0+half/2, "end", "axis-label", colorMuted, false)
-	}
+	vertical(bottom, y0+half+half/2)
+	vertical(top, y0+half/2)
 	y := y0 + size + u(8)
 	left, right := wrap(c.XLeft, half-u(12)), wrap(c.XRight, half-u(12))
 	if len(right) == 0 && len(left) > 0 {

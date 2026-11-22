@@ -435,7 +435,7 @@ Wykres poziomy (`xychart-beta horizontal`). Konfiguracja w bloku `%%{init}%%` i 
 
 ### Świadome różnice wobec Mermaid
 
-- tytuł osi pionowej stoi poziomo nad osią, a nie obrócony wzdłuż niej: rysunek nie ma tekstu obróconego;
+- tytuł osi pionowej stoi poziomo nad osią, a nie obrócony wzdłuż niej;
 - bez podanego zakresu oś pionowa przy słupkach obejmuje zero, bo słupek mierzy się od zera; podziałka ma
   okrągłe wartości;
 - kilka serii słupków stoi obok siebie w obrębie kategorii (w Mermaid nakładają się na siebie);
@@ -457,15 +457,13 @@ Wykres poziomy (`xychart-beta horizontal`). Konfiguracja w bloku `%%{init}%%` i 
 | osie | `x-axis Lewy --> Prawy`; `y-axis Dolny --> Górny`; drugi opis opcjonalny | QDR-001 |
 | ćwiartki | `quadrant-1 Tekst` … `quadrant-4 Tekst` | QDR-001 |
 | punkt | `Nazwa: [0.3, 0.6]` | QDR-002 |
-| style punktów | `Nazwa:::klasa: [x, y]`, `radius: 12, color: #f00` po nawiasie, `classDef` (pomijane) | QDR-002 |
+| style punktów | `Nazwa:::klasa: [x, y]`, `radius: 12, color: #f00, stroke-color: #000, stroke-width: 2px` po nawiasie, `classDef` | QDR-002 |
 | dostępność | `accTitle`, `accDescr` | QDR-001 |
 
 ### Świadome różnice wobec Mermaid
 
-- opisy osi pionowej stoją poziomo z lewej strony wykresu, każdy przy swojej połowie, a nie obrócone;
-- tytuł ćwiartki ustępuje punktom: stoi u góry ćwiartki, a gdy są tam punkty, u dołu albo pośrodku;
-- nazwa punktu ma własny podkład, a przy prawej krawędzi wykresu stoi po lewej stronie punktu;
-- wygląd punktów podany w źródle (promień, kolor, klasy) nie jest rysowany: wszystkie punkty są jednakowe;
+- nazwa punktu ma własny podkład i nie wychodzi poza wykres: przy bocznej krawędzi jest dosunięta, a przy dolnej
+  stoi nad kropką;
 - ćwiartki stykające się bokiem różnią się jasnością; `WithColors` nadaje im tony palety;
 - współrzędna spoza zakresu 0–1 jest błędem.
 

@@ -213,7 +213,11 @@ func (p *painter) text(it scene.Item, size float64, f *face) {
 		for _, contour := range contours {
 			poly := make([]raster.Point, len(contour))
 			for i, q := range contour {
-				poly[i] = p.at(x+q.X*k, it.Y-q.Y*k)
+				gx, gy := x+q.X*k, it.Y-q.Y*k
+				if it.Vertical {
+					gx, gy = it.X+(gy-it.Y), it.Y-(gx-it.X)
+				}
+				poly[i] = p.at(gx, gy)
 			}
 			polygons = append(polygons, poly)
 		}

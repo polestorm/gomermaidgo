@@ -62,6 +62,7 @@ type Item struct {
 	Anchor      string // "start", "middle", "end"
 	Bold        bool   // tekst pogrubiony
 	Italic      bool   // tekst pochylony
+	Vertical    bool   // tekst obrócony o ćwierć obrotu wokół punktu X, Y: czytany z dołu do góry
 	FontSize    float64
 	Fill        string
 	FillOpacity float64 // 0 oznacza „bez atrybutu”
@@ -164,6 +165,10 @@ func (it Item) Bounds() Box {
 			x0 = it.X - it.W
 		}
 		// Linia bazowa leży ok. 0,8 wysokości pisma poniżej górnej krawędzi pola.
+		if it.Vertical {
+			// Obrót zamienia osie: szerokość napisu biegnie w górę od punktu zaczepienia.
+			return Box{it.X - 0.8*it.H, it.Y - (x0 + it.W - it.X), it.X + 0.2*it.H, it.Y - (x0 - it.X)}
+		}
 		return Box{x0, it.Y - 0.8*it.H, x0 + it.W, it.Y + 0.2*it.H}
 	default:
 		b := Box{math.Inf(1), math.Inf(1), math.Inf(-1), math.Inf(-1)}
@@ -383,6 +388,9 @@ func (s *Scene) SVG() []byte {
 				attr(&b, "font-style", "italic")
 			}
 			attr(&b, "fill", it.Fill)
+			if it.Vertical {
+				attr(&b, "transform", "rotate(-90 "+num(it.X)+" "+num(it.Y)+")")
+			}
 			b.WriteString(">")
 			b.WriteString(Escape(it.Text))
 			b.WriteString("</text>\n")

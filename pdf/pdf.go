@@ -199,6 +199,11 @@ func (w *writer) text(it scene.Item, size float64, f *face) {
 	}
 	w.op("%s %s %s rg", num(r), num(g), num(b))
 	// Układ strony ma oś y w dół; tekst odwraca ją z powrotem, żeby litery nie stały do góry nogami.
+	if it.Vertical {
+		// Ćwierć obrotu wokół punktu zaczepienia: kierunek pisma biegnie w górę strony.
+		w.op("BT /F%d %s Tf 0 -1 -1 0 %s %s Tm <%s> Tj ET", f.index, num(size), num(it.X), num(it.Y-(x-it.X)), hex.String())
+		return
+	}
 	w.op("BT /F%d %s Tf 1 0 0 -1 %s %s Tm <%s> Tj ET", f.index, num(size), num(x), num(it.Y), hex.String())
 }
 
