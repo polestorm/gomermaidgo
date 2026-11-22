@@ -39,7 +39,6 @@ func TestParseErrors(t *testing.T) {
 	}{
 		"":                                                       {CodeHeader, 0},
 		"xycharts\nbar [1]":                                      {CodeHeader, 1},
-		"xychart-beta horizontal\nbar [1]":                       {CodeUnsupported, 1},
 		"xychart-beta\ncoś innego":                               {CodeStatement, 2},
 		"xychart-beta\nbar 1, 2":                                 {CodeData, 2},
 		"xychart-beta\nbar [1, dwa]":                             {CodeData, 2},
@@ -166,5 +165,51 @@ func TestCrowdedCategories(t *testing.T) {
 	}
 	if shown == 0 || shown >= 60 {
 		t.Errorf("%d category labels shown out of 60", shown)
+	}
+}
+
+// REQ: XY-006
+// Wykres poziomy: kategorie z góry na dół, słupki od zera w prawo, linia przez kolejne kategorie,
+// tytuł osi kategorii obrócony z lewej strony.
+func TestHorizontal(t *testing.T) {
+	c, err := Parse("xychart-beta horizontal\ntitle T\nx-axis \"Dział\" [A, B, C]\ny-axis \"Liczba\" 0 --> 40\nbar [10, 40, 20]\nline [5, 20, 40]")
+	if err != nil || !c.Horizontal {
+		t.Fatalf("%v %+v", err, c)
+	}
+	sc := Layout(c, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	var bars, labels []scene.Item
+	var line, axisTitle, valueTitle scene.Item
+	for _, it := range sc.Items {
+		switch {
+		case it.Role == "chart-bar":
+			bars = append(bars, it)
+		case it.Role == "chart-line":
+			line = it
+		case it.Role == "axis-label" && it.Anchor == "end":
+			labels = append(labels, it)
+		case it.Role == "axis-title" && it.Vertical:
+			axisTitle = it
+		case it.Role == "axis-title":
+			valueTitle = it
+		}
+	}
+	if len(bars) != 3 || len(labels) != 3 || len(line.Points) != 3 {
+		t.Fatalf("%d bars, %d category labels, line %v", len(bars), len(labels), line.Points)
+	}
+	// Słupki zaczynają się na wspólnej osi zera, mają długość proporcjonalną do wartości i stoją jeden pod drugim.
+	if bars[0].X != bars[1].X || math.Abs(bars[1].W-4*bars[0].W) > 0.01 || math.Abs(bars[2].W-2*bars[0].W) > 0.01 || !(bars[0].Y < bars[1].Y && bars[1].Y < bars[2].Y) {
+		t.Errorf("bars: %+v", bars)
+	}
+	for i, l := range labels {
+		if l.Text != string(rune('A'+i)) || l.X >= bars[0].X || math.Abs(l.Bounds().Y0+l.Bounds().Y1-2*(bars[i].Y+bars[i].H/2)) > 8 {
+			t.Errorf("category label %d: %+v", i, l)
+		}
+	}
+	// Linia: punkt kategorii na wysokości jej słupka, wartość 40 na końcu słupka o wartości 40.
+	if math.Abs(line.Points[2].X-(bars[1].X+bars[1].W)) > 0.01 || math.Abs(line.Points[0].Y-(bars[0].Y+bars[0].H/2)) > 0.01 {
+		t.Errorf("line points: %v", line.Points)
+	}
+	if axisTitle.Text != "Dział" || axisTitle.Bounds().X1 > labels[0].Bounds().X0 || valueTitle.Text != "Liczba" || valueTitle.Y < bars[2].Y+bars[2].H {
+		t.Errorf("axis titles: %+v %+v", axisTitle, valueTitle)
 	}
 }

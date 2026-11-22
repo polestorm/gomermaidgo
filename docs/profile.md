@@ -430,10 +430,12 @@ komentarzem, więc to samo źródło w innych narzędziach rysuje układ domyśl
 | serie | `bar [1, 2, 3]`; `line [1, 2, 3]`; z nazwą: `bar "Plan" [1, 2, 3]` | XY-002, XY-004 |
 | dostępność | `accTitle`, `accDescr` | XY-001 |
 
-### Poza profilem (błąd `xychart-unsupported`)
+### Poza profilem
 
-Wykres poziomy (`xychart-beta horizontal`). Konfiguracja w bloku `%%{init}%%` i `---` (rozmiary, motywy,
-`showDataLabel`).
+Konfiguracja w bloku `%%{init}%%` i `---` (rozmiary, `showDataLabel`).
+
+Wykres poziomy (`xychart-beta horizontal`, XY-006): kategorie z góry na dół, wartości w poziomie; tytuł osi
+kategorii jest obrócony wzdłuż osi.
 
 ### Świadome różnice wobec Mermaid
 
@@ -578,7 +580,8 @@ i jaśniejsze tło, a nie kolor; rodzaj elementu jest zapisany jak w Mermaid (`[
 | scalenie, kopia | `merge nazwa tag: "v2"`; `cherry-pick id: "a"` | GIT-002 |
 | dostępność | `accTitle`, `accDescr` | GIT-001 |
 
-Poza profilem (błąd `gitgraph-unsupported`): orientacja pionowa (`gitGraph TB:`, `BT:`). Świadome różnice wobec
+Orientacja pionowa (`gitGraph TB:`, `BT:`, GIT-005): gałęzie są kolumnami, a opis commitu stoi z jego prawej
+strony. Świadome różnice wobec
 Mermaid: commit bez podanego identyfikatora nie ma podpisu (Mermaid losuje identyfikator, więc rysunek nie byłby
 powtarzalny); identyfikator stoi poziomo pod commitem, a odstęp commitów mieści najdłuższy; gałęzie stoją
 w kolejności powstania (`order:` jest pomijane); domyślnie rysunek jest neutralny, `WithColors` nadaje gałęziom

@@ -46,10 +46,11 @@ type Commit struct {
 
 // Graph to graf historii: gałęzie w kolejności powstania i commity w kolejności źródła.
 type Graph struct {
-	Branches []string
-	Commits  []Commit
-	AccTitle string
-	AccDescr string
+	Direction string // pusty: od lewej do prawej; "TB" z góry na dół, "BT" z dołu do góry
+	Branches  []string
+	Commits   []Commit
+	AccTitle  string
+	AccDescr  string
 }
 
 var (
@@ -81,7 +82,7 @@ func Parse(source string) (*Graph, error) {
 				return nil, syntax.Errorf(line, CodeHeader, "expected \"gitGraph\", found %q", s)
 			}
 			if m[1] == "TB" || m[1] == "BT" {
-				return nil, syntax.Errorf(line, CodeUnsupported, "only the left-to-right orientation is supported")
+				g.Direction = m[1]
 			}
 			seenHeader = true
 			continue
@@ -239,6 +240,10 @@ func Layout(g *Graph, o Options) *scene.Scene {
 	lh := math.Round(fs * 1.25)
 	small := math.Round(fs * 0.8)
 	sc := &scene.Scene{Title: g.AccTitle, Desc: g.AccDescr, FontFamily: o.FontFamily, FontSize: fs, Margin: u(12), Background: o.Background}
+	if g.Direction != "" {
+		layoutVertical(sc, g, o)
+		return sc
+	}
 
 	// Odstęp commitów mieści najdłuższy identyfikator i znacznik.
 	step := u(52)
@@ -324,25 +329,7 @@ func Layout(g *Graph, o Options) *scene.Scene {
 	r := u(8)
 	for i, c := range g.Commits {
 		x, y := at(i)
-		stroke := tone(c.Branch)
-		switch {
-		case c.Type == Highlight:
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "git-commit", X: x - r, Y: y - r, W: 2 * r, H: 2 * r, Fill: stroke, Stroke: stroke, StrokeWidth: 2})
-		case c.Merged >= 0 || c.Picked >= 0:
-			// Scalenie i kopia: pusty okrąg, żeby odróżnić je od zwykłego commitu.
-			sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit", X: x, Y: y, R: r, Fill: "#ffffff", Stroke: stroke, StrokeWidth: 2.5})
-			if c.Merged >= 0 {
-				sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit-detail", X: x, Y: y, R: r * 0.45, Fill: stroke})
-			}
-		default:
-			sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit", X: x, Y: y, R: r, Fill: stroke, Stroke: stroke, StrokeWidth: 2})
-		}
-		if c.Type == Reverse {
-			for _, d := range []float64{-1, 1} {
-				sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLabel, Role: "git-commit-detail", X: x - r*0.5, Y: y - d*r*0.5, X2: x + r*0.5, Y2: y + d*r*0.5,
-					Stroke: "#ffffff", StrokeWidth: 2})
-			}
-		}
+		mark(sc, c, x, y, r, tone(c.Branch))
 		if c.ID != "" {
 			// Podkład pod identyfikatorem: łącznik gałęzi odchodzącej w dół nie przekreśla tekstu.
 			w := o.Measure(c.ID, small)
@@ -359,4 +346,155 @@ func Layout(g *Graph, o Options) *scene.Scene {
 		}
 	}
 	return sc
+}
+
+// mark rysuje znak commitu: koło, kwadrat wyróżnienia, pusty okrąg scalenia albo kopii, krzyżyk cofnięcia.
+func mark(sc *scene.Scene, c Commit, x, y, r float64, stroke string) {
+	switch {
+	case c.Type == Highlight:
+		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "git-commit", X: x - r, Y: y - r, W: 2 * r, H: 2 * r, Fill: stroke, Stroke: stroke, StrokeWidth: 2})
+	case c.Merged >= 0 || c.Picked >= 0:
+		// Scalenie i kopia: pusty okrąg, żeby odróżnić je od zwykłego commitu.
+		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit", X: x, Y: y, R: r, Fill: "#ffffff", Stroke: stroke, StrokeWidth: 2.5})
+		if c.Merged >= 0 {
+			sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit-detail", X: x, Y: y, R: r * 0.45, Fill: stroke})
+		}
+	default:
+		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit", X: x, Y: y, R: r, Fill: stroke, Stroke: stroke, StrokeWidth: 2})
+	}
+	if c.Type == Reverse {
+		for _, d := range []float64{-1, 1} {
+			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLabel, Role: "git-commit-detail", X: x - r*0.5, Y: y - d*r*0.5, X2: x + r*0.5, Y2: y + d*r*0.5,
+				Stroke: "#ffffff", StrokeWidth: 2})
+		}
+	}
+}
+
+// layoutVertical rysuje graf w pionie: gałęzie są kolumnami z nazwą u góry (TB) albo u dołu (BT),
+// a commity biegną w dół albo w górę. Identyfikator i znacznik stoją z prawej strony commitu,
+// a odstęp kolumn je mieści.
+func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
+	fs := sc.FontSize
+	u := func(v float64) float64 { return v * fs / 16 }
+	lh := math.Round(fs * 1.25)
+	small := math.Round(fs * 0.8)
+	r := u(8)
+	lane := u(64)
+	for _, c := range g.Commits {
+		w := r + u(6) + o.Measure(c.ID, small)
+		if c.Tag != "" {
+			w += u(8) + o.Measure(c.Tag, small) + u(12)
+		}
+		lane = math.Max(lane, w+r+u(16))
+	}
+	for _, b := range g.Branches {
+		lane = math.Max(lane, o.Measure(b, fs)+2*u(10)+u(12))
+	}
+	step := u(44)
+	labelH := lh + u(8)
+	down := g.Direction == "TB"
+	span := float64(len(g.Commits)-1) * step
+	at := func(i int) (x, y float64) {
+		x = float64(g.Commits[i].Branch)*lane + lane/2
+		if down {
+			return x, labelH + u(24) + float64(i)*step
+		}
+		return x, span - float64(i)*step
+	}
+	labelY := 0.0
+	if !down {
+		labelY = span + u(24)
+	}
+	tone := func(branch int) string {
+		if o.Colors {
+			return scene.Palette[branch%len(scene.Palette)].Stroke
+		}
+		return colorLine
+	}
+	first, last := map[int]int{}, map[int]int{}
+	for i, c := range g.Commits {
+		if _, ok := first[c.Branch]; !ok {
+			first[c.Branch] = i
+		}
+		last[c.Branch] = i
+	}
+	for b, name := range g.Branches {
+		f, ok := first[b]
+		if !ok {
+			continue
+		}
+		x, ya := at(f)
+		_, yb := at(last[b])
+		w := o.Measure(name, fs) + 2*u(10)
+		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "git-branch", X: x - w/2, Y: labelY, W: w, H: labelH, RX: u(4),
+			Fill: colorLabel, Stroke: tone(b), StrokeWidth: 1.5})
+		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-branch-label", X: x, Y: labelY + labelH/2 + 0.35*fs, W: o.Measure(name, fs), H: lh,
+			Text: name, Anchor: "middle", Fill: colorText})
+		if b == 0 {
+			// Tor gałęzi głównej zaczyna się przy jej etykiecie.
+			ya = labelY
+			if down {
+				ya = labelY + labelH
+			}
+		}
+		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "git-lane", X: x, Y: ya, X2: x, Y2: yb, Stroke: tone(b), StrokeWidth: 2})
+	}
+	// elbow: łącznik z jednym zaokrąglonym narożnikiem. crossFirst: najpierw w poprzek kolumn,
+	// potem wzdłuż kolumny celu; inaczej wzdłuż kolumny źródła i w poprzek do celu.
+	elbow := func(xa, ya, xb, yb float64, crossFirst bool, stroke, dash, role string) {
+		rr := math.Min(u(10), math.Min(math.Abs(xb-xa), math.Abs(yb-ya)))
+		dx, dy := 1.0, 1.0
+		if xb < xa {
+			dx = -1
+		}
+		if yb < ya {
+			dy = -1
+		}
+		const k = 0.45
+		var segments []scene.Segment
+		if crossFirst {
+			segments = []scene.Segment{{Cmd: 'M', To: scene.Point{X: xa, Y: ya}}, {Cmd: 'L', To: scene.Point{X: xb - dx*rr, Y: ya}},
+				{Cmd: 'C', C1: scene.Point{X: xb - dx*rr*k, Y: ya}, C2: scene.Point{X: xb, Y: ya + dy*rr*k}, To: scene.Point{X: xb, Y: ya + dy*rr}},
+				{Cmd: 'L', To: scene.Point{X: xb, Y: yb}}}
+		} else {
+			segments = []scene.Segment{{Cmd: 'M', To: scene.Point{X: xa, Y: ya}}, {Cmd: 'L', To: scene.Point{X: xa, Y: yb - dy*rr}},
+				{Cmd: 'C', C1: scene.Point{X: xa, Y: yb - dy*rr*k}, C2: scene.Point{X: xa + dx*rr*k, Y: yb}, To: scene.Point{X: xa + dx*rr, Y: yb}},
+				{Cmd: 'L', To: scene.Point{X: xb, Y: yb}}}
+		}
+		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: segments, Stroke: stroke, StrokeWidth: 2, Dash: dash})
+	}
+	for i, c := range g.Commits {
+		x, y := at(i)
+		if c.Parent >= 0 && g.Commits[c.Parent].Branch != c.Branch {
+			px, py := at(c.Parent)
+			elbow(px, py, x, y, true, tone(c.Branch), "", "git-fork")
+		}
+		if c.Merged >= 0 {
+			mx, my := at(c.Merged)
+			elbow(mx, my, x, y, false, tone(g.Commits[c.Merged].Branch), "", "git-merge")
+		}
+		if c.Picked >= 0 {
+			px, py := at(c.Picked)
+			elbow(px, py, x, y, false, tone(g.Commits[c.Picked].Branch), "4 3", "git-pick")
+		}
+	}
+	for i, c := range g.Commits {
+		x, y := at(i)
+		mark(sc, c, x, y, r, tone(c.Branch))
+		tx := x + r + u(6)
+		if c.ID != "" {
+			w := o.Measure(c.ID, small)
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "git-commit-id-background", X: tx - u(2), Y: y - small*0.65, W: w + u(4), H: small * 1.3, Fill: "#ffffff"})
+			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-commit-id", X: tx, Y: y + small*0.35, W: w, H: small * 1.25,
+				Text: c.ID, FontSize: small, Fill: colorMuted})
+			tx += w + u(8)
+		}
+		if c.Tag != "" {
+			w := o.Measure(c.Tag, small) + u(12)
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "git-tag", X: tx, Y: y - small*0.7, W: w, H: small * 1.4, RX: u(3),
+				Fill: colorTag, Stroke: colorLine, StrokeWidth: 1})
+			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-tag-label", X: tx + w/2, Y: y + small*0.35, W: o.Measure(c.Tag, small), H: small * 1.25,
+				Text: c.Tag, Anchor: "middle", FontSize: small, Fill: colorText})
+		}
+	}
 }

@@ -50,7 +50,6 @@ func TestParseErrors(t *testing.T) {
 	}{
 		"":                         {CodeHeader, 0},
 		"gitgraph\ncommit":         {CodeHeader, 1},
-		"gitGraph TB:\ncommit":     {CodeUnsupported, 1},
 		head + "push":              {CodeStatement, 3},
 		head + "branch":            {CodeBranch, 3},
 		head + "branch main":       {CodeBranch, 3},
@@ -131,6 +130,65 @@ func TestLayout(t *testing.T) {
 	for _, want := range []string{"main", "gałąź boczna", "druga", "a", "b", "c", "m", "d", "v1", "v2"} {
 		if texts[want] != 1 {
 			t.Errorf("text %q drawn %d times, want once", want, texts[want])
+		}
+	}
+}
+
+// REQ: GIT-005
+// Graf w pionie: gałęzie są kolumnami, commity biegną w dół (TB) albo w górę (BT), nazwa gałęzi
+// stoi przed pierwszym commitem, a opis commitu z jego prawej strony, przed następną kolumną.
+func TestVertical(t *testing.T) {
+	for _, dir := range []string{"TB", "BT"} {
+		g, err := Parse("gitGraph " + dir + ":\ncommit id: \"a\"\nbranch boczna\ncommit id: \"b\" tag: \"v1\"\ncheckout main\ncommit id: \"c\"\nmerge boczna")
+		if err != nil || g.Direction != dir {
+			t.Fatalf("%s: %v", dir, err)
+		}
+		sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+		var commits, labels, ids []scene.Item
+		lanes, merges := 0, 0
+		for _, it := range sc.Items {
+			switch it.Role {
+			case "git-commit":
+				commits = append(commits, it)
+			case "git-branch":
+				labels = append(labels, it)
+			case "git-commit-id":
+				ids = append(ids, it)
+			case "git-lane":
+				lanes++
+				if it.X != it.X2 {
+					t.Errorf("%s: a lane should be vertical", dir)
+				}
+			case "git-merge":
+				merges++
+			}
+		}
+		if len(commits) != 4 || len(labels) != 2 || lanes != 2 || merges != 1 {
+			t.Fatalf("%s: %d commits, %d labels, %d lanes, %d merges", dir, len(commits), len(labels), lanes, merges)
+		}
+		centre := func(it scene.Item) (float64, float64) { b := it.Bounds(); return (b.X0 + b.X1) / 2, (b.Y0 + b.Y1) / 2 }
+		x0, y0 := centre(commits[0])
+		x1, y1 := centre(commits[1])
+		x2, y2 := centre(commits[2])
+		if x0 != x2 || x1 <= x0 {
+			t.Errorf("%s: columns of main and the branch: %v %v %v", dir, x0, x1, x2)
+		}
+		forward := y0 < y1 && y1 < y2
+		_, ly := centre(labels[0])
+		if dir == "BT" {
+			forward = y0 > y1 && y1 > y2
+			if ly < y0 {
+				t.Errorf("BT: the branch name should stand under the first commit")
+			}
+		} else if ly > y0 {
+			t.Errorf("TB: the branch name should stand over the first commit")
+		}
+		if !forward {
+			t.Errorf("%s: commits should run in source order: %v %v %v", dir, y0, y1, y2)
+		}
+		// Opis commitu głównej gałęzi kończy się przed kolumną gałęzi bocznej.
+		if b := ids[0].Bounds(); b.X0 < x0 || b.X1 >= x1 {
+			t.Errorf("%s: commit id leaves its column: %+v", dir, b)
 		}
 	}
 }

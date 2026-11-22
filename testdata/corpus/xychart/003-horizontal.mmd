@@ -1,0 +1,9 @@
+%% REQ: XY-006
+%% Tytuł: Wykres poziomy
+%% Sprawdza: nagłówek z „horizontal”, kategorie z góry na dół, wartości w poziomie, słupki i linia, tytuły obu osi.
+xychart-beta horizontal
+    title "Niezgodności według działu"
+    x-axis "Dział" [Produkcja, Magazyn, Zakupy, Laboratorium, Serwis]
+    y-axis "Liczba niezgodności" 0 --> 40
+    bar [34, 12, 7, 19, 4]
+    line [30, 15, 10, 15, 8]
