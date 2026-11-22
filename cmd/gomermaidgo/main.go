@@ -5,14 +5,15 @@
 // Wejście: plik podany jako argument albo flagą -i; bez pliku (albo „-”) standardowe wejście.
 // Wynik: plik z -o; bez -o SVG trafia na standardowe wyjście, a przy wejściu podanym flagą -i,
 // tak jak w mermaid-cli, do pliku o nazwie wejścia z dopisanym rozszerzeniem formatu.
-// Format wynika z flagi -e albo z rozszerzenia pliku wyniku: .svg (domyślnie) albo .pdf; program
-// zbudowany ze znacznikiem nopdf (go build -tags nopdf) nie zawiera PDF.
+// Format wynika z flagi -e albo z rozszerzenia pliku wyniku: .svg (domyślnie), .pdf albo .png; program
+// zbudowany ze znacznikami nopdf i nopng (go build -tags nopdf,nopng) nie zawiera tych formatów.
+// Skalę obrazu PNG ustawia -s (domyślnie 2 piksele obrazu na piksel rysunku).
 //
 // Wejście Markdown (.md, .markdown): każdy blok „mermaid” trafia do osobnego pliku wynik-N.format.
 // Gdy wynik też jest plikiem Markdown, dostaje treść dokumentu z blokami zamienionymi na obrazki.
 //
 // Flagi mermaid-cli (-i, -o, -e, -b, -q, -a i ich długie nazwy) działają tak samo; pozostałe
-// (-t, -w, -H, -s, -c, -C, -p, -f, -I) są przyjmowane i pomijane z uwagą na wyjściu błędów.
+// (-t, -w, -H, -c, -C, -p, -f, -I) są przyjmowane i pomijane z uwagą na wyjściu błędów.
 package main
 
 import (
@@ -32,6 +33,9 @@ import (
 // formats to dodatkowe formaty wyniku według rozszerzenia pliku. Rejestrują je pliki kompilowane
 // warunkowo (np. pdf.go), więc program zbudowany bez nich zna tylko SVG.
 var formats = map[string]func(string, ...gomermaidgo.Option) ([]byte, error){}
+
+// scale to skala obrazu rastrowego z flagi -s; zero oznacza skalę domyślną formatu.
+var scale float64
 
 // job to jedno uruchomienie programu po rozbiorze flag.
 type job struct {
@@ -74,8 +78,8 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 		fs.StringVar(p, long, "", "same as -"+short)
 	}
 	both(&input, "i", "input", "input file: a diagram or a Markdown document (\"-\" for stdin)")
-	both(&j.out, "o", "output", "output file; the extension selects the format: .svg (default), .pdf or .md for Markdown input")
-	both(&j.format, "e", "outputFormat", "output format: svg or pdf (default: from the output extension)")
+	both(&j.out, "o", "output", "output file; the extension selects the format: .svg (default), .pdf, .png or .md for Markdown input")
+	both(&j.format, "e", "outputFormat", "output format: svg, pdf or png (default: from the output extension)")
 	both(&background, "b", "backgroundColor", "background colour (default: transparent)")
 	both(&j.artefacts, "a", "artefacts", "directory for the images of a Markdown document (default: next to the output)")
 	fs.StringVar(&background, "background", "", "same as -b")
@@ -89,13 +93,16 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	fs.BoolVar(&curved, "curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
 	// Flagi mermaid-cli bez odpowiednika: wygląd jest własny, a wynik wektorowy.
 	ignored := map[string]*string{}
-	for _, names := range [][2]string{{"t", "theme"}, {"w", "width"}, {"H", "height"}, {"s", "scale"}, {"c", "configFile"},
+	for _, names := range [][2]string{{"t", "theme"}, {"w", "width"}, {"H", "height"}, {"c", "configFile"},
 		{"C", "cssFile"}, {"p", "puppeteerConfigFile"}, {"I", "svgId"}} {
 		v := new(string)
 		ignored[names[1]] = v
 		fs.StringVar(v, names[0], "", "accepted for mermaid-cli compatibility and ignored")
 		fs.StringVar(v, names[1], "", "same as -"+names[0])
 	}
+	scale = 0
+	fs.Float64Var(&scale, "s", 0, "scale of a PNG image: pixels per drawing pixel (default 2)")
+	fs.Float64Var(&scale, "scale", 0, "same as -s")
 	var fit bool
 	fs.BoolVar(&fit, "f", false, "accepted for mermaid-cli compatibility; the PDF page always fits the drawing")
 	fs.BoolVar(&fit, "pdfFit", false, "same as -f")
@@ -112,6 +119,9 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	default:
 		j.in = fs.Arg(0)
 	}
+	if scale < 0 || scale > 16 {
+		return nil, fmt.Errorf("scale %v is outside the range from 0 to 16", scale)
+	}
 	j.format = strings.ToLower(j.format)
 	if j.format != "" && j.format != "svg" {
 		if _, ok := formats["."+j.format]; !ok {
@@ -119,7 +129,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 		}
 	}
 	if !j.quiet {
-		for _, name := range []string{"theme", "width", "height", "scale", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
+		for _, name := range []string{"theme", "width", "height", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
 			if *ignored[name] != "" {
 				fmt.Fprintf(stderr, "gomermaidgo: note: --%s is accepted for compatibility and ignored\n", name)
 			}
@@ -154,7 +164,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 // known wylicza formaty dodatkowe wbudowane w program, do komunikatu błędu.
 func known() string {
 	s := ""
-	for _, ext := range []string{".pdf"} {
+	for _, ext := range []string{".pdf", ".png"} {
 		if _, ok := formats[ext]; ok {
 			s += ", " + ext[1:]
 		}

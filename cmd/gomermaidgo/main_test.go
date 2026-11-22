@@ -73,7 +73,7 @@ func TestInputAndOutput(t *testing.T) {
 			t.Errorf("-e pdf should write d.mmd.pdf")
 		}
 	}
-	for _, args := range [][]string{{"-i", in, in}, {in, in}, {"-e", "png", in}, {"-nieznana"}} {
+	for _, args := range [][]string{{"-i", in, in}, {in, in}, {"-e", "gif", in}, {"-s", "-2", in}, {"-nieznana"}} {
 		if _, _, err := start(t, "", args...); err == nil {
 			t.Errorf("%v: want an error", args)
 		}
@@ -84,11 +84,11 @@ func TestInputAndOutput(t *testing.T) {
 // Flagi mermaid-cli: tło, tryb cichy, flagi bez odpowiednika przyjmowane z uwagą.
 func TestCompatibilityFlags(t *testing.T) {
 	src := "flowchart TD\nA --> B"
-	out, errs, err := start(t, src, "-b", "#fff8e1", "-t", "dark", "--width", "800", "-H", "600", "-s", "2", "-c", "c.json", "-C", "s.css", "-p", "p.json", "-f", "-I", "id")
+	out, errs, err := start(t, src, "-b", "#fff8e1", "-t", "dark", "--width", "800", "-H", "600", "-c", "c.json", "-C", "s.css", "-p", "p.json", "-f", "-I", "id")
 	if err != nil || !strings.Contains(out, "#fff8e1") {
 		t.Fatalf("background: %v", err)
 	}
-	for _, name := range []string{"theme", "width", "height", "scale", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
+	for _, name := range []string{"theme", "width", "height", "configFile", "cssFile", "puppeteerConfigFile", "svgId"} {
 		if !strings.Contains(errs, "--"+name+" is accepted") {
 			t.Errorf("note about --%s is missing", name)
 		}
@@ -149,5 +149,39 @@ func TestMarkdownDocument(t *testing.T) {
 	}
 	if _, _, err := start(t, "", in); err == nil {
 		t.Errorf("Markdown without -o: want an error")
+	}
+}
+
+// REQ: PNG-004
+// Rozszerzenie .png albo -e png daje obraz; -s ustawia skalę. Program zbudowany ze znacznikiem
+// nopng nie zna formatu.
+func TestPNGOutput(t *testing.T) {
+	dir := t.TempDir()
+	in := filepath.Join(dir, "d.mmd")
+	os.WriteFile(in, []byte("flowchart TD\nA --> B"), 0o644)
+	if _, ok := formats[".png"]; !ok {
+		if _, _, err := start(t, "", "-e", "png", in); err == nil {
+			t.Errorf("a build without PNG should reject -e png")
+		}
+		return
+	}
+	size := func(args ...string) int {
+		out := filepath.Join(dir, "d.png")
+		if _, _, err := start(t, "", append(args, "-o", out, in)...); err != nil {
+			t.Fatal(err)
+		}
+		data, _ := os.ReadFile(out)
+		if !bytes.HasPrefix(data, []byte("\x89PNG\r\n")) {
+			t.Fatalf("not a PNG file")
+		}
+		// Szerokość obrazu z nagłówka IHDR.
+		return int(data[16])<<24 | int(data[17])<<16 | int(data[18])<<8 | int(data[19])
+	}
+	two, one, three := size(), size("-s", "1"), size("--scale", "3")
+	if two != 2*one || three != 3*one {
+		t.Errorf("widths at scales 1, 2, 3: %d %d %d", one, two, three)
+	}
+	if out, _, err := start(t, "", "-e", "png", in); err != nil || !strings.HasPrefix(out, "\x89PNG") {
+		t.Errorf("-e png to stdout: %v", err)
 	}
 }

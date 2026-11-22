@@ -1,6 +1,6 @@
 # gomermaidgo
 
-Renders diagrams written in Mermaid syntax to SVG (and optionally PDF) in pure Go: no JavaScript, no browser, no dependencies outside the
+Renders diagrams written in Mermaid syntax to SVG (and optionally PDF and PNG) in pure Go: no JavaScript, no browser, no dependencies outside the
 Go standard library. The same source and options always give the same SVG, byte for byte.
 
 ```go
@@ -37,8 +37,19 @@ go run ./cmd/gomermaidgo -o diagram.pdf diagram.mmd   # the extension selects th
 go build -tags nopdf ./cmd/gomermaidgo                # a build without the PDF writer
 ```
 
-The command also takes a Markdown document and the flags of `mermaid-cli` (`-i`, `-o`, `-e`, `-b`, `-q`, `-a`), so it
-can stand in for `mmdc` in a script. Flags with no counterpart here (`-t`, `-w`, `-H`, `-s`, `-c`, `-C`, `-p`, `-I`)
+PNG output is another optional package, with its own rasteriser and glyph outlines read from the font file:
+
+```go
+img, err := png.Render(source)            // 2 image pixels per drawing pixel; png.RenderScale for another scale
+```
+
+```sh
+go run ./cmd/gomermaidgo -o diagram.png -s 3 diagram.mmd
+go build -tags nopdf,nopng ./cmd/gomermaidgo   # SVG only
+```
+
+The command also takes a Markdown document and the flags of `mermaid-cli` (`-i`, `-o`, `-e`, `-b`, `-s`, `-q`, `-a`), so it
+can stand in for `mmdc` in a script. Flags with no counterpart here (`-t`, `-w`, `-H`, `-c`, `-C`, `-p`, `-I`)
 are accepted and ignored with a note.
 
 ```sh
