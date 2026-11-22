@@ -1,10 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="467.3" height="436" viewBox="47.92 -12 467.3 436" role="img" font-family="Recursive, sans-serif" font-size="16">
-<line class="git-lane" x1="89.12" y1="28" x2="89.12" y2="404" fill="none" stroke="#3b4754" stroke-width="2"/>
-<line class="git-lane" x1="267.37" y1="140" x2="267.37" y2="184" fill="none" stroke="#3b4754" stroke-width="2"/>
-<line class="git-lane" x1="445.62" y1="272" x2="445.62" y2="272" fill="none" stroke="#3b4754" stroke-width="2"/>
-<path class="git-fork" d="M89.12 96 L257.37 96 C262.87 96 267.37 100.5 267.37 106 L267.37 140" fill="none" stroke="#3b4754" stroke-width="2"/>
-<path class="git-fork" d="M89.12 228 L435.62 228 C441.12 228 445.62 232.5 445.62 238 L445.62 272" fill="none" stroke="#3b4754" stroke-width="2"/>
-<path class="git-merge" d="M267.37 184 L267.37 306 C267.37 311.5 262.87 316 257.37 316 L89.12 316" fill="none" stroke="#3b4754" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="467.3" height="444" viewBox="47.92 -12 467.3 444" role="img" font-family="Recursive, sans-serif" font-size="16">
+<line class="git-guide" x1="89.12" y1="28" x2="89.12" y2="420" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4"/>
+<line class="git-guide" x1="267.37" y1="28" x2="267.37" y2="420" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4"/>
+<line class="git-guide" x1="445.62" y1="28" x2="445.62" y2="420" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4"/>
+<line class="git-lane" x1="89.12" y1="28" x2="89.12" y2="404" fill="none" stroke="#3b4754" stroke-width="3"/>
+<line class="git-lane" x1="267.37" y1="140" x2="267.37" y2="184" fill="none" stroke="#3b4754" stroke-width="3"/>
+<line class="git-lane" x1="445.62" y1="272" x2="445.62" y2="272" fill="none" stroke="#3b4754" stroke-width="3"/>
+<path class="git-fork" d="M89.12 96 L257.37 96 C262.87 96 267.37 100.5 267.37 106 L267.37 140" fill="none" stroke="#3b4754" stroke-width="3"/>
+<path class="git-fork" d="M89.12 228 L435.62 228 C441.12 228 445.62 232.5 445.62 238 L445.62 272" fill="none" stroke="#3b4754" stroke-width="3"/>
+<path class="git-merge" d="M267.37 184 L267.37 306 C267.37 311.5 262.87 316 257.37 316 L89.12 316" fill="none" stroke="#3b4754" stroke-width="3"/>
 <path class="git-pick" d="M445.62 272 L445.62 350 C445.62 355.5 441.12 360 435.62 360 L89.12 360" fill="none" stroke="#3b4754" stroke-width="2" stroke-dasharray="4 3"/>
 <rect class="git-branch" x="59.92" y="0" width="58.4" height="28" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="git-branch" x="222.97" y="0" width="88.8" height="28" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="1.5"/>
@@ -19,7 +22,7 @@
 <circle class="git-commit" cx="89.12" cy="316" r="8" fill="#ffffff" stroke="#3b4754" stroke-width="2.5"/>
 <circle class="git-commit-detail" cx="89.12" cy="316" r="3.6" fill="#3b4754"/>
 <rect class="git-tag" x="103.12" y="306.9" width="39.95" height="18.2" rx="3" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
-<circle class="git-commit" cx="89.12" cy="360" r="8" fill="#ffffff" stroke="#3b4754" stroke-width="2.5"/>
+<circle class="git-commit" cx="89.12" cy="360" r="8" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
 <rect class="git-tag" x="103.12" y="350.9" width="132.25" height="18.2" rx="3" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
 <circle class="git-commit" cx="89.12" cy="404" r="8" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
 <text class="git-branch-label" x="89.12" y="19.6" text-anchor="middle" fill="#1b1f24">main</text>
@@ -41,5 +44,9 @@
 <rect class="git-commit-id-background" x="457.62" y="263.55" width="45.6" height="16.9" fill="#ffffff"/>
 <text class="git-commit-id" x="459.62" y="276.55" font-size="13" fill="#5b6570">errata</text>
 <text class="git-tag-label" x="123.1" y="320.55" text-anchor="middle" font-size="13" fill="#1b1f24">v1.0</text>
+<line class="git-commit-detail" x1="89.92" y1="355.04" x2="86.24" y2="360.8" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<circle class="git-commit-detail" cx="86.24" cy="362.4" r="2.4" fill="#ffffff"/>
+<line class="git-commit-detail" x1="89.92" y1="355.04" x2="92" y2="360.8" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<circle class="git-commit-detail" cx="92" cy="362.4" r="2.4" fill="#ffffff"/>
 <text class="git-tag-label" x="169.25" y="364.55" text-anchor="middle" font-size="13" fill="#1b1f24">cherry-pick:errata</text>
 </svg>

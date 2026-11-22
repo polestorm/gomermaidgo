@@ -1,56 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="787.6" height="466" viewBox="18.2 -6 787.6 466" role="img" font-family="Recursive, sans-serif" font-size="16">
-<rect class="architecture-group" x="170" y="6" width="510" height="442" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1.5" stroke-dasharray="6 4"/>
-<rect class="architecture-group" x="178" y="306" width="494" height="134" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1.5" stroke-dasharray="6 4"/>
-<polyline class="edge" points="113,62 227,62" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polyline class="edge" points="283,62 397,62" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polyline class="edge" points="425,90 425,212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polyline class="edge" points="425,212 255,212 255,334" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polyline class="edge" points="425,212 595,212 595,334" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polyline class="edge" points="453,62 737,62" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="571.2" y="52" width="47.6" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="227,62 217,67 217,57" fill="#3b4754"/>
-<polygon class="arrowhead" points="397,62 387,67 387,57" fill="#3b4754"/>
-<polygon class="arrowhead" points="255,334 250,324 260,324" fill="#3b4754"/>
-<polygon class="arrowhead" points="595,334 590,324 600,324" fill="#3b4754"/>
-<polygon class="arrowhead" points="737,62 727,67 727,57" fill="#3b4754"/>
-<rect class="architecture-service" x="57" y="34" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="227" y="34" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="397" y="34" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="227" y="334" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="567" y="334" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="737" y="34" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="architecture-junction" cx="425" cy="212" r="4" fill="#3b4754"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="787.6" height="508" viewBox="18.2 -6 787.6 508" role="img" font-family="Recursive, sans-serif" font-size="16">
+<rect class="architecture-group" x="170" y="6" width="510" height="484" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1.5" stroke-dasharray="6 4"/>
+<rect class="architecture-group" x="178" y="334" width="494" height="148" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1.5" stroke-dasharray="6 4"/>
+<polyline class="edge" points="113,76 227,76" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline class="edge" points="283,76 397,76" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline class="edge" points="425,104 425,240" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline class="edge" points="425,240 255,240 255,376" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline class="edge" points="425,240 595,240 595,376" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline class="edge" points="453,76 737,76" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="571.2" y="66" width="47.6" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="227,76 217,81 217,71" fill="#3b4754"/>
+<polygon class="arrowhead" points="397,76 387,81 387,71" fill="#3b4754"/>
+<polygon class="arrowhead" points="255,376 250,366 260,366" fill="#3b4754"/>
+<polygon class="arrowhead" points="595,376 590,366 600,366" fill="#3b4754"/>
+<polygon class="arrowhead" points="737,76 727,81 727,71" fill="#3b4754"/>
+<rect class="architecture-service" x="57" y="48" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="architecture-service" x="227" y="48" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="architecture-service" x="397" y="48" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="architecture-service" x="227" y="376" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="architecture-service" x="567" y="376" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="architecture-service" x="737" y="48" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="architecture-junction" cx="425" cy="240" r="4" fill="#3b4754"/>
 <text class="architecture-group-label" x="180" y="25.6" font-weight="bold" fill="#1b1f24">Serwer aplikacji</text>
-<text class="architecture-group-label" x="188" y="325.6" font-weight="bold" fill="#1b1f24">Dane</text>
-<text class="edge-label" x="595" y="67.6" text-anchor="middle" fill="#1b1f24">SMTP</text>
-<ellipse class="architecture-icon" cx="85" cy="62" rx="15.12" ry="15.12" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<ellipse class="architecture-icon" cx="85" cy="62" rx="6.72" ry="15.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="architecture-icon" x1="69.88" y1="62" x2="100.12" y2="62" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="architecture-label-background" x="30.2" y="94" width="109.6" height="20" fill="#ffffff"/>
-<text class="architecture-label" x="85" y="109.6" text-anchor="middle" fill="#1b1f24">Przeglądarka</text>
-<rect class="architecture-icon" x="239.88" y="47.72" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="architecture-icon" x="239.88" y="63.68" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="architecture-icon" cx="245.76" cy="54.02" r="1.68" fill="#3b4754"/>
-<circle class="architecture-icon" cx="245.76" cy="69.98" r="1.68" fill="#3b4754"/>
-<rect class="architecture-label-background" x="195.8" y="94" width="118.4" height="20" fill="#ffffff"/>
-<text class="architecture-label" x="255" y="109.6" text-anchor="middle" fill="#1b1f24">Reverse proxy</text>
-<rect class="architecture-icon" x="409.88" y="47.72" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="architecture-icon" x="409.88" y="63.68" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="architecture-icon" cx="415.76" cy="54.02" r="1.68" fill="#3b4754"/>
-<circle class="architecture-icon" cx="415.76" cy="69.98" r="1.68" fill="#3b4754"/>
-<rect class="architecture-label-background" x="362.6" y="94" width="124.8" height="20" fill="#ffffff"/>
-<text class="architecture-label" x="425" y="109.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
-<ellipse class="architecture-icon" cx="255" cy="372.92" rx="14.28" ry="5.04" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="architecture-icon" x="240.72" y="351.08" width="28.56" height="21.84" fill="#ffffff"/>
-<line class="architecture-icon" x1="240.72" y1="351.08" x2="240.72" y2="372.92" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="architecture-icon" x1="269.28" y1="351.08" x2="269.28" y2="372.92" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<ellipse class="architecture-icon" cx="255" cy="351.08" rx="14.28" ry="5.04" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="architecture-label-background" x="203.8" y="394" width="102.4" height="20" fill="#ffffff"/>
-<text class="architecture-label" x="255" y="409.6" text-anchor="middle" fill="#1b1f24">Baza danych</text>
-<ellipse class="architecture-icon" cx="595" cy="362" rx="15.12" ry="15.12" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<ellipse class="architecture-icon" cx="595" cy="362" rx="4.2" ry="4.2" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="architecture-label-background" x="552.2" y="394" width="85.6" height="20" fill="#ffffff"/>
-<text class="architecture-label" x="595" y="409.6" text-anchor="middle" fill="#1b1f24">Załączniki</text>
-<rect class="architecture-label-background" x="736.2" y="94" width="57.6" height="20" fill="#ffffff"/>
-<text class="architecture-label" x="765" y="109.6" text-anchor="middle" fill="#1b1f24">Poczta</text>
+<text class="architecture-group-label" x="188" y="353.6" font-weight="bold" fill="#1b1f24">Dane</text>
+<text class="edge-label" x="595" y="81.6" text-anchor="middle" fill="#1b1f24">SMTP</text>
+<ellipse class="architecture-icon" cx="85" cy="76" rx="15.12" ry="15.12" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<ellipse class="architecture-icon" cx="85" cy="76" rx="6.72" ry="15.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="architecture-icon" x1="69.88" y1="76" x2="100.12" y2="76" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="architecture-label-background" x="30.2" y="108" width="109.6" height="20" fill="#ffffff"/>
+<text class="architecture-label" x="85" y="123.6" text-anchor="middle" fill="#1b1f24">Przeglądarka</text>
+<rect class="architecture-icon" x="239.88" y="61.72" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="architecture-icon" x="239.88" y="77.68" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="architecture-icon" cx="245.76" cy="68.02" r="1.68" fill="#3b4754"/>
+<circle class="architecture-icon" cx="245.76" cy="83.98" r="1.68" fill="#3b4754"/>
+<rect class="architecture-label-background" x="195.8" y="108" width="118.4" height="20" fill="#ffffff"/>
+<text class="architecture-label" x="255" y="123.6" text-anchor="middle" fill="#1b1f24">Reverse proxy</text>
+<rect class="architecture-icon" x="409.88" y="61.72" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="architecture-icon" x="409.88" y="77.68" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="architecture-icon" cx="415.76" cy="68.02" r="1.68" fill="#3b4754"/>
+<circle class="architecture-icon" cx="415.76" cy="83.98" r="1.68" fill="#3b4754"/>
+<rect class="architecture-label-background" x="362.6" y="108" width="124.8" height="20" fill="#ffffff"/>
+<text class="architecture-label" x="425" y="123.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
+<ellipse class="architecture-icon" cx="255" cy="414.92" rx="14.28" ry="5.04" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="architecture-icon" x="240.72" y="393.08" width="28.56" height="21.84" fill="#ffffff"/>
+<line class="architecture-icon" x1="240.72" y1="393.08" x2="240.72" y2="414.92" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="architecture-icon" x1="269.28" y1="393.08" x2="269.28" y2="414.92" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<ellipse class="architecture-icon" cx="255" cy="393.08" rx="14.28" ry="5.04" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="architecture-label-background" x="203.8" y="436" width="102.4" height="20" fill="#ffffff"/>
+<text class="architecture-label" x="255" y="451.6" text-anchor="middle" fill="#1b1f24">Baza danych</text>
+<ellipse class="architecture-icon" cx="595" cy="404" rx="15.12" ry="15.12" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<ellipse class="architecture-icon" cx="595" cy="404" rx="4.2" ry="4.2" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="architecture-label-background" x="552.2" y="436" width="85.6" height="20" fill="#ffffff"/>
+<text class="architecture-label" x="595" y="451.6" text-anchor="middle" fill="#1b1f24">Załączniki</text>
+<rect class="architecture-label-background" x="736.2" y="108" width="57.6" height="20" fill="#ffffff"/>
+<text class="architecture-label" x="765" y="123.6" text-anchor="middle" fill="#1b1f24">Poczta</text>
 </svg>

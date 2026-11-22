@@ -586,7 +586,7 @@ i jaśniejsze tło, a nie kolor; rodzaj elementu jest zapisany jak w Mermaid (`[
 Orientacja pionowa (`gitGraph TB:`, `BT:`, GIT-005): gałęzie są kolumnami, a opis commitu stoi z jego prawej
 strony. Świadome różnice wobec
 Mermaid: commit bez podanego identyfikatora nie ma podpisu (Mermaid losuje identyfikator, więc rysunek nie byłby
-powtarzalny); identyfikator stoi poziomo pod commitem, a odstęp commitów mieści najdłuższy; gałęzie stoją
+powtarzalny); identyfikator stoi poziomo pod commitem, a odstęp dwóch commitów mieści ich własne podpisy; gałęzie stoją
 w kolejności powstania (`order:` jest pomijane); domyślnie rysunek jest neutralny, `WithColors` nadaje gałęziom
 kolory palety.
 

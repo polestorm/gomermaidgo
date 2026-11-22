@@ -226,6 +226,7 @@ const (
 	colorLine  = "#3b4754"
 	colorLabel = "#eef2f7"
 	colorTag   = "#ffffff"
+	colorGuide = "#9aa5b1"
 )
 
 // Layout rozmieszcza graf: gałęzie są poziomymi torami w kolejności powstania, commity stoją
@@ -245,10 +246,18 @@ func Layout(g *Graph, o Options) *scene.Scene {
 		return sc
 	}
 
-	// Odstęp commitów mieści najdłuższy identyfikator i znacznik.
-	step := u(52)
-	for _, c := range g.Commits {
-		step = math.Max(step, math.Max(o.Measure(c.ID, small), o.Measure(c.Tag, small)+u(12))+u(12))
+	// Odstęp dwóch kolejnych commitów mieści ich podpisy: połowę szerszego z identyfikatora
+	// i znacznika każdego z nich. Krótkie podpisy nie rozciągają więc całego grafu.
+	half := func(c Commit) float64 {
+		w := o.Measure(c.ID, small)
+		if c.Tag != "" {
+			w = math.Max(w, o.Measure(c.Tag, small)+u(12))
+		}
+		return w / 2
+	}
+	xs := make([]float64, len(g.Commits))
+	for i := 1; i < len(xs); i++ {
+		xs[i] = xs[i-1] + math.Max(u(40), half(g.Commits[i-1])+half(g.Commits[i])+u(10))
 	}
 	labelW := 0.0
 	for _, b := range g.Branches {
@@ -256,7 +265,7 @@ func Layout(g *Graph, o Options) *scene.Scene {
 	}
 	x0 := labelW + 2*u(10) + u(24)
 	lane := u(64)
-	at := func(i int) (x, y float64) { return x0 + float64(i)*step, float64(g.Commits[i].Branch)*lane + u(28) }
+	at := func(i int) (x, y float64) { return x0 + xs[i], float64(g.Commits[i].Branch)*lane + u(28) }
 	tone := func(branch int) string {
 		if o.Colors {
 			return scene.Palette[branch%len(scene.Palette)].Stroke
@@ -288,7 +297,13 @@ func Layout(g *Graph, o Options) *scene.Scene {
 		if b == 0 {
 			xa = labelW + 2*u(10) // tor gałęzi głównej zaczyna się przy jej etykiecie
 		}
-		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "git-lane", X: xa, Y: y, X2: xb, Y2: y, Stroke: tone(b), StrokeWidth: 2})
+		// Cienka linia przerywana przez cały graf pokazuje tor gałęzi także tam, gdzie gałąź
+		// jeszcze nie istnieje albo już się skończyła; odcinek życia gałęzi jest gruby.
+		if n := len(g.Commits); n > 0 {
+			xe, _ := at(n - 1)
+			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "git-guide", X: labelW + 2*u(10), Y: y, X2: xe + u(16), Y2: y, Stroke: colorGuide, StrokeWidth: 1, Dash: "2 4"})
+		}
+		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "git-lane", X: xa, Y: y, X2: xb, Y2: y, Stroke: tone(b), StrokeWidth: 3})
 	}
 	// elbow rysuje łącznik między torami: wzdłuż toru źródła, potem w poprzek do celu, z jednym
 	// zaokrąglonym narożnikiem. Gdy turnAtStart, najpierw w poprzek, potem wzdłuż toru celu.
@@ -309,7 +324,12 @@ func Layout(g *Graph, o Options) *scene.Scene {
 				{Cmd: 'C', C1: scene.Point{X: xb - r*k, Y: ya}, C2: scene.Point{X: xb, Y: ya + dy*r*k}, To: scene.Point{X: xb, Y: ya + dy*r}},
 				{Cmd: 'L', To: scene.Point{X: xb, Y: yb}}}
 		}
-		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: segments, Stroke: stroke, StrokeWidth: 2, Dash: dash})
+		// Odejście i scalenie są częścią gałęzi, więc mają jej grubość; kopia jest cieńsza i przerywana.
+		thickness := 3.0
+		if dash != "" {
+			thickness = 2
+		}
+		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: segments, Stroke: stroke, StrokeWidth: thickness, Dash: dash})
 	}
 	for i, c := range g.Commits {
 		x, y := at(i)
@@ -348,17 +368,25 @@ func Layout(g *Graph, o Options) *scene.Scene {
 	return sc
 }
 
-// mark rysuje znak commitu: koło, kwadrat wyróżnienia, pusty okrąg scalenia albo kopii, krzyżyk cofnięcia.
+// mark rysuje znak commitu: koło, kwadrat wyróżnienia, pusty okrąg ze środkiem dla scalenia,
+// koło z wiśniami dla kopii (cherry-pick), krzyżyk cofnięcia.
 func mark(sc *scene.Scene, c Commit, x, y, r float64, stroke string) {
 	switch {
 	case c.Type == Highlight:
 		sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "git-commit", X: x - r, Y: y - r, W: 2 * r, H: 2 * r, Fill: stroke, Stroke: stroke, StrokeWidth: 2})
-	case c.Merged >= 0 || c.Picked >= 0:
-		// Scalenie i kopia: pusty okrąg, żeby odróżnić je od zwykłego commitu.
-		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit", X: x, Y: y, R: r, Fill: "#ffffff", Stroke: stroke, StrokeWidth: 2.5})
-		if c.Merged >= 0 {
-			sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit-detail", X: x, Y: y, R: r * 0.45, Fill: stroke})
+	case c.Picked >= 0:
+		// Kopia: dwie wiśnie na ogonkach schodzących się u góry, jasne na ciemnym kole.
+		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit", X: x, Y: y, R: r, Fill: stroke, Stroke: stroke, StrokeWidth: 2})
+		top := scene.Point{X: x + r*0.1, Y: y - r*0.62}
+		for _, d := range []float64{-1, 1} {
+			cx, cy := x+d*r*0.36, y+r*0.3
+			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLabel, Role: "git-commit-detail", X: top.X, Y: top.Y, X2: cx, Y2: cy - r*0.2, Stroke: "#ffffff", StrokeWidth: 1.2})
+			sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerLabel, Role: "git-commit-detail", X: cx, Y: cy, R: r * 0.3, Fill: "#ffffff"})
 		}
+	case c.Merged >= 0:
+		// Scalenie: pusty okrąg z kropką, żeby odróżnić je od zwykłego commitu.
+		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit", X: x, Y: y, R: r, Fill: "#ffffff", Stroke: stroke, StrokeWidth: 2.5})
+		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit-detail", X: x, Y: y, R: r * 0.45, Fill: stroke})
 	default:
 		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "git-commit", X: x, Y: y, R: r, Fill: stroke, Stroke: stroke, StrokeWidth: 2})
 	}
@@ -437,7 +465,17 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 				ya = labelY + labelH
 			}
 		}
-		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "git-lane", X: x, Y: ya, X2: x, Y2: yb, Stroke: tone(b), StrokeWidth: 2})
+		if n := len(g.Commits); n > 0 {
+			_, ye := at(n - 1)
+			gy := labelY + labelH
+			if !down {
+				gy, ye = labelY, ye-u(16)
+			} else {
+				ye += u(16)
+			}
+			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerBackground, Role: "git-guide", X: x, Y: gy, X2: x, Y2: ye, Stroke: colorGuide, StrokeWidth: 1, Dash: "2 4"})
+		}
+		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "git-lane", X: x, Y: ya, X2: x, Y2: yb, Stroke: tone(b), StrokeWidth: 3})
 	}
 	// elbow: łącznik z jednym zaokrąglonym narożnikiem. crossFirst: najpierw w poprzek kolumn,
 	// potem wzdłuż kolumny celu; inaczej wzdłuż kolumny źródła i w poprzek do celu.
@@ -461,7 +499,12 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 				{Cmd: 'C', C1: scene.Point{X: xa, Y: yb - dy*rr*k}, C2: scene.Point{X: xa + dx*rr*k, Y: yb}, To: scene.Point{X: xa + dx*rr, Y: yb}},
 				{Cmd: 'L', To: scene.Point{X: xb, Y: yb}}}
 		}
-		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: segments, Stroke: stroke, StrokeWidth: 2, Dash: dash})
+		// Odejście i scalenie są częścią gałęzi, więc mają jej grubość; kopia jest cieńsza i przerywana.
+		thickness := 3.0
+		if dash != "" {
+			thickness = 2
+		}
+		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: role, Segments: segments, Stroke: stroke, StrokeWidth: thickness, Dash: dash})
 	}
 	for i, c := range g.Commits {
 		x, y := at(i)

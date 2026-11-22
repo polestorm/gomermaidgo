@@ -1,6 +1,7 @@
 package gitgraph
 
 import (
+	"math"
 	"strings"
 	"testing"
 
@@ -189,6 +190,53 @@ func TestVertical(t *testing.T) {
 		// Opis commitu głównej gałęzi kończy się przed kolumną gałęzi bocznej.
 		if b := ids[0].Bounds(); b.X0 < x0 || b.X1 >= x1 {
 			t.Errorf("%s: commit id leaves its column: %+v", dir, b)
+		}
+	}
+}
+
+// REQ: GIT-006
+// Linie prowadzące torów, odstępy z własnych podpisów i znak kopii.
+func TestGuidesSpacingAndPickMark(t *testing.T) {
+	src := "commit id: \"a\"\ncommit id: \"b\"\nbranch boczna\ncommit id: \"bardzo-dlugi-identyfikator-commitu\"\ncheckout main\ncommit id: \"c\"\ncherry-pick id: \"bardzo-dlugi-identyfikator-commitu\"\ncommit id: \"d\""
+	for _, header := range []string{"gitGraph\n", "gitGraph TB:\n"} {
+		g, err := Parse(header + src)
+		if err != nil {
+			t.Fatal(err)
+		}
+		sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+		var guides, lanes, commits []scene.Item
+		details := 0
+		for _, it := range sc.Items {
+			switch it.Role {
+			case "git-guide":
+				guides = append(guides, it)
+			case "git-lane":
+				lanes = append(lanes, it)
+			case "git-commit":
+				commits = append(commits, it)
+			case "git-commit-detail":
+				details++
+			}
+		}
+		if len(guides) != 2 || len(lanes) != 2 || len(commits) != 6 {
+			t.Fatalf("%q: %d guides, %d lanes, %d commits", header, len(guides), len(lanes), len(commits))
+		}
+		length := func(it scene.Item) float64 { return math.Abs(it.X2-it.X) + math.Abs(it.Y2-it.Y) }
+		for i, gd := range guides {
+			if gd.Dash == "" || gd.StrokeWidth >= lanes[i].StrokeWidth || length(gd) < length(lanes[i]) || length(guides[0])-length(gd) > 0.01 {
+				t.Errorf("%q: guide %d should be thin, dashed and as long as the graph: %+v", header, i, gd)
+			}
+		}
+		// Kopia: koło z dwiema wiśniami (dwa kółka i dwa ogonki).
+		if details != 4 {
+			t.Errorf("%q: cherry-pick mark has %d parts, want 4", header, details)
+		}
+		if header == "gitGraph\n" {
+			// Krótkie podpisy stoją gęsto, długi rozsuwa tylko swoich sąsiadów.
+			x := func(i int) float64 { b := commits[i].Bounds(); return (b.X0 + b.X1) / 2 }
+			if near, far := x(1)-x(0), x(2)-x(1); near > 60 || far < 2*near {
+				t.Errorf("spacing: %v between short ids, %v next to the long one", near, far)
+			}
 		}
 	}
 }

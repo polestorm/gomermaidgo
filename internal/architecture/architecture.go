@@ -366,7 +366,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	sc := &scene.Scene{Title: title, Desc: d.AccDescr, FontFamily: o.FontFamily, FontSize: fs, Margin: u(12), Background: o.Background}
 
 	grid := Grid(d)
-	cellW, cellH, icon := u(170), u(150), u(56)
+	cellW, cellH, icon := u(170), u(164), u(56)
 	y0 := 0.0
 	if d.Title != "" {
 		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "title", X: 0, Y: lh/2 + 0.35*fs, W: width(d.Title), H: lh, Text: d.Title, Anchor: "start", Fill: colorText})
@@ -374,7 +374,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	}
 	centre := func(id string) (float64, float64) {
 		p := grid[id]
-		return float64(p[0])*cellW + cellW/2, y0 + float64(p[1])*cellH + u(34) + icon/2
+		return float64(p[0])*cellW + cellW/2, y0 + float64(p[1])*cellH + u(48) + icon/2
 	}
 
 	// Ramki grup: pole obejmujące usługi grupy i ramki grup podrzędnych, z marginesem.
@@ -397,7 +397,8 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 		for _, n := range d.Nodes {
 			if n.Group == g.ID {
 				cx, cy := centre(n.ID)
-				grow(cx-cellW/2+u(8), cy-icon/2-u(28), cx+cellW/2-u(8), cy+icon/2+2*lh+u(10))
+				// Nad ikoną miejsce na podpis grupy i odstęp pod nim.
+				grow(cx-cellW/2+u(8), cy-icon/2-u(42), cx+cellW/2-u(8), cy+icon/2+2*lh+u(10))
 			}
 		}
 		for _, child := range d.Groups {
