@@ -4,6 +4,7 @@ package class
 
 import (
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -27,26 +28,33 @@ const name = `[\p{L}\p{N}_](?:[\p{L}\p{N}_.-]*[\p{L}\p{N}_])?(?:~[^~]+~)?`
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
 
-	relation = regexp.MustCompile(`^(` + name + `)\s*(?:"([^"]*)")?\s*(<\||\*|o|<|\(\))?(--|\.\.)(\|>|\*|o|>|\(\))?\s*(?:"([^"]*)")?\s*(` + name + `)\s*(?::\s*(.*))?$`)
-	declare  = regexp.MustCompile(`^class\s+(` + name + `)\s*(?:\[\s*"([^"]*)"\s*\])?\s*(?::::\s*([\p{L}\p{N}_-]+))?\s*(\{)?\s*(\})?$`)
-	colon    = regexp.MustCompile(`^(` + name + `)\s*:\s*(.+)$`)
-	annotate = regexp.MustCompile(`^<<\s*([^<>]+?)\s*>>\s*(` + name + `)?$`)
-	noteFor  = regexp.MustCompile(`^note\s+for\s+(` + name + `)\s+"([^"]*)"$`)
-	cssClass = regexp.MustCompile(`^cssClass\s+"([^"]+)"\s+([\p{L}\p{N}_-]+)$`)
-	target   = regexp.MustCompile(`^(\S+)\s+(.+)$`)
+	relation       = regexp.MustCompile(`^(` + name + `)\s*(?:"([^"]*)")?\s*(<\||\*|o|<|\(\))?(--|\.\.)(\|>|\*|o|>|\(\))?\s*(?:"([^"]*)")?\s*(` + name + `)\s*(?::\s*(.*))?$`)
+	declare        = regexp.MustCompile(`^class\s+(` + name + `)\s*(?:\[\s*"([^"]*)"\s*\])?\s*(?::::\s*([\p{L}\p{N}_-]+))?\s*(\{)?\s*(\})?$`)
+	colon          = regexp.MustCompile(`^(` + name + `)\s*:\s*(.+)$`)
+	annotate       = regexp.MustCompile(`^<<\s*([^<>]+?)\s*>>\s*(` + name + `)?$`)
+	noteFree       = regexp.MustCompile(`^note\s+"([^"]*)"$`)
+	namespaceStart = regexp.MustCompile(`^namespace\s+([\p{L}\p{N}_][\p{L}\p{N}_.-]*)\s*\{$`)
+	oneLine        = regexp.MustCompile(`^(class\s+[^{]+?)\s*\{\s*(\S.*?)\s*\}$`)
+	noteFor        = regexp.MustCompile(`^note\s+for\s+(` + name + `)\s+"([^"]*)"$`)
+	cssClass       = regexp.MustCompile(`^cssClass\s+"([^"]+)"\s+([\p{L}\p{N}_-]+)$`)
+	target         = regexp.MustCompile(`^(\S+)\s+(.+)$`)
 	// Klasyfikator składowej: gwiazdka (abstrakcyjna) albo dolar (statyczna), po nawiasie metody
 	// albo na końcu tekstu.
 	classifier = regexp.MustCompile(`^(.*\))([*$])(.*)$|^(.*?)([*$])$`)
 	returns    = regexp.MustCompile(`^(.*\))\s+(\S.*)$`)
 
-	leftHeads  = map[string]graph.Head{"<|": graph.Triangle, "*": graph.DiamondFilled, "o": graph.DiamondHollow, "<": graph.OpenArrow, "": graph.NoHead}
-	rightHeads = map[string]graph.Head{"|>": graph.Triangle, "*": graph.DiamondFilled, "o": graph.DiamondHollow, ">": graph.OpenArrow, "": graph.NoHead}
+	// „()” to interfejs „lizak”: kółko przy klasie, która go udostępnia.
+	leftHeads  = map[string]graph.Head{"<|": graph.Triangle, "*": graph.DiamondFilled, "o": graph.DiamondHollow, "<": graph.OpenArrow, "()": graph.CircleHead, "": graph.NoHead}
+	rightHeads = map[string]graph.Head{"|>": graph.Triangle, "*": graph.DiamondFilled, "o": graph.DiamondHollow, ">": graph.OpenArrow, "()": graph.CircleHead, "": graph.NoHead}
 )
 
 type parser struct {
-	g    *graph.Graph
-	acc  syntax.Accessibility
-	open *graph.Node // klasa, której blok składowych jest otwarty
+	g         *graph.Graph
+	acc       syntax.Accessibility
+	open      *graph.Node // klasa, której blok składowych jest otwarty
+	namespace string      // otwarta przestrzeń nazw: identyfikator jej ramki
+	nsLine    int
+	notes     int
 }
 
 // generics zamienia zapis parametrów typu w tyldach na nawiasy ostre: Lista~T~ → Lista<T>.
@@ -110,6 +118,9 @@ func Parse(source string) (*graph.Graph, error) {
 	if p.open != nil {
 		return nil, syntax.Errorf(p.open.Line, CodeClass, "member block of %q is not closed with \"}\"", p.open.ID)
 	}
+	if p.namespace != "" {
+		return nil, syntax.Errorf(p.nsLine, CodeClass, "namespace is not closed with \"}\"")
+	}
 	if p.acc.Open() {
 		return nil, syntax.Errorf(0, CodeStatement, "accDescr is not closed with \"}\"")
 	}
@@ -126,7 +137,7 @@ func (p *parser) class(written string, line int) (*graph.Node, error) {
 	if i := strings.Index(written, "~"); i >= 0 {
 		id = written[:i]
 	}
-	n, err := p.g.EnsureNode(id, "", graph.Class, line)
+	n, err := p.g.EnsureNode(id, p.namespace, graph.Class, line)
 	if err != nil {
 		return nil, err
 	}
@@ -175,6 +186,10 @@ func (p *parser) statement(s string, line int) error {
 		}
 		return p.member(p.open, s, line)
 	}
+	if s == "}" && p.namespace != "" {
+		p.namespace = ""
+		return nil
+	}
 	word, rest := s, ""
 	if i := strings.IndexAny(s, " \t"); i >= 0 {
 		word, rest = s[:i], strings.TrimSpace(s[i+1:])
@@ -212,11 +227,33 @@ func (p *parser) statement(s string, line int) error {
 	case "click", "link", "callback":
 		return nil // rysunek nie ma odsyłaczy
 	case "namespace":
-		return syntax.Errorf(line, CodeUnsupported, "namespaces are outside the supported profile")
+		m := namespaceStart.FindStringSubmatch(s)
+		if m == nil {
+			return syntax.Errorf(line, CodeStatement, "namespace needs a name and \"{\", found %q", s)
+		}
+		if p.namespace != "" {
+			return syntax.Errorf(line, CodeUnsupported, "nested namespaces are outside the supported profile")
+		}
+		id := "namespace " + m[1]
+		if err := p.g.AddSubgraph(&graph.Subgraph{ID: id, Title: []string{m[1]}, Line: line}); err != nil {
+			return err
+		}
+		p.namespace, p.nsLine = id, line
+		return nil
 	case "note":
+		if m := noteFree.FindStringSubmatch(s); m != nil {
+			// Notatka bez klasy: osobne pole z tekstem.
+			p.notes++
+			n, err := p.g.EnsureNode("[note] "+strconv.Itoa(p.notes), p.namespace, "note", line)
+			if err != nil {
+				return err
+			}
+			n.Label, n.Explicit = split(strings.ReplaceAll(m[1], `\n`, "<br/>")), true
+			return nil
+		}
 		m := noteFor.FindStringSubmatch(s)
 		if m == nil {
-			return syntax.Errorf(line, CodeUnsupported, "only notes written as: note for Class \"text\" are supported")
+			return syntax.Errorf(line, CodeStatement, "note needs a quoted text: note \"text\" or note for Class \"text\"")
 		}
 		n, err := p.class(m[1], line)
 		if err != nil {
@@ -225,9 +262,23 @@ func (p *parser) statement(s string, line int) error {
 		p.g.Notes = append(p.g.Notes, &graph.Note{Target: n.ID, Side: "right", Text: split(strings.ReplaceAll(m[2], `\n`, "<br/>")), Line: line})
 		return nil
 	case "class":
+		// Blok w jednej linii: class A { <<interface>> } albo class A { +pole }.
+		inline := ""
+		if m := oneLine.FindStringSubmatch(s); m != nil {
+			s, inline = m[1], m[2]
+		}
 		m := declare.FindStringSubmatch(s)
 		if m == nil {
 			return syntax.Errorf(line, CodeClass, "class declaration cannot be read: %q", s)
+		}
+		if inline != "" {
+			n, err := p.class(m[1], line)
+			if err != nil {
+				return err
+			}
+			if err := p.member(n, inline, line); err != nil {
+				return err
+			}
 		}
 		n, err := p.class(m[1], line)
 		if err != nil {
@@ -254,9 +305,6 @@ func (p *parser) statement(s string, line int) error {
 		return nil
 	}
 	if m := relation.FindStringSubmatch(s); m != nil {
-		if m[3] == "()" || m[5] == "()" {
-			return syntax.Errorf(line, CodeUnsupported, "lollipop interfaces are outside the supported profile")
-		}
 		from, err := p.class(m[1], line)
 		if err != nil {
 			return err

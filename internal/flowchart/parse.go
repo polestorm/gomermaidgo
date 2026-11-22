@@ -25,6 +25,26 @@ const idPattern = `[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*`
 
 var (
 	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+	// Atrybuty zapisu @{ … }: klucz i wartość w cudzysłowach albo bez.
+	attribute = regexp.MustCompile(`([\w-]+)\s*:\s*(?:"([^"]*)"|'([^']*)'|([^,}]*))`)
+	// Nazwy kształtów nowego zapisu, wraz z synonimami, dla kształtów, które rysujemy.
+	namedShapes = map[string]graph.Shape{
+		"rect": graph.Rect, "rectangle": graph.Rect, "process": graph.Rect, "proc": graph.Rect,
+		"rounded": graph.Round, "event": graph.Round,
+		"stadium": graph.Stadium, "pill": graph.Stadium, "terminal": graph.Stadium,
+		"fr-rect": graph.Subroutine, "subprocess": graph.Subroutine, "subproc": graph.Subroutine, "framed-rectangle": graph.Subroutine, "subroutine": graph.Subroutine,
+		"cyl": graph.Cylinder, "cylinder": graph.Cylinder, "database": graph.Cylinder, "db": graph.Cylinder,
+		"circle": graph.Circle, "circ": graph.Circle,
+		"dbl-circ": graph.DoubleCircle, "double-circle": graph.DoubleCircle,
+		"diam": graph.Rhombus, "diamond": graph.Rhombus, "decision": graph.Rhombus, "question": graph.Rhombus,
+		"hex": graph.Hexagon, "hexagon": graph.Hexagon, "prepare": graph.Hexagon,
+		"lean-r": graph.Parallelogram, "lean-right": graph.Parallelogram, "in-out": graph.Parallelogram,
+		"lean-l": graph.ParallelogramAlt, "lean-left": graph.ParallelogramAlt, "out-in": graph.ParallelogramAlt,
+		"trap-b": graph.Trapezoid, "trapezoid": graph.Trapezoid, "trapezoid-bottom": graph.Trapezoid, "priority": graph.Trapezoid,
+		"trap-t": graph.TrapezoidAlt, "inv-trapezoid": graph.TrapezoidAlt, "trapezoid-top": graph.TrapezoidAlt, "manual": graph.TrapezoidAlt,
+		"odd": graph.Asymmetric,
+	}
+	iconTag   = regexp.MustCompile(`\bfa[bsrlkd]?:fa-([a-z0-9-]+)`)
 	boldTag   = regexp.MustCompile(`(?i)</?(b|strong)>`)
 	italicTag = regexp.MustCompile(`(?i)</?(i|em)>`)
 	swimlanes = regexp.MustCompile(`^%%\s*layout:\s*swimlanes\s*$`)
@@ -38,9 +58,12 @@ var (
 	singleID          = regexp.MustCompile(`^` + idPattern + `$`)
 
 	// Krawędzie z tekstem w środku: „-- tekst -->”, „== tekst ==>”, „-. tekst .->”.
-	inlineNormal = regexp.MustCompile(`^([<ox])?--\s+(\S.*?)\s*(-{2,})([>ox])?`)
-	inlineThick  = regexp.MustCompile(`^([<ox])?==\s+(\S.*?)\s*(={2,})([>ox])?`)
-	inlineDotted = regexp.MustCompile(`^([<ox])?-\.\s+(\S.*?)\s*(\.+)-([>ox])?`)
+	// Tekst może stać po odstępie („-- tekst -->”) albo od razu („--tekst-->”); bez odstępu nie
+	// może zaczynać się znakiem, który należy do samej krawędzi, a po „o” albo „x” musi iść dalszy
+	// tekst, bo „--o” i „--x” są zakończeniami.
+	inlineNormal = regexp.MustCompile(`^([<ox])?--(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s\-].*?)\s*(-{2,})([>ox])?`)
+	inlineThick  = regexp.MustCompile(`^([<ox])?==(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s=].*?)\s*(={2,})([>ox])?`)
+	inlineDotted = regexp.MustCompile(`^([<ox])?-\.(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s.\-].*?)\s*(\.+)-([>ox])?`)
 	// Krawędzie bez tekstu.
 	plainDotted = regexp.MustCompile(`^([<ox])?-(\.+)-([>ox])?`)
 	plainNormal = regexp.MustCompile(`^([<ox])?(-{2,})([>ox])?`)
@@ -104,6 +127,15 @@ func text(raw string, line int) ([]string, error) {
 	}
 	if strings.Contains(s, `"`) {
 		return nil, syntax.Errorf(line, CodeNode, "unexpected quote in text %q", raw)
+	}
+	// Ikony Font Awesome (fa:fa-user) nie są rysowane: rysunek nie zawiera cudzych krojów ikon.
+	// Znacznik znika z tekstu, a etykieta złożona z samej ikony dostaje jej nazwę.
+	if m := iconTag.FindStringSubmatch(s); m != nil {
+		if rest := strings.TrimSpace(iconTag.ReplaceAllString(s, " ")); rest != "" {
+			s = strings.Join(strings.Fields(rest), " ")
+		} else {
+			s = strings.ReplaceAll(m[1], "-", " ")
+		}
 	}
 	// Znaczniki HTML wyróżnienia, częste w etykietach: pogrubienie i kursywa. Inne znaczniki zostają tekstem.
 	s = boldTag.ReplaceAllString(s, string(graph.MarkBold))
@@ -436,7 +468,41 @@ func (p *parser) node(sc *scanner) (string, error) {
 	}
 	rest := sc.rest()
 	if strings.HasPrefix(rest, "@{") {
-		return "", syntax.Errorf(sc.line, CodeUnsupported, "shape syntax \"@{ }\" is outside the supported profile")
+		// Nowy zapis kształtu: A@{ shape: rect, label: "Tekst" }.
+		end := strings.Index(rest, "}")
+		if end < 0 {
+			return "", syntax.Errorf(sc.line, CodeNode, "node %q: \"@{\" is not closed", id)
+		}
+		shape, label := "", ""
+		for _, f := range attribute.FindAllStringSubmatch(rest[2:end], -1) {
+			value := strings.TrimSpace(f[2] + f[3] + f[4])
+			switch f[1] {
+			case "shape":
+				shape = value
+			case "label":
+				label = value
+			}
+		}
+		if shape != "" {
+			known, ok := namedShapes[shape]
+			if !ok {
+				return "", syntax.Errorf(sc.line, CodeUnsupported, "shape %q is outside the supported profile", shape)
+			}
+			n.Shape, n.Explicit = known, true
+		}
+		if label != "" {
+			lines, err := text(label, sc.line)
+			if err != nil {
+				return "", err
+			}
+			n.Label, n.Explicit = lines, true
+		}
+		sc.pos += end + 1
+		if m := classAt.FindStringSubmatch(sc.rest()); m != nil {
+			p.g.AssignClass(id, m[1], sc.line)
+			sc.pos += len(m[0])
+		}
+		return id, nil
 	}
 	// Klasa może stać przed kształtem albo za nim: „A:::k[tekst]”, „A[tekst]:::k”.
 	class := func() {
@@ -550,12 +616,12 @@ func (sc *scanner) edge() (*graph.Edge, error) {
 		if m[4] == "" && len(m[3]) < 3 {
 			return fail()
 		}
-		e.Style, e.StartHead, e.EndHead, label = style, head(m[1]), head(m[4]), m[2]
+		e.Style, e.StartHead, e.EndHead, label = style, head(m[1]), head(m[4]), strings.TrimSpace(m[2])
 		e.MinLen = length(len(m[3]), m[4] != "")
 		sc.pos += len(m[0])
 	case inlineDotted.MatchString(rest):
 		m := inlineDotted.FindStringSubmatch(rest)
-		e.Style, e.StartHead, e.EndHead, label = graph.Dotted, head(m[1]), head(m[4]), m[2]
+		e.Style, e.StartHead, e.EndHead, label = graph.Dotted, head(m[1]), head(m[4]), strings.TrimSpace(m[2])
 		e.MinLen = len(m[3])
 		sc.pos += len(m[0])
 	case plainDotted.MatchString(rest):

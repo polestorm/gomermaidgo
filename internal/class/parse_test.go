@@ -111,24 +111,52 @@ func TestParseErrors(t *testing.T) {
 		code string
 		line int
 	}{
-		"":                                        {CodeHeader, 0},
-		"classes\nA":                              {CodeHeader, 1},
-		"classDiagram\nnamespace N {":             {CodeUnsupported, 2},
-		"classDiagram\nA ()-- B":                  {CodeUnsupported, 2},
-		"classDiagram\nnote \"bez klasy\"":        {CodeUnsupported, 2},
-		"classDiagram\nclass A {\n+x":             {CodeClass, 2},
-		"classDiagram\nclass A {\n+x {\n}":        {CodeMember, 3},
-		"classDiagram\nclass":                     {CodeClass, 2},
-		"classDiagram\nto nie jest instrukcja":    {CodeStatement, 2},
-		"classDiagram\ndirection XY":              {CodeStatement, 2},
-		"classDiagram\ncssClass A b":              {CodeStatement, 2},
-		"classDiagram\nclass A\nstyle A fill:%%%": {"graph-style", 3},
-		"classDiagram\naccDescr {\nbez końca":     {CodeStatement, 0},
+		"":                            {CodeHeader, 0},
+		"classes\nA":                  {CodeHeader, 1},
+		"classDiagram\nnamespace N {": {CodeClass, 2},
+		"classDiagram\nnamespace N {\nnamespace M {": {CodeUnsupported, 3},
+		"classDiagram\nnamespace bez klamry":         {CodeStatement, 2},
+		"classDiagram\nnote bez cudzysłowu":          {CodeStatement, 2},
+		"classDiagram\nclass A {\n+x":                {CodeClass, 2},
+		"classDiagram\nclass A {\n+x {\n}":           {CodeMember, 3},
+		"classDiagram\nclass":                        {CodeClass, 2},
+		"classDiagram\nto nie jest instrukcja":       {CodeStatement, 2},
+		"classDiagram\ndirection XY":                 {CodeStatement, 2},
+		"classDiagram\ncssClass A b":                 {CodeStatement, 2},
+		"classDiagram\nclass A\nstyle A fill:%%%":    {"graph-style", 3},
+		"classDiagram\naccDescr {\nbez końca":        {CodeStatement, 0},
 	} {
 		_, err := Parse(src)
 		e, ok := err.(*syntax.Error)
 		if !ok || (want.code != "graph-style" && e.Code != want.code) || e.Line != want.line {
 			t.Errorf("%q: got %v, want code %s at line %d", src, err, want.code, want.line)
 		}
+	}
+}
+
+// REQ: CLS-009
+// Przestrzeń nazw jest ramką wokół swoich klas; blok klasy może stać w jednej linii; notatka bez
+// klasy jest osobnym polem; interfejs „lizak” ma kółko przy swoim końcu.
+func TestParseNamespacesNotesLollipops(t *testing.T) {
+	g, err := Parse("classDiagram\nnamespace Dokumenty {\n  class Procedura {\n    +String numer\n  }\n  class Instrukcja\n}\nclass Pojazd { <<interface>> }\nclass Rejestr { +int licznik }\nnote \"Ogólna<br/>notatka\"\nPodpisywalny ()-- Procedura\nRejestr --() Czytelny")
+	if err != nil {
+		t.Fatal(err)
+	}
+	ns := g.Subgraph("namespace Dokumenty")
+	if ns == nil || ns.Title[0] != "Dokumenty" || g.Node("Procedura").Parent != ns.ID || g.Node("Instrukcja").Parent != ns.ID || g.Node("Rejestr").Parent != "" {
+		t.Errorf("namespace: %+v", ns)
+	}
+	if p := g.Node("Pojazd"); p.Annotation != "interface" || len(p.Members) != 0 {
+		t.Errorf("one-line annotation: %+v", p)
+	}
+	if r := g.Node("Rejestr"); len(r.Members) != 1 || r.Members[0].Text != "+int licznik" {
+		t.Errorf("one-line member: %+v", r)
+	}
+	note := g.Node("[note] 1")
+	if note == nil || note.Shape != "note" || strings.Join(note.Label, "|") != "Ogólna|notatka" {
+		t.Errorf("free note: %+v", note)
+	}
+	if a, b := g.Edges[0], g.Edges[1]; a.StartHead != graph.CircleHead || a.EndHead != graph.NoHead || b.EndHead != graph.CircleHead || b.StartHead != graph.NoHead {
+		t.Errorf("lollipops: %+v %+v", a, b)
 	}
 }

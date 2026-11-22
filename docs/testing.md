@@ -118,6 +118,17 @@ Kontrola drogi przez `gopdfgo` znalazła przy okazji jedną rzecz w rysunku: num
 pakietu stały tak blisko siebie, że wyciąganie tekstu sklejało je w jedną liczbę („7” i „8” w „78”). Odstęp został
 zwiększony.
 
+## Druga próba na publicznych diagramach (2026-11-22)
+
+74 publiczne pliki Markdown wyszukane po nazwach nowszych typów: 81 bloków, z czego 78 się rysuje (przed poprawkami
+74). Próba dała trzy poprawki: tekst krawędzi bez odstępów (`A --tekst--> B`), znaki o zerowej szerokości w źródle,
+blok klasy w jednej linii. Trzy pozostałe bloki są błędne także dla Mermaid (węzeł bez identyfikatora, `subgraph`
+w diagramie stanów, notatka bez cudzysłowów). Po poprawkach pierwsza próba (70 bloków) daje 66 narysowanych
+zamiast 62.
+
+Wyszukiwanie zwraca głównie diagramy klas i schematy blokowe; najnowszych typów (architektura, blok, pakiet, radar)
+w publicznych plikach prawie nie ma, więc ich składnia pozostaje sprawdzona tylko na własnych przykładach.
+
 ## Wynik PDF w cudzych czytnikach
 
 2026-11-21: 57 plików korpusu zapisanych przez `pdf.Render`. `pdftotext` (poppler) wyciąga z każdego te same wyrazy,

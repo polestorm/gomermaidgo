@@ -2,6 +2,14 @@
 
 Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” daje błąd z numerem linii.
 
+## Wspólne dla wszystkich typów
+
+- Blok nagłówkowy YAML między liniami `---` jest przyjmowany; `title` daje tytuł nad rysunkiem, a reszta
+  (`config`, motywy) jest pomijana (COM-001).
+- Dyrektywa `%%{init: … }%%`, także wieloliniowa, jest przyjmowana i pomijana: wygląd rysunku jest własny
+  i nie zależy od ustawień Mermaid (COM-002).
+- Numery linii w komunikatach błędów liczą się od początku źródła, razem z nagłówkiem (COM-003).
+
 ## Diagram sekwencji (`sequenceDiagram`)
 
 ### Obsługiwane
@@ -72,10 +80,14 @@ Stan: rysowany układem warstwowym (`internal/layered`).
 
 ### Poza profilem (błąd `flowchart-unsupported`)
 
-Zapis kształtu `@{ shape: … }`, `interpolate`, `flowchart-elk`.
+Kształty zapisu `@{ shape: … }`, których nie rysujemy pod starą składnią (np. `doc`, `cloud`, `delay`; pozostałe
+działają, FLOW-022), `interpolate`, `flowchart-elk`.
 
 ### Świadome różnice wobec Mermaid
 
+- ikony Font Awesome w tekście (`fa:fa-user`) nie są rysowane: znacznik znika z etykiety, a etykieta złożona
+  z samej ikony dostaje jej nazwę; rysunek nie zawiera cudzych krojów ikon;
+- tekst na krawędzi może stać także bez odstępów (`A --tekst--> B`);
 - identyfikator węzła składa się z liter, cyfr i podkreślenia, z łącznikiem albo kropką między nimi;
 - właściwości stylu inne niż pięć honorowanych (czcionka, zaokrąglenia, przejścia) są pomijane; błędna wartość
   honorowanej właściwości jest błędem. Przy ciemnym wypełnieniu kolor tekstu trzeba podać samemu (`color`);
@@ -290,11 +302,13 @@ ograniczenia rysunku.
 | kierunek, notatka | `direction LR`; `note for Nazwa "tekst"` | CLS-006 |
 | wygląd | `classDef`, `class Nazwa:::styl`, `cssClass "A,B" styl`, `style Nazwa …` | CLS-007 |
 | dostępność, odsyłacze | `accTitle`, `accDescr`; `click`, `link`, `callback` (pomijane) | CLS-006 |
+| przestrzeń nazw | `namespace Nazwa { class A … }` | CLS-009 |
+| blok w jednej linii, notatka | `class A { <<interface>> }`; `note "tekst"` | CLS-009 |
+| interfejs „lizak” | `Interfejs ()-- Klasa`, `Klasa --() Interfejs` | CLS-009 |
 
 ### Poza profilem (błąd `class-unsupported`)
 
-Przestrzenie nazw (`namespace`), interfejs „lizak” (`()--`), notatka bez klasy (`note "tekst"`), nazwy klas
-w odwrotnych apostrofach, blok składowych w jednej linii z deklaracją, konfiguracja `hideEmptyMembersBox`.
+Zagnieżdżone przestrzenie nazw, nazwy klas w odwrotnych apostrofach, konfiguracja `hideEmptyMembersBox`.
 
 ### Świadome różnice wobec Mermaid
 
@@ -304,7 +318,9 @@ w odwrotnych apostrofach, blok składowych w jednej linii z deklaracją, konfigu
 - liczności stoją obok linii tuż przy polu; krawędź z licznościami przy obu końcach jest o warstwę dłuższa,
   żeby opisy się nie stykały;
 - identyfikatorem klasy jest nazwa bez parametru typu: `Lista~T~` i `Lista` to ta sama klasa;
-- kolor nadany klasie stylem obejmuje całe pole, także linie przedziałów.
+- kolor nadany klasie stylem obejmuje całe pole, także linie przedziałów;
+- interfejs „lizak” jest zwykłą relacją z kółkiem przy końcu, a sam interfejs polem klasy (w Mermaid samo kółko
+  z nazwą).
 
 ## Oś czasu (`timeline`)
 

@@ -41,7 +41,7 @@ func TestParseErrors(t *testing.T) {
 		{"interpolate outside profile", "flowchart TD\nA-->B\ninterpolate basis", 3, CodeUnsupported},
 		{"nested lane", "%% layout: swimlanes\nflowchart TD\nsubgraph A\nsubgraph B\nx\nend\nend", 4, CodeSubgraph},
 		{"edge to a lane", "%% layout: swimlanes\nflowchart TD\nsubgraph A\nx\nend\ny --> A", 6, CodeEdge},
-		{"new shape syntax", "flowchart TD\nA@{ shape: rect }", 2, CodeUnsupported},
+		{"unknown named shape", "flowchart TD\nA@{ shape: cloud }", 2, CodeUnsupported},
 		{"end without subgraph", "flowchart TD\nA-->B\nend", 3, CodeSubgraph},
 		{"unclosed subgraph", "flowchart TD\nsubgraph S\nA-->B", 0, CodeSubgraph},
 		{"subgraph without name", "flowchart TD\nsubgraph\nA\nend", 2, CodeSubgraph},
@@ -187,5 +187,56 @@ func TestParseEmphasisTags(t *testing.T) {
 	}
 	if b := g.Node("B"); b.Label[0] != "<u>inne</u>" {
 		t.Errorf("other tags should stay as text: %q", b.Label)
+	}
+}
+
+// REQ: FLOW-022
+// Nowy zapis kształtu @{ shape: …, label: … } dla kształtów, które rysujemy, z synonimami nazw.
+func TestParseNamedShapes(t *testing.T) {
+	g, err := Parse("flowchart TD\nA@{ shape: diam, label: \"Czy **na pewno**?\" } --> B@{ shape: database }\nB --> C@{ label: 'Sam tekst, z przecinkiem' }:::k\nC --> D@{ shape: lean-r, label: \"Wejście\" }\nclassDef k fill:#fde\nD --> E@{shape: dbl-circ}")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if a := g.Node("A"); a.Shape != graph.Rhombus || a.Label[0] != "Czy **na pewno**?" {
+		t.Errorf("A: %+v", a)
+	}
+	if b := g.Node("B"); b.Shape != graph.Cylinder || b.Label[0] != "B" {
+		t.Errorf("B keeps its id as the label: %+v", b)
+	}
+	if c := g.Node("C"); c.Shape != graph.Rect || c.Label[0] != "Sam tekst, z przecinkiem" || c.Paint.Fill != "#fde" {
+		t.Errorf("C: %+v", c)
+	}
+	if g.Node("D").Shape != graph.Parallelogram || g.Node("E").Shape != graph.DoubleCircle || len(g.Edges) != 4 {
+		t.Errorf("D, E and edges: %+v %+v %d", g.Node("D"), g.Node("E"), len(g.Edges))
+	}
+	for src, code := range map[string]string{
+		"flowchart TD\nA@{ shape: cloud }": CodeUnsupported,
+		"flowchart TD\nA@{ shape: rect":    CodeNode,
+	} {
+		_, err := Parse(src)
+		if e, ok := err.(*syntax.Error); !ok || e.Code != code || e.Line != 2 {
+			t.Errorf("%q: got %v, want code %s at line 2", src, err, code)
+		}
+	}
+}
+
+// REQ: FLOW-023
+func TestParseTightLabelsAndIcons(t *testing.T) {
+	g, err := Parse("flowchart TD\nA --tekst--> B\nB ==gruby==> C\nC -.kropki.-> D\nD --o E\nE --x F\nF --opis z o--> G\nG --- H --> I\nI[fa:fa-user Użytkownik] --> J[fa:fa-database]\nJ --> K[Zapis fas:fa-check gotowy]")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var labels []string
+	for _, e := range g.Edges {
+		labels = append(labels, strings.Join(e.Label, " "))
+	}
+	if got := strings.Join(labels, "|"); got != "tekst|gruby|kropki|||opis z o||||" {
+		t.Errorf("edge labels: %q", got)
+	}
+	if g.Edges[1].Style != graph.Thick || g.Edges[2].Style != graph.Dotted || g.Edges[3].EndHead != graph.CircleHead || g.Edges[4].EndHead != graph.CrossHead {
+		t.Errorf("edge kinds: %+v %+v %+v %+v", g.Edges[1], g.Edges[2], g.Edges[3], g.Edges[4])
+	}
+	if g.Node("I").Label[0] != "Użytkownik" || g.Node("J").Label[0] != "database" || g.Node("K").Label[0] != "Zapis gotowy" {
+		t.Errorf("icon tags: %q %q %q", g.Node("I").Label, g.Node("J").Label, g.Node("K").Label)
 	}
 }

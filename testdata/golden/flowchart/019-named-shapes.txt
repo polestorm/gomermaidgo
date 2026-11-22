@@ -1,0 +1,11 @@
+flowchart TB
+node A stadium "Projekt dokumentu"
+node B rhombus "Zatwierdzony?"
+node C cylinder "Rejestr"
+node D parallelogram "Uwagi"
+node E rect "Odbiorcy"
+edge A -> B normal none/arrow len=1
+edge B -> C normal none/arrow len=1 "tak"
+edge B -> D normal none/arrow len=1 "nie"
+edge D -> A normal none/arrow len=1
+edge C -> E normal none/arrow len=1

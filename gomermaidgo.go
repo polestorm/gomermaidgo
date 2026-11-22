@@ -128,6 +128,10 @@ func WithShadows() Option { return func(c *config) { c.shadows = true } }
 
 // DetectType zwraca typ diagramu z pierwszej znaczącej linii źródła.
 func DetectType(source string) (string, error) {
+	source, _, err := preamble(source)
+	if err != nil {
+		return "", err
+	}
 	for n, raw := range strings.Split(source, "\n") {
 		s := strings.TrimSpace(raw)
 		if s == "" || strings.HasPrefix(s, "%%") {
@@ -201,6 +205,10 @@ func Check(source string) error {
 	if err := checkCharacters(source); err != nil {
 		return err
 	}
+	source, _, err := preamble(source)
+	if err != nil {
+		return err
+	}
 	kind, err := DetectType(source)
 	if err != nil {
 		return err
@@ -256,6 +264,35 @@ var defaultFace = sync.OnceValue(func() *font.Face {
 // build przechodzi drogę od źródła do sceny. Zwraca też krój użyty do pomiaru; nil, gdy
 // mierzyła funkcja wywołującego albo miara zastępcza.
 func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
+	if err := checkCharacters(source); err != nil {
+		return nil, nil, err
+	}
+	clean, title, err := preamble(source)
+	if err != nil {
+		return nil, nil, err
+	}
+	sc, face, err := buildScene(clean, opts)
+	if err != nil {
+		return nil, nil, err
+	}
+	// Tytuł z bloku nagłówkowego mierzy ten sam krój co resztę rysunku.
+	var c config
+	for _, o := range opts {
+		o(&c)
+	}
+	measure := c.measure
+	if measure == nil && face != nil {
+		measure = func(text string, size float64) float64 {
+			w, _ := face.TextWidth(text, size)
+			return w
+		}
+	}
+	addTitle(sc, title, measure)
+	return sc, face, nil
+}
+
+// buildScene buduje scenę ze źródła bez bloku nagłówkowego i dyrektyw.
+func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 	c := config{fontSize: 16}
 	for _, o := range opts {
 		o(&c)
