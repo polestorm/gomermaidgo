@@ -545,6 +545,10 @@ gdy ma łącznik albo kropkę (Mermaid wymaga wtedy cudzysłowów).
 | Element | Składnia | Wymaganie |
 |---|---|---|
 | przepływ | `źródło,cel,wartość`; `"nazwa, z przecinkiem",cel,12.5` | SNK-001 |
+| łamanie nazw | `%% layout: wrap` (nazwy węzłów łamane na słowach) | SNK-006 |
+
+Węzły ustawiają się w pionie względem sąsiadów, a przepływ przez kilka kolumn omija węzły kolumn pośrednich, więc
+wstęgi biegną możliwie prosto i się nie krzyżują (SNK-005).
 
 Świadome różnice wobec Mermaid: przy każdym węźle stoi jego wartość; wstęgi są domyślnie szare i półprzezroczyste,
 a `WithColors` nadaje im kolor węzła źródłowego; wykres ma stałą szerokość 620 px i wysokość rosnącą z liczbą węzłów

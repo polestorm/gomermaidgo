@@ -1,37 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="642" height="353.14" viewBox="-12 -12 642 353.14" role="img" font-family="Recursive, sans-serif" font-size="16">
-<path class="sankey-link" d="M14 0 C106.1 0 106.1 30.11 198.2 30.11 L198.2 84.8 C106.1 84.8 106.1 54.69 14 54.69 L14 0" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M14 68.69 C106.1 68.69 106.1 84.8 198.2 84.8 L198.2 166.84 C106.1 166.84 106.1 150.72 14 150.72 L14 68.69" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M14 164.72 C106.1 164.72 106.1 166.84 198.2 166.84 L198.2 195.7 C106.1 195.7 106.1 193.58 14 193.58 L14 164.72" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M14 225.81 C106.1 225.81 106.1 195.7 198.2 195.7 L198.2 289.89 C106.1 289.89 106.1 320 14 320 L14 225.81" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M212.2 30.11 C304.3 30.11 304.3 0 396.4 0 L396.4 121.53 C304.3 121.53 304.3 151.64 212.2 151.64 L212.2 30.11" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M212.2 151.64 C304.3 151.64 304.3 135.53 396.4 135.53 L396.4 237.31 C304.3 237.31 304.3 253.43 212.2 253.43 L212.2 151.64" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M212.2 253.43 C304.3 253.43 304.3 251.31 396.4 251.31 L396.4 287.77 C304.3 287.77 304.3 289.89 212.2 289.89 L212.2 253.43" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M14 193.58 C205.2 193.58 205.2 301.77 396.4 301.77 L396.4 320 C205.2 320 205.2 211.81 14 211.81 L14 193.58" fill="#7b8794" fill-opacity="0.35"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="642" height="353.13" viewBox="-12 -12 642 353.13" role="img" font-family="Recursive, sans-serif" font-size="16">
+<path class="sankey-link" d="M14 0 C106.1 0 106.1 15.37 198.2 15.37 L198.2 70.06 C106.1 70.06 106.1 54.69 14 54.69 L14 0" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M14 68.69 C106.1 68.69 106.1 70.06 198.2 70.06 L198.2 152.09 C106.1 152.09 106.1 150.72 14 150.72 L14 68.69" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M14 272.91 C106.1 272.91 106.1 246.28 198.2 246.28 L198.2 275.14 C106.1 275.14 106.1 301.77 14 301.77 L14 272.91" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M14 164.72 C106.1 164.72 106.1 152.09 198.2 152.09 L198.2 246.28 C106.1 246.28 106.1 258.91 14 258.91 L14 164.72" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M212.2 15.37 C304.3 15.37 304.3 0 396.4 0 L396.4 121.53 C304.3 121.53 304.3 136.9 212.2 136.9 L212.2 15.37" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M212.2 136.9 C304.3 136.9 304.3 135.53 396.4 135.53 L396.4 237.31 C304.3 237.31 304.3 238.68 212.2 238.68 L212.2 136.9" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M212.2 238.68 C304.3 238.68 304.3 251.31 396.4 251.31 L396.4 287.77 C304.3 287.77 304.3 275.14 212.2 275.14 L212.2 238.68" fill="#7b8794" fill-opacity="0.35"/>
+<path class="sankey-link" d="M14 301.77 C106.1 301.77 106.1 293.84 198.2 293.84 L212.2 293.84 C304.3 293.84 304.3 301.77 396.4 301.77 L396.4 320 C304.3 320 304.3 312.07 212.2 312.07 L198.2 312.07 C106.1 312.07 106.1 320 14 320 L14 301.77" fill="#7b8794" fill-opacity="0.35"/>
 <rect class="sankey-node" x="0" y="0" width="14" height="54.69" fill="#3b4754"/>
-<rect class="sankey-node" x="198.2" y="30.11" width="14" height="259.77" fill="#3b4754"/>
+<rect class="sankey-node" x="198.2" y="15.37" width="14" height="259.77" fill="#3b4754"/>
 <rect class="sankey-node" x="0" y="68.69" width="14" height="82.03" fill="#3b4754"/>
-<rect class="sankey-node" x="0" y="164.72" width="14" height="47.09" fill="#3b4754"/>
-<rect class="sankey-node" x="0" y="225.81" width="14" height="94.19" fill="#3b4754"/>
+<rect class="sankey-node" x="0" y="272.91" width="14" height="47.09" fill="#3b4754"/>
+<rect class="sankey-node" x="0" y="164.72" width="14" height="94.19" fill="#3b4754"/>
 <rect class="sankey-node" x="396.4" y="0" width="14" height="121.53" fill="#3b4754"/>
 <rect class="sankey-node" x="396.4" y="135.53" width="14" height="101.78" fill="#3b4754"/>
 <rect class="sankey-node" x="396.4" y="251.31" width="14" height="36.46" fill="#3b4754"/>
 <rect class="sankey-node" x="396.4" y="301.77" width="14" height="18.23" fill="#3b4754"/>
 <text class="sankey-label" x="20" y="24.34" fill="#1b1f24">Reklamacje</text>
 <text class="sankey-value" x="20" y="42.34" font-size="13" fill="#5b6570">18</text>
-<text class="sankey-label" x="218.2" y="157" fill="#1b1f24">Niezgodności</text>
-<text class="sankey-value" x="218.2" y="175" font-size="13" fill="#5b6570">85.5</text>
-<text class="sankey-label" x="20" y="106.7" fill="#1b1f24">Audyty wewnętrzne</text>
-<text class="sankey-value" x="20" y="124.7" font-size="13" fill="#5b6570">27</text>
-<text class="sankey-label" x="20" y="185.27" fill="#1b1f24">Kontrola wejściowa</text>
-<text class="sankey-value" x="20" y="203.27" font-size="13" fill="#5b6570">15.5</text>
-<text class="sankey-label" x="20" y="269.91" fill="#1b1f24">Produkcja</text>
-<text class="sankey-value" x="20" y="287.91" font-size="13" fill="#5b6570">31</text>
+<text class="sankey-label" x="218.2" y="142.26" fill="#1b1f24">Niezgodności</text>
+<text class="sankey-value" x="218.2" y="160.26" font-size="13" fill="#5b6570">85.5</text>
+<text class="sankey-label" x="20" y="106.71" fill="#1b1f24">Audyty wewnętrzne</text>
+<text class="sankey-value" x="20" y="124.71" font-size="13" fill="#5b6570">27</text>
+<text class="sankey-label" x="20" y="293.46" fill="#1b1f24">Kontrola wejściowa</text>
+<text class="sankey-value" x="20" y="311.46" font-size="13" fill="#5b6570">15.5</text>
+<text class="sankey-label" x="20" y="208.81" fill="#1b1f24">Produkcja</text>
+<text class="sankey-value" x="20" y="226.81" font-size="13" fill="#5b6570">31</text>
 <text class="sankey-label" x="416.4" y="57.77" fill="#1b1f24">Korekcja</text>
 <text class="sankey-value" x="416.4" y="75.77" font-size="13" fill="#5b6570">40</text>
 <text class="sankey-label" x="416.4" y="183.42" fill="#1b1f24">Działania korygujące</text>
 <text class="sankey-value" x="416.4" y="201.42" font-size="13" fill="#5b6570">33.5</text>
 <text class="sankey-label" x="416.4" y="266.54" fill="#1b1f24">Bez działań, uzasadnione</text>
 <text class="sankey-value" x="416.4" y="284.54" font-size="13" fill="#5b6570">12</text>
-<text class="sankey-label" x="416.4" y="307.89" fill="#1b1f24">Zwrot do dostawcy</text>
-<text class="sankey-value" x="416.4" y="325.89" font-size="13" fill="#5b6570">6</text>
+<text class="sankey-label" x="416.4" y="307.88" fill="#1b1f24">Zwrot do dostawcy</text>
+<text class="sankey-value" x="416.4" y="325.88" font-size="13" fill="#5b6570">6</text>
 </svg>

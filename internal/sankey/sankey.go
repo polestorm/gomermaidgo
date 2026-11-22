@@ -5,12 +5,14 @@ package sankey
 
 import (
 	"math"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/syntax"
+	"github.com/polestorm/gomermaidgo/internal/textwrap"
 )
 
 // Kody błędów składni wykresu Sankeya.
@@ -34,7 +36,10 @@ type Link struct {
 type Chart struct {
 	Nodes []string
 	Links []Link
+	Wrap  bool // %% layout: wrap: nazwy węzłów łamane na słowach
 }
+
+var wrapDirective = regexp.MustCompile(`^%%\s*layout:\s*wrap\s*$`)
 
 // fields dzieli linię CSV na pola; pole w cudzysłowach może zawierać przecinek, a podwojony
 // cudzysłów oznacza cudzysłów.
@@ -69,6 +74,9 @@ func Parse(source string) (*Chart, error) {
 	for n, raw := range strings.Split(source, "\n") {
 		line := n + 1
 		s := strings.TrimSpace(raw)
+		if wrapDirective.MatchString(s) {
+			c.Wrap = true
+		}
 		if s == "" || strings.HasPrefix(s, "%%") {
 			continue
 		}
@@ -194,19 +202,46 @@ func Layout(c *Chart, o Options) *scene.Scene {
 		in[l.To] += l.Value
 		last = max(last, col[l.To])
 	}
-	value := func(n string) float64 { return math.Max(in[n], out[n]) }
 	// Węzeł bez odpływów jest końcem przepływu i stoi w ostatniej kolumnie, obok pozostałych końców.
 	for _, n := range c.Nodes {
 		if out[n] == 0 {
 			col[n] = last
 		}
 	}
-	cols := make([][]string, last+1)
+	// Przepływ przez kilka kolumn dostaje w każdej kolumnie pośredniej węzeł pomocniczy o swojej
+	// grubości: zajmuje tam miejsce, więc węzły tej kolumny nie stają na jego drodze. Układ liczy
+	// się na odcinkach między sąsiednimi kolumnami.
+	type piece struct {
+		from, to string
+		value    float64
+	}
+	var pieces []piece
+	chains := make([][]string, len(c.Links)) // węzły, przez które biegnie wstęga, razem z końcami
+	nodes := append([]string(nil), c.Nodes...)
+	virtual := map[string]bool{}
+	size := map[string]float64{}
 	for _, n := range c.Nodes {
+		size[n] = math.Max(in[n], out[n])
+	}
+	for i, l := range c.Links {
+		chain := []string{l.From}
+		for k := col[l.From] + 1; k < col[l.To]; k++ {
+			v := "\x00" + strconv.Itoa(i) + "@" + strconv.Itoa(k)
+			virtual[v], col[v], size[v] = true, k, l.Value
+			nodes = append(nodes, v)
+			chain = append(chain, v)
+		}
+		chain = append(chain, l.To)
+		chains[i] = chain
+		for k := 0; k+1 < len(chain); k++ {
+			pieces = append(pieces, piece{chain[k], chain[k+1], l.Value})
+		}
+	}
+	cols := make([][]string, last+1)
+	for _, n := range nodes {
 		cols[col[n]] = append(cols[col[n]], n)
 	}
-	// Kolejność w kolumnie: węzły ustawiają się według średniego położenia sąsiadów z kolumny
-	// po lewej, żeby wstęgi krzyżowały się jak najmniej.
+	// Kolejność początkowa w kolumnie: według średniego położenia sąsiadów z kolumny po lewej.
 	pos := map[string]float64{}
 	for _, column := range cols {
 		for i, n := range column {
@@ -215,10 +250,10 @@ func Layout(c *Chart, o Options) *scene.Scene {
 	}
 	for k := 1; k <= last; k++ {
 		sum, weight := map[string]float64{}, map[string]float64{}
-		for _, l := range c.Links {
-			if col[l.To] == k {
-				sum[l.To] += pos[l.From] * l.Value
-				weight[l.To] += l.Value
+		for _, p := range pieces {
+			if col[p.to] == k {
+				sum[p.to] += pos[p.from] * p.value
+				weight[p.to] += p.value
 			}
 		}
 		column := cols[k]
@@ -238,32 +273,125 @@ func Layout(c *Chart, o Options) *scene.Scene {
 	for _, column := range cols {
 		total := 0.0
 		for _, n := range column {
-			total += value(n)
+			total += size[n]
 		}
 		scale = math.Min(scale, (height-gap*float64(len(column)-1))/total)
 	}
+	// Nazwa węzła: jedna linia, a przy „%% layout: wrap” łamana na słowach. W ostatniej kolumnie do
+	// szerokości najdłuższego słowa wśród jej nazw, żeby jedna długa nazwa nie zwężała wykresu.
+	name := map[string][]string{}
+	for _, n := range c.Nodes {
+		name[n] = []string{n}
+	}
+	if c.Wrap {
+		limit := u(48)
+		for _, n := range cols[last] {
+			for _, word := range strings.Fields(n) {
+				limit = math.Max(limit, width(word))
+			}
+		}
+		for _, n := range cols[last] {
+			name[n] = textwrap.Lines([]string{n}, limit, width)
+		}
+	}
 	labelW := 0.0
 	for _, n := range cols[last] {
-		labelW = math.Max(labelW, math.Max(width(n), width(Number(value(n)))))
+		labelW = math.Max(labelW, width(Number(size[n])))
+		for _, line := range name[n] {
+			labelW = math.Max(labelW, width(line))
+		}
 	}
 	plotW := u(620) - labelW - u(8)
 	step := 0.0
 	if last > 0 {
 		step = (plotW - nodeW) / float64(last)
 	}
+	if c.Wrap && last > 0 {
+		// Nazwy wcześniejszych kolumn mieszczą się w odstępie do następnej kolumny.
+		for _, n := range c.Nodes {
+			if col[n] < last {
+				name[n] = textwrap.Lines([]string{n}, step-nodeW-u(12), width)
+			}
+		}
+	}
+
+	// Położenie w pionie: węzły zaczynają w stosie pośrodku kolumny, a potem każdy przesuwa się ku
+	// średniej ważonej środków swoich sąsiadów, na zmianę względem celów i źródeł. Wstęgi wychodzą
+	// przez to możliwie prosto. Po każdym kroku kolumna jest porządkowana: węzły zachowują odstęp
+	// i mieszczą się w wysokości wykresu.
 	type rect struct{ x, y, h float64 }
 	at := map[string]rect{}
 	for k, column := range cols {
 		total := gap * float64(len(column)-1)
 		for _, n := range column {
-			total += value(n) * scale
+			total += size[n] * scale
 		}
 		y := (height - total) / 2
 		for _, n := range column {
-			h := value(n) * scale
+			h := size[n] * scale
 			at[n] = rect{float64(k) * step, y, h}
 			y += h + gap
 		}
+	}
+	centre := func(n string) float64 { return at[n].y + at[n].h/2 }
+	settle := func(column []string) {
+		sort.SliceStable(column, func(a, b int) bool { return centre(column[a]) < centre(column[b]) })
+		y := 0.0
+		for _, n := range column {
+			r := at[n]
+			r.y = math.Max(r.y, y)
+			at[n] = r
+			y = r.y + r.h + gap
+		}
+		y = height
+		for i := len(column) - 1; i >= 0; i-- {
+			r := at[column[i]]
+			r.y = math.Min(r.y, y-r.h)
+			at[column[i]] = r
+			y = r.y - gap
+		}
+	}
+	pull := func(column []string, alpha float64, towardTargets bool) {
+		moves := make([]float64, len(column))
+		for i, n := range column {
+			sum, weight := 0.0, 0.0
+			for _, p := range pieces {
+				if towardTargets && p.from == n {
+					sum, weight = sum+centre(p.to)*p.value, weight+p.value
+				}
+				if !towardTargets && p.to == n {
+					sum, weight = sum+centre(p.from)*p.value, weight+p.value
+				}
+			}
+			if weight > 0 {
+				moves[i] = (sum/weight - centre(n)) * alpha
+			}
+		}
+		for i, n := range column {
+			r := at[n]
+			r.y += moves[i]
+			at[n] = r
+		}
+		settle(column)
+	}
+	const rounds = 24
+	for i := 0; i < rounds; i++ {
+		alpha := 1 - float64(i)/rounds
+		for k := last - 1; k >= 0; k-- {
+			pull(cols[k], alpha, true)
+		}
+		for k := 1; k <= last; k++ {
+			pull(cols[k], alpha, false)
+		}
+	}
+	// Wykres zaczyna się od zera: usuwamy wolne miejsce nad najwyższym węzłem.
+	top := math.Inf(1)
+	for _, r := range at {
+		top = math.Min(top, r.y)
+	}
+	for n, r := range at {
+		r.y = math.Round((r.y-top)*100) / 100
+		at[n] = r
 	}
 	tone := func(n string) string {
 		if !o.Colors {
@@ -278,39 +406,55 @@ func Layout(c *Chart, o Options) *scene.Scene {
 	}
 
 	// Wstęgi: przy każdym węźle ułożone w kolejności położenia drugiego końca, żeby się nie plotły.
-	links := append([]Link(nil), c.Links...)
-	fromOff, toOff := map[int]float64{}, map[int]float64{}
-	order := func(key func(Link) string, other func(Link) string, off map[int]float64) {
-		idx := make([]int, len(links))
+	fromOff, toOff := map[[2]string]float64{}, map[[2]string]float64{}
+	order := func(key func(piece) string, other func(piece) string, off map[[2]string]float64) {
+		idx := make([]int, len(pieces))
 		for i := range idx {
 			idx[i] = i
 		}
-		sort.SliceStable(idx, func(a, b int) bool { return at[other(links[idx[a]])].y < at[other(links[idx[b]])].y })
+		// Kolejność według środka drugiego końca: wstęga do węzła leżącego wyżej wychodzi wyżej.
+		sort.SliceStable(idx, func(a, b int) bool { return centre(other(pieces[idx[a]])) < centre(other(pieces[idx[b]])) })
 		used := map[string]float64{}
 		for _, i := range idx {
-			off[i] = used[key(links[i])]
-			used[key(links[i])] += links[i].Value * scale
+			off[[2]string{pieces[i].from, pieces[i].to}] += 0 // klucz istnieje także dla przesunięcia zerowego
+			off[[2]string{pieces[i].from, pieces[i].to}] = used[key(pieces[i])]
+			used[key(pieces[i])] += pieces[i].value * scale
 		}
 	}
-	order(func(l Link) string { return l.From }, func(l Link) string { return l.To }, fromOff)
-	order(func(l Link) string { return l.To }, func(l Link) string { return l.From }, toOff)
-	for i, l := range links {
-		a, b := at[l.From], at[l.To]
+	order(func(p piece) string { return p.from }, func(p piece) string { return p.to }, fromOff)
+	order(func(p piece) string { return p.to }, func(p piece) string { return p.from }, toOff)
+	for i, l := range c.Links {
+		chain := chains[i]
 		t := l.Value * scale
-		x0, x1 := a.x+nodeW, b.x
-		y0, y1 := a.y+fromOff[i], b.y+toOff[i]
-		mid := (x0 + x1) / 2
+		// Górna krawędź wstęgi przez kolejne węzły drogi, potem dolna z powrotem: jeden kształt,
+		// więc na węzłach pomocniczych nie ma szwów.
+		type span struct{ x0, y0, x1, y1 float64 }
+		var spans []span
+		for k := 0; k+1 < len(chain); k++ {
+			a, b := at[chain[k]], at[chain[k+1]]
+			key := [2]string{chain[k], chain[k+1]}
+			spans = append(spans, span{a.x + nodeW, a.y + fromOff[key], b.x, b.y + toOff[key]})
+		}
+		segments := []scene.Segment{{Cmd: 'M', To: scene.Point{X: spans[0].x0, Y: spans[0].y0}}}
+		for k, sp := range spans {
+			if k > 0 {
+				segments = append(segments, scene.Segment{Cmd: 'L', To: scene.Point{X: sp.x0, Y: sp.y0}})
+			}
+			mid := (sp.x0 + sp.x1) / 2
+			segments = append(segments, scene.Segment{Cmd: 'C', C1: scene.Point{X: mid, Y: sp.y0}, C2: scene.Point{X: mid, Y: sp.y1}, To: scene.Point{X: sp.x1, Y: sp.y1}})
+		}
+		for k := len(spans) - 1; k >= 0; k-- {
+			sp := spans[k]
+			mid := (sp.x0 + sp.x1) / 2
+			segments = append(segments, scene.Segment{Cmd: 'L', To: scene.Point{X: sp.x1, Y: sp.y1 + t}},
+				scene.Segment{Cmd: 'C', C1: scene.Point{X: mid, Y: sp.y1 + t}, C2: scene.Point{X: mid, Y: sp.y0 + t}, To: scene.Point{X: sp.x0, Y: sp.y0 + t}})
+		}
+		segments = append(segments, scene.Segment{Cmd: 'L', To: scene.Point{X: spans[0].x0, Y: spans[0].y0}})
 		fill := colorBand
 		if c := tone(l.From); c != "" {
 			fill = c
 		}
-		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "sankey-link", Fill: fill, FillOpacity: 0.35, Segments: []scene.Segment{
-			{Cmd: 'M', To: scene.Point{X: x0, Y: y0}},
-			{Cmd: 'C', C1: scene.Point{X: mid, Y: y0}, C2: scene.Point{X: mid, Y: y1}, To: scene.Point{X: x1, Y: y1}},
-			{Cmd: 'L', To: scene.Point{X: x1, Y: y1 + t}},
-			{Cmd: 'C', C1: scene.Point{X: mid, Y: y1 + t}, C2: scene.Point{X: mid, Y: y0 + t}, To: scene.Point{X: x0, Y: y0 + t}},
-			{Cmd: 'L', To: scene.Point{X: x0, Y: y0}},
-		}})
+		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "sankey-link", Fill: fill, FillOpacity: 0.35, Segments: segments})
 	}
 	for _, n := range c.Nodes {
 		r := at[n]
@@ -322,9 +466,13 @@ func Layout(c *Chart, o Options) *scene.Scene {
 		// Nazwa i wartość po prawej stronie węzła; w ostatniej kolumnie także, na miejscu
 		// zostawionym poza wykresem.
 		x, mid := r.x+nodeW+u(6), r.y+r.h/2
-		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "sankey-label", X: x, Y: mid - u(3), W: width(n), H: lh,
-			Text: n, Anchor: "start", Fill: colorText})
-		v := Number(value(n))
+		lines := name[n]
+		mid += float64(len(lines)-1) * lh / 2
+		for k, line := range lines {
+			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "sankey-label", X: x, Y: mid - u(3) - float64(len(lines)-1-k)*lh, W: width(line), H: lh,
+				Text: line, Anchor: "start", Fill: colorText})
+		}
+		v := Number(size[n])
 		small := math.Round(fs * 0.8)
 		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "sankey-value", X: x, Y: mid + small + u(2), W: o.Measure(v, small), H: small * 1.25,
 			Text: v, Anchor: "start", FontSize: small, Fill: colorMuted})

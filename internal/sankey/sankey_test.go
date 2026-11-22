@@ -112,3 +112,116 @@ func TestLayout(t *testing.T) {
 		}
 	}
 }
+
+// bands zbiera wstęgi rysunku: punkty górnej krawędzi (x, y) i grubość.
+type band struct {
+	top       []scene.Point
+	thickness float64
+}
+
+func bandsAndNodes(sc *scene.Scene) (bands []band, nodes []scene.Item) {
+	for _, it := range sc.Items {
+		switch it.Role {
+		case "sankey-node":
+			nodes = append(nodes, it)
+		case "sankey-link":
+			// Górna krawędź to pierwsza połowa ścieżki: do pierwszego odcinka prowadzącego w dół.
+			b := band{}
+			for i, sg := range it.Segments {
+				if i > 0 && sg.Cmd == 'L' && sg.To.X == it.Segments[i-1].To.X && sg.To.Y > it.Segments[i-1].To.Y {
+					b.thickness = sg.To.Y - it.Segments[i-1].To.Y
+					break
+				}
+				b.top = append(b.top, sg.To)
+			}
+			bands = append(bands, b)
+		}
+	}
+	return bands, nodes
+}
+
+// REQ: SNK-005
+// Wstęgi się nie krzyżują, gdy da się tego uniknąć, a wstęga biegnąca przez kilka kolumn nie
+// przechodzi po węzłach kolumn pośrednich.
+func TestBandsDoNotCrossOrCoverNodes(t *testing.T) {
+	for _, src := range []string{
+		"sankey-beta\nZamowienia,Kontrola,120\nKontrola,Magazyn,95\nKontrola,Zwrot,25\nMagazyn,Produkcja,80\nMagazyn,Rezerwa,15\nProdukcja,Wyrob gotowy,74\nProdukcja,Odpad,6",
+		"sankey-beta\nA,M,30\nB,M,10\nM,X,25\nM,Y,15\nB,Koniec,5",
+		"sankey-beta\nA,B,10\nA,C,20\nB,D,4\nB,E,6\nC,E,20\nA,E,7",
+	} {
+		c, err := Parse(src)
+		if err != nil {
+			t.Fatal(err)
+		}
+		sc := Layout(c, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+		bands, nodes := bandsAndNodes(sc)
+		if len(bands) != len(c.Links) {
+			t.Fatalf("%d bands for %d links", len(bands), len(c.Links))
+		}
+		// Każda para wstęg: na wspólnych pionach (krawędziach kolumn) ich kolejność jest ta sama
+		// i przedziały się nie nakładają.
+		for i := range bands {
+			for j := i + 1; j < len(bands); j++ {
+				sign := 0.0
+				for _, p := range bands[i].top {
+					for _, q := range bands[j].top {
+						if p.X != q.X {
+							continue
+						}
+						if math.Min(p.Y+bands[i].thickness, q.Y+bands[j].thickness) > math.Max(p.Y, q.Y)+0.01 {
+							t.Errorf("bands %d and %d overlap at x=%.0f", i, j, p.X)
+						}
+						d := p.Y - q.Y
+						if sign != 0 && d*sign < 0 {
+							t.Errorf("bands %d and %d cross", i, j)
+						}
+						if d != 0 {
+							sign = d
+						}
+					}
+				}
+			}
+		}
+		// Wstęga na pionie kolumny nie wchodzi na węzeł, który nie jest jej końcem.
+		for i, b := range bands {
+			for k, p := range b.top {
+				if k == 0 || k == len(b.top)-1 {
+					continue
+				}
+				for _, n := range nodes {
+					if (p.X == n.X || p.X == n.X+n.W) && math.Min(p.Y+b.thickness, n.Y+n.H) > math.Max(p.Y, n.Y)+0.01 {
+						t.Errorf("band %d runs over a node at x=%.0f", i, n.X)
+					}
+				}
+			}
+		}
+	}
+}
+
+// REQ: SNK-006
+// „%% layout: wrap” łamie nazwy ostatniej kolumny na słowach i zostawia wykresowi więcej miejsca.
+func TestWrapLabels(t *testing.T) {
+	src := "sankey-beta\nWejście,Bardzo długa nazwa końcowego węzła,10\nWejście,Krótki,5"
+	plain, _ := Parse(src)
+	wrapped, err := Parse("%% layout: wrap\n" + src)
+	if err != nil || !wrapped.Wrap || plain.Wrap {
+		t.Fatalf("directive: %v", err)
+	}
+	o := Options{Measure: font.ApproxTextWidth, FontSize: 16}
+	last := func(sc *scene.Scene) (x float64, lines int) {
+		for _, it := range sc.Items {
+			if it.Role == "sankey-node" {
+				x = math.Max(x, it.X)
+			}
+			if it.Role == "sankey-label" && it.Text != "Wejście" && it.Text != "Krótki" {
+				lines++
+			}
+		}
+		return x, lines
+	}
+	x0, n0 := last(Layout(plain, o))
+	x1, n1 := last(Layout(wrapped, o))
+	if n0 != 1 || n1 < 3 || x1 <= x0+40 {
+		t.Errorf("wrapping: %d line at x=%.0f, wrapped %d lines at x=%.0f", n0, x0, n1, x1)
+	}
+}
