@@ -40,7 +40,7 @@ which, like this library, has its own parsers and layout.
 
 | | gomermaidgo | mmdg 0.14.1 | go-mermaid 0.1.6 |
 |---|:---:|:---:|:---:|
-| Approach | own parsers and layout in Go | Mermaid 12.2.0 (JavaScript) in an embedded engine | own parsers and layout in Go |
+| Approach | own parsers and layout in Go | Mermaid 12.2.0 (embedded JavaScript) | own parsers and layout in Go |
 | Dependencies[^deps] | 0 🥇 | 7 | 10 |
 | Program size | 8.4 MB 🥇 | 53.0 MB | 11.7 MB |
 | SVG time[^bench] | 3.1 ms 🥇 | 31 ms | 3.9 ms |
