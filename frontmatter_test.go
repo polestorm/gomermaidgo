@@ -221,3 +221,22 @@ func TestWrapSettingsFromSource(t *testing.T) {
 		t.Errorf("sequence wrap: want 1 line without and several with wrap, got %d and %d", a, b)
 	}
 }
+
+// REQ: LAY-021
+func TestChainKeepsAxis(t *testing.T) {
+	svg, err := Render(readFile(t, "testdata/corpus/flowchart/026-chain-axis.mmd"), WithFold(FoldOff))
+	if err != nil {
+		t.Fatal(err)
+	}
+	rect := regexp.MustCompile(`class="node" x="([-\d.]+)" y="[-\d.]+" width="([-\d.]+)"`).FindAllStringSubmatch(string(svg), -1)
+	rhomb := regexp.MustCompile(`class="node" points="([-\d.]+),`).FindStringSubmatch(string(svg))
+	if len(rect) < 3 || rhomb == nil {
+		t.Fatal("nodes not found")
+	}
+	x, _ := strconv.ParseFloat(rect[2][1], 64)
+	w, _ := strconv.ParseFloat(rect[2][2], 64)
+	top, _ := strconv.ParseFloat(rhomb[1], 64)
+	if math.Abs(x+w/2-top) > 0.5 {
+		t.Errorf("decision centre %.1f is off the chain axis %.1f", top, x+w/2)
+	}
+}

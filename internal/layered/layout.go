@@ -2101,6 +2101,31 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			}
 		}
 
+		// Pole z jednym dopływem z pola, które ma tylko to jedno wyjście, staje w osi poprzednika, gdy
+		// różnią się o mniej niż u(16): prosta krawędź poza środkiem jednego z pól wygląda jak rozjazd
+		// łańcucha. Pole przesuwa się tylko w wolnym miejscu warstwy, bez odsuwania sąsiadów (LAY-021).
+		if l.lanes == nil {
+			for _, row := range rows {
+				for i, it := range row {
+					if it.kind != kindNode || len(it.up) != 1 {
+						continue
+					}
+					u := it.up[0]
+					if u.kind != kindNode || len(u.down) != 1 {
+						continue
+					}
+					d := u.nodeX() - it.nodeX()
+					if math.Abs(d) < 0.5 || math.Abs(d) >= l.u(16) {
+						continue
+					}
+					if i > 0 && it.x+d < row[i-1].x+sep(row[i-1], it)-0.01 || i+1 < len(row) && it.x+d > row[i+1].x-sep(it, row[i+1])+0.01 {
+						continue
+					}
+					it.x += d
+				}
+			}
+		}
+
 		// Notatki dosuwamy do pól, których dotyczą; mają pierwszeństwo przed resztą warstwy.
 		for _, row := range rows {
 			want := make([]float64, len(row))

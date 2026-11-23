@@ -1,0 +1,23 @@
+flowchart TB
+node A rect "Zgłoszenie zmiany"
+node B rect "Ocena wpływu"
+node C rect "Przegląd dokumentacji"
+node K rhombus "Wszystko zgodne?"
+node Z rect "Zatwierdzenie"
+node R rect "Wymaga zgody"
+node X rect "Odrzucenie"
+node M rect "Przegląd ręczny"
+node D rhombus "Wyjątek przyznany?"
+node P rect "Poprawki autora"
+edge A -> B normal none/arrow len=1
+edge B -> C normal none/arrow len=1
+edge C -> K normal none/arrow len=1
+edge K -> Z normal none/arrow len=1 "Tak"
+edge K -> R normal none/arrow len=1 "Uwagi do procedury"
+edge K -> X normal none/arrow len=1 "Brak walidacji"
+edge R -> M normal none/arrow len=1
+edge M -> D normal none/arrow len=1
+edge D -> Z normal none/arrow len=1 "Tak"
+edge D -> X normal none/arrow len=1 "Nie"
+edge X -> P normal none/arrow len=1
+edge P -> A normal none/arrow len=1

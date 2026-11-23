@@ -1,0 +1,16 @@
+%% REQ: LAY-021
+%% Tytuł: Romb decyzji w osi łańcucha
+%% Sprawdza: pole z jednym dopływem z pola o jednym wyjściu stoi w jego osi, choć jego własne wyjścia ciągną je w bok.
+flowchart TD
+    A[Zgłoszenie zmiany] --> B[Ocena wpływu]
+    B --> C[Przegląd dokumentacji]
+    C --> K{Wszystko zgodne?}
+    K -->|Tak| Z[Zatwierdzenie]
+    K -->|Uwagi do procedury| R[Wymaga zgody]
+    K -->|Brak walidacji| X[Odrzucenie]
+    R --> M[Przegląd ręczny]
+    M --> D{Wyjątek przyznany?}
+    D -->|Tak| Z
+    D -->|Nie| X
+    X --> P[Poprawki autora]
+    P --> A
