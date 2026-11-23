@@ -273,7 +273,8 @@ func attr(b *strings.Builder, name, value string) {
 	b.WriteString(`"`)
 }
 
-func (it Item) paint(b *strings.Builder) {
+// paint zapisuje wypełnienie i obrys; inherited: obrys jest w otaczającej grupie (strokeAttrs).
+func (it Item) paint(b *strings.Builder, inherited bool) {
 	fill := it.Fill
 	if fill == "" {
 		fill = "none"
@@ -282,15 +283,32 @@ func (it Item) paint(b *strings.Builder) {
 	if it.FillOpacity > 0 && it.FillOpacity < 1 {
 		attr(b, "fill-opacity", num(it.FillOpacity))
 	}
-	if it.Stroke != "" {
-		attr(b, "stroke", it.Stroke)
-		w := it.StrokeWidth
-		if w == 0 {
-			w = 1
-		}
-		attr(b, "stroke-width", num(w))
-		attr(b, "stroke-dasharray", it.Dash)
+	if it.Stroke != "" && !inherited {
+		it.strokeAttrs(b)
 	}
+}
+
+// strokeAttrs zapisuje atrybuty obrysu elementu.
+func (it Item) strokeAttrs(b *strings.Builder) {
+	attr(b, "stroke", it.Stroke)
+	w := it.StrokeWidth
+	if w == 0 {
+		w = 1
+	}
+	attr(b, "stroke-width", num(w))
+	attr(b, "stroke-dasharray", it.Dash)
+}
+
+// shared to klucz atrybutów, które kolejne elementy mogą dziedziczyć ze wspólnej grupy: obrys
+// kształtu albo kolor i wyrównanie tekstu; pusty, gdy element nie ma czego dziedziczyć.
+func (it Item) shared() string {
+	switch {
+	case it.Kind == Text:
+		return "T\x00" + it.Fill + "\x00" + it.Anchor
+	case it.Stroke != "":
+		return "S\x00" + it.Stroke + "\x00" + num(it.StrokeWidth) + "\x00" + it.Dash
+	}
+	return ""
 }
 
 func pathData(segments []Segment) string {
@@ -426,7 +444,31 @@ func (s *Scene) SVG() []byte {
 		clip = fmt.Sprintf("label-holes-%08x", sum.Sum32())
 		b.WriteString(`<defs><clipPath id="` + clip + `"><path d="` + d.String()[1:] + `"/></clipPath></defs>` + "\n")
 	}
-	for _, it := range items {
+	// Kolejne elementy o tych samych atrybutach dziedziczonych (obrys kształtów, kolor i wyrównanie
+	// tekstów) stoją we wspólnej grupie, która niesie te atrybuty: plik jest mniejszy, a wygląd ten sam.
+	group := ""
+	for k, it := range items {
+		key := it.shared()
+		if key != group {
+			if group != "" {
+				b.WriteString("</g>\n")
+				group = ""
+			}
+			if key != "" && k+1 < len(items) && items[k+1].shared() == key {
+				group = key
+				b.WriteString("<g")
+				if it.Kind == Text {
+					attr(&b, "fill", it.Fill)
+					if it.Anchor != "" && it.Anchor != "start" {
+						attr(&b, "text-anchor", it.Anchor)
+					}
+				} else {
+					it.strokeAttrs(&b)
+				}
+				b.WriteString(">\n")
+			}
+		}
+		grouped := group != ""
 		cut := clip != "" && Cut(it, holes)
 		if cut {
 			b.WriteString(`<g clip-path="url(#` + clip + `)">`)
@@ -442,7 +484,7 @@ func (s *Scene) SVG() []byte {
 			if it.RX > 0 {
 				attr(&b, "rx", num(it.RX))
 			}
-			it.paint(&b)
+			it.paint(&b, grouped)
 			b.WriteString("/>\n")
 		case Line:
 			b.WriteString("<line")
@@ -451,7 +493,7 @@ func (s *Scene) SVG() []byte {
 			attr(&b, "y1", num(it.Y))
 			attr(&b, "x2", num(it.X2))
 			attr(&b, "y2", num(it.Y2))
-			it.paint(&b)
+			it.paint(&b, grouped)
 			b.WriteString("/>\n")
 		case Polyline, Polygon:
 			name := "polyline"
@@ -461,7 +503,7 @@ func (s *Scene) SVG() []byte {
 			b.WriteString("<" + name)
 			attr(&b, "class", it.Role)
 			attr(&b, "points", points(it.Points))
-			it.paint(&b)
+			it.paint(&b, grouped)
 			b.WriteString("/>\n")
 		case Circle:
 			b.WriteString("<circle")
@@ -469,7 +511,7 @@ func (s *Scene) SVG() []byte {
 			attr(&b, "cx", num(it.X))
 			attr(&b, "cy", num(it.Y))
 			attr(&b, "r", num(it.R))
-			it.paint(&b)
+			it.paint(&b, grouped)
 			b.WriteString("/>\n")
 		case Ellipse:
 			b.WriteString("<ellipse")
@@ -478,20 +520,20 @@ func (s *Scene) SVG() []byte {
 			attr(&b, "cy", num(it.Y))
 			attr(&b, "rx", num(it.W/2))
 			attr(&b, "ry", num(it.H/2))
-			it.paint(&b)
+			it.paint(&b, grouped)
 			b.WriteString("/>\n")
 		case Path:
 			b.WriteString("<path")
 			attr(&b, "class", it.Role)
 			attr(&b, "d", pathData(it.Segments))
-			it.paint(&b)
+			it.paint(&b, grouped)
 			b.WriteString("/>\n")
 		case Text:
 			b.WriteString("<text")
 			attr(&b, "class", it.Role)
 			attr(&b, "x", num(it.X))
 			attr(&b, "y", num(it.Y))
-			if it.Anchor != "" && it.Anchor != "start" {
+			if it.Anchor != "" && it.Anchor != "start" && !grouped {
 				attr(&b, "text-anchor", it.Anchor)
 			}
 			if it.FontSize > 0 && it.FontSize != s.FontSize {
@@ -506,7 +548,9 @@ func (s *Scene) SVG() []byte {
 			if it.Italic {
 				attr(&b, "font-style", "italic")
 			}
-			attr(&b, "fill", it.Fill)
+			if !grouped {
+				attr(&b, "fill", it.Fill)
+			}
 			if it.Vertical {
 				attr(&b, "transform", "rotate(-90 "+num(it.X)+" "+num(it.Y)+")")
 			}
@@ -517,6 +561,9 @@ func (s *Scene) SVG() []byte {
 		if cut {
 			b.WriteString("</g>\n")
 		}
+	}
+	if group != "" {
+		b.WriteString("</g>\n")
 	}
 	b.WriteString("</svg>\n")
 	return []byte(b.String())

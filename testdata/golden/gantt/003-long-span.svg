@@ -1,35 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="761.65" height="246.65" viewBox="-12 -12.4 761.65 246.65" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Cykl życia wyrobu</title>
 <rect class="gantt-section" x="0" y="52.25" width="713.8" height="68" fill="#f6f8fa"/>
-<line class="gantt-grid" x1="73.8" y1="52.25" x2="73.8" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="144.86" y1="52.25" x2="144.86" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="215.93" y1="52.25" x2="215.93" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="287.2" y1="52.25" x2="287.2" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="358.26" y1="52.25" x2="358.26" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="429.33" y1="52.25" x2="429.33" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="500.4" y1="52.25" x2="500.4" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="571.66" y1="52.25" x2="571.66" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="642.73" y1="52.25" x2="642.73" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
-<line class="gantt-grid" x1="713.8" y1="52.25" x2="713.8" y2="222.25" fill="none" stroke="#d5dae1" stroke-width="1"/>
+<g stroke="#d5dae1" stroke-width="1">
+<line class="gantt-grid" x1="73.8" y1="52.25" x2="73.8" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="144.86" y1="52.25" x2="144.86" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="215.93" y1="52.25" x2="215.93" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="287.2" y1="52.25" x2="287.2" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="358.26" y1="52.25" x2="358.26" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="429.33" y1="52.25" x2="429.33" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="500.4" y1="52.25" x2="500.4" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="571.66" y1="52.25" x2="571.66" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="642.73" y1="52.25" x2="642.73" y2="222.25" fill="none"/>
+<line class="gantt-grid" x1="713.8" y1="52.25" x2="713.8" y2="222.25" fill="none"/>
+</g>
 <rect class="gantt-frame" x="73.8" y="52.25" width="640" height="170" fill="none" stroke="#6b7785" stroke-width="1"/>
-<rect class="gantt-task" x="73.8" y="58.25" width="106.31" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="gantt-task" x="180.11" y="92.25" width="142.33" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="gantt-task" x="73.8" y="58.25" width="106.31" height="22" rx="3" fill="#eef2f7"/>
+<rect class="gantt-task" x="180.11" y="92.25" width="142.33" height="22" rx="3" fill="#eef2f7"/>
+</g>
 <rect class="gantt-task" x="322.44" y="126.25" width="35.83" height="22" rx="3" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
 <rect class="gantt-task" x="358.26" y="160.25" width="355.53" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <polygon class="gantt-milestone" points="601.06,195.25 611.06,205.25 601.06,215.25 591.06,205.25" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
 <text class="title" x="393.8" y="15.6" text-anchor="middle" fill="#1b1f24">Cykl życia wyrobu</text>
-<text class="gantt-section-label" x="12" y="91.85" fill="#1b1f24">Projekt</text>
-<text class="gantt-section-label" x="12" y="176.85" fill="#1b1f24">Rynek</text>
-<text class="gantt-tick-label" x="73.8" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2026-01</text>
-<text class="gantt-tick-label" x="144.86" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2027-01</text>
-<text class="gantt-tick-label" x="215.93" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2028-01</text>
-<text class="gantt-tick-label" x="287.2" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2029-01</text>
-<text class="gantt-tick-label" x="358.26" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2030-01</text>
-<text class="gantt-tick-label" x="429.33" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2031-01</text>
-<text class="gantt-tick-label" x="500.4" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2032-01</text>
-<text class="gantt-tick-label" x="571.66" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2033-01</text>
-<text class="gantt-tick-label" x="642.73" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2034-01</text>
-<text class="gantt-tick-label" x="713.8" y="46.25" text-anchor="middle" font-size="13" fill="#5b6570">2035-01</text>
+<g fill="#1b1f24">
+<text class="gantt-section-label" x="12" y="91.85">Projekt</text>
+<text class="gantt-section-label" x="12" y="176.85">Rynek</text>
+</g>
+<g fill="#5b6570" text-anchor="middle">
+<text class="gantt-tick-label" x="73.8" y="46.25" font-size="13">2026-01</text>
+<text class="gantt-tick-label" x="144.86" y="46.25" font-size="13">2027-01</text>
+<text class="gantt-tick-label" x="215.93" y="46.25" font-size="13">2028-01</text>
+<text class="gantt-tick-label" x="287.2" y="46.25" font-size="13">2029-01</text>
+<text class="gantt-tick-label" x="358.26" y="46.25" font-size="13">2030-01</text>
+<text class="gantt-tick-label" x="429.33" y="46.25" font-size="13">2031-01</text>
+<text class="gantt-tick-label" x="500.4" y="46.25" font-size="13">2032-01</text>
+<text class="gantt-tick-label" x="571.66" y="46.25" font-size="13">2033-01</text>
+<text class="gantt-tick-label" x="642.73" y="46.25" font-size="13">2034-01</text>
+<text class="gantt-tick-label" x="713.8" y="46.25" font-size="13">2035-01</text>
+</g>
 <text class="gantt-task-label" x="186.11" y="74.85" fill="#1b1f24">Projektowanie i rozwój</text>
 <text class="gantt-task-label" x="251.27" y="108.85" text-anchor="middle" fill="#1b1f24">Badania kliniczne</text>
 <text class="gantt-task-label" x="364.26" y="142.85" fill="#1b1f24">Certyfikacja</text>

@@ -2,17 +2,21 @@
 <title>Obsługa reklamacji okiem klienta</title>
 <line class="journey-axis" x1="139" y1="332" x2="1257" y2="332" fill="none" stroke="#3b4754" stroke-width="2"/>
 <polygon class="journey-axis" points="1269,332 1257,326 1257,338" fill="#3b4754"/>
-<line class="journey-drop" x1="214" y1="170" x2="214" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="374" y1="170" x2="374" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="534" y1="170" x2="534" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="694" y1="170" x2="694" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="854" y1="170" x2="854" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="1014" y1="170" x2="1014" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<line class="journey-drop" x1="1174" y1="170" x2="1174" y2="332" fill="none" stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4"/>
-<rect class="journey-section" x="139" y="34" width="470" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
-<rect class="journey-section" x="619" y="34" width="470" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
-<rect class="journey-section" x="1099" y="34" width="150" height="32" rx="4" fill="#dde3ea" stroke="#55657a" stroke-width="1.5"/>
-<rect class="journey-task" x="139" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<g stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4">
+<line class="journey-drop" x1="214" y1="170" x2="214" y2="332" fill="none"/>
+<line class="journey-drop" x1="374" y1="170" x2="374" y2="332" fill="none"/>
+<line class="journey-drop" x1="534" y1="170" x2="534" y2="332" fill="none"/>
+<line class="journey-drop" x1="694" y1="170" x2="694" y2="332" fill="none"/>
+<line class="journey-drop" x1="854" y1="170" x2="854" y2="332" fill="none"/>
+<line class="journey-drop" x1="1014" y1="170" x2="1014" y2="332" fill="none"/>
+<line class="journey-drop" x1="1174" y1="170" x2="1174" y2="332" fill="none"/>
+</g>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="journey-section" x="139" y="34" width="470" height="32" rx="4" fill="#dde3ea"/>
+<rect class="journey-section" x="619" y="34" width="470" height="32" rx="4" fill="#dde3ea"/>
+<rect class="journey-section" x="1099" y="34" width="150" height="32" rx="4" fill="#dde3ea"/>
+<rect class="journey-task" x="139" y="74" width="150" height="96" rx="4" fill="#eef2f7"/>
+</g>
 <circle class="journey-face" cx="214" cy="277" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="journey-task" x="299" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="journey-face" cx="374" cy="225" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
@@ -26,44 +30,60 @@
 <circle class="journey-face" cx="1014" cy="225" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="journey-task" x="1099" y="74" width="150" height="96" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle class="journey-face" cx="1174" cy="199" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="journey-actor" cx="7" cy="84" r="7" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-actor" cx="7" cy="108" r="7" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1">
+<circle class="journey-actor" cx="7" cy="84" r="7" fill="#3b4754"/>
+<circle class="journey-actor" cx="7" cy="108" r="7" fill="#c9d1da"/>
+</g>
 <text class="title" x="139" y="15.6" fill="#1b1f24">Obsługa reklamacji okiem klienta</text>
-<text class="journey-section-title" x="374" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zgłoszenie</text>
-<text class="journey-section-title" x="854" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rozpatrzenie</text>
-<text class="journey-section-title" x="1174" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Zamknięcie</text>
-<text class="journey-task-label" x="214" y="107.6" text-anchor="middle" fill="#1b1f24">Znalezienie</text>
-<text class="journey-task-label" x="214" y="127.6" text-anchor="middle" fill="#1b1f24">formularza na</text>
-<text class="journey-task-label" x="214" y="147.6" text-anchor="middle" fill="#1b1f24">stronie</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="journey-section-title" x="374" y="55.6" font-weight="bold">Zgłoszenie</text>
+<text class="journey-section-title" x="854" y="55.6" font-weight="bold">Rozpatrzenie</text>
+<text class="journey-section-title" x="1174" y="55.6" font-weight="bold">Zamknięcie</text>
+<text class="journey-task-label" x="214" y="107.6">Znalezienie</text>
+<text class="journey-task-label" x="214" y="127.6">formularza na</text>
+<text class="journey-task-label" x="214" y="147.6">stronie</text>
+</g>
 <circle class="journey-actor" cx="151" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <circle class="journey-face-detail" cx="208.75" cy="273.25" r="1.5" fill="#3b4754"/>
 <circle class="journey-face-detail" cx="219.25" cy="273.25" r="1.5" fill="#3b4754"/>
 <path class="journey-face-detail" d="M207.25 285.7 C211 279.4 217 279.4 220.75 285.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="374" y="117.6" text-anchor="middle" fill="#1b1f24">Opisanie</text>
-<text class="journey-task-label" x="374" y="137.6" text-anchor="middle" fill="#1b1f24">problemu</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="journey-task-label" x="374" y="117.6">Opisanie</text>
+<text class="journey-task-label" x="374" y="137.6">problemu</text>
+</g>
 <circle class="journey-actor" cx="311" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <circle class="journey-face-detail" cx="368.75" cy="221.25" r="1.5" fill="#3b4754"/>
 <circle class="journey-face-detail" cx="379.25" cy="221.25" r="1.5" fill="#3b4754"/>
 <path class="journey-face-detail" d="M367.25 228 C371 234.3 377 234.3 380.75 228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="534" y="117.6" text-anchor="middle" fill="#1b1f24">Potwierdzenie</text>
-<text class="journey-task-label" x="534" y="137.6" text-anchor="middle" fill="#1b1f24">przyjęcia</text>
-<circle class="journey-actor" cx="471" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-actor" cx="484" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="journey-task-label" x="534" y="117.6">Potwierdzenie</text>
+<text class="journey-task-label" x="534" y="137.6">przyjęcia</text>
+</g>
+<g stroke="#3b4754" stroke-width="1">
+<circle class="journey-actor" cx="471" cy="74" r="5.5" fill="#3b4754"/>
+<circle class="journey-actor" cx="484" cy="74" r="5.5" fill="#c9d1da"/>
+</g>
 <circle class="journey-face-detail" cx="528.75" cy="195.25" r="1.5" fill="#3b4754"/>
 <circle class="journey-face-detail" cx="539.25" cy="195.25" r="1.5" fill="#3b4754"/>
 <path class="journey-face-detail" d="M527.25 202 C531 208.3 537 208.3 540.75 202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="694" y="97.6" text-anchor="middle" fill="#1b1f24">Oczekiwanie na</text>
-<text class="journey-task-label" x="694" y="117.6" text-anchor="middle" fill="#1b1f24">odpowiedź bez</text>
-<text class="journey-task-label" x="694" y="137.6" text-anchor="middle" fill="#1b1f24">informacji o</text>
-<text class="journey-task-label" x="694" y="157.6" text-anchor="middle" fill="#1b1f24">postępie sprawy</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="journey-task-label" x="694" y="97.6">Oczekiwanie na</text>
+<text class="journey-task-label" x="694" y="117.6">odpowiedź bez</text>
+<text class="journey-task-label" x="694" y="137.6">informacji o</text>
+<text class="journey-task-label" x="694" y="157.6">postępie sprawy</text>
+</g>
 <circle class="journey-actor" cx="631" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <circle class="journey-face-detail" cx="688.75" cy="299.25" r="1.5" fill="#3b4754"/>
 <circle class="journey-face-detail" cx="699.25" cy="299.25" r="1.5" fill="#3b4754"/>
 <path class="journey-face-detail" d="M687.25 311.7 C691 305.4 697 305.4 700.75 311.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="854" y="117.6" text-anchor="middle" fill="#1b1f24">Dodatkowe</text>
-<text class="journey-task-label" x="854" y="137.6" text-anchor="middle" fill="#1b1f24">pytania</text>
-<circle class="journey-actor" cx="791" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-actor" cx="804" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="journey-task-label" x="854" y="117.6">Dodatkowe</text>
+<text class="journey-task-label" x="854" y="137.6">pytania</text>
+</g>
+<g stroke="#3b4754" stroke-width="1">
+<circle class="journey-actor" cx="791" cy="74" r="5.5" fill="#3b4754"/>
+<circle class="journey-actor" cx="804" cy="74" r="5.5" fill="#c9d1da"/>
+</g>
 <circle class="journey-face-detail" cx="848.75" cy="247.25" r="1.5" fill="#3b4754"/>
 <circle class="journey-face-detail" cx="859.25" cy="247.25" r="1.5" fill="#3b4754"/>
 <path class="journey-face-detail" d="M848 257 L860 257" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -76,6 +96,8 @@
 <circle class="journey-face-detail" cx="1168.75" cy="195.25" r="1.5" fill="#3b4754"/>
 <circle class="journey-face-detail" cx="1179.25" cy="195.25" r="1.5" fill="#3b4754"/>
 <path class="journey-face-detail" d="M1167.25 202 C1171 208.3 1177 208.3 1180.75 202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-actor-name" x="22" y="89.6" fill="#1b1f24">Klient</text>
-<text class="journey-actor-name" x="22" y="113.6" fill="#1b1f24">Dział jakości</text>
+<g fill="#1b1f24">
+<text class="journey-actor-name" x="22" y="89.6">Klient</text>
+<text class="journey-actor-name" x="22" y="113.6">Dział jakości</text>
+</g>
 </svg>

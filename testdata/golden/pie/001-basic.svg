@@ -1,21 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="448.08" height="281.4" viewBox="-19.35 -12.4 448.08 281.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Niezgodności według źródła</title>
-<path class="pie-slice" d="M110 144 L110 34 C147.14 34 181.77 52.74 202.09 83.84 L110 144" fill="#3b4754" stroke="#ffffff" stroke-width="1.5"/>
-<path class="pie-slice" d="M110 144 L202.09 83.84 C219.78 110.91 224.65 144.39 215.43 175.39 C206.2 206.38 183.8 231.74 154.19 244.74 L110 144" fill="#c9d1da" stroke="#ffffff" stroke-width="1.5"/>
-<path class="pie-slice" d="M110 144 L154.19 244.74 C128.91 255.82 100.39 257 74.28 248.04 L110 144" fill="#7b8794" stroke="#ffffff" stroke-width="1.5"/>
-<path class="pie-slice" d="M110 144 L74.28 248.04 C23.43 230.58 -7.35 178.93 1.5 125.89 C10.35 72.86 56.24 34 110 34 L110 144" fill="#eef2f7" stroke="#ffffff" stroke-width="1.5"/>
+<g stroke="#ffffff" stroke-width="1.5">
+<path class="pie-slice" d="M110 144 L110 34 C147.14 34 181.77 52.74 202.09 83.84 L110 144" fill="#3b4754"/>
+<path class="pie-slice" d="M110 144 L202.09 83.84 C219.78 110.91 224.65 144.39 215.43 175.39 C206.2 206.38 183.8 231.74 154.19 244.74 L110 144" fill="#c9d1da"/>
+<path class="pie-slice" d="M110 144 L154.19 244.74 C128.91 255.82 100.39 257 74.28 248.04 L110 144" fill="#7b8794"/>
+<path class="pie-slice" d="M110 144 L74.28 248.04 C23.43 230.58 -7.35 178.93 1.5 125.89 C10.35 72.86 56.24 34 110 34 L110 144" fill="#eef2f7"/>
+</g>
 <circle class="pie-outline" cx="110" cy="144" r="110" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="pie-swatch" x="256" y="95" width="14" height="14" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<rect class="pie-swatch" x="256" y="123" width="14" height="14" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
-<rect class="pie-swatch" x="256" y="151" width="14" height="14" fill="#7b8794" stroke="#3b4754" stroke-width="1"/>
-<rect class="pie-swatch" x="256" y="179" width="14" height="14" fill="#eef2f7" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1">
+<rect class="pie-swatch" x="256" y="95" width="14" height="14" fill="#3b4754"/>
+<rect class="pie-swatch" x="256" y="123" width="14" height="14" fill="#c9d1da"/>
+<rect class="pie-swatch" x="256" y="151" width="14" height="14" fill="#7b8794"/>
+<rect class="pie-swatch" x="256" y="179" width="14" height="14" fill="#eef2f7"/>
+</g>
 <text class="title" x="208.37" y="15.6" text-anchor="middle" fill="#1b1f24">Niezgodności według źródła</text>
 <text class="pie-percent" x="144.55" y="85.75" text-anchor="middle" fill="#ffffff">16%</text>
 <text class="pie-percent" x="179.58" y="170.32" text-anchor="middle" fill="#1b1f24">28%</text>
 <text class="pie-percent" x="113" y="222.14" text-anchor="middle" fill="#ffffff">12%</text>
 <text class="pie-percent" x="38.39" y="137.65" text-anchor="middle" fill="#1b1f24">45%</text>
-<text class="pie-legend" x="278" y="107.6" fill="#1b1f24">Reklamacje</text>
-<text class="pie-legend" x="278" y="135.6" fill="#1b1f24">Audyty wewnętrzne</text>
-<text class="pie-legend" x="278" y="163.6" fill="#1b1f24">Kontrola wejściowa</text>
-<text class="pie-legend" x="278" y="191.6" fill="#1b1f24">Produkcja</text>
+<g fill="#1b1f24">
+<text class="pie-legend" x="278" y="107.6">Reklamacje</text>
+<text class="pie-legend" x="278" y="135.6">Audyty wewnętrzne</text>
+<text class="pie-legend" x="278" y="163.6">Kontrola wejściowa</text>
+<text class="pie-legend" x="278" y="191.6">Produkcja</text>
+</g>
 </svg>

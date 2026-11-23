@@ -1,49 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="779.24" height="359" viewBox="-31.12 -12 779.24 359" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<line class="lifeline" x1="0" y1="68" x2="0" y2="259" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="223" y1="68" x2="223" y2="267" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="446" y1="68" x2="446" y2="259" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="669" y1="68" x2="669" y2="267" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<circle class="actor" cx="0" cy="8" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="16" x2="0" y2="32" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="-12" y1="22" x2="12" y2="22" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="32" x2="-10" y2="44" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="32" x2="10" y2="44" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="155.88" y="0" width="134.23" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="actor" cx="446" cy="8" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="446" y1="16" x2="446" y2="32" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="434" y1="22" x2="458" y2="22" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="446" y1="32" x2="436" y2="44" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="446" y1="32" x2="456" y2="44" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="601.88" y="0" width="134.23" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<g stroke="#9aa5b1" stroke-width="1.5">
+<line class="lifeline" x1="0" y1="68" x2="0" y2="259" fill="none"/>
+<line class="lifeline" x1="223" y1="68" x2="223" y2="267" fill="none"/>
+<line class="lifeline" x1="446" y1="68" x2="446" y2="259" fill="none"/>
+<line class="lifeline" x1="669" y1="68" x2="669" y2="267" fill="none"/>
+</g>
+<g stroke="#55657a" stroke-width="1.5">
+<circle class="actor" cx="0" cy="8" r="8" fill="#eef2f7"/>
+<line class="actor" x1="0" y1="16" x2="0" y2="32" fill="none"/>
+<line class="actor" x1="-12" y1="22" x2="12" y2="22" fill="none"/>
+<line class="actor" x1="0" y1="32" x2="-10" y2="44" fill="none"/>
+<line class="actor" x1="0" y1="32" x2="10" y2="44" fill="none"/>
+<rect class="participant" x="155.88" y="0" width="134.23" height="68" rx="3" fill="#eef2f7"/>
+<circle class="actor" cx="446" cy="8" r="8" fill="#eef2f7"/>
+<line class="actor" x1="446" y1="16" x2="446" y2="32" fill="none"/>
+<line class="actor" x1="434" y1="22" x2="458" y2="22" fill="none"/>
+<line class="actor" x1="446" y1="32" x2="436" y2="44" fill="none"/>
+<line class="actor" x1="446" y1="32" x2="456" y2="44" fill="none"/>
+<rect class="participant" x="601.88" y="0" width="134.23" height="68" rx="3" fill="#eef2f7"/>
+</g>
 <polygon class="arrowhead" points="223,117 214,113 214,121" fill="#3b4754"/>
 <line class="message" x1="0" y1="117" x2="214" y2="117" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="446,170 437,166 437,174" fill="#3b4754"/>
 <line class="message" x1="223" y1="170" x2="437" y2="170" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="669,223 660,219 660,227" fill="#3b4754"/>
 <line class="message" x1="446" y1="223" x2="660" y2="223" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="actor" cx="0" cy="275" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="283" x2="0" y2="299" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="-12" y1="289" x2="12" y2="289" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="299" x2="-10" y2="311" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="299" x2="10" y2="311" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="155.88" y="267" width="134.23" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="actor" cx="446" cy="275" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="446" y1="283" x2="446" y2="299" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="434" y1="289" x2="458" y2="289" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="446" y1="299" x2="436" y2="311" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="446" y1="299" x2="456" y2="311" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="601.88" y="267" width="134.23" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="participant-label" x="0" y="63.6" text-anchor="middle" fill="#1b1f24">Autor</text>
-<text class="participant-label" x="223" y="39.6" text-anchor="middle" fill="#1b1f24">System QMS</text>
-<text class="participant-label" x="446" y="63.6" text-anchor="middle" fill="#1b1f24">Sprawdzający</text>
-<text class="participant-label" x="669" y="29.6" text-anchor="middle" fill="#1b1f24">Archiwum</text>
-<text class="participant-label" x="669" y="49.6" text-anchor="middle" fill="#1b1f24">dokumentów</text>
-<text class="message-label" x="111.5" y="107.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie</text>
-<text class="message-label" x="334.5" y="160.6" text-anchor="middle" fill="#1b1f24">Prośba o sprawdzenie</text>
-<text class="message-label" x="557.5" y="213.6" text-anchor="middle" fill="#1b1f24">Odłożenie do archiwum</text>
-<text class="participant-label" x="0" y="330.6" text-anchor="middle" fill="#1b1f24">Autor</text>
-<text class="participant-label" x="223" y="306.6" text-anchor="middle" fill="#1b1f24">System QMS</text>
-<text class="participant-label" x="446" y="330.6" text-anchor="middle" fill="#1b1f24">Sprawdzający</text>
-<text class="participant-label" x="669" y="296.6" text-anchor="middle" fill="#1b1f24">Archiwum</text>
-<text class="participant-label" x="669" y="316.6" text-anchor="middle" fill="#1b1f24">dokumentów</text>
+<g stroke="#55657a" stroke-width="1.5">
+<circle class="actor" cx="0" cy="275" r="8" fill="#eef2f7"/>
+<line class="actor" x1="0" y1="283" x2="0" y2="299" fill="none"/>
+<line class="actor" x1="-12" y1="289" x2="12" y2="289" fill="none"/>
+<line class="actor" x1="0" y1="299" x2="-10" y2="311" fill="none"/>
+<line class="actor" x1="0" y1="299" x2="10" y2="311" fill="none"/>
+<rect class="participant" x="155.88" y="267" width="134.23" height="68" rx="3" fill="#eef2f7"/>
+<circle class="actor" cx="446" cy="275" r="8" fill="#eef2f7"/>
+<line class="actor" x1="446" y1="283" x2="446" y2="299" fill="none"/>
+<line class="actor" x1="434" y1="289" x2="458" y2="289" fill="none"/>
+<line class="actor" x1="446" y1="299" x2="436" y2="311" fill="none"/>
+<line class="actor" x1="446" y1="299" x2="456" y2="311" fill="none"/>
+<rect class="participant" x="601.88" y="267" width="134.23" height="68" rx="3" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="participant-label" x="0" y="63.6">Autor</text>
+<text class="participant-label" x="223" y="39.6">System QMS</text>
+<text class="participant-label" x="446" y="63.6">Sprawdzający</text>
+<text class="participant-label" x="669" y="29.6">Archiwum</text>
+<text class="participant-label" x="669" y="49.6">dokumentów</text>
+<text class="message-label" x="111.5" y="107.6">Zgłoszenie</text>
+<text class="message-label" x="334.5" y="160.6">Prośba o sprawdzenie</text>
+<text class="message-label" x="557.5" y="213.6">Odłożenie do archiwum</text>
+<text class="participant-label" x="0" y="330.6">Autor</text>
+<text class="participant-label" x="223" y="306.6">System QMS</text>
+<text class="participant-label" x="446" y="330.6">Sprawdzający</text>
+<text class="participant-label" x="669" y="296.6">Archiwum</text>
+<text class="participant-label" x="669" y="316.6">dokumentów</text>
+</g>
 </svg>

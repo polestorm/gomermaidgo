@@ -2,18 +2,20 @@
 <defs><clipPath id="label-holes-8a5bf359"><path d="M-11.95 -12 L521 -12 L521 955 L-11.95 955 M8.05 425 L8.05 445 L249.95 445 L249.95 425 M264.66 251 L264.66 271 L299.34 271 L299.34 251 M408 256 L408 276 L440 276 L440 256 M245.64 843 L245.64 863 L328.36 863 L328.36 843 M266.95 534 L266.95 554 L444.8 554 L444.8 534"/></clipPath></defs>
 <g clip-path="url(#label-holes-8a5bf359)"><rect class="cluster" x="0.05" y="419" width="257.89" height="250" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
-<path class="edge" d="M129.25 557 L129.25 592.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M337 44 L337 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M317 212.02 L317 253 C317 257.4 313.4 261 309 261 L255 261 C250.6 261 247 264.6 247 269 L247 298.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path class="edge" d="M129.25 557 L129.25 592.6" fill="none"/>
+<path class="edge" d="M337 44 L337 79.6" fill="none"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M317 212.02 L317 253 C317 257.4 313.4 261 309 261 L255 261 C250.6 261 247 264.6 247 269 L247 298.6" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M357 212.02 L357 258 C357 262.4 360.6 266 365 266 L483 266 C487.4 266 491 269.6 491 274 L491 811 L491 818 C491 822.4 487.4 826 483 826 L397 826 C392.6 826 389 829.6 389 834 L389 841 L389 890.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M357 212.02 L357 258 C357 262.4 360.6 266 365 266 L483 266 C487.4 266 491 269.6 491 274 L491 811 L491 818 C491 822.4 487.4 826 483 826 L397 826 C392.6 826 389 829.6 389 834 L389 841 L389 890.6" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M227 371 L227 396.7 C227 401.1 223.4 404.7 219 404.7 L137.25 404.7 C132.85 404.7 129.25 408.3 129.25 412.7 L129.25 419 L129.25 464.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M227 371 L227 396.7 C227 401.1 223.4 404.7 219 404.7 L137.25 404.7 C132.85 404.7 129.25 408.3 129.25 412.7 L129.25 419 L129.25 464.6" fill="none"/>
 </g>
-<path class="edge" d="M129.25 645 L129.25 669 L129.25 679.55 C129.25 683.95 132.85 687.55 137.25 687.55 L259 687.55 C263.4 687.55 267 691.15 267 695.55 L267 717.11" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M287 811 L287 865 L287 865 C287 869.02 290.28 872.3 294.3 872.3 L361.7 872.3 C365.72 872.3 369 875.58 369 879.6 L369 890.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M129.25 645 L129.25 669 L129.25 679.55 C129.25 683.95 132.85 687.55 137.25 687.55 L259 687.55 C263.4 687.55 267 691.15 267 695.55 L267 717.11" fill="none"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M287 811 L287 865 L287 865 C287 869.02 290.28 872.3 294.3 872.3 L361.7 872.3 C365.72 872.3 369 875.58 369 879.6 L369 890.6" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M267 379.4 L267 396.7 C267 401.1 270.6 404.7 275 404.7 L299 404.7 C303.4 404.7 307 408.3 307 412.7 L307 419 L307 725.51" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M267 379.4 L267 396.7 C267 401.1 270.6 404.7 275 404.7 L299 404.7 C303.4 404.7 307 408.3 307 412.7 L307 419 L307 725.51" fill="none"/>
+</g>
 </g>
 <polygon class="arrowhead" points="129.25,601 123.25,589 135.25,589" fill="#3b4754"/>
 <polygon class="arrowhead" points="337,88 331,76 343,76" fill="#3b4754"/>
@@ -23,27 +25,31 @@
 <polygon class="arrowhead" points="267,725.51 261,713.51 273,713.51" fill="#3b4754"/>
 <polygon class="arrowhead" points="369,899 363,887 375,887" fill="#3b4754"/>
 <polygon class="arrowhead" points="267,371 273,383 261,383" fill="#3b4754"/>
-<rect class="node" x="210.5" y="0" width="253" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="337,88 460,155.5 337,223 214,155.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="159" y="307" width="176" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="27.25" y="473" width="204" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="35.42,601 237.75,601 223.08,645 20.75,645" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="287,717 397.5,764 287,811 176.5,764" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="269" y="899" width="240" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="337" y="27.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie niezgodności</text>
-<text class="node-label" x="337" y="151.1" text-anchor="middle" fill="#1b1f24">Czy wymaga działań</text>
-<text class="node-label" x="337" y="171.1" text-anchor="middle" fill="#1b1f24">korygujących?</text>
-<text class="node-label" x="247" y="334.6" text-anchor="middle" fill="#1b1f24">Analiza przyczyn</text>
-<text class="node-label" x="247" y="354.6" text-anchor="middle" fill="#1b1f24">źródłowych</text>
-<text class="cluster-title" x="129" y="440.6" text-anchor="middle" fill="#1b1f24">Nadzór pełnomocnika ds. jakości</text>
-<text class="node-label" x="129.25" y="500.6" text-anchor="middle" fill="#1b1f24">Plan działań: żądany</text>
-<text class="node-label" x="129.25" y="520.6" text-anchor="middle" fill="#1b1f24">termin, osoba</text>
-<text class="node-label" x="129.25" y="540.6" text-anchor="middle" fill="#1b1f24">odpowiedzialna</text>
-<text class="node-label" x="129.25" y="628.6" text-anchor="middle" fill="#1b1f24">Wdrożenie działań</text>
-<text class="node-label" x="287" y="769.6" text-anchor="middle" fill="#1b1f24">Ocena skuteczności</text>
-<text class="node-label" x="389" y="926.6" text-anchor="middle" fill="#1b1f24">Zamknięcie zgłoszenia</text>
-<text class="edge-label" x="282" y="266.6" text-anchor="middle" fill="#1b1f24">Tak</text>
-<text class="edge-label" x="424" y="271.6" text-anchor="middle" fill="#1b1f24">Nie</text>
-<text class="edge-label" x="287" y="858.6" text-anchor="middle" fill="#1b1f24">Skuteczne</text>
-<text class="edge-label" x="355.88" y="549.6" text-anchor="middle" fill="#1b1f24">Nieskuteczne – powtórz</text>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="node" x="210.5" y="0" width="253" height="44" rx="22" fill="#eef2f7"/>
+<polygon class="node" points="337,88 460,155.5 337,223 214,155.5" fill="#eef2f7"/>
+<rect class="node" x="159" y="307" width="176" height="64" fill="#eef2f7"/>
+<rect class="node" x="27.25" y="473" width="204" height="84" fill="#eef2f7"/>
+<polygon class="node" points="35.42,601 237.75,601 223.08,645 20.75,645" fill="#eef2f7"/>
+<polygon class="node" points="287,717 397.5,764 287,811 176.5,764" fill="#eef2f7"/>
+<rect class="node" x="269" y="899" width="240" height="44" rx="22" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="337" y="27.6">Zgłoszenie niezgodności</text>
+<text class="node-label" x="337" y="151.1">Czy wymaga działań</text>
+<text class="node-label" x="337" y="171.1">korygujących?</text>
+<text class="node-label" x="247" y="334.6">Analiza przyczyn</text>
+<text class="node-label" x="247" y="354.6">źródłowych</text>
+<text class="cluster-title" x="129" y="440.6">Nadzór pełnomocnika ds. jakości</text>
+<text class="node-label" x="129.25" y="500.6">Plan działań: żądany</text>
+<text class="node-label" x="129.25" y="520.6">termin, osoba</text>
+<text class="node-label" x="129.25" y="540.6">odpowiedzialna</text>
+<text class="node-label" x="129.25" y="628.6">Wdrożenie działań</text>
+<text class="node-label" x="287" y="769.6">Ocena skuteczności</text>
+<text class="node-label" x="389" y="926.6">Zamknięcie zgłoszenia</text>
+<text class="edge-label" x="282" y="266.6">Tak</text>
+<text class="edge-label" x="424" y="271.6">Nie</text>
+<text class="edge-label" x="287" y="858.6">Skuteczne</text>
+<text class="edge-label" x="355.88" y="549.6">Nieskuteczne – powtórz</text>
+</g>
 </svg>

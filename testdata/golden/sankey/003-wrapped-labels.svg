@@ -14,18 +14,26 @@
 <text class="sankey-value" x="20" y="178.78" font-size="13" fill="#5b6570">90</text>
 <text class="sankey-label" x="182.57" y="160.96" fill="#1b1f24">Ocena wstępna</text>
 <text class="sankey-value" x="182.57" y="178.96" font-size="13" fill="#5b6570">90</text>
-<text class="sankey-label" x="345.14" y="98.33" fill="#1b1f24">Postępowanie</text>
-<text class="sankey-label" x="345.14" y="118.33" fill="#1b1f24">wyjaśniające</text>
+<g fill="#1b1f24">
+<text class="sankey-label" x="345.14" y="98.33">Postępowanie</text>
+<text class="sankey-label" x="345.14" y="118.33">wyjaśniające</text>
+</g>
 <text class="sankey-value" x="345.14" y="136.33" font-size="13" fill="#5b6570">60</text>
-<text class="sankey-label" x="507.7" y="248.34" fill="#1b1f24">Odrzucone</text>
-<text class="sankey-label" x="507.7" y="268.34" fill="#1b1f24">jako</text>
-<text class="sankey-label" x="507.7" y="288.34" fill="#1b1f24">niezasadne</text>
+<g fill="#1b1f24">
+<text class="sankey-label" x="507.7" y="248.34">Odrzucone</text>
+<text class="sankey-label" x="507.7" y="268.34">jako</text>
+<text class="sankey-label" x="507.7" y="288.34">niezasadne</text>
+</g>
 <text class="sankey-value" x="507.7" y="306.34" font-size="13" fill="#5b6570">30</text>
-<text class="sankey-label" x="507.7" y="112.67" fill="#1b1f24">Działania</text>
-<text class="sankey-label" x="507.7" y="132.67" fill="#1b1f24">korygujące i</text>
-<text class="sankey-label" x="507.7" y="152.67" fill="#1b1f24">zapobiegawcze</text>
+<g fill="#1b1f24">
+<text class="sankey-label" x="507.7" y="112.67">Działania</text>
+<text class="sankey-label" x="507.7" y="132.67">korygujące i</text>
+<text class="sankey-label" x="507.7" y="152.67">zapobiegawcze</text>
+</g>
 <text class="sankey-value" x="507.7" y="170.67" font-size="13" fill="#5b6570">45</text>
-<text class="sankey-label" x="507.7" y="11.33" fill="#1b1f24">Zamknięte bez</text>
-<text class="sankey-label" x="507.7" y="31.33" fill="#1b1f24">działań</text>
+<g fill="#1b1f24">
+<text class="sankey-label" x="507.7" y="11.33">Zamknięte bez</text>
+<text class="sankey-label" x="507.7" y="31.33">działań</text>
+</g>
 <text class="sankey-value" x="507.7" y="49.33" font-size="13" fill="#5b6570">15</text>
 </svg>

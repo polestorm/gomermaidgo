@@ -1,14 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="622.91" height="705" viewBox="-72.45 -12 622.91 705" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<line class="lifeline" x1="0" y1="48" x2="0" y2="633" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="239" y1="48" x2="239" y2="633" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="478" y1="48" x2="478" y2="633" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<rect class="activation" x="473" y="150" width="10" height="53" fill="#dbe3ec" stroke="#55657a" stroke-width="1"/>
-<rect class="activation" x="234" y="97" width="10" height="238" fill="#dbe3ec" stroke="#55657a" stroke-width="1"/>
-<rect class="activation" x="238" y="467" width="10" height="79" fill="#dbe3ec" stroke="#55657a" stroke-width="1"/>
-<rect class="activation" x="234" y="388" width="10" height="211" fill="#dbe3ec" stroke="#55657a" stroke-width="1"/>
-<rect class="participant" x="-60.45" y="0" width="120.91" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="178.55" y="0" width="120.91" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="417.55" y="0" width="120.91" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<g stroke="#9aa5b1" stroke-width="1.5">
+<line class="lifeline" x1="0" y1="48" x2="0" y2="633" fill="none"/>
+<line class="lifeline" x1="239" y1="48" x2="239" y2="633" fill="none"/>
+<line class="lifeline" x1="478" y1="48" x2="478" y2="633" fill="none"/>
+</g>
+<g stroke="#55657a" stroke-width="1">
+<rect class="activation" x="473" y="150" width="10" height="53" fill="#dbe3ec"/>
+<rect class="activation" x="234" y="97" width="10" height="238" fill="#dbe3ec"/>
+<rect class="activation" x="238" y="467" width="10" height="79" fill="#dbe3ec"/>
+<rect class="activation" x="234" y="388" width="10" height="211" fill="#dbe3ec"/>
+</g>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="participant" x="-60.45" y="0" width="120.91" height="48" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="178.55" y="0" width="120.91" height="48" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="417.55" y="0" width="120.91" height="48" rx="3" fill="#eef2f7"/>
+</g>
 <polygon class="arrowhead" points="234,97 225,93 225,101" fill="#3b4754"/>
 <line class="message" x1="0" y1="97" x2="225" y2="97" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="473,150 464,146 464,154" fill="#3b4754"/>
@@ -27,22 +33,32 @@
 <path class="message" d="M248 520 C297.67 520 297.67 546 263 546 L257 546" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
 <polygon class="arrowhead" points="0,599 9,595 9,603" fill="#3b4754"/>
 <line class="message" x1="234" y1="599" x2="9" y2="599" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<rect class="participant" x="-60.45" y="633" width="120.91" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="178.55" y="633" width="120.91" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="417.55" y="633" width="120.91" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="participant-label" x="0" y="29.6" text-anchor="middle" fill="#1b1f24">Użytkownik</text>
-<text class="participant-label" x="239" y="29.6" text-anchor="middle" fill="#1b1f24">System</text>
-<text class="participant-label" x="478" y="29.6" text-anchor="middle" fill="#1b1f24">Baza</text>
-<text class="message-label" x="117" y="87.6" text-anchor="middle" fill="#1b1f24">Zapisz dokument</text>
-<text class="message-label" x="358.5" y="140.6" text-anchor="middle" fill="#1b1f24">Wstaw wersję</text>
-<text class="message-label" x="358.5" y="193.6" text-anchor="middle" fill="#1b1f24">Numer wersji</text>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="participant" x="-60.45" y="633" width="120.91" height="48" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="178.55" y="633" width="120.91" height="48" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="417.55" y="633" width="120.91" height="48" rx="3" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="participant-label" x="0" y="29.6">Użytkownik</text>
+<text class="participant-label" x="239" y="29.6">System</text>
+<text class="participant-label" x="478" y="29.6">Baza</text>
+<text class="message-label" x="117" y="87.6">Zapisz dokument</text>
+<text class="message-label" x="358.5" y="140.6">Wstaw wersję</text>
+<text class="message-label" x="358.5" y="193.6">Numer wersji</text>
+</g>
 <text class="message-label" x="250" y="246.6" fill="#1b1f24">Walidacja</text>
-<text class="message-label" x="117" y="325.6" text-anchor="middle" fill="#1b1f24">Zapisano</text>
-<text class="message-label" x="119.5" y="378.6" text-anchor="middle" fill="#1b1f24">Otwórz</text>
-<text class="message-label" x="250" y="431.6" fill="#1b1f24">Sprawdź uprawnienia</text>
-<text class="message-label" x="254" y="510.6" fill="#1b1f24">OK</text>
-<text class="message-label" x="117" y="589.6" text-anchor="middle" fill="#1b1f24">Treść</text>
-<text class="participant-label" x="0" y="662.6" text-anchor="middle" fill="#1b1f24">Użytkownik</text>
-<text class="participant-label" x="239" y="662.6" text-anchor="middle" fill="#1b1f24">System</text>
-<text class="participant-label" x="478" y="662.6" text-anchor="middle" fill="#1b1f24">Baza</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="message-label" x="117" y="325.6">Zapisano</text>
+<text class="message-label" x="119.5" y="378.6">Otwórz</text>
+</g>
+<g fill="#1b1f24">
+<text class="message-label" x="250" y="431.6">Sprawdź uprawnienia</text>
+<text class="message-label" x="254" y="510.6">OK</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="message-label" x="117" y="589.6">Treść</text>
+<text class="participant-label" x="0" y="662.6">Użytkownik</text>
+<text class="participant-label" x="239" y="662.6">System</text>
+<text class="participant-label" x="478" y="662.6">Baza</text>
+</g>
 </svg>

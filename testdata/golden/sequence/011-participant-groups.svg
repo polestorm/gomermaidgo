@@ -1,20 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="897.08" height="560" viewBox="-48.9 -12 897.08 560" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Zgłoszenie niezgodności</title>
 <desc>Pracownik zgłasza niezgodność, dział jakości ją ocenia i odpowiada zgłaszającemu.</desc>
-<rect class="participant-group" x="94.86" y="0" width="344.27" height="536" rx="4" fill="rgb(232,240,251)" stroke="#6b7785" stroke-width="1"/>
-<rect class="participant-group" x="521.82" y="0" width="314.36" height="536" rx="4" fill="none" stroke="#6b7785" stroke-width="1"/>
-<line class="lifeline" x1="0" y1="100" x2="0" y2="450" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="172" y1="100" x2="172" y2="458" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="362" y1="100" x2="362" y2="458" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="679" y1="100" x2="679" y2="458" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<circle class="actor" cx="0" cy="40" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="48" x2="0" y2="64" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="-12" y1="54" x2="12" y2="54" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="64" x2="-10" y2="76" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="64" x2="10" y2="76" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="104.86" y="32" width="134.27" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="294.86" y="32" width="134.27" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="611.86" y="32" width="134.27" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<g stroke="#6b7785" stroke-width="1">
+<rect class="participant-group" x="94.86" y="0" width="344.27" height="536" rx="4" fill="rgb(232,240,251)"/>
+<rect class="participant-group" x="521.82" y="0" width="314.36" height="536" rx="4" fill="none"/>
+</g>
+<g stroke="#9aa5b1" stroke-width="1.5">
+<line class="lifeline" x1="0" y1="100" x2="0" y2="450" fill="none"/>
+<line class="lifeline" x1="172" y1="100" x2="172" y2="458" fill="none"/>
+<line class="lifeline" x1="362" y1="100" x2="362" y2="458" fill="none"/>
+<line class="lifeline" x1="679" y1="100" x2="679" y2="458" fill="none"/>
+</g>
+<g stroke="#55657a" stroke-width="1.5">
+<circle class="actor" cx="0" cy="40" r="8" fill="#eef2f7"/>
+<line class="actor" x1="0" y1="48" x2="0" y2="64" fill="none"/>
+<line class="actor" x1="-12" y1="54" x2="12" y2="54" fill="none"/>
+<line class="actor" x1="0" y1="64" x2="-10" y2="76" fill="none"/>
+<line class="actor" x1="0" y1="64" x2="10" y2="76" fill="none"/>
+<rect class="participant" x="104.86" y="32" width="134.27" height="68" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="294.86" y="32" width="134.27" height="68" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="611.86" y="32" width="134.27" height="68" rx="3" fill="#eef2f7"/>
+</g>
 <polygon class="arrowhead" points="172,149 163,145 163,153" fill="#3b4754"/>
 <line class="message" x1="0" y1="149" x2="163" y2="149" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="362,202 353,198 353,206" fill="#3b4754"/>
@@ -27,28 +33,32 @@
 <line class="message" x1="362" y1="361" x2="181" y2="361" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
 <polygon class="arrowhead" points="0,414 9,410 9,418" fill="#3b4754"/>
 <line class="message" x1="172" y1="414" x2="9" y2="414" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
-<circle class="actor" cx="0" cy="466" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="474" x2="0" y2="490" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="-12" y1="480" x2="12" y2="480" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="490" x2="-10" y2="502" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="actor" x1="0" y1="490" x2="10" y2="502" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="104.86" y="458" width="134.27" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="294.86" y="458" width="134.27" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="611.86" y="458" width="134.27" height="68" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="participant-label" x="0" y="95.6" text-anchor="middle" fill="#1b1f24">Pracownik</text>
-<text class="participant-label" x="172" y="71.6" text-anchor="middle" fill="#1b1f24">Kierownik</text>
-<text class="participant-label" x="362" y="71.6" text-anchor="middle" fill="#1b1f24">Specjalista</text>
-<text class="participant-label" x="679" y="71.6" text-anchor="middle" fill="#1b1f24">Laboratorium</text>
-<text class="message-label" x="86" y="139.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie</text>
-<text class="message-label" x="267" y="192.6" text-anchor="middle" fill="#1b1f24">Ocena ryzyka</text>
-<text class="message-label" x="520.5" y="245.6" text-anchor="middle" fill="#1b1f24">Zapytanie o wzorcowanie</text>
-<text class="message-label" x="520.5" y="298.6" text-anchor="middle" fill="#1b1f24">Świadectwo</text>
-<text class="message-label" x="267" y="351.6" text-anchor="middle" fill="#1b1f24">Wynik oceny</text>
-<text class="message-label" x="86" y="404.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
-<text class="participant-label" x="0" y="521.6" text-anchor="middle" fill="#1b1f24">Pracownik</text>
-<text class="participant-label" x="172" y="497.6" text-anchor="middle" fill="#1b1f24">Kierownik</text>
-<text class="participant-label" x="362" y="497.6" text-anchor="middle" fill="#1b1f24">Specjalista</text>
-<text class="participant-label" x="679" y="497.6" text-anchor="middle" fill="#1b1f24">Laboratorium</text>
-<text class="participant-group-title" x="267" y="21.6" text-anchor="middle" fill="#1b1f24">Dział zapewnienia jakości</text>
-<text class="participant-group-title" x="679" y="21.6" text-anchor="middle" fill="#1b1f24">Zewnętrzny dostawca usług wzorcowania</text>
+<g stroke="#55657a" stroke-width="1.5">
+<circle class="actor" cx="0" cy="466" r="8" fill="#eef2f7"/>
+<line class="actor" x1="0" y1="474" x2="0" y2="490" fill="none"/>
+<line class="actor" x1="-12" y1="480" x2="12" y2="480" fill="none"/>
+<line class="actor" x1="0" y1="490" x2="-10" y2="502" fill="none"/>
+<line class="actor" x1="0" y1="490" x2="10" y2="502" fill="none"/>
+<rect class="participant" x="104.86" y="458" width="134.27" height="68" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="294.86" y="458" width="134.27" height="68" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="611.86" y="458" width="134.27" height="68" rx="3" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="participant-label" x="0" y="95.6">Pracownik</text>
+<text class="participant-label" x="172" y="71.6">Kierownik</text>
+<text class="participant-label" x="362" y="71.6">Specjalista</text>
+<text class="participant-label" x="679" y="71.6">Laboratorium</text>
+<text class="message-label" x="86" y="139.6">Zgłoszenie</text>
+<text class="message-label" x="267" y="192.6">Ocena ryzyka</text>
+<text class="message-label" x="520.5" y="245.6">Zapytanie o wzorcowanie</text>
+<text class="message-label" x="520.5" y="298.6">Świadectwo</text>
+<text class="message-label" x="267" y="351.6">Wynik oceny</text>
+<text class="message-label" x="86" y="404.6">Decyzja</text>
+<text class="participant-label" x="0" y="521.6">Pracownik</text>
+<text class="participant-label" x="172" y="497.6">Kierownik</text>
+<text class="participant-label" x="362" y="497.6">Specjalista</text>
+<text class="participant-label" x="679" y="497.6">Laboratorium</text>
+<text class="participant-group-title" x="267" y="21.6">Dział zapewnienia jakości</text>
+<text class="participant-group-title" x="679" y="21.6">Zewnętrzny dostawca usług wzorcowania</text>
+</g>
 </svg>

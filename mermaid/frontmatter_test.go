@@ -146,7 +146,7 @@ func TestLabelBackingFollowsBackground(t *testing.T) {
 	if !strings.Contains(string(clear), "<clipPath") || !strings.Contains(string(clear), `<g clip-path="url(#label-holes-`) {
 		t.Error("transparent background: lines under labels should be clipped")
 	}
-	if strings.Contains(string(clear), `class="edge-label-background"`) || strings.Contains(string(clear), `fill="#ffffff"/>`) {
+	if strings.Contains(string(clear), `class="edge-label-background"`) || regexp.MustCompile(`<rect[^>]*fill="#ffffff"`).MatchString(string(clear)) {
 		t.Error("transparent background: label backings should not be painted")
 	}
 	filled, err := Render(src, WithBackground("#123456"))

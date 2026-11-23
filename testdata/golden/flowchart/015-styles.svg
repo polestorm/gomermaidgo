@@ -4,12 +4,16 @@
 <rect class="cluster" x="4" y="216" width="370" height="383" rx="4" fill="#f3f6fb" stroke="#3b6fb6" stroke-width="1" stroke-dasharray="6 3"/>
 <path class="edge" d="M151.75 331.24 L151.75 342.12 C151.75 346.52 148.15 350.12 143.75 350.12 L102 350.12 C97.6 350.12 94 353.72 94 358.12 L94 369 L94 414.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <path class="edge" d="M174.25 331.24 L174.25 342.12 C174.25 346.52 177.85 350.12 182.25 350.12 L275 350.12 C279.4 350.12 283 353.72 283 358.12 L283 369 L283 414.6" fill="none" stroke="#b42318" stroke-width="2.5"/>
-<path class="edge" d="M94 467 L94 502.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M163 44 L163 79.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M163 172 L163 261.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M81 575 L81 659.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<path class="edge" d="M283 467 L283 652.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M107 575 L107 599 L107 612.3 C107 616.7 110.6 620.3 115 620.3 L261 620.3 C265.4 620.3 269 623.9 269 628.3 L269 652.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g stroke="#55657a" stroke-width="1.5">
+<path class="edge" d="M94 467 L94 502.6" fill="none"/>
+<path class="edge" d="M163 44 L163 79.6" fill="none"/>
+<path class="edge" d="M163 172 L163 261.6" fill="none"/>
+<path class="edge" d="M81 575 L81 659.6" fill="none"/>
+</g>
+<g stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3">
+<path class="edge" d="M283 467 L283 652.6" fill="none"/>
+<path class="edge" d="M107 575 L107 599 L107 612.3 C107 616.7 110.6 620.3 115 620.3 L261 620.3 C265.4 620.3 269 623.9 269 628.3 L269 652.6" fill="none"/>
+</g>
 <rect class="cluster-title-background" x="12" y="222" width="96.91" height="20" fill="#f3f6fb"/>
 <rect class="edge-label-background" x="28.2" y="371" width="131.61" height="20" fill="#f3f6fb"/>
 <rect class="edge-label-background" x="230.98" y="371" width="104.05" height="20" fill="#f3f6fb"/>
@@ -30,24 +34,30 @@
 <rect class="node" x="0" y="668" width="162" height="44" rx="22" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
 <ellipse class="node-detail" cx="312" cy="712" rx="102.5" ry="7" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="1.5"/>
 <rect class="node" x="209.5" y="668" width="205" height="44" fill="#1f3a5f"/>
-<line class="node-detail" x1="209.5" y1="668" x2="209.5" y2="712" fill="none" stroke="#1f3a5f" stroke-width="1.5"/>
-<line class="node-detail" x1="414.5" y1="668" x2="414.5" y2="712" fill="none" stroke="#1f3a5f" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="312" cy="668" rx="102.5" ry="7" fill="#1f3a5f" stroke="#1f3a5f" stroke-width="1.5"/>
+<g stroke="#1f3a5f" stroke-width="1.5">
+<line class="node-detail" x1="209.5" y1="668" x2="209.5" y2="712" fill="none"/>
+<line class="node-detail" x1="414.5" y1="668" x2="414.5" y2="712" fill="none"/>
+<ellipse class="node-detail" cx="312" cy="668" rx="102.5" ry="7" fill="#1f3a5f"/>
+</g>
 <text class="node-label" x="163" y="27.6" text-anchor="middle" fill="#1b1f24">Wykrycie niezgodności</text>
-<text class="node-label" x="90.08" y="115.6" fill="#1b1f24">Izolacja</text>
-<text class="node-label" x="148.77" y="115.6" font-weight="bold" fill="#1b1f24">całej partii</text>
-<text class="node-label" x="232.37" y="115.6" fill="#1b1f24">i</text>
-<text class="node-label" x="71.84" y="135.6" font-style="italic" fill="#1b1f24">oznaczenie</text>
-<text class="node-label" x="157.23" y="135.6" fill="#1b1f24">wyrobów jako</text>
-<text class="node-label" x="163" y="155.6" text-anchor="middle" fill="#1b1f24">niezgodne z wymaganiami</text>
-<text class="cluster-title" x="60.46" y="237.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
-<text class="node-label" x="163" y="310.1" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="94" y="450.6" text-anchor="middle" fill="#1b1f24">Naprawa</text>
-<text class="node-label" x="283" y="450.6" text-anchor="middle" fill="#1b1f24">Złomowanie</text>
-<text class="node-label" x="94" y="538.6" text-anchor="middle" fill="#1b1f24">Ponowna</text>
-<text class="node-label" x="94" y="558.6" text-anchor="middle" fill="#1b1f24">kontrola</text>
-<text class="edge-label" x="94" y="386.6" text-anchor="middle" fill="#1b1f24">naprawa możliwa</text>
-<text class="edge-label" x="283" y="386.6" text-anchor="middle" fill="#1b1f24">brak naprawy</text>
-<text class="node-label" x="81" y="695.6" text-anchor="middle" fill="#1b1f24">Zwolnienie</text>
+<g fill="#1b1f24">
+<text class="node-label" x="90.08" y="115.6">Izolacja</text>
+<text class="node-label" x="148.77" y="115.6" font-weight="bold">całej partii</text>
+<text class="node-label" x="232.37" y="115.6">i</text>
+<text class="node-label" x="71.84" y="135.6" font-style="italic">oznaczenie</text>
+<text class="node-label" x="157.23" y="135.6">wyrobów jako</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="163" y="155.6">niezgodne z wymaganiami</text>
+<text class="cluster-title" x="60.46" y="237.6">Dział jakości</text>
+<text class="node-label" x="163" y="310.1">Ocena</text>
+<text class="node-label" x="94" y="450.6">Naprawa</text>
+<text class="node-label" x="283" y="450.6">Złomowanie</text>
+<text class="node-label" x="94" y="538.6">Ponowna</text>
+<text class="node-label" x="94" y="558.6">kontrola</text>
+<text class="edge-label" x="94" y="386.6">naprawa możliwa</text>
+<text class="edge-label" x="283" y="386.6">brak naprawy</text>
+<text class="node-label" x="81" y="695.6">Zwolnienie</text>
+</g>
 <text class="node-label" x="312" y="699.1" text-anchor="middle" fill="#ffffff">Rejestr niezgodności</text>
 </svg>

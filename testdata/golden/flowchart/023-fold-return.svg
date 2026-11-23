@@ -1,21 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="633" height="566" viewBox="-12 -12 633 566" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-075576a9"><path d="M-12 -12 L621 -12 L621 554 L-12 554 M8 6 L8 26 L65.8 26 L65.8 6 M8 200 L8 220 L104.95 220 L104.95 200 M8 394 L8 414 L92.48 414 L92.48 394 M165.86 154 L165.86 174 L260.14 174 L260.14 154 M187.86 348 L187.86 368 L282.14 368 L282.14 348"/></clipPath></defs>
-<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="0" width="418" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g stroke="#8a94a3" stroke-width="1">
+<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="0" width="418" height="134" rx="4" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="194" width="469" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="194" width="469" height="134" rx="4" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="388" width="609" height="154" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="388" width="609" height="154" rx="4" fill="none"/>
 </g>
-<path class="edge" d="M123 82 L158.6 82" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M247 82 L282.6 82" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M143 276 L178.6 276" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M279 276 L314.6 276" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M148 480 L183.6 480" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M293 480 L328.6 480" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M434 480 L469.6 480" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-075576a9)"><path class="edge" d="M344.5 114 L344.5 156 C344.5 160.4 340.9 164 336.5 164 L89.5 164 C85.1 164 81.5 167.6 81.5 172 L81.5 235.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
-<g clip-path="url(#label-holes-075576a9)"><path class="edge" d="M386 308 L386 350 C386 354.4 382.4 358 378 358 L92 358 C87.6 358 84 361.6 84 366 L84 449.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path class="edge" d="M123 82 L158.6 82" fill="none"/>
+<path class="edge" d="M247 82 L282.6 82" fill="none"/>
+<path class="edge" d="M143 276 L178.6 276" fill="none"/>
+<path class="edge" d="M279 276 L314.6 276" fill="none"/>
+<path class="edge" d="M148 480 L183.6 480" fill="none"/>
+<path class="edge" d="M293 480 L328.6 480" fill="none"/>
+<path class="edge" d="M434 480 L469.6 480" fill="none"/>
+</g>
+<g stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
+<g clip-path="url(#label-holes-075576a9)"><path class="edge" d="M344.5 114 L344.5 156 C344.5 160.4 340.9 164 336.5 164 L89.5 164 C85.1 164 81.5 167.6 81.5 172 L81.5 235.6" fill="none"/>
+</g>
+<g clip-path="url(#label-holes-075576a9)"><path class="edge" d="M386 308 L386 350 C386 354.4 382.4 358 378 358 L92 358 C87.6 358 84 361.6 84 366 L84 449.6" fill="none"/>
+</g>
 </g>
 <polygon class="arrowhead" points="167,82 155,76 155,88" fill="#3b4754"/>
 <polygon class="arrowhead" points="291,82 279,76 279,88" fill="#3b4754"/>
@@ -26,37 +32,41 @@
 <polygon class="arrowhead" points="478,480 466,474 466,486" fill="#3b4754"/>
 <polygon class="arrowhead" points="81.5,244 75.5,232 87.5,232" fill="#3b4754"/>
 <polygon class="arrowhead" points="84,458 78,446 90,446" fill="#3b4754"/>
-<rect class="node" x="20" y="50" width="103" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="167" y="50" width="80" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="291" y="50" width="107" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="20" y="244" width="123" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="187" y="244" width="92" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="323" y="244" width="126" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="20" y="458" width="128" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="192" y="458" width="101" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="337" y="458" width="97" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="478" y="438" width="111" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="cluster-title" x="36.9" y="21.6" text-anchor="middle" fill="#1b1f24">Projekt</text>
-<text class="node-label" x="71.5" y="77.6" text-anchor="middle" fill="#1b1f24">Wniosek o</text>
-<text class="node-label" x="71.5" y="97.6" text-anchor="middle" fill="#1b1f24">zmianę</text>
-<text class="node-label" x="207" y="77.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="207" y="97.6" text-anchor="middle" fill="#1b1f24">wpływu</text>
-<text class="node-label" x="344.5" y="77.6" text-anchor="middle" fill="#1b1f24">Projekt</text>
-<text class="node-label" x="344.5" y="97.6" text-anchor="middle" fill="#1b1f24">dokumentu</text>
-<text class="cluster-title" x="56.48" y="215.6" text-anchor="middle" fill="#1b1f24">Uzgodnienia</text>
-<text class="node-label" x="81.5" y="271.6" text-anchor="middle" fill="#1b1f24">Przegląd</text>
-<text class="node-label" x="81.5" y="291.6" text-anchor="middle" fill="#1b1f24">merytoryczny</text>
-<text class="node-label" x="233" y="271.6" text-anchor="middle" fill="#1b1f24">Uwagi i</text>
-<text class="node-label" x="233" y="291.6" text-anchor="middle" fill="#1b1f24">poprawki</text>
-<text class="node-label" x="386" y="271.6" text-anchor="middle" fill="#1b1f24">Wersja do</text>
-<text class="node-label" x="386" y="291.6" text-anchor="middle" fill="#1b1f24">zatwierdzenia</text>
-<text class="cluster-title" x="50.24" y="409.6" text-anchor="middle" fill="#1b1f24">Wdrożenie</text>
-<text class="node-label" x="84" y="485.6" text-anchor="middle" fill="#1b1f24">Zatwierdzenie</text>
-<text class="node-label" x="242.5" y="485.6" text-anchor="middle" fill="#1b1f24">Publikacja</text>
-<text class="node-label" x="385.5" y="485.6" text-anchor="middle" fill="#1b1f24">Szkolenie</text>
-<text class="node-label" x="533.5" y="465.6" text-anchor="middle" fill="#1b1f24">Wycofanie</text>
-<text class="node-label" x="533.5" y="485.6" text-anchor="middle" fill="#1b1f24">poprzedniej</text>
-<text class="node-label" x="533.5" y="505.6" text-anchor="middle" fill="#1b1f24">wersji</text>
-<text class="edge-label" x="213" y="169.6" text-anchor="middle" fill="#1b1f24">przekazanie</text>
-<text class="edge-label" x="235" y="363.6" text-anchor="middle" fill="#1b1f24">przekazanie</text>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="node" x="20" y="50" width="103" height="64" fill="#eef2f7"/>
+<rect class="node" x="167" y="50" width="80" height="64" fill="#eef2f7"/>
+<rect class="node" x="291" y="50" width="107" height="64" fill="#eef2f7"/>
+<rect class="node" x="20" y="244" width="123" height="64" fill="#eef2f7"/>
+<rect class="node" x="187" y="244" width="92" height="64" fill="#eef2f7"/>
+<rect class="node" x="323" y="244" width="126" height="64" fill="#eef2f7"/>
+<rect class="node" x="20" y="458" width="128" height="44" fill="#eef2f7"/>
+<rect class="node" x="192" y="458" width="101" height="44" fill="#eef2f7"/>
+<rect class="node" x="337" y="458" width="97" height="44" fill="#eef2f7"/>
+<rect class="node" x="478" y="438" width="111" height="84" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="cluster-title" x="36.9" y="21.6">Projekt</text>
+<text class="node-label" x="71.5" y="77.6">Wniosek o</text>
+<text class="node-label" x="71.5" y="97.6">zmianę</text>
+<text class="node-label" x="207" y="77.6">Ocena</text>
+<text class="node-label" x="207" y="97.6">wpływu</text>
+<text class="node-label" x="344.5" y="77.6">Projekt</text>
+<text class="node-label" x="344.5" y="97.6">dokumentu</text>
+<text class="cluster-title" x="56.48" y="215.6">Uzgodnienia</text>
+<text class="node-label" x="81.5" y="271.6">Przegląd</text>
+<text class="node-label" x="81.5" y="291.6">merytoryczny</text>
+<text class="node-label" x="233" y="271.6">Uwagi i</text>
+<text class="node-label" x="233" y="291.6">poprawki</text>
+<text class="node-label" x="386" y="271.6">Wersja do</text>
+<text class="node-label" x="386" y="291.6">zatwierdzenia</text>
+<text class="cluster-title" x="50.24" y="409.6">Wdrożenie</text>
+<text class="node-label" x="84" y="485.6">Zatwierdzenie</text>
+<text class="node-label" x="242.5" y="485.6">Publikacja</text>
+<text class="node-label" x="385.5" y="485.6">Szkolenie</text>
+<text class="node-label" x="533.5" y="465.6">Wycofanie</text>
+<text class="node-label" x="533.5" y="485.6">poprzedniej</text>
+<text class="node-label" x="533.5" y="505.6">wersji</text>
+<text class="edge-label" x="213" y="169.6">przekazanie</text>
+<text class="edge-label" x="235" y="363.6">przekazanie</text>
+</g>
 </svg>

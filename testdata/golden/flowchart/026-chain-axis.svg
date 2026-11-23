@@ -1,22 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="475.5" height="1044" viewBox="-12 -12 475.5 1044" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-964b5821"><path d="M-12 -12 L463.5 -12 L463.5 1032 L-12 1032 M47.66 574 L47.66 594 L82.34 594 L82.34 574 M98.85 412 L98.85 432 L249.15 432 L249.15 412 M286.09 574 L286.09 594 L391.91 594 L391.91 574 M117.16 832 L117.16 852 L151.84 852 L151.84 832 M208 786 L208 806 L240 806 L240 786"/></clipPath></defs>
-<path class="edge" d="M274 44 L274 60 C274 64.4 270.4 68 266 68 L182 68 C177.6 68 174 71.6 174 76 L174 83.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M174 136 L174 171.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M174 244 L174 279.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M154 371.24 L154 382.62 C154 387.02 150.4 390.62 146 390.62 L73 390.62 C68.6 390.62 65 394.22 65 398.62 L65 410 L65 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path class="edge" d="M274 44 L274 60 C274 64.4 270.4 68 266 68 L182 68 C177.6 68 174 71.6 174 76 L174 83.6" fill="none"/>
+<path class="edge" d="M174 136 L174 171.6" fill="none"/>
+<path class="edge" d="M174 244 L174 279.6" fill="none"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M154 371.24 L154 382.62 C154 387.02 150.4 390.62 146 390.62 L73 390.62 C68.6 390.62 65 394.22 65 398.62 L65 410 L65 875.6" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M174 380 L174 455.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M174 380 L174 455.6" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M279 334 L331 334 C335.4 334 339 337.6 339 342 L339 380 L339 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M279 334 L331 334 C335.4 334 339 337.6 339 342 L339 380 L339 875.6" fill="none"/>
 </g>
-<path class="edge" d="M184 508 L184 543.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M197 616 L197 651.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M171 742.94 L171 808 L171 834 C171 838.4 167.4 842 163 842 L106 842 C101.6 842 98 845.6 98 850 L98 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M184 508 L184 543.6" fill="none"/>
+<path class="edge" d="M197 616 L197 651.6" fill="none"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M171 742.94 L171 808 L171 834 C171 838.4 167.4 842 163 842 L106 842 C101.6 842 98 845.6 98 850 L98 875.6" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M224 742.52 L224 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M224 742.52 L224 875.6" fill="none"/>
 </g>
-<path class="edge" d="M337 928 L337 967.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M314 52.4 L314 60 C314 64.4 317.6 68 322 68 L407 68 C411.4 68 415 71.6 415 76 L415 92 L415 976" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M337 928 L337 967.6" fill="none"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M314 52.4 L314 60 C314 64.4 317.6 68 322 68 L407 68 C411.4 68 415 71.6 415 76 L415 92 L415 976" fill="none"/>
+</g>
 </g>
 <polygon class="arrowhead" points="174,92 168,80 180,80" fill="#3b4754"/>
 <polygon class="arrowhead" points="174,180 168,168 180,168" fill="#3b4754"/>
@@ -30,31 +32,35 @@
 <polygon class="arrowhead" points="224,884 218,872 230,872" fill="#3b4754"/>
 <polygon class="arrowhead" points="337,976 331,964 343,964" fill="#3b4754"/>
 <polygon class="arrowhead" points="314,44 320,56 308,56" fill="#3b4754"/>
-<rect class="node" x="199.5" y="0" width="189" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="79.5" y="92" width="189" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="79.5" y="180" width="189" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="174,288 279,334 174,380 69,334" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="91" y="464" width="166" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="101" y="552" width="166" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="197,660 307.5,707 197,754 86.5,707" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="884" width="156" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="204.5" y="884" width="189" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="262.5" y="976" width="189" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="294" y="27.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie zmiany</text>
-<text class="node-label" x="174" y="119.6" text-anchor="middle" fill="#1b1f24">Ocena wpływu</text>
-<text class="node-label" x="174" y="207.6" text-anchor="middle" fill="#1b1f24">Przegląd</text>
-<text class="node-label" x="174" y="227.6" text-anchor="middle" fill="#1b1f24">dokumentacji</text>
-<text class="node-label" x="174" y="339.6" text-anchor="middle" fill="#1b1f24">Wszystko zgodne?</text>
-<text class="node-label" x="174" y="491.6" text-anchor="middle" fill="#1b1f24">Wymaga zgody</text>
-<text class="node-label" x="184" y="579.6" text-anchor="middle" fill="#1b1f24">Przegląd</text>
-<text class="node-label" x="184" y="599.6" text-anchor="middle" fill="#1b1f24">ręczny</text>
-<text class="node-label" x="197" y="712.6" text-anchor="middle" fill="#1b1f24">Wyjątek przyznany?</text>
-<text class="node-label" x="78" y="911.6" text-anchor="middle" fill="#1b1f24">Zatwierdzenie</text>
-<text class="node-label" x="299" y="911.6" text-anchor="middle" fill="#1b1f24">Odrzucenie</text>
-<text class="node-label" x="357" y="1003.6" text-anchor="middle" fill="#1b1f24">Poprawki autora</text>
-<text class="edge-label" x="65" y="589.6" text-anchor="middle" fill="#1b1f24">Tak</text>
-<text class="edge-label" x="174" y="427.6" text-anchor="middle" fill="#1b1f24">Uwagi do procedury</text>
-<text class="edge-label" x="339" y="589.6" text-anchor="middle" fill="#1b1f24">Brak walidacji</text>
-<text class="edge-label" x="134.5" y="847.6" text-anchor="middle" fill="#1b1f24">Tak</text>
-<text class="edge-label" x="224" y="801.6" text-anchor="middle" fill="#1b1f24">Nie</text>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="node" x="199.5" y="0" width="189" height="44" fill="#eef2f7"/>
+<rect class="node" x="79.5" y="92" width="189" height="44" fill="#eef2f7"/>
+<rect class="node" x="79.5" y="180" width="189" height="64" fill="#eef2f7"/>
+<polygon class="node" points="174,288 279,334 174,380 69,334" fill="#eef2f7"/>
+<rect class="node" x="91" y="464" width="166" height="44" fill="#eef2f7"/>
+<rect class="node" x="101" y="552" width="166" height="64" fill="#eef2f7"/>
+<polygon class="node" points="197,660 307.5,707 197,754 86.5,707" fill="#eef2f7"/>
+<rect class="node" x="0" y="884" width="156" height="44" fill="#eef2f7"/>
+<rect class="node" x="204.5" y="884" width="189" height="44" fill="#eef2f7"/>
+<rect class="node" x="262.5" y="976" width="189" height="44" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="294" y="27.6">Zgłoszenie zmiany</text>
+<text class="node-label" x="174" y="119.6">Ocena wpływu</text>
+<text class="node-label" x="174" y="207.6">Przegląd</text>
+<text class="node-label" x="174" y="227.6">dokumentacji</text>
+<text class="node-label" x="174" y="339.6">Wszystko zgodne?</text>
+<text class="node-label" x="174" y="491.6">Wymaga zgody</text>
+<text class="node-label" x="184" y="579.6">Przegląd</text>
+<text class="node-label" x="184" y="599.6">ręczny</text>
+<text class="node-label" x="197" y="712.6">Wyjątek przyznany?</text>
+<text class="node-label" x="78" y="911.6">Zatwierdzenie</text>
+<text class="node-label" x="299" y="911.6">Odrzucenie</text>
+<text class="node-label" x="357" y="1003.6">Poprawki autora</text>
+<text class="edge-label" x="65" y="589.6">Tak</text>
+<text class="edge-label" x="174" y="427.6">Uwagi do procedury</text>
+<text class="edge-label" x="339" y="589.6">Brak walidacji</text>
+<text class="edge-label" x="134.5" y="847.6">Tak</text>
+<text class="edge-label" x="224" y="801.6">Nie</text>
+</g>
 </svg>

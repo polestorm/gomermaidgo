@@ -1,26 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1574" height="383" viewBox="-12 -12 1574 383" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-a7230840"><path d="M-12 -12 L1562 -12 L1562 371 L-12 371 M8 6 L8 26 L54.25 26 L54.25 6 M239 79.5 L239 99.5 L348.38 99.5 L348.38 79.5 M923 149 L923 169 L983.48 169 L983.48 149 M1414 67 L1414 87 L1465.55 87 L1465.55 67"/></clipPath></defs>
-<g clip-path="url(#label-holes-a7230840)"><rect class="cluster" x="0" y="0" width="169" height="318" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g stroke="#8a94a3" stroke-width="1">
+<g clip-path="url(#label-holes-a7230840)"><rect class="cluster" x="0" y="0" width="169" height="318" rx="4" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-a7230840)"><rect class="cluster" x="231" y="73.5" width="636" height="153" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-a7230840)"><rect class="cluster" x="231" y="73.5" width="636" height="153" rx="4" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-a7230840)"><rect class="cluster" x="915" y="143" width="447" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-a7230840)"><rect class="cluster" x="915" y="143" width="447" height="134" rx="4" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-a7230840)"><rect class="cluster" x="1406" y="61" width="144" height="298" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-a7230840)"><rect class="cluster" x="1406" y="61" width="144" height="298" rx="4" fill="none"/>
 </g>
-<path class="edge" d="M359 145.5 L365.3 145.5 C369.7 145.5 373.3 149.1 373.3 153.5 L373.3 154.5 C373.3 158.9 376.9 162.5 381.3 162.5 L398.6 162.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M518 174.5 L553.6 174.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M662 174.5 L697.6 174.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M1076 225 L1111.6 225" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M1198 225 L1233.6 225" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-a7230840)"><path class="edge" d="M145 72 L169 72 L192 72 C196.4 72 200 75.6 200 80 L200 137.5 C200 141.9 203.6 145.5 208 145.5 L231 145.5 L246.6 145.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<path class="edge" d="M145 174 L169 174 L192.25 174 C196.51 174 200 177.49 200 181.75 L200 181.75 C200 186.01 203.49 189.5 207.75 189.5 L231 189.5 L398.6 189.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M843 174.5 L867 174.5 L883 174.5 C887.4 174.5 891 178.1 891 182.5 L891 204 C891 208.4 894.6 212 899 212 L915 212 L954.6 212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M145 276 L169 276 L192 276 C196.4 276 200 272.4 200 268 L200 246 C200 241.6 203.6 238 208 238 L231 238 L954.6 238" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M1338 209 L1362 209 L1376 209 C1380.4 209 1384 205.4 1384 201 L1384 141 C1384 136.6 1387.6 133 1392 133 L1406 133 L1421.6 133" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M1338 225 L1421.6 225" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M1338 241 L1362 241 L1376 241 C1380.4 241 1384 244.6 1384 249 L1384 309 C1384 313.4 1387.6 317 1392 317 L1406 317 L1421.6 317" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path class="edge" d="M359 145.5 L365.3 145.5 C369.7 145.5 373.3 149.1 373.3 153.5 L373.3 154.5 C373.3 158.9 376.9 162.5 381.3 162.5 L398.6 162.5" fill="none"/>
+<path class="edge" d="M518 174.5 L553.6 174.5" fill="none"/>
+<path class="edge" d="M662 174.5 L697.6 174.5" fill="none"/>
+<path class="edge" d="M1076 225 L1111.6 225" fill="none"/>
+<path class="edge" d="M1198 225 L1233.6 225" fill="none"/>
+<g clip-path="url(#label-holes-a7230840)"><path class="edge" d="M145 72 L169 72 L192 72 C196.4 72 200 75.6 200 80 L200 137.5 C200 141.9 203.6 145.5 208 145.5 L231 145.5 L246.6 145.5" fill="none"/>
+</g>
+<path class="edge" d="M145 174 L169 174 L192.25 174 C196.51 174 200 177.49 200 181.75 L200 181.75 C200 186.01 203.49 189.5 207.75 189.5 L231 189.5 L398.6 189.5" fill="none"/>
+<path class="edge" d="M843 174.5 L867 174.5 L883 174.5 C887.4 174.5 891 178.1 891 182.5 L891 204 C891 208.4 894.6 212 899 212 L915 212 L954.6 212" fill="none"/>
+<path class="edge" d="M145 276 L169 276 L192 276 C196.4 276 200 272.4 200 268 L200 246 C200 241.6 203.6 238 208 238 L231 238 L954.6 238" fill="none"/>
+<path class="edge" d="M1338 209 L1362 209 L1376 209 C1380.4 209 1384 205.4 1384 201 L1384 141 C1384 136.6 1387.6 133 1392 133 L1406 133 L1421.6 133" fill="none"/>
+<path class="edge" d="M1338 225 L1421.6 225" fill="none"/>
+<path class="edge" d="M1338 241 L1362 241 L1376 241 C1380.4 241 1384 244.6 1384 249 L1384 309 C1384 313.4 1387.6 317 1392 317 L1406 317 L1421.6 317" fill="none"/>
+</g>
 <polygon class="arrowhead" points="407,162.5 395,156.5 395,168.5" fill="#3b4754"/>
 <polygon class="arrowhead" points="562,174.5 550,168.5 550,180.5" fill="#3b4754"/>
 <polygon class="arrowhead" points="706,174.5 694,168.5 694,180.5" fill="#3b4754"/>
@@ -33,38 +37,42 @@
 <polygon class="arrowhead" points="1430,133 1418,127 1418,139" fill="#3b4754"/>
 <polygon class="arrowhead" points="1430,225 1418,219 1418,231" fill="#3b4754"/>
 <polygon class="arrowhead" points="1430,317 1418,311 1418,323" fill="#3b4754"/>
-<rect class="node" x="20" y="50" width="125" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="20" y="142" width="125" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="20" y="254" width="125" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="255" y="123.5" width="104" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="407" y="142.5" width="111" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="562" y="142.5" width="100" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="706" y="142.5" width="137" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="963" y="193" width="113" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="1120" y="193" width="78" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="1242" y="193" width="96" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="1430" y="111" width="100" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="1430" y="203" width="100" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="1430" y="295" width="100" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="cluster-title" x="31.13" y="21.6" text-anchor="middle" fill="#1b1f24">Dane</text>
-<text class="node-label" x="82.5" y="77.6" text-anchor="middle" fill="#1b1f24">wniosek.pdf</text>
-<text class="node-label" x="82.5" y="169.6" text-anchor="middle" fill="#1b1f24">Wymagania</text>
-<text class="node-label" x="82.5" y="189.6" text-anchor="middle" fill="#1b1f24">normy</text>
-<text class="node-label" x="82.5" y="281.6" text-anchor="middle" fill="#1b1f24">wzorzec.docx</text>
-<text class="cluster-title" x="293.69" y="95.1" text-anchor="middle" fill="#1b1f24">Przetwarzanie</text>
-<text class="node-label" x="307" y="151.1" text-anchor="middle" fill="#1b1f24">Odczyt pól</text>
-<text class="node-label" x="462.5" y="170.1" text-anchor="middle" fill="#1b1f24">Przypisanie</text>
-<text class="node-label" x="462.5" y="190.1" text-anchor="middle" fill="#1b1f24">wymagań</text>
-<text class="node-label" x="612" y="170.1" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="612" y="190.1" text-anchor="middle" fill="#1b1f24">zgodności</text>
-<text class="node-label" x="774.5" y="180.1" text-anchor="middle" fill="#1b1f24">Podsumowanie</text>
-<text class="cluster-title" x="953.24" y="164.6" text-anchor="middle" fill="#1b1f24">Analiza</text>
-<text class="node-label" x="1019.5" y="220.6" text-anchor="middle" fill="#1b1f24">Porównanie</text>
-<text class="node-label" x="1019.5" y="240.6" text-anchor="middle" fill="#1b1f24">ze wzorcem</text>
-<text class="node-label" x="1159" y="230.6" text-anchor="middle" fill="#1b1f24">Trendy</text>
-<text class="node-label" x="1290" y="230.6" text-anchor="middle" fill="#1b1f24">Prognoza</text>
-<text class="cluster-title" x="1439.78" y="82.6" text-anchor="middle" fill="#1b1f24">Wynik</text>
-<text class="node-label" x="1480" y="138.6" text-anchor="middle" fill="#1b1f24">Raport</text>
-<text class="node-label" x="1480" y="230.6" text-anchor="middle" fill="#1b1f24">Alerty</text>
-<text class="node-label" x="1480" y="322.6" text-anchor="middle" fill="#1b1f24">Wskaźniki</text>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="node" x="20" y="50" width="125" height="44" fill="#eef2f7"/>
+<rect class="node" x="20" y="142" width="125" height="64" fill="#eef2f7"/>
+<rect class="node" x="20" y="254" width="125" height="44" fill="#eef2f7"/>
+<rect class="node" x="255" y="123.5" width="104" height="44" fill="#eef2f7"/>
+<rect class="node" x="407" y="142.5" width="111" height="64" fill="#eef2f7"/>
+<rect class="node" x="562" y="142.5" width="100" height="64" fill="#eef2f7"/>
+<rect class="node" x="706" y="142.5" width="137" height="64" fill="#eef2f7"/>
+<rect class="node" x="963" y="193" width="113" height="64" fill="#eef2f7"/>
+<rect class="node" x="1120" y="193" width="78" height="64" fill="#eef2f7"/>
+<rect class="node" x="1242" y="193" width="96" height="64" fill="#eef2f7"/>
+<rect class="node" x="1430" y="111" width="100" height="44" fill="#eef2f7"/>
+<rect class="node" x="1430" y="203" width="100" height="44" fill="#eef2f7"/>
+<rect class="node" x="1430" y="295" width="100" height="44" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="cluster-title" x="31.13" y="21.6">Dane</text>
+<text class="node-label" x="82.5" y="77.6">wniosek.pdf</text>
+<text class="node-label" x="82.5" y="169.6">Wymagania</text>
+<text class="node-label" x="82.5" y="189.6">normy</text>
+<text class="node-label" x="82.5" y="281.6">wzorzec.docx</text>
+<text class="cluster-title" x="293.69" y="95.1">Przetwarzanie</text>
+<text class="node-label" x="307" y="151.1">Odczyt pól</text>
+<text class="node-label" x="462.5" y="170.1">Przypisanie</text>
+<text class="node-label" x="462.5" y="190.1">wymagań</text>
+<text class="node-label" x="612" y="170.1">Ocena</text>
+<text class="node-label" x="612" y="190.1">zgodności</text>
+<text class="node-label" x="774.5" y="180.1">Podsumowanie</text>
+<text class="cluster-title" x="953.24" y="164.6">Analiza</text>
+<text class="node-label" x="1019.5" y="220.6">Porównanie</text>
+<text class="node-label" x="1019.5" y="240.6">ze wzorcem</text>
+<text class="node-label" x="1159" y="230.6">Trendy</text>
+<text class="node-label" x="1290" y="230.6">Prognoza</text>
+<text class="cluster-title" x="1439.78" y="82.6">Wynik</text>
+<text class="node-label" x="1480" y="138.6">Raport</text>
+<text class="node-label" x="1480" y="230.6">Alerty</text>
+<text class="node-label" x="1480" y="322.6">Wskaźniki</text>
+</g>
 </svg>

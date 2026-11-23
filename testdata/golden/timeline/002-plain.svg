@@ -15,22 +15,26 @@
 <rect class="timeline-event" x="140" y="0" width="268" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
 <circle class="timeline-mark" cx="120" cy="70" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
 <rect class="timeline-period" x="0" y="52" width="100" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<rect class="timeline-event" x="140" y="52" width="268" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-event" x="140" y="92" width="268" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-event" x="140" y="132" width="268" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-event" x="140" y="172" width="268" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-event" x="140" y="212" width="268" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<g stroke="#9aa5b1" stroke-width="1">
+<rect class="timeline-event" x="140" y="52" width="268" height="34" rx="4" fill="#ffffff"/>
+<rect class="timeline-event" x="140" y="92" width="268" height="34" rx="4" fill="#ffffff"/>
+<rect class="timeline-event" x="140" y="132" width="268" height="34" rx="4" fill="#ffffff"/>
+<rect class="timeline-event" x="140" y="172" width="268" height="34" rx="4" fill="#ffffff"/>
+<rect class="timeline-event" x="140" y="212" width="268" height="34" rx="4" fill="#ffffff"/>
+</g>
 <circle class="timeline-mark" cx="120" cy="280" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
 <rect class="timeline-period" x="0" y="262" width="100" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
 <rect class="timeline-event" x="140" y="262" width="268" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<text class="timeline-period-label" x="50" y="23.6" text-anchor="middle" fill="#1b1f24">Wydanie 1</text>
-<text class="timeline-event-label" x="274" y="22.6" text-anchor="middle" fill="#1b1f24">Pierwsza wersja</text>
-<text class="timeline-period-label" x="50" y="75.6" text-anchor="middle" fill="#1b1f24">Wydanie 2</text>
-<text class="timeline-event-label" x="274" y="74.6" text-anchor="middle" fill="#1b1f24">Nowy wzór karty zmian</text>
-<text class="timeline-event-label" x="274" y="114.6" text-anchor="middle" fill="#1b1f24">Rejestr dokumentów zewnętrznych</text>
-<text class="timeline-event-label" x="274" y="154.6" text-anchor="middle" fill="#1b1f24">Lista rozdzielnika</text>
-<text class="timeline-event-label" x="274" y="194.6" text-anchor="middle" fill="#1b1f24">Okres przechowywania zapisów</text>
-<text class="timeline-event-label" x="274" y="234.6" text-anchor="middle" fill="#1b1f24">Zasady archiwizacji</text>
-<text class="timeline-period-label" x="50" y="285.6" text-anchor="middle" fill="#1b1f24">Wydanie 3</text>
-<text class="timeline-event-label" x="274" y="284.6" text-anchor="middle" fill="#1b1f24">Podpis elektroniczny</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="timeline-period-label" x="50" y="23.6">Wydanie 1</text>
+<text class="timeline-event-label" x="274" y="22.6">Pierwsza wersja</text>
+<text class="timeline-period-label" x="50" y="75.6">Wydanie 2</text>
+<text class="timeline-event-label" x="274" y="74.6">Nowy wzór karty zmian</text>
+<text class="timeline-event-label" x="274" y="114.6">Rejestr dokumentów zewnętrznych</text>
+<text class="timeline-event-label" x="274" y="154.6">Lista rozdzielnika</text>
+<text class="timeline-event-label" x="274" y="194.6">Okres przechowywania zapisów</text>
+<text class="timeline-event-label" x="274" y="234.6">Zasady archiwizacji</text>
+<text class="timeline-period-label" x="50" y="285.6">Wydanie 3</text>
+<text class="timeline-event-label" x="274" y="284.6">Podpis elektroniczny</text>
+</g>
 </svg>

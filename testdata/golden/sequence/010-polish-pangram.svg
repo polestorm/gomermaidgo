@@ -1,22 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="589" height="346.4" viewBox="-62 -12.4 589 346.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Zażółć gęślą jaźń — ZAŻÓŁĆ GĘŚLĄ JAŹŃ</title>
-<line class="lifeline" x1="0" y1="80" x2="0" y2="274" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="465" y1="80" x2="465" y2="274" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<rect class="participant" x="-50" y="32" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="415" y="32" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<g stroke="#9aa5b1" stroke-width="1.5">
+<line class="lifeline" x1="0" y1="80" x2="0" y2="274" fill="none"/>
+<line class="lifeline" x1="465" y1="80" x2="465" y2="274" fill="none"/>
+</g>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="participant" x="-50" y="32" width="100" height="48" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="415" y="32" width="100" height="48" rx="3" fill="#eef2f7"/>
+</g>
 <polygon class="arrowhead" points="465,129 456,125 456,133" fill="#3b4754"/>
 <line class="message" x1="0" y1="129" x2="456" y2="129" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="0,182 9,178 9,186" fill="#3b4754"/>
 <line class="message" x1="465" y1="182" x2="9" y2="182" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 3"/>
 <rect class="note" x="-20" y="210" width="505" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<rect class="participant" x="-50" y="274" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="participant" x="415" y="274" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="title" x="232.5" y="15.6" text-anchor="middle" fill="#1b1f24">Zażółć gęślą jaźń — ZAŻÓŁĆ GĘŚLĄ JAŹŃ</text>
-<text class="participant-label" x="0" y="61.6" text-anchor="middle" fill="#1b1f24">Żółw</text>
-<text class="participant-label" x="465" y="61.6" text-anchor="middle" fill="#1b1f24">Łódź</text>
-<text class="message-label" x="232.5" y="119.6" text-anchor="middle" fill="#1b1f24">Pchnąć w tę łódź jeża lub ośm skrzyń fig</text>
-<text class="message-label" x="232.5" y="172.6" text-anchor="middle" fill="#1b1f24">„cudzysłów” – półpauza § 7.5.1 &lt;znaczniki&gt; &amp; ampersand</text>
-<text class="note-label" x="232.5" y="233.6" text-anchor="middle" fill="#1b1f24">ąćęłńóśźż ĄĆĘŁŃÓŚŹŻ</text>
-<text class="participant-label" x="0" y="303.6" text-anchor="middle" fill="#1b1f24">Żółw</text>
-<text class="participant-label" x="465" y="303.6" text-anchor="middle" fill="#1b1f24">Łódź</text>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="participant" x="-50" y="274" width="100" height="48" rx="3" fill="#eef2f7"/>
+<rect class="participant" x="415" y="274" width="100" height="48" rx="3" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="title" x="232.5" y="15.6">Zażółć gęślą jaźń — ZAŻÓŁĆ GĘŚLĄ JAŹŃ</text>
+<text class="participant-label" x="0" y="61.6">Żółw</text>
+<text class="participant-label" x="465" y="61.6">Łódź</text>
+<text class="message-label" x="232.5" y="119.6">Pchnąć w tę łódź jeża lub ośm skrzyń fig</text>
+<text class="message-label" x="232.5" y="172.6">„cudzysłów” – półpauza § 7.5.1 &lt;znaczniki&gt; &amp; ampersand</text>
+<text class="note-label" x="232.5" y="233.6">ąćęłńóśźż ĄĆĘŁŃÓŚŹŻ</text>
+<text class="participant-label" x="0" y="303.6">Żółw</text>
+<text class="participant-label" x="465" y="303.6">Łódź</text>
+</g>
 </svg>

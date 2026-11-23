@@ -1,54 +1,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="781.14" height="508" viewBox="23.86 -6 781.14 508" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-fe584bcd"><path d="M23.86 -6 L805 -6 L805 502 L23.86 502 M569.78 66 L569.78 86 L620.22 86 L620.22 66 M35.86 108 L35.86 128 L134.14 128 L134.14 108 M201.43 108 L201.43 128 L308.57 128 L308.57 108 M369.65 108 L369.65 128 L480.35 128 L480.35 108 M206.75 436 L206.75 456 L303.25 456 L303.25 436 M557.43 436 L557.43 456 L632.57 456 L632.57 436 M738.54 108 L738.54 128 L791.46 128 L791.46 108"/></clipPath></defs>
-<g clip-path="url(#label-holes-fe584bcd)"><rect class="architecture-group" x="170" y="6" width="510" height="484" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1.5" stroke-dasharray="6 4"/>
+<g stroke="#9aa5b1" stroke-width="1.5" stroke-dasharray="6 4">
+<g clip-path="url(#label-holes-fe584bcd)"><rect class="architecture-group" x="170" y="6" width="510" height="484" rx="6" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-fe584bcd)"><rect class="architecture-group" x="178" y="334" width="494" height="148" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1.5" stroke-dasharray="6 4"/>
+<g clip-path="url(#label-holes-fe584bcd)"><rect class="architecture-group" x="178" y="334" width="494" height="148" rx="6" fill="none"/>
 </g>
-<polyline class="edge" points="113,76 227,76" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polyline class="edge" points="283,76 397,76" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-fe584bcd)"><polyline class="edge" points="425,104 425,240" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<polyline class="edge" points="425,240 255,240 255,376" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polyline class="edge" points="425,240 595,240 595,376" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-fe584bcd)"><polyline class="edge" points="453,76 737,76" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<polyline class="edge" points="113,76 227,76" fill="none"/>
+<polyline class="edge" points="283,76 397,76" fill="none"/>
+<g clip-path="url(#label-holes-fe584bcd)"><polyline class="edge" points="425,104 425,240" fill="none"/>
+</g>
+<polyline class="edge" points="425,240 255,240 255,376" fill="none"/>
+<polyline class="edge" points="425,240 595,240 595,376" fill="none"/>
+<g clip-path="url(#label-holes-fe584bcd)"><polyline class="edge" points="453,76 737,76" fill="none"/>
+</g>
 </g>
 <polygon class="arrowhead" points="227,76 217,81 217,71" fill="#3b4754"/>
 <polygon class="arrowhead" points="397,76 387,81 387,71" fill="#3b4754"/>
 <polygon class="arrowhead" points="255,376 250,366 260,366" fill="#3b4754"/>
 <polygon class="arrowhead" points="595,376 590,366 600,366" fill="#3b4754"/>
 <polygon class="arrowhead" points="737,76 727,81 727,71" fill="#3b4754"/>
-<rect class="architecture-service" x="57" y="48" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="227" y="48" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="397" y="48" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="227" y="376" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="567" y="376" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="architecture-service" x="737" y="48" width="56" height="56" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="architecture-service" x="57" y="48" width="56" height="56" rx="8" fill="#eef2f7"/>
+<rect class="architecture-service" x="227" y="48" width="56" height="56" rx="8" fill="#eef2f7"/>
+<rect class="architecture-service" x="397" y="48" width="56" height="56" rx="8" fill="#eef2f7"/>
+<rect class="architecture-service" x="227" y="376" width="56" height="56" rx="8" fill="#eef2f7"/>
+<rect class="architecture-service" x="567" y="376" width="56" height="56" rx="8" fill="#eef2f7"/>
+<rect class="architecture-service" x="737" y="48" width="56" height="56" rx="8" fill="#eef2f7"/>
+</g>
 <circle class="architecture-junction" cx="425" cy="240" r="4" fill="#3b4754"/>
-<text class="architecture-group-label" x="180" y="25.6" font-weight="bold" fill="#1b1f24">Serwer aplikacji</text>
-<text class="architecture-group-label" x="188" y="353.6" font-weight="bold" fill="#1b1f24">Dane</text>
+<g fill="#1b1f24">
+<text class="architecture-group-label" x="180" y="25.6" font-weight="bold">Serwer aplikacji</text>
+<text class="architecture-group-label" x="188" y="353.6" font-weight="bold">Dane</text>
+</g>
 <text class="edge-label" x="595" y="81.6" text-anchor="middle" fill="#1b1f24">SMTP</text>
-<ellipse class="architecture-icon" cx="85" cy="76" rx="15.12" ry="15.12" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<ellipse class="architecture-icon" cx="85" cy="76" rx="6.72" ry="15.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="architecture-icon" x1="69.88" y1="76" x2="100.12" y2="76" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<ellipse class="architecture-icon" cx="85" cy="76" rx="15.12" ry="15.12" fill="#ffffff"/>
+<ellipse class="architecture-icon" cx="85" cy="76" rx="6.72" ry="15.12" fill="none"/>
+<line class="architecture-icon" x1="69.88" y1="76" x2="100.12" y2="76" fill="none"/>
+</g>
 <text class="architecture-label" x="85" y="123.6" text-anchor="middle" fill="#1b1f24">Przeglądarka</text>
-<rect class="architecture-icon" x="239.88" y="61.72" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="architecture-icon" x="239.88" y="77.68" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<rect class="architecture-icon" x="239.88" y="61.72" width="30.24" height="12.6" rx="2.02" fill="#ffffff"/>
+<rect class="architecture-icon" x="239.88" y="77.68" width="30.24" height="12.6" rx="2.02" fill="#ffffff"/>
+</g>
 <circle class="architecture-icon" cx="245.76" cy="68.02" r="1.68" fill="#3b4754"/>
 <circle class="architecture-icon" cx="245.76" cy="83.98" r="1.68" fill="#3b4754"/>
 <text class="architecture-label" x="255" y="123.6" text-anchor="middle" fill="#1b1f24">Reverse proxy</text>
-<rect class="architecture-icon" x="409.88" y="61.72" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="architecture-icon" x="409.88" y="77.68" width="30.24" height="12.6" rx="2.02" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<rect class="architecture-icon" x="409.88" y="61.72" width="30.24" height="12.6" rx="2.02" fill="#ffffff"/>
+<rect class="architecture-icon" x="409.88" y="77.68" width="30.24" height="12.6" rx="2.02" fill="#ffffff"/>
+</g>
 <circle class="architecture-icon" cx="415.76" cy="68.02" r="1.68" fill="#3b4754"/>
 <circle class="architecture-icon" cx="415.76" cy="83.98" r="1.68" fill="#3b4754"/>
 <text class="architecture-label" x="425" y="123.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
 <ellipse class="architecture-icon" cx="255" cy="414.92" rx="14.28" ry="5.04" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="architecture-icon" x="240.72" y="393.08" width="28.56" height="21.84" fill="#ffffff"/>
-<line class="architecture-icon" x1="240.72" y1="393.08" x2="240.72" y2="414.92" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="architecture-icon" x1="269.28" y1="393.08" x2="269.28" y2="414.92" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<ellipse class="architecture-icon" cx="255" cy="393.08" rx="14.28" ry="5.04" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<line class="architecture-icon" x1="240.72" y1="393.08" x2="240.72" y2="414.92" fill="none"/>
+<line class="architecture-icon" x1="269.28" y1="393.08" x2="269.28" y2="414.92" fill="none"/>
+<ellipse class="architecture-icon" cx="255" cy="393.08" rx="14.28" ry="5.04" fill="#ffffff"/>
+</g>
 <text class="architecture-label" x="255" y="451.6" text-anchor="middle" fill="#1b1f24">Baza danych</text>
-<ellipse class="architecture-icon" cx="595" cy="404" rx="15.12" ry="15.12" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<ellipse class="architecture-icon" cx="595" cy="404" rx="4.2" ry="4.2" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
-<text class="architecture-label" x="595" y="451.6" text-anchor="middle" fill="#1b1f24">Załączniki</text>
-<text class="architecture-label" x="765" y="123.6" text-anchor="middle" fill="#1b1f24">Poczta</text>
+<g stroke="#3b4754" stroke-width="1.5">
+<ellipse class="architecture-icon" cx="595" cy="404" rx="15.12" ry="15.12" fill="#ffffff"/>
+<ellipse class="architecture-icon" cx="595" cy="404" rx="4.2" ry="4.2" fill="#3b4754"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="architecture-label" x="595" y="451.6">Załączniki</text>
+<text class="architecture-label" x="765" y="123.6">Poczta</text>
+</g>
 </svg>

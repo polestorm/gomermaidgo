@@ -16,7 +16,13 @@ var paintAttr = regexp.MustCompile(`(fill|stroke)="(#[0-9a-f]{6})"`)
 // diagram korpusu z tymi samymi kształtami i tekstami.
 func TestThemesOverCorpus(t *testing.T) {
 	files, _ := filepath.Glob("../testdata/corpus/*/*.mmd")
-	shape := regexp.MustCompile(` (fill|stroke)="[^"]*"`)
+	// Kolory i atrybuty, które zapis SVG przenosi do wspólnych grup (granice grup zależą od kolorów),
+	// oraz same grupy wyglądu; zostają kształty, położenia i teksty.
+	attrs := regexp.MustCompile(` (fill|stroke|stroke-width|stroke-dasharray|text-anchor)="[^"]*"`)
+	groups := regexp.MustCompile(`(?m)^<g>\n|^</g>\n`)
+	shape := struct{ ReplaceAllString func(string, string) string }{func(s, r string) string {
+		return groups.ReplaceAllString(attrs.ReplaceAllString(s, r), r)
+	}}
 	for _, path := range files {
 		data, _ := os.ReadFile(path)
 		src := string(data)
