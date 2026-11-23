@@ -1,0 +1,13 @@
+gitGraph
+  commit id: "template"
+  commit id: "scope" tag: "rev A"
+  branch draft
+  commit id: "new section"
+  commit id: "review" type: HIGHLIGHT
+  checkout main
+  commit id: "typo fix"
+  checkout draft
+  commit id: "comments"
+  checkout main
+  merge draft tag: "rev B"
+  commit id: "effective"

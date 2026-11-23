@@ -1,0 +1,20 @@
+%% layout: fold-chains
+flowchart TD
+  accTitle: Corrective and preventive action
+  start[Nonconformity reported] --> reg[Registration]
+  reg --> iso[Product isolation]
+  iso --> risk[Risk assessment]
+  risk --> rca[Root cause analysis]
+  rca --> plan[Action plan]
+  plan --> impl[Implementation]
+  impl --> train[Staff training]
+  train --> docs[Documentation update]
+  docs --> mon[Monitoring]
+  mon --> eff[Effectiveness check]
+  eff --> rep[CAPA report]
+  rep --> ok{Effective?}
+  ok -->|Yes| close[Closure]
+  ok -->|Partly| more[Additional actions]
+  ok -->|No| esc[Escalation]
+  more --> close
+  esc --> start

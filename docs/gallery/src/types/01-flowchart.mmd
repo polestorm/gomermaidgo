@@ -1,0 +1,12 @@
+flowchart TD
+  start([Customer complaint]) --> reg[Register and acknowledge]
+  reg --> safety{Safety related?}
+  safety -->|Yes| vig[[Vigilance report to the authority]]
+  safety -->|No| inv[Investigate the returned product]
+  vig --> inv
+  inv --> db[(Complaint log)]
+  inv --> capa{CAPA needed?}
+  capa -->|Yes| open[Open CAPA]
+  capa -->|No| reply[Reply to the customer]
+  open --> reply
+  reply --> done([Closed])

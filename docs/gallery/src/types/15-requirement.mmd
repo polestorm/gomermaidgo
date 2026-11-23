@@ -1,0 +1,26 @@
+requirementDiagram
+  requirement sterility {
+    id: "URS-01"
+    text: The device stays sterile until its expiry date
+    risk: high
+    verifymethod: test
+  }
+  functionalRequirement seal {
+    id: "FRS-07"
+    text: The seal withstands the peel test
+    risk: medium
+    verifymethod: inspection
+  }
+  designConstraint film {
+    id: "DC-03"
+    text: Film compliant with the packaging standard
+    risk: low
+    verifymethod: analysis
+  }
+  element seal_validation {
+    type: validation report
+    docref: "VAL-2026-004"
+  }
+  sterility - contains -> seal
+  seal - derives -> film
+  seal_validation - verifies -> seal

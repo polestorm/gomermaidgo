@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="452.8" height="484" viewBox="-12.8 -12.4 452.8 484" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Process risk assessment</title>
+<rect x="-12.8" y="-12.4" width="452.8" height="484" fill="white"/>
+<rect class="quadrant" x="228" y="32" width="200" height="200" fill="#e3e8ef"/>
+<rect class="quadrant" x="28" y="32" width="200" height="200" fill="#f6f8fa"/>
+<rect class="quadrant" x="28" y="232" width="200" height="200" fill="#e3e8ef"/>
+<rect class="quadrant" x="228" y="232" width="200" height="200" fill="#f6f8fa"/>
+<text class="quadrant-title" x="328" y="57.6" text-anchor="middle" font-weight="bold" fill="#5b6570">Act now</text>
+<text class="quadrant-title" x="128" y="57.6" text-anchor="middle" font-weight="bold" fill="#5b6570">Safeguard</text>
+<text class="quadrant-title" x="128" y="257.6" text-anchor="middle" font-weight="bold" fill="#5b6570">Monitor</text>
+<text class="quadrant-title" x="328" y="257.6" text-anchor="middle" font-weight="bold" fill="#5b6570">Reduce frequency</text>
+<rect class="quadrant-frame" x="28" y="32" width="400" height="400" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="quadrant-frame" x1="228" y1="32" x2="228" y2="432" fill="none" stroke="#3b4754" stroke-width="1"/>
+<line class="quadrant-frame" x1="28" y1="232" x2="428" y2="232" fill="none" stroke="#3b4754" stroke-width="1"/>
+<text class="title" x="228" y="15.6" text-anchor="middle" fill="#1b1f24">Process risk assessment</text>
+<circle class="quadrant-point" cx="128" cy="72" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<text class="quadrant-point-label" x="128" y="91.7" text-anchor="middle" font-size="12" fill="#1b1f24">Sterilisation</text>
+<circle class="quadrant-point" cx="308" cy="132" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<text class="quadrant-point-label" x="308" y="151.7" text-anchor="middle" font-size="12" fill="#1b1f24">Packaging</text>
+<circle class="quadrant-point" cx="348" cy="292" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<text class="quadrant-point-label" x="348" y="311.7" text-anchor="middle" font-size="12" fill="#1b1f24">Labelling</text>
+<circle class="quadrant-point" cx="148" cy="352" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<text class="quadrant-point-label" x="148" y="371.7" text-anchor="middle" font-size="12" fill="#1b1f24">Storage</text>
+<circle class="quadrant-point" cx="248" cy="252" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>
+<text class="quadrant-point-label" x="208.98" y="256.2" text-anchor="middle" font-size="12" fill="#1b1f24">Purchasing</text>
+<text class="axis-label" x="15.2" y="332" text-anchor="middle" fill="#5b6570" transform="rotate(-90 15.2 332)">Low severity</text>
+<text class="axis-label" x="15.2" y="132" text-anchor="middle" fill="#5b6570" transform="rotate(-90 15.2 132)">High severity</text>
+<text class="axis-label" x="128" y="455.6" text-anchor="middle" fill="#5b6570">Low likelihood</text>
+<text class="axis-label" x="328" y="455.6" text-anchor="middle" fill="#5b6570">High likelihood</text>
+</svg>

@@ -1,0 +1,30 @@
+classDiagram
+  class Document {
+    <<abstract>>
+    +String number
+    +int revision
+    +Status status
+    +approve(User by) bool
+    +withdraw()*
+  }
+  class Procedure {
+    +String owner
+    +List~Record~ records()
+  }
+  class Form {
+    +String template
+  }
+  class Record {
+    +Date created
+    +sign(User by)
+  }
+  class Status {
+    <<enumeration>>
+    DRAFT
+    EFFECTIVE
+    OBSOLETE
+  }
+  Document <|-- Procedure
+  Document <|-- Form
+  Procedure "1" *-- "many" Record : produces
+  Document --> Status

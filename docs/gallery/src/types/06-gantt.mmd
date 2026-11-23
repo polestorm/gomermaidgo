@@ -1,0 +1,13 @@
+gantt
+  title Sterilisation process validation
+  dateFormat YYYY-MM-DD
+  section Preparation
+  Validation plan           :done, plan, 2026-01-05, 10d
+  Risk review               :done, risk, after plan, 5d
+  section Qualification
+  Installation (IQ)         :active, iq, after risk, 2w
+  Operational (OQ)          :oq, after iq, 3w
+  Performance (PQ)          :crit, pq, after oq, 4w
+  section Closure
+  Validation report         :rep, after pq, 10d
+  Approval                  :milestone, after rep, 0d

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1769.8" height="404" viewBox="-12 -12 1769.8 404" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Nonconforming product</title>
+<rect x="-12" y="-12" width="1769.8" height="404" fill="white"/>
+<path class="edge" d="M253 95 L288.6 95" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M549 95 L584.6 95" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M798 95 L833.6 95" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M993.29 74.58 L1040 74.58 C1043.85 74.58 1047 71.43 1047 67.58 L1047 39 C1047 35.15 1050.15 32 1054 32 L1054 32 L1151.4 32" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1013.76 88.19 L1040 88.19 C1043.85 88.19 1047 91.34 1047 95.19 L1047 137 C1047 140.85 1050.15 144 1054 144 L1054 144 L1151.4 144" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1013.76 101.81 L1025.88 101.81 C1030.28 101.81 1033.88 105.41 1033.88 109.81 L1033.88 248 C1033.88 252.4 1037.48 256 1041.88 256 L1054 256 L1151.4 256" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M993.29 115.42 L1012.76 115.42 C1017.16 115.42 1020.76 119.02 1020.76 123.42 L1020.76 350 C1020.76 354.4 1024.36 358 1028.76 358 L1054 358 L1151.4 358" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1401.8 32 L1432.1 32 C1436.5 32 1440.1 35.6 1440.1 40 L1440.1 190 C1440.1 194.4 1443.7 198 1448.1 198 L1469.4 198" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1401.8 144 L1412.1 144 C1416.5 144 1420.1 147.6 1420.1 152 L1420.1 190 C1420.1 194.4 1423.7 198 1428.1 198 L1469.4 198" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1401.8 256 L1412.1 256 C1416.5 256 1420.1 252.4 1420.1 248 L1420.1 206 C1420.1 201.6 1423.7 198 1428.1 198 L1469.4 198" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M1401.8 358 L1432.1 358 C1436.5 358 1440.1 354.4 1440.1 350 L1440.1 206 C1440.1 201.6 1443.7 198 1448.1 198 L1469.4 198" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="1055" y="22" width="73.8" height="20" fill="white"/>
+<rect class="edge-label-background" x="1060.78" y="134" width="62.23" height="20" fill="white"/>
+<rect class="edge-label-background" x="1063.89" y="246" width="56.02" height="20" fill="white"/>
+<rect class="edge-label-background" x="1067" y="348" width="49.8" height="20" fill="white"/>
+<polygon class="arrowhead" points="297,95 285,89 285,101" fill="#3b4754"/>
+<polygon class="arrowhead" points="593,95 581,89 581,101" fill="#3b4754"/>
+<polygon class="arrowhead" points="842,95 830,89 830,101" fill="#3b4754"/>
+<polygon class="arrowhead" points="1159.8,32 1147.8,26 1147.8,38" fill="#3b4754"/>
+<polygon class="arrowhead" points="1159.8,144 1147.8,138 1147.8,150" fill="#3b4754"/>
+<polygon class="arrowhead" points="1159.8,256 1147.8,250 1147.8,262" fill="#3b4754"/>
+<polygon class="arrowhead" points="1159.8,358 1147.8,352 1147.8,364" fill="#3b4754"/>
+<polygon class="arrowhead" points="1477.8,198 1465.8,192 1465.8,204" fill="#3b4754"/>
+<polygon class="arrowhead" points="1477.8,198 1465.8,192 1465.8,204" fill="#3b4754"/>
+<polygon class="arrowhead" points="1477.8,198 1465.8,192 1465.8,204" fill="#3b4754"/>
+<polygon class="arrowhead" points="1477.8,198 1465.8,192 1465.8,204" fill="#3b4754"/>
+<rect class="node" x="0" y="63" width="253" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="297" y="63" width="252" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="593" y="63" width="205" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="933,34.5 1024,95 933,155.5 842,95" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1159.8" y="0" width="242" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1159.8" y="112" width="242" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1159.8" y="224" width="242" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1159.8" y="336" width="242" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="1477.8" y="166" width="268" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="126.5" y="90.6" text-anchor="middle" fill="#1b1f24">Nonconformity found at</text>
+<text class="node-label" x="126.5" y="110.6" text-anchor="middle" fill="#1b1f24">incoming inspection</text>
+<text class="node-label" x="423" y="90.6" text-anchor="middle" fill="#1b1f24">Batch tagged and moved to</text>
+<text class="node-label" x="423" y="110.6" text-anchor="middle" fill="#1b1f24">quarantine</text>
+<text class="node-label" x="695.5" y="90.6" text-anchor="middle" fill="#1b1f24">Nonconformity report</text>
+<text class="node-label" x="695.5" y="110.6" text-anchor="middle" fill="#1b1f24">opened</text>
+<text class="node-label" x="933" y="90.6" text-anchor="middle" fill="#1b1f24">Review board</text>
+<text class="node-label" x="933" y="110.6" text-anchor="middle" fill="#1b1f24">decision</text>
+<text class="node-label" x="1280.8" y="27.6" text-anchor="middle" fill="#1b1f24">Deviation approved by the</text>
+<text class="node-label" x="1280.8" y="47.6" text-anchor="middle" fill="#1b1f24">customer</text>
+<text class="node-label" x="1280.8" y="139.6" text-anchor="middle" fill="#1b1f24">Rework, then</text>
+<text class="node-label" x="1280.8" y="159.6" text-anchor="middle" fill="#1b1f24">re-inspection</text>
+<text class="node-label" x="1280.8" y="251.6" text-anchor="middle" fill="#1b1f24">Return to vendor with a</text>
+<text class="node-label" x="1280.8" y="271.6" text-anchor="middle" fill="#1b1f24">corrective action request</text>
+<text class="node-label" x="1280.8" y="363.6" text-anchor="middle" fill="#1b1f24">Scrap with a cost record</text>
+<text class="node-label" x="1611.8" y="193.6" text-anchor="middle" fill="#1b1f24">Report closed, trend data</text>
+<text class="node-label" x="1611.8" y="213.6" text-anchor="middle" fill="#1b1f24">updated</text>
+<text class="edge-label" x="1091.9" y="37.6" text-anchor="middle" fill="#1b1f24">Use as is</text>
+<text class="edge-label" x="1091.9" y="149.6" text-anchor="middle" fill="#1b1f24">Rework</text>
+<text class="edge-label" x="1091.9" y="261.6" text-anchor="middle" fill="#1b1f24">Return</text>
+<text class="edge-label" x="1091.9" y="363.6" text-anchor="middle" fill="#1b1f24">Scrap</text>
+</svg>

@@ -1,0 +1,16 @@
+architecture-beta
+  group server(cloud)[Application server]
+  group data(cloud)[Data] in server
+  service browser(internet)[Browser]
+  service proxy(server)[Reverse proxy] in server
+  service qms(server)[Quality system] in server
+  service db(database)[Database] in data
+  service files(disk)[Attachments] in data
+  service mail[Mail]
+  junction split in server
+  browser:R --> L:proxy
+  proxy:R --> L:qms
+  qms:B -- T:split
+  split:L --> T:db
+  split:R --> T:files
+  qms:R -[SMTP]-> L:mail

@@ -1,0 +1,15 @@
+flowchart LR
+  accTitle: Supplier approval
+  req([Request from purchasing]) --> scr[Initial screening]
+  scr --> q[Supplier questionnaire]
+  q --> risk{Risk class?}
+  risk -->|High| audit[On-site audit]
+  risk -->|Low| docs[Document review]
+  audit --> rep[Audit report]
+  docs --> rep
+  rep --> qa[QA decision]
+  qa --> ctr[Quality agreement signed]
+  ctr --> erp[Supplier added to ERP]
+  erp --> list[Approved supplier list updated]
+  list --> mon[Periodic monitoring]
+  mon --> done([Supplier approved])

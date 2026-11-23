@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="589" height="600" viewBox="-11.5 -12 589 600" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-11.5" y="-12" width="589" height="600" fill="white"/>
+<path class="edge" d="M265 200 L265 216 C265 220.4 261.4 224 257 224 L107 224 C102.6 224 99 227.6 99 232 L99 248 L99 270" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M316 200 L316 280" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M99 388 L99 476" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M345 186 L345 216 C345 220.4 348.6 224 353 224 L492 224 C496.4 224 500 227.6 500 232 L500 248" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="62.09" y="424" width="73.82" height="20" fill="white"/>
+<polygon class="arrowhead" points="265,186 273,200 257,200" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="316,186 324,200 308,200" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="99,370 105,379 99,388 93,379" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="500" y1="248" x2="506" y2="237" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="500" y1="248" x2="494" y2="237" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="node" x="204.5" y="0" width="201" height="186" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="204.5" y="0" width="201" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="204.5" y1="132" x2="405.5" y2="132" fill="none" stroke="#55657a" stroke-width="1"/>
+<rect class="node" x="0.5" y="270" width="197" height="100" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="0.5" y="270" width="197" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="0.5" y1="338" x2="197.5" y2="338" fill="none" stroke="#55657a" stroke-width="1"/>
+<rect class="node" x="245.5" y="280" width="141" height="80" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="245.5" y="280" width="141" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="245.5" y1="348" x2="386.5" y2="348" fill="none" stroke="#55657a" stroke-width="1"/>
+<rect class="node" x="434.5" y="248" width="131" height="144" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="434.5" y="248" width="131" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="434.5" y1="380" x2="565.5" y2="380" fill="none" stroke="#55657a" stroke-width="1"/>
+<rect class="node" x="35" y="476" width="128" height="100" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="35" y="476" width="128" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="35" y1="544" x2="163" y2="544" fill="none" stroke="#55657a" stroke-width="1"/>
+<text class="node-label" x="305" y="23.6" text-anchor="middle" fill="#1b1f24">«abstract»</text>
+<text class="node-label" x="305" y="43.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Document</text>
+<text class="member" x="216.5" y="77.6" fill="#1b1f24">+String number</text>
+<text class="member" x="216.5" y="99.6" fill="#1b1f24">+int revision</text>
+<text class="member" x="216.5" y="121.6" fill="#1b1f24">+Status status</text>
+<text class="member" x="216.5" y="153.6" fill="#1b1f24">+approve(User by) : bool</text>
+<text class="member" x="216.5" y="175.6" font-style="italic" fill="#1b1f24">+withdraw()</text>
+<text class="node-label" x="99" y="293.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Procedure</text>
+<text class="member" x="12.5" y="327.6" fill="#1b1f24">+String owner</text>
+<text class="member" x="12.5" y="359.6" fill="#1b1f24">+List&lt;Record&gt; records()</text>
+<text class="node-label" x="316" y="303.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Form</text>
+<text class="member" x="257.5" y="337.6" fill="#1b1f24">+String template</text>
+<text class="node-label" x="500" y="271.6" text-anchor="middle" fill="#1b1f24">«enumeration»</text>
+<text class="node-label" x="500" y="291.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Status</text>
+<text class="member" x="446.5" y="325.6" fill="#1b1f24">DRAFT</text>
+<text class="member" x="446.5" y="347.6" fill="#1b1f24">EFFECTIVE</text>
+<text class="member" x="446.5" y="369.6" fill="#1b1f24">OBSOLETE</text>
+<text class="node-label" x="99" y="499.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Record</text>
+<text class="member" x="47" y="533.6" fill="#1b1f24">+Date created</text>
+<text class="member" x="47" y="565.6" fill="#1b1f24">+sign(User by)</text>
+<text class="edge-end-label" x="111.45" y="388.6" text-anchor="middle" fill="#1b1f24">1</text>
+<text class="edge-end-label" x="126.56" y="468.6" text-anchor="middle" fill="#1b1f24">many</text>
+<text class="edge-label" x="99" y="439.6" text-anchor="middle" fill="#1b1f24">produces</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="576.95" height="541.98" viewBox="-12 -12 576.95 541.98" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-12" y="-12" width="576.95" height="541.98" fill="white"/>
+<rect class="block-group" x="0" y="221.77" width="552.95" height="193.34" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="5 4"/>
+<line class="edge" x1="92.76" y1="44" x2="141.7" y2="97.22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="edge" x1="349" y1="132.88" x2="400.19" y2="132.88" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="edge" x1="447.7" y1="149.35" x2="171.57" y2="288.34" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="edge" x1="411.94" y1="349.93" x2="296.88" y2="473.98" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="363" y="122.88" width="30.88" height="20" fill="white"/>
+<polygon class="arrowhead" points="146.91,102.88 135.42,98.51 143.51,91.06" fill="#3b4754"/>
+<polygon class="arrowhead" points="407.89,132.88 396.89,138.38 396.89,127.38" fill="#3b4754"/>
+<polygon class="arrowhead" points="164.69,291.81 172.04,281.95 176.99,291.77" fill="#3b4754"/>
+<rect class="block" x="0" y="0" width="145.06" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="block-detail" cx="174.5" cy="155.88" rx="174.5" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="block" x="0" y="109.88" width="349" height="46" fill="#eef2f7"/>
+<line class="block-detail" x1="0" y1="109.88" x2="0" y2="155.88" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="block-detail" x1="349" y1="109.88" x2="349" y2="155.88" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="block-detail" cx="174.5" cy="109.88" rx="174.5" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="block" points="480.42,102.88 552.95,132.88 480.42,162.88 407.89,132.88" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="block" x="58.88" y="280.65" width="105.8" height="75.57" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="block" points="329.38,318.43 311.38,280.65 311.38,297.27 223.57,297.27 223.57,339.59 311.38,339.59 311.38,356.22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="block" cx="441.16" cy="318.43" rx="52.9" ry="37.79" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="block" points="14,473.98 538.95,473.98 552.95,495.98 538.95,517.98 14,517.98 0,495.98" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="block-label" x="72.53" y="27.6" text-anchor="middle" fill="#1b1f24">Report</text>
+<text class="block-label" x="174.5" y="138.48" text-anchor="middle" fill="#1b1f24">Nonconformity log</text>
+<text class="block-label" x="480.42" y="138.48" text-anchor="middle" fill="#1b1f24">Evaluation</text>
+<text class="block-label" x="111.79" y="324.03" text-anchor="middle" fill="#1b1f24">Correction</text>
+<text class="block-label" x="276.47" y="324.03" text-anchor="middle" fill="#1b1f24">then</text>
+<text class="block-label" x="441.16" y="324.03" text-anchor="middle" fill="#1b1f24">CAPA</text>
+<text class="block-label" x="276.47" y="501.58" text-anchor="middle" fill="#1b1f24">Management review</text>
+<text class="edge-label" x="378.44" y="138.48" text-anchor="middle" fill="#1b1f24">risk</text>
+</svg>

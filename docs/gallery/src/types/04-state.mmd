@@ -1,0 +1,14 @@
+stateDiagram-v2
+  [*] --> Draft
+  Draft --> InReview : submit
+  state InReview {
+    [*] --> Technical
+    Technical --> Quality : comments resolved
+    Quality --> [*]
+  }
+  InReview --> Draft : changes requested
+  InReview --> Effective : approved
+  Effective --> Draft : new revision
+  Effective --> Obsolete : withdrawn
+  Obsolete --> [*]
+  note right of Effective : Only one revision<br/>is effective at a time

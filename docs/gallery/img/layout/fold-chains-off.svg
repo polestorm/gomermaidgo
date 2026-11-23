@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="509.29" height="1404" viewBox="-10.79 -12 509.29 1404" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Corrective and preventive action</title>
+<rect x="-10.79" y="-12" width="509.29" height="1404" fill="white"/>
+<path class="edge" d="M131 64 L131 103.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 156 L131 191.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 244 L131 279.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 332 L131 367.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 420 L131 455.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 508 L131 543.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 596 L131 631.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 684 L131 719.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 772 L131 807.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 860 L131 895.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 948 L131 983.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 1036 L131 1071.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M66 1118 L27 1118 C22.6 1118 19 1121.6 19 1126 L19 1156 L19 1288 L19 1294.3 C19 1298.7 22.6 1302.3 27 1302.3 L99 1302.3 C103.4 1302.3 107 1305.9 107 1310.3 L107 1327.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 1156 L131 1235.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M196 1118 L217 1118 C221.4 1118 225 1121.6 225 1126 L225 1156 L225 1210 L225 1210 C225 1214.01 228.28 1217.3 232.3 1217.3 L350.7 1217.3 C354.72 1217.3 358 1220.59 358 1224.6 L358 1235.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M131 1288 L131 1327.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M262 72.4 L262 1156 L262 1163 C262 1167.4 265.6 1171 270 1171 L370 1171 C374.4 1171 378 1174.6 378 1179 L378 1186 L378 1244" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="1.21" y="1188" width="35.57" height="20" fill="white"/>
+<rect class="edge-label-background" x="106.55" y="1188" width="48.9" height="20" fill="white"/>
+<rect class="edge-label-background" x="210.77" y="1188" width="28.45" height="20" fill="white"/>
+<polygon class="arrowhead" points="131,112 125,100 137,100" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,200 125,188 137,188" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,288 125,276 137,276" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,376 125,364 137,364" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,464 125,452 137,452" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,552 125,540 137,540" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,640 125,628 137,628" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,728 125,716 137,716" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,816 125,804 137,804" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,904 125,892 137,892" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,992 125,980 137,980" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,1080 125,1068 137,1068" fill="#3b4754"/>
+<polygon class="arrowhead" points="107,1336 101,1324 113,1324" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,1244 125,1232 137,1232" fill="#3b4754"/>
+<polygon class="arrowhead" points="358,1244 352,1232 364,1232" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,1336 125,1324 137,1324" fill="#3b4754"/>
+<polygon class="arrowhead" points="262,64 268,76 256,76" fill="#3b4754"/>
+<rect class="node" x="88.5" y="0" width="217" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="112" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="200" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="288" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="376" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="464" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="552" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="640" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="728" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="816" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="904" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="22.5" y="992" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="131,1080 196,1118 131,1156 66,1118" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="40.5" y="1244" width="181" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="269.5" y="1244" width="217" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="57" y="1336" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="197" y="27.6" text-anchor="middle" fill="#1b1f24">Nonconformity</text>
+<text class="node-label" x="197" y="47.6" text-anchor="middle" fill="#1b1f24">reported</text>
+<text class="node-label" x="131" y="139.6" text-anchor="middle" fill="#1b1f24">Registration</text>
+<text class="node-label" x="131" y="227.6" text-anchor="middle" fill="#1b1f24">Product isolation</text>
+<text class="node-label" x="131" y="315.6" text-anchor="middle" fill="#1b1f24">Risk assessment</text>
+<text class="node-label" x="131" y="403.6" text-anchor="middle" fill="#1b1f24">Root cause analysis</text>
+<text class="node-label" x="131" y="491.6" text-anchor="middle" fill="#1b1f24">Action plan</text>
+<text class="node-label" x="131" y="579.6" text-anchor="middle" fill="#1b1f24">Implementation</text>
+<text class="node-label" x="131" y="667.6" text-anchor="middle" fill="#1b1f24">Staff training</text>
+<text class="node-label" x="131" y="755.6" text-anchor="middle" fill="#1b1f24">Documentation update</text>
+<text class="node-label" x="131" y="843.6" text-anchor="middle" fill="#1b1f24">Monitoring</text>
+<text class="node-label" x="131" y="931.6" text-anchor="middle" fill="#1b1f24">Effectiveness check</text>
+<text class="node-label" x="131" y="1019.6" text-anchor="middle" fill="#1b1f24">CAPA report</text>
+<text class="node-label" x="131" y="1123.6" text-anchor="middle" fill="#1b1f24">Effective?</text>
+<text class="node-label" x="131" y="1271.6" text-anchor="middle" fill="#1b1f24">Additional actions</text>
+<text class="node-label" x="378" y="1271.6" text-anchor="middle" fill="#1b1f24">Escalation</text>
+<text class="node-label" x="127" y="1363.6" text-anchor="middle" fill="#1b1f24">Closure</text>
+<text class="edge-label" x="19" y="1203.6" text-anchor="middle" fill="#1b1f24">Yes</text>
+<text class="edge-label" x="131" y="1203.6" text-anchor="middle" fill="#1b1f24">Partly</text>
+<text class="edge-label" x="225" y="1203.6" text-anchor="middle" fill="#1b1f24">No</text>
+</svg>

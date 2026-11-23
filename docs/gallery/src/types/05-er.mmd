@@ -1,0 +1,21 @@
+erDiagram
+  DOCUMENT ||--|{ REVISION : has
+  REVISION ||--o{ APPROVAL : requires
+  USER ||--o{ APPROVAL : signs
+  REVISION }o..o{ TRAINING : "is the basis of"
+  DOCUMENT {
+    uuid id PK
+    string number UK "e.g. SOP-07"
+    string title
+  }
+  REVISION {
+    uuid id PK
+    uuid document_id FK
+    string label
+    date effective_from
+  }
+  APPROVAL {
+    uuid revision_id PK, FK
+    uuid user_id PK, FK
+    timestamp signed_at
+  }

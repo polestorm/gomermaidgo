@@ -1,0 +1,12 @@
+packet-beta
+title Sensor data frame
+0-7: "Preamble"
+8-15: "Address"
+16: "ACK"
+17: "ERR"
+18-23: "Reserved"
+24-31: "Length"
++16: "Serial number"
++32: "Timestamp"
++24: "Temperature"
++8: "CRC"

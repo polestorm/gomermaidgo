@@ -1,0 +1,25 @@
+sequenceDiagram
+  autonumber
+  actor Author
+  participant DMS as Document system
+  participant Reviewer
+  participant QA as Quality assurance
+  Author->>DMS: Upload draft SOP rev. C
+  DMS->>Reviewer: Review task
+  activate Reviewer
+  Reviewer-->>DMS: Comments
+  deactivate Reviewer
+  loop Until no comments remain
+    Author->>DMS: Revised draft
+    DMS->>Reviewer: Review task
+  end
+  rect rgb(235, 242, 250)
+    DMS->>QA: Approval request
+    alt Approved
+      QA-->>DMS: Electronic signature
+      DMS-)Author: Effective in 14 days
+    else Rejected
+      QA-->>DMS: Reason
+    end
+  end
+  Note over Author,QA: Training records are created when the SOP becomes effective

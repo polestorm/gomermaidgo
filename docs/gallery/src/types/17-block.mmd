@@ -1,0 +1,13 @@
+block-beta
+  columns 3
+  intake(["Report"]) space:2
+  log[("Nonconformity log")]:2 eval{"Evaluation"}
+  block:actions:3
+    columns 3
+    corr["Correction"] arrow<["then"]>(right) capa(("CAPA"))
+  end
+  review{{"Management review"}}:3
+  intake --> log
+  log -- "risk" --> eval
+  eval --> corr
+  capa --- review

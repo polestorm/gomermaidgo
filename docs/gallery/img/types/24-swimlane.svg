@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1234.05" height="444" viewBox="-182.48 -12 1234.05 444" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-182.48" y="-12" width="1234.05" height="444" fill="white"/>
+<rect class="lane" x="-170.48" y="0" width="1210.05" height="140" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-170.48" y="0" width="152.48" height="140" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane" x="-170.48" y="140" width="1210.05" height="140" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-170.48" y="140" width="152.48" height="140" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane" x="-170.48" y="280" width="1210.05" height="140" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-170.48" y="280" width="152.48" height="140" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M122 70 L126.3 70 C130.7 70 134.3 73.6 134.3 78 L134.3 202 C134.3 206.4 137.9 210 142.3 210 L157.6 210" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M279 210 L314.6 210" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M408.2 217.65 L420.6 217.65 C425 217.65 428.6 221.25 428.6 225.65 L428.6 342 C428.6 346.4 432.2 350 436.6 350 L449 350 L508.17 350" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M602.57 350 L638.17 350" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M747.57 350 L753.87 350 C758.27 350 761.87 346.4 761.87 342 L761.87 235 C761.87 230.6 765.47 227 769.87 227 L787.17 227" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M408.2 202.35 L420.6 202.35 C425 202.35 428.6 198.75 428.6 194.35 L428.6 193 C428.6 188.6 432.2 185 436.6 185 L449 185 L787.17 185" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M889.57 210 L893.87 210 C898.27 210 901.87 206.4 901.87 202 L901.87 78 C901.87 73.6 905.47 70 909.87 70 L925.17 70" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="450" y="340" width="35.57" height="20" fill="white"/>
+<rect class="edge-label-background" x="545.34" y="175" width="28.45" height="20" fill="white"/>
+<polygon class="arrowhead" points="166,210 154,204 154,216" fill="#3b4754"/>
+<polygon class="arrowhead" points="323,210 311,204 311,216" fill="#3b4754"/>
+<polygon class="arrowhead" points="516.57,350 504.57,344 504.57,356" fill="#3b4754"/>
+<polygon class="arrowhead" points="646.57,350 634.57,344 634.57,356" fill="#3b4754"/>
+<polygon class="arrowhead" points="795.57,227 783.57,221 783.57,233" fill="#3b4754"/>
+<polygon class="arrowhead" points="795.57,185 783.57,179 783.57,191" fill="#3b4754"/>
+<polygon class="arrowhead" points="933.57,70 921.57,64 921.57,76" fill="#3b4754"/>
+<rect class="node" x="0" y="48" width="122" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="166" y="188" width="113" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="371,176 419,210 371,244 323,210" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="516.57" y="308" width="86" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="646.57" y="308" width="101" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="795.57" y="168" width="94" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="933.57" y="28" width="88" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="lane-title" x="-94.24" y="75.6" text-anchor="middle" fill="#1b1f24">Customer</text>
+<text class="lane-title" x="-94.24" y="215.6" text-anchor="middle" fill="#1b1f24">Customer service</text>
+<text class="lane-title" x="-94.24" y="355.6" text-anchor="middle" fill="#1b1f24">Quality</text>
+<text class="node-label" x="61" y="75.6" text-anchor="middle" fill="#1b1f24">Complaint</text>
+<text class="node-label" x="222.5" y="215.6" text-anchor="middle" fill="#1b1f24">Registration</text>
+<text class="node-label" x="371" y="215.6" text-anchor="middle" fill="#1b1f24">Valid?</text>
+<text class="node-label" x="559.57" y="335.6" text-anchor="middle" fill="#1b1f24">Root</text>
+<text class="node-label" x="559.57" y="355.6" text-anchor="middle" fill="#1b1f24">cause</text>
+<text class="node-label" x="559.57" y="375.6" text-anchor="middle" fill="#1b1f24">analysis</text>
+<text class="node-label" x="697.07" y="345.6" text-anchor="middle" fill="#1b1f24">Corrective</text>
+<text class="node-label" x="697.07" y="365.6" text-anchor="middle" fill="#1b1f24">action</text>
+<text class="node-label" x="842.57" y="195.6" text-anchor="middle" fill="#1b1f24">Letter to</text>
+<text class="node-label" x="842.57" y="215.6" text-anchor="middle" fill="#1b1f24">the</text>
+<text class="node-label" x="842.57" y="235.6" text-anchor="middle" fill="#1b1f24">customer</text>
+<text class="node-label" x="977.57" y="65.6" text-anchor="middle" fill="#1b1f24">Answer</text>
+<text class="node-label" x="977.57" y="85.6" text-anchor="middle" fill="#1b1f24">received</text>
+<text class="edge-label" x="467.79" y="355.6" text-anchor="middle" fill="#1b1f24">Yes</text>
+<text class="edge-label" x="559.57" y="190.6" text-anchor="middle" fill="#1b1f24">No</text>
+</svg>

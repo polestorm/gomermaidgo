@@ -13,6 +13,8 @@ Zasady:
   żeby porównać wynik;
 - **zero zależności**: `go.mod` nie ma sekcji `require`; narzędzia porównawcze wywołują cudze programy przez proces;
 - nazwy plików, pakietów i identyfikatorów po angielsku; komentarze i dokumentacja po polsku; `README.md` po angielsku;
+  galeria `docs/gallery/` (przedłużenie README) też po angielsku, obrazki odtwarza `go run ./tools/gallery`
+  (po zmianie wyglądu warto je odtworzyć);
   komunikaty błędów biblioteki po angielsku, ze stałym kodem do tłumaczenia przez wywołującego;
 - wzorcem są normy (SVG W3C, OpenType) i dokumentacja składni Mermaid, nie zachowanie innych rendererów;
 - każdy obsługiwany element składni ma wymaganie w `requirements/`, plik w `testdata/corpus/` z linią `%% REQ:` i wpis

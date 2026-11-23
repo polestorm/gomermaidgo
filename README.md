@@ -47,6 +47,28 @@ program that needs no browser, but one that runs Mermaid itself in an embedded J
 [^wild]: 175 blocks marked `mermaid` collected from public GitHub repositories; 36 are rejected by both programs
     (fragments without a diagram header, or not Mermaid at all), which leaves 139.
 
+## Examples
+
+A 13-step process written left to right. Mermaid draws it as one strip, 16 times wider than tall; this library
+folds it into rows by default, so it fits an A4 page at about four times the scale:
+
+![A supplier approval process folded into three rows](docs/gallery/img/layout/fold.svg)
+
+<table>
+<tr>
+<td width="50%"><img src="docs/gallery/img/layout/fit-fold.svg" alt="A nonconforming product process, fitted and folded"></td>
+<td width="50%"><img src="docs/gallery/img/types/02-sequence.svg" alt="A document approval sequence diagram"></td>
+</tr>
+<tr>
+<td>Long labels and a wide branching: fields are narrowed (text wraps more often) and the diagram is folded,
+from 1770 × 404 to 631 × 756.</td>
+<td>A sequence diagram with numbering, a loop, alternatives, a highlighted block and a note.</td>
+</tr>
+</table>
+
+More in the [gallery](docs/gallery/README.md): [page fitting](docs/gallery/page-fitting.md) with and without each
+option, [all 24 diagram types](docs/gallery/types.md), and [scripts and symbols](docs/gallery/scripts.md).
+
 ## Usage
 
 By default text is measured with the bundled Arimo typeface (`fonts.Arimo()`, SIL Open Font License 1.1, see

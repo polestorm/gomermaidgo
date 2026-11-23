@@ -1,0 +1,13 @@
+C4Context
+  title Quality system in context
+  Person(staff, "Employee", "Reads procedures, confirms training")
+  Person_Ext(auditor, "External auditor", "Reviews records during audits")
+  Enterprise_Boundary(company, "Medical device manufacturer") {
+    System(qms, "Quality system", "Documents, records, training, CAPA")
+    SystemDb(db, "Database", "Records and their history")
+  }
+  System_Ext(erp, "ERP", "Batches, suppliers, orders")
+  Rel(staff, qms, "Uses", "HTTPS")
+  Rel(auditor, qms, "Reviews records")
+  Rel(qms, db, "Stores")
+  BiRel(qms, erp, "Exchanges batch data", "API")

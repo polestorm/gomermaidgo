@@ -1,0 +1,18 @@
+swimlane-beta LR
+  subgraph customer [Customer]
+    report([Complaint])
+    answer[Answer received]
+  end
+  subgraph service [Customer service]
+    reg[Registration]
+    valid{Valid?}
+    letter[Letter to the customer]
+  end
+  subgraph quality [Quality]
+    rca[Root cause analysis]
+    capa[Corrective action]
+  end
+  report --> reg --> valid
+  valid -->|Yes| rca --> capa --> letter
+  valid -->|No| letter
+  letter --> answer

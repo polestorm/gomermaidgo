@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="625" height="1284" viewBox="-12 -12 625 1284" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-12" y="-12" width="625" height="1284" fill="white"/>
+<path class="edge" d="M163 612 L193.3 612 C197.7 612 201.3 608.4 201.3 604 L201.3 30 C201.3 25.6 204.9 22 209.3 22 L370.6 22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 614 L213.3 614 C217.7 614 221.3 610.4 221.3 606 L221.3 122 C221.3 117.6 224.9 114 229.3 114 L370.6 114" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 616 L233.3 616 C237.7 616 241.3 612.4 241.3 608 L241.3 214 C241.3 209.6 244.9 206 249.3 206 L370.6 206" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 618 L253.3 618 C257.7 618 261.3 614.4 261.3 610 L261.3 306 C261.3 301.6 264.9 298 269.3 298 L370.6 298" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 620 L273.3 620 C277.7 620 281.3 616.4 281.3 612 L281.3 398 C281.3 393.6 284.9 390 289.3 390 L370.6 390" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 622 L293.3 622 C297.7 622 301.3 618.4 301.3 614 L301.3 490 C301.3 485.6 304.9 482 309.3 482 L370.6 482" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 624 L313.3 624 C317.7 624 321.3 620.4 321.3 616 L321.3 582 C321.3 577.6 324.9 574 329.3 574 L370.6 574" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 626 L313.3 626 C317.7 626 321.3 629.6 321.3 634 L321.3 658 C321.3 662.4 324.9 666 329.3 666 L370.6 666" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 628 L293.3 628 C297.7 628 301.3 631.6 301.3 636 L301.3 750 C301.3 754.4 304.9 758 309.3 758 L370.6 758" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 630 L273.3 630 C277.7 630 281.3 633.6 281.3 638 L281.3 842 C281.3 846.4 284.9 850 289.3 850 L370.6 850" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 632 L253.3 632 C257.7 632 261.3 635.6 261.3 640 L261.3 934 C261.3 938.4 264.9 942 269.3 942 L370.6 942" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 634 L233.3 634 C237.7 634 241.3 637.6 241.3 642 L241.3 1026 C241.3 1030.4 244.9 1034 249.3 1034 L370.6 1034" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 636 L213.3 636 C217.7 636 221.3 639.6 221.3 644 L221.3 1118 C221.3 1122.4 224.9 1126 229.3 1126 L370.6 1126" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M163 638 L193.3 638 C197.7 638 201.3 641.6 201.3 646 L201.3 1220 C201.3 1224.4 204.9 1228 209.3 1228 L370.6 1228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="379,22 367,16 367,28" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,114 367,108 367,120" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,206 367,200 367,212" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,298 367,292 367,304" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,390 367,384 367,396" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,482 367,476 367,488" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,574 367,568 367,580" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,666 367,660 367,672" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,758 367,752 367,764" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,850 367,844 367,856" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,942 367,936 367,948" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,1034 367,1028 367,1040" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,1126 367,1120 367,1132" fill="#3b4754"/>
+<polygon class="arrowhead" points="379,1228 367,1222 367,1234" fill="#3b4754"/>
+<rect class="node" x="0" y="603" width="163" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="0" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="92" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="184" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="276" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="368" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="460" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="552" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="644" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="736" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="828" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="920" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="1012" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="1104" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="379" y="1196" width="222" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="node-label" x="81.5" y="630.6" text-anchor="middle" fill="#1b1f24">Quality manual</text>
+<text class="node-label" x="490" y="27.6" text-anchor="middle" fill="#1b1f24">Document control</text>
+<text class="node-label" x="490" y="119.6" text-anchor="middle" fill="#1b1f24">Record control</text>
+<text class="node-label" x="490" y="211.6" text-anchor="middle" fill="#1b1f24">Internal audit</text>
+<text class="node-label" x="490" y="303.6" text-anchor="middle" fill="#1b1f24">Management review</text>
+<text class="node-label" x="490" y="395.6" text-anchor="middle" fill="#1b1f24">Training</text>
+<text class="node-label" x="490" y="487.6" text-anchor="middle" fill="#1b1f24">Purchasing</text>
+<text class="node-label" x="490" y="579.6" text-anchor="middle" fill="#1b1f24">Design control</text>
+<text class="node-label" x="490" y="671.6" text-anchor="middle" fill="#1b1f24">Production control</text>
+<text class="node-label" x="490" y="763.6" text-anchor="middle" fill="#1b1f24">Calibration</text>
+<text class="node-label" x="490" y="855.6" text-anchor="middle" fill="#1b1f24">Nonconforming product</text>
+<text class="node-label" x="490" y="947.6" text-anchor="middle" fill="#1b1f24">CAPA</text>
+<text class="node-label" x="490" y="1039.6" text-anchor="middle" fill="#1b1f24">Complaints</text>
+<text class="node-label" x="490" y="1131.6" text-anchor="middle" fill="#1b1f24">Risk management</text>
+<text class="node-label" x="490" y="1223.6" text-anchor="middle" fill="#1b1f24">Post-market</text>
+<text class="node-label" x="490" y="1243.6" text-anchor="middle" fill="#1b1f24">surveillance</text>
+</svg>

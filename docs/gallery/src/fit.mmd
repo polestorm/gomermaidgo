@@ -1,0 +1,13 @@
+flowchart LR
+  accTitle: Nonconforming product
+  found([Nonconformity found at incoming inspection]) --> tag[Batch tagged and moved to quarantine]
+  tag --> rec[Nonconformity report opened]
+  rec --> eval{Review board decision}
+  eval -->|Use as is| dev[Deviation approved by the customer]
+  eval -->|Rework| rw[Rework, then re-inspection]
+  eval -->|Return| rtv[Return to vendor with a corrective action request]
+  eval -->|Scrap| scrap[Scrap with a cost record]
+  dev --> close([Report closed, trend data updated])
+  rw --> close
+  rtv --> close
+  scrap --> close
