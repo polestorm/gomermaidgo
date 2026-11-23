@@ -61,7 +61,7 @@ which, like this library, has its own parsers and layout.
 | PDF and PNG | own writers, real text in PDF, optional (build tags) | yes | PNG (separate package) |
 | Markdown documents | yes (`markdown.Embed`, CLI) | yes (CLI) | no |
 | `mermaid-cli` flags | yes | yes | own flags |
-| Deterministic output[^det] | yes, tested | yes, in our runs | yes, in our runs |
+| Deterministic output[^det] | yes, documented | yes, in our runs | yes, in our runs |
 | License | Apache 2.0 | MIT | MIT |
 | GitHub popularity[^pop] | new | 5 stars, 1 fork | 13 stars, 5 forks |
 
@@ -71,7 +71,7 @@ which, like this library, has its own parsers and layout.
     (62 for SVG and PNG; 86 for PDF, which go-mermaid does not write), best of three runs of the command-line program
     per file, process start included; memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon
     laptop. 🥇 marks the best value in a row.
-[^det]: The same source gives the same file byte for byte on every run. Here it is a design rule with a test; for the
+[^det]: The same source gives the same file byte for byte on every run. Here it is documented (see the top of this page) and tested; for the
     other two, three runs of the 62 (mmdg) and 65 (go-mermaid) corpus diagrams gave identical SVG, PNG and PDF
     files, but neither documents it.
 [^size]: Total size of the files written for the same diagrams: 62 for SVG and PNG, 86 for PDF.
