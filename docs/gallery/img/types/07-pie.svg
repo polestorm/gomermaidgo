@@ -1,22 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="470.26" height="282.94" viewBox="-16.61 -12.4 470.26 282.94" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Nonconformities by source</title>
 <rect x="-16.61" y="-12.4" width="470.26" height="282.94" fill="white"/>
-<path class="pie-slice" d="M110 144 L110 34 C163.76 34 209.65 72.86 218.5 125.89 C227.35 178.93 196.57 230.58 145.72 248.04 L110 144" fill="#3b4754" stroke="#ffffff" stroke-width="1.5"/>
-<path class="pie-slice" d="M110 144 L145.72 248.04 C115.13 258.54 81.47 255.05 53.69 238.5 C25.91 221.94 6.82 194 1.5 162.11 L110 144" fill="#c9d1da" stroke="#ffffff" stroke-width="1.5"/>
-<path class="pie-slice" d="M110 144 L1.5 162.11 C-4.61 125.47 8.17 88.23 35.5 63.07 L110 144" fill="#7b8794" stroke="#ffffff" stroke-width="1.5"/>
-<path class="pie-slice" d="M110 144 L35.5 63.07 C55.81 44.38 82.4 34 110 34 L110 144" fill="#eef2f7" stroke="#ffffff" stroke-width="1.5"/>
+<g stroke="#ffffff" stroke-width="1.5">
+<path class="pie-slice" d="M110 144 L110 34 C163.76 34 209.65 72.86 218.5 125.89 C227.35 178.93 196.57 230.58 145.72 248.04 L110 144" fill="#3b4754"/>
+<path class="pie-slice" d="M110 144 L145.72 248.04 C115.13 258.54 81.47 255.05 53.69 238.5 C25.91 221.94 6.82 194 1.5 162.11 L110 144" fill="#c9d1da"/>
+<path class="pie-slice" d="M110 144 L1.5 162.11 C-4.61 125.47 8.17 88.23 35.5 63.07 L110 144" fill="#7b8794"/>
+<path class="pie-slice" d="M110 144 L35.5 63.07 C55.81 44.38 82.4 34 110 34 L110 144" fill="#eef2f7"/>
+</g>
 <circle class="pie-outline" cx="110" cy="144" r="110" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="pie-swatch" x="256" y="95" width="14" height="14" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<rect class="pie-swatch" x="256" y="123" width="14" height="14" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
-<rect class="pie-swatch" x="256" y="151" width="14" height="14" fill="#7b8794" stroke="#3b4754" stroke-width="1"/>
-<rect class="pie-swatch" x="256" y="179" width="14" height="14" fill="#eef2f7" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1">
+<rect class="pie-swatch" x="256" y="95" width="14" height="14" fill="#3b4754"/>
+<rect class="pie-swatch" x="256" y="123" width="14" height="14" fill="#c9d1da"/>
+<rect class="pie-swatch" x="256" y="151" width="14" height="14" fill="#7b8794"/>
+<rect class="pie-swatch" x="256" y="179" width="14" height="14" fill="#eef2f7"/>
+</g>
 <text class="title" x="220.82" y="15.6" text-anchor="middle" fill="#1b1f24">Nonconformities by source</text>
 <text class="pie-percent" x="181.61" y="137.65" text-anchor="middle" fill="#ffffff">45%</text>
 <text class="pie-percent" x="72.84" y="211.97" text-anchor="middle" fill="#1b1f24">28%</text>
 <text class="pie-percent" x="41.33" y="126.03" text-anchor="middle" fill="#ffffff">16%</text>
 <text class="pie-percent" x="83.61" y="81.97" text-anchor="middle" fill="#1b1f24">12%</text>
-<text class="pie-legend" x="278" y="107.6" fill="#1b1f24">Production [34]</text>
-<text class="pie-legend" x="278" y="135.6" fill="#1b1f24">Internal audits [21]</text>
-<text class="pie-legend" x="278" y="163.6" fill="#1b1f24">Complaints [12]</text>
-<text class="pie-legend" x="278" y="191.6" fill="#1b1f24">Incoming inspection [9]</text>
+<g fill="#1b1f24">
+<text class="pie-legend" x="278" y="107.6">Production [34]</text>
+<text class="pie-legend" x="278" y="135.6">Internal audits [21]</text>
+<text class="pie-legend" x="278" y="163.6">Complaints [12]</text>
+<text class="pie-legend" x="278" y="191.6">Incoming inspection [9]</text>
+</g>
 </svg>

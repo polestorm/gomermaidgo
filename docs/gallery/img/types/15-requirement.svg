@@ -1,49 +1,73 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="550.5" height="716" viewBox="-11.5 -12 550.5 716" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-11.5" y="-12" width="550.5" height="716" fill="white"/>
 <path class="edge" d="M143 185 L143 230 L143 246 C143 250.4 146.6 254 151 254 L258 254 C262.4 254 266 257.6 266 262 L266 278" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M286 432 L286 516" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M430 143 L430 230 L430 246 C430 250.4 426.4 254 422 254 L314 254 C309.6 254 306 257.6 306 262 L306 278" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
+<path class="edge" d="M286 432 L286 516" fill="none"/>
+<path class="edge" d="M430 143 L430 230 L430 246 C430 250.4 426.4 254 422 254 L314 254 C309.6 254 306 257.6 306 262 L306 278" fill="none"/>
+</g>
 <rect class="edge-label-background" x="161.8" y="244" width="85.39" height="20" fill="white"/>
 <rect class="edge-label-background" x="247.31" y="464" width="77.38" height="20" fill="white"/>
 <rect class="edge-label-background" x="329.76" y="244" width="76.48" height="20" fill="white"/>
-<circle class="arrowhead" cx="143" cy="181" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="286" y1="516" x2="292" y2="505" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="286" y1="516" x2="280" y2="505" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="306" y1="278" x2="312" y2="267" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="306" y1="278" x2="300" y2="267" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="node" x="0.5" y="0" width="285" height="176" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="0.5" y="0" width="285" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="333" y="33" width="194" height="110" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="333" y="33" width="194" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="137.5" y="278" width="297" height="154" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="137.5" y="278" width="297" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="134" y="516" width="304" height="176" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="134" y="516" width="304" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="143" y="23.6" text-anchor="middle" fill="#1b1f24">«Requirement»</text>
-<text class="node-label" x="143" y="43.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">sterility</text>
-<text class="member" x="12.5" y="77.6" fill="#1b1f24">Id: URS-01</text>
-<text class="member" x="12.5" y="99.6" fill="#1b1f24">Text: The device stays sterile until its</text>
-<text class="member" x="12.5" y="121.6" fill="#1b1f24">  expiry date</text>
-<text class="member" x="12.5" y="143.6" fill="#1b1f24">Risk: High</text>
-<text class="member" x="12.5" y="165.6" fill="#1b1f24">Verification: Test</text>
-<text class="node-label" x="430" y="56.6" text-anchor="middle" fill="#1b1f24">«Element»</text>
-<text class="node-label" x="430" y="76.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">seal_validation</text>
-<text class="member" x="345" y="110.6" fill="#1b1f24">Type: validation report</text>
-<text class="member" x="345" y="132.6" fill="#1b1f24">Doc Ref: VAL-2026-004</text>
-<text class="node-label" x="286" y="301.6" text-anchor="middle" fill="#1b1f24">«Functional Requirement»</text>
-<text class="node-label" x="286" y="321.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">seal</text>
-<text class="member" x="149.5" y="355.6" fill="#1b1f24">Id: FRS-07</text>
-<text class="member" x="149.5" y="377.6" fill="#1b1f24">Text: The seal withstands the peel test</text>
-<text class="member" x="149.5" y="399.6" fill="#1b1f24">Risk: Medium</text>
-<text class="member" x="149.5" y="421.6" fill="#1b1f24">Verification: Inspection</text>
-<text class="node-label" x="286" y="539.6" text-anchor="middle" fill="#1b1f24">«Design Constraint»</text>
-<text class="node-label" x="286" y="559.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">film</text>
-<text class="member" x="146" y="593.6" fill="#1b1f24">Id: DC-03</text>
-<text class="member" x="146" y="615.6" fill="#1b1f24">Text: Film compliant with the packaging</text>
-<text class="member" x="146" y="637.6" fill="#1b1f24">  standard</text>
-<text class="member" x="146" y="659.6" fill="#1b1f24">Risk: Low</text>
-<text class="member" x="146" y="681.6" fill="#1b1f24">Verification: Analysis</text>
-<text class="edge-label" x="204.5" y="259.6" text-anchor="middle" fill="#1b1f24">«contains»</text>
-<text class="edge-label" x="286" y="479.6" text-anchor="middle" fill="#1b1f24">«derives»</text>
-<text class="edge-label" x="368" y="259.6" text-anchor="middle" fill="#1b1f24">«verifies»</text>
+<g stroke="#3b4754" stroke-width="1.5">
+<circle class="arrowhead" cx="143" cy="181" r="5" fill="#ffffff"/>
+<line class="arrowhead" x1="286" y1="516" x2="292" y2="505" fill="none"/>
+<line class="arrowhead" x1="286" y1="516" x2="280" y2="505" fill="none"/>
+<line class="arrowhead" x1="306" y1="278" x2="312" y2="267" fill="none"/>
+<line class="arrowhead" x1="306" y1="278" x2="300" y2="267" fill="none"/>
+</g>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="node" x="0.5" y="0" width="285" height="176" fill="#ffffff"/>
+<rect class="node-detail" x="0.5" y="0" width="285" height="56" fill="#eef2f7"/>
+<rect class="node" x="333" y="33" width="194" height="110" fill="#ffffff"/>
+<rect class="node-detail" x="333" y="33" width="194" height="56" fill="#eef2f7"/>
+<rect class="node" x="137.5" y="278" width="297" height="154" fill="#ffffff"/>
+<rect class="node-detail" x="137.5" y="278" width="297" height="56" fill="#eef2f7"/>
+<rect class="node" x="134" y="516" width="304" height="176" fill="#ffffff"/>
+<rect class="node-detail" x="134" y="516" width="304" height="56" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="143" y="23.6">«Requirement»</text>
+<text class="node-label" x="143" y="43.6" font-weight="bold">sterility</text>
+</g>
+<g fill="#1b1f24">
+<text class="member" x="12.5" y="77.6">Id: URS-01</text>
+<text class="member" x="12.5" y="99.6">Text: The device stays sterile until its</text>
+<text class="member" x="12.5" y="121.6">  expiry date</text>
+<text class="member" x="12.5" y="143.6">Risk: High</text>
+<text class="member" x="12.5" y="165.6">Verification: Test</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="430" y="56.6">«Element»</text>
+<text class="node-label" x="430" y="76.6" font-weight="bold">seal_validation</text>
+</g>
+<g fill="#1b1f24">
+<text class="member" x="345" y="110.6">Type: validation report</text>
+<text class="member" x="345" y="132.6">Doc Ref: VAL-2026-004</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="286" y="301.6">«Functional Requirement»</text>
+<text class="node-label" x="286" y="321.6" font-weight="bold">seal</text>
+</g>
+<g fill="#1b1f24">
+<text class="member" x="149.5" y="355.6">Id: FRS-07</text>
+<text class="member" x="149.5" y="377.6">Text: The seal withstands the peel test</text>
+<text class="member" x="149.5" y="399.6">Risk: Medium</text>
+<text class="member" x="149.5" y="421.6">Verification: Inspection</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="286" y="539.6">«Design Constraint»</text>
+<text class="node-label" x="286" y="559.6" font-weight="bold">film</text>
+</g>
+<g fill="#1b1f24">
+<text class="member" x="146" y="593.6">Id: DC-03</text>
+<text class="member" x="146" y="615.6">Text: Film compliant with the packaging</text>
+<text class="member" x="146" y="637.6">  standard</text>
+<text class="member" x="146" y="659.6">Risk: Low</text>
+<text class="member" x="146" y="681.6">Verification: Analysis</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="edge-label" x="204.5" y="259.6">«contains»</text>
+<text class="edge-label" x="286" y="479.6">«derives»</text>
+<text class="edge-label" x="368" y="259.6">«verifies»</text>
+</g>
 </svg>

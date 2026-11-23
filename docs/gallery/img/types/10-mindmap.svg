@@ -1,44 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1030" height="278" viewBox="-12 -12 1030 278" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-12" y="-12" width="1030" height="278" fill="white"/>
-<path class="edge" d="M510 127 L524 127 C528.4 127 532 123.4 532 119 L532 69 C532 64.6 535.6 61 540 61 L554 61" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M663 61 L677 61 C681.4 61 685 57.4 685 53 L685 25 C685 20.6 688.6 17 693 17 L707 17" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M663 61 L707 61" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M663 61 L677 61 C681.4 61 685 64.6 685 69 L685 97 C685 101.4 688.6 105 693 105 L707 105" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M510 127 L524 127 C528.4 127 532 130.6 532 135 L532 185 C532 189.4 535.6 193 540 193 L554 193" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M632 193 L677 193 C681.4 193 685 189.4 685 185 L685 179 C685 174.6 688.6 171 693 171 L707 171" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M793 171 L883 171 C887.4 171 891 167.4 891 163 L891 157 C891 152.6 894.6 149 899 149 L913 149" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M793 171 L883 171 C887.4 171 891 174.6 891 179 L891 185 C891 189.4 894.6 193 899 193 L913 193" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M632 193 L677 193 C681.4 193 685 196.6 685 201 L685 229 C685 233.4 688.6 237 693 237 L707 237" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M381 127 L337 127" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M216 127 L202 127 C197.6 127 194 123.4 194 119 L194 91 C194 86.6 190.4 83 186 83 L172 83" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M216 127 L172 127" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M216 127 L202 127 C197.6 127 194 130.6 194 135 L194 163 C194 167.4 190.4 171 186 171 L172 171" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path class="edge" d="M510 127 L524 127 C528.4 127 532 123.4 532 119 L532 69 C532 64.6 535.6 61 540 61 L554 61" fill="none"/>
+<path class="edge" d="M663 61 L677 61 C681.4 61 685 57.4 685 53 L685 25 C685 20.6 688.6 17 693 17 L707 17" fill="none"/>
+<path class="edge" d="M663 61 L707 61" fill="none"/>
+<path class="edge" d="M663 61 L677 61 C681.4 61 685 64.6 685 69 L685 97 C685 101.4 688.6 105 693 105 L707 105" fill="none"/>
+<path class="edge" d="M510 127 L524 127 C528.4 127 532 130.6 532 135 L532 185 C532 189.4 535.6 193 540 193 L554 193" fill="none"/>
+<path class="edge" d="M632 193 L677 193 C681.4 193 685 189.4 685 185 L685 179 C685 174.6 688.6 171 693 171 L707 171" fill="none"/>
+<path class="edge" d="M793 171 L883 171 C887.4 171 891 167.4 891 163 L891 157 C891 152.6 894.6 149 899 149 L913 149" fill="none"/>
+<path class="edge" d="M793 171 L883 171 C887.4 171 891 174.6 891 179 L891 185 C891 189.4 894.6 193 899 193 L913 193" fill="none"/>
+<path class="edge" d="M632 193 L677 193 C681.4 193 685 196.6 685 201 L685 229 C685 233.4 688.6 237 693 237 L707 237" fill="none"/>
+<path class="edge" d="M381 127 L337 127" fill="none"/>
+<path class="edge" d="M216 127 L202 127 C197.6 127 194 123.4 194 119 L194 91 C194 86.6 190.4 83 186 83 L172 83" fill="none"/>
+<path class="edge" d="M216 127 L172 127" fill="none"/>
+<path class="edge" d="M216 127 L202 127 C197.6 127 194 130.6 194 135 L194 163 C194 167.4 190.4 171 186 171 L172 171" fill="none"/>
+</g>
 <ellipse class="node" cx="445.5" cy="127" rx="64.5" ry="64.5" fill="#dde3ea" stroke="#55657a" stroke-width="2"/>
-<rect class="node" x="554" y="44" width="109" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="707" y="0" width="110" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="707" y="44" width="151" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="707" y="88" width="162" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="554" y="176" width="78" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="707" y="154" width="86" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="913" y="132" width="93" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="913" y="176" width="86" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="707" y="220" width="119" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="216" y="110" width="121" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="43" y="66" width="129" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="100" y="110" width="72" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="154" width="172" height="34" rx="6" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="445.5" y="132.6" text-anchor="middle" fill="#1b1f24">Quality system</text>
-<text class="node-label" x="608.5" y="66.6" text-anchor="middle" fill="#1b1f24">Documents</text>
-<text class="node-label" x="762" y="22.6" text-anchor="middle" fill="#1b1f24">Procedures</text>
-<text class="node-label" x="782.5" y="66.6" text-anchor="middle" fill="#1b1f24">Work instructions</text>
-<text class="node-label" x="788" y="110.6" text-anchor="middle" fill="#1b1f24">Forms and records</text>
-<text class="node-label" x="593" y="198.6" text-anchor="middle" fill="#1b1f24">People</text>
-<text class="node-label" x="750" y="176.6" text-anchor="middle" fill="#1b1f24">Training</text>
-<text class="node-label" x="959.5" y="154.6" text-anchor="middle" fill="#1b1f24">Induction</text>
-<text class="node-label" x="956" y="198.6" text-anchor="middle" fill="#1b1f24">Periodic</text>
-<text class="node-label" x="766.5" y="242.6" text-anchor="middle" fill="#1b1f24">Competence</text>
-<text class="node-label" x="276.5" y="132.6" text-anchor="middle" fill="#1b1f24">Improvement</text>
-<text class="node-label" x="107.5" y="88.6" text-anchor="middle" fill="#1b1f24">Internal audits</text>
-<text class="node-label" x="136" y="132.6" text-anchor="middle" fill="#1b1f24">CAPA</text>
-<text class="node-label" x="86" y="176.6" text-anchor="middle" fill="#1b1f24">Management review</text>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="node" x="554" y="44" width="109" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="707" y="0" width="110" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="707" y="44" width="151" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="707" y="88" width="162" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="554" y="176" width="78" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="707" y="154" width="86" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="913" y="132" width="93" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="913" y="176" width="86" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="707" y="220" width="119" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="216" y="110" width="121" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="43" y="66" width="129" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="100" y="110" width="72" height="34" rx="6" fill="#eef2f7"/>
+<rect class="node" x="0" y="154" width="172" height="34" rx="6" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="445.5" y="132.6">Quality system</text>
+<text class="node-label" x="608.5" y="66.6">Documents</text>
+<text class="node-label" x="762" y="22.6">Procedures</text>
+<text class="node-label" x="782.5" y="66.6">Work instructions</text>
+<text class="node-label" x="788" y="110.6">Forms and records</text>
+<text class="node-label" x="593" y="198.6">People</text>
+<text class="node-label" x="750" y="176.6">Training</text>
+<text class="node-label" x="959.5" y="154.6">Induction</text>
+<text class="node-label" x="956" y="198.6">Periodic</text>
+<text class="node-label" x="766.5" y="242.6">Competence</text>
+<text class="node-label" x="276.5" y="132.6">Improvement</text>
+<text class="node-label" x="107.5" y="88.6">Internal audits</text>
+<text class="node-label" x="136" y="132.6">CAPA</text>
+<text class="node-label" x="86" y="176.6">Management review</text>
+</g>
 </svg>

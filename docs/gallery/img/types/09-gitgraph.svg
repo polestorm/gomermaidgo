@@ -1,11 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="569.26" height="149.1" viewBox="-12 -16.2 569.26 149.1" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-12" y="-16.2" width="569.26" height="149.1" fill="white"/>
-<line class="git-guide" x1="62.68" y1="28" x2="545.26" y2="28" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4"/>
-<line class="git-guide" x1="62.68" y1="92" x2="545.26" y2="92" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4"/>
-<line class="git-lane" x1="78.68" y1="28" x2="509.26" y2="28" fill="none" stroke="#3b4754" stroke-width="3"/>
-<line class="git-lane" x1="209.98" y1="92" x2="383.03" y2="92" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="git-fork" d="M139.63 28 L139.63 82 C139.63 87.5 144.13 92 149.63 92 L209.98 92" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="git-merge" d="M383.03 92 L439.03 92 C444.53 92 449.03 87.5 449.03 82 L449.03 28" fill="none" stroke="#3b4754" stroke-width="3"/>
+<g stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4">
+<line class="git-guide" x1="62.68" y1="28" x2="545.26" y2="28" fill="none"/>
+<line class="git-guide" x1="62.68" y1="92" x2="545.26" y2="92" fill="none"/>
+</g>
+<g stroke="#3b4754" stroke-width="3">
+<line class="git-lane" x1="78.68" y1="28" x2="509.26" y2="28" fill="none"/>
+<line class="git-lane" x1="209.98" y1="92" x2="383.03" y2="92" fill="none"/>
+<path class="git-fork" d="M139.63 28 L139.63 82 C139.63 87.5 144.13 92 149.63 92 L209.98 92" fill="none"/>
+<path class="git-merge" d="M383.03 92 L439.03 92 C444.53 92 449.03 87.5 449.03 82 L449.03 28" fill="none"/>
+</g>
 <rect class="git-commit-id-background" x="51.75" y="40" width="53.86" height="16.9" fill="white"/>
 <rect class="git-commit-id-background" x="120.29" y="40" width="38.69" height="16.9" fill="white"/>
 <rect class="git-commit-id-background" x="173.65" y="104" width="72.65" height="16.9" fill="white"/>
@@ -13,30 +17,42 @@
 <rect class="git-commit-id-background" x="299.87" y="40" width="45.18" height="16.9" fill="white"/>
 <rect class="git-commit-id-background" x="351.05" y="104" width="63.96" height="16.9" fill="white"/>
 <rect class="git-commit-id-background" x="483.05" y="40" width="52.41" height="16.9" fill="white"/>
-<rect class="git-branch" x="0" y="14" width="54.68" height="28" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="git-branch" x="2.66" y="78" width="52.02" height="28" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="git-commit" cx="78.68" cy="28" r="8" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
-<circle class="git-commit" cx="139.63" cy="28" r="8" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<rect class="git-branch" x="0" y="14" width="54.68" height="28" rx="4" fill="#eef2f7"/>
+<rect class="git-branch" x="2.66" y="78" width="52.02" height="28" rx="4" fill="#eef2f7"/>
+</g>
+<g stroke="#3b4754" stroke-width="2">
+<circle class="git-commit" cx="78.68" cy="28" r="8" fill="#3b4754"/>
+<circle class="git-commit" cx="139.63" cy="28" r="8" fill="#3b4754"/>
+</g>
 <polygon class="git-tag" points="113.61,4.9 122.71,-4.2 165.65,-4.2 165.65,14 122.71,14" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
 <circle class="git-tag-hole" cx="121.35" cy="4.9" r="1.82" fill="#3b4754"/>
-<circle class="git-commit" cx="209.98" cy="92" r="8" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
-<rect class="git-commit" x="265.08" y="84" width="16" height="16" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
-<circle class="git-commit" cx="322.46" cy="28" r="8" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
-<circle class="git-commit" cx="383.03" cy="92" r="8" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
+<g stroke="#3b4754" stroke-width="2">
+<circle class="git-commit" cx="209.98" cy="92" r="8" fill="#3b4754"/>
+<rect class="git-commit" x="265.08" y="84" width="16" height="16" fill="#3b4754"/>
+<circle class="git-commit" cx="322.46" cy="28" r="8" fill="#3b4754"/>
+<circle class="git-commit" cx="383.03" cy="92" r="8" fill="#3b4754"/>
+</g>
 <circle class="git-commit" cx="449.03" cy="28" r="8" fill="#ffffff" stroke="#3b4754" stroke-width="2.5"/>
 <circle class="git-commit-detail" cx="449.03" cy="28" r="3.6" fill="#3b4754"/>
 <polygon class="git-tag" points="423.01,4.9 432.11,-4.2 475.05,-4.2 475.05,14 432.11,14" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
 <circle class="git-tag-hole" cx="430.75" cy="4.9" r="1.82" fill="#3b4754"/>
 <circle class="git-commit" cx="509.26" cy="28" r="8" fill="#3b4754" stroke="#3b4754" stroke-width="2"/>
-<text class="git-branch-label" x="27.34" y="33.6" text-anchor="middle" fill="#1b1f24">main</text>
-<text class="git-branch-label" x="28.67" y="97.6" text-anchor="middle" fill="#1b1f24">draft</text>
-<text class="git-commit-id" x="78.68" y="53" text-anchor="middle" font-size="13" fill="#5b6570">template</text>
-<text class="git-commit-id" x="139.63" y="53" text-anchor="middle" font-size="13" fill="#5b6570">scope</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="git-branch-label" x="27.34" y="33.6">main</text>
+<text class="git-branch-label" x="28.67" y="97.6">draft</text>
+</g>
+<g fill="#5b6570" text-anchor="middle">
+<text class="git-commit-id" x="78.68" y="53" font-size="13">template</text>
+<text class="git-commit-id" x="139.63" y="53" font-size="13">scope</text>
+</g>
 <text class="git-tag-label" x="145.48" y="9.45" text-anchor="middle" font-size="13" fill="#1b1f24">rev A</text>
-<text class="git-commit-id" x="209.98" y="117" text-anchor="middle" font-size="13" fill="#5b6570">new section</text>
-<text class="git-commit-id" x="273.08" y="117" text-anchor="middle" font-size="13" fill="#5b6570">review</text>
-<text class="git-commit-id" x="322.46" y="53" text-anchor="middle" font-size="13" fill="#5b6570">typo fix</text>
-<text class="git-commit-id" x="383.03" y="117" text-anchor="middle" font-size="13" fill="#5b6570">comments</text>
+<g fill="#5b6570" text-anchor="middle">
+<text class="git-commit-id" x="209.98" y="117" font-size="13">new section</text>
+<text class="git-commit-id" x="273.08" y="117" font-size="13">review</text>
+<text class="git-commit-id" x="322.46" y="53" font-size="13">typo fix</text>
+<text class="git-commit-id" x="383.03" y="117" font-size="13">comments</text>
+</g>
 <text class="git-tag-label" x="454.88" y="9.45" text-anchor="middle" font-size="13" fill="#1b1f24">rev B</text>
 <text class="git-commit-id" x="509.26" y="53" text-anchor="middle" font-size="13" fill="#5b6570">effective</text>
 </svg>

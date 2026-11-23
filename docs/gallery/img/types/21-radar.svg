@@ -1,40 +1,50 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="581.3" height="404" viewBox="41.05 -12.4 581.3 404" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Process maturity after audits</title>
 <rect x="41.05" y="-12.4" width="581.3" height="404" fill="white"/>
-<circle class="radar-grid" cx="244.92" cy="208" r="30" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<circle class="radar-grid" cx="244.92" cy="208" r="60" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<circle class="radar-grid" cx="244.92" cy="208" r="90" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<circle class="radar-grid" cx="244.92" cy="208" r="120" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<circle class="radar-grid" cx="244.92" cy="208" r="150" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<line class="radar-axis" x1="244.92" y1="208" x2="244.92" y2="58" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<line class="radar-axis" x1="244.92" y1="208" x2="374.83" y2="133" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<line class="radar-axis" x1="244.92" y1="208" x2="374.83" y2="283" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<line class="radar-axis" x1="244.92" y1="208" x2="244.92" y2="358" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<line class="radar-axis" x1="244.92" y1="208" x2="115.02" y2="283" fill="none" stroke="#c9d1da" stroke-width="1"/>
-<line class="radar-axis" x1="244.92" y1="208" x2="115.02" y2="133" fill="none" stroke="#c9d1da" stroke-width="1"/>
+<g stroke="#c9d1da" stroke-width="1">
+<circle class="radar-grid" cx="244.92" cy="208" r="30" fill="none"/>
+<circle class="radar-grid" cx="244.92" cy="208" r="60" fill="none"/>
+<circle class="radar-grid" cx="244.92" cy="208" r="90" fill="none"/>
+<circle class="radar-grid" cx="244.92" cy="208" r="120" fill="none"/>
+<circle class="radar-grid" cx="244.92" cy="208" r="150" fill="none"/>
+<line class="radar-axis" x1="244.92" y1="208" x2="244.92" y2="58" fill="none"/>
+<line class="radar-axis" x1="244.92" y1="208" x2="374.83" y2="133" fill="none"/>
+<line class="radar-axis" x1="244.92" y1="208" x2="374.83" y2="283" fill="none"/>
+<line class="radar-axis" x1="244.92" y1="208" x2="244.92" y2="358" fill="none"/>
+<line class="radar-axis" x1="244.92" y1="208" x2="115.02" y2="283" fill="none"/>
+<line class="radar-axis" x1="244.92" y1="208" x2="115.02" y2="133" fill="none"/>
+</g>
 <polygon class="radar-curve" points="244.92,118 296.88,178 348.84,268 244.92,298 192.96,238 218.94,193" fill="#3b4754" fill-opacity="0.12" stroke="#3b4754" stroke-width="2"/>
 <polygon class="radar-curve" points="244.92,88 348.84,148 348.84,268 244.92,298 141,268 166.98,163" fill="#3b4754" fill-opacity="0.12" stroke="#3b4754" stroke-width="2" stroke-dasharray="7 4"/>
 <line class="radar-swatch" x1="505.84" y1="68" x2="527.84" y2="68" fill="none" stroke="#3b4754" stroke-width="2"/>
 <line class="radar-swatch" x1="505.84" y1="92" x2="527.84" y2="92" fill="none" stroke="#3b4754" stroke-width="2" stroke-dasharray="7 4"/>
 <text class="title" x="244.92" y="15.6" text-anchor="middle" fill="#1b1f24">Process maturity after audits</text>
 <text class="radar-axis-label" x="244.92" y="51.6" text-anchor="middle" fill="#5b6570">Documents</text>
-<text class="radar-axis-label" x="385.22" y="132.6" fill="#5b6570">Training</text>
-<text class="radar-axis-label" x="385.22" y="294.6" fill="#5b6570">Purchasing</text>
+<g fill="#5b6570">
+<text class="radar-axis-label" x="385.22" y="132.6">Training</text>
+<text class="radar-axis-label" x="385.22" y="294.6">Purchasing</text>
+</g>
 <text class="radar-axis-label" x="244.92" y="375.6" text-anchor="middle" fill="#5b6570">Production</text>
-<text class="radar-axis-label" x="104.63" y="294.6" text-anchor="end" fill="#5b6570">Control</text>
-<text class="radar-axis-label" x="104.63" y="132.6" text-anchor="end" fill="#5b6570">CAPA</text>
-<circle class="radar-point" cx="244.92" cy="118" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="296.88" cy="178" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="348.84" cy="268" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="244.92" cy="298" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="192.96" cy="238" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="218.94" cy="193" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="244.92" cy="88" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="348.84" cy="148" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="348.84" cy="268" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="244.92" cy="298" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="141" cy="268" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="radar-point" cx="166.98" cy="163" r="3" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<text class="radar-legend" x="533.84" y="73.6" fill="#1b1f24">Audit 2025</text>
-<text class="radar-legend" x="533.84" y="97.6" fill="#1b1f24">Audit 2026</text>
+<g fill="#5b6570" text-anchor="end">
+<text class="radar-axis-label" x="104.63" y="294.6">Control</text>
+<text class="radar-axis-label" x="104.63" y="132.6">CAPA</text>
+</g>
+<g stroke="#3b4754" stroke-width="1.5">
+<circle class="radar-point" cx="244.92" cy="118" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="296.88" cy="178" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="348.84" cy="268" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="244.92" cy="298" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="192.96" cy="238" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="218.94" cy="193" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="244.92" cy="88" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="348.84" cy="148" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="348.84" cy="268" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="244.92" cy="298" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="141" cy="268" r="3" fill="#ffffff"/>
+<circle class="radar-point" cx="166.98" cy="163" r="3" fill="#ffffff"/>
+</g>
+<g fill="#1b1f24">
+<text class="radar-legend" x="533.84" y="73.6">Audit 2025</text>
+<text class="radar-legend" x="533.84" y="97.6">Audit 2026</text>
+</g>
 </svg>

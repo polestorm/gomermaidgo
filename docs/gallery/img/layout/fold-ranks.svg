@@ -1,19 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="850" height="696" viewBox="-12 -12 850 696" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-12" y="-12" width="850" height="696" fill="white"/>
-<path class="edge" d="M163 310 L193.3 310 C197.7 310 201.3 306.4 201.3 302 L201.3 30 C201.3 25.6 204.9 22 209.3 22 L370.6 22" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 312 L213.3 312 C217.7 312 221.3 308.4 221.3 304 L221.3 76 C221.3 71.6 224.9 68 229.3 68 L379 68 L595.6 68" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 314 L233.3 314 C237.7 314 241.3 310.4 241.3 306 L241.3 122 C241.3 117.6 244.9 114 249.3 114 L370.6 114" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 316 L253.3 316 C257.7 316 261.3 312.4 261.3 308 L261.3 168 C261.3 163.6 264.9 160 269.3 160 L379 160 L595.6 160" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 318 L273.3 318 C277.7 318 281.3 314.4 281.3 310 L281.3 214 C281.3 209.6 284.9 206 289.3 206 L370.6 206" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 320 L293.3 320 C297.7 320 301.3 316.4 301.3 312 L301.3 260 C301.3 255.6 304.9 252 309.3 252 L379 252 L595.6 252" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 322 L313.3 322 C317.7 322 321.3 318.4 321.3 314 L321.3 306 C321.3 301.6 324.9 298 329.3 298 L370.6 298" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 324 L313.3 324 C317.7 324 321.3 327.6 321.3 332 L321.3 336 C321.3 340.4 324.9 344 329.3 344 L379 344 L595.6 344" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 326 L293.3 326 C297.7 326 301.3 329.6 301.3 334 L301.3 382 C301.3 386.4 304.9 390 309.3 390 L370.6 390" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 328 L273.3 328 C277.7 328 281.3 331.6 281.3 336 L281.3 428 C281.3 432.4 284.9 436 289.3 436 L379 436 L595.6 436" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 330 L253.3 330 C257.7 330 261.3 333.6 261.3 338 L261.3 474 C261.3 478.4 264.9 482 269.3 482 L370.6 482" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 332 L233.3 332 C237.7 332 241.3 335.6 241.3 340 L241.3 520 C241.3 524.4 244.9 528 249.3 528 L379 528 L595.6 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 334 L213.3 334 C217.7 334 221.3 337.6 221.3 342 L221.3 576 C221.3 580.4 224.9 584 229.3 584 L370.6 584" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M163 336 L193.3 336 C197.7 336 201.3 339.6 201.3 344 L201.3 632 C201.3 636.4 204.9 640 209.3 640 L379 640 L595.6 640" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path class="edge" d="M163 310 L193.3 310 C197.7 310 201.3 306.4 201.3 302 L201.3 30 C201.3 25.6 204.9 22 209.3 22 L370.6 22" fill="none"/>
+<path class="edge" d="M163 312 L213.3 312 C217.7 312 221.3 308.4 221.3 304 L221.3 76 C221.3 71.6 224.9 68 229.3 68 L379 68 L595.6 68" fill="none"/>
+<path class="edge" d="M163 314 L233.3 314 C237.7 314 241.3 310.4 241.3 306 L241.3 122 C241.3 117.6 244.9 114 249.3 114 L370.6 114" fill="none"/>
+<path class="edge" d="M163 316 L253.3 316 C257.7 316 261.3 312.4 261.3 308 L261.3 168 C261.3 163.6 264.9 160 269.3 160 L379 160 L595.6 160" fill="none"/>
+<path class="edge" d="M163 318 L273.3 318 C277.7 318 281.3 314.4 281.3 310 L281.3 214 C281.3 209.6 284.9 206 289.3 206 L370.6 206" fill="none"/>
+<path class="edge" d="M163 320 L293.3 320 C297.7 320 301.3 316.4 301.3 312 L301.3 260 C301.3 255.6 304.9 252 309.3 252 L379 252 L595.6 252" fill="none"/>
+<path class="edge" d="M163 322 L313.3 322 C317.7 322 321.3 318.4 321.3 314 L321.3 306 C321.3 301.6 324.9 298 329.3 298 L370.6 298" fill="none"/>
+<path class="edge" d="M163 324 L313.3 324 C317.7 324 321.3 327.6 321.3 332 L321.3 336 C321.3 340.4 324.9 344 329.3 344 L379 344 L595.6 344" fill="none"/>
+<path class="edge" d="M163 326 L293.3 326 C297.7 326 301.3 329.6 301.3 334 L301.3 382 C301.3 386.4 304.9 390 309.3 390 L370.6 390" fill="none"/>
+<path class="edge" d="M163 328 L273.3 328 C277.7 328 281.3 331.6 281.3 336 L281.3 428 C281.3 432.4 284.9 436 289.3 436 L379 436 L595.6 436" fill="none"/>
+<path class="edge" d="M163 330 L253.3 330 C257.7 330 261.3 333.6 261.3 338 L261.3 474 C261.3 478.4 264.9 482 269.3 482 L370.6 482" fill="none"/>
+<path class="edge" d="M163 332 L233.3 332 C237.7 332 241.3 335.6 241.3 340 L241.3 520 C241.3 524.4 244.9 528 249.3 528 L379 528 L595.6 528" fill="none"/>
+<path class="edge" d="M163 334 L213.3 334 C217.7 334 221.3 337.6 221.3 342 L221.3 576 C221.3 580.4 224.9 584 229.3 584 L370.6 584" fill="none"/>
+<path class="edge" d="M163 336 L193.3 336 C197.7 336 201.3 339.6 201.3 344 L201.3 632 C201.3 636.4 204.9 640 209.3 640 L379 640 L595.6 640" fill="none"/>
+</g>
 <polygon class="arrowhead" points="379,22 367,16 367,28" fill="#3b4754"/>
 <polygon class="arrowhead" points="604,68 592,62 592,74" fill="#3b4754"/>
 <polygon class="arrowhead" points="379,114 367,108 367,120" fill="#3b4754"/>
@@ -28,36 +30,40 @@
 <polygon class="arrowhead" points="604,528 592,522 592,534" fill="#3b4754"/>
 <polygon class="arrowhead" points="379,584 367,578 367,590" fill="#3b4754"/>
 <polygon class="arrowhead" points="604,640 592,634 592,646" fill="#3b4754"/>
-<rect class="node" x="0" y="301" width="163" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="379" y="0" width="181" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="379" y="92" width="181" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="379" y="184" width="181" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="379" y="276" width="181" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="379" y="368" width="181" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="379" y="460" width="181" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="379" y="552" width="181" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="604" y="46" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="604" y="138" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="604" y="230" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="604" y="322" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="604" y="414" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="604" y="506" width="222" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="604" y="608" width="222" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="81.5" y="328.6" text-anchor="middle" fill="#1b1f24">Quality manual</text>
-<text class="node-label" x="469.5" y="27.6" text-anchor="middle" fill="#1b1f24">Document control</text>
-<text class="node-label" x="469.5" y="119.6" text-anchor="middle" fill="#1b1f24">Internal audit</text>
-<text class="node-label" x="469.5" y="211.6" text-anchor="middle" fill="#1b1f24">Training</text>
-<text class="node-label" x="469.5" y="303.6" text-anchor="middle" fill="#1b1f24">Design control</text>
-<text class="node-label" x="469.5" y="395.6" text-anchor="middle" fill="#1b1f24">Calibration</text>
-<text class="node-label" x="469.5" y="487.6" text-anchor="middle" fill="#1b1f24">CAPA</text>
-<text class="node-label" x="469.5" y="579.6" text-anchor="middle" fill="#1b1f24">Risk</text>
-<text class="node-label" x="469.5" y="599.6" text-anchor="middle" fill="#1b1f24">management</text>
-<text class="node-label" x="715" y="73.6" text-anchor="middle" fill="#1b1f24">Record control</text>
-<text class="node-label" x="715" y="165.6" text-anchor="middle" fill="#1b1f24">Management review</text>
-<text class="node-label" x="715" y="257.6" text-anchor="middle" fill="#1b1f24">Purchasing</text>
-<text class="node-label" x="715" y="349.6" text-anchor="middle" fill="#1b1f24">Production control</text>
-<text class="node-label" x="715" y="441.6" text-anchor="middle" fill="#1b1f24">Nonconforming product</text>
-<text class="node-label" x="715" y="533.6" text-anchor="middle" fill="#1b1f24">Complaints</text>
-<text class="node-label" x="715" y="635.6" text-anchor="middle" fill="#1b1f24">Post-market</text>
-<text class="node-label" x="715" y="655.6" text-anchor="middle" fill="#1b1f24">surveillance</text>
+<g stroke="#55657a" stroke-width="1.5">
+<rect class="node" x="0" y="301" width="163" height="44" fill="#eef2f7"/>
+<rect class="node" x="379" y="0" width="181" height="44" fill="#eef2f7"/>
+<rect class="node" x="379" y="92" width="181" height="44" fill="#eef2f7"/>
+<rect class="node" x="379" y="184" width="181" height="44" fill="#eef2f7"/>
+<rect class="node" x="379" y="276" width="181" height="44" fill="#eef2f7"/>
+<rect class="node" x="379" y="368" width="181" height="44" fill="#eef2f7"/>
+<rect class="node" x="379" y="460" width="181" height="44" fill="#eef2f7"/>
+<rect class="node" x="379" y="552" width="181" height="64" fill="#eef2f7"/>
+<rect class="node" x="604" y="46" width="222" height="44" fill="#eef2f7"/>
+<rect class="node" x="604" y="138" width="222" height="44" fill="#eef2f7"/>
+<rect class="node" x="604" y="230" width="222" height="44" fill="#eef2f7"/>
+<rect class="node" x="604" y="322" width="222" height="44" fill="#eef2f7"/>
+<rect class="node" x="604" y="414" width="222" height="44" fill="#eef2f7"/>
+<rect class="node" x="604" y="506" width="222" height="44" fill="#eef2f7"/>
+<rect class="node" x="604" y="608" width="222" height="64" fill="#eef2f7"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text class="node-label" x="81.5" y="328.6">Quality manual</text>
+<text class="node-label" x="469.5" y="27.6">Document control</text>
+<text class="node-label" x="469.5" y="119.6">Internal audit</text>
+<text class="node-label" x="469.5" y="211.6">Training</text>
+<text class="node-label" x="469.5" y="303.6">Design control</text>
+<text class="node-label" x="469.5" y="395.6">Calibration</text>
+<text class="node-label" x="469.5" y="487.6">CAPA</text>
+<text class="node-label" x="469.5" y="579.6">Risk</text>
+<text class="node-label" x="469.5" y="599.6">management</text>
+<text class="node-label" x="715" y="73.6">Record control</text>
+<text class="node-label" x="715" y="165.6">Management review</text>
+<text class="node-label" x="715" y="257.6">Purchasing</text>
+<text class="node-label" x="715" y="349.6">Production control</text>
+<text class="node-label" x="715" y="441.6">Nonconforming product</text>
+<text class="node-label" x="715" y="533.6">Complaints</text>
+<text class="node-label" x="715" y="635.6">Post-market</text>
+<text class="node-label" x="715" y="655.6">surveillance</text>
+</g>
 </svg>
