@@ -11,15 +11,19 @@ svg, err := mermaid.Render(source)
 
 ## Why gomermaidgo
 
-Compared with [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer), the closest alternative (details in
-[At a glance](#at-a-glance)):
+Compared with two other Go renderers that need no browser, [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer)
+and [`go-mermaid`](https://github.com/zkrebbekx/go-mermaid) (details in [At a glance](#at-a-glance)):
 
-- **6.5× smaller program, no JavaScript engine, no dependencies**: 8.2 MB against 53 MB, standard library only.
-- **2–4× faster, about half the memory**: an SVG in 9 ms instead of 38 ms, a PDF 3× and a PNG 2× faster.
+- **Small program, no dependencies at all**: 8.4 MB, against 53 MB for mmdg (which embeds a JavaScript engine) and
+  11.7 MB for go-mermaid; standard library only, PDF and PNG included.
+- **2–3× faster than mmdg, with half the memory**: an SVG in 10 ms instead of 32 ms, a PDF in 12 ms instead of 32 ms.
+  go-mermaid, which draws fewer types, is faster still for SVG (6 ms); for PNG this library is the fastest of the
+  three.
 - **Fits diagrams to an A4 page**: narrows fields, folds long processes into rows, folds long chains and staggers
-  long ranks, so a printed diagram stays readable ([examples](docs/gallery/page-fitting.md)).
-- **32× smaller SVG, 8× smaller PDF**: plain SVG 1.1 without embedded fonts, CSS or scripts; PDF with real,
-  searchable text.
+  long ranks, so a printed diagram stays readable ([examples](docs/gallery/page-fitting.md)). Neither of the others
+  does this.
+- **Small output**: plain SVG 1.1 without embedded fonts, CSS or scripts, 36× smaller than mmdg's (go-mermaid's,
+  with simpler drawings, is a third smaller still); PDF with real, searchable text, 8× smaller than mmdg's.
 - **Made for documents**: a neutral look that prints well in black and white, Markdown documents with embedded
   diagrams, and the flags of `mermaid-cli`.
 
@@ -35,40 +39,43 @@ Compared with [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer), the clo
 
 ## At a glance
 
-Compared with [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer)[^ref], the closest alternative: also a Go
-program that needs no browser, but one that runs Mermaid itself in an embedded JavaScript engine.
+Compared with two other Go programs that need no browser: [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer)[^ref],
+which runs Mermaid itself in an embedded JavaScript engine, and [`go-mermaid`](https://github.com/zkrebbekx/go-mermaid),
+which, like this library, has its own parsers and layout.
 
-| | gomermaidgo | mmdg 0.14.1 |
-|---|---|---|
-| Approach | own parsers and layout in Go | Mermaid 12.2.0 (JavaScript) in an embedded engine |
-| Dependencies (Go modules) | 0, standard library only | 7 (4 direct, 3 indirect) |
-| Program size (`go build`) | 8.2 MB | 53.0 MB |
-| SVG: time / memory per diagram[^bench] | 9 ms / 18 MB | 38 ms / 41 MB |
-| PDF: time / memory per diagram[^bench] | 12 ms / 24 MB | 38 ms / 54 MB |
-| PNG at scale 1: time / memory per diagram[^bench] | 22 ms / 26 MB | 43 ms / 44 MB |
-| Output size, 79 diagrams: SVG / PDF / PNG | 0.43 / 1.5 / 3.1 MB | 13.8 / 11.7 / 2.6 MB |
-| Diagram types[^types] | 24 of Mermaid's 33 | 33 |
-| Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts |
-| This repository's corpus (89 diagrams) | 89 | 86 |
-| Public diagrams from GitHub[^wild] | 138 of 139 | 137 of 139 |
-| Look | own, made for print; neutral by default | Mermaid's, byte for byte |
-| Page fitting | fit to A4, folding of long diagrams, chains and ranks | none |
-| SVG content | basic SVG 1.1 elements, no CSS, no scripts, no `foreignObject` | Mermaid's SVG with CSS and embedded fonts |
-| PDF and PNG | own writers, real text in PDF, optional (build tags) | yes |
-| Markdown documents | yes (`markdown.Embed`, CLI) | yes (CLI) |
-| `mermaid-cli` flags | yes | yes |
-| Output identical byte for byte on every run | yes | yes |
-| License | Apache 2.0 | MIT |
-| Popularity (GitHub, 2026-11-23) | new | 5 stars, 1 fork |
+| | gomermaidgo | mmdg 0.14.1 | go-mermaid 0.1.6 |
+|---|---|---|---|
+| Approach | own parsers and layout in Go | Mermaid 12.2.0 (JavaScript) in an embedded engine | own parsers and layout in Go |
+| Dependencies (Go modules) | 0, standard library only | 7 (4 direct, 3 indirect) | 10 (4 direct, 6 indirect); SVG needs none, PNG needs 5 |
+| Program size (`go build`) | 8.4 MB | 53.0 MB | 11.7 MB |
+| SVG: time / memory per diagram[^bench] | 10 ms / 18 MB | 32 ms / 41 MB | 6 ms / 12 MB |
+| PDF: time / memory per diagram[^bench] | 12 ms / 24 MB | 32 ms / 54 MB | no PDF |
+| PNG at scale 1: time / memory per diagram[^bench] | 20 ms / 27 MB | 38 ms / 44 MB | 26 ms / 16 MB |
+| Output size, SVG / PNG, the same 62 diagrams | 0.32 / 2.4 MB | 11.6 / 2.1 MB | 0.21 / 1.9 MB |
+| Output size, PDF, the same 86 diagrams | 1.7 MB | 13.0 MB | no PDF |
+| Diagram types[^types] | 24 of Mermaid's 33 | 33 | 20 |
+| Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts | a documented subset per type |
+| This repository's corpus (89 diagrams) | 89 | 86 | 65 |
+| Public diagrams from GitHub[^wild] | 138 of 139 | 137 of 139 | 123 of 139 |
+| Look | own, made for print; neutral by default | Mermaid's, byte for byte | own; Mermaid's theme names |
+| Page fitting | fit to A4, folding of long diagrams, chains and ranks | none | none |
+| SVG content | basic SVG 1.1 elements, no CSS, no scripts, no `foreignObject` | Mermaid's SVG with CSS and embedded fonts | basic SVG elements, no CSS, no scripts, no `foreignObject` |
+| PDF and PNG | own writers, real text in PDF, optional (build tags) | yes | PNG (separate package) |
+| Markdown documents | yes (`markdown.Embed`, CLI) | yes (CLI) | no |
+| `mermaid-cli` flags | yes | yes | own flags |
+| Output identical byte for byte on every run | yes | yes | yes (in our runs) |
+| License | Apache 2.0 | MIT | MIT |
+| Popularity (GitHub, 2026-11-23) | new | 5 stars, 1 fork | 13 stars, 5 forks |
 
 [^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
-[^bench]: Median over the 79 corpus diagrams both programs rendered at the time of measuring, best of three runs of the command-line program
-    per file, process start included; memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon
-    laptop.
+[^bench]: Median over the corpus diagrams all compared programs rendered (62 for SVG and PNG; 86 for PDF, which
+    go-mermaid does not write), best of three runs of the command-line program per file, process start included;
+    memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon laptop.
 [^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here: `zenuml` (a separate Mermaid add-on) and eight
     types added in Mermaid 12 as beta: `venn`, `treeView`, `wardley`, `cynefin`, `railroad`, `eventmodeling`,
-    `usecase` and `agentflow`.
-[^wild]: 175 blocks marked `mermaid` collected from public GitHub repositories; 36 are rejected by both programs
+    `usecase` and `agentflow`. go-mermaid lists 20 types (`-list-types`); of those drawn here it lacks
+    `architecture-beta`, `treemap-beta`, `ishikawa-beta` and `swimlane-beta`.
+[^wild]: 175 blocks marked `mermaid` collected from public GitHub repositories; 36 are rejected by all three programs
     (fragments without a diagram header, or not Mermaid at all), which leaves 139.
 
 ## Examples
@@ -114,13 +121,16 @@ with a line number, never a partial drawing.
 
 ## How the comparison was measured
 
-Both programs read the same corpus sources (`testdata/corpus/`). Times and memory come from the command-line
-programs, so they include process start; for `mmdg` that includes starting its JavaScript engine. PNG is compared at
-scale 1 in both programs (one image pixel per drawing pixel); this library's default is scale 2. The corpus is written
-for this library's profile, so the corpus row says little about coverage: Mermaid accepts syntax this library rejects
-(see `docs/profile.md`), and the drawings differ on purpose. The three corpus diagrams `mmdg` does not render are a
-`block-beta` grid and two `sankey-beta` diagrams; the one public diagram this library rejects uses `subgraph` inside a
-state diagram.
+All three programs read the same corpus sources (`testdata/corpus/`); for the comparison the other renderers are only
+run as programs (what was ever read of them is listed in `docs/provenance.md`). Times and memory come from the command-line programs, so they include
+process start; for `mmdg` that includes starting its JavaScript engine. PNG is compared at scale 1 (one image pixel
+per drawing pixel); this library's default is scale 2. A diagram counts as rendered when the program exits without an
+error and writes a non-empty file; how well it is drawn is not compared here. The corpus is written for this library's
+profile, so the corpus row says little about coverage: Mermaid accepts syntax this library rejects (see
+`docs/profile.md`), and the drawings differ on purpose. The three corpus diagrams `mmdg` does not render are a
+`block-beta` grid and two `sankey-beta` diagrams; `go-mermaid` rejects the diagram types it does not draw and
+constructs outside its syntax (for example newer flowchart shapes, sequence participant groups, gantt excludes). The
+one public diagram this library rejects uses `subgraph` inside a state diagram.
 
 ## License
 

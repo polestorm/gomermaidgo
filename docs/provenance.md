@@ -33,4 +33,6 @@ kodu jest utworem zależnym i wnosi jego licencję (w tym LGPL i EPL w istnieją
   (README, opis architektury, funkcja szerokości tekstu) oraz dokumentację i audyt licencji projektu `mmdg`. Nie czytano
   ich parserów, układu diagramu sekwencji ani kodu rysującego. Czy to wymaga formalnego rozdzielenia sesji, jest
   pytaniem otwartym w ADR produktu, który zamawia ten klocek.
-- Licencja repozytorium nie jest jeszcze ustalona; repozytorium jest lokalne.
+- Do porównania w README (2026-11-23) `go-mermaid` 0.1.6 uruchamiano wyłącznie jako program; przeczytano jego README,
+  `go.mod` i listę importowanych modułów (`go list -deps`), bez kodu źródłowego.
+- Licencja: Apache 2.0 (`LICENSE`); repozytorium jest na GitHubie, prywatne do czasu upublicznienia.
