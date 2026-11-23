@@ -1560,6 +1560,32 @@ func (l *layouter) snapCrossings(pts []routePoint) {
 				best, worst = c, n
 			}
 		}
+		// Odcinek przed przejściem złożony z samych punktów pośrednich (bez stałego pola) może przesunąć
+		// się w oś przejścia: krawędź skręca wtedy raz, przy początku, i dochodzi do ramki prosto.
+		if best == x && small(x-prev) == 1 {
+			k := i - 1
+			for k > 0 && pts[k-1].x == pts[k].x {
+				k--
+			}
+			lo, hi := math.Inf(-1), math.Inf(1)
+			movable := k > 0
+			for m := k; m < i && movable; m++ {
+				b, free := l.free[pts[m]]
+				if !free {
+					movable = false
+					break
+				}
+				lo, hi = math.Max(lo, b[0]), math.Min(hi, b[1])
+			}
+			if movable && x >= lo && x <= hi && small(x-pts[k-1].x) == 0 {
+				for m := k; m < i; m++ {
+					old := pts[m]
+					pts[m].x = x
+					l.free[pts[m]] = l.free[old]
+					delete(l.free, old)
+				}
+			}
+		}
 		if best != x {
 			for k := i; k <= j; k++ {
 				old := pts[k]

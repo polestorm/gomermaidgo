@@ -623,3 +623,30 @@ func TestFramesWithoutSmallJogs(t *testing.T) {
 		t.Errorf("the middle field of the output frame should stand level with its source")
 	}
 }
+
+// REQ: LAY-017
+// Długa krawędź z pojedynczego początku do pola w podgrafie skręca raz, przy początku, i dochodzi
+// do ramki prosto (W8: wzorzec → Porównanie ze wzorcem).
+func TestLongEdgeIntoFrameTurnsOnce(t *testing.T) {
+	g := parse(t, "../../testdata/corpus/flowchart/022-frames-lr.mmd")
+	sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	src := nodeOf(t, sc, "wzorzec.docx")
+	for _, e := range byRole(sc, "edge") {
+		start := e.Segments[0].To
+		if math.Abs(start.X-src.X1) > 1 || start.Y < src.Y0 || start.Y > src.Y1 {
+			continue
+		}
+		turns := 0
+		for _, sg := range e.Segments {
+			if sg.Cmd == 'C' {
+				turns++
+			}
+		}
+		// Jeden skręt to dwa łuki (w bok i z powrotem w kierunek krawędzi).
+		if turns != 2 {
+			t.Errorf("the edge from wzorzec.docx has %d arcs, want 2 (one turn)", turns)
+		}
+		return
+	}
+	t.Fatal("no edge from wzorzec.docx")
+}

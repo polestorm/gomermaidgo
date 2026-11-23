@@ -1841,12 +1841,32 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				}
 			}
 			axis := map[*item]float64{}
+			// nearby: skręt z początku krawędzi e do osi x byłby drobnym uskokiem. Początek w podgrafie to
+			// punkt na jego ramce; początek w polu może przesunąć się w zasięgu boku pola.
+			nearby := func(x float64, e *ledge) bool {
+				from, reach := e.u.nodeX(), 0.0
+				if e.upperCont != nil {
+					from = e.u.x + portOffset(e.u, e.upperCont.v)
+				} else if e.u.kind == kindNode {
+					reach = l.portRange(e.u) / 2
+				}
+				d := math.Abs(x - from)
+				return d > reach+0.5 && d < reach+l.u(16)
+			}
 			for _, e := range lv.edges {
 				if len(e.chain) == 0 || !here[e.chain[0]] || !e.u.real() || !e.v.real() {
 					continue
 				}
 				out, in := len(e.u.down), len(e.v.up)
 				switch {
+				case e.lowerCont != nil && (e.upperCont != nil || out == 1) && !nearby(e.v.x+portOffset(e.v, e.lowerCont.u), e):
+					// Koniec w podgrafie ma na ramce własny punkt, do którego wchodzi tylko ta krawędź:
+					// punkty pośrednie stają w jego osi, więc krawędź skręca raz, przy początku, i dochodzi
+					// do pola prosto. Tylko gdy początek też jest pojedynczy (jedno wyjście z pola albo własny
+					// punkt na ramce) i gdy skręt przy początku nie byłby drobnym uskokiem.
+					for _, d := range e.chain {
+						axis[d] = e.v.x + portOffset(e.v, e.lowerCont.u)
+					}
 				case in == 1 && out >= 1:
 					// Koniec w podgrafie: osią jest punkt na jego ramce, nie środek ramki.
 					off := attach[[2]*item{e.chain[len(e.chain)-1], e.v}]
@@ -2260,7 +2280,7 @@ func frameLinks(lv *level) []frameLink {
 }
 
 // settleFrames przesuwa ramki podgrafów tak, żeby krawędzie przechodzące przez ramkę nie miały
-// drobnych uskoków. Uskok krawędzi jest dobry, gdy jest zerem, gdy pole po drugiej stronie wyprostuje
+// drobnych uskoków; przy remisie wygrywa położenie z większą liczbą krawędzi biegnących prosto. Uskok krawędzi jest dobry, gdy jest zerem, gdy pole po drugiej stronie wyprostuje
 // go, przesuwając swój punkt zaczepienia w zasięgu boku, albo gdy jest wyraźnym skrętem; drobny jest
 // każdy inny. Ramka staje w położeniu, w którym drobnych uskoków jest najmniej: obecnym albo takim,
 // w którym jedna z krawędzi biegnie dokładnie prosto; przy remisie bliżej obecnego.
@@ -2293,26 +2313,31 @@ func (l *layouter) settleFrames(lv *level, rows [][]*item, place func(row []*ite
 			if len(mine) == 0 {
 				continue
 			}
-			bad := func(shift float64) int {
-				n := 0
+			// score: najpierw liczba drobnych uskoków, potem liczba krawędzi, które nie biegną prosto.
+			score := func(shift float64) (small, bent int) {
 				for _, k := range mine {
 					x, tol := target(k)
 					d := math.Abs(x - (c.x + shift + k.off))
-					if d > 0.5 && d > tol+0.5 && d < clear {
-						n++
+					if d > 0.5 && d > tol+0.5 {
+						bent++
+						if d < clear {
+							small++
+						}
 					}
 				}
-				return n
+				return small, bent
 			}
-			best, bestBad := 0.0, bad(0)
-			if bestBad == 0 {
+			best := 0.0
+			bestSmall, bestBent := score(0)
+			if bestSmall == 0 {
 				continue
 			}
 			for _, k := range mine {
 				x, _ := target(k)
 				shift := x - (c.x + k.off)
-				if b := bad(shift); b < bestBad || (b == bestBad && math.Abs(shift) < math.Abs(best)) {
-					best, bestBad = shift, b
+				sm, be := score(shift)
+				if sm < bestSmall || (sm == bestSmall && (be < bestBent || (be == bestBent && math.Abs(shift) < math.Abs(best)))) {
+					best, bestSmall, bestBent = shift, sm, be
 				}
 			}
 			if best == 0 {
