@@ -2464,6 +2464,41 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				}
 			}
 		}
+		// LAY-026: część dosuwa się do poprzednich tak blisko, jak pozwalają pola tych warstw,
+		// w których sama stoi; obrys poprzednich części w innych warstwach jej nie odpycha.
+		// Krawędzie poprzednich części mają w tych warstwach przebiegi (pola), więc też trzymają
+		// odstęp, a ich skręty między warstwami leżą w odstępach, w których część nie ma pól.
+		if !lv.shelved {
+			var placed []*item
+			for k, sp := range spans {
+				lo, hi := math.MaxInt, math.MinInt
+				left := math.Inf(1)
+				for _, row := range sp.rows {
+					for _, it := range row {
+						lo, hi = min(lo, it.rank), max(hi, it.rank)
+						left = math.Min(left, it.x-it.w/2)
+					}
+				}
+				if k > 0 {
+					limit := 0.0
+					for _, p := range placed {
+						if p.rank >= lo && p.rank <= hi {
+							limit = math.Max(limit, p.x+p.w/2+l.u(48))
+						}
+					}
+					if shift := left - limit; shift > 0 {
+						for _, row := range sp.rows {
+							for _, it := range row {
+								it.x -= shift
+							}
+						}
+					}
+				}
+				for _, row := range sp.rows {
+					placed = append(placed, row...)
+				}
+			}
+		}
 	}
 	for _, row := range lv.ranks {
 		sort.SliceStable(row, func(a, b int) bool { return row[a].x < row[b].x })

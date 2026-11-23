@@ -349,3 +349,20 @@ func TestFoldRanks(t *testing.T) {
 		t.Errorf("default: spreading should be off, got %d columns", n)
 	}
 }
+
+// REQ: LAY-026
+// Osobne pole stojące w tej samej warstwie co początek innej części dosuwa się do niej, zamiast
+// stać pod obrysem całej tamtej części.
+func TestComponentsCompact(t *testing.T) {
+	svg, err := Render("flowchart LR\n    A[Start] --> B[Krok] --> C{Decyzja}\n    C --> D[Jeden]\n    C --> E[Dwa]\n    C --> F[Trzy]\n    C --> H[Cztery]\n    C --> I[Pięć]\n    G[Osobne]\n")
+	if err != nil {
+		t.Fatal(err)
+	}
+	y := map[string]float64{}
+	for _, m := range regexp.MustCompile(`<text class="node-label" x="[-\d.]+" y="([-\d.]+)"[^>]*>([^<]+)<`).FindAllStringSubmatch(string(svg), -1) {
+		y[m[2]], _ = strconv.ParseFloat(m[1], 64)
+	}
+	if y["Osobne"] >= y["Pięć"] {
+		t.Errorf("separate node at y=%.0f should stand above the lowest node of the other part (y=%.0f)", y["Osobne"], y["Pięć"])
+	}
+}
