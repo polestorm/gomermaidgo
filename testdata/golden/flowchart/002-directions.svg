@@ -1,18 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="532" height="68" viewBox="-12 -12 532 68" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M140 22 L175.6 22" fill="none"/>
-<path class="edge" d="M324 22 L359.6 22" fill="none"/>
+<path d="M140 22 L175.6 22" fill="none"/>
+<path d="M324 22 L359.6 22" fill="none"/>
 </g>
-<polygon class="arrowhead" points="184,22 172,16 172,28" fill="#3b4754"/>
-<polygon class="arrowhead" points="368,22 356,16 356,28" fill="#3b4754"/>
+<polygon points="184,22 172,16 172,28" fill="#3b4754"/>
+<polygon points="368,22 356,16 356,28" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="0" width="140" height="44" fill="#eef2f7"/>
-<rect class="node" x="184" y="0" width="140" height="44" fill="#eef2f7"/>
-<rect class="node" x="368" y="0" width="140" height="44" fill="#eef2f7"/>
+<rect x="0" y="0" width="140" height="44" fill="#eef2f7"/>
+<rect x="184" y="0" width="140" height="44" fill="#eef2f7"/>
+<rect x="368" y="0" width="140" height="44" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="70" y="27.6">Początek</text>
-<text class="node-label" x="254" y="27.6">Środek</text>
-<text class="node-label" x="438" y="27.6">Koniec</text>
+<text x="70" y="27.6">Początek</text>
+<text x="254" y="27.6">Środek</text>
+<text x="438" y="27.6">Koniec</text>
 </g>
 </svg>

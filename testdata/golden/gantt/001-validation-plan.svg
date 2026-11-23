@@ -1,56 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="802.95" height="348.65" viewBox="-12 -12.4 802.95 348.65" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Walidacja procesu sterylizacji</title>
-<rect class="gantt-section" x="0" y="52.25" width="768.95" height="68" fill="#f6f8fa"/>
-<rect class="gantt-section" x="0" y="222.25" width="768.95" height="102" fill="#f6f8fa"/>
+<rect x="0" y="52.25" width="768.95" height="68" fill="#f6f8fa"/>
+<rect x="0" y="222.25" width="768.95" height="102" fill="#f6f8fa"/>
 <g stroke="#d5dae1" stroke-width="1">
-<line class="gantt-grid" x1="128.95" y1="52.25" x2="128.95" y2="324.25" fill="none"/>
-<line class="gantt-grid" x1="230.76" y1="52.25" x2="230.76" y2="324.25" fill="none"/>
-<line class="gantt-grid" x1="332.58" y1="52.25" x2="332.58" y2="324.25" fill="none"/>
-<line class="gantt-grid" x1="434.4" y1="52.25" x2="434.4" y2="324.25" fill="none"/>
-<line class="gantt-grid" x1="536.22" y1="52.25" x2="536.22" y2="324.25" fill="none"/>
-<line class="gantt-grid" x1="638.04" y1="52.25" x2="638.04" y2="324.25" fill="none"/>
-<line class="gantt-grid" x1="739.85" y1="52.25" x2="739.85" y2="324.25" fill="none"/>
+<line x1="128.95" y1="52.25" x2="128.95" y2="324.25" fill="none"/>
+<line x1="230.76" y1="52.25" x2="230.76" y2="324.25" fill="none"/>
+<line x1="332.58" y1="52.25" x2="332.58" y2="324.25" fill="none"/>
+<line x1="434.4" y1="52.25" x2="434.4" y2="324.25" fill="none"/>
+<line x1="536.22" y1="52.25" x2="536.22" y2="324.25" fill="none"/>
+<line x1="638.04" y1="52.25" x2="638.04" y2="324.25" fill="none"/>
+<line x1="739.85" y1="52.25" x2="739.85" y2="324.25" fill="none"/>
 </g>
-<rect class="gantt-frame" x="128.95" y="52.25" width="640" height="272" fill="none" stroke="#6b7785" stroke-width="1"/>
+<rect x="128.95" y="52.25" width="640" height="272" fill="none" stroke="#6b7785" stroke-width="1"/>
 <g stroke="#9aa5b1" stroke-width="1.5">
-<rect class="gantt-task" x="128.95" y="58.25" width="72.73" height="22" rx="3" fill="#e6e8eb"/>
-<rect class="gantt-task" x="201.67" y="92.25" width="36.36" height="22" rx="3" fill="#e6e8eb"/>
+<rect x="128.95" y="58.25" width="72.73" height="22" rx="3" fill="#e6e8eb"/>
+<rect x="201.67" y="92.25" width="36.36" height="22" rx="3" fill="#e6e8eb"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="gantt-task" x="238.04" y="126.25" width="101.82" height="22" rx="3" fill="#c9d6e8"/>
-<rect class="gantt-task" x="339.85" y="160.25" width="152.73" height="22" rx="3" fill="#eef2f7"/>
+<rect x="238.04" y="126.25" width="101.82" height="22" rx="3" fill="#c9d6e8"/>
+<rect x="339.85" y="160.25" width="152.73" height="22" rx="3" fill="#eef2f7"/>
 </g>
-<rect class="gantt-task" x="492.58" y="194.25" width="203.64" height="22" rx="3" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
-<rect class="gantt-task" x="696.22" y="228.25" width="72.73" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="gantt-milestone" points="768.95,263.25 778.95,273.25 768.95,283.25 758.95,273.25" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="gantt-task" x="696.22" y="296.25" width="14.55" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="title" x="448.95" y="15.6" text-anchor="middle" fill="#1b1f24">Walidacja procesu sterylizacji</text>
+<rect x="492.58" y="194.25" width="203.64" height="22" rx="3" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect x="696.22" y="228.25" width="72.73" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon points="768.95,263.25 778.95,273.25 768.95,283.25 758.95,273.25" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
+<rect x="696.22" y="296.25" width="14.55" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text x="448.95" y="15.6" text-anchor="middle" fill="#1b1f24">Walidacja procesu sterylizacji</text>
 <g fill="#1b1f24">
-<text class="gantt-section-label" x="12" y="91.85">Przygotowanie</text>
-<text class="gantt-section-label" x="12" y="176.85">Kwalifikacja</text>
-<text class="gantt-section-label" x="12" y="278.85">Zamknięcie</text>
+<text x="12" y="91.85">Przygotowanie</text>
+<text x="12" y="176.85">Kwalifikacja</text>
+<text x="12" y="278.85">Zamknięcie</text>
 </g>
 <g fill="#5b6570" text-anchor="middle">
-<text class="gantt-tick-label" x="128.95" y="46.25" font-size="13">2026-01-05</text>
-<text class="gantt-tick-label" x="230.76" y="46.25" font-size="13">2026-01-19</text>
-<text class="gantt-tick-label" x="332.58" y="46.25" font-size="13">2026-02-02</text>
-<text class="gantt-tick-label" x="434.4" y="46.25" font-size="13">2026-02-16</text>
-<text class="gantt-tick-label" x="536.22" y="46.25" font-size="13">2026-03-02</text>
-<text class="gantt-tick-label" x="638.04" y="46.25" font-size="13">2026-03-16</text>
-<text class="gantt-tick-label" x="739.85" y="46.25" font-size="13">2026-03-30</text>
+<text x="128.95" y="46.25" font-size="13">2026-01-05</text>
+<text x="230.76" y="46.25" font-size="13">2026-01-19</text>
+<text x="332.58" y="46.25" font-size="13">2026-02-02</text>
+<text x="434.4" y="46.25" font-size="13">2026-02-16</text>
+<text x="536.22" y="46.25" font-size="13">2026-03-02</text>
+<text x="638.04" y="46.25" font-size="13">2026-03-16</text>
+<text x="739.85" y="46.25" font-size="13">2026-03-30</text>
 </g>
 <g fill="#5b6570">
-<text class="gantt-task-label" x="207.67" y="74.85">Plan walidacji</text>
-<text class="gantt-task-label" x="244.04" y="108.85">Przegląd ryzyka</text>
+<text x="207.67" y="74.85">Plan walidacji</text>
+<text x="244.04" y="108.85">Przegląd ryzyka</text>
 </g>
 <g fill="#1b1f24">
-<text class="gantt-task-label" x="345.85" y="142.85">Kwalifikacja instalacyjna</text>
-<text class="gantt-task-label" x="498.58" y="176.85">Kwalifikacja operacyjna</text>
+<text x="345.85" y="142.85">Kwalifikacja instalacyjna</text>
+<text x="498.58" y="176.85">Kwalifikacja operacyjna</text>
 </g>
-<text class="gantt-task-label" x="594.4" y="210.85" text-anchor="middle" fill="#1b1f24">Kwalifikacja procesowa</text>
+<text x="594.4" y="210.85" text-anchor="middle" fill="#1b1f24">Kwalifikacja procesowa</text>
 <g fill="#1b1f24" text-anchor="end">
-<text class="gantt-task-label" x="690.22" y="244.85">Raport z walidacji</text>
-<text class="gantt-task-label" x="752.95" y="278.85">Zatwierdzenie</text>
-<text class="gantt-task-label" x="690.22" y="312.85">Szkolenie operatorów</text>
+<text x="690.22" y="244.85">Raport z walidacji</text>
+<text x="752.95" y="278.85">Zatwierdzenie</text>
+<text x="690.22" y="312.85">Szkolenie operatorów</text>
 </g>
 </svg>

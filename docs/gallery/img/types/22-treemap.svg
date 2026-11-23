@@ -2,54 +2,54 @@
 <title>Nonconformities by area</title>
 <rect x="-12" y="-12.4" width="644" height="480.65" fill="white"/>
 <g stroke="#55657a" stroke-width="1">
-<rect class="treemap-node" x="0" y="30" width="396.04" height="400" fill="#dde3ea"/>
-<rect class="treemap-node" x="4" y="56" width="323.81" height="207.93" fill="#f6f8fa"/>
-<rect class="treemap-node" x="327.81" y="56" width="64.23" height="370" fill="#f6f8fa"/>
-<rect class="treemap-node" x="4" y="263.93" width="323.81" height="162.07" fill="#dde3ea"/>
-<rect class="treemap-node" x="216.55" y="289.93" width="107.26" height="132.07" fill="#f6f8fa"/>
-<rect class="treemap-node" x="8" y="289.93" width="208.55" height="132.07" fill="#f6f8fa"/>
-<rect class="treemap-node" x="396.04" y="30" width="223.96" height="214.63" fill="#dde3ea"/>
-<rect class="treemap-node" x="400.04" y="56" width="137.43" height="184.63" fill="#f6f8fa"/>
-<rect class="treemap-node" x="537.47" y="56" width="78.53" height="184.63" fill="#f6f8fa"/>
-<rect class="treemap-node" x="396.04" y="244.63" width="129.66" height="185.37" fill="#f6f8fa"/>
-<rect class="treemap-node" x="525.7" y="244.63" width="94.3" height="185.37" fill="#dde3ea"/>
-<rect class="treemap-node" x="529.7" y="270.63" width="86.3" height="116.52" fill="#f6f8fa"/>
-<rect class="treemap-node" x="529.7" y="387.16" width="86.3" height="38.84" fill="#f6f8fa"/>
+<rect x="0" y="30" width="396.04" height="400" fill="#dde3ea"/>
+<rect x="4" y="56" width="323.81" height="207.93" fill="#f6f8fa"/>
+<rect x="327.81" y="56" width="64.23" height="370" fill="#f6f8fa"/>
+<rect x="4" y="263.93" width="323.81" height="162.07" fill="#dde3ea"/>
+<rect x="216.55" y="289.93" width="107.26" height="132.07" fill="#f6f8fa"/>
+<rect x="8" y="289.93" width="208.55" height="132.07" fill="#f6f8fa"/>
+<rect x="396.04" y="30" width="223.96" height="214.63" fill="#dde3ea"/>
+<rect x="400.04" y="56" width="137.43" height="184.63" fill="#f6f8fa"/>
+<rect x="537.47" y="56" width="78.53" height="184.63" fill="#f6f8fa"/>
+<rect x="396.04" y="244.63" width="129.66" height="185.37" fill="#f6f8fa"/>
+<rect x="525.7" y="244.63" width="94.3" height="185.37" fill="#dde3ea"/>
+<rect x="529.7" y="270.63" width="86.3" height="116.52" fill="#f6f8fa"/>
+<rect x="529.7" y="387.16" width="86.3" height="38.84" fill="#f6f8fa"/>
 </g>
-<text class="title" x="310" y="15.6" text-anchor="middle" fill="#1b1f24">Nonconformities by area</text>
-<text class="treemap-section" x="6" y="47.6" font-weight="bold" fill="#1b1f24">Production</text>
-<text class="treemap-total" x="390.04" y="46.55" text-anchor="end" font-size="13" fill="#5b6570">72.5</text>
-<text class="treemap-label" x="165.9" y="157.44" text-anchor="middle" fill="#1b1f24">Packaging</text>
-<text class="treemap-value" x="165.9" y="174.84" text-anchor="middle" font-size="13" fill="#5b6570">34</text>
-<text class="treemap-label" x="359.92" y="236.38" text-anchor="middle" font-size="10" fill="#1b1f24">Sterilisation</text>
-<text class="treemap-value" x="359.92" y="252.38" text-anchor="middle" font-size="13" fill="#5b6570">12</text>
-<text class="treemap-section" x="10" y="281.53" font-weight="bold" fill="#1b1f24">Assembly</text>
-<text class="treemap-total" x="321.81" y="280.48" text-anchor="end" font-size="13" fill="#5b6570">26.5</text>
-<text class="treemap-label" x="270.18" y="353.44" text-anchor="middle" fill="#1b1f24">Line A</text>
-<text class="treemap-value" x="270.18" y="370.84" text-anchor="middle" font-size="13" fill="#5b6570">9</text>
-<text class="treemap-label" x="112.28" y="353.44" text-anchor="middle" fill="#1b1f24">Line B</text>
-<text class="treemap-value" x="112.28" y="370.84" text-anchor="middle" font-size="13" fill="#5b6570">17.5</text>
-<text class="treemap-section" x="402.04" y="47.6" font-weight="bold" fill="#1b1f24">Purchasing</text>
-<text class="treemap-total" x="614" y="46.55" text-anchor="end" font-size="13" fill="#5b6570">22</text>
+<text x="310" y="15.6" text-anchor="middle" fill="#1b1f24">Nonconformities by area</text>
+<text x="6" y="47.6" font-weight="bold" fill="#1b1f24">Production</text>
+<text x="390.04" y="46.55" text-anchor="end" font-size="13" fill="#5b6570">72.5</text>
+<text x="165.9" y="157.44" text-anchor="middle" fill="#1b1f24">Packaging</text>
+<text x="165.9" y="174.84" text-anchor="middle" font-size="13" fill="#5b6570">34</text>
+<text x="359.92" y="236.38" text-anchor="middle" font-size="10" fill="#1b1f24">Sterilisation</text>
+<text x="359.92" y="252.38" text-anchor="middle" font-size="13" fill="#5b6570">12</text>
+<text x="10" y="281.53" font-weight="bold" fill="#1b1f24">Assembly</text>
+<text x="321.81" y="280.48" text-anchor="end" font-size="13" fill="#5b6570">26.5</text>
+<text x="270.18" y="353.44" text-anchor="middle" fill="#1b1f24">Line A</text>
+<text x="270.18" y="370.84" text-anchor="middle" font-size="13" fill="#5b6570">9</text>
+<text x="112.28" y="353.44" text-anchor="middle" fill="#1b1f24">Line B</text>
+<text x="112.28" y="370.84" text-anchor="middle" font-size="13" fill="#5b6570">17.5</text>
+<text x="402.04" y="47.6" font-weight="bold" fill="#1b1f24">Purchasing</text>
+<text x="614" y="46.55" text-anchor="end" font-size="13" fill="#5b6570">22</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="treemap-label" x="468.75" y="135.79">Packaging</text>
-<text class="treemap-label" x="468.75" y="155.79">suppliers</text>
+<text x="468.75" y="135.79">Packaging</text>
+<text x="468.75" y="155.79">suppliers</text>
 </g>
-<text class="treemap-value" x="468.75" y="173.19" text-anchor="middle" font-size="13" fill="#5b6570">14</text>
+<text x="468.75" y="173.19" text-anchor="middle" font-size="13" fill="#5b6570">14</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="treemap-label" x="576.73" y="125.79">Raw</text>
-<text class="treemap-label" x="576.73" y="145.79">material</text>
-<text class="treemap-label" x="576.73" y="165.79">suppliers</text>
+<text x="576.73" y="125.79">Raw</text>
+<text x="576.73" y="145.79">material</text>
+<text x="576.73" y="165.79">suppliers</text>
 </g>
-<text class="treemap-value" x="576.73" y="183.19" text-anchor="middle" font-size="13" fill="#5b6570">8</text>
-<text class="treemap-label" x="460.87" y="334.79" text-anchor="middle" fill="#1b1f24">Documentation</text>
-<text class="treemap-value" x="460.87" y="352.19" text-anchor="middle" font-size="13" fill="#5b6570">11</text>
-<text class="treemap-section" x="531.7" y="262.23" font-weight="bold" fill="#1b1f24">Warehouse</text>
-<text class="treemap-label" x="572.85" y="326.37" text-anchor="middle" fill="#1b1f24">Labels</text>
-<text class="treemap-value" x="572.85" y="343.77" text-anchor="middle" font-size="13" fill="#5b6570">6</text>
+<text x="576.73" y="183.19" text-anchor="middle" font-size="13" fill="#5b6570">8</text>
+<text x="460.87" y="334.79" text-anchor="middle" fill="#1b1f24">Documentation</text>
+<text x="460.87" y="352.19" text-anchor="middle" font-size="13" fill="#5b6570">11</text>
+<text x="531.7" y="262.23" font-weight="bold" fill="#1b1f24">Warehouse</text>
+<text x="572.85" y="326.37" text-anchor="middle" fill="#1b1f24">Labels</text>
+<text x="572.85" y="343.77" text-anchor="middle" font-size="13" fill="#5b6570">6</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="treemap-label" x="572.85" y="403.13" font-size="13">Storage</text>
-<text class="treemap-label" x="572.85" y="419.13" font-size="13">conditions</text>
+<text x="572.85" y="403.13" font-size="13">Storage</text>
+<text x="572.85" y="419.13" font-size="13">conditions</text>
 </g>
-<text class="treemap-note" x="0" y="453" font-size="13" fill="#5b6570">Storage conditions: 2</text>
+<text x="0" y="453" font-size="13" fill="#5b6570">Storage conditions: 2</text>
 </svg>

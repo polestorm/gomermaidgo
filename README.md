@@ -21,8 +21,8 @@ and [`go-mermaid`](https://github.com/zkrebbekx/go-mermaid) (details in [At a gl
 - **Fits diagrams to an A4 page**: narrows fields, folds long processes into rows, folds long chains and staggers
   long ranks, so a printed diagram stays readable ([examples](docs/gallery/page-fitting.md)). Neither of the others
   does this.
-- **Small output**: plain SVG 1.1 without embedded fonts, CSS or scripts, 44× smaller than mmdg's (go-mermaid's,
-  with simpler drawings, is a fifth smaller still); PDF with real, searchable text, 8× smaller than mmdg's.
+- **Small output**: plain SVG 1.1 without embedded fonts, CSS or scripts, 53× smaller than mmdg's and about the size
+  of go-mermaid's; PDF with real, searchable text, 8× smaller than mmdg's.
 - **Made for documents**: a neutral look that prints well in black and white, Markdown documents with embedded
   diagrams, and the flags of `mermaid-cli`.
 
@@ -50,7 +50,7 @@ which, like this library, has its own parsers and layout.
 | SVG: time / memory per diagram[^bench] | 3.1 ms / 8 MB | 31 ms / 41 MB | 3.9 ms / 12 MB |
 | PDF: time / memory per diagram[^bench] | 4.6 ms / 16 MB | 30 ms / 54 MB | no PDF |
 | PNG at scale 1: time / memory per diagram[^bench] | 12 ms / 18 MB | 36 ms / 44 MB | 24 ms / 16 MB |
-| Output size, SVG / PNG, the same 62 diagrams | 0.27 / 2.4 MB | 11.6 / 2.1 MB | 0.21 / 1.9 MB |
+| Output size, SVG / PNG, the same 62 diagrams | 0.22 / 2.4 MB | 11.6 / 2.1 MB | 0.21 / 1.9 MB |
 | Output size, PDF, the same 86 diagrams | 1.7 MB | 13.0 MB | no PDF |
 | Diagram types[^types] | 24 of Mermaid's 33 | 33 | 20 |
 | Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts | a documented subset per type |
@@ -58,7 +58,7 @@ which, like this library, has its own parsers and layout.
 | Public diagrams from GitHub[^wild] | 138 of 139 | 137 of 139 | 123 of 139 |
 | Look | own, made for print; neutral by default | Mermaid's, byte for byte | own; Mermaid's theme names |
 | Page fitting | fit to A4, folding of long diagrams, chains and ranks | none | none |
-| SVG content | basic SVG 1.1 elements, no CSS, no scripts, no `foreignObject` | Mermaid's SVG with CSS and embedded fonts | basic SVG elements, no CSS, no scripts, no `foreignObject` |
+| SVG content | basic SVG 1.1 elements, no CSS, no scripts, no `foreignObject`; role classes on request | Mermaid's SVG with CSS and embedded fonts | basic SVG elements, no CSS, no scripts, no `foreignObject` |
 | PDF and PNG | own writers, real text in PDF, optional (build tags) | yes | PNG (separate package) |
 | Markdown documents | yes (`markdown.Embed`, CLI) | yes (CLI) | no |
 | `mermaid-cli` flags | yes | yes | own flags |

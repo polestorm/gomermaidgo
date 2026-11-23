@@ -1,53 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="869.57" height="381.83" viewBox="-66 -12 869.57 381.83" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-66" y="-12" width="869.57" height="381.83" fill="white"/>
 <g stroke="#8a94a3" stroke-width="1">
-<rect class="lane" x="-54" y="0" width="845.57" height="101.35" fill="none"/>
-<rect class="lane-header" x="-54" y="0" width="36" height="101.35" fill="#eef2f7"/>
-<rect class="lane" x="-54" y="101.35" width="845.57" height="156.48" fill="none"/>
-<rect class="lane-header" x="-54" y="101.35" width="36" height="156.48" fill="#eef2f7"/>
-<rect class="lane" x="-54" y="257.83" width="845.57" height="100" fill="none"/>
-<rect class="lane-header" x="-54" y="257.83" width="36" height="100" fill="#eef2f7"/>
+<rect x="-54" y="0" width="845.57" height="101.35" fill="none"/>
+<rect x="-54" y="0" width="36" height="101.35" fill="#eef2f7"/>
+<rect x="-54" y="101.35" width="845.57" height="156.48" fill="none"/>
+<rect x="-54" y="101.35" width="36" height="156.48" fill="#eef2f7"/>
+<rect x="-54" y="257.83" width="845.57" height="100" fill="none"/>
+<rect x="-54" y="257.83" width="36" height="100" fill="#eef2f7"/>
 </g>
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M69.5 73 L69.5 149.6" fill="none"/>
-<path class="edge" d="M139 180 L174.6 180" fill="none"/>
-<path class="edge" d="M231 214 L231 300 C231 304.4 234.6 308 239 308 L279 308 L368.17 308" fill="none"/>
-<path class="edge" d="M564.57 308 L600.17 308" fill="none"/>
-<path class="edge" d="M691.07 286 L691.07 220.4" fill="none"/>
-<path class="edge" d="M279 180 L600.17 180" fill="none"/>
-<path class="edge" d="M691.07 148 L691.07 81.4" fill="none"/>
+<path d="M69.5 73 L69.5 149.6" fill="none"/>
+<path d="M139 180 L174.6 180" fill="none"/>
+<path d="M231 214 L231 300 C231 304.4 234.6 308 239 308 L279 308 L368.17 308" fill="none"/>
+<path d="M564.57 308 L600.17 308" fill="none"/>
+<path d="M691.07 286 L691.07 220.4" fill="none"/>
+<path d="M279 180 L600.17 180" fill="none"/>
+<path d="M691.07 148 L691.07 81.4" fill="none"/>
 </g>
-<rect class="edge-label-background" x="310" y="298" width="35.57" height="20" fill="white"/>
-<rect class="edge-label-background" x="313.56" y="170" width="28.45" height="20" fill="white"/>
-<polygon class="arrowhead" points="69.5,158 75.5,146 63.5,146" fill="#3b4754"/>
-<polygon class="arrowhead" points="183,180 171,174 171,186" fill="#3b4754"/>
-<polygon class="arrowhead" points="376.57,308 364.57,302 364.57,314" fill="#3b4754"/>
-<polygon class="arrowhead" points="608.57,308 596.57,302 596.57,314" fill="#3b4754"/>
-<polygon class="arrowhead" points="691.07,212 685.07,224 697.07,224" fill="#3b4754"/>
-<polygon class="arrowhead" points="608.57,180 596.57,174 596.57,186" fill="#3b4754"/>
-<polygon class="arrowhead" points="691.07,73 685.07,85 697.07,85" fill="#3b4754"/>
+<rect x="310" y="298" width="35.57" height="20" fill="white"/>
+<rect x="313.56" y="170" width="28.45" height="20" fill="white"/>
+<polygon points="69.5,158 75.5,146 63.5,146" fill="#3b4754"/>
+<polygon points="183,180 171,174 171,186" fill="#3b4754"/>
+<polygon points="376.57,308 364.57,302 364.57,314" fill="#3b4754"/>
+<polygon points="608.57,308 596.57,302 596.57,314" fill="#3b4754"/>
+<polygon points="691.07,212 685.07,224 697.07,224" fill="#3b4754"/>
+<polygon points="608.57,180 596.57,174 596.57,186" fill="#3b4754"/>
+<polygon points="691.07,73 685.07,85 697.07,85" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="29" width="139" height="44" rx="22" fill="#eef2f7"/>
-<rect class="node" x="0" y="158" width="139" height="44" fill="#eef2f7"/>
-<polygon class="node" points="231,146 279,180 231,214 183,180" fill="#eef2f7"/>
-<rect class="node" x="376.57" y="286" width="188" height="44" fill="#eef2f7"/>
-<rect class="node" x="608.57" y="29" width="165" height="44" fill="#eef2f7"/>
-<rect class="node" x="608.57" y="148" width="165" height="64" fill="#eef2f7"/>
-<rect class="node" x="608.57" y="286" width="165" height="44" fill="#eef2f7"/>
+<rect x="0" y="29" width="139" height="44" rx="22" fill="#eef2f7"/>
+<rect x="0" y="158" width="139" height="44" fill="#eef2f7"/>
+<polygon points="231,146 279,180 231,214 183,180" fill="#eef2f7"/>
+<rect x="376.57" y="286" width="188" height="44" fill="#eef2f7"/>
+<rect x="608.57" y="29" width="165" height="44" fill="#eef2f7"/>
+<rect x="608.57" y="148" width="165" height="64" fill="#eef2f7"/>
+<rect x="608.57" y="286" width="165" height="44" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="lane-title" x="-30.4" y="50.68" transform="rotate(-90 -30.4 50.68)">Customer</text>
-<text class="lane-title" x="-30.4" y="179.59" transform="rotate(-90 -30.4 179.59)">Customer service</text>
-<text class="lane-title" x="-30.4" y="307.83" transform="rotate(-90 -30.4 307.83)">Quality</text>
-<text class="node-label" x="69.5" y="56.6">Complaint</text>
-<text class="node-label" x="69.5" y="185.6">Registration</text>
-<text class="node-label" x="231" y="185.6">Valid?</text>
-<text class="node-label" x="470.57" y="313.6">Root cause analysis</text>
-<text class="node-label" x="691.07" y="56.6">Answer received</text>
-<text class="node-label" x="691.07" y="175.6">Letter to the</text>
-<text class="node-label" x="691.07" y="195.6">customer</text>
-<text class="node-label" x="691.07" y="313.6">Corrective action</text>
-<text class="edge-label" x="327.79" y="313.6">Yes</text>
-<text class="edge-label" x="327.79" y="185.6">No</text>
+<text x="-30.4" y="50.68" transform="rotate(-90 -30.4 50.68)">Customer</text>
+<text x="-30.4" y="179.59" transform="rotate(-90 -30.4 179.59)">Customer service</text>
+<text x="-30.4" y="307.83" transform="rotate(-90 -30.4 307.83)">Quality</text>
+<text x="69.5" y="56.6">Complaint</text>
+<text x="69.5" y="185.6">Registration</text>
+<text x="231" y="185.6">Valid?</text>
+<text x="470.57" y="313.6">Root cause analysis</text>
+<text x="691.07" y="56.6">Answer received</text>
+<text x="691.07" y="175.6">Letter to the</text>
+<text x="691.07" y="195.6">customer</text>
+<text x="691.07" y="313.6">Corrective action</text>
+<text x="327.79" y="313.6">Yes</text>
+<text x="327.79" y="185.6">No</text>
 </g>
 </svg>

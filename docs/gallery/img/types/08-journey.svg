@@ -1,94 +1,94 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1113" height="322.4" viewBox="-12 -12.4 1113 322.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>A complaint from the customer's side</title>
 <rect x="-12" y="-12.4" width="1113" height="322.4" fill="white"/>
-<line class="journey-axis" x1="119" y1="292" x2="1077" y2="292" fill="none" stroke="#3b4754" stroke-width="2"/>
-<polygon class="journey-axis" points="1089,292 1077,286 1077,298" fill="#3b4754"/>
+<line x1="119" y1="292" x2="1077" y2="292" fill="none" stroke="#3b4754" stroke-width="2"/>
+<polygon points="1089,292 1077,286 1077,298" fill="#3b4754"/>
 <g stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4">
-<line class="journey-drop" x1="194" y1="130" x2="194" y2="292" fill="none"/>
-<line class="journey-drop" x1="354" y1="130" x2="354" y2="292" fill="none"/>
-<line class="journey-drop" x1="514" y1="130" x2="514" y2="292" fill="none"/>
-<line class="journey-drop" x1="674" y1="130" x2="674" y2="292" fill="none"/>
-<line class="journey-drop" x1="834" y1="130" x2="834" y2="292" fill="none"/>
-<line class="journey-drop" x1="994" y1="130" x2="994" y2="292" fill="none"/>
+<line x1="194" y1="130" x2="194" y2="292" fill="none"/>
+<line x1="354" y1="130" x2="354" y2="292" fill="none"/>
+<line x1="514" y1="130" x2="514" y2="292" fill="none"/>
+<line x1="674" y1="130" x2="674" y2="292" fill="none"/>
+<line x1="834" y1="130" x2="834" y2="292" fill="none"/>
+<line x1="994" y1="130" x2="994" y2="292" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="journey-section" x="119" y="34" width="470" height="32" rx="4" fill="#dde3ea"/>
-<rect class="journey-section" x="599" y="34" width="310" height="32" rx="4" fill="#dde3ea"/>
-<rect class="journey-section" x="919" y="34" width="150" height="32" rx="4" fill="#dde3ea"/>
-<rect class="journey-task" x="119" y="74" width="150" height="56" rx="4" fill="#eef2f7"/>
+<rect x="119" y="34" width="470" height="32" rx="4" fill="#dde3ea"/>
+<rect x="599" y="34" width="310" height="32" rx="4" fill="#dde3ea"/>
+<rect x="919" y="34" width="150" height="32" rx="4" fill="#dde3ea"/>
+<rect x="119" y="74" width="150" height="56" rx="4" fill="#eef2f7"/>
 </g>
-<circle class="journey-face" cx="194" cy="237" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="279" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="354" cy="185" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="439" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="514" cy="159" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="599" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="674" cy="263" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="759" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="834" cy="211" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="journey-task" x="919" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="journey-face" cx="994" cy="159" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle cx="194" cy="237" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect x="279" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="354" cy="185" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect x="439" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="514" cy="159" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect x="599" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="674" cy="263" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect x="759" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="834" cy="211" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<rect x="919" y="74" width="150" height="56" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="994" cy="159" r="15" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <g stroke="#3b4754" stroke-width="1">
-<circle class="journey-actor" cx="7" cy="84" r="7" fill="#3b4754"/>
-<circle class="journey-actor" cx="7" cy="108" r="7" fill="#c9d1da"/>
+<circle cx="7" cy="84" r="7" fill="#3b4754"/>
+<circle cx="7" cy="108" r="7" fill="#c9d1da"/>
 </g>
-<text class="title" x="119" y="15.6" fill="#1b1f24">A complaint from the customer's side</text>
+<text x="119" y="15.6" fill="#1b1f24">A complaint from the customer's side</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="journey-section-title" x="354" y="55.6" font-weight="bold">Reporting</text>
-<text class="journey-section-title" x="754" y="55.6" font-weight="bold">Handling</text>
-<text class="journey-section-title" x="994" y="55.6" font-weight="bold">Closure</text>
-<text class="journey-task-label" x="194" y="97.6">Find the form on</text>
-<text class="journey-task-label" x="194" y="117.6">the website</text>
+<text x="354" y="55.6" font-weight="bold">Reporting</text>
+<text x="754" y="55.6" font-weight="bold">Handling</text>
+<text x="994" y="55.6" font-weight="bold">Closure</text>
+<text x="194" y="97.6">Find the form on</text>
+<text x="194" y="117.6">the website</text>
 </g>
-<circle class="journey-actor" cx="131" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="188.75" cy="233.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="199.25" cy="233.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M187.25 245.7 C191 239.4 197 239.4 200.75 245.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle cx="131" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle cx="188.75" cy="233.25" r="1.5" fill="#3b4754"/>
+<circle cx="199.25" cy="233.25" r="1.5" fill="#3b4754"/>
+<path d="M187.25 245.7 C191 239.4 197 239.4 200.75 245.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="journey-task-label" x="354" y="97.6">Describe the</text>
-<text class="journey-task-label" x="354" y="117.6">problem</text>
+<text x="354" y="97.6">Describe the</text>
+<text x="354" y="117.6">problem</text>
 </g>
-<circle class="journey-actor" cx="291" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="348.75" cy="181.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="359.25" cy="181.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M347.25 188 C351 194.3 357 194.3 360.75 188" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle cx="291" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle cx="348.75" cy="181.25" r="1.5" fill="#3b4754"/>
+<circle cx="359.25" cy="181.25" r="1.5" fill="#3b4754"/>
+<path d="M347.25 188 C351 194.3 357 194.3 360.75 188" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="journey-task-label" x="514" y="97.6">Receive a</text>
-<text class="journey-task-label" x="514" y="117.6">confirmation</text>
-</g>
-<g stroke="#3b4754" stroke-width="1">
-<circle class="journey-actor" cx="451" cy="74" r="5.5" fill="#3b4754"/>
-<circle class="journey-actor" cx="464" cy="74" r="5.5" fill="#c9d1da"/>
-</g>
-<circle class="journey-face-detail" cx="508.75" cy="155.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="519.25" cy="155.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M507.25 162 C511 168.3 517 168.3 520.75 162" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<text class="journey-task-label" x="674" y="107.6" text-anchor="middle" fill="#1b1f24">Wait without news</text>
-<circle class="journey-actor" cx="611" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="668.75" cy="259.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="679.25" cy="259.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M667.25 271.7 C671 265.4 677 265.4 680.75 271.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g fill="#1b1f24" text-anchor="middle">
-<text class="journey-task-label" x="834" y="97.6">Answer follow-up</text>
-<text class="journey-task-label" x="834" y="117.6">questions</text>
+<text x="514" y="97.6">Receive a</text>
+<text x="514" y="117.6">confirmation</text>
 </g>
 <g stroke="#3b4754" stroke-width="1">
-<circle class="journey-actor" cx="771" cy="74" r="5.5" fill="#3b4754"/>
-<circle class="journey-actor" cx="784" cy="74" r="5.5" fill="#c9d1da"/>
+<circle cx="451" cy="74" r="5.5" fill="#3b4754"/>
+<circle cx="464" cy="74" r="5.5" fill="#c9d1da"/>
 </g>
-<circle class="journey-face-detail" cx="828.75" cy="207.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="839.25" cy="207.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M828 217 L840 217" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle cx="508.75" cy="155.25" r="1.5" fill="#3b4754"/>
+<circle cx="519.25" cy="155.25" r="1.5" fill="#3b4754"/>
+<path d="M507.25 162 C511 168.3 517 168.3 520.75 162" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<text x="674" y="107.6" text-anchor="middle" fill="#1b1f24">Wait without news</text>
+<circle cx="611" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle cx="668.75" cy="259.25" r="1.5" fill="#3b4754"/>
+<circle cx="679.25" cy="259.25" r="1.5" fill="#3b4754"/>
+<path d="M667.25 271.7 C671 265.4 677 265.4 680.75 271.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="journey-task-label" x="994" y="97.6">Replacement</text>
-<text class="journey-task-label" x="994" y="117.6">shipped</text>
+<text x="834" y="97.6">Answer follow-up</text>
+<text x="834" y="117.6">questions</text>
 </g>
-<circle class="journey-actor" cx="931" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle class="journey-face-detail" cx="988.75" cy="155.25" r="1.5" fill="#3b4754"/>
-<circle class="journey-face-detail" cx="999.25" cy="155.25" r="1.5" fill="#3b4754"/>
-<path class="journey-face-detail" d="M987.25 162 C991 168.3 997 168.3 1000.75 162" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1">
+<circle cx="771" cy="74" r="5.5" fill="#3b4754"/>
+<circle cx="784" cy="74" r="5.5" fill="#c9d1da"/>
+</g>
+<circle cx="828.75" cy="207.25" r="1.5" fill="#3b4754"/>
+<circle cx="839.25" cy="207.25" r="1.5" fill="#3b4754"/>
+<path d="M828 217 L840 217" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="994" y="97.6">Replacement</text>
+<text x="994" y="117.6">shipped</text>
+</g>
+<circle cx="931" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle cx="988.75" cy="155.25" r="1.5" fill="#3b4754"/>
+<circle cx="999.25" cy="155.25" r="1.5" fill="#3b4754"/>
+<path d="M987.25 162 C991 168.3 997 168.3 1000.75 162" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24">
-<text class="journey-actor-name" x="22" y="89.6">Customer</text>
-<text class="journey-actor-name" x="22" y="113.6">Quality</text>
+<text x="22" y="89.6">Customer</text>
+<text x="22" y="113.6">Quality</text>
 </g>
 </svg>

@@ -14,7 +14,7 @@ import (
 // REQ: COM-001 COM-002 COM-003
 func TestPreamble(t *testing.T) {
 	src := "\n---\ntitle: \"Tytuł z nagłówka\"\nconfig:\n  theme: dark\n  title: nie ten\n---\n%%{init: {\n  \"theme\": \"forest\"\n}}%%\nflowchart TD\n  A --> B\n  %%{ init: { \"flowchart\": { \"curve\": \"linear\" } } }%%\n  B --> C\n"
-	svg, err := Render(src)
+	svg, err := renderC(src)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -32,20 +32,20 @@ func TestPreamble(t *testing.T) {
 		t.Errorf("Check: %v", err)
 	}
 	// Tytuł dostępności ze źródła diagramu wygrywa z tytułem z nagłówka, który nadal stoi nad rysunkiem.
-	svg, err = Render("---\ntitle: Z nagłówka\n---\nflowchart TD\naccTitle: Własny\nA --> B")
+	svg, err = renderC("---\ntitle: Z nagłówka\n---\nflowchart TD\naccTitle: Własny\nA --> B")
 	if err != nil || !strings.Contains(string(svg), "<title>Własny</title>") || !strings.Contains(string(svg), ">Z nagłówka</text>") {
 		t.Errorf("accTitle should stay the accessible title: %v", err)
 	}
 	// Tytuł działa dla każdego typu, także rysowanego bez układu grafu.
 	for _, body := range []string{"pie\n\"a\": 1", "sequenceDiagram\nA->>B: x", "kanban\n  K\n    [karta]"} {
-		svg, err := Render("---\ntitle: Wspólny\n---\n" + body)
+		svg, err := renderC("---\ntitle: Wspólny\n---\n" + body)
 		if err != nil || !strings.Contains(string(svg), ">Wspólny</text>") {
 			t.Errorf("%q: title missing or error %v", body, err)
 		}
 	}
 	// Numery linii w błędach liczą się od początku źródła.
 	var se *SyntaxError
-	_, err = Render("---\ntitle: T\n---\n%%{init: {}}%%\nflowchart TD\nA -->")
+	_, err = renderC("---\ntitle: T\n---\n%%{init: {}}%%\nflowchart TD\nA -->")
 	if !errors.As(err, &se) || se.Line != 6 {
 		t.Errorf("error after front matter should point at line 6: %v", err)
 	}
@@ -56,7 +56,7 @@ func TestPreamble(t *testing.T) {
 		"---\ntitle: T\nflowchart TD\nA --> B": {"frontmatter", 1},
 		"flowchart TD\n%%{init: {\nA --> B":    {"directive", 2},
 	} {
-		_, err := Render(src)
+		_, err := renderC(src)
 		if !errors.As(err, &se) || se.Code != want.code || se.Line != want.line {
 			t.Errorf("%q: got %v, want code %s at line %d", src, err, want.code, want.line)
 		}
@@ -68,7 +68,7 @@ func TestPreamble(t *testing.T) {
 // żaden krój, nadal jest zgłaszany. Selektor wariantu nie zajmuje miejsca.
 func TestEmojiFallback(t *testing.T) {
 	width := func(src string) float64 {
-		svg, err := Render(src)
+		svg, err := renderC(src)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -85,12 +85,12 @@ func TestEmojiFallback(t *testing.T) {
 		t.Errorf("the variation selector should take no room")
 	}
 	// Domyślnie emoji jest konturem w kolorze tekstu, bez nazwy kroju zapasowego; słowo obok zostaje tekstem.
-	outlined, _ := Render("flowchart TD\nA[🚀 Start]")
+	outlined, _ := renderC("flowchart TD\nA[🚀 Start]")
 	o := string(outlined)
 	if strings.Contains(o, "🚀") || strings.Contains(o, "Noto Emoji") || !regexp.MustCompile(`<path class="node-label emoji" d="M[^"]+" fill="#1b1f24"/>`).MatchString(o) || !strings.Contains(o, ">Start</text>") {
 		t.Errorf("the emoji should be an outline: %s", o)
 	}
-	svg, _ := Render("flowchart TD\nA[🚀 Start]", WithEmojiText())
+	svg, _ := renderC("flowchart TD\nA[🚀 Start]", WithEmojiText())
 	// Z WithEmojiText nazwę kroju zapasowego niesie tylko odcinek z emoji; reszta napisu i rysunek zostają przy
 	// kroju głównym, a odcinki stoją jeden za drugim.
 	out := string(svg)
@@ -122,12 +122,12 @@ func TestFitOptions(t *testing.T) {
 		w, _ := strconv.ParseFloat(string(m[1]), 64)
 		return w
 	}
-	def, _ := Render(src, WithFold(FoldOff))
-	auto, _ := Render(src, WithFit(FitAuto), WithFold(FoldOff))
-	off, _ := Render(src, WithFit(FitOff), WithFold(FoldOff))
-	nofit, _ := Render("%% layout: nofit\n"+src, WithFold(FoldOff))
-	forced, _ := Render("%% layout: nofit\n"+src, WithFit(FitOn), WithFold(FoldOff))
-	high, _ := Render(src, WithFitRatio(100), WithFold(FoldOff))
+	def, _ := renderC(src, WithFold(FoldOff))
+	auto, _ := renderC(src, WithFit(FitAuto), WithFold(FoldOff))
+	off, _ := renderC(src, WithFit(FitOff), WithFold(FoldOff))
+	nofit, _ := renderC("%% layout: nofit\n"+src, WithFold(FoldOff))
+	forced, _ := renderC("%% layout: nofit\n"+src, WithFit(FitOn), WithFold(FoldOff))
+	high, _ := renderC(src, WithFitRatio(100), WithFold(FoldOff))
 	if string(def) != string(auto) || width(def) >= width(off)*0.85 {
 		t.Errorf("default should be auto and narrower: %.0f vs off %.0f", width(def), width(off))
 	}
@@ -139,7 +139,7 @@ func TestFitOptions(t *testing.T) {
 // REQ: COM-006
 func TestLabelBackingFollowsBackground(t *testing.T) {
 	src := readFile(t, "../testdata/corpus/flowchart/005-edge-labels.mmd")
-	clear, err := Render(src)
+	clear, err := renderC(src)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -149,7 +149,7 @@ func TestLabelBackingFollowsBackground(t *testing.T) {
 	if strings.Contains(string(clear), `class="edge-label-background"`) || regexp.MustCompile(`<rect[^>]*fill="#ffffff"`).MatchString(string(clear)) {
 		t.Error("transparent background: label backings should not be painted")
 	}
-	filled, err := Render(src, WithBackground("#123456"))
+	filled, err := renderC(src, WithBackground("#123456"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -162,7 +162,7 @@ func TestLabelBackingFollowsBackground(t *testing.T) {
 func TestUnstyledNodesStayNeutral(t *testing.T) {
 	src := "graph LR\n  A[Plain] --> B[Styled]\n  style B fill:#cce5ff\n"
 	for _, opts := range [][]Option{nil, {WithColors()}} {
-		svg, err := Render(src, opts...)
+		svg, err := renderC(src, opts...)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -176,7 +176,7 @@ func TestUnstyledNodesStayNeutral(t *testing.T) {
 // REQ: LAY-020
 func TestAuthorLineBreaksKept(t *testing.T) {
 	src := "graph LR\n  A[Month 1<br/>$250] --> B[Month 2<br/>$280] --> C[Month 3<br/>$310] --> D[Month 4<br/>$295] --> E[Month 5<br/>$420] --> F[Month 6<br/>$450] --> G[Month 7<br/>$480]\n"
-	svg, err := Render(src, WithFit(FitOn), WithFold(FoldOff))
+	svg, err := renderC(src, WithFit(FitOn), WithFold(FoldOff))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -193,7 +193,7 @@ func TestWrapSettingsFromSource(t *testing.T) {
 	lines := func(svg []byte) int { return strings.Count(string(svg), `class="node-label"`) }
 	render := func(src string) []byte {
 		t.Helper()
-		svg, err := Render(src)
+		svg, err := renderC(src)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -224,7 +224,7 @@ func TestWrapSettingsFromSource(t *testing.T) {
 
 // REQ: LAY-021
 func TestChainKeepsAxis(t *testing.T) {
-	svg, err := Render(readFile(t, "../testdata/corpus/flowchart/026-chain-axis.mmd"), WithFold(FoldOff))
+	svg, err := renderC(readFile(t, "../testdata/corpus/flowchart/026-chain-axis.mmd"), WithFold(FoldOff))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -245,7 +245,7 @@ func TestChainKeepsAxis(t *testing.T) {
 func TestFoldChains(t *testing.T) {
 	src := readFile(t, "../testdata/corpus/flowchart/027-fold-chains.mmd")
 	columns := func(opts ...Option) int {
-		svg, err := Render(src, opts...)
+		svg, err := renderC(src, opts...)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -267,7 +267,7 @@ func TestFoldChains(t *testing.T) {
 	}
 	// Domyślnie wyłączone: bez linii w źródle łańcuch zostaje w jednej kolumnie.
 	plain := strings.Replace(src, "%% layout: fold-chains\n", "", 1)
-	svg, err := Render(plain)
+	svg, err := renderC(plain)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -282,7 +282,7 @@ func TestFoldChains(t *testing.T) {
 
 // REQ: LAY-023 LAY-024
 func TestMiddleBranchAndArrowClearance(t *testing.T) {
-	svg, err := Render(readFile(t, "../testdata/corpus/flowchart/027-fold-chains.mmd"), WithFoldChains(FoldOff))
+	svg, err := renderC(readFile(t, "../testdata/corpus/flowchart/027-fold-chains.mmd"), WithFoldChains(FoldOff))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -302,7 +302,7 @@ func TestMiddleBranchAndArrowClearance(t *testing.T) {
 		if !strings.Contains(f, "/flowchart/") {
 			continue
 		}
-		out, err := Render(readFile(t, f))
+		out, err := renderC(readFile(t, f))
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -323,7 +323,7 @@ func TestFoldRanks(t *testing.T) {
 	src := readFile(t, "../testdata/corpus/flowchart/028-fold-ranks.mmd")
 	leaves := regexp.MustCompile(`<text class="node-label" x="([-\d.]+)" y="([-\d.]+)"[^>]*>(Dokumenty|Zapisy|Audyty|Niezgodności|CAPA|Szkolenia|Zakupy|Dostawcy|Walidacja|Reklamacje|Ryzyko|Przegląd|Infrastruktura|Pomiary)<`)
 	columns := func(src string, opts ...Option) (int, bool) {
-		svg, err := Render(src, opts...)
+		svg, err := renderC(src, opts...)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -354,7 +354,7 @@ func TestFoldRanks(t *testing.T) {
 // Osobne pole stojące w tej samej warstwie co początek innej części dosuwa się do niej, zamiast
 // stać pod obrysem całej tamtej części.
 func TestComponentsCompact(t *testing.T) {
-	svg, err := Render("flowchart LR\n    A[Start] --> B[Krok] --> C{Decyzja}\n    C --> D[Jeden]\n    C --> E[Dwa]\n    C --> F[Trzy]\n    C --> H[Cztery]\n    C --> I[Pięć]\n    G[Osobne]\n")
+	svg, err := renderC("flowchart LR\n    A[Start] --> B[Krok] --> C{Decyzja}\n    C --> D[Jeden]\n    C --> E[Dwa]\n    C --> F[Trzy]\n    C --> H[Cztery]\n    C --> I[Pięć]\n    G[Osobne]\n")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -364,5 +364,32 @@ func TestComponentsCompact(t *testing.T) {
 	}
 	if y["Osobne"] >= y["Pięć"] {
 		t.Errorf("separate node at y=%.0f should stand above the lowest node of the other part (y=%.0f)", y["Osobne"], y["Pięć"])
+	}
+}
+
+// renderC rysuje z atrybutami class (WithClasses): testy wyglądu znajdują elementy po ich roli.
+func renderC(source string, opts ...Option) ([]byte, error) {
+	return Render(source, append(opts, WithClasses())...)
+}
+
+// REQ: COM-009
+func TestClassesOnRequest(t *testing.T) {
+	src := readFile(t, "../testdata/corpus/flowchart/005-edge-labels.mmd")
+	plain, err := Render(src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	with, err := Render(src, WithClasses())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(plain), "class=") {
+		t.Error("the default SVG should have no class attributes")
+	}
+	if !strings.Contains(string(with), `class="node"`) || !strings.Contains(string(with), `class="edge"`) {
+		t.Error("WithClasses should add the element roles")
+	}
+	if regexp.MustCompile(` class="[^"]*"`).ReplaceAllString(string(with), "") != string(plain) {
+		t.Error("WithClasses should change nothing but the class attributes")
 	}
 }

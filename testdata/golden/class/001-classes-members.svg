@@ -1,45 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="252" height="644" viewBox="-12 -12 252 644" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="0" width="228" height="230" fill="#ffffff"/>
-<rect class="node-detail" x="0" y="0" width="228" height="56" fill="#eef2f7"/>
+<rect x="0" y="0" width="228" height="230" fill="#ffffff"/>
+<rect x="0" y="0" width="228" height="56" fill="#eef2f7"/>
 </g>
-<line class="node-detail" x1="0" y1="154" x2="228" y2="154" fill="none" stroke="#55657a" stroke-width="1"/>
+<line x1="0" y1="154" x2="228" y2="154" fill="none" stroke="#55657a" stroke-width="1"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0.5" y="274" width="205" height="122" fill="#ffffff"/>
-<rect class="node-detail" x="0.5" y="274" width="205" height="36" fill="#eef2f7"/>
+<rect x="0.5" y="274" width="205" height="122" fill="#ffffff"/>
+<rect x="0.5" y="274" width="205" height="36" fill="#eef2f7"/>
 </g>
-<line class="node-detail" x1="0.5" y1="342" x2="205.5" y2="342" fill="none" stroke="#55657a" stroke-width="1"/>
+<line x1="0.5" y1="342" x2="205.5" y2="342" fill="none" stroke="#55657a" stroke-width="1"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="440" width="190" height="100" fill="#ffffff"/>
-<rect class="node-detail" x="0" y="440" width="190" height="56" fill="#eef2f7"/>
+<rect x="0" y="440" width="190" height="100" fill="#ffffff"/>
+<rect x="0" y="440" width="190" height="56" fill="#eef2f7"/>
 </g>
-<line class="node-detail" x1="0" y1="508" x2="190" y2="508" fill="none" stroke="#55657a" stroke-width="1"/>
-<rect class="node" x="0" y="584" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line x1="0" y1="508" x2="190" y2="508" fill="none" stroke="#55657a" stroke-width="1"/>
+<rect x="0" y="584" width="120" height="36" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="114" y="23.6">«abstract»</text>
-<text class="node-label" x="114" y="43.6" font-weight="bold">Dokument</text>
+<text x="114" y="23.6">«abstract»</text>
+<text x="114" y="43.6" font-weight="bold">Dokument</text>
 </g>
 <g fill="#1b1f24">
-<text class="member" x="12" y="77.6">+String numer</text>
-<text class="member" x="12" y="99.6">+int wydanie</text>
-<text class="member" x="12" y="121.6">#Status status</text>
-<text class="member" x="12" y="143.6">-List&lt;Zmiana&gt; historia</text>
-<text class="member" x="12" y="175.6">+zatwierdz(Osoba kto) : bool</text>
-<text class="member" x="12" y="197.6" font-style="italic">+wycofaj()</text>
-<text class="member" x="12" y="219.6">+nastepnyNumer() : String</text>
+<text x="12" y="77.6">+String numer</text>
+<text x="12" y="99.6">+int wydanie</text>
+<text x="12" y="121.6">#Status status</text>
+<text x="12" y="143.6">-List&lt;Zmiana&gt; historia</text>
+<text x="12" y="175.6">+zatwierdz(Osoba kto) : bool</text>
+<text x="12" y="197.6" font-style="italic">+wycofaj()</text>
+<text x="12" y="219.6">+nastepnyNumer() : String</text>
 </g>
-<line class="member-underline" x1="12" y1="222.6" x2="200.08" y2="222.6" fill="none" stroke="#1b1f24" stroke-width="1"/>
-<text class="node-label" x="103" y="297.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rejestr&lt;T&gt;</text>
+<line x1="12" y1="222.6" x2="200.08" y2="222.6" fill="none" stroke="#1b1f24" stroke-width="1"/>
+<text x="103" y="297.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Rejestr&lt;T&gt;</text>
 <g fill="#1b1f24">
-<text class="member" x="12.5" y="363.6">+dodaj(T zapis)</text>
-<text class="member" x="12.5" y="385.6">+znajdz(String numer) : T</text>
-<text class="member" x="12.5" y="331.6">-int licznik</text>
+<text x="12.5" y="363.6">+dodaj(T zapis)</text>
+<text x="12.5" y="385.6">+znajdz(String numer) : T</text>
+<text x="12.5" y="331.6">-int licznik</text>
 </g>
-<line class="member-underline" x1="12.5" y1="334.6" x2="82.73" y2="334.6" fill="none" stroke="#1b1f24" stroke-width="1"/>
+<line x1="12.5" y1="334.6" x2="82.73" y2="334.6" fill="none" stroke="#1b1f24" stroke-width="1"/>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="95" y="463.6">«interface»</text>
-<text class="node-label" x="95" y="483.6" font-weight="bold">Osoba zatwierdzająca</text>
+<text x="95" y="463.6">«interface»</text>
+<text x="95" y="483.6" font-weight="bold">Osoba zatwierdzająca</text>
 </g>
-<text class="member" x="12" y="529.6" fill="#1b1f24">+podpisz(Dokument d)</text>
-<text class="node-label" x="60" y="607.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Uwaga</text>
+<text x="12" y="529.6" fill="#1b1f24">+podpisz(Dokument d)</text>
+<text x="60" y="607.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Uwaga</text>
 </svg>

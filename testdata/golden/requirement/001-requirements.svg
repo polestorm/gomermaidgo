@@ -1,90 +1,90 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="716.5" height="756" viewBox="-12 -12 716.5 756" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-5a07e4b8"><path d="M-12 -12 L704.5 -12 L704.5 744 L-12 744 M124.3 252 L124.3 272 L209.7 272 L209.7 252 M346.81 544 L346.81 564 L424.19 564 L424.19 544 M440.76 252 L440.76 272 L517.24 272 L517.24 252 M509.2 544 L509.2 564 L592.8 564 L592.8 544"/></clipPath></defs>
-<g clip-path="url(#label-holes-5a07e4b8)"><path class="edge" d="M167 229 L167 322" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-5a07e4b8)"><path d="M167 229 L167 322" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <g stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
-<g clip-path="url(#label-holes-5a07e4b8)"><path class="edge" d="M323 476 L323 530 L323 546 C323 550.4 326.6 554 331 554 L440 554 C444.4 554 448 557.6 448 562 L448 578" fill="none"/>
+<g clip-path="url(#label-holes-5a07e4b8)"><path d="M323 476 L323 530 L323 546 C323 550.4 326.6 554 331 554 L440 554 C444.4 554 448 557.6 448 562 L448 578" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-5a07e4b8)"><path class="edge" d="M479 165 L479 322" fill="none"/>
+<g clip-path="url(#label-holes-5a07e4b8)"><path d="M479 165 L479 322" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-5a07e4b8)"><path class="edge" d="M614 443 L614 530 L614 546 C614 550.4 610.4 554 606 554 L496 554 C491.6 554 488 557.6 488 562 L488 578" fill="none"/>
+<g clip-path="url(#label-holes-5a07e4b8)"><path d="M614 443 L614 530 L614 546 C614 550.4 610.4 554 606 554 L496 554 C491.6 554 488 557.6 488 562 L488 578" fill="none"/>
 </g>
 </g>
 <g stroke="#3b4754" stroke-width="1.5">
-<circle class="arrowhead" cx="167" cy="225" r="5" fill="#ffffff"/>
-<line class="arrowhead" x1="448" y1="578" x2="454" y2="567" fill="none"/>
-<line class="arrowhead" x1="448" y1="578" x2="442" y2="567" fill="none"/>
-<line class="arrowhead" x1="479" y1="322" x2="485" y2="311" fill="none"/>
-<line class="arrowhead" x1="479" y1="322" x2="473" y2="311" fill="none"/>
-<line class="arrowhead" x1="488" y1="578" x2="494" y2="567" fill="none"/>
-<line class="arrowhead" x1="488" y1="578" x2="482" y2="567" fill="none"/>
+<circle cx="167" cy="225" r="5" fill="#ffffff"/>
+<line x1="448" y1="578" x2="454" y2="567" fill="none"/>
+<line x1="448" y1="578" x2="442" y2="567" fill="none"/>
+<line x1="479" y1="322" x2="485" y2="311" fill="none"/>
+<line x1="479" y1="322" x2="473" y2="311" fill="none"/>
+<line x1="488" y1="578" x2="494" y2="567" fill="none"/>
+<line x1="488" y1="578" x2="482" y2="567" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="0" width="334" height="220" fill="#ffffff"/>
-<rect class="node-detail" x="0" y="0" width="334" height="56" fill="#ffffff"/>
-<rect class="node" x="382" y="55" width="194" height="110" fill="#ffffff"/>
-<rect class="node-detail" x="382" y="55" width="194" height="56" fill="#ffffff"/>
+<rect x="0" y="0" width="334" height="220" fill="#ffffff"/>
+<rect x="0" y="0" width="334" height="56" fill="#ffffff"/>
+<rect x="382" y="55" width="194" height="110" fill="#ffffff"/>
+<rect x="382" y="55" width="194" height="56" fill="#ffffff"/>
 </g>
 <g stroke="#b42318" stroke-width="2">
-<rect class="node" x="159" y="322" width="328" height="154" fill="#fde8e8"/>
-<rect class="node-detail" x="159" y="322" width="328" height="56" fill="#fde8e8"/>
+<rect x="159" y="322" width="328" height="154" fill="#fde8e8"/>
+<rect x="159" y="322" width="328" height="56" fill="#fde8e8"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="535.5" y="355" width="157" height="88" fill="#ffffff"/>
-<rect class="node-detail" x="535.5" y="355" width="157" height="56" fill="#ffffff"/>
-<rect class="node" x="359" y="578" width="218" height="154" fill="#ffffff"/>
-<rect class="node-detail" x="359" y="578" width="218" height="56" fill="#ffffff"/>
+<rect x="535.5" y="355" width="157" height="88" fill="#ffffff"/>
+<rect x="535.5" y="355" width="157" height="56" fill="#ffffff"/>
+<rect x="359" y="578" width="218" height="154" fill="#ffffff"/>
+<rect x="359" y="578" width="218" height="56" fill="#ffffff"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="167" y="23.6">«Requirement»</text>
-<text class="node-label" x="167" y="43.6" font-weight="bold">sterylnosc</text>
+<text x="167" y="23.6">«Requirement»</text>
+<text x="167" y="43.6" font-weight="bold">sterylnosc</text>
 </g>
 <g fill="#1b1f24">
-<text class="member" x="12" y="77.6">Id: URS-01</text>
-<text class="member" x="12" y="99.6">Text: Wyrób jest sterylny do końca okresu</text>
-<text class="member" x="12" y="121.6">  przydatności w opakowaniu jednostkowym</text>
-<text class="member" x="12" y="143.6">  nienaruszonym przez transport i</text>
-<text class="member" x="12" y="165.6">  składowanie</text>
-<text class="member" x="12" y="187.6">Risk: High</text>
-<text class="member" x="12" y="209.6">Verification: Test</text>
+<text x="12" y="77.6">Id: URS-01</text>
+<text x="12" y="99.6">Text: Wyrób jest sterylny do końca okresu</text>
+<text x="12" y="121.6">  przydatności w opakowaniu jednostkowym</text>
+<text x="12" y="143.6">  nienaruszonym przez transport i</text>
+<text x="12" y="165.6">  składowanie</text>
+<text x="12" y="187.6">Risk: High</text>
+<text x="12" y="209.6">Verification: Test</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="479" y="78.6">«Element»</text>
-<text class="node-label" x="479" y="98.6" font-weight="bold">walidacja_zgrzewania</text>
+<text x="479" y="78.6">«Element»</text>
+<text x="479" y="98.6" font-weight="bold">walidacja_zgrzewania</text>
 </g>
 <g fill="#1b1f24">
-<text class="member" x="394" y="132.6">Type: raport walidacji</text>
-<text class="member" x="394" y="154.6">Doc Ref: VAL-2026-004</text>
+<text x="394" y="132.6">Type: raport walidacji</text>
+<text x="394" y="154.6">Doc Ref: VAL-2026-004</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="323" y="345.6">«Functional Requirement»</text>
-<text class="node-label" x="323" y="365.6" font-weight="bold">szczelność opakowania</text>
+<text x="323" y="345.6">«Functional Requirement»</text>
+<text x="323" y="365.6" font-weight="bold">szczelność opakowania</text>
 </g>
 <g fill="#1b1f24">
-<text class="member" x="171" y="399.6">Id: FRS-07</text>
-<text class="member" x="171" y="421.6">Text: Zgrzew wytrzymuje próbę rozrywania</text>
-<text class="member" x="171" y="443.6">Risk: Medium</text>
-<text class="member" x="171" y="465.6">Verification: Inspection</text>
+<text x="171" y="399.6">Id: FRS-07</text>
+<text x="171" y="421.6">Text: Zgrzew wytrzymuje próbę rozrywania</text>
+<text x="171" y="443.6">Risk: Medium</text>
+<text x="171" y="465.6">Verification: Inspection</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="614" y="378.6">«Element»</text>
-<text class="node-label" x="614" y="398.6" font-weight="bold">specyfikacja_folii</text>
+<text x="614" y="378.6">«Element»</text>
+<text x="614" y="398.6" font-weight="bold">specyfikacja_folii</text>
 </g>
-<text class="member" x="547.5" y="432.6" fill="#1b1f24">Type: specyfikacja</text>
+<text x="547.5" y="432.6" fill="#1b1f24">Type: specyfikacja</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="468" y="601.6">«Design Constraint»</text>
-<text class="node-label" x="468" y="621.6" font-weight="bold">material</text>
+<text x="468" y="601.6">«Design Constraint»</text>
+<text x="468" y="621.6" font-weight="bold">material</text>
 </g>
 <g fill="#1b1f24">
-<text class="member" x="371" y="655.6">Id: DC-03</text>
-<text class="member" x="371" y="677.6">Text: Folia zgodna z normą</text>
-<text class="member" x="371" y="699.6">Risk: Low</text>
-<text class="member" x="371" y="721.6">Verification: Analysis</text>
+<text x="371" y="655.6">Id: DC-03</text>
+<text x="371" y="677.6">Text: Folia zgodna z normą</text>
+<text x="371" y="699.6">Risk: Low</text>
+<text x="371" y="721.6">Verification: Analysis</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="edge-label" x="167" y="267.6">«contains»</text>
-<text class="edge-label" x="385.5" y="559.6">«derives»</text>
-<text class="edge-label" x="479" y="267.6">«verifies»</text>
-<text class="edge-label" x="551" y="559.6">«satisfies»</text>
+<text x="167" y="267.6">«contains»</text>
+<text x="385.5" y="559.6">«derives»</text>
+<text x="479" y="267.6">«verifies»</text>
+<text x="551" y="559.6">«satisfies»</text>
 </g>
 </svg>

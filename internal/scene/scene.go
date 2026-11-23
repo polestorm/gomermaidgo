@@ -87,6 +87,9 @@ type Scene struct {
 	FontSize   float64
 	Margin     float64
 	Background string // pusty = przezroczyste tło
+	// Classes: elementy SVG dostają atrybut class z rolą (node, edge, edge-label…), żeby strona
+	// osadzająca rysunek mogła go stylować własnym CSS. Domyślnie wyłączone: plik jest mniejszy.
+	Classes bool
 }
 
 // Tone to para kolorów jednego elementu: obrys i wypełnienie.
@@ -288,6 +291,13 @@ func (it Item) paint(b *strings.Builder, inherited bool) {
 	}
 }
 
+// class zapisuje atrybut class z rolą elementu, gdy scena ich chce (Classes).
+func (s *Scene) class(b *strings.Builder, role string) {
+	if s.Classes {
+		attr(b, "class", role)
+	}
+}
+
 // strokeAttrs zapisuje atrybuty obrysu elementu.
 func (it Item) strokeAttrs(b *strings.Builder) {
 	attr(b, "stroke", it.Stroke)
@@ -476,7 +486,7 @@ func (s *Scene) SVG() []byte {
 		switch it.Kind {
 		case Rect:
 			b.WriteString("<rect")
-			attr(&b, "class", it.Role)
+			s.class(&b, it.Role)
 			attr(&b, "x", num(it.X))
 			attr(&b, "y", num(it.Y))
 			attr(&b, "width", num(it.W))
@@ -488,7 +498,7 @@ func (s *Scene) SVG() []byte {
 			b.WriteString("/>\n")
 		case Line:
 			b.WriteString("<line")
-			attr(&b, "class", it.Role)
+			s.class(&b, it.Role)
 			attr(&b, "x1", num(it.X))
 			attr(&b, "y1", num(it.Y))
 			attr(&b, "x2", num(it.X2))
@@ -501,13 +511,13 @@ func (s *Scene) SVG() []byte {
 				name = "polygon"
 			}
 			b.WriteString("<" + name)
-			attr(&b, "class", it.Role)
+			s.class(&b, it.Role)
 			attr(&b, "points", points(it.Points))
 			it.paint(&b, grouped)
 			b.WriteString("/>\n")
 		case Circle:
 			b.WriteString("<circle")
-			attr(&b, "class", it.Role)
+			s.class(&b, it.Role)
 			attr(&b, "cx", num(it.X))
 			attr(&b, "cy", num(it.Y))
 			attr(&b, "r", num(it.R))
@@ -515,7 +525,7 @@ func (s *Scene) SVG() []byte {
 			b.WriteString("/>\n")
 		case Ellipse:
 			b.WriteString("<ellipse")
-			attr(&b, "class", it.Role)
+			s.class(&b, it.Role)
 			attr(&b, "cx", num(it.X))
 			attr(&b, "cy", num(it.Y))
 			attr(&b, "rx", num(it.W/2))
@@ -524,13 +534,13 @@ func (s *Scene) SVG() []byte {
 			b.WriteString("/>\n")
 		case Path:
 			b.WriteString("<path")
-			attr(&b, "class", it.Role)
+			s.class(&b, it.Role)
 			attr(&b, "d", pathData(it.Segments))
 			it.paint(&b, grouped)
 			b.WriteString("/>\n")
 		case Text:
 			b.WriteString("<text")
-			attr(&b, "class", it.Role)
+			s.class(&b, it.Role)
 			attr(&b, "x", num(it.X))
 			attr(&b, "y", num(it.Y))
 			if it.Anchor != "" && it.Anchor != "start" && !grouped {

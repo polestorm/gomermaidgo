@@ -1,45 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="566" height="610" viewBox="-12 -12 566 610" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="0" width="140" height="44" fill="#eef2f7"/>
-<rect class="node" x="188" y="0" width="144" height="44" rx="8" fill="#eef2f7"/>
-<rect class="node" x="380" y="0" width="162" height="44" rx="22" fill="#eef2f7"/>
-<rect class="node" x="0" y="95" width="160" height="44" fill="#eef2f7"/>
-<line class="node-detail" x1="8" y1="95" x2="8" y2="139" fill="none"/>
-<line class="node-detail" x1="152" y1="95" x2="152" y2="139" fill="none"/>
-<ellipse class="node-detail" cx="283" cy="139" rx="74.5" ry="7" fill="#eef2f7"/>
+<rect x="0" y="0" width="140" height="44" fill="#eef2f7"/>
+<rect x="188" y="0" width="144" height="44" rx="8" fill="#eef2f7"/>
+<rect x="380" y="0" width="162" height="44" rx="22" fill="#eef2f7"/>
+<rect x="0" y="95" width="160" height="44" fill="#eef2f7"/>
+<line x1="8" y1="95" x2="8" y2="139" fill="none"/>
+<line x1="152" y1="95" x2="152" y2="139" fill="none"/>
+<ellipse cx="283" cy="139" rx="74.5" ry="7" fill="#eef2f7"/>
 </g>
-<rect class="node" x="208.5" y="95" width="149" height="44" fill="#eef2f7"/>
+<rect x="208.5" y="95" width="149" height="44" fill="#eef2f7"/>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="node-detail" x1="208.5" y1="95" x2="208.5" y2="139" fill="none"/>
-<line class="node-detail" x1="357.5" y1="95" x2="357.5" y2="139" fill="none"/>
-<ellipse class="node-detail" cx="283" cy="95" rx="74.5" ry="7" fill="#eef2f7"/>
-<circle class="node" cx="432" cy="117" r="27" fill="#eef2f7"/>
-<circle class="node" cx="66" cy="256" r="66" fill="#eef2f7"/>
-<circle class="node-detail" cx="66" cy="256" r="61" fill="none"/>
-<polygon class="node" points="180.5,234 331.5,234 331.5,278 180.5,278 191.5,256" fill="#eef2f7"/>
-<polygon class="node" points="426,222.5 473,256 426,289.5 379,256" fill="#eef2f7"/>
-<polygon class="node" points="11,366 151,366 162,388 151,410 11,410 0,388" fill="#eef2f7"/>
-<polygon class="node" points="225.17,366 405.5,366 390.83,410 210.5,410" fill="#eef2f7"/>
-<polygon class="node" points="0.5,454 262.83,454 277.5,498 15.17,498" fill="#eef2f7"/>
-<polygon class="node" points="340.17,454 479.83,454 494.5,498 325.5,498" fill="#eef2f7"/>
-<polygon class="node" points="0.5,542 217.5,542 202.83,586 15.17,586" fill="#eef2f7"/>
-<rect class="node" x="265" y="542" width="140" height="44" fill="#eef2f7"/>
+<line x1="208.5" y1="95" x2="208.5" y2="139" fill="none"/>
+<line x1="357.5" y1="95" x2="357.5" y2="139" fill="none"/>
+<ellipse cx="283" cy="95" rx="74.5" ry="7" fill="#eef2f7"/>
+<circle cx="432" cy="117" r="27" fill="#eef2f7"/>
+<circle cx="66" cy="256" r="66" fill="#eef2f7"/>
+<circle cx="66" cy="256" r="61" fill="none"/>
+<polygon points="180.5,234 331.5,234 331.5,278 180.5,278 191.5,256" fill="#eef2f7"/>
+<polygon points="426,222.5 473,256 426,289.5 379,256" fill="#eef2f7"/>
+<polygon points="11,366 151,366 162,388 151,410 11,410 0,388" fill="#eef2f7"/>
+<polygon points="225.17,366 405.5,366 390.83,410 210.5,410" fill="#eef2f7"/>
+<polygon points="0.5,454 262.83,454 277.5,498 15.17,498" fill="#eef2f7"/>
+<polygon points="340.17,454 479.83,454 494.5,498 325.5,498" fill="#eef2f7"/>
+<polygon points="0.5,542 217.5,542 202.83,586 15.17,586" fill="#eef2f7"/>
+<rect x="265" y="542" width="140" height="44" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="70" y="27.6">Prostokąt</text>
-<text class="node-label" x="260" y="27.6">Zaokrąglony</text>
-<text class="node-label" x="461" y="27.6">Stadion</text>
-<text class="node-label" x="80" y="122.6">Podprogram</text>
-<text class="node-label" x="283" y="126.1">Baza danych</text>
-<text class="node-label" x="432" y="122.6">Koło</text>
-<text class="node-label" x="66" y="261.6">Podwójne koło</text>
-<text class="node-label" x="261.5" y="261.6">Flaga</text>
-<text class="node-label" x="426" y="261.6">Romb</text>
-<text class="node-label" x="81" y="393.6">Sześciokąt</text>
-<text class="node-label" x="308" y="393.6">Równoległobok</text>
-<text class="node-label" x="139" y="481.6">Równoległobok odwrócony</text>
-<text class="node-label" x="410" y="481.6">Trapez</text>
-<text class="node-label" x="109" y="569.6">Trapez odwrócony</text>
-<text class="node-label" x="335" y="569.6">o</text>
+<text x="70" y="27.6">Prostokąt</text>
+<text x="260" y="27.6">Zaokrąglony</text>
+<text x="461" y="27.6">Stadion</text>
+<text x="80" y="122.6">Podprogram</text>
+<text x="283" y="126.1">Baza danych</text>
+<text x="432" y="122.6">Koło</text>
+<text x="66" y="261.6">Podwójne koło</text>
+<text x="261.5" y="261.6">Flaga</text>
+<text x="426" y="261.6">Romb</text>
+<text x="81" y="393.6">Sześciokąt</text>
+<text x="308" y="393.6">Równoległobok</text>
+<text x="139" y="481.6">Równoległobok odwrócony</text>
+<text x="410" y="481.6">Trapez</text>
+<text x="109" y="569.6">Trapez odwrócony</text>
+<text x="335" y="569.6">o</text>
 </g>
 </svg>

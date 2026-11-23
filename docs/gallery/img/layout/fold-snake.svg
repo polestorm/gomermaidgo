@@ -2,83 +2,83 @@
 <title>Supplier approval</title>
 <rect x="-12" y="-12" width="734.91" height="484" fill="white"/>
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M148 42 L183.6 42" fill="none"/>
-<path class="edge" d="M289 42 L324.6 42" fill="none"/>
-<path class="edge" d="M613.28 208.75 L600.09 208.75 C595.69 208.75 592.09 205.15 592.09 200.75 L592.09 172 C592.09 167.6 588.49 164 584.09 164 L570.91 164 L506.4 164" fill="none"/>
-<path class="edge" d="M613.28 231.25 L600.09 231.25 C595.69 231.25 592.09 234.85 592.09 239.25 L592.09 268 C592.09 272.4 588.49 276 584.09 276 L570.91 276 L506.4 276" fill="none"/>
-<path class="edge" d="M397 164 L390.7 164 C386.3 164 382.7 167.6 382.7 172 L382.7 195 C382.7 199.4 379.1 203 374.7 203 L357.4 203" fill="none"/>
-<path class="edge" d="M397 276 L390.7 276 C386.3 276 382.7 272.4 382.7 268 L382.7 245 C382.7 240.6 379.1 237 374.7 237 L357.4 237" fill="none"/>
-<path class="edge" d="M279 220 L243.4 220" fill="none"/>
-<path class="edge" d="M148 220 L112.4 220" fill="none"/>
-<path class="edge" d="M90 408 L125.6 408" fill="none"/>
-<path class="edge" d="M230 408 L265.6 408" fill="none"/>
-<path class="edge" d="M377 408 L412.6 408" fill="none"/>
-<path class="edge" d="M395 84 L395 96 C395 100.4 398.6 104 403 104 L647.91 104 C652.31 104 655.91 107.6 655.91 112 L655.91 161.6" fill="none"/>
-<path class="edge" d="M48.5 262 L48.5 328 C48.5 328 48.5 328 48.5 328 L48.5 328 C48.5 328 48.5 328 48.5 328 L48.5 347.6" fill="none"/>
+<path d="M148 42 L183.6 42" fill="none"/>
+<path d="M289 42 L324.6 42" fill="none"/>
+<path d="M613.28 208.75 L600.09 208.75 C595.69 208.75 592.09 205.15 592.09 200.75 L592.09 172 C592.09 167.6 588.49 164 584.09 164 L570.91 164 L506.4 164" fill="none"/>
+<path d="M613.28 231.25 L600.09 231.25 C595.69 231.25 592.09 234.85 592.09 239.25 L592.09 268 C592.09 272.4 588.49 276 584.09 276 L570.91 276 L506.4 276" fill="none"/>
+<path d="M397 164 L390.7 164 C386.3 164 382.7 167.6 382.7 172 L382.7 195 C382.7 199.4 379.1 203 374.7 203 L357.4 203" fill="none"/>
+<path d="M397 276 L390.7 276 C386.3 276 382.7 272.4 382.7 268 L382.7 245 C382.7 240.6 379.1 237 374.7 237 L357.4 237" fill="none"/>
+<path d="M279 220 L243.4 220" fill="none"/>
+<path d="M148 220 L112.4 220" fill="none"/>
+<path d="M90 408 L125.6 408" fill="none"/>
+<path d="M230 408 L265.6 408" fill="none"/>
+<path d="M377 408 L412.6 408" fill="none"/>
+<path d="M395 84 L395 96 C395 100.4 398.6 104 403 104 L647.91 104 C652.31 104 655.91 107.6 655.91 112 L655.91 161.6" fill="none"/>
+<path d="M48.5 262 L48.5 328 C48.5 328 48.5 328 48.5 328 L48.5 328 C48.5 328 48.5 328 48.5 328 L48.5 347.6" fill="none"/>
 </g>
-<rect class="edge-label-background" x="529" y="154" width="40.91" height="20" fill="white"/>
-<rect class="edge-label-background" x="530.78" y="266" width="37.35" height="20" fill="white"/>
-<polygon class="arrowhead" points="192,42 180,36 180,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="333,42 321,36 321,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="498,164 510,158 510,170" fill="#3b4754"/>
-<polygon class="arrowhead" points="498,276 510,270 510,282" fill="#3b4754"/>
-<polygon class="arrowhead" points="349,203 361,197 361,209" fill="#3b4754"/>
-<polygon class="arrowhead" points="349,237 361,231 361,243" fill="#3b4754"/>
-<polygon class="arrowhead" points="235,220 247,214 247,226" fill="#3b4754"/>
-<polygon class="arrowhead" points="104,220 116,214 116,226" fill="#3b4754"/>
-<polygon class="arrowhead" points="134,408 122,402 122,414" fill="#3b4754"/>
-<polygon class="arrowhead" points="274,408 262,402 262,414" fill="#3b4754"/>
-<polygon class="arrowhead" points="421,408 409,402 409,414" fill="#3b4754"/>
-<polygon class="arrowhead" points="655.91,170 649.91,158 661.91,158" fill="#3b4754"/>
-<polygon class="arrowhead" points="48.5,356 42.5,344 54.5,344" fill="#3b4754"/>
+<rect x="529" y="154" width="40.91" height="20" fill="white"/>
+<rect x="530.78" y="266" width="37.35" height="20" fill="white"/>
+<polygon points="192,42 180,36 180,48" fill="#3b4754"/>
+<polygon points="333,42 321,36 321,48" fill="#3b4754"/>
+<polygon points="498,164 510,158 510,170" fill="#3b4754"/>
+<polygon points="498,276 510,270 510,282" fill="#3b4754"/>
+<polygon points="349,203 361,197 361,209" fill="#3b4754"/>
+<polygon points="349,237 361,231 361,243" fill="#3b4754"/>
+<polygon points="235,220 247,214 247,226" fill="#3b4754"/>
+<polygon points="104,220 116,214 116,226" fill="#3b4754"/>
+<polygon points="134,408 122,402 122,414" fill="#3b4754"/>
+<polygon points="274,408 262,402 262,414" fill="#3b4754"/>
+<polygon points="421,408 409,402 409,414" fill="#3b4754"/>
+<polygon points="655.91,170 649.91,158 661.91,158" fill="#3b4754"/>
+<polygon points="48.5,356 42.5,344 54.5,344" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="0" width="148" height="84" rx="42" fill="#eef2f7"/>
-<rect class="node" x="192" y="0" width="97" height="84" fill="#eef2f7"/>
-<rect class="node" x="333" y="0" width="124" height="84" fill="#eef2f7"/>
-<polygon class="node" points="655.91,170 710.91,220 655.91,270 600.91,220" fill="#eef2f7"/>
-<rect class="node" x="397" y="132" width="101" height="64" fill="#eef2f7"/>
-<rect class="node" x="397" y="244" width="101" height="64" fill="#eef2f7"/>
-<rect class="node" x="279" y="178" width="70" height="84" fill="#eef2f7"/>
-<rect class="node" x="148" y="178" width="87" height="84" fill="#eef2f7"/>
-<rect class="node" x="0" y="178" width="104" height="84" fill="#eef2f7"/>
-<rect class="node" x="0" y="356" width="90" height="104" fill="#eef2f7"/>
-<rect class="node" x="134" y="356" width="96" height="104" fill="#eef2f7"/>
-<rect class="node" x="274" y="356" width="103" height="104" fill="#eef2f7"/>
-<rect class="node" x="421" y="356" width="127" height="104" rx="52" fill="#eef2f7"/>
+<rect x="0" y="0" width="148" height="84" rx="42" fill="#eef2f7"/>
+<rect x="192" y="0" width="97" height="84" fill="#eef2f7"/>
+<rect x="333" y="0" width="124" height="84" fill="#eef2f7"/>
+<polygon points="655.91,170 710.91,220 655.91,270 600.91,220" fill="#eef2f7"/>
+<rect x="397" y="132" width="101" height="64" fill="#eef2f7"/>
+<rect x="397" y="244" width="101" height="64" fill="#eef2f7"/>
+<rect x="279" y="178" width="70" height="84" fill="#eef2f7"/>
+<rect x="148" y="178" width="87" height="84" fill="#eef2f7"/>
+<rect x="0" y="178" width="104" height="84" fill="#eef2f7"/>
+<rect x="0" y="356" width="90" height="104" fill="#eef2f7"/>
+<rect x="134" y="356" width="96" height="104" fill="#eef2f7"/>
+<rect x="274" y="356" width="103" height="104" fill="#eef2f7"/>
+<rect x="421" y="356" width="127" height="104" rx="52" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="74" y="27.6">Request</text>
-<text class="node-label" x="74" y="47.6">from</text>
-<text class="node-label" x="74" y="67.6">purchasing</text>
-<text class="node-label" x="240.5" y="37.6">Initial</text>
-<text class="node-label" x="240.5" y="57.6">screening</text>
-<text class="node-label" x="395" y="37.6">Supplier</text>
-<text class="node-label" x="395" y="57.6">questionnaire</text>
-<text class="node-label" x="655.91" y="215.6">Risk</text>
-<text class="node-label" x="655.91" y="235.6">class?</text>
-<text class="node-label" x="447.5" y="159.6">On-site</text>
-<text class="node-label" x="447.5" y="179.6">audit</text>
-<text class="node-label" x="447.5" y="271.6">Document</text>
-<text class="node-label" x="447.5" y="291.6">review</text>
-<text class="node-label" x="314" y="215.6">Audit</text>
-<text class="node-label" x="314" y="235.6">report</text>
-<text class="node-label" x="191.5" y="215.6">QA</text>
-<text class="node-label" x="191.5" y="235.6">decision</text>
-<text class="node-label" x="52" y="205.6">Quality</text>
-<text class="node-label" x="52" y="225.6">agreement</text>
-<text class="node-label" x="52" y="245.6">signed</text>
-<text class="edge-label" x="549.45" y="169.6">High</text>
-<text class="edge-label" x="549.45" y="281.6">Low</text>
-<text class="node-label" x="45" y="393.6">Supplier</text>
-<text class="node-label" x="45" y="413.6">added to</text>
-<text class="node-label" x="45" y="433.6">ERP</text>
-<text class="node-label" x="182" y="383.6">Approved</text>
-<text class="node-label" x="182" y="403.6">supplier</text>
-<text class="node-label" x="182" y="423.6">list</text>
-<text class="node-label" x="182" y="443.6">updated</text>
-<text class="node-label" x="325.5" y="403.6">Periodic</text>
-<text class="node-label" x="325.5" y="423.6">monitoring</text>
-<text class="node-label" x="484.5" y="403.6">Supplier</text>
-<text class="node-label" x="484.5" y="423.6">approved</text>
+<text x="74" y="27.6">Request</text>
+<text x="74" y="47.6">from</text>
+<text x="74" y="67.6">purchasing</text>
+<text x="240.5" y="37.6">Initial</text>
+<text x="240.5" y="57.6">screening</text>
+<text x="395" y="37.6">Supplier</text>
+<text x="395" y="57.6">questionnaire</text>
+<text x="655.91" y="215.6">Risk</text>
+<text x="655.91" y="235.6">class?</text>
+<text x="447.5" y="159.6">On-site</text>
+<text x="447.5" y="179.6">audit</text>
+<text x="447.5" y="271.6">Document</text>
+<text x="447.5" y="291.6">review</text>
+<text x="314" y="215.6">Audit</text>
+<text x="314" y="235.6">report</text>
+<text x="191.5" y="215.6">QA</text>
+<text x="191.5" y="235.6">decision</text>
+<text x="52" y="205.6">Quality</text>
+<text x="52" y="225.6">agreement</text>
+<text x="52" y="245.6">signed</text>
+<text x="549.45" y="169.6">High</text>
+<text x="549.45" y="281.6">Low</text>
+<text x="45" y="393.6">Supplier</text>
+<text x="45" y="413.6">added to</text>
+<text x="45" y="433.6">ERP</text>
+<text x="182" y="383.6">Approved</text>
+<text x="182" y="403.6">supplier</text>
+<text x="182" y="423.6">list</text>
+<text x="182" y="443.6">updated</text>
+<text x="325.5" y="403.6">Periodic</text>
+<text x="325.5" y="423.6">monitoring</text>
+<text x="484.5" y="403.6">Supplier</text>
+<text x="484.5" y="423.6">approved</text>
 </g>
 </svg>

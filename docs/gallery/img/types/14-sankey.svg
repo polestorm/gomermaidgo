@@ -1,38 +1,38 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="642" height="353.13" viewBox="-12 -12 642 353.13" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-12" y="-12" width="642" height="353.13" fill="white"/>
-<path class="sankey-link" d="M14 0 C120.48 0 120.48 15.37 226.96 15.37 L226.96 70.06 C120.48 70.06 120.48 54.69 14 54.69 L14 0" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M14 68.69 C120.48 68.69 120.48 70.06 226.96 70.06 L226.96 152.09 C120.48 152.09 120.48 150.72 14 150.72 L14 68.69" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M14 272.91 C120.48 272.91 120.48 246.28 226.96 246.28 L226.96 275.14 C120.48 275.14 120.48 301.77 14 301.77 L14 272.91" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M14 164.72 C120.48 164.72 120.48 152.09 226.96 152.09 L226.96 246.28 C120.48 246.28 120.48 258.91 14 258.91 L14 164.72" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M240.96 15.37 C347.44 15.37 347.44 0 453.91 0 L453.91 121.53 C347.44 121.53 347.44 136.9 240.96 136.9 L240.96 15.37" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M240.96 136.9 C347.44 136.9 347.44 135.53 453.91 135.53 L453.91 237.31 C347.44 237.31 347.44 238.68 240.96 238.68 L240.96 136.9" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M240.96 238.68 C347.44 238.68 347.44 251.31 453.91 251.31 L453.91 287.77 C347.44 287.77 347.44 275.14 240.96 275.14 L240.96 238.68" fill="#7b8794" fill-opacity="0.35"/>
-<path class="sankey-link" d="M14 301.77 C120.48 301.77 120.48 293.84 226.96 293.84 L240.96 293.84 C347.44 293.84 347.44 301.77 453.91 301.77 L453.91 320 C347.44 320 347.44 312.07 240.96 312.07 L226.96 312.07 C120.48 312.07 120.48 320 14 320 L14 301.77" fill="#7b8794" fill-opacity="0.35"/>
-<rect class="sankey-node" x="0" y="0" width="14" height="54.69" fill="#3b4754"/>
-<rect class="sankey-node" x="226.96" y="15.37" width="14" height="259.77" fill="#3b4754"/>
-<rect class="sankey-node" x="0" y="68.69" width="14" height="82.03" fill="#3b4754"/>
-<rect class="sankey-node" x="0" y="272.91" width="14" height="47.09" fill="#3b4754"/>
-<rect class="sankey-node" x="0" y="164.72" width="14" height="94.19" fill="#3b4754"/>
-<rect class="sankey-node" x="453.91" y="0" width="14" height="121.53" fill="#3b4754"/>
-<rect class="sankey-node" x="453.91" y="135.53" width="14" height="101.78" fill="#3b4754"/>
-<rect class="sankey-node" x="453.91" y="251.31" width="14" height="36.46" fill="#3b4754"/>
-<rect class="sankey-node" x="453.91" y="301.77" width="14" height="18.23" fill="#3b4754"/>
-<text class="sankey-label" x="20" y="24.34" fill="#1b1f24">Complaints</text>
-<text class="sankey-value" x="20" y="42.34" font-size="13" fill="#5b6570">18</text>
-<text class="sankey-label" x="246.96" y="142.26" fill="#1b1f24">Nonconformities</text>
-<text class="sankey-value" x="246.96" y="160.26" font-size="13" fill="#5b6570">85.5</text>
-<text class="sankey-label" x="20" y="106.71" fill="#1b1f24">Internal audits</text>
-<text class="sankey-value" x="20" y="124.71" font-size="13" fill="#5b6570">27</text>
-<text class="sankey-label" x="20" y="293.46" fill="#1b1f24">Incoming inspection</text>
-<text class="sankey-value" x="20" y="311.46" font-size="13" fill="#5b6570">15.5</text>
-<text class="sankey-label" x="20" y="208.81" fill="#1b1f24">Production</text>
-<text class="sankey-value" x="20" y="226.81" font-size="13" fill="#5b6570">31</text>
-<text class="sankey-label" x="473.91" y="57.77" fill="#1b1f24">Correction</text>
-<text class="sankey-value" x="473.91" y="75.77" font-size="13" fill="#5b6570">40</text>
-<text class="sankey-label" x="473.91" y="183.42" fill="#1b1f24">CAPA</text>
-<text class="sankey-value" x="473.91" y="201.42" font-size="13" fill="#5b6570">33.5</text>
-<text class="sankey-label" x="473.91" y="266.54" fill="#1b1f24">No action (justified)</text>
-<text class="sankey-value" x="473.91" y="284.54" font-size="13" fill="#5b6570">12</text>
-<text class="sankey-label" x="473.91" y="307.88" fill="#1b1f24">Returned to supplier</text>
-<text class="sankey-value" x="473.91" y="325.88" font-size="13" fill="#5b6570">6</text>
+<path d="M14 0 C120.48 0 120.48 15.37 226.96 15.37 L226.96 70.06 C120.48 70.06 120.48 54.69 14 54.69 L14 0" fill="#7b8794" fill-opacity="0.35"/>
+<path d="M14 68.69 C120.48 68.69 120.48 70.06 226.96 70.06 L226.96 152.09 C120.48 152.09 120.48 150.72 14 150.72 L14 68.69" fill="#7b8794" fill-opacity="0.35"/>
+<path d="M14 272.91 C120.48 272.91 120.48 246.28 226.96 246.28 L226.96 275.14 C120.48 275.14 120.48 301.77 14 301.77 L14 272.91" fill="#7b8794" fill-opacity="0.35"/>
+<path d="M14 164.72 C120.48 164.72 120.48 152.09 226.96 152.09 L226.96 246.28 C120.48 246.28 120.48 258.91 14 258.91 L14 164.72" fill="#7b8794" fill-opacity="0.35"/>
+<path d="M240.96 15.37 C347.44 15.37 347.44 0 453.91 0 L453.91 121.53 C347.44 121.53 347.44 136.9 240.96 136.9 L240.96 15.37" fill="#7b8794" fill-opacity="0.35"/>
+<path d="M240.96 136.9 C347.44 136.9 347.44 135.53 453.91 135.53 L453.91 237.31 C347.44 237.31 347.44 238.68 240.96 238.68 L240.96 136.9" fill="#7b8794" fill-opacity="0.35"/>
+<path d="M240.96 238.68 C347.44 238.68 347.44 251.31 453.91 251.31 L453.91 287.77 C347.44 287.77 347.44 275.14 240.96 275.14 L240.96 238.68" fill="#7b8794" fill-opacity="0.35"/>
+<path d="M14 301.77 C120.48 301.77 120.48 293.84 226.96 293.84 L240.96 293.84 C347.44 293.84 347.44 301.77 453.91 301.77 L453.91 320 C347.44 320 347.44 312.07 240.96 312.07 L226.96 312.07 C120.48 312.07 120.48 320 14 320 L14 301.77" fill="#7b8794" fill-opacity="0.35"/>
+<rect x="0" y="0" width="14" height="54.69" fill="#3b4754"/>
+<rect x="226.96" y="15.37" width="14" height="259.77" fill="#3b4754"/>
+<rect x="0" y="68.69" width="14" height="82.03" fill="#3b4754"/>
+<rect x="0" y="272.91" width="14" height="47.09" fill="#3b4754"/>
+<rect x="0" y="164.72" width="14" height="94.19" fill="#3b4754"/>
+<rect x="453.91" y="0" width="14" height="121.53" fill="#3b4754"/>
+<rect x="453.91" y="135.53" width="14" height="101.78" fill="#3b4754"/>
+<rect x="453.91" y="251.31" width="14" height="36.46" fill="#3b4754"/>
+<rect x="453.91" y="301.77" width="14" height="18.23" fill="#3b4754"/>
+<text x="20" y="24.34" fill="#1b1f24">Complaints</text>
+<text x="20" y="42.34" font-size="13" fill="#5b6570">18</text>
+<text x="246.96" y="142.26" fill="#1b1f24">Nonconformities</text>
+<text x="246.96" y="160.26" font-size="13" fill="#5b6570">85.5</text>
+<text x="20" y="106.71" fill="#1b1f24">Internal audits</text>
+<text x="20" y="124.71" font-size="13" fill="#5b6570">27</text>
+<text x="20" y="293.46" fill="#1b1f24">Incoming inspection</text>
+<text x="20" y="311.46" font-size="13" fill="#5b6570">15.5</text>
+<text x="20" y="208.81" fill="#1b1f24">Production</text>
+<text x="20" y="226.81" font-size="13" fill="#5b6570">31</text>
+<text x="473.91" y="57.77" fill="#1b1f24">Correction</text>
+<text x="473.91" y="75.77" font-size="13" fill="#5b6570">40</text>
+<text x="473.91" y="183.42" fill="#1b1f24">CAPA</text>
+<text x="473.91" y="201.42" font-size="13" fill="#5b6570">33.5</text>
+<text x="473.91" y="266.54" fill="#1b1f24">No action (justified)</text>
+<text x="473.91" y="284.54" font-size="13" fill="#5b6570">12</text>
+<text x="473.91" y="307.88" fill="#1b1f24">Returned to supplier</text>
+<text x="473.91" y="325.88" font-size="13" fill="#5b6570">6</text>
 </svg>

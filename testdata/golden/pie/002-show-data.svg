@@ -2,28 +2,28 @@
 <title>Czas realizacji działań korygujących</title>
 <desc>Udział działań zamkniętych w terminie, po terminie i otwartych.</desc>
 <g stroke="#ffffff" stroke-width="1.5">
-<path class="pie-slice" d="M110 144 L110 34 C159.79 34 203.37 67.44 216.25 115.53 C229.14 163.62 208.12 214.37 165 239.26 C121.88 264.16 67.42 256.99 32.22 221.78 L110 144" fill="#3b4754"/>
-<path class="pie-slice" d="M110 144 L32.22 221.78 C-3.29 186.27 -10.24 131.23 15.32 88.01 L110 144" fill="#c9d1da"/>
-<path class="pie-slice" d="M110 144 L15.32 88.01 C32.62 58.74 62.49 39.13 96.21 34.87 L110 144" fill="#7b8794"/>
-<path class="pie-slice" d="M110 144 L96.21 34.87 C100.79 34.29 105.39 34 110 34 L110 144" fill="#eef2f7"/>
+<path d="M110 144 L110 34 C159.79 34 203.37 67.44 216.25 115.53 C229.14 163.62 208.12 214.37 165 239.26 C121.88 264.16 67.42 256.99 32.22 221.78 L110 144" fill="#3b4754"/>
+<path d="M110 144 L32.22 221.78 C-3.29 186.27 -10.24 131.23 15.32 88.01 L110 144" fill="#c9d1da"/>
+<path d="M110 144 L15.32 88.01 C32.62 58.74 62.49 39.13 96.21 34.87 L110 144" fill="#7b8794"/>
+<path d="M110 144 L96.21 34.87 C100.79 34.29 105.39 34 110 34 L110 144" fill="#eef2f7"/>
 </g>
-<circle class="pie-outline" cx="110" cy="144" r="110" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle cx="110" cy="144" r="110" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g stroke="#3b4754" stroke-width="1">
-<rect class="pie-swatch" x="256" y="81" width="14" height="14" fill="#3b4754"/>
-<rect class="pie-swatch" x="256" y="109" width="14" height="14" fill="#c9d1da"/>
-<rect class="pie-swatch" x="256" y="137" width="14" height="14" fill="#7b8794"/>
-<rect class="pie-swatch" x="256" y="165" width="14" height="14" fill="#eef2f7"/>
-<rect class="pie-swatch" x="256" y="193" width="14" height="14" fill="#55657a"/>
+<rect x="256" y="81" width="14" height="14" fill="#3b4754"/>
+<rect x="256" y="109" width="14" height="14" fill="#c9d1da"/>
+<rect x="256" y="137" width="14" height="14" fill="#7b8794"/>
+<rect x="256" y="165" width="14" height="14" fill="#eef2f7"/>
+<rect x="256" y="193" width="14" height="14" fill="#55657a"/>
 </g>
-<text class="title" x="250.19" y="15.6" text-anchor="middle" fill="#1b1f24">Czas realizacji działań korygujących</text>
-<text class="pie-percent" x="177.07" y="177.38" text-anchor="middle" fill="#ffffff">63%</text>
-<text class="pie-percent" x="37.97" y="158.7" text-anchor="middle" fill="#1b1f24">21%</text>
-<text class="pie-percent" x="70.14" y="88.92" text-anchor="middle" fill="#ffffff">14%</text>
+<text x="250.19" y="15.6" text-anchor="middle" fill="#1b1f24">Czas realizacji działań korygujących</text>
+<text x="177.07" y="177.38" text-anchor="middle" fill="#ffffff">63%</text>
+<text x="37.97" y="158.7" text-anchor="middle" fill="#1b1f24">21%</text>
+<text x="70.14" y="88.92" text-anchor="middle" fill="#ffffff">14%</text>
 <g fill="#1b1f24">
-<text class="pie-legend" x="278" y="93.6">W terminie [62.5]</text>
-<text class="pie-legend" x="278" y="121.6">Do 30 dni po terminie [21]</text>
-<text class="pie-legend" x="278" y="149.6">Ponad 30 dni po terminie [14.5]</text>
-<text class="pie-legend" x="278" y="177.6">Otwarte, źle zaksięgowane [2]</text>
-<text class="pie-legend" x="278" y="205.6">Anulowane [0]</text>
+<text x="278" y="93.6">W terminie [62.5]</text>
+<text x="278" y="121.6">Do 30 dni po terminie [21]</text>
+<text x="278" y="149.6">Ponad 30 dni po terminie [14.5]</text>
+<text x="278" y="177.6">Otwarte, źle zaksięgowane [2]</text>
+<text x="278" y="205.6">Anulowane [0]</text>
 </g>
 </svg>

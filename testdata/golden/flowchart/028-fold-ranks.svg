@@ -1,70 +1,70 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="953" height="666" viewBox="-12 -12 953 666" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M165 321 L200.6 321" fill="none"/>
-<path class="edge" d="M367 308 L397.3 308 C401.7 308 405.3 304.4 405.3 300 L405.3 30 C405.3 25.6 408.9 22 413.3 22 L574.6 22" fill="none"/>
-<path class="edge" d="M367 310 L417.3 310 C421.7 310 425.3 306.4 425.3 302 L425.3 76 C425.3 71.6 428.9 68 433.3 68 L583 68 L768.6 68" fill="none"/>
-<path class="edge" d="M367 312 L437.3 312 C441.7 312 445.3 308.4 445.3 304 L445.3 122 C445.3 117.6 448.9 114 453.3 114 L574.6 114" fill="none"/>
-<path class="edge" d="M367 314 L457.3 314 C461.7 314 465.3 310.4 465.3 306 L465.3 168 C465.3 163.6 468.9 160 473.3 160 L583 160 L768.6 160" fill="none"/>
-<path class="edge" d="M367 316 L477.3 316 C481.7 316 485.3 312.4 485.3 308 L485.3 214 C485.3 209.6 488.9 206 493.3 206 L574.6 206" fill="none"/>
-<path class="edge" d="M367 318 L497.3 318 C501.7 318 505.3 314.4 505.3 310 L505.3 260 C505.3 255.6 508.9 252 513.3 252 L583 252 L768.6 252" fill="none"/>
-<path class="edge" d="M367 320 L517.3 320 C521.7 320 525.3 316.4 525.3 312 L525.3 306 C525.3 301.6 528.9 298 533.3 298 L574.6 298" fill="none"/>
-<path class="edge" d="M367 322 L517.3 322 C521.7 322 525.3 325.6 525.3 330 L525.3 336 C525.3 340.4 528.9 344 533.3 344 L583 344 L768.6 344" fill="none"/>
-<path class="edge" d="M367 324 L497.3 324 C501.7 324 505.3 327.6 505.3 332 L505.3 382 C505.3 386.4 508.9 390 513.3 390 L574.6 390" fill="none"/>
-<path class="edge" d="M367 326 L477.3 326 C481.7 326 485.3 329.6 485.3 334 L485.3 428 C485.3 432.4 488.9 436 493.3 436 L583 436 L768.6 436" fill="none"/>
-<path class="edge" d="M367 328 L457.3 328 C461.7 328 465.3 331.6 465.3 336 L465.3 474 C465.3 478.4 468.9 482 473.3 482 L574.6 482" fill="none"/>
-<path class="edge" d="M367 330 L437.3 330 C441.7 330 445.3 333.6 445.3 338 L445.3 520 C445.3 524.4 448.9 528 453.3 528 L583 528 L768.6 528" fill="none"/>
-<path class="edge" d="M367 332 L417.3 332 C421.7 332 425.3 335.6 425.3 340 L425.3 566 C425.3 570.4 428.9 574 433.3 574 L574.6 574" fill="none"/>
-<path class="edge" d="M367 334 L397.3 334 C401.7 334 405.3 337.6 405.3 342 L405.3 612 C405.3 616.4 408.9 620 413.3 620 L583 620 L768.6 620" fill="none"/>
+<path d="M165 321 L200.6 321" fill="none"/>
+<path d="M367 308 L397.3 308 C401.7 308 405.3 304.4 405.3 300 L405.3 30 C405.3 25.6 408.9 22 413.3 22 L574.6 22" fill="none"/>
+<path d="M367 310 L417.3 310 C421.7 310 425.3 306.4 425.3 302 L425.3 76 C425.3 71.6 428.9 68 433.3 68 L583 68 L768.6 68" fill="none"/>
+<path d="M367 312 L437.3 312 C441.7 312 445.3 308.4 445.3 304 L445.3 122 C445.3 117.6 448.9 114 453.3 114 L574.6 114" fill="none"/>
+<path d="M367 314 L457.3 314 C461.7 314 465.3 310.4 465.3 306 L465.3 168 C465.3 163.6 468.9 160 473.3 160 L583 160 L768.6 160" fill="none"/>
+<path d="M367 316 L477.3 316 C481.7 316 485.3 312.4 485.3 308 L485.3 214 C485.3 209.6 488.9 206 493.3 206 L574.6 206" fill="none"/>
+<path d="M367 318 L497.3 318 C501.7 318 505.3 314.4 505.3 310 L505.3 260 C505.3 255.6 508.9 252 513.3 252 L583 252 L768.6 252" fill="none"/>
+<path d="M367 320 L517.3 320 C521.7 320 525.3 316.4 525.3 312 L525.3 306 C525.3 301.6 528.9 298 533.3 298 L574.6 298" fill="none"/>
+<path d="M367 322 L517.3 322 C521.7 322 525.3 325.6 525.3 330 L525.3 336 C525.3 340.4 528.9 344 533.3 344 L583 344 L768.6 344" fill="none"/>
+<path d="M367 324 L497.3 324 C501.7 324 505.3 327.6 505.3 332 L505.3 382 C505.3 386.4 508.9 390 513.3 390 L574.6 390" fill="none"/>
+<path d="M367 326 L477.3 326 C481.7 326 485.3 329.6 485.3 334 L485.3 428 C485.3 432.4 488.9 436 493.3 436 L583 436 L768.6 436" fill="none"/>
+<path d="M367 328 L457.3 328 C461.7 328 465.3 331.6 465.3 336 L465.3 474 C465.3 478.4 468.9 482 473.3 482 L574.6 482" fill="none"/>
+<path d="M367 330 L437.3 330 C441.7 330 445.3 333.6 445.3 338 L445.3 520 C445.3 524.4 448.9 528 453.3 528 L583 528 L768.6 528" fill="none"/>
+<path d="M367 332 L417.3 332 C421.7 332 425.3 335.6 425.3 340 L425.3 566 C425.3 570.4 428.9 574 433.3 574 L574.6 574" fill="none"/>
+<path d="M367 334 L397.3 334 C401.7 334 405.3 337.6 405.3 342 L405.3 612 C405.3 616.4 408.9 620 413.3 620 L583 620 L768.6 620" fill="none"/>
 </g>
-<polygon class="arrowhead" points="209,321 197,315 197,327" fill="#3b4754"/>
-<polygon class="arrowhead" points="583,22 571,16 571,28" fill="#3b4754"/>
-<polygon class="arrowhead" points="777,68 765,62 765,74" fill="#3b4754"/>
-<polygon class="arrowhead" points="583,114 571,108 571,120" fill="#3b4754"/>
-<polygon class="arrowhead" points="777,160 765,154 765,166" fill="#3b4754"/>
-<polygon class="arrowhead" points="583,206 571,200 571,212" fill="#3b4754"/>
-<polygon class="arrowhead" points="777,252 765,246 765,258" fill="#3b4754"/>
-<polygon class="arrowhead" points="583,298 571,292 571,304" fill="#3b4754"/>
-<polygon class="arrowhead" points="777,344 765,338 765,350" fill="#3b4754"/>
-<polygon class="arrowhead" points="583,390 571,384 571,396" fill="#3b4754"/>
-<polygon class="arrowhead" points="777,436 765,430 765,442" fill="#3b4754"/>
-<polygon class="arrowhead" points="583,482 571,476 571,488" fill="#3b4754"/>
-<polygon class="arrowhead" points="777,528 765,522 765,534" fill="#3b4754"/>
-<polygon class="arrowhead" points="583,574 571,568 571,580" fill="#3b4754"/>
-<polygon class="arrowhead" points="777,620 765,614 765,626" fill="#3b4754"/>
+<polygon points="209,321 197,315 197,327" fill="#3b4754"/>
+<polygon points="583,22 571,16 571,28" fill="#3b4754"/>
+<polygon points="777,68 765,62 765,74" fill="#3b4754"/>
+<polygon points="583,114 571,108 571,120" fill="#3b4754"/>
+<polygon points="777,160 765,154 765,166" fill="#3b4754"/>
+<polygon points="583,206 571,200 571,212" fill="#3b4754"/>
+<polygon points="777,252 765,246 765,258" fill="#3b4754"/>
+<polygon points="583,298 571,292 571,304" fill="#3b4754"/>
+<polygon points="777,344 765,338 765,350" fill="#3b4754"/>
+<polygon points="583,390 571,384 571,396" fill="#3b4754"/>
+<polygon points="777,436 765,430 765,442" fill="#3b4754"/>
+<polygon points="583,482 571,476 571,488" fill="#3b4754"/>
+<polygon points="777,528 765,522 765,534" fill="#3b4754"/>
+<polygon points="583,574 571,568 571,580" fill="#3b4754"/>
+<polygon points="777,620 765,614 765,626" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="299" width="165" height="44" fill="#eef2f7"/>
-<rect class="node" x="209" y="299" width="158" height="44" fill="#eef2f7"/>
-<rect class="node" x="583" y="0" width="150" height="44" fill="#eef2f7"/>
-<rect class="node" x="583" y="92" width="150" height="44" fill="#eef2f7"/>
-<rect class="node" x="583" y="184" width="150" height="44" fill="#eef2f7"/>
-<rect class="node" x="583" y="276" width="150" height="44" fill="#eef2f7"/>
-<rect class="node" x="583" y="368" width="150" height="44" fill="#eef2f7"/>
-<rect class="node" x="583" y="460" width="150" height="44" fill="#eef2f7"/>
-<rect class="node" x="583" y="552" width="150" height="44" fill="#eef2f7"/>
-<rect class="node" x="777" y="46" width="152" height="44" fill="#eef2f7"/>
-<rect class="node" x="777" y="138" width="152" height="44" fill="#eef2f7"/>
-<rect class="node" x="777" y="230" width="152" height="44" fill="#eef2f7"/>
-<rect class="node" x="777" y="322" width="152" height="44" fill="#eef2f7"/>
-<rect class="node" x="777" y="414" width="152" height="44" fill="#eef2f7"/>
-<rect class="node" x="777" y="506" width="152" height="44" fill="#eef2f7"/>
-<rect class="node" x="777" y="598" width="152" height="44" fill="#eef2f7"/>
+<rect x="0" y="299" width="165" height="44" fill="#eef2f7"/>
+<rect x="209" y="299" width="158" height="44" fill="#eef2f7"/>
+<rect x="583" y="0" width="150" height="44" fill="#eef2f7"/>
+<rect x="583" y="92" width="150" height="44" fill="#eef2f7"/>
+<rect x="583" y="184" width="150" height="44" fill="#eef2f7"/>
+<rect x="583" y="276" width="150" height="44" fill="#eef2f7"/>
+<rect x="583" y="368" width="150" height="44" fill="#eef2f7"/>
+<rect x="583" y="460" width="150" height="44" fill="#eef2f7"/>
+<rect x="583" y="552" width="150" height="44" fill="#eef2f7"/>
+<rect x="777" y="46" width="152" height="44" fill="#eef2f7"/>
+<rect x="777" y="138" width="152" height="44" fill="#eef2f7"/>
+<rect x="777" y="230" width="152" height="44" fill="#eef2f7"/>
+<rect x="777" y="322" width="152" height="44" fill="#eef2f7"/>
+<rect x="777" y="414" width="152" height="44" fill="#eef2f7"/>
+<rect x="777" y="506" width="152" height="44" fill="#eef2f7"/>
+<rect x="777" y="598" width="152" height="44" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="82.5" y="326.6">Polityka jakości</text>
-<text class="node-label" x="288" y="326.6">Księga jakości</text>
-<text class="node-label" x="658" y="27.6">Dokumenty</text>
-<text class="node-label" x="658" y="119.6">Audyty</text>
-<text class="node-label" x="658" y="211.6">CAPA</text>
-<text class="node-label" x="658" y="303.6">Zakupy</text>
-<text class="node-label" x="658" y="395.6">Walidacja</text>
-<text class="node-label" x="658" y="487.6">Ryzyko</text>
-<text class="node-label" x="658" y="579.6">Infrastruktura</text>
-<text class="node-label" x="853" y="73.6">Zapisy</text>
-<text class="node-label" x="853" y="165.6">Niezgodności</text>
-<text class="node-label" x="853" y="257.6">Szkolenia</text>
-<text class="node-label" x="853" y="349.6">Dostawcy</text>
-<text class="node-label" x="853" y="441.6">Reklamacje</text>
-<text class="node-label" x="853" y="533.6">Przegląd</text>
-<text class="node-label" x="853" y="625.6">Pomiary</text>
+<text x="82.5" y="326.6">Polityka jakości</text>
+<text x="288" y="326.6">Księga jakości</text>
+<text x="658" y="27.6">Dokumenty</text>
+<text x="658" y="119.6">Audyty</text>
+<text x="658" y="211.6">CAPA</text>
+<text x="658" y="303.6">Zakupy</text>
+<text x="658" y="395.6">Walidacja</text>
+<text x="658" y="487.6">Ryzyko</text>
+<text x="658" y="579.6">Infrastruktura</text>
+<text x="853" y="73.6">Zapisy</text>
+<text x="853" y="165.6">Niezgodności</text>
+<text x="853" y="257.6">Szkolenia</text>
+<text x="853" y="349.6">Dostawcy</text>
+<text x="853" y="441.6">Reklamacje</text>
+<text x="853" y="533.6">Przegląd</text>
+<text x="853" y="625.6">Pomiary</text>
 </g>
 </svg>

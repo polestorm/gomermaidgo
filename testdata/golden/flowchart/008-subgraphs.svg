@@ -1,54 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="349.75" height="854" viewBox="-11.88 -12 349.75 854" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-be6fa2e8"><path d="M-11.88 -12 L337.88 -12 L337.88 842 L-11.88 842 M8.13 190 L8.13 210 L250.02 210 L250.02 190 M52.38 424 L52.38 444 L143.05 444 L143.05 424 M81.3 704 L81.3 724 L270.7 724 L270.7 704 M135.98 646 L135.98 666 L216.02 666 L216.02 646"/></clipPath></defs>
 <g stroke="#8a94a3" stroke-width="1">
-<g clip-path="url(#label-holes-be6fa2e8)"><rect class="cluster" x="0.13" y="184" width="325.75" height="430" rx="4" fill="none"/>
+<g clip-path="url(#label-holes-be6fa2e8)"><rect x="0.13" y="184" width="325.75" height="430" rx="4" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-be6fa2e8)"><rect class="cluster" x="44.38" y="418" width="261.5" height="172" rx="4" fill="none"/>
+<g clip-path="url(#label-holes-be6fa2e8)"><rect x="44.38" y="418" width="261.5" height="172" rx="4" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-be6fa2e8)"><rect class="cluster" x="73.3" y="698" width="205.39" height="132" rx="4" fill="none"/>
+<g clip-path="url(#label-holes-be6fa2e8)"><rect x="73.3" y="698" width="205.39" height="132" rx="4" fill="none"/>
 </g>
 </g>
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M105.13 282 L105.13 317.6" fill="none"/>
-<g clip-path="url(#label-holes-be6fa2e8)"><path class="edge" d="M105.13 370 L105.13 386 C105.13 390.4 108.73 394 113.13 394 L167.38 394 C171.78 394 175.38 397.6 175.38 402 L175.38 418 L175.38 463.6" fill="none"/>
+<path d="M105.13 282 L105.13 317.6" fill="none"/>
+<g clip-path="url(#label-holes-be6fa2e8)"><path d="M105.13 370 L105.13 386 C105.13 390.4 108.73 394 113.13 394 L167.38 394 C171.78 394 175.38 397.6 175.38 402 L175.38 418 L175.38 463.6" fill="none"/>
 </g>
-<path class="edge" d="M134 44 L134 83.6" fill="none"/>
-<path class="edge" d="M134 136 L134 175.6" fill="none"/>
-<g clip-path="url(#label-holes-be6fa2e8)"><path class="edge" d="M175.38 566 L175.38 743.6" fill="none"/>
+<path d="M134 44 L134 83.6" fill="none"/>
+<path d="M134 136 L134 175.6" fill="none"/>
+<g clip-path="url(#label-holes-be6fa2e8)"><path d="M175.38 566 L175.38 743.6" fill="none"/>
 </g>
 </g>
-<g clip-path="url(#label-holes-be6fa2e8)"><path class="edge" d="M226 52.4 L226 136 L226 152.56 C226 156.65 222.65 160 218.56 160 L218.56 160 C214.47 160 211.13 163.35 211.13 167.44 L211.13 184 L211.13 418" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-be6fa2e8)"><path d="M226 52.4 L226 136 L226 152.56 C226 156.65 222.65 160 218.56 160 L218.56 160 C214.47 160 211.13 163.35 211.13 167.44 L211.13 184 L211.13 418" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
-<polygon class="arrowhead" points="105.13,326 99.13,314 111.13,314" fill="#3b4754"/>
-<polygon class="arrowhead" points="175.38,472 169.38,460 181.38,460" fill="#3b4754"/>
-<polygon class="arrowhead" points="134,92 128,80 140,80" fill="#3b4754"/>
-<polygon class="arrowhead" points="134,184 128,172 140,172" fill="#3b4754"/>
-<polygon class="arrowhead" points="175.38,752 169.38,740 181.38,740" fill="#3b4754"/>
-<polygon class="arrowhead" points="226,44 232,56 220,56" fill="#3b4754"/>
+<polygon points="105.13,326 99.13,314 111.13,314" fill="#3b4754"/>
+<polygon points="175.38,472 169.38,460 181.38,460" fill="#3b4754"/>
+<polygon points="134,92 128,80 140,80" fill="#3b4754"/>
+<polygon points="134,184 128,172 140,172" fill="#3b4754"/>
+<polygon points="175.38,752 169.38,740 181.38,740" fill="#3b4754"/>
+<polygon points="226,44 232,56 220,56" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="110" y="0" width="140" height="44" fill="#eef2f7"/>
-<rect class="node" x="64" y="92" width="140" height="44" fill="#eef2f7"/>
-<rect class="node" x="33.63" y="238" width="143" height="44" fill="#eef2f7"/>
-<polygon class="node" points="35.29,326 189.63,326 174.96,370 20.63,370" fill="#eef2f7"/>
-<polygon class="node" points="175.38,472 285.88,519 175.38,566 64.88,519" fill="#eef2f7"/>
-<ellipse class="node-detail" cx="176" cy="803" rx="70" ry="7" fill="#eef2f7"/>
+<rect x="110" y="0" width="140" height="44" fill="#eef2f7"/>
+<rect x="64" y="92" width="140" height="44" fill="#eef2f7"/>
+<rect x="33.63" y="238" width="143" height="44" fill="#eef2f7"/>
+<polygon points="35.29,326 189.63,326 174.96,370 20.63,370" fill="#eef2f7"/>
+<polygon points="175.38,472 285.88,519 175.38,566 64.88,519" fill="#eef2f7"/>
+<ellipse cx="176" cy="803" rx="70" ry="7" fill="#eef2f7"/>
 </g>
-<rect class="node" x="106" y="759" width="140" height="44" fill="#eef2f7"/>
+<rect x="106" y="759" width="140" height="44" fill="#eef2f7"/>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="node-detail" x1="106" y1="759" x2="106" y2="803" fill="none"/>
-<line class="node-detail" x1="246" y1="759" x2="246" y2="803" fill="none"/>
-<ellipse class="node-detail" cx="176" cy="759" rx="70" ry="7" fill="#eef2f7"/>
+<line x1="106" y1="759" x2="106" y2="803" fill="none"/>
+<line x1="246" y1="759" x2="246" y2="803" fill="none"/>
+<ellipse cx="176" cy="759" rx="70" ry="7" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="180" y="27.6">Start</text>
-<text class="node-label" x="134" y="119.6">Rejestracja</text>
-<text class="cluster-title" x="129.07" y="205.6">Nadzór pełnomocnika ds. jakości</text>
-<text class="node-label" x="105.13" y="265.6">Plan działań</text>
-<text class="node-label" x="105.13" y="353.6">Wdrożenie</text>
-<text class="cluster-title" x="97.71" y="439.6">Weryfikacja</text>
-<text class="node-label" x="175.38" y="524.6">Ocena skuteczności</text>
-<text class="cluster-title" x="176" y="719.6">Zamknięcie i archiwizacja</text>
-<text class="node-label" x="176" y="790.1">Archiwum</text>
-<text class="edge-label" x="176" y="661.6">skuteczne</text>
+<text x="180" y="27.6">Start</text>
+<text x="134" y="119.6">Rejestracja</text>
+<text x="129.07" y="205.6">Nadzór pełnomocnika ds. jakości</text>
+<text x="105.13" y="265.6">Plan działań</text>
+<text x="105.13" y="353.6">Wdrożenie</text>
+<text x="97.71" y="439.6">Weryfikacja</text>
+<text x="175.38" y="524.6">Ocena skuteczności</text>
+<text x="176" y="719.6">Zamknięcie i archiwizacja</text>
+<text x="176" y="790.1">Archiwum</text>
+<text x="176" y="661.6">skuteczne</text>
 </g>
 </svg>

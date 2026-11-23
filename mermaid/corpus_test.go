@@ -318,7 +318,7 @@ func TestCorpusValidSVG(t *testing.T) {
 		// Tryb kolorowy z cieniami zmienia tylko barwy i dokłada kształty cienia: te same teksty,
 		// ten sam dozwolony podzbiór SVG.
 		plain, _ := Render(readFile(t, f))
-		styled, err := Render(readFile(t, f), WithColors(), WithShadows())
+		styled, err := Render(readFile(t, f), WithColors(), WithShadows(), WithClasses())
 		if err != nil {
 			t.Fatalf("%s: %v", f, err)
 		}

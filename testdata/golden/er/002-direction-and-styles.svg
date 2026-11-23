@@ -2,68 +2,68 @@
 <title>Struktura organizacyjna</title>
 <defs><clipPath id="label-holes-54fc0475"><path d="M-12 -12 L910.63 -12 L910.63 202 L-12 202 M402.8 170 L402.8 190 L530.84 190 L530.84 170 M198 55 L198 75 L271.82 75 L271.82 55 M661.82 55 L661.82 75 L703.63 75 L703.63 55"/></clipPath></defs>
 <g stroke="#3b4754" stroke-width="1.5">
-<g clip-path="url(#label-holes-54fc0475)"><path class="edge" d="M458.82 130 L458.82 142 C458.82 172 474.82 172 474.82 142 L474.82 130" fill="none"/>
+<g clip-path="url(#label-holes-54fc0475)"><path d="M458.82 130 L458.82 142 C458.82 172 474.82 172 474.82 142 L474.82 130" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-54fc0475)"><path class="edge" d="M167 65 L302.82 65" fill="none"/>
+<g clip-path="url(#label-holes-54fc0475)"><path d="M167 65 L302.82 65" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-54fc0475)"><path class="edge" d="M630.82 65 L734.63 65" fill="none"/>
+<g clip-path="url(#label-holes-54fc0475)"><path d="M630.82 65 L734.63 65" fill="none"/>
 </g>
-<line class="arrowhead" x1="452.82" y1="137" x2="464.82" y2="137" fill="none"/>
-<circle class="arrowhead" cx="458.82" cy="147" r="5" fill="none"/>
-<line class="arrowhead" x1="474.82" y1="141" x2="468.82" y2="130" fill="none"/>
-<line class="arrowhead" x1="474.82" y1="141" x2="480.82" y2="130" fill="none"/>
-<circle class="arrowhead" cx="474.82" cy="150" r="5" fill="none"/>
-<line class="arrowhead" x1="174" y1="71" x2="174" y2="59" fill="none"/>
-<line class="arrowhead" x1="180" y1="71" x2="180" y2="59" fill="none"/>
-<line class="arrowhead" x1="291.82" y1="65" x2="302.82" y2="59" fill="none"/>
-<line class="arrowhead" x1="291.82" y1="65" x2="302.82" y2="71" fill="none"/>
-<circle class="arrowhead" cx="282.82" cy="65" r="5" fill="none"/>
-<line class="arrowhead" x1="641.82" y1="65" x2="630.82" y2="71" fill="none"/>
-<line class="arrowhead" x1="641.82" y1="65" x2="630.82" y2="59" fill="none"/>
-<circle class="arrowhead" cx="650.82" cy="65" r="5" fill="none"/>
-<line class="arrowhead" x1="723.63" y1="65" x2="734.63" y2="59" fill="none"/>
-<line class="arrowhead" x1="723.63" y1="65" x2="734.63" y2="71" fill="none"/>
-<circle class="arrowhead" cx="714.63" cy="65" r="5" fill="none"/>
+<line x1="452.82" y1="137" x2="464.82" y2="137" fill="none"/>
+<circle cx="458.82" cy="147" r="5" fill="none"/>
+<line x1="474.82" y1="141" x2="468.82" y2="130" fill="none"/>
+<line x1="474.82" y1="141" x2="480.82" y2="130" fill="none"/>
+<circle cx="474.82" cy="150" r="5" fill="none"/>
+<line x1="174" y1="71" x2="174" y2="59" fill="none"/>
+<line x1="180" y1="71" x2="180" y2="59" fill="none"/>
+<line x1="291.82" y1="65" x2="302.82" y2="59" fill="none"/>
+<line x1="291.82" y1="65" x2="302.82" y2="71" fill="none"/>
+<circle cx="282.82" cy="65" r="5" fill="none"/>
+<line x1="641.82" y1="65" x2="630.82" y2="71" fill="none"/>
+<line x1="641.82" y1="65" x2="630.82" y2="59" fill="none"/>
+<circle cx="650.82" cy="65" r="5" fill="none"/>
+<line x1="723.63" y1="65" x2="734.63" y2="59" fill="none"/>
+<line x1="723.63" y1="65" x2="734.63" y2="71" fill="none"/>
+<circle cx="714.63" cy="65" r="5" fill="none"/>
 </g>
 <g stroke="#3b6fb6" stroke-width="2">
-<rect class="node" x="0" y="15" width="167" height="100" fill="#e8f0fb"/>
-<rect class="node-detail" x="0" y="15" width="167" height="40" fill="#e8f0fb"/>
-<line class="node-detail" x1="0" y1="85" x2="167" y2="85" fill="none"/>
+<rect x="0" y="15" width="167" height="100" fill="#e8f0fb"/>
+<rect x="0" y="15" width="167" height="40" fill="#e8f0fb"/>
+<line x1="0" y1="85" x2="167" y2="85" fill="none"/>
 </g>
 <g stroke="#b7791f" stroke-width="1.5">
-<rect class="node" x="302.82" y="0" width="328" height="130" fill="#ffffff"/>
-<rect class="node-detail" x="302.82" y="0" width="328" height="40" fill="#ffffff"/>
+<rect x="302.82" y="0" width="328" height="130" fill="#ffffff"/>
+<rect x="302.82" y="0" width="328" height="40" fill="#ffffff"/>
 </g>
 <g stroke="#b7791f" stroke-width="1">
-<line class="node-detail" x1="302.82" y1="70" x2="630.82" y2="70" fill="none"/>
-<line class="node-detail" x1="302.82" y1="100" x2="630.82" y2="100" fill="none"/>
+<line x1="302.82" y1="70" x2="630.82" y2="70" fill="none"/>
+<line x1="302.82" y1="100" x2="630.82" y2="100" fill="none"/>
 </g>
-<rect class="node" x="734.63" y="45" width="164" height="40" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="83.5" y="40.6" text-anchor="middle" fill="#1b1f24">DZIAL</text>
+<rect x="734.63" y="45" width="164" height="40" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<text x="83.5" y="40.6" text-anchor="middle" fill="#1b1f24">DZIAL</text>
 <g fill="#1b1f24">
-<text class="attribute" x="10" y="75.6">int</text>
-<text class="attribute" x="69.13" y="75.6">id</text>
-<text class="attribute" x="135.38" y="75.6">PK</text>
-<text class="attribute" x="10" y="105.6">string</text>
-<text class="attribute" x="69.13" y="105.6">nazwa</text>
+<text x="10" y="75.6">int</text>
+<text x="69.13" y="75.6">id</text>
+<text x="135.38" y="75.6">PK</text>
+<text x="10" y="105.6">string</text>
+<text x="69.13" y="105.6">nazwa</text>
 </g>
-<text class="node-label" x="466.82" y="25.6" text-anchor="middle" fill="#1b1f24">PRACOWNIK</text>
+<text x="466.82" y="25.6" text-anchor="middle" fill="#1b1f24">PRACOWNIK</text>
 <g fill="#1b1f24">
-<text class="attribute" x="312.82" y="60.6">int</text>
-<text class="attribute" x="349.72" y="60.6">id</text>
-<text class="attribute" x="468.45" y="60.6">PK</text>
-<text class="attribute" x="312.82" y="90.6">int</text>
-<text class="attribute" x="349.72" y="90.6">dzial_id</text>
-<text class="attribute" x="468.45" y="90.6">FK</text>
-<text class="attribute" x="312.82" y="120.6">int</text>
-<text class="attribute" x="349.72" y="120.6">przelozony_id</text>
-<text class="attribute" x="468.45" y="120.6">FK</text>
-<text class="attribute" x="509.79" y="120.6">może być pusty</text>
+<text x="312.82" y="60.6">int</text>
+<text x="349.72" y="60.6">id</text>
+<text x="468.45" y="60.6">PK</text>
+<text x="312.82" y="90.6">int</text>
+<text x="349.72" y="90.6">dzial_id</text>
+<text x="468.45" y="90.6">FK</text>
+<text x="312.82" y="120.6">int</text>
+<text x="349.72" y="120.6">przelozony_id</text>
+<text x="468.45" y="120.6">FK</text>
+<text x="509.79" y="120.6">może być pusty</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="edge-label" x="466.82" y="185.6">jest przełożonym</text>
-<text class="node-label" x="816.63" y="70.6">Rola w systemie</text>
-<text class="edge-label" x="234.91" y="70.6">zatrudnia</text>
-<text class="edge-label" x="682.72" y="70.6">pełni</text>
+<text x="466.82" y="185.6">jest przełożonym</text>
+<text x="816.63" y="70.6">Rola w systemie</text>
+<text x="234.91" y="70.6">zatrudnia</text>
+<text x="682.72" y="70.6">pełni</text>
 </g>
 </svg>

@@ -56,7 +56,7 @@ func TestInputAndOutput(t *testing.T) {
 	if out, _, err := start(t, "", in); err != nil || !strings.HasPrefix(out, "<svg ") {
 		t.Errorf("argument without -o should write SVG to stdout: %v", err)
 	}
-	if out, _, err := start(t, "pie\n\"a\": 1"); err != nil || !strings.Contains(out, "pie-slice") {
+	if out, _, err := start(t, "pie\n\"a\": 1"); err != nil || !strings.Contains(out, "<svg") || !strings.Contains(out, "</svg>") {
 		t.Errorf("stdin to stdout: %v", err)
 	}
 	if out, _, err := start(t, "", "--input", in); err != nil || out != "" {
@@ -221,5 +221,20 @@ func TestFitFlag(t *testing.T) {
 	}
 	if _, _, err := start(t, src, "-fit", "maybe"); err == nil {
 		t.Errorf("unknown -fit mode: want an error")
+	}
+}
+
+// REQ: COM-009
+func TestClassesFlag(t *testing.T) {
+	plain, _, err := start(t, "pie\n\"a\": 1")
+	if err != nil {
+		t.Fatal(err)
+	}
+	with, _, err := start(t, "pie\n\"a\": 1", "-classes")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(plain, "class=") || !strings.Contains(with, `class="pie-slice"`) {
+		t.Errorf("-classes should add class attributes, and only with the flag")
 	}
 }

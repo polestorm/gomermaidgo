@@ -1,81 +1,81 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="900.29" height="364" viewBox="-12 -208 900.29 364" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-12" y="-208" width="900.29" height="364" fill="white"/>
-<rect class="ishikawa-effect" x="724.22" y="-22" width="152.07" height="44" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="2"/>
-<line class="ishikawa-spine" x1="215.19" y1="0" x2="712.22" y2="0" fill="none" stroke="#3b4754" stroke-width="2.5"/>
-<polygon class="ishikawa-spine" points="724.22,0 712.22,-6 712.22,6" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<rect x="724.22" y="-22" width="152.07" height="44" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="2"/>
+<line x1="215.19" y1="0" x2="712.22" y2="0" fill="none" stroke="#3b4754" stroke-width="2.5"/>
+<polygon points="724.22,0 712.22,-6 712.22,6" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="ishikawa-bone" x1="157.19" y1="-164" x2="239.19" y2="0" fill="none"/>
-<rect class="ishikawa-category" x="116.73" y="-196" width="80.91" height="32" rx="4" fill="#eef2f7"/>
+<line x1="157.19" y1="-164" x2="239.19" y2="0" fill="none"/>
+<rect x="116.73" y="-196" width="80.91" height="32" rx="4" fill="#eef2f7"/>
 </g>
 <g stroke="#9aa5b1" stroke-width="1">
-<line class="ishikawa-cause" x1="34.22" y1="-112" x2="183.19" y2="-112" fill="none"/>
-<line class="ishikawa-cause" x1="110.94" y1="-60" x2="209.19" y2="-60" fill="none"/>
-<line class="ishikawa-cause" x1="124.94" y1="-60" x2="124.94" y2="-28" fill="none"/>
-<line class="ishikawa-cause" x1="0" y1="-28" x2="124.94" y2="-28" fill="none"/>
+<line x1="34.22" y1="-112" x2="183.19" y2="-112" fill="none"/>
+<line x1="110.94" y1="-60" x2="209.19" y2="-60" fill="none"/>
+<line x1="124.94" y1="-60" x2="124.94" y2="-28" fill="none"/>
+<line x1="0" y1="-28" x2="124.94" y2="-28" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="ishikawa-bone" x1="255.19" y1="112" x2="311.19" y2="0" fill="none"/>
-<rect class="ishikawa-category" x="212.95" y="112" width="84.48" height="32" rx="4" fill="#eef2f7"/>
+<line x1="255.19" y1="112" x2="311.19" y2="0" fill="none"/>
+<rect x="212.95" y="112" width="84.48" height="32" rx="4" fill="#eef2f7"/>
 </g>
 <g stroke="#9aa5b1" stroke-width="1">
-<line class="ishikawa-cause" x1="126.9" y1="60" x2="281.19" y2="60" fill="none"/>
-<line class="ishikawa-cause" x1="120.7" y1="92" x2="265.19" y2="92" fill="none"/>
+<line x1="126.9" y1="60" x2="281.19" y2="60" fill="none"/>
+<line x1="120.7" y1="92" x2="265.19" y2="92" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="ishikawa-bone" x1="301.19" y1="-164" x2="383.19" y2="0" fill="none"/>
-<rect class="ishikawa-category" x="262.5" y="-196" width="77.37" height="32" rx="4" fill="#eef2f7"/>
+<line x1="301.19" y1="-164" x2="383.19" y2="0" fill="none"/>
+<rect x="262.5" y="-196" width="77.37" height="32" rx="4" fill="#eef2f7"/>
 </g>
-<line class="ishikawa-cause" x1="218.26" y1="-112" x2="327.19" y2="-112" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line x1="218.26" y1="-112" x2="327.19" y2="-112" fill="none" stroke="#9aa5b1" stroke-width="1"/>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="ishikawa-bone" x1="443.92" y1="112" x2="499.92" y2="0" fill="none"/>
-<rect class="ishikawa-category" x="407.01" y="112" width="73.82" height="32" rx="4" fill="#eef2f7"/>
+<line x1="443.92" y1="112" x2="499.92" y2="0" fill="none"/>
+<rect x="407.01" y="112" width="73.82" height="32" rx="4" fill="#eef2f7"/>
 </g>
-<line class="ishikawa-cause" x1="327.19" y1="60" x2="469.92" y2="60" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line x1="327.19" y1="60" x2="469.92" y2="60" fill="none" stroke="#9aa5b1" stroke-width="1"/>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="ishikawa-bone" x1="489.92" y1="-164" x2="571.92" y2="0" fill="none"/>
-<rect class="ishikawa-category" x="429.01" y="-196" width="121.82" height="32" rx="4" fill="#eef2f7"/>
+<line x1="489.92" y1="-164" x2="571.92" y2="0" fill="none"/>
+<rect x="429.01" y="-196" width="121.82" height="32" rx="4" fill="#eef2f7"/>
 </g>
-<line class="ishikawa-cause" x1="366.98" y1="-112" x2="515.92" y2="-112" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line x1="366.98" y1="-112" x2="515.92" y2="-112" fill="none" stroke="#9aa5b1" stroke-width="1"/>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="ishikawa-bone" x1="627.31" y1="112" x2="683.31" y2="0" fill="none"/>
-<rect class="ishikawa-category" x="570.4" y="112" width="113.82" height="32" rx="4" fill="#eef2f7"/>
+<line x1="627.31" y1="112" x2="683.31" y2="0" fill="none"/>
+<rect x="570.4" y="112" width="113.82" height="32" rx="4" fill="#eef2f7"/>
 </g>
-<line class="ishikawa-cause" x1="515.92" y1="60" x2="653.31" y2="60" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line x1="515.92" y1="60" x2="653.31" y2="60" fill="none" stroke="#9aa5b1" stroke-width="1"/>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="ishikawa-effect-label" x="800.26" y="5.6" font-weight="bold">Cracked housing</text>
-<text class="ishikawa-category-label" x="157.19" y="-174.4" font-weight="bold">Material</text>
+<text x="800.26" y="5.6" font-weight="bold">Cracked housing</text>
+<text x="157.19" y="-174.4" font-weight="bold">Material</text>
 </g>
 <g fill="#1b1f24" text-anchor="end">
-<text class="ishikawa-cause-label" x="153.19" y="-138.4">Resin batch out of</text>
-<text class="ishikawa-cause-label" x="153.19" y="-118.4">specification</text>
-<text class="ishikawa-cause-label" x="179.19" y="-86.4">Moisture in</text>
-<text class="ishikawa-cause-label" x="179.19" y="-66.4">granulate</text>
-<text class="ishikawa-cause-label" x="114.94" y="-34.4">Dryer not used</text>
+<text x="153.19" y="-138.4">Resin batch out of</text>
+<text x="153.19" y="-118.4">specification</text>
+<text x="179.19" y="-86.4">Moisture in</text>
+<text x="179.19" y="-66.4">granulate</text>
+<text x="114.94" y="-34.4">Dryer not used</text>
 </g>
-<text class="ishikawa-category-label" x="255.19" y="133.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Machine</text>
+<text x="255.19" y="133.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Machine</text>
 <g fill="#1b1f24" text-anchor="end">
-<text class="ishikawa-cause-label" x="251.19" y="33.6">Mould temperature</text>
-<text class="ishikawa-cause-label" x="251.19" y="53.6">drift</text>
-<text class="ishikawa-cause-label" x="245.19" y="85.6">Worn ejector pins</text>
+<text x="251.19" y="33.6">Mould temperature</text>
+<text x="251.19" y="53.6">drift</text>
+<text x="245.19" y="85.6">Worn ejector pins</text>
 </g>
-<text class="ishikawa-category-label" x="301.19" y="-174.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Method</text>
+<text x="301.19" y="-174.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Method</text>
 <g fill="#1b1f24" text-anchor="end">
-<text class="ishikawa-cause-label" x="297.19" y="-138.4">Cooling time</text>
-<text class="ishikawa-cause-label" x="297.19" y="-118.4">shortened</text>
+<text x="297.19" y="-138.4">Cooling time</text>
+<text x="297.19" y="-118.4">shortened</text>
 </g>
-<text class="ishikawa-category-label" x="443.92" y="133.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">People</text>
+<text x="443.92" y="133.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">People</text>
 <g fill="#1b1f24" text-anchor="end">
-<text class="ishikawa-cause-label" x="439.92" y="33.6">New operator not</text>
-<text class="ishikawa-cause-label" x="439.92" y="53.6">trained</text>
+<text x="439.92" y="33.6">New operator not</text>
+<text x="439.92" y="53.6">trained</text>
 </g>
-<text class="ishikawa-category-label" x="489.92" y="-174.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Measurement</text>
+<text x="489.92" y="-174.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Measurement</text>
 <g fill="#1b1f24" text-anchor="end">
-<text class="ishikawa-cause-label" x="485.92" y="-138.4">Wall thickness not</text>
-<text class="ishikawa-cause-label" x="485.92" y="-118.4">checked</text>
+<text x="485.92" y="-138.4">Wall thickness not</text>
+<text x="485.92" y="-118.4">checked</text>
 </g>
-<text class="ishikawa-category-label" x="627.31" y="133.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Environment</text>
+<text x="627.31" y="133.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Environment</text>
 <g fill="#1b1f24" text-anchor="end">
-<text class="ishikawa-cause-label" x="623.31" y="33.6">Cold storage</text>
-<text class="ishikawa-cause-label" x="623.31" y="53.6">before assembly</text>
+<text x="623.31" y="33.6">Cold storage</text>
+<text x="623.31" y="53.6">before assembly</text>
 </g>
 </svg>

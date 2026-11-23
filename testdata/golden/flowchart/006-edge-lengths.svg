@@ -1,53 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="816" height="448" viewBox="-11.5 -12 816 448" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-bdb913fb"><path d="M-11.5 -12 L804.5 -12 L804.5 436 L-11.5 436 M519.59 69 L519.59 89 L566.74 89 L566.74 69"/></clipPath></defs>
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M340.67 44 L340.67 66.3 C340.67 70.7 337.07 74.3 332.67 74.3 L54 74.3 C49.6 74.3 46 77.9 46 82.3 L46 195.6" fill="none"/>
-<path class="edge" d="M349 44 L349 86.3 C349 90.7 345.4 94.3 341 94.3 L121 94.3 C116.6 94.3 113 97.9 113 102.3 L113 204 L113 248 L113 252.3 C113 256.7 109.4 260.3 105 260.3 L72 260.3 C67.6 260.3 64 263.9 64 268.3 L64 283.6" fill="none"/>
-<path class="edge" d="M357.33 44 L357.33 106.3 C357.33 110.7 353.73 114.3 349.33 114.3 L139 114.3 C134.6 114.3 131 117.9 131 122.3 L131 204 L131 371.6" fill="none"/>
-<path class="edge" d="M365.67 44 L365.67 126.3 C365.67 130.7 362.07 134.3 357.67 134.3 L207 134.3 C202.6 134.3 199 137.9 199 142.3 L199 204 L199 292" fill="none"/>
+<path d="M340.67 44 L340.67 66.3 C340.67 70.7 337.07 74.3 332.67 74.3 L54 74.3 C49.6 74.3 46 77.9 46 82.3 L46 195.6" fill="none"/>
+<path d="M349 44 L349 86.3 C349 90.7 345.4 94.3 341 94.3 L121 94.3 C116.6 94.3 113 97.9 113 102.3 L113 204 L113 248 L113 252.3 C113 256.7 109.4 260.3 105 260.3 L72 260.3 C67.6 260.3 64 263.9 64 268.3 L64 283.6" fill="none"/>
+<path d="M357.33 44 L357.33 106.3 C357.33 110.7 353.73 114.3 349.33 114.3 L139 114.3 C134.6 114.3 131 117.9 131 122.3 L131 204 L131 371.6" fill="none"/>
+<path d="M365.67 44 L365.67 126.3 C365.67 130.7 362.07 134.3 357.67 134.3 L207 134.3 C202.6 134.3 199 137.9 199 142.3 L199 204 L199 292" fill="none"/>
 </g>
 <g stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
-<path class="edge" d="M374 44 L374 146.3 C374 150.7 370.4 154.3 366 154.3 L346 154.3 C341.6 154.3 338 157.9 338 162.3 L338 204 L338 283.6" fill="none"/>
-<path class="edge" d="M382.33 44 L382.33 146.3 C382.33 150.7 385.93 154.3 390.33 154.3 L397 154.3 C401.4 154.3 405 157.9 405 162.3 L405 204 L405 380" fill="none"/>
+<path d="M374 44 L374 146.3 C374 150.7 370.4 154.3 366 154.3 L346 154.3 C341.6 154.3 338 157.9 338 162.3 L338 204 L338 283.6" fill="none"/>
+<path d="M382.33 44 L382.33 146.3 C382.33 150.7 385.93 154.3 390.33 154.3 L397 154.3 C401.4 154.3 405 157.9 405 162.3 L405 204 L405 380" fill="none"/>
 </g>
 <g stroke="#3b4754" stroke-width="3">
-<path class="edge" d="M390.67 44 L390.67 126.3 C390.67 130.7 394.27 134.3 398.67 134.3 L465 134.3 C469.4 134.3 473 137.9 473 142.3 L473 204 L473 283.6" fill="none"/>
-<g clip-path="url(#label-holes-bdb913fb)"><path class="edge" d="M399 44 L399 106.3 C399 110.7 402.6 114.3 407 114.3 L604 114.3 C608.4 114.3 612 117.9 612 122.3 L612 204 L612 292" fill="none"/>
+<path d="M390.67 44 L390.67 126.3 C390.67 130.7 394.27 134.3 398.67 134.3 L465 134.3 C469.4 134.3 473 137.9 473 142.3 L473 204 L473 283.6" fill="none"/>
+<g clip-path="url(#label-holes-bdb913fb)"><path d="M399 44 L399 106.3 C399 110.7 402.6 114.3 407 114.3 L604 114.3 C608.4 114.3 612 117.9 612 122.3 L612 204 L612 292" fill="none"/>
 </g>
 </g>
-<g clip-path="url(#label-holes-bdb913fb)"><path class="edge" d="M407.33 44 L407.33 71 C407.33 75.4 410.93 79 415.33 79 L671 79 C675.4 79 679 82.6 679 87 L679 204 L679 371.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-bdb913fb)"><path d="M407.33 44 L407.33 71 C407.33 75.4 410.93 79 415.33 79 L671 79 C675.4 79 679 82.6 679 87 L679 204 L679 371.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<polygon class="arrowhead" points="46,204 40,192 52,192" fill="#3b4754"/>
-<polygon class="arrowhead" points="64,292 58,280 70,280" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,380 125,368 137,368" fill="#3b4754"/>
-<polygon class="arrowhead" points="338,292 332,280 344,280" fill="#3b4754"/>
-<polygon class="arrowhead" points="473,292 467,280 479,280" fill="#3b4754"/>
-<polygon class="arrowhead" points="679,380 673,368 685,368" fill="#3b4754"/>
+<polygon points="46,204 40,192 52,192" fill="#3b4754"/>
+<polygon points="64,292 58,280 70,280" fill="#3b4754"/>
+<polygon points="131,380 125,368 137,368" fill="#3b4754"/>
+<polygon points="338,292 332,280 344,280" fill="#3b4754"/>
+<polygon points="473,292 467,280 479,280" fill="#3b4754"/>
+<polygon points="679,380 673,368 685,368" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="328.5" y="0" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="0.5" y="204" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="18.5" y="292" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="153.5" y="292" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="292.5" y="292" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="427.5" y="292" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="566.5" y="292" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="701.5" y="292" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="85.5" y="380" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="359.5" y="380" width="91" height="44" fill="#eef2f7"/>
-<rect class="node" x="633.5" y="380" width="91" height="44" fill="#eef2f7"/>
+<rect x="328.5" y="0" width="91" height="44" fill="#eef2f7"/>
+<rect x="0.5" y="204" width="91" height="44" fill="#eef2f7"/>
+<rect x="18.5" y="292" width="91" height="44" fill="#eef2f7"/>
+<rect x="153.5" y="292" width="91" height="44" fill="#eef2f7"/>
+<rect x="292.5" y="292" width="91" height="44" fill="#eef2f7"/>
+<rect x="427.5" y="292" width="91" height="44" fill="#eef2f7"/>
+<rect x="566.5" y="292" width="91" height="44" fill="#eef2f7"/>
+<rect x="701.5" y="292" width="91" height="44" fill="#eef2f7"/>
+<rect x="85.5" y="380" width="91" height="44" fill="#eef2f7"/>
+<rect x="359.5" y="380" width="91" height="44" fill="#eef2f7"/>
+<rect x="633.5" y="380" width="91" height="44" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="374" y="27.6">A</text>
-<text class="node-label" x="46" y="231.6">B</text>
-<text class="node-label" x="64" y="319.6">C</text>
-<text class="node-label" x="199" y="319.6">E</text>
-<text class="node-label" x="338" y="319.6">F</text>
-<text class="node-label" x="473" y="319.6">H</text>
-<text class="node-label" x="612" y="319.6">I</text>
-<text class="node-label" x="747" y="319.6">K</text>
-<text class="node-label" x="131" y="407.6">D</text>
-<text class="node-label" x="405" y="407.6">G</text>
-<text class="node-label" x="679" y="407.6">J</text>
-<text class="edge-label" x="543.17" y="84.6">długa</text>
+<text x="374" y="27.6">A</text>
+<text x="46" y="231.6">B</text>
+<text x="64" y="319.6">C</text>
+<text x="199" y="319.6">E</text>
+<text x="338" y="319.6">F</text>
+<text x="473" y="319.6">H</text>
+<text x="612" y="319.6">I</text>
+<text x="747" y="319.6">K</text>
+<text x="131" y="407.6">D</text>
+<text x="405" y="407.6">G</text>
+<text x="679" y="407.6">J</text>
+<text x="543.17" y="84.6">długa</text>
 </g>
 </svg>

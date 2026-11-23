@@ -2,82 +2,82 @@
 <title>Corrective and preventive action</title>
 <rect x="7" y="-12" width="491.5" height="1404" fill="white"/>
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M131 64 L131 103.6" fill="none"/>
-<path class="edge" d="M131 156 L131 191.6" fill="none"/>
-<path class="edge" d="M131 244 L131 279.6" fill="none"/>
-<path class="edge" d="M131 332 L131 367.6" fill="none"/>
-<path class="edge" d="M131 420 L131 455.6" fill="none"/>
-<path class="edge" d="M131 508 L131 543.6" fill="none"/>
-<path class="edge" d="M131 596 L131 631.6" fill="none"/>
-<path class="edge" d="M131 684 L131 719.6" fill="none"/>
-<path class="edge" d="M131 772 L131 807.6" fill="none"/>
-<path class="edge" d="M131 860 L131 895.6" fill="none"/>
-<path class="edge" d="M131 948 L131 983.6" fill="none"/>
-<path class="edge" d="M131 1036 L131 1071.6" fill="none"/>
-<path class="edge" d="M66 1118 L27 1118 C22.6 1118 19 1121.6 19 1126 L19 1156 L19 1288 L19 1298.3 C19 1302.7 22.6 1306.3 27 1306.3 L99 1306.3 C103.4 1306.3 107 1309.9 107 1314.3 L107 1327.6" fill="none"/>
-<path class="edge" d="M131 1156 L131 1235.6" fill="none"/>
-<path class="edge" d="M196 1118 L350 1118 C354.4 1118 358 1121.6 358 1126 L358 1156 L358 1235.6" fill="none"/>
-<path class="edge" d="M131 1288 L131 1327.6" fill="none"/>
-<path class="edge" d="M262 72.4 L262 89.7 C262 94.1 265.6 97.7 270 97.7 L370 97.7 C374.4 97.7 378 101.3 378 105.7 L378 112 L378 1244" fill="none"/>
+<path d="M131 64 L131 103.6" fill="none"/>
+<path d="M131 156 L131 191.6" fill="none"/>
+<path d="M131 244 L131 279.6" fill="none"/>
+<path d="M131 332 L131 367.6" fill="none"/>
+<path d="M131 420 L131 455.6" fill="none"/>
+<path d="M131 508 L131 543.6" fill="none"/>
+<path d="M131 596 L131 631.6" fill="none"/>
+<path d="M131 684 L131 719.6" fill="none"/>
+<path d="M131 772 L131 807.6" fill="none"/>
+<path d="M131 860 L131 895.6" fill="none"/>
+<path d="M131 948 L131 983.6" fill="none"/>
+<path d="M131 1036 L131 1071.6" fill="none"/>
+<path d="M66 1118 L27 1118 C22.6 1118 19 1121.6 19 1126 L19 1156 L19 1288 L19 1298.3 C19 1302.7 22.6 1306.3 27 1306.3 L99 1306.3 C103.4 1306.3 107 1309.9 107 1314.3 L107 1327.6" fill="none"/>
+<path d="M131 1156 L131 1235.6" fill="none"/>
+<path d="M196 1118 L350 1118 C354.4 1118 358 1121.6 358 1126 L358 1156 L358 1235.6" fill="none"/>
+<path d="M131 1288 L131 1327.6" fill="none"/>
+<path d="M262 72.4 L262 89.7 C262 94.1 265.6 97.7 270 97.7 L370 97.7 C374.4 97.7 378 101.3 378 105.7 L378 112 L378 1244" fill="none"/>
 </g>
-<rect class="edge-label-background" x="45.21" y="1296.3" width="35.57" height="20" fill="white"/>
-<rect class="edge-label-background" x="106.55" y="1188" width="48.9" height="20" fill="white"/>
-<rect class="edge-label-background" x="262.77" y="1108" width="28.45" height="20" fill="white"/>
-<polygon class="arrowhead" points="131,112 125,100 137,100" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,200 125,188 137,188" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,288 125,276 137,276" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,376 125,364 137,364" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,464 125,452 137,452" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,552 125,540 137,540" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,640 125,628 137,628" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,728 125,716 137,716" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,816 125,804 137,804" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,904 125,892 137,892" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,992 125,980 137,980" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,1080 125,1068 137,1068" fill="#3b4754"/>
-<polygon class="arrowhead" points="107,1336 101,1324 113,1324" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,1244 125,1232 137,1232" fill="#3b4754"/>
-<polygon class="arrowhead" points="358,1244 352,1232 364,1232" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,1336 125,1324 137,1324" fill="#3b4754"/>
-<polygon class="arrowhead" points="262,64 268,76 256,76" fill="#3b4754"/>
+<rect x="45.21" y="1296.3" width="35.57" height="20" fill="white"/>
+<rect x="106.55" y="1188" width="48.9" height="20" fill="white"/>
+<rect x="262.77" y="1108" width="28.45" height="20" fill="white"/>
+<polygon points="131,112 125,100 137,100" fill="#3b4754"/>
+<polygon points="131,200 125,188 137,188" fill="#3b4754"/>
+<polygon points="131,288 125,276 137,276" fill="#3b4754"/>
+<polygon points="131,376 125,364 137,364" fill="#3b4754"/>
+<polygon points="131,464 125,452 137,452" fill="#3b4754"/>
+<polygon points="131,552 125,540 137,540" fill="#3b4754"/>
+<polygon points="131,640 125,628 137,628" fill="#3b4754"/>
+<polygon points="131,728 125,716 137,716" fill="#3b4754"/>
+<polygon points="131,816 125,804 137,804" fill="#3b4754"/>
+<polygon points="131,904 125,892 137,892" fill="#3b4754"/>
+<polygon points="131,992 125,980 137,980" fill="#3b4754"/>
+<polygon points="131,1080 125,1068 137,1068" fill="#3b4754"/>
+<polygon points="107,1336 101,1324 113,1324" fill="#3b4754"/>
+<polygon points="131,1244 125,1232 137,1232" fill="#3b4754"/>
+<polygon points="358,1244 352,1232 364,1232" fill="#3b4754"/>
+<polygon points="131,1336 125,1324 137,1324" fill="#3b4754"/>
+<polygon points="262,64 268,76 256,76" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="88.5" y="0" width="217" height="64" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="112" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="200" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="288" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="376" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="464" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="552" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="640" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="728" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="816" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="904" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="22.5" y="992" width="217" height="44" fill="#eef2f7"/>
-<polygon class="node" points="131,1080 196,1118 131,1156 66,1118" fill="#eef2f7"/>
-<rect class="node" x="40.5" y="1244" width="181" height="44" fill="#eef2f7"/>
-<rect class="node" x="269.5" y="1244" width="217" height="44" fill="#eef2f7"/>
-<rect class="node" x="57" y="1336" width="140" height="44" fill="#eef2f7"/>
+<rect x="88.5" y="0" width="217" height="64" fill="#eef2f7"/>
+<rect x="22.5" y="112" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="200" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="288" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="376" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="464" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="552" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="640" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="728" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="816" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="904" width="217" height="44" fill="#eef2f7"/>
+<rect x="22.5" y="992" width="217" height="44" fill="#eef2f7"/>
+<polygon points="131,1080 196,1118 131,1156 66,1118" fill="#eef2f7"/>
+<rect x="40.5" y="1244" width="181" height="44" fill="#eef2f7"/>
+<rect x="269.5" y="1244" width="217" height="44" fill="#eef2f7"/>
+<rect x="57" y="1336" width="140" height="44" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="197" y="27.6">Nonconformity</text>
-<text class="node-label" x="197" y="47.6">reported</text>
-<text class="node-label" x="131" y="139.6">Registration</text>
-<text class="node-label" x="131" y="227.6">Product isolation</text>
-<text class="node-label" x="131" y="315.6">Risk assessment</text>
-<text class="node-label" x="131" y="403.6">Root cause analysis</text>
-<text class="node-label" x="131" y="491.6">Action plan</text>
-<text class="node-label" x="131" y="579.6">Implementation</text>
-<text class="node-label" x="131" y="667.6">Staff training</text>
-<text class="node-label" x="131" y="755.6">Documentation update</text>
-<text class="node-label" x="131" y="843.6">Monitoring</text>
-<text class="node-label" x="131" y="931.6">Effectiveness check</text>
-<text class="node-label" x="131" y="1019.6">CAPA report</text>
-<text class="node-label" x="131" y="1123.6">Effective?</text>
-<text class="node-label" x="131" y="1271.6">Additional actions</text>
-<text class="node-label" x="378" y="1271.6">Escalation</text>
-<text class="node-label" x="127" y="1363.6">Closure</text>
-<text class="edge-label" x="63" y="1311.9">Yes</text>
-<text class="edge-label" x="131" y="1203.6">Partly</text>
-<text class="edge-label" x="277" y="1123.6">No</text>
+<text x="197" y="27.6">Nonconformity</text>
+<text x="197" y="47.6">reported</text>
+<text x="131" y="139.6">Registration</text>
+<text x="131" y="227.6">Product isolation</text>
+<text x="131" y="315.6">Risk assessment</text>
+<text x="131" y="403.6">Root cause analysis</text>
+<text x="131" y="491.6">Action plan</text>
+<text x="131" y="579.6">Implementation</text>
+<text x="131" y="667.6">Staff training</text>
+<text x="131" y="755.6">Documentation update</text>
+<text x="131" y="843.6">Monitoring</text>
+<text x="131" y="931.6">Effectiveness check</text>
+<text x="131" y="1019.6">CAPA report</text>
+<text x="131" y="1123.6">Effective?</text>
+<text x="131" y="1271.6">Additional actions</text>
+<text x="378" y="1271.6">Escalation</text>
+<text x="127" y="1363.6">Closure</text>
+<text x="63" y="1311.9">Yes</text>
+<text x="131" y="1203.6">Partly</text>
+<text x="277" y="1123.6">No</text>
 </g>
 </svg>

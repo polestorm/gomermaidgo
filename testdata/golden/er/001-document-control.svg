@@ -1,147 +1,147 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="872.5" height="682" viewBox="-12 -12 872.5 682" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-fb901ea0"><path d="M-12 -12 L860.5 -12 L860.5 670 L-12 670 M205.55 192 L205.55 212 L286.45 212 L286.45 192 M373.25 192 L373.25 212 L449.75 212 L449.75 192 M278.71 497.5 L278.71 517.5 L346.29 517.5 L346.29 497.5 M77.08 476 L77.08 496 L182.92 496 L182.92 476 M492.75 497.5 L492.75 517.5 L569.25 517.5 L569.25 497.5 M691.98 476 L691.98 496 L756.02 496 L756.02 476"/></clipPath></defs>
 <g stroke="#3b4754" stroke-width="1.5">
-<g clip-path="url(#label-holes-fb901ea0)"><path class="edge" d="M309 160 L309 194 C309 198.4 305.4 202 301 202 L191 202 C186.6 202 183 205.6 183 210 L183 244" fill="none"/>
+<g clip-path="url(#label-holes-fb901ea0)"><path d="M309 160 L309 194 C309 198.4 305.4 202 301 202 L191 202 C186.6 202 183 205.6 183 210 L183 244" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-fb901ea0)"><path class="edge" d="M349 160 L349 194 C349 198.4 352.6 202 357 202 L466 202 C470.4 202 474 205.6 474 210 L474 304" fill="none"/>
+<g clip-path="url(#label-holes-fb901ea0)"><path d="M349 160 L349 194 C349 198.4 352.6 202 357 202 L466 202 C470.4 202 474 205.6 474 210 L474 304" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-fb901ea0)"><path class="edge" d="M236 404 L236 498 L236 499.5 C236 503.9 239.6 507.5 244 507.5 L381 507.5 C385.4 507.5 389 511.1 389 515.5 L389 528" fill="none"/>
+<g clip-path="url(#label-holes-fb901ea0)"><path d="M236 404 L236 498 L236 499.5 C236 503.9 239.6 507.5 244 507.5 L381 507.5 C385.4 507.5 389 511.1 389 515.5 L389 528" fill="none"/>
 </g>
 </g>
-<g clip-path="url(#label-holes-fb901ea0)"><path class="edge" d="M130 404 L130 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-fb901ea0)"><path d="M130 404 L130 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
-<g clip-path="url(#label-holes-fb901ea0)"><path class="edge" d="M633 374 L633 498 L633 499.5 C633 503.9 629.4 507.5 625 507.5 L437 507.5 C432.6 507.5 429 511.1 429 515.5 L429 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-fb901ea0)"><path d="M633 374 L633 498 L633 499.5 C633 503.9 629.4 507.5 625 507.5 L437 507.5 C432.6 507.5 429 511.1 429 515.5 L429 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-fb901ea0)"><path class="edge" d="M724 374 L724 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-fb901ea0)"><path d="M724 374 L724 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
 <g stroke="#3b4754" stroke-width="1.5">
-<line class="arrowhead" x1="315" y1="167" x2="303" y2="167" fill="none"/>
-<line class="arrowhead" x1="315" y1="173" x2="303" y2="173" fill="none"/>
-<line class="arrowhead" x1="183" y1="233" x2="177" y2="244" fill="none"/>
-<line class="arrowhead" x1="183" y1="233" x2="189" y2="244" fill="none"/>
-<line class="arrowhead" x1="177" y1="228" x2="189" y2="228" fill="none"/>
-<line class="arrowhead" x1="349" y1="171" x2="355" y2="160" fill="none"/>
-<line class="arrowhead" x1="349" y1="171" x2="343" y2="160" fill="none"/>
-<circle class="arrowhead" cx="349" cy="180" r="5" fill="none"/>
-<line class="arrowhead" x1="468" y1="297" x2="480" y2="297" fill="none"/>
-<line class="arrowhead" x1="468" y1="291" x2="480" y2="291" fill="none"/>
-<line class="arrowhead" x1="242" y1="411" x2="230" y2="411" fill="none"/>
-<line class="arrowhead" x1="242" y1="417" x2="230" y2="417" fill="none"/>
-<line class="arrowhead" x1="389" y1="517" x2="383" y2="528" fill="none"/>
-<line class="arrowhead" x1="389" y1="517" x2="395" y2="528" fill="none"/>
-<circle class="arrowhead" cx="389" cy="508" r="5" fill="none"/>
-<line class="arrowhead" x1="130" y1="415" x2="136" y2="404" fill="none"/>
-<line class="arrowhead" x1="130" y1="415" x2="124" y2="404" fill="none"/>
-<circle class="arrowhead" cx="130" cy="424" r="5" fill="none"/>
-<line class="arrowhead" x1="130" y1="562" x2="124" y2="573" fill="none"/>
-<line class="arrowhead" x1="130" y1="562" x2="136" y2="573" fill="none"/>
-<circle class="arrowhead" cx="130" cy="553" r="5" fill="none"/>
-<line class="arrowhead" x1="639" y1="381" x2="627" y2="381" fill="none"/>
-<line class="arrowhead" x1="639" y1="387" x2="627" y2="387" fill="none"/>
-<line class="arrowhead" x1="429" y1="517" x2="423" y2="528" fill="none"/>
-<line class="arrowhead" x1="429" y1="517" x2="435" y2="528" fill="none"/>
-<circle class="arrowhead" cx="429" cy="508" r="5" fill="none"/>
-<line class="arrowhead" x1="730" y1="381" x2="718" y2="381" fill="none"/>
-<circle class="arrowhead" cx="724" cy="391" r="5" fill="none"/>
-<line class="arrowhead" x1="718" y1="566" x2="730" y2="566" fill="none"/>
-<circle class="arrowhead" cx="724" cy="556" r="5" fill="none"/>
+<line x1="315" y1="167" x2="303" y2="167" fill="none"/>
+<line x1="315" y1="173" x2="303" y2="173" fill="none"/>
+<line x1="183" y1="233" x2="177" y2="244" fill="none"/>
+<line x1="183" y1="233" x2="189" y2="244" fill="none"/>
+<line x1="177" y1="228" x2="189" y2="228" fill="none"/>
+<line x1="349" y1="171" x2="355" y2="160" fill="none"/>
+<line x1="349" y1="171" x2="343" y2="160" fill="none"/>
+<circle cx="349" cy="180" r="5" fill="none"/>
+<line x1="468" y1="297" x2="480" y2="297" fill="none"/>
+<line x1="468" y1="291" x2="480" y2="291" fill="none"/>
+<line x1="242" y1="411" x2="230" y2="411" fill="none"/>
+<line x1="242" y1="417" x2="230" y2="417" fill="none"/>
+<line x1="389" y1="517" x2="383" y2="528" fill="none"/>
+<line x1="389" y1="517" x2="395" y2="528" fill="none"/>
+<circle cx="389" cy="508" r="5" fill="none"/>
+<line x1="130" y1="415" x2="136" y2="404" fill="none"/>
+<line x1="130" y1="415" x2="124" y2="404" fill="none"/>
+<circle cx="130" cy="424" r="5" fill="none"/>
+<line x1="130" y1="562" x2="124" y2="573" fill="none"/>
+<line x1="130" y1="562" x2="136" y2="573" fill="none"/>
+<circle cx="130" cy="553" r="5" fill="none"/>
+<line x1="639" y1="381" x2="627" y2="381" fill="none"/>
+<line x1="639" y1="387" x2="627" y2="387" fill="none"/>
+<line x1="429" y1="517" x2="423" y2="528" fill="none"/>
+<line x1="429" y1="517" x2="435" y2="528" fill="none"/>
+<circle cx="429" cy="508" r="5" fill="none"/>
+<line x1="730" y1="381" x2="718" y2="381" fill="none"/>
+<circle cx="724" cy="391" r="5" fill="none"/>
+<line x1="718" y1="566" x2="730" y2="566" fill="none"/>
+<circle cx="724" cy="556" r="5" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="187.5" y="0" width="283" height="160" fill="#ffffff"/>
-<rect class="node-detail" x="187.5" y="0" width="283" height="40" fill="#eef2f7"/>
+<rect x="187.5" y="0" width="283" height="160" fill="#ffffff"/>
+<rect x="187.5" y="0" width="283" height="40" fill="#eef2f7"/>
 </g>
 <g stroke="#8a94a3" stroke-width="1">
-<line class="node-detail" x1="187.5" y1="70" x2="470.5" y2="70" fill="none"/>
-<line class="node-detail" x1="187.5" y1="100" x2="470.5" y2="100" fill="none"/>
-<line class="node-detail" x1="187.5" y1="130" x2="470.5" y2="130" fill="none"/>
+<line x1="187.5" y1="70" x2="470.5" y2="70" fill="none"/>
+<line x1="187.5" y1="100" x2="470.5" y2="100" fill="none"/>
+<line x1="187.5" y1="130" x2="470.5" y2="130" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="244" width="366" height="160" fill="#ffffff"/>
-<rect class="node-detail" x="0" y="244" width="366" height="40" fill="#eef2f7"/>
+<rect x="0" y="244" width="366" height="160" fill="#ffffff"/>
+<rect x="0" y="244" width="366" height="40" fill="#eef2f7"/>
 </g>
 <g stroke="#8a94a3" stroke-width="1">
-<line class="node-detail" x1="0" y1="314" x2="366" y2="314" fill="none"/>
-<line class="node-detail" x1="0" y1="344" x2="366" y2="344" fill="none"/>
-<line class="node-detail" x1="0" y1="374" x2="366" y2="374" fill="none"/>
+<line x1="0" y1="314" x2="366" y2="314" fill="none"/>
+<line x1="0" y1="344" x2="366" y2="344" fill="none"/>
+<line x1="0" y1="374" x2="366" y2="374" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="414" y="304" width="120" height="40" fill="#eef2f7"/>
-<rect class="node" x="582.5" y="274" width="193" height="100" fill="#ffffff"/>
-<rect class="node-detail" x="582.5" y="274" width="193" height="40" fill="#eef2f7"/>
+<rect x="414" y="304" width="120" height="40" fill="#eef2f7"/>
+<rect x="582.5" y="274" width="193" height="100" fill="#ffffff"/>
+<rect x="582.5" y="274" width="193" height="40" fill="#eef2f7"/>
 </g>
-<line class="node-detail" x1="582.5" y1="344" x2="775.5" y2="344" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<line x1="582.5" y1="344" x2="775.5" y2="344" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="61" y="573" width="138" height="40" fill="#eef2f7"/>
-<rect class="node" x="267" y="528" width="284" height="130" fill="#ffffff"/>
-<rect class="node-detail" x="267" y="528" width="284" height="40" fill="#eef2f7"/>
+<rect x="61" y="573" width="138" height="40" fill="#eef2f7"/>
+<rect x="267" y="528" width="284" height="130" fill="#ffffff"/>
+<rect x="267" y="528" width="284" height="40" fill="#eef2f7"/>
 </g>
 <g stroke="#8a94a3" stroke-width="1">
-<line class="node-detail" x1="267" y1="598" x2="551" y2="598" fill="none"/>
-<line class="node-detail" x1="267" y1="628" x2="551" y2="628" fill="none"/>
+<line x1="267" y1="598" x2="551" y2="598" fill="none"/>
+<line x1="267" y1="628" x2="551" y2="628" fill="none"/>
 </g>
-<rect class="node" x="599.5" y="573" width="249" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="node-label" x="329" y="25.6" text-anchor="middle" fill="#1b1f24">DOKUMENT</text>
+<rect x="599.5" y="573" width="249" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text x="329" y="25.6" text-anchor="middle" fill="#1b1f24">DOKUMENT</text>
 <g fill="#1b1f24">
-<text class="attribute" x="197.5" y="60.6">uuid</text>
-<text class="attribute" x="256.63" y="60.6">id</text>
-<text class="attribute" x="346" y="60.6">PK</text>
-<text class="attribute" x="197.5" y="90.6">string</text>
-<text class="attribute" x="256.63" y="90.6">numer</text>
-<text class="attribute" x="346" y="90.6">UK</text>
-<text class="attribute" x="388.23" y="90.6">np. PR-07</text>
-<text class="attribute" x="197.5" y="120.6">string</text>
-<text class="attribute" x="256.63" y="120.6">tytul</text>
-<text class="attribute" x="197.5" y="150.6">uuid</text>
-<text class="attribute" x="256.63" y="150.6">obszar_id</text>
-<text class="attribute" x="346" y="150.6">FK</text>
+<text x="197.5" y="60.6">uuid</text>
+<text x="256.63" y="60.6">id</text>
+<text x="346" y="60.6">PK</text>
+<text x="197.5" y="90.6">string</text>
+<text x="256.63" y="90.6">numer</text>
+<text x="346" y="90.6">UK</text>
+<text x="388.23" y="90.6">np. PR-07</text>
+<text x="197.5" y="120.6">string</text>
+<text x="256.63" y="120.6">tytul</text>
+<text x="197.5" y="150.6">uuid</text>
+<text x="256.63" y="150.6">obszar_id</text>
+<text x="346" y="150.6">FK</text>
 </g>
-<text class="node-label" x="183" y="269.6" text-anchor="middle" fill="#1b1f24">WERSJA</text>
+<text x="183" y="269.6" text-anchor="middle" fill="#1b1f24">WERSJA</text>
 <g fill="#1b1f24">
-<text class="attribute" x="10" y="304.6">uuid</text>
-<text class="attribute" x="61.14" y="304.6">id</text>
-<text class="attribute" x="187.89" y="304.6">PK</text>
-<text class="attribute" x="10" y="334.6">uuid</text>
-<text class="attribute" x="61.14" y="334.6">dokument_id</text>
-<text class="attribute" x="187.89" y="334.6">FK</text>
-<text class="attribute" x="10" y="364.6">int</text>
-<text class="attribute" x="61.14" y="364.6">numer</text>
-<text class="attribute" x="10" y="394.6">date</text>
-<text class="attribute" x="61.14" y="394.6">obowiazuje_od</text>
-<text class="attribute" x="229.23" y="394.6">puste dla projektu</text>
+<text x="10" y="304.6">uuid</text>
+<text x="61.14" y="304.6">id</text>
+<text x="187.89" y="304.6">PK</text>
+<text x="10" y="334.6">uuid</text>
+<text x="61.14" y="334.6">dokument_id</text>
+<text x="187.89" y="334.6">FK</text>
+<text x="10" y="364.6">int</text>
+<text x="61.14" y="364.6">numer</text>
+<text x="10" y="394.6">date</text>
+<text x="61.14" y="394.6">obowiazuje_od</text>
+<text x="229.23" y="394.6">puste dla projektu</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="474" y="329.6">OBSZAR</text>
-<text class="node-label" x="679" y="299.6">Użytkownik systemu</text>
+<text x="474" y="329.6">OBSZAR</text>
+<text x="679" y="299.6">Użytkownik systemu</text>
 </g>
 <g fill="#1b1f24">
-<text class="attribute" x="592.5" y="334.6">uuid</text>
-<text class="attribute" x="651.63" y="334.6">id</text>
-<text class="attribute" x="705.43" y="334.6">PK</text>
-<text class="attribute" x="592.5" y="364.6">string</text>
-<text class="attribute" x="651.63" y="364.6">login</text>
-<text class="attribute" x="705.43" y="364.6">UK</text>
+<text x="592.5" y="334.6">uuid</text>
+<text x="651.63" y="334.6">id</text>
+<text x="705.43" y="334.6">PK</text>
+<text x="592.5" y="364.6">string</text>
+<text x="651.63" y="364.6">login</text>
+<text x="705.43" y="364.6">UK</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="130" y="598.6">SZKOLENIE</text>
-<text class="node-label" x="409" y="553.6">ZATWIERDZENIE</text>
+<text x="130" y="598.6">SZKOLENIE</text>
+<text x="409" y="553.6">ZATWIERDZENIE</text>
 </g>
 <g fill="#1b1f24">
-<text class="attribute" x="277" y="588.6">uuid</text>
-<text class="attribute" x="370.8" y="588.6">wersja_id</text>
-<text class="attribute" x="490.4" y="588.6">PK, FK</text>
-<text class="attribute" x="277" y="618.6">uuid</text>
-<text class="attribute" x="370.8" y="618.6">uzytkownik_id</text>
-<text class="attribute" x="490.4" y="618.6">PK, FK</text>
-<text class="attribute" x="277" y="648.6">timestamp</text>
-<text class="attribute" x="370.8" y="648.6">podpisano</text>
+<text x="277" y="588.6">uuid</text>
+<text x="370.8" y="588.6">wersja_id</text>
+<text x="490.4" y="588.6">PK, FK</text>
+<text x="277" y="618.6">uuid</text>
+<text x="370.8" y="618.6">uzytkownik_id</text>
+<text x="490.4" y="618.6">PK, FK</text>
+<text x="277" y="648.6">timestamp</text>
+<text x="370.8" y="648.6">podpisano</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="724" y="598.6">PODPIS-KWALIFIKOWANY</text>
-<text class="edge-label" x="246" y="207.6">ma wersje</text>
-<text class="edge-label" x="411.5" y="207.6">należy do</text>
-<text class="edge-label" x="312.5" y="513.1">wymaga</text>
-<text class="edge-label" x="130" y="491.6">jest podstawą</text>
-<text class="edge-label" x="531" y="513.1">podpisuje</text>
-<text class="edge-label" x="724" y="491.6">posiada</text>
+<text x="724" y="598.6">PODPIS-KWALIFIKOWANY</text>
+<text x="246" y="207.6">ma wersje</text>
+<text x="411.5" y="207.6">należy do</text>
+<text x="312.5" y="513.1">wymaga</text>
+<text x="130" y="491.6">jest podstawą</text>
+<text x="531" y="513.1">podpisuje</text>
+<text x="724" y="491.6">posiada</text>
 </g>
 </svg>

@@ -1,46 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="719.25" height="566" viewBox="-166.29 -12 719.25 566" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <g stroke="#9aa5b1" stroke-width="1.5">
-<line class="lifeline" x1="0" y1="48" x2="0" y2="494" fill="none"/>
-<line class="lifeline" x1="188" y1="48" x2="188" y2="494" fill="none"/>
-<line class="lifeline" x1="376" y1="48" x2="376" y2="494" fill="none"/>
+<line x1="0" y1="48" x2="0" y2="494" fill="none"/>
+<line x1="188" y1="48" x2="188" y2="494" fill="none"/>
+<line x1="376" y1="48" x2="376" y2="494" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="participant" x="-65.8" y="0" width="131.6" height="48" rx="3" fill="#eef2f7"/>
-<rect class="participant" x="122.2" y="0" width="131.6" height="48" rx="3" fill="#eef2f7"/>
-<rect class="participant" x="310.2" y="0" width="131.6" height="48" rx="3" fill="#eef2f7"/>
+<rect x="-65.8" y="0" width="131.6" height="48" rx="3" fill="#eef2f7"/>
+<rect x="122.2" y="0" width="131.6" height="48" rx="3" fill="#eef2f7"/>
+<rect x="310.2" y="0" width="131.6" height="48" rx="3" fill="#eef2f7"/>
 </g>
 <g stroke="#b59a1b" stroke-width="1">
-<rect class="note" x="-154.29" y="72" width="138.29" height="36" fill="#fff6c2"/>
-<rect class="note" x="392" y="130" width="148.96" height="36" fill="#fff6c2"/>
+<rect x="-154.29" y="72" width="138.29" height="36" fill="#fff6c2"/>
+<rect x="392" y="130" width="148.96" height="36" fill="#fff6c2"/>
 </g>
-<polygon class="arrowhead" points="188,213 179,209 179,217" fill="#3b4754"/>
-<line class="message" x1="0" y1="213" x2="179" y2="213" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="note" x="129.09" y="241" width="117.81" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<polygon class="arrowhead" points="376,324 367,320 367,328" fill="#3b4754"/>
-<line class="message" x1="188" y1="324" x2="367" y2="324" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="188,213 179,209 179,217" fill="#3b4754"/>
+<line x1="0" y1="213" x2="179" y2="213" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect x="129.09" y="241" width="117.81" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<polygon points="376,324 367,320 367,328" fill="#3b4754"/>
+<line x1="188" y1="324" x2="367" y2="324" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g stroke="#b59a1b" stroke-width="1">
-<rect class="note" x="-20" y="352" width="416" height="36" fill="#fff6c2"/>
-<rect class="note" x="168" y="410" width="228" height="56" fill="#fff6c2"/>
+<rect x="-20" y="352" width="416" height="36" fill="#fff6c2"/>
+<rect x="168" y="410" width="228" height="56" fill="#fff6c2"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="participant" x="-65.8" y="494" width="131.6" height="48" rx="3" fill="#eef2f7"/>
-<rect class="participant" x="122.2" y="494" width="131.6" height="48" rx="3" fill="#eef2f7"/>
-<rect class="participant" x="310.2" y="494" width="131.6" height="48" rx="3" fill="#eef2f7"/>
+<rect x="-65.8" y="494" width="131.6" height="48" rx="3" fill="#eef2f7"/>
+<rect x="122.2" y="494" width="131.6" height="48" rx="3" fill="#eef2f7"/>
+<rect x="310.2" y="494" width="131.6" height="48" rx="3" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="participant-label" x="0" y="29.6">Pełnomocnik</text>
-<text class="participant-label" x="188" y="29.6">Kierownik</text>
-<text class="participant-label" x="376" y="29.6">Wykonawca</text>
-<text class="note-label" x="-85.14" y="95.6">Notatka po lewej</text>
-<text class="note-label" x="466.48" y="153.6">Notatka po prawej</text>
-<text class="message-label" x="94" y="203.6">Zlecenie działania</text>
-<text class="note-label" x="188" y="264.6">Ocena ryzyka</text>
-<text class="message-label" x="282" y="314.6">Polecenie</text>
-<text class="note-label" x="188" y="375.6">Ślad audytowy: kto, kiedy, dlaczego</text>
-<text class="note-label" x="282" y="433.6">Dwie linie</text>
-<text class="note-label" x="282" y="453.6">w jednej notatce</text>
-<text class="participant-label" x="0" y="523.6">Pełnomocnik</text>
-<text class="participant-label" x="188" y="523.6">Kierownik</text>
-<text class="participant-label" x="376" y="523.6">Wykonawca</text>
+<text x="0" y="29.6">Pełnomocnik</text>
+<text x="188" y="29.6">Kierownik</text>
+<text x="376" y="29.6">Wykonawca</text>
+<text x="-85.14" y="95.6">Notatka po lewej</text>
+<text x="466.48" y="153.6">Notatka po prawej</text>
+<text x="94" y="203.6">Zlecenie działania</text>
+<text x="188" y="264.6">Ocena ryzyka</text>
+<text x="282" y="314.6">Polecenie</text>
+<text x="188" y="375.6">Ślad audytowy: kto, kiedy, dlaczego</text>
+<text x="282" y="433.6">Dwie linie</text>
+<text x="282" y="453.6">w jednej notatce</text>
+<text x="0" y="523.6">Pełnomocnik</text>
+<text x="188" y="523.6">Kierownik</text>
+<text x="376" y="523.6">Wykonawca</text>
 </g>
 </svg>

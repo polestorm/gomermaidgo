@@ -1,41 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="634.31" height="648.7" viewBox="-12 -12 634.31 648.7" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-7843c6c3"><path d="M-12 -12 L622.31 -12 L622.31 636.7 L-12 636.7 M394.13 144.23 L394.13 164.23 L446.36 164.23 L446.36 144.23"/></clipPath></defs>
-<rect class="block-group" x="0" y="264.45" width="610.31" height="236.02" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="0" y="264.45" width="610.31" height="236.02" rx="6" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="5 4"/>
 <g stroke="#3b4754" stroke-width="1.5">
-<line class="edge" x1="94.13" y1="44" x2="158.9" y2="118.42" fill="none"/>
-<g clip-path="url(#label-holes-7843c6c3)"><line class="edge" x1="380.13" y1="154.23" x2="452.66" y2="154.23" fill="none"/>
+<line x1="94.13" y1="44" x2="158.9" y2="118.42" fill="none"/>
+<g clip-path="url(#label-holes-7843c6c3)"><line x1="380.13" y1="154.23" x2="452.66" y2="154.23" fill="none"/>
 </g>
-<line class="edge" x1="504.12" y1="171.74" x2="183.41" y2="351.64" fill="none"/>
-<line class="edge" x1="456.19" y1="414.46" x2="322.81" y2="580.7" fill="none"/>
+<line x1="504.12" y1="171.74" x2="183.41" y2="351.64" fill="none"/>
+<line x1="456.19" y1="414.46" x2="322.81" y2="580.7" fill="none"/>
 </g>
-<polygon class="arrowhead" points="163.95,124.23 152.58,119.54 160.88,112.32" fill="#3b4754"/>
-<polygon class="arrowhead" points="460.36,154.23 449.36,159.73 449.36,148.73" fill="#3b4754"/>
-<polygon class="arrowhead" points="176.7,355.41 183.6,345.23 188.98,354.82" fill="#3b4754"/>
+<polygon points="163.95,124.23 152.58,119.54 160.88,112.32" fill="#3b4754"/>
+<polygon points="460.36,154.23 449.36,159.73 449.36,148.73" fill="#3b4754"/>
+<polygon points="176.7,355.41 183.6,345.23 188.98,354.82" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="block" x="0" y="0" width="149.95" height="44" rx="22" fill="#eef2f7"/>
-<ellipse class="block-detail" cx="190.07" cy="177.23" rx="190.07" ry="7" fill="#eef2f7"/>
+<rect x="0" y="0" width="149.95" height="44" rx="22" fill="#eef2f7"/>
+<ellipse cx="190.07" cy="177.23" rx="190.07" ry="7" fill="#eef2f7"/>
 </g>
-<rect class="block" x="0" y="131.23" width="380.13" height="46" fill="#eef2f7"/>
+<rect x="0" y="131.23" width="380.13" height="46" fill="#eef2f7"/>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="block-detail" x1="0" y1="131.23" x2="0" y2="177.23" fill="none"/>
-<line class="block-detail" x1="380.13" y1="131.23" x2="380.13" y2="177.23" fill="none"/>
-<ellipse class="block-detail" cx="190.07" cy="131.23" rx="190.07" ry="7" fill="#eef2f7"/>
+<line x1="0" y1="131.23" x2="0" y2="177.23" fill="none"/>
+<line x1="380.13" y1="131.23" x2="380.13" y2="177.23" fill="none"/>
+<ellipse cx="190.07" cy="131.23" rx="190.07" ry="7" fill="#eef2f7"/>
 </g>
-<polygon class="block" points="535.34,124.23 610.31,154.23 535.34,184.23 460.36,154.23" fill="#fde8e8" stroke="#b42318" stroke-width="1.5"/>
+<polygon points="535.34,124.23 610.31,154.23 535.34,184.23 460.36,154.23" fill="#fde8e8" stroke="#b42318" stroke-width="1.5"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="block" x="80.23" y="344.68" width="96.47" height="75.57" fill="#eef2f7"/>
-<polygon class="block" points="353.39,382.46 335.39,344.68 335.39,361.31 256.92,361.31 256.92,403.62 335.39,403.62 335.39,420.25" fill="#eef2f7"/>
-<ellipse class="block" cx="481.85" cy="382.46" rx="48.23" ry="37.79" fill="#eef2f7"/>
-<polygon class="block" points="14,580.7 596.31,580.7 610.31,602.7 596.31,624.7 14,624.7 0,602.7" fill="#eef2f7"/>
+<rect x="80.23" y="344.68" width="96.47" height="75.57" fill="#eef2f7"/>
+<polygon points="353.39,382.46 335.39,344.68 335.39,361.31 256.92,361.31 256.92,403.62 335.39,403.62 335.39,420.25" fill="#eef2f7"/>
+<ellipse cx="481.85" cy="382.46" rx="48.23" ry="37.79" fill="#eef2f7"/>
+<polygon points="14,580.7 596.31,580.7 610.31,602.7 596.31,624.7 14,624.7 0,602.7" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="block-label" x="74.98" y="27.6">Zgłoszenie</text>
-<text class="block-label" x="190.07" y="159.83">Rejestr niezgodności</text>
-<text class="block-label" x="535.34" y="159.83">Ocena</text>
-<text class="block-label" x="128.46" y="388.06">Korekcja</text>
-<text class="block-label" x="305.16" y="388.06">potem</text>
-<text class="block-label" x="481.85" y="388.06">CAPA</text>
-<text class="block-label" x="305.16" y="608.3">Raport z przeglądu</text>
-<text class="edge-label" x="420.25" y="159.83">ryzyko</text>
+<text x="74.98" y="27.6">Zgłoszenie</text>
+<text x="190.07" y="159.83">Rejestr niezgodności</text>
+<text x="535.34" y="159.83">Ocena</text>
+<text x="128.46" y="388.06">Korekcja</text>
+<text x="305.16" y="388.06">potem</text>
+<text x="481.85" y="388.06">CAPA</text>
+<text x="305.16" y="608.3">Raport z przeglądu</text>
+<text x="420.25" y="159.83">ryzyko</text>
 </g>
 </svg>

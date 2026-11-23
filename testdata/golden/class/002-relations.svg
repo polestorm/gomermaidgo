@@ -1,75 +1,75 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="476" height="554" viewBox="-12 -12 476 554" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-9210786f"><path d="M-12 -12 L464 -12 L464 542 L-12 542 M84.21 68 L84.21 88 L151.79 88 L151.79 68 M280.39 189.5 L280.39 209.5 L310.61 209.5 L310.61 189.5 M350.66 422 L350.66 442 L433.34 442 L433.34 422 M33.32 342 L33.32 362 L86.68 362 L86.68 342 M383.21 258 L383.21 278 L450.79 278 L450.79 258"/></clipPath></defs>
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M165 174 L165 231.5 C165 235.9 161.4 239.5 157 239.5 L68 239.5 C63.6 239.5 60 243.1 60 247.5 L60 250" fill="none"/>
-<path class="edge" d="M191 174 L191 231.5 C191 235.9 194.6 239.5 199 239.5 L220 239.5 C224.4 239.5 228 243.1 228 247.5 L228 250" fill="none"/>
+<path d="M165 174 L165 231.5 C165 235.9 161.4 239.5 157 239.5 L68 239.5 C63.6 239.5 60 243.1 60 247.5 L60 250" fill="none"/>
+<path d="M191 174 L191 231.5 C191 235.9 194.6 239.5 199 239.5 L220 239.5 C224.4 239.5 228 243.1 228 247.5 L228 250" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-9210786f)"><path class="edge" d="M118 50 L118 90 L118 99 C118 103.4 121.6 107 126 107 L176 107 C180.4 107 184 110.6 184 115 L184 124" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-9210786f)"><path d="M118 50 L118 90 L118 99 C118 103.4 121.6 107 126 107 L176 107 C180.4 107 184 110.6 184 115 L184 124" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
 <g stroke="#3b4754" stroke-width="1.5">
-<g clip-path="url(#label-holes-9210786f)"><path class="edge" d="M243 178 L243 191.5 C243 195.9 246.6 199.5 251 199.5 L340 199.5 C344.4 199.5 348 203.1 348 207.5 L348 250 L348 334" fill="none"/>
+<g clip-path="url(#label-holes-9210786f)"><path d="M243 178 L243 191.5 C243 195.9 246.6 199.5 251 199.5 L340 199.5 C344.4 199.5 348 203.1 348 207.5 L348 250 L348 334" fill="none"/>
 </g>
-<path class="edge" d="M291 54 L291 54 C291 57.3 288.3 60 285 60 L210 60 C206.7 60 204 62.7 204 66 L204 66 L204 124" fill="none"/>
-<g clip-path="url(#label-holes-9210786f)"><path class="edge" d="M392 370 L392 494" fill="none"/>
+<path d="M291 54 L291 54 C291 57.3 288.3 60 285 60 L210 60 C206.7 60 204 62.7 204 66 L204 66 L204 124" fill="none"/>
+<g clip-path="url(#label-holes-9210786f)"><path d="M392 370 L392 494" fill="none"/>
 </g>
 </g>
-<g clip-path="url(#label-holes-9210786f)"><path class="edge" d="M60 286 L60 414" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-9210786f)"><path d="M60 286 L60 414" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
-<path class="edge" d="M228 286 L228 334" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M60 450 L60 464 C60 468.4 63.6 472 68 472 L157 472 C161.4 472 165 475.6 165 480 L165 494" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M228 286 L228 334" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path d="M60 450 L60 464 C60 468.4 63.6 472 68 472 L157 472 C161.4 472 165 475.6 165 480 L165 494" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <g stroke="#3b4754" stroke-width="1.5">
-<g clip-path="url(#label-holes-9210786f)"><path class="edge" d="M217 174 L217 211.5 C217 215.9 220.6 219.5 225 219.5 L302 219.5 C306.4 219.5 310 223.1 310 227.5 L310 250 L310 370 L310 384 C310 388.4 306.4 392 302 392 L193 392 C188.6 392 185 395.6 185 400 L185 414 L185 494" fill="none"/>
+<g clip-path="url(#label-holes-9210786f)"><path d="M217 174 L217 211.5 C217 215.9 220.6 219.5 225 219.5 L302 219.5 C306.4 219.5 310 223.1 310 227.5 L310 250 L310 370 L310 384 C310 388.4 306.4 392 302 392 L193 392 C188.6 392 185 395.6 185 400 L185 414 L185 494" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-9210786f)"><path class="edge" d="M417 160 L417 334" fill="none"/>
+<g clip-path="url(#label-holes-9210786f)"><path d="M417 160 L417 334" fill="none"/>
 </g>
-<polygon class="arrowhead" points="165,160 173,174 157,174" fill="none"/>
-<polygon class="arrowhead" points="191,160 199,174 183,174" fill="none"/>
-<polygon class="arrowhead" points="118,36 126,50 110,50" fill="none"/>
-<polygon class="arrowhead" points="243,160 249,169 243,178 237,169" fill="#3b4754"/>
-<polygon class="arrowhead" points="291,36 297,45 291,54 285,45" fill="none"/>
-<line class="arrowhead" x1="392" y1="494" x2="398" y2="483" fill="none"/>
-<line class="arrowhead" x1="392" y1="494" x2="386" y2="483" fill="none"/>
-<line class="arrowhead" x1="60" y1="414" x2="66" y2="403" fill="none"/>
-<line class="arrowhead" x1="60" y1="414" x2="54" y2="403" fill="none"/>
-<polygon class="arrowhead" points="217,160 225,174 209,174" fill="none"/>
-<line class="arrowhead" x1="417" y1="160" x2="411" y2="171" fill="none"/>
-<line class="arrowhead" x1="417" y1="160" x2="423" y2="171" fill="none"/>
+<polygon points="165,160 173,174 157,174" fill="none"/>
+<polygon points="191,160 199,174 183,174" fill="none"/>
+<polygon points="118,36 126,50 110,50" fill="none"/>
+<polygon points="243,160 249,169 243,178 237,169" fill="#3b4754"/>
+<polygon points="291,36 297,45 291,54 285,45" fill="none"/>
+<line x1="392" y1="494" x2="398" y2="483" fill="none"/>
+<line x1="392" y1="494" x2="386" y2="483" fill="none"/>
+<line x1="60" y1="414" x2="66" y2="403" fill="none"/>
+<line x1="60" y1="414" x2="54" y2="403" fill="none"/>
+<polygon points="217,160 225,174 209,174" fill="none"/>
+<line x1="417" y1="160" x2="411" y2="171" fill="none"/>
+<line x1="417" y1="160" x2="423" y2="171" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="53" y="0" width="130" height="36" fill="#eef2f7"/>
-<rect class="node" x="231" y="0" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="144" y="124" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="312" y="124" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="0" y="250" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="168" y="250" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="168" y="334" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="332" y="334" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="0" y="414" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="125" y="494" width="120" height="36" fill="#eef2f7"/>
-<rect class="node" x="332" y="494" width="120" height="36" fill="#eef2f7"/>
+<rect x="53" y="0" width="130" height="36" fill="#eef2f7"/>
+<rect x="231" y="0" width="120" height="36" fill="#eef2f7"/>
+<rect x="144" y="124" width="120" height="36" fill="#eef2f7"/>
+<rect x="312" y="124" width="120" height="36" fill="#eef2f7"/>
+<rect x="0" y="250" width="120" height="36" fill="#eef2f7"/>
+<rect x="168" y="250" width="120" height="36" fill="#eef2f7"/>
+<rect x="168" y="334" width="120" height="36" fill="#eef2f7"/>
+<rect x="332" y="334" width="120" height="36" fill="#eef2f7"/>
+<rect x="0" y="414" width="120" height="36" fill="#eef2f7"/>
+<rect x="125" y="494" width="120" height="36" fill="#eef2f7"/>
+<rect x="332" y="494" width="120" height="36" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="node-label" x="118" y="23.6" font-weight="bold">Zatwierdzalny</text>
-<text class="node-label" x="291" y="23.6" font-weight="bold">Rejestr</text>
-<text class="node-label" x="204" y="147.6" font-weight="bold">Dokument</text>
-<text class="node-label" x="372" y="147.6" font-weight="bold">Szkolenie</text>
-<text class="node-label" x="60" y="273.6" font-weight="bold">Procedura</text>
-<text class="node-label" x="228" y="273.6" font-weight="bold">Instrukcja</text>
-<text class="node-label" x="228" y="357.6" font-weight="bold">Stanowisko</text>
-<text class="node-label" x="392" y="357.6" font-weight="bold">Wydanie</text>
-<text class="node-label" x="60" y="437.6" font-weight="bold">Formularz</text>
-<text class="node-label" x="185" y="517.6" font-weight="bold">Zapis</text>
-<text class="node-label" x="392" y="517.6" font-weight="bold">Osoba</text>
-<text class="edge-label" x="118" y="83.6">realizuje</text>
-<text class="edge-end-label" x="255.45" y="178.6">1</text>
-<text class="edge-end-label" x="368.01" y="326.6">1..*</text>
-<text class="edge-label" x="295.5" y="205.1">ma</text>
-<text class="edge-end-label" x="303.45" y="54.6">1</text>
-<text class="edge-end-label" x="215.11" y="116.6">*</text>
-<text class="edge-label" x="392" y="437.6">zatwierdził</text>
-<text class="edge-label" x="60" y="357.6">używa</text>
-<text class="edge-end-label" x="437.01" y="178.6">0..*</text>
-<text class="edge-end-label" x="429.45" y="326.6">1</text>
-<text class="edge-label" x="417" y="273.6">wymaga</text>
+<text x="118" y="23.6" font-weight="bold">Zatwierdzalny</text>
+<text x="291" y="23.6" font-weight="bold">Rejestr</text>
+<text x="204" y="147.6" font-weight="bold">Dokument</text>
+<text x="372" y="147.6" font-weight="bold">Szkolenie</text>
+<text x="60" y="273.6" font-weight="bold">Procedura</text>
+<text x="228" y="273.6" font-weight="bold">Instrukcja</text>
+<text x="228" y="357.6" font-weight="bold">Stanowisko</text>
+<text x="392" y="357.6" font-weight="bold">Wydanie</text>
+<text x="60" y="437.6" font-weight="bold">Formularz</text>
+<text x="185" y="517.6" font-weight="bold">Zapis</text>
+<text x="392" y="517.6" font-weight="bold">Osoba</text>
+<text x="118" y="83.6">realizuje</text>
+<text x="255.45" y="178.6">1</text>
+<text x="368.01" y="326.6">1..*</text>
+<text x="295.5" y="205.1">ma</text>
+<text x="303.45" y="54.6">1</text>
+<text x="215.11" y="116.6">*</text>
+<text x="392" y="437.6">zatwierdził</text>
+<text x="60" y="357.6">używa</text>
+<text x="437.01" y="178.6">0..*</text>
+<text x="429.45" y="326.6">1</text>
+<text x="417" y="273.6">wymaga</text>
 </g>
 </svg>

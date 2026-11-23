@@ -1,44 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="841" height="260" viewBox="-66 -12 841 260" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-d6f3889d"><path d="M-66 -12 L775 -12 L775 248 L-66 248 M459.5 56 L459.5 76 L491.5 76 L491.5 56"/></clipPath></defs>
 <g stroke="#8a94a3" stroke-width="1">
-<g clip-path="url(#label-holes-d6f3889d)"><rect class="lane" x="-54" y="0" width="817" height="106" fill="none"/>
+<g clip-path="url(#label-holes-d6f3889d)"><rect x="-54" y="0" width="817" height="106" fill="none"/>
 </g>
-<rect class="lane-header" x="-54" y="0" width="36" height="106" fill="#eef2f7"/>
-<rect class="lane" x="-54" y="106" width="817" height="130" fill="none"/>
-<rect class="lane-header" x="-54" y="106" width="36" height="130" fill="#eef2f7"/>
+<rect x="-54" y="0" width="36" height="106" fill="#eef2f7"/>
+<rect x="-54" y="106" width="817" height="130" fill="none"/>
+<rect x="-54" y="106" width="36" height="130" fill="#eef2f7"/>
 </g>
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M162 53 L197.6 53" fill="none"/>
-<path class="edge" d="M276 75 L276 125.6" fill="none"/>
-<g clip-path="url(#label-holes-d6f3889d)"><path class="edge" d="M337 171 L357.5 171 C361.9 171 365.5 167.4 365.5 163 L365.5 74 C365.5 69.6 369.1 66 373.5 66 L394 66 L596.6 66" fill="none"/>
+<path d="M162 53 L197.6 53" fill="none"/>
+<path d="M276 75 L276 125.6" fill="none"/>
+<g clip-path="url(#label-holes-d6f3889d)"><path d="M337 171 L357.5 171 C361.9 171 365.5 167.4 365.5 163 L365.5 74 C365.5 69.6 369.1 66 373.5 66 L394 66 L596.6 66" fill="none"/>
 </g>
-<path class="edge" d="M354.4 46 L605 46" fill="none"/>
+<path d="M354.4 46 L605 46" fill="none"/>
 </g>
-<polygon class="arrowhead" points="206,53 194,47 194,59" fill="#3b4754"/>
-<polygon class="arrowhead" points="276,134 282,122 270,122" fill="#3b4754"/>
-<polygon class="arrowhead" points="605,66 593,60 593,72" fill="#3b4754"/>
-<polygon class="arrowhead" points="346,46 358,52 358,40" fill="#3b4754"/>
+<polygon points="206,53 194,47 194,59" fill="#3b4754"/>
+<polygon points="276,134 282,122 270,122" fill="#3b4754"/>
+<polygon points="605,66 593,60 593,72" fill="#3b4754"/>
+<polygon points="346,46 358,52 358,40" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="31" width="162" height="44" rx="22" fill="#eef2f7"/>
-<rect class="node" x="206" y="31" width="140" height="44" fill="#eef2f7"/>
-<polygon class="node" points="276,134 337,171 276,208 215,171" fill="#eef2f7"/>
-<ellipse class="node-detail" cx="475.5" cy="193" rx="81.5" ry="7" fill="#eef2f7"/>
+<rect x="0" y="31" width="162" height="44" rx="22" fill="#eef2f7"/>
+<rect x="206" y="31" width="140" height="44" fill="#eef2f7"/>
+<polygon points="276,134 337,171 276,208 215,171" fill="#eef2f7"/>
+<ellipse cx="475.5" cy="193" rx="81.5" ry="7" fill="#eef2f7"/>
 </g>
-<rect class="node" x="394" y="149" width="163" height="44" fill="#eef2f7"/>
+<rect x="394" y="149" width="163" height="44" fill="#eef2f7"/>
 <g stroke="#55657a" stroke-width="1.5">
-<line class="node-detail" x1="394" y1="149" x2="394" y2="193" fill="none"/>
-<line class="node-detail" x1="557" y1="149" x2="557" y2="193" fill="none"/>
-<ellipse class="node-detail" cx="475.5" cy="149" rx="81.5" ry="7" fill="#eef2f7"/>
-<rect class="node" x="605" y="31" width="140" height="44" fill="#eef2f7"/>
+<line x1="394" y1="149" x2="394" y2="193" fill="none"/>
+<line x1="557" y1="149" x2="557" y2="193" fill="none"/>
+<ellipse cx="475.5" cy="149" rx="81.5" ry="7" fill="#eef2f7"/>
+<rect x="605" y="31" width="140" height="44" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="lane-title" x="-30.4" y="53" transform="rotate(-90 -30.4 53)">Przyjęcie</text>
-<text class="lane-title" x="-30.4" y="171" transform="rotate(-90 -30.4 171)">Kontrola</text>
-<text class="node-label" x="81" y="58.6">Start</text>
-<text class="node-label" x="276" y="58.6">Wykonanie</text>
-<text class="node-label" x="276" y="176.6">Gotowe?</text>
-<text class="node-label" x="475.5" y="180.1">Rejestr kontroli</text>
-<text class="node-label" x="675" y="58.6">Poprawki</text>
-<text class="edge-label" x="475.5" y="71.6">Nie</text>
+<text x="-30.4" y="53" transform="rotate(-90 -30.4 53)">Przyjęcie</text>
+<text x="-30.4" y="171" transform="rotate(-90 -30.4 171)">Kontrola</text>
+<text x="81" y="58.6">Start</text>
+<text x="276" y="58.6">Wykonanie</text>
+<text x="276" y="176.6">Gotowe?</text>
+<text x="475.5" y="180.1">Rejestr kontroli</text>
+<text x="675" y="58.6">Poprawki</text>
+<text x="475.5" y="71.6">Nie</text>
 </g>
 </svg>

@@ -82,6 +82,7 @@ type config struct {
 	background string
 	colors     bool
 	shadows    bool
+	classes    bool
 	emojiText  bool
 	fitMode    string  // "", "auto", "on", "off"
 	fitRatio   float64 // próg proporcji dla trybu auto; 0 oznacza 2
@@ -137,6 +138,11 @@ func WithColors() Option { return func(c *config) { c.colors = true } }
 
 // WithShadows dodaje cień pod uczestnikami, węzłami i notatkami. Cień jest zwykłym kształtem, nie filtrem.
 func WithShadows() Option { return func(c *config) { c.shadows = true } }
+
+// WithClasses dopisuje do elementów SVG atrybut class z ich rolą (node, edge, edge-label, arrowhead,
+// lane…), żeby strona osadzająca rysunek mogła go stylować własnym CSS. Domyślnie wyłączone: bez
+// klas plik jest o około piątą część mniejszy, a wygląd ten sam (atrybuty prezentacji).
+func WithClasses() Option { return func(c *config) { c.classes = true } }
 
 // WithEmojiText zostawia w SVG emoji (znaki kroju zapasowego) jako tekst z nazwą kroju „Noto Emoji”.
 // Domyślnie są zapisane jako kontury: rysunek wygląda wtedy tak samo w każdym programie i nie
@@ -498,6 +504,7 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 		}
 		splitFallback(sc, face, emojiFace(), styled)
 	}
+	sc.Classes = c.classes
 	return sc, face, nil
 }
 

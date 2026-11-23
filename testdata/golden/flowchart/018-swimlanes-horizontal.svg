@@ -1,54 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="733.8" height="517.7" viewBox="-66 -12 733.8 517.7" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-533b5a9e"><path d="M-66 -12 L667.8 -12 L667.8 505.7 L-66 505.7 M193 144 L193 164 L242.8 164 L242.8 144 M203.23 414 L203.23 434 L232.57 434 L232.57 414"/></clipPath></defs>
 <g stroke="#8a94a3" stroke-width="1">
-<rect class="lane" x="-54" y="0" width="709.8" height="100" fill="none"/>
-<rect class="lane-header" x="-54" y="0" width="36" height="100" fill="#eef2f7"/>
-<g clip-path="url(#label-holes-533b5a9e)"><rect class="lane" x="-54" y="100" width="709.8" height="120" fill="none"/>
+<rect x="-54" y="0" width="709.8" height="100" fill="none"/>
+<rect x="-54" y="0" width="36" height="100" fill="#eef2f7"/>
+<g clip-path="url(#label-holes-533b5a9e)"><rect x="-54" y="100" width="709.8" height="120" fill="none"/>
 </g>
-<rect class="lane-header" x="-54" y="100" width="36" height="120" fill="#eef2f7"/>
-<rect class="lane" x="-54" y="220" width="709.8" height="135" fill="none"/>
-<rect class="lane-header" x="-54" y="220" width="36" height="135" fill="#eef2f7"/>
-<g clip-path="url(#label-holes-533b5a9e)"><rect class="lane" x="-54" y="355" width="709.8" height="138.7" fill="none"/>
+<rect x="-54" y="100" width="36" height="120" fill="#eef2f7"/>
+<rect x="-54" y="220" width="709.8" height="135" fill="none"/>
+<rect x="-54" y="220" width="36" height="135" fill="#eef2f7"/>
+<g clip-path="url(#label-holes-533b5a9e)"><rect x="-54" y="355" width="709.8" height="138.7" fill="none"/>
 </g>
-<rect class="lane-header" x="-54" y="355" width="36" height="138.7" fill="#eef2f7"/>
+<rect x="-54" y="355" width="36" height="138.7" fill="#eef2f7"/>
 </g>
 <g stroke="#3b4754" stroke-width="1.5">
-<path class="edge" d="M431.8 424 L467.4 424" fill="none"/>
-<path class="edge" d="M81 72 L81 119.6" fill="none"/>
-<path class="edge" d="M81 192 L81 240.1" fill="none"/>
-<g clip-path="url(#label-holes-533b5a9e)"><path class="edge" d="M130.7 276.15 L170.4 276.15 C174.8 276.15 178.4 272.55 178.4 268.15 L178.4 162 C178.4 157.6 182 154 186.4 154 L192 154 L283.4 154" fill="none"/>
+<path d="M431.8 424 L467.4 424" fill="none"/>
+<path d="M81 72 L81 119.6" fill="none"/>
+<path d="M81 192 L81 240.1" fill="none"/>
+<g clip-path="url(#label-holes-533b5a9e)"><path d="M130.7 276.15 L170.4 276.15 C174.8 276.15 178.4 272.55 178.4 268.15 L178.4 162 C178.4 157.6 182 154 186.4 154 L192 154 L283.4 154" fill="none"/>
 </g>
-<path class="edge" d="M160.4 288 L178 288 C181.85 288 185 284.85 185 281 L185 195 C185 191.15 188.15 188 192 188 L192 188 L243.8 188 L259.8 188 C264.2 188 267.8 184.4 267.8 180 L267.8 180 C267.8 175.6 271.4 172 275.8 172 L291.8 172" fill="none"/>
-<g clip-path="url(#label-holes-533b5a9e)"><path class="edge" d="M130.7 299.85 L178 299.85 C181.85 299.85 185 303 185 306.85 L185 417 C185 420.85 188.15 424 192 424 L192 424 L283.4 424" fill="none"/>
+<path d="M160.4 288 L178 288 C181.85 288 185 284.85 185 281 L185 195 C185 191.15 188.15 188 192 188 L192 188 L243.8 188 L259.8 188 C264.2 188 267.8 184.4 267.8 180 L267.8 180 C267.8 175.6 271.4 172 275.8 172 L291.8 172" fill="none"/>
+<g clip-path="url(#label-holes-533b5a9e)"><path d="M130.7 299.85 L178 299.85 C181.85 299.85 185 303 185 306.85 L185 417 C185 420.85 188.15 424 192 424 L192 424 L283.4 424" fill="none"/>
 </g>
 </g>
-<polygon class="arrowhead" points="475.8,424 463.8,418 463.8,430" fill="#3b4754"/>
-<polygon class="arrowhead" points="81,128 87,116 75,116" fill="#3b4754"/>
-<polygon class="arrowhead" points="81,248.5 87,236.5 75,236.5" fill="#3b4754"/>
-<polygon class="arrowhead" points="291.8,154 279.8,148 279.8,160" fill="#3b4754"/>
-<polygon class="arrowhead" points="152,288 164,294 164,282" fill="#3b4754"/>
-<polygon class="arrowhead" points="291.8,424 279.8,418 279.8,430" fill="#3b4754"/>
+<polygon points="475.8,424 463.8,418 463.8,430" fill="#3b4754"/>
+<polygon points="81,128 87,116 75,116" fill="#3b4754"/>
+<polygon points="81,248.5 87,236.5 75,236.5" fill="#3b4754"/>
+<polygon points="291.8,154 279.8,148 279.8,160" fill="#3b4754"/>
+<polygon points="152,288 164,294 164,282" fill="#3b4754"/>
+<polygon points="291.8,424 279.8,418 279.8,430" fill="#3b4754"/>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="node" x="0" y="28" width="162" height="44" rx="22" fill="#eef2f7"/>
-<rect class="node" x="0" y="128" width="162" height="64" fill="#eef2f7"/>
-<polygon class="node" points="81,248.5 152,288 81,327.5 10,288" fill="#eef2f7"/>
-<rect class="node" x="291.8" y="128" width="140" height="64" fill="#eef2f7"/>
-<rect class="node" x="291.8" y="402" width="140" height="44" fill="#eef2f7"/>
-<rect class="node" x="475.8" y="402" width="162" height="44" rx="22" fill="#eef2f7"/>
+<rect x="0" y="28" width="162" height="44" rx="22" fill="#eef2f7"/>
+<rect x="0" y="128" width="162" height="64" fill="#eef2f7"/>
+<polygon points="81,248.5 152,288 81,327.5 10,288" fill="#eef2f7"/>
+<rect x="291.8" y="128" width="140" height="64" fill="#eef2f7"/>
+<rect x="291.8" y="402" width="140" height="44" fill="#eef2f7"/>
+<rect x="475.8" y="402" width="162" height="44" rx="22" fill="#eef2f7"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="lane-title" x="-30.4" y="160" transform="rotate(-90 -30.4 160)">Autor</text>
-<text class="lane-title" x="-30.4" y="287.5" transform="rotate(-90 -30.4 287.5)">Sprawdzający</text>
-<text class="lane-title" x="-30.4" y="424.35" transform="rotate(-90 -30.4 424.35)">Zatwierdzający</text>
-<text class="node-label" x="81" y="55.6">Start</text>
-<text class="node-label" x="81" y="155.6">Przygotowuje</text>
-<text class="node-label" x="81" y="175.6">projekt</text>
-<text class="node-label" x="81" y="293.6">Bez uwag?</text>
-<text class="node-label" x="361.8" y="155.6">Nanosi</text>
-<text class="node-label" x="361.8" y="175.6">poprawki</text>
-<text class="node-label" x="361.8" y="429.6">Zatwierdza</text>
-<text class="node-label" x="556.8" y="429.6">Publikuje</text>
-<text class="edge-label" x="217.9" y="159.6">uwagi</text>
-<text class="edge-label" x="217.9" y="429.6">tak</text>
+<text x="-30.4" y="160" transform="rotate(-90 -30.4 160)">Autor</text>
+<text x="-30.4" y="287.5" transform="rotate(-90 -30.4 287.5)">Sprawdzający</text>
+<text x="-30.4" y="424.35" transform="rotate(-90 -30.4 424.35)">Zatwierdzający</text>
+<text x="81" y="55.6">Start</text>
+<text x="81" y="155.6">Przygotowuje</text>
+<text x="81" y="175.6">projekt</text>
+<text x="81" y="293.6">Bez uwag?</text>
+<text x="361.8" y="155.6">Nanosi</text>
+<text x="361.8" y="175.6">poprawki</text>
+<text x="361.8" y="429.6">Zatwierdza</text>
+<text x="556.8" y="429.6">Publikuje</text>
+<text x="217.9" y="159.6">uwagi</text>
+<text x="217.9" y="429.6">tak</text>
 </g>
 </svg>

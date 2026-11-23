@@ -1,75 +1,75 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="994" height="392.4" viewBox="-12 -12.4 994 392.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Wdrożenie systemu zarządzania jakością</title>
-<line class="timeline-axis" x1="0" y1="130" x2="958" y2="130" fill="none" stroke="#3b4754" stroke-width="2"/>
-<polygon class="timeline-axis" points="970,130 958,124 958,136" fill="#3b4754"/>
+<line x1="0" y1="130" x2="958" y2="130" fill="none" stroke="#3b4754" stroke-width="2"/>
+<polygon points="970,130 958,124 958,136" fill="#3b4754"/>
 <g stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4">
-<line class="timeline-link" x1="75" y1="110" x2="75" y2="266" fill="none"/>
-<line class="timeline-link" x1="235" y1="110" x2="235" y2="226" fill="none"/>
-<line class="timeline-link" x1="395" y1="110" x2="395" y2="368" fill="none"/>
-<line class="timeline-link" x1="555" y1="110" x2="555" y2="224" fill="none"/>
-<line class="timeline-link" x1="715" y1="110" x2="715" y2="184" fill="none"/>
-<line class="timeline-link" x1="875" y1="110" x2="875" y2="130" fill="none"/>
+<line x1="75" y1="110" x2="75" y2="266" fill="none"/>
+<line x1="235" y1="110" x2="235" y2="226" fill="none"/>
+<line x1="395" y1="110" x2="395" y2="368" fill="none"/>
+<line x1="555" y1="110" x2="555" y2="224" fill="none"/>
+<line x1="715" y1="110" x2="715" y2="184" fill="none"/>
+<line x1="875" y1="110" x2="875" y2="130" fill="none"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
-<rect class="timeline-section" x="0" y="34" width="310" height="32" rx="4" fill="#f1f4f8"/>
-<rect class="timeline-section" x="320" y="34" width="310" height="32" rx="4" fill="#f1f4f8"/>
-<rect class="timeline-section" x="640" y="34" width="310" height="32" rx="4" fill="#f1f4f8"/>
-<rect class="timeline-period" x="0" y="74" width="150" height="36" rx="4" fill="#e3e8ef"/>
+<rect x="0" y="34" width="310" height="32" rx="4" fill="#f1f4f8"/>
+<rect x="320" y="34" width="310" height="32" rx="4" fill="#f1f4f8"/>
+<rect x="640" y="34" width="310" height="32" rx="4" fill="#f1f4f8"/>
+<rect x="0" y="74" width="150" height="36" rx="4" fill="#e3e8ef"/>
 </g>
-<circle class="timeline-mark" cx="75" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<circle cx="75" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
 <g stroke="#9aa5b1" stroke-width="1">
-<rect class="timeline-event" x="0" y="150" width="150" height="54" rx="4" fill="#ffffff"/>
-<rect class="timeline-event" x="0" y="212" width="150" height="54" rx="4" fill="#ffffff"/>
+<rect x="0" y="150" width="150" height="54" rx="4" fill="#ffffff"/>
+<rect x="0" y="212" width="150" height="54" rx="4" fill="#ffffff"/>
 </g>
-<rect class="timeline-period" x="160" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<circle class="timeline-mark" cx="235" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<rect x="160" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="235" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
 <g stroke="#9aa5b1" stroke-width="1">
-<rect class="timeline-event" x="160" y="150" width="150" height="34" rx="4" fill="#ffffff"/>
-<rect class="timeline-event" x="160" y="192" width="150" height="34" rx="4" fill="#ffffff"/>
+<rect x="160" y="150" width="150" height="34" rx="4" fill="#ffffff"/>
+<rect x="160" y="192" width="150" height="34" rx="4" fill="#ffffff"/>
 </g>
-<rect class="timeline-period" x="320" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<circle class="timeline-mark" cx="395" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<rect x="320" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="395" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
 <g stroke="#9aa5b1" stroke-width="1">
-<rect class="timeline-event" x="320" y="150" width="150" height="94" rx="4" fill="#ffffff"/>
-<rect class="timeline-event" x="320" y="252" width="150" height="54" rx="4" fill="#ffffff"/>
-<rect class="timeline-event" x="320" y="314" width="150" height="54" rx="4" fill="#ffffff"/>
+<rect x="320" y="150" width="150" height="94" rx="4" fill="#ffffff"/>
+<rect x="320" y="252" width="150" height="54" rx="4" fill="#ffffff"/>
+<rect x="320" y="314" width="150" height="54" rx="4" fill="#ffffff"/>
 </g>
-<rect class="timeline-period" x="480" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<circle class="timeline-mark" cx="555" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<rect class="timeline-event" x="480" y="150" width="150" height="74" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-period" x="640" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<circle class="timeline-mark" cx="715" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<rect class="timeline-event" x="640" y="150" width="150" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
-<rect class="timeline-period" x="800" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
-<circle class="timeline-mark" cx="875" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<text class="title" x="0" y="15.6" fill="#1b1f24">Wdrożenie systemu zarządzania jakością</text>
+<rect x="480" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="555" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<rect x="480" y="150" width="150" height="74" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect x="640" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="715" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<rect x="640" y="150" width="150" height="34" rx="4" fill="#ffffff" stroke="#9aa5b1" stroke-width="1"/>
+<rect x="800" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="875" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
+<text x="0" y="15.6" fill="#1b1f24">Wdrożenie systemu zarządzania jakością</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text class="timeline-section-title" x="155" y="55.6" font-weight="bold">Przygotowanie</text>
-<text class="timeline-section-title" x="475" y="55.6" font-weight="bold">Wdrożenie</text>
-<text class="timeline-section-title" x="795" y="55.6" font-weight="bold">Certyfikacja</text>
-<text class="timeline-period-label" x="75" y="97.6">Styczeń</text>
-<text class="timeline-event-label" x="75" y="172.6">Analiza luk wobec</text>
-<text class="timeline-event-label" x="75" y="192.6">normy</text>
-<text class="timeline-event-label" x="75" y="234.6">Powołanie</text>
-<text class="timeline-event-label" x="75" y="254.6">pełnomocnika</text>
-<text class="timeline-period-label" x="235" y="97.6">Luty</text>
-<text class="timeline-event-label" x="235" y="172.6">Mapa procesów</text>
-<text class="timeline-event-label" x="235" y="214.6">Plan szkoleń</text>
-<text class="timeline-period-label" x="395" y="97.6">Marzec–Maj</text>
-<text class="timeline-event-label" x="395" y="172.6">Procedury</text>
-<text class="timeline-event-label" x="395" y="192.6">nadzoru nad</text>
-<text class="timeline-event-label" x="395" y="212.6">dokumentami i</text>
-<text class="timeline-event-label" x="395" y="232.6">zapisami</text>
-<text class="timeline-event-label" x="395" y="274.6">Szkolenia</text>
-<text class="timeline-event-label" x="395" y="294.6">stanowiskowe</text>
-<text class="timeline-event-label" x="395" y="336.6">Pierwsze</text>
-<text class="timeline-event-label" x="395" y="356.6">przeglądy</text>
-<text class="timeline-period-label" x="555" y="97.6">Czerwiec</text>
-<text class="timeline-event-label" x="555" y="172.6">Audyt wewnętrzny</text>
-<text class="timeline-event-label" x="555" y="192.6">wszystkich</text>
-<text class="timeline-event-label" x="555" y="212.6">procesów</text>
-<text class="timeline-period-label" x="715" y="97.6">Wrzesień</text>
-<text class="timeline-event-label" x="715" y="172.6">Audyt certyfikujący</text>
-<text class="timeline-period-label" x="875" y="97.6">Październik</text>
+<text x="155" y="55.6" font-weight="bold">Przygotowanie</text>
+<text x="475" y="55.6" font-weight="bold">Wdrożenie</text>
+<text x="795" y="55.6" font-weight="bold">Certyfikacja</text>
+<text x="75" y="97.6">Styczeń</text>
+<text x="75" y="172.6">Analiza luk wobec</text>
+<text x="75" y="192.6">normy</text>
+<text x="75" y="234.6">Powołanie</text>
+<text x="75" y="254.6">pełnomocnika</text>
+<text x="235" y="97.6">Luty</text>
+<text x="235" y="172.6">Mapa procesów</text>
+<text x="235" y="214.6">Plan szkoleń</text>
+<text x="395" y="97.6">Marzec–Maj</text>
+<text x="395" y="172.6">Procedury</text>
+<text x="395" y="192.6">nadzoru nad</text>
+<text x="395" y="212.6">dokumentami i</text>
+<text x="395" y="232.6">zapisami</text>
+<text x="395" y="274.6">Szkolenia</text>
+<text x="395" y="294.6">stanowiskowe</text>
+<text x="395" y="336.6">Pierwsze</text>
+<text x="395" y="356.6">przeglądy</text>
+<text x="555" y="97.6">Czerwiec</text>
+<text x="555" y="172.6">Audyt wewnętrzny</text>
+<text x="555" y="192.6">wszystkich</text>
+<text x="555" y="212.6">procesów</text>
+<text x="715" y="97.6">Wrzesień</text>
+<text x="715" y="172.6">Audyt certyfikujący</text>
+<text x="875" y="97.6">Październik</text>
 </g>
 </svg>

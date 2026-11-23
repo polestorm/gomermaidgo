@@ -72,7 +72,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	j := &job{}
 	var fontPath, family, background, input, themeName string
 	var size float64
-	var colors, shadows, curved, emojiText bool
+	var colors, shadows, curved, emojiText, classes bool
 	var fitMode, foldMode, foldType, foldChains, foldRanks string
 	var fitRatio float64
 	both := func(p *string, short, long, usage string) {
@@ -93,6 +93,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	fs.Float64Var(&size, "size", 16, "font size in px")
 	fs.BoolVar(&colors, "colors", false, "colour participants and nodes")
 	fs.BoolVar(&shadows, "shadows", false, "draw shadows under participants, nodes and notes")
+	fs.BoolVar(&classes, "classes", false, "add class attributes with element roles to the SVG, for styling with CSS")
 	fs.BoolVar(&curved, "curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
 	fs.BoolVar(&emojiText, "emoji-text", false, "keep emoji in SVG as text set in the Noto Emoji font instead of outlines")
 	// Bez flagi decyduje źródło diagramu (linie %% layout: …), a bez niego wartość domyślna.
@@ -199,6 +200,9 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	}
 	if shadows {
 		j.opts = append(j.opts, mermaid.WithShadows())
+	}
+	if classes {
+		j.opts = append(j.opts, mermaid.WithClasses())
 	}
 	if themeName != "" {
 		j.opts = append(j.opts, mermaid.WithTheme(themeName))
