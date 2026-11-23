@@ -487,7 +487,7 @@ func (l *layouter) drawFrameTitle(lv *level, cx, cy, w, h float64, paint graph.P
 		tw, th := l.textSize(lv.titleLines)
 		tx, ty := cx-w/2+l.u(12)+tw/2, cy-h/2+l.u(6)+th/2
 		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "cluster-title-background",
-			X: tx - tw/2 - l.u(4), Y: ty - th/2, W: tw + 2*l.u(4), H: th, Fill: l.labelBackground()})
+			X: tx - tw/2 - l.u(4), Y: ty - th/2, W: tw + 2*l.u(4), H: th, Fill: l.labelBackground(), Knockout: l.labelBackground() == ""})
 		l.textBlock(lv.titleLines, tx, ty, "cluster-title")
 	}
 }
@@ -1039,10 +1039,7 @@ func (l *layouter) labelBackground() string {
 	if l.bg != "" {
 		return l.bg
 	}
-	if l.o.Background != "" {
-		return l.o.Background
-	}
-	return "#ffffff"
+	return "" // tło rysunku: podkład scene.Item.Knockout
 }
 
 // drawLabel rysuje etykietę krawędzi z podkładem w kolorze tła.
@@ -1050,7 +1047,7 @@ func (l *layouter) drawLabel(lines []string, x, y float64) {
 	p := l.point(x, y)
 	tw, th := l.textSize(lines)
 	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "edge-label-background",
-		X: p.X - tw/2 - l.u(4), Y: p.Y - th/2, W: tw + 2*l.u(4), H: th, Fill: l.labelBackground()})
+		X: p.X - tw/2 - l.u(4), Y: p.Y - th/2, W: tw + 2*l.u(4), H: th, Fill: l.labelBackground(), Knockout: l.labelBackground() == ""})
 	l.textBlock(lines, p.X, p.Y, "edge-label")
 }
 

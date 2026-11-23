@@ -44,8 +44,10 @@ func TestThemesOverCorpus(t *testing.T) {
 				a := shape.ReplaceAllString(string(plain), "")
 				b := strings.Replace(shape.ReplaceAllString(string(got), ""), "<rect x=\"", "<rect x=\"", 1)
 				if name == ThemeDark {
-					// Motyw ciemny dokłada tylko prostokąt tła.
-					if strings.Count(string(got), "<rect") != strings.Count(string(plain), "<rect")+1 {
+					// Motyw ciemny dokłada tylko tło: te same prostokąty co rysunek z podanym tłem (podkłady
+					// podpisów są wtedy malowane w kolorze tła zamiast wycinać linie).
+					filled, _ := Render(src, WithBackground("#ffffff"))
+					if strings.Count(string(got), "<rect") != strings.Count(string(filled), "<rect") {
 						t.Errorf("%s: dark theme should add exactly the background", path)
 					}
 				} else if a != b {

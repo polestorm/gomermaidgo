@@ -1,17 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="349.75" height="842" viewBox="-11.88 -12 349.75 842" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect class="cluster" x="0.13" y="176" width="325.75" height="426" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="44.38" y="406" width="261.5" height="172" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="73.3" y="686" width="205.39" height="132" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-de20a11c"><path d="M-11.88 -12 L337.88 -12 L337.88 830 L-11.88 830 M8.13 182 L8.13 202 L250.02 202 L250.02 182 M52.38 412 L52.38 432 L143.05 432 L143.05 412 M81.3 692 L81.3 712 L270.7 712 L270.7 692 M135.98 634 L135.98 654 L216.02 654 L216.02 634"/></clipPath></defs>
+<g clip-path="url(#label-holes-de20a11c)"><rect class="cluster" x="0.13" y="176" width="325.75" height="426" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-de20a11c)"><rect class="cluster" x="44.38" y="406" width="261.5" height="172" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-de20a11c)"><rect class="cluster" x="73.3" y="686" width="205.39" height="132" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <path class="edge" d="M105.13 274 L105.13 309.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M105.13 362 L105.13 376 C105.13 380.4 108.73 384 113.13 384 L167.38 384 C171.78 384 175.38 387.6 175.38 392 L175.38 406 L175.38 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-de20a11c)"><path class="edge" d="M105.13 362 L105.13 376 C105.13 380.4 108.73 384 113.13 384 L167.38 384 C171.78 384 175.38 387.6 175.38 392 L175.38 406 L175.38 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M134 44 L134 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M134 132 L134 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M175.38 554 L175.38 731.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M226 52.4 L226 132 L226 146.56 C226 150.65 222.65 154 218.56 154 L218.56 154 C214.47 154 211.13 157.35 211.13 161.44 L211.13 176 L211.13 406" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect class="cluster-title-background" x="8.13" y="182" width="241.89" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="52.38" y="412" width="90.68" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="81.3" y="692" width="189.39" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="135.98" y="634" width="80.04" height="20" fill="#ffffff"/>
+<g clip-path="url(#label-holes-de20a11c)"><path class="edge" d="M175.38 554 L175.38 731.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-de20a11c)"><path class="edge" d="M226 52.4 L226 132 L226 146.56 C226 150.65 222.65 154 218.56 154 L218.56 154 C214.47 154 211.13 157.35 211.13 161.44 L211.13 176 L211.13 406" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
 <polygon class="arrowhead" points="105.13,318 99.13,306 111.13,306" fill="#3b4754"/>
 <polygon class="arrowhead" points="175.38,460 169.38,448 181.38,448" fill="#3b4754"/>
 <polygon class="arrowhead" points="134,88 128,76 140,76" fill="#3b4754"/>

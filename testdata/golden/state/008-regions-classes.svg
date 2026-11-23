@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="597.9" height="974" viewBox="-11.95 -12 597.9 974" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Sterylizator w trakcie cyklu</title>
+<defs><clipPath id="label-holes-695557b6"><path d="M-11.95 -12 L585.95 -12 L585.95 962 L-11.95 962 M266.11 136 L266.11 156 L307.89 156 L307.89 136 M318.43 766 L318.43 786 L373.57 786 L373.57 766"/></clipPath></defs>
 <rect class="cluster" x="0.05" y="188" width="573.9" height="522" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <rect class="cluster-title-strip" x="0.05" y="188" width="573.9" height="32" rx="8" fill="#eef2f7"/>
 <rect class="cluster-title-strip" x="0.05" y="204" width="573.9" height="16" fill="#eef2f7"/>
@@ -19,17 +20,17 @@
 <path class="edge" d="M371.05 466 L371.05 483.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M371.05 536 L371.05 611.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M287 16 L287 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M287 104 L287 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-695557b6)"><path class="edge" d="M287 104 L287 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M228 710 L228 745.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M346 710 L346 833.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-695557b6)"><path class="edge" d="M346 710 L346 833.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M228 798 L228 886 L228 895.8 C228 900.2 231.6 903.8 236 903.8 L279 903.8 C283.4 903.8 287 907.4 287 911.8 L287 921.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M287 886 L287 921.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="41.31" y="396" width="171.66" height="20" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="85.35" y="524" width="83.58" height="20" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="470.36" y="332" width="59.59" height="20" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="314.58" y="568" width="112.95" height="20" fill="#f1f4f8"/>
-<rect class="edge-label-background" x="266.11" y="136" width="41.79" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="318.43" y="766" width="55.13" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="127.14,320 121.14,308 133.14,308" fill="#3b4754"/>
 <polygon class="arrowhead" points="127.14,448 121.14,436 133.14,436" fill="#3b4754"/>
 <polygon class="arrowhead" points="127.14,576 121.14,564 133.14,564" fill="#3b4754"/>

@@ -1,13 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="705.8" height="213.1" viewBox="-12 -16.2 705.8 213.1" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-b049e308"><path d="M-12 -16.2 L693.8 -16.2 L693.8 196.9 L-12 196.9 M154.77 40 L154.77 56.9 L184.06 56.9 L184.06 40 M190.79 40 L190.79 56.9 L239.6 56.9 L239.6 40 M246.33 104 L246.33 120.9 L278.5 120.9 L278.5 104 M284.5 104 L284.5 120.9 L338.37 120.9 L338.37 104 M344.37 40 L344.37 56.9 L404.73 56.9 L404.73 40 M410.73 168 L410.73 184.9 L448.69 184.9 L448.69 168"/></clipPath></defs>
 <line class="git-guide" x1="153.41" y1="28" x2="681.8" y2="28" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4"/>
 <line class="git-guide" x1="153.41" y1="92" x2="681.8" y2="92" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4"/>
 <line class="git-guide" x1="153.41" y1="156" x2="681.8" y2="156" fill="none" stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4"/>
 <line class="git-lane" x1="169.41" y1="28" x2="645.8" y2="28" fill="none" stroke="#3b4754" stroke-width="3"/>
 <line class="git-lane" x1="262.41" y1="92" x2="311.43" y2="92" fill="none" stroke="#3b4754" stroke-width="3"/>
 <line class="git-lane" x1="429.71" y1="156" x2="429.71" y2="156" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="git-fork" d="M215.19 28 L215.19 82 C215.19 87.5 219.69 92 225.19 92 L262.41 92" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="git-fork" d="M374.55 28 L374.55 87 C377.31 87 379.55 89.24 379.55 92 C379.55 94.76 377.31 97 374.55 97 L374.55 146 C374.55 151.5 379.05 156 384.55 156 L429.71 156" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="git-merge" d="M311.43 92 L469.83 92 C475.33 92 479.83 87.5 479.83 82 L479.83 28" fill="none" stroke="#3b4754" stroke-width="3"/>
+<g clip-path="url(#label-holes-b049e308)"><path class="git-fork" d="M215.19 28 L215.19 82 C215.19 87.5 219.69 92 225.19 92 L262.41 92" fill="none" stroke="#3b4754" stroke-width="3"/>
+</g>
+<g clip-path="url(#label-holes-b049e308)"><path class="git-fork" d="M374.55 28 L374.55 87 C377.31 87 379.55 89.24 379.55 92 C379.55 94.76 377.31 97 374.55 97 L374.55 146 C374.55 151.5 379.05 156 384.55 156 L429.71 156" fill="none" stroke="#3b4754" stroke-width="3"/>
+</g>
+<g clip-path="url(#label-holes-b049e308)"><path class="git-merge" d="M311.43 92 L469.83 92 C475.33 92 479.83 87.5 479.83 82 L479.83 28" fill="none" stroke="#3b4754" stroke-width="3"/>
+</g>
 <path class="git-pick" d="M429.71 156 L564.38 156 C569.88 156 574.38 151.5 574.38 146 L574.38 28" fill="none" stroke="#3b4754" stroke-width="2" stroke-dasharray="4 3"/>
 <rect class="git-branch" x="90.73" y="14" width="54.68" height="28" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="git-branch" x="0" y="78" width="145.41" height="28" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="1.5"/>
@@ -31,20 +35,14 @@
 <text class="git-branch-label" x="118.07" y="33.6" text-anchor="middle" fill="#1b1f24">main</text>
 <text class="git-branch-label" x="72.71" y="97.6" text-anchor="middle" fill="#1b1f24">procedura/nadzór</text>
 <text class="git-branch-label" x="118.51" y="161.6" text-anchor="middle" fill="#1b1f24">pilne</text>
-<rect class="git-commit-id-background" x="154.77" y="40" width="29.28" height="16.9" fill="#ffffff"/>
 <text class="git-commit-id" x="169.41" y="53" text-anchor="middle" font-size="13" fill="#5b6570">start</text>
-<rect class="git-commit-id-background" x="190.79" y="40" width="48.81" height="16.9" fill="#ffffff"/>
 <text class="git-commit-id" x="215.19" y="53" text-anchor="middle" font-size="13" fill="#5b6570">szablon</text>
 <text class="git-tag-label" x="221.04" y="9.45" text-anchor="middle" font-size="13" fill="#1b1f24">v0.1</text>
-<rect class="git-commit-id-background" x="246.33" y="104" width="32.17" height="16.9" fill="#ffffff"/>
 <text class="git-commit-id" x="262.41" y="117" text-anchor="middle" font-size="13" fill="#5b6570">treść</text>
-<rect class="git-commit-id-background" x="284.5" y="104" width="53.87" height="16.9" fill="#ffffff"/>
 <text class="git-commit-id" x="311.43" y="117" text-anchor="middle" font-size="13" fill="#5b6570">przegląd</text>
-<rect class="git-commit-id-background" x="344.37" y="40" width="60.37" height="16.9" fill="#ffffff"/>
 <text class="git-commit-id" x="374.55" y="53" text-anchor="middle" font-size="13" fill="#5b6570">poprawka</text>
 <line class="git-commit-detail" x1="425.71" y1="160" x2="433.71" y2="152" fill="none" stroke="#ffffff" stroke-width="2"/>
 <line class="git-commit-detail" x1="425.71" y1="152" x2="433.71" y2="160" fill="none" stroke="#ffffff" stroke-width="2"/>
-<rect class="git-commit-id-background" x="410.73" y="168" width="37.96" height="16.9" fill="#ffffff"/>
 <text class="git-commit-id" x="429.71" y="181" text-anchor="middle" font-size="13" fill="#5b6570">errata</text>
 <text class="git-tag-label" x="485.68" y="9.45" text-anchor="middle" font-size="13" fill="#1b1f24">v1.0</text>
 <line class="git-commit-detail" x1="575.18" y1="23.04" x2="571.5" y2="28.8" fill="none" stroke="#ffffff" stroke-width="1.2"/>

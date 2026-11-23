@@ -71,6 +71,7 @@ type layout struct {
 	active [][]float64 // początki otwartych aktywacji
 	frames []*frame
 	fills  []string // kolory tła pod bieżącym miejscem: tło rysunku i otwarte wyróżnienia „rect”
+	plain  bool     // tło rysunku nie jest zapisane kolorem (przezroczyste albo nazwane): podkłady na nim to Knockout
 	number int
 }
 
@@ -108,8 +109,14 @@ func (l *layout) labelBackground(x, top, w, h float64) {
 	if w <= 0 {
 		return
 	}
+	fill := l.fillAt(x-l.u(3), x+w+l.u(3))
+	// Na samym tle rysunku, które nie jest zapisane kolorem: podkład w kolorze tła (scene.Item.Knockout).
+	knockout := l.plain && len(l.fills) == 1 && fill == l.fills[0]
+	if knockout {
+		fill = ""
+	}
 	l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "label-background",
-		X: x - l.u(3), Y: top + l.u(1), W: w + 2*l.u(3), H: h - l.u(2), Fill: l.fillAt(x-l.u(3), x+w+l.u(3))})
+		X: x - l.u(3), Y: top + l.u(1), W: w + 2*l.u(3), H: h - l.u(2), Fill: fill, Knockout: knockout})
 }
 
 // fillAt zwraca kolor tła pod odcinkiem od x0 do x1: wyróżnienie „rect” albo tło rysunku,
@@ -156,7 +163,8 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	l.active = make([][]float64, len(d.Participants))
 	base := o.Background
 	if _, _, _, _, ok := parseColor(base); !ok {
-		base = "#ffffff" // przezroczyste albo nazwane tło: podkłady etykiet zakładają biel
+		base = "#ffffff" // przezroczyste albo nazwane tło: odcienie wyróżnień liczone od bieli
+		l.plain = true
 	}
 	l.fills = []string{base}
 

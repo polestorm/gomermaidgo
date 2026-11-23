@@ -1,8 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="598" height="622" viewBox="-12 -12 598 622" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-9bfdfdae"><path d="M-12 -12 L586 -12 L586 610 L-12 610 M20.21 210 L20.21 230 L119.79 230 L119.79 210 M166.21 210 L166.21 230 L281.79 230 L281.79 210"/></clipPath></defs>
 <path class="edge" d="M134 16 L134 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M134 104 L134 139.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M130.63 174.63 L130.63 183.31 C130.63 187.71 127.03 191.31 122.63 191.31 L78 191.31 C73.6 191.31 70 194.91 70 199.31 L70 208 L70 253.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M137.38 174.63 L137.38 183.31 C137.38 187.71 140.98 191.31 145.38 191.31 L216 191.31 C220.4 191.31 224 194.91 224 199.31 L224 208 L224 271.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-9bfdfdae)"><path class="edge" d="M130.63 174.63 L130.63 183.31 C130.63 187.71 127.03 191.31 122.63 191.31 L78 191.31 C73.6 191.31 70 194.91 70 199.31 L70 208 L70 253.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-9bfdfdae)"><path class="edge" d="M137.38 174.63 L137.38 183.31 C137.38 187.71 140.98 191.31 145.38 191.31 L216 191.31 C220.4 191.31 224 194.91 224 199.31 L224 208 L224 271.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M210 288 L210 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M238 288 L238 306 L238 315.8 C238 320.2 241.6 323.8 246 323.8 L475 323.8 C479.4 323.8 483 327.4 483 331.8 L483 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M243 394 L243 429.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -10,8 +13,6 @@
 <path class="edge" d="M257 446 L257 455.8 C257 460.2 253.4 463.8 249 463.8 L172 463.8 C167.6 463.8 164 467.4 164 471.8 L164 481.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M70 306 L70 446 L70 455.8 C70 460.2 73.6 463.8 78 463.8 L116 463.8 C120.4 463.8 124 467.4 124 471.8 L124 481.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M144 534 L144 569.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="20.21" y="210" width="99.58" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="166.21" y="210" width="115.58" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="134,60 128,48 140,48" fill="#3b4754"/>
 <polygon class="arrowhead" points="134,148 128,136 140,136" fill="#3b4754"/>
 <polygon class="arrowhead" points="70,262 64,250 76,250" fill="#3b4754"/>

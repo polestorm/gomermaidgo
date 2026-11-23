@@ -1,24 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1540" height="383" viewBox="-12 -12 1540 383" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect class="cluster" x="0" y="0" width="169" height="318" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="229" y="73.5" width="632" height="153" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="905" y="143" width="423" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="1372" y="61" width="144" height="298" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-27d6d2da"><path d="M-12 -12 L1528 -12 L1528 371 L-12 371 M8 6 L8 26 L54.25 26 L54.25 6 M237 79.5 L237 99.5 L346.38 99.5 L346.38 79.5 M913 149 L913 169 L973.48 169 L973.48 149 M1380 67 L1380 87 L1431.55 87 L1431.55 67"/></clipPath></defs>
+<g clip-path="url(#label-holes-27d6d2da)"><rect class="cluster" x="0" y="0" width="169" height="318" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-27d6d2da)"><rect class="cluster" x="229" y="73.5" width="632" height="153" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-27d6d2da)"><rect class="cluster" x="905" y="143" width="423" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-27d6d2da)"><rect class="cluster" x="1372" y="61" width="144" height="298" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <path class="edge" d="M357 145.5 L366.8 145.5 C371.2 145.5 374.8 149.1 374.8 153.5 L374.8 154.5 C374.8 158.9 378.4 162.5 382.8 162.5 L392.6 162.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M512 174.5 L547.6 174.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M656 174.5 L691.6 174.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M1042 225 L1077.6 225" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M1164 225 L1199.6 225" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M145 72 L169 72 L191 72 C195.4 72 199 75.6 199 80 L199 137.5 C199 141.9 202.6 145.5 207 145.5 L229 145.5 L244.6 145.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-27d6d2da)"><path class="edge" d="M145 72 L169 72 L191 72 C195.4 72 199 75.6 199 80 L199 137.5 C199 141.9 202.6 145.5 207 145.5 L229 145.5 L244.6 145.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M145 174 L169 174 L191.25 174 C195.51 174 199 177.49 199 181.75 L199 181.75 C199 186.01 202.49 189.5 206.75 189.5 L229 189.5 L392.6 189.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M837 174.5 L861 174.5 L875 174.5 C879.4 174.5 883 178.1 883 182.5 L883 204 C883 208.4 886.6 212 891 212 L905 212 L920.6 212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M145 276 L169 276 L191 276 C195.4 276 199 272.4 199 268 L199 246 C199 241.6 202.6 238 207 238 L229 238 L920.6 238" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M1304 209 L1328 209 L1342 209 C1346.4 209 1350 205.4 1350 201 L1350 141 C1350 136.6 1353.6 133 1358 133 L1372 133 L1387.6 133" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M1304 225 L1387.6 225" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M1304 241 L1328 241 L1342 241 C1346.4 241 1350 244.6 1350 249 L1350 309 C1350 313.4 1353.6 317 1358 317 L1372 317 L1387.6 317" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="cluster-title-background" x="8" y="6" width="46.25" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="237" y="79.5" width="109.38" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="913" y="149" width="60.48" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="1380" y="67" width="51.55" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="401,162.5 389,156.5 389,168.5" fill="#3b4754"/>
 <polygon class="arrowhead" points="556,174.5 544,168.5 544,180.5" fill="#3b4754"/>
 <polygon class="arrowhead" points="700,174.5 688,168.5 688,180.5" fill="#3b4754"/>

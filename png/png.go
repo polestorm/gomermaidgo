@@ -11,7 +11,6 @@ import (
 	"image"
 	stdpng "image/png"
 	"math"
-	"sort"
 	"strconv"
 	"strings"
 
@@ -323,11 +322,39 @@ func draw(sc *scene.Scene, data bridge.Fonts, scale float64) (*image.RGBA, error
 	if sc.Background != "" {
 		p.item(scene.Item{Kind: scene.Rect, X: x0, Y: y0, W: width, H: height, Fill: sc.Background}, sc.FontSize, fonts)
 	}
-	items := make([]scene.Item, len(sc.Items))
-	copy(items, sc.Items)
-	sort.SliceStable(items, func(i, j int) bool { return items[i].Layer < items[j].Layer })
+	items, holes := sc.Ordered()
 	for _, it := range items {
+		if !scene.Cut(it, holes) {
+			p.item(it, sc.FontSize, fonts)
+			continue
+		}
+		// Linia pod podpisami przy przezroczystym tle: piksele pól podpisów wracają do stanu sprzed niej.
+		img := p.c.Image
+		type patch struct {
+			r   image.Rectangle
+			pix []uint8
+		}
+		var saved []patch
+		for _, o := range holes {
+			r := image.Rect(int(math.Round((o.X0-x0)*scale)), int(math.Round((o.Y0-y0)*scale)),
+				int(math.Round((o.X1-x0)*scale)), int(math.Round((o.Y1-y0)*scale))).Intersect(img.Bounds())
+			if r.Empty() {
+				continue
+			}
+			pt := patch{r: r}
+			for y := r.Min.Y; y < r.Max.Y; y++ {
+				at := img.PixOffset(r.Min.X, y)
+				pt.pix = append(pt.pix, img.Pix[at:at+4*r.Dx()]...)
+			}
+			saved = append(saved, pt)
+		}
 		p.item(it, sc.FontSize, fonts)
+		for _, pt := range saved {
+			for y, k := pt.r.Min.Y, 0; y < pt.r.Max.Y; y++ {
+				at := img.PixOffset(pt.r.Min.X, y)
+				k += copy(img.Pix[at:at+4*pt.r.Dx()], pt.pix[k:k+4*pt.r.Dx()])
+			}
+		}
 	}
 	return p.c.Image, nil
 }

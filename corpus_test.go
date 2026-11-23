@@ -220,6 +220,9 @@ func TestCorpusDeterministic(t *testing.T) {
 var allowedSVG = map[string][]string{
 	"svg":      {"xmlns", "version", "width", "height", "viewBox", "role", "font-family", "font-size"},
 	"title":    {},
+	"defs":     {},
+	"clipPath": {"id"},
+	"g":        {"clip-path"},
 	"desc":     {},
 	"rect":     {"class", "x", "y", "width", "height", "rx", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"line":     {"class", "x1", "y1", "x2", "y2", "fill", "stroke", "stroke-width", "stroke-dasharray"},

@@ -1,8 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="618.79" height="549" viewBox="-31.12 -12 618.79 549" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-303a800b"><path d="M-31.12 -12 L587.67 -12 L587.67 537 L-31.12 537 M504.63 199 L504.63 217 L564 217 L564 199"/></clipPath></defs>
 <line class="lifeline" x1="0" y1="68" x2="0" y2="449" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
 <line class="lifeline" x1="277" y1="68" x2="277" y2="457" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="517" y1="68" x2="517" y2="449" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<rect class="label-background" x="504.63" y="199" width="59.37" height="18" fill="#ffffff"/>
+<g clip-path="url(#label-holes-303a800b)"><line class="lifeline" x1="517" y1="68" x2="517" y2="449" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+</g>
 <circle class="actor" cx="0" cy="8" r="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <line class="actor" x1="0" y1="16" x2="0" y2="32" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <line class="actor" x1="-12" y1="22" x2="12" y2="22" fill="none" stroke="#55657a" stroke-width="1.5"/>

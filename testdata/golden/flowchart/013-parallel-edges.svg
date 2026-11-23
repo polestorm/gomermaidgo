@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="168" height="517" viewBox="-12 -12 168 517" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-a70eb3f5"><path d="M-12 -12 L156 -12 L156 505 L-12 505 M84.1 106 L84.1 126 L125.9 126 L125.9 106"/></clipPath></defs>
 <path class="edge" d="M43 44 L43 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M61 44 L61 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M105 44 L105 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-a70eb3f5)"><path class="edge" d="M105 44 L105 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M61 232 L61 289.33" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M79 232 L79 289.33" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M61 358.27 L61 416.79" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M79 358.27 L79 416.79" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="84.1" y="106" width="41.8" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="43,188 37,176 49,176" fill="#3b4754"/>
 <polygon class="arrowhead" points="61,188 55,176 67,176" fill="#3b4754"/>
 <polygon class="arrowhead" points="105,188 99,176 111,176" fill="#3b4754"/>

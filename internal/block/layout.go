@@ -349,11 +349,7 @@ func (l *layouter) edge(e Edge, byID map[string]*Item) {
 			tw = math.Max(tw, l.width(s))
 		}
 		th := float64(len(e.Label)) * l.lh
-		bg := l.o.Background
-		if bg == "" {
-			bg = "#ffffff"
-		}
-		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "edge-label-background", X: mx - tw/2 - l.u(3), Y: my - th/2, W: tw + l.u(6), H: th, Fill: bg})
+		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "edge-label-background", X: mx - tw/2 - l.u(3), Y: my - th/2, W: tw + l.u(6), H: th, Knockout: true})
 		for k, s := range e.Label {
 			l.sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "edge-label", X: mx, Y: my - th/2 + float64(k)*l.lh + l.lh/2 + 0.35*l.fs,
 				W: l.width(s), H: l.lh, Text: s, Anchor: "middle", Fill: colorText})

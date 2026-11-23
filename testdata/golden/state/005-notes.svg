@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="572.07" height="344" viewBox="-11.6 -12 572.07 344" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-feebc71f"><path d="M-11.6 -12 L560.47 -12 L560.47 332 L-11.6 332 M176.07 148 L176.07 168 L353.93 168 L353.93 148"/></clipPath></defs>
 <line class="note-link" x1="343" y1="88" x2="391.53" y2="88" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
 <line class="note-link" x1="187" y1="228" x2="139.6" y2="228" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M265 16 L265 57.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M265 110 L265 197.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-feebc71f)"><path class="edge" d="M265 110 L265 197.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M265 250 L265 291.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="176.07" y="148" width="177.87" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="265,66 259,54 271,54" fill="#3b4754"/>
 <polygon class="arrowhead" points="265,206 259,194 271,194" fill="#3b4754"/>
 <polygon class="arrowhead" points="265,300 259,288 271,288" fill="#3b4754"/>

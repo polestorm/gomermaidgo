@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="716.5" height="720" viewBox="-12 -12 716.5 720" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<path class="edge" d="M167 229 L167 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M323 458 L323 512 L323 519 C323 523.4 326.6 527 331 527 L440 527 C444.4 527 448 530.6 448 535 L448 542" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M479 165 L479 304" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M614 425 L614 512 L614 519 C614 523.4 610.4 527 606 527 L496 527 C491.6 527 488 530.6 488 535 L488 542" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect class="edge-label-background" x="124.3" y="252" width="85.39" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="284.31" y="490" width="77.38" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="440.76" y="252" width="76.48" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="572.2" y="490" width="83.59" height="20" fill="#ffffff"/>
+<defs><clipPath id="label-holes-0281d53e"><path d="M-12 -12 L704.5 -12 L704.5 708 L-12 708 M124.3 252 L124.3 272 L209.7 272 L209.7 252 M284.31 490 L284.31 510 L361.69 510 L361.69 490 M440.76 252 L440.76 272 L517.24 272 L517.24 252 M572.2 490 L572.2 510 L655.8 510 L655.8 490"/></clipPath></defs>
+<g clip-path="url(#label-holes-0281d53e)"><path class="edge" d="M167 229 L167 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-0281d53e)"><path class="edge" d="M323 458 L323 512 L323 519 C323 523.4 326.6 527 331 527 L440 527 C444.4 527 448 530.6 448 535 L448 542" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
+<g clip-path="url(#label-holes-0281d53e)"><path class="edge" d="M479 165 L479 304" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
+<g clip-path="url(#label-holes-0281d53e)"><path class="edge" d="M614 425 L614 512 L614 519 C614 523.4 610.4 527 606 527 L496 527 C491.6 527 488 530.6 488 535 L488 542" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
 <circle class="arrowhead" cx="167" cy="225" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="448" y1="542" x2="454" y2="531" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="448" y1="542" x2="442" y2="531" fill="none" stroke="#3b4754" stroke-width="1.5"/>

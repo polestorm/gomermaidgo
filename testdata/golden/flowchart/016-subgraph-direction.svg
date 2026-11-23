@@ -1,28 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1106.35" height="861" viewBox="-12.18 -12 1106.35 861" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect class="cluster" x="177.5" y="0" width="727" height="114" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="-0.18" y="158" width="1082.35" height="271" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="634.18" y="208" width="428" height="114" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="329.5" y="473" width="423" height="114" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="422.28" y="631" width="237.45" height="206" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-bef2ecff"><path d="M-12.18 -12 L1094.18 -12 L1094.18 849 L-12.18 849 M185.5 6 L185.5 26 L277.98 26 L277.98 6 M7.82 164 L7.82 184 L104.74 184 L104.74 164 M642.18 214 L642.18 234 L737.35 234 L737.35 214 M365.83 255 L365.83 275 L395.17 275 L395.17 255 M365.82 367 L365.82 387 L395.18 387 L395.18 367 M337.5 479 L337.5 499 L421.98 499 L421.98 479 M430.28 637 L430.28 657 L651.72 657 L651.72 637"/></clipPath></defs>
+<g clip-path="url(#label-holes-bef2ecff)"><rect class="cluster" x="177.5" y="0" width="727" height="114" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-bef2ecff)"><rect class="cluster" x="-0.18" y="158" width="1082.35" height="271" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-bef2ecff)"><rect class="cluster" x="634.18" y="208" width="428" height="114" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-bef2ecff)"><rect class="cluster" x="329.5" y="473" width="423" height="114" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-bef2ecff)"><rect class="cluster" x="422.28" y="631" width="237.45" height="206" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <path class="edge" d="M402.5 72 L438.1 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M639.5 72 L675.1 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M794.18 280 L829.78 280" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M159.82 286 L195.42 286" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M320.09 277.45 L336.23 277.45 C339.65 277.45 342.46 274.65 342.46 271.23 L342.46 271.23 C342.46 267.8 345.26 265 348.68 265 L364.82 265 L417.78 265" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M320.09 294.55 L334.46 294.55 C338.86 294.55 342.46 298.15 342.46 302.55 L342.46 369 C342.46 373.4 346.06 377 350.46 377 L364.82 377 L417.78 377" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-bef2ecff)"><path class="edge" d="M320.09 277.45 L336.23 277.45 C339.65 277.45 342.46 274.65 342.46 271.23 L342.46 271.23 C342.46 267.8 345.26 265 348.68 265 L364.82 265 L417.78 265" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-bef2ecff)"><path class="edge" d="M320.09 294.55 L334.46 294.55 C338.86 294.55 342.46 298.15 342.46 302.55 L342.46 369 C342.46 373.4 346.06 377 350.46 377 L364.82 377 L417.78 377" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M590.18 265 L625.78 265" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M592.5 545 L556.9 545" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M541.25 729 L541.25 764.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M541 114 L541 149.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M541 429 L541 464.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M541.25 587 L541.25 676.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="cluster-title-background" x="185.5" y="6" width="92.48" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="7.82" y="164" width="96.91" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="642.18" y="214" width="95.17" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="365.83" y="255" width="29.34" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="365.82" y="367" width="29.35" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="337.5" y="479" width="84.48" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="430.28" y="637" width="221.45" height="20" fill="#ffffff"/>
+<g clip-path="url(#label-holes-bef2ecff)"><path class="edge" d="M541.25 587 L541.25 676.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <polygon class="arrowhead" points="446.5,72 434.5,66 434.5,78" fill="#3b4754"/>
 <polygon class="arrowhead" points="683.5,72 671.5,66 671.5,78" fill="#3b4754"/>
 <polygon class="arrowhead" points="838.18,280 826.18,274 826.18,286" fill="#3b4754"/>

@@ -5,6 +5,7 @@ package scene
 
 import (
 	"fmt"
+	"hash/fnv"
 	"math"
 	"sort"
 	"strconv"
@@ -71,6 +72,10 @@ type Item struct {
 	Stroke      string
 	StrokeWidth float64
 	Dash        string
+	// Knockout oznacza podkład podpisu w kolorze tła rysunku. Przy tle podanym dostaje jego kolor;
+	// przy przezroczystym nie jest malowany, tylko wycina linie leżące pod nim (Ordered, Cut), więc
+	// podpis stoi na tym, na czym leży cały rysunek, a nie na białej plamie.
+	Knockout bool
 }
 
 // Scene to cały rysunek.
@@ -324,6 +329,41 @@ func points(ps []Point) string {
 	return b.String()
 }
 
+// Ordered zwraca elementy w kolejności malowania (warstwy, w warstwie kolejność dodania). Podkłady
+// Knockout przy podanym tle dostają jego kolor; przy przezroczystym wypadają z listy, a ich pola
+// wracają jako otwory do przycięcia linii pod nimi.
+func (s *Scene) Ordered() (items []Item, holes []Box) {
+	items = make([]Item, 0, len(s.Items))
+	for _, it := range s.Items {
+		if it.Knockout {
+			if s.Background == "" {
+				holes = append(holes, it.Bounds())
+				continue
+			}
+			it.Fill = s.Background
+		}
+		items = append(items, it)
+	}
+	sort.SliceStable(items, func(i, j int) bool { return items[i].Layer < items[j].Layer })
+	return items, holes
+}
+
+// Cut mówi, czy element trzeba przyciąć otworami: linia bez wypełnienia z warstwy pod podkładami,
+// która zachodzi na któryś otwór. Wypełnień nie przycina się, bo podpis ma stać na ich kolorze.
+func Cut(it Item, holes []Box) bool {
+	if it.Layer >= LayerLabelBackground || it.Kind == Text || it.Fill != "" && it.Fill != "none" {
+		return false
+	}
+	b := it.Bounds()
+	w := it.StrokeWidth
+	for _, h := range holes {
+		if b.X0-w < h.X1 && h.X0 < b.X1+w && b.Y0-w < h.Y1 && h.Y0 < b.Y1+w {
+			return true
+		}
+	}
+	return false
+}
+
 // SVG zapisuje scenę jako samodzielny dokument SVG 1.1 złożony wyłącznie z elementów
 // podstawowych; wygląd jest w atrybutach prezentacji, bez arkusza stylów.
 func (s *Scene) SVG() []byte {
@@ -331,9 +371,7 @@ func (s *Scene) SVG() []byte {
 	x0, y0 := bounds.X0-s.Margin, bounds.Y0-s.Margin
 	w, h := bounds.Width()+2*s.Margin, bounds.Height()+2*s.Margin
 
-	items := make([]Item, len(s.Items))
-	copy(items, s.Items)
-	sort.SliceStable(items, func(i, j int) bool { return items[i].Layer < items[j].Layer })
+	items, holes := s.Ordered()
 
 	var b strings.Builder
 	b.WriteString(`<svg xmlns="http://www.w3.org/2000/svg" version="1.1"`)
@@ -363,7 +401,36 @@ func (s *Scene) SVG() []byte {
 		attr(&b, "fill", s.Background)
 		b.WriteString("/>\n")
 	}
+	// Otwory pod podpisami: ścieżka przycięcia z obrysem całego rysunku i polami podpisów obiegniętymi
+	// w przeciwną stronę (same M i L: przycięcie domyka kontury). Reguła nonzero (domyślna) wystarcza,
+	// więc przycięcie działa też w czytnikach bez clip-rule. Identyfikator zależy od treści: kilka rysunków w jednym HTML się nie myli.
+	clip := ""
+	if len(holes) > 0 {
+		var d strings.Builder
+		corners := func(ps ...float64) {
+			for i := 0; i < len(ps); i += 2 {
+				if i == 0 {
+					d.WriteString(" M")
+				} else {
+					d.WriteString(" L")
+				}
+				d.WriteString(num(ps[i]) + " " + num(ps[i+1]))
+			}
+		}
+		corners(x0, y0, x0+w, y0, x0+w, y0+h, x0, y0+h)
+		for _, o := range holes {
+			corners(o.X0, o.Y0, o.X0, o.Y1, o.X1, o.Y1, o.X1, o.Y0)
+		}
+		sum := fnv.New32a()
+		sum.Write([]byte(d.String()))
+		clip = fmt.Sprintf("label-holes-%08x", sum.Sum32())
+		b.WriteString(`<defs><clipPath id="` + clip + `"><path d="` + d.String()[1:] + `"/></clipPath></defs>` + "\n")
+	}
 	for _, it := range items {
+		cut := clip != "" && Cut(it, holes)
+		if cut {
+			b.WriteString(`<g clip-path="url(#` + clip + `)">`)
+		}
 		switch it.Kind {
 		case Rect:
 			b.WriteString("<rect")
@@ -446,6 +513,9 @@ func (s *Scene) SVG() []byte {
 			b.WriteString(">")
 			b.WriteString(Escape(it.Text))
 			b.WriteString("</text>\n")
+		}
+		if cut {
+			b.WriteString("</g>\n")
 		}
 	}
 	b.WriteString("</svg>\n")

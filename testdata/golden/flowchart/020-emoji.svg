@@ -1,16 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="524.25" height="693" viewBox="-11.75 -12 524.25 693" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect class="cluster" x="0.25" y="361" width="243.5" height="220" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-5ba72d20"><path d="M-11.75 -12 L512.5 -12 L512.5 681 L-11.75 681 M8.25 367 L8.25 387 L111.24 387 L111.24 367 M188.82 221 L188.82 241 L265.18 241 L265.18 221 M284.72 221 L284.72 241 L359.28 241 L359.28 221 M262.25 461 L262.25 481 L401.75 481 L401.75 461"/></clipPath></defs>
+<g clip-path="url(#label-holes-5ba72d20)"><rect class="cluster" x="0.25" y="361" width="243.5" height="220" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <path class="edge" d="M122.25 473 L122.25 508.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M284 64 L284 99.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M266.79 179.89 L266.79 191.44 C266.79 195.84 263.19 199.44 258.79 199.44 L235 199.44 C230.6 199.44 227 203.04 227 207.44 L227 219 L227 264.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M301.21 179.89 L301.21 191.44 C301.21 195.84 304.81 199.44 309.21 199.44 L314 199.44 C318.4 199.44 322 203.04 322 207.44 L322 219 L322 243 L322 245.8 C322 250.2 325.6 253.8 330 253.8 L361 253.8 C365.4 253.8 369 257.4 369 261.8 L369 264.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-5ba72d20)"><path class="edge" d="M266.79 179.89 L266.79 191.44 C266.79 195.84 263.19 199.44 258.79 199.44 L235 199.44 C230.6 199.44 227 203.04 227 207.44 L227 219 L227 264.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-5ba72d20)"><path class="edge" d="M301.21 179.89 L301.21 191.44 C301.21 195.84 304.81 199.44 309.21 199.44 L314 199.44 C318.4 199.44 322 203.04 322 207.44 L322 219 L322 243 L322 245.8 C322 250.2 325.6 253.8 330 253.8 L361 253.8 C365.4 253.8 369 257.4 369 261.8 L369 264.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M383 72.4 L383 273" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M207 317 L207 331 C207 335.4 203.4 339 199 339 L130.25 339 C125.85 339 122.25 342.6 122.25 347 L122.25 361 L122.25 406.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M247 317 L247 331 C247 335.4 250.6 339 255 339 L324 339 C328.4 339 332 342.6 332 347 L332 361 L332 616.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect class="cluster-title-background" x="8.25" y="367" width="102.99" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="188.82" y="221" width="76.35" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="284.72" y="221" width="74.56" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="262.25" y="461" width="139.49" height="20" fill="#ffffff"/>
+<g clip-path="url(#label-holes-5ba72d20)"><path class="edge" d="M247 317 L247 331 C247 335.4 250.6 339 255 339 L324 339 C328.4 339 332 342.6 332 347 L332 361 L332 616.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
 <polygon class="arrowhead" points="122.25,517 116.25,505 128.25,505" fill="#3b4754"/>
 <polygon class="arrowhead" points="284,108 278,96 290,96" fill="#3b4754"/>
 <polygon class="arrowhead" points="227,273 221,261 233,261" fill="#3b4754"/>

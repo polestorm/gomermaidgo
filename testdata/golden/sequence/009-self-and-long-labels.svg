@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="694.67" height="487" viewBox="-62 -12 694.67 487" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-3a32de6d"><path d="M-62 -12 L632.67 -12 L632.67 475 L-62 475 M25.42 73 L25.42 91 L536.58 91 L536.58 73 M412.68 225 L412.68 243 L609 243 L609 225 M130.81 357 L130.81 375 L431.19 375 L431.19 357"/></clipPath></defs>
 <line class="lifeline" x1="0" y1="48" x2="0" y2="415" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="249" y1="48" x2="249" y2="415" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<line class="lifeline" x1="562" y1="48" x2="562" y2="415" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
-<rect class="label-background" x="25.42" y="73" width="511.16" height="18" fill="#ffffff"/>
-<rect class="label-background" x="412.68" y="225" width="196.32" height="18" fill="#ffffff"/>
-<rect class="label-background" x="130.81" y="357" width="300.38" height="18" fill="#ffffff"/>
+<g clip-path="url(#label-holes-3a32de6d)"><line class="lifeline" x1="249" y1="48" x2="249" y2="415" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-3a32de6d)"><line class="lifeline" x1="562" y1="48" x2="562" y2="415" fill="none" stroke="#9aa5b1" stroke-width="1.5"/>
+</g>
 <rect class="participant" x="-50" y="0" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="participant" x="199" y="0" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="participant" x="512" y="0" width="100" height="48" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>

@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="816" height="418" viewBox="-11.5 -12 816 418" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-5081060b"><path d="M-11.5 -12 L804.5 -12 L804.5 406 L-11.5 406 M655.43 186 L655.43 206 L702.57 206 L702.57 186"/></clipPath></defs>
 <path class="edge" d="M340.67 44 L340.67 68.8 C340.67 73.2 337.07 76.8 332.67 76.8 L54 76.8 C49.6 76.8 46 80.4 46 84.8 L46 165.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M349 44 L349 82.8 C349 87.2 345.4 90.8 341 90.8 L121 90.8 C116.6 90.8 113 94.4 113 98.8 L113 174 L113 218 L113 227.8 C113 232.2 109.4 235.8 105 235.8 L72 235.8 C67.6 235.8 64 239.4 64 243.8 L64 253.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M357.33 44 L357.33 96.8 C357.33 101.2 353.73 104.8 349.33 104.8 L139 104.8 C134.6 104.8 131 108.4 131 112.8 L131 174 L131 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -7,8 +8,8 @@
 <path class="edge" d="M382.33 44 L382.33 124.8 C382.33 129.2 385.93 132.8 390.33 132.8 L397 132.8 C401.4 132.8 405 136.4 405 140.8 L405 174 L405 350" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M390.67 44 L390.67 110.8 C390.67 115.2 394.27 118.8 398.67 118.8 L465 118.8 C469.4 118.8 473 122.4 473 126.8 L473 174 L473 253.6" fill="none" stroke="#3b4754" stroke-width="3"/>
 <path class="edge" d="M399 44 L399 96.8 C399 101.2 402.6 104.8 407 104.8 L604 104.8 C608.4 104.8 612 108.4 612 112.8 L612 174 L612 262" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="edge" d="M407.33 44 L407.33 82.8 C407.33 87.2 410.93 90.8 415.33 90.8 L671 90.8 C675.4 90.8 679 94.4 679 98.8 L679 174 L679 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="655.43" y="186" width="47.15" height="20" fill="#ffffff"/>
+<g clip-path="url(#label-holes-5081060b)"><path class="edge" d="M407.33 44 L407.33 82.8 C407.33 87.2 410.93 90.8 415.33 90.8 L671 90.8 C675.4 90.8 679 94.4 679 98.8 L679 174 L679 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <polygon class="arrowhead" points="46,174 40,162 52,162" fill="#3b4754"/>
 <polygon class="arrowhead" points="64,262 58,250 70,250" fill="#3b4754"/>
 <polygon class="arrowhead" points="131,350 125,338 137,338" fill="#3b4754"/>

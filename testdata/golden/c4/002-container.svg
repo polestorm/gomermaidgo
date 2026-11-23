@@ -1,19 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="666" height="902" viewBox="-12 -12 666 902" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Kontenery systemu jakości</title>
-<rect class="cluster" x="0" y="168" width="642" height="562" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
-<path class="edge" d="M387 326 L387 348 C387 352.4 390.6 356 395 356 L499 356 C503.4 356 507 359.6 507 364 L507 386 L507 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M307 326 L307 348 C307 352.4 303.4 356 299 356 L151 356 C146.6 356 143 359.6 143 364 L143 386 L143 468.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M175 541 L175 633.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M328 334.4 L328 642" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M347 64 L347 233.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M110 541 L110 805.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="cluster-title-background" x="8" y="174" width="114.7" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="446.98" y="388" width="120.05" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="119.44" y="398" width="47.13" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="132.32" y="590" width="85.36" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="283.55" y="499" width="88.91" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="259.4" y="96" width="175.2" height="40" fill="#ffffff"/>
-<rect class="edge-label-background" x="80.22" y="762" width="59.55" height="20" fill="#ffffff"/>
+<defs><clipPath id="label-holes-3d73cc77"><path d="M-12 -12 L654 -12 L654 890 L-12 890 M8 174 L8 214 L122.7 214 L122.7 174 M446.98 388 L446.98 428 L567.02 428 L567.02 388 M119.44 398 L119.44 418 L166.56 418 L166.56 398 M132.32 590 L132.32 610 L217.68 610 L217.68 590 M283.55 499 L283.55 519 L372.45 519 L372.45 499 M259.4 96 L259.4 136 L434.6 136 L434.6 96 M80.22 762 L80.22 782 L139.78 782 L139.78 762"/></clipPath></defs>
+<g clip-path="url(#label-holes-3d73cc77)"><rect class="cluster" x="0" y="168" width="642" height="562" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
+</g>
+<g clip-path="url(#label-holes-3d73cc77)"><path class="edge" d="M387 326 L387 348 C387 352.4 390.6 356 395 356 L499 356 C503.4 356 507 359.6 507 364 L507 386 L507 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-3d73cc77)"><path class="edge" d="M307 326 L307 348 C307 352.4 303.4 356 299 356 L151 356 C146.6 356 143 359.6 143 364 L143 386 L143 468.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-3d73cc77)"><path class="edge" d="M175 541 L175 633.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-3d73cc77)"><path class="edge" d="M328 334.4 L328 642" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-3d73cc77)"><path class="edge" d="M347 64 L347 233.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-3d73cc77)"><path class="edge" d="M110 541 L110 805.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <polygon class="arrowhead" points="507,460 501,448 513,448" fill="#3b4754"/>
 <polygon class="arrowhead" points="143,477 137,465 149,465" fill="#3b4754"/>
 <polygon class="arrowhead" points="175,642 169,630 181,630" fill="#3b4754"/>

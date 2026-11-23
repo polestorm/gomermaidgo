@@ -365,10 +365,21 @@ func write(sc *scene.Scene, data bridge.Fonts) ([]byte, error) {
 	if sc.Background != "" {
 		w.item(scene.Item{Kind: scene.Rect, X: x0, Y: y0, W: width, H: height, Fill: sc.Background}, sc.FontSize, fonts)
 	}
-	items := make([]scene.Item, len(sc.Items))
-	copy(items, sc.Items)
-	sort.SliceStable(items, func(i, j int) bool { return items[i].Layer < items[j].Layer })
+	items, holes := sc.Ordered()
 	for _, it := range items {
+		if scene.Cut(it, holes) {
+			// Linia pod podpisami przy przezroczystym tle: przycięcie do obrysu rysunku bez pól
+			// podpisów, obiegniętych w przeciwną stronę (reguła nonzero).
+			w.op("q")
+			w.op("%s %s %s %s re", num(x0), num(y0), num(width), num(height))
+			for _, o := range holes {
+				w.op("%s %s m %s %s l %s %s l %s %s l h", num(o.X0), num(o.Y0), num(o.X0), num(o.Y1), num(o.X1), num(o.Y1), num(o.X1), num(o.Y0))
+			}
+			w.op("W n")
+			w.item(it, sc.FontSize, fonts)
+			w.op("Q")
+			continue
+		}
 		w.item(it, sc.FontSize, fonts)
 	}
 

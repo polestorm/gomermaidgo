@@ -135,3 +135,25 @@ func TestFitOptions(t *testing.T) {
 		t.Errorf("directive, option precedence or ratio: nofit %.0f, forced %.0f, high ratio %.0f", width(nofit), width(forced), width(high))
 	}
 }
+
+// REQ: COM-006
+func TestLabelBackingFollowsBackground(t *testing.T) {
+	src := readFile(t, "testdata/corpus/flowchart/005-edge-labels.mmd")
+	clear, err := Render(src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(clear), "<clipPath") || !strings.Contains(string(clear), `<g clip-path="url(#label-holes-`) {
+		t.Error("transparent background: lines under labels should be clipped")
+	}
+	if strings.Contains(string(clear), `class="edge-label-background"`) || strings.Contains(string(clear), `fill="#ffffff"/>`) {
+		t.Error("transparent background: label backings should not be painted")
+	}
+	filled, err := Render(src, WithBackground("#123456"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if strings.Contains(string(filled), "<clipPath") || !regexp.MustCompile(`class="edge-label-background"[^>]*fill="#123456"`).Match(filled) {
+		t.Error("background colour: label backings should be painted in it, without a clip")
+	}
+}

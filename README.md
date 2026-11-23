@@ -91,7 +91,10 @@ never a partial drawing.
 
 The output uses only basic SVG 1.1 elements (`rect`, `line`, `polyline`, `polygon`, `circle`, `ellipse`, `text` and
 `path` restricted to M, L and C commands) with presentation
-attributes: no `foreignObject`, no style sheets, no scripts, no links, no ids.
+attributes: no `foreignObject`, no style sheets, no scripts, no links. The one exception is a `clipPath` (in `defs`,
+applied through `g`) on a transparent background: lines under edge labels and frame titles are cut out, so a label
+sits on whatever the drawing is placed on instead of a white patch. With a background colour the label backing is
+painted in that colour and the clip is not used.
 
 Documentation (in Polish): `docs/profile.md` (supported syntax), `docs/provenance.md` (sources and clean-room rules),
 `docs/testing.md` (corpus, invariants, comparison with reference renderers), `requirements/` (numbered requirements).

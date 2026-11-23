@@ -1,25 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="830" height="1064" viewBox="-12 -64 830 1064" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect class="lane" x="0" y="-52" width="284" height="1040" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-b8a66fee"><path d="M-12 -64 L818 -64 L818 1000 L-12 1000 M225.32 288 L225.32 308 L254.68 308 L254.68 288 M401.33 288 L401.33 308 L430.67 308 L430.67 288 M662.33 550 L662.33 570 L691.67 570 L691.67 550 M489.32 624 L489.32 644 L518.68 644 L518.68 624"/></clipPath></defs>
+<g clip-path="url(#label-holes-b8a66fee)"><rect class="lane" x="0" y="-52" width="284" height="1040" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <rect class="lane-header" x="0" y="-52" width="284" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane" x="284" y="-52" width="264" height="1040" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-b8a66fee)"><rect class="lane" x="284" y="-52" width="264" height="1040" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <rect class="lane-header" x="284" y="-52" width="264" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane" x="548" y="-52" width="258" height="1040" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-b8a66fee)"><rect class="lane" x="548" y="-52" width="258" height="1040" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <rect class="lane-header" x="548" y="-52" width="258" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
 <path class="edge" d="M142 44 L142 53.8 C142 58.2 145.6 61.8 150 61.8 L408 61.8 C412.4 61.8 416 65.4 416 69.8 L416 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M416 132 L416 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M341 216 L248 216 C243.6 216 240 219.6 240 224 L240 256 L240 310 L240 312.8 C240 317.2 236.4 320.8 232 320.8 L225 320.8 C220.6 320.8 217 324.4 217 328.8 L217 331.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M396 140.4 L396 150.2 C396 154.6 392.4 158.2 388 158.2 L211 158.2 C206.6 158.2 203 161.8 203 166.2 L203 176 L203 340" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M416 256 L416 331.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-b8a66fee)"><path class="edge" d="M341 216 L248 216 C243.6 216 240 219.6 240 224 L240 256 L240 310 L240 312.8 C240 317.2 236.4 320.8 232 320.8 L225 320.8 C220.6 320.8 217 324.4 217 328.8 L217 331.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-b8a66fee)"><path class="edge" d="M396 140.4 L396 150.2 C396 154.6 392.4 158.2 388 158.2 L211 158.2 C206.6 158.2 203 161.8 203 166.2 L203 176 L203 340" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-b8a66fee)"><path class="edge" d="M416 256 L416 331.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M416 384 L416 393.8 C416 398.2 419.6 401.8 424 401.8 L669 401.8 C673.4 401.8 677 405.4 677 409.8 L677 419.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M677 518 L677 593.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-b8a66fee)"><path class="edge" d="M677 518 L677 593.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M677 666 L677 701.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M677 774 L677 790.8 C677 795.2 673.4 798.8 669 798.8 L444 798.8 C439.6 798.8 436 802.4 436 806.8 L436 809.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M576 473 L512 473 C507.6 473 504 476.6 504 481 L504 518 L504 774 L504 776.8 C504 781.2 500.4 784.8 496 784.8 L404 784.8 C399.6 784.8 396 788.4 396 792.8 L396 809.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-b8a66fee)"><path class="edge" d="M576 473 L512 473 C507.6 473 504 476.6 504 481 L504 518 L504 774 L504 776.8 C504 781.2 500.4 784.8 496 784.8 L404 784.8 C399.6 784.8 396 788.4 396 792.8 L396 809.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M416 862 L416 871.8 C416 876.2 412.4 879.8 408 879.8 L150 879.8 C145.6 879.8 142 883.4 142 887.8 L142 897.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="225.32" y="288" width="29.35" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="401.33" y="288" width="29.34" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="662.33" y="550" width="29.34" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="489.32" y="624" width="29.35" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="416,88 410,76 422,76" fill="#3b4754"/>
 <polygon class="arrowhead" points="416,176 410,164 422,164" fill="#3b4754"/>
 <polygon class="arrowhead" points="217,340 211,328 223,328" fill="#3b4754"/>

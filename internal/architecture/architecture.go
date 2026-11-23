@@ -494,11 +494,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 				}
 			}
 			w := width(e.Label)
-			bg := o.Background
-			if bg == "" {
-				bg = "#ffffff"
-			}
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "edge-label-background", X: at.X - w/2 - u(3), Y: at.Y - lh/2, W: w + u(6), H: lh, Fill: bg})
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "edge-label-background", X: at.X - w/2 - u(3), Y: at.Y - lh/2, W: w + u(6), H: lh, Knockout: true})
 			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "edge-label", X: at.X, Y: at.Y + 0.35*fs, W: w, H: lh, Text: e.Label, Anchor: "middle", Fill: colorText})
 		}
 	}
@@ -515,8 +511,8 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 		pictogram(sc, n.Icon, cx, cy, icon*0.3)
 		for k, s := range textwrap.Lines([]string{n.Label}, cellW-u(24), width) {
 			// Podkład pod podpisem: krawędź wychodząca z dolnego boku ikony nie przekreśla tekstu.
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "architecture-label-background", X: cx - width(s)/2 - u(2), Y: y + icon + u(4) + float64(k)*lh,
-				W: width(s) + u(4), H: lh, Fill: "#ffffff"})
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "architecture-label-background", X: cx - width(s)/2 - u(2), Y: y + icon + u(4) + float64(k)*lh,
+				W: width(s) + u(4), H: lh, Knockout: true})
 			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "architecture-label", X: cx, Y: y + icon + u(4) + float64(k)*lh + lh/2 + 0.35*fs,
 				W: width(s), H: lh, Text: s, Anchor: "middle", Fill: colorText})
 		}

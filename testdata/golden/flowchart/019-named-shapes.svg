@@ -1,11 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="381.5" height="427" viewBox="-12 -12 381.5 427" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-589ae5de"><path d="M-12 -12 L369.5 -12 L369.5 415 L-12 415 M55.33 205 L55.33 225 L84.67 225 L84.67 205 M104.32 205 L104.32 225 L133.68 225 L133.68 205"/></clipPath></defs>
 <path class="edge" d="M95 44 L95 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M70 160.72 L70 248.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M119 161.21 L119 227 L119 241 C119 245.02 122.29 248.3 126.3 248.3 L245.7 248.3 C249.72 248.3 253 251.59 253 255.6 L253 255.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-589ae5de)"><path class="edge" d="M70 160.72 L70 248.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-589ae5de)"><path class="edge" d="M119 161.21 L119 227 L119 241 C119 245.02 122.29 248.3 126.3 248.3 L245.7 248.3 C249.72 248.3 253 251.59 253 255.6 L253 255.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M203 52.4 L203 227 L203 227 C203 231.02 206.29 234.3 210.3 234.3 L285.7 234.3 C289.71 234.3 293 237.59 293 241.6 L293 264" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M70 315 L70 350.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="55.33" y="205" width="29.34" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="104.32" y="205" width="29.35" height="20" fill="#ffffff"/>
 <polygon class="arrowhead" points="95,88 89,76 101,76" fill="#3b4754"/>
 <polygon class="arrowhead" points="70,257 64,245 76,245" fill="#3b4754"/>
 <polygon class="arrowhead" points="253,264 247,252 259,252" fill="#3b4754"/>

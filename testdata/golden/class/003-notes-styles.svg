@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="623.93" height="250" viewBox="-12 -12 623.93 250" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Niezgodność i działania</title>
 <desc>Niezgodność prowadzi do działań korygujących, które mogą się łączyć.</desc>
+<defs><clipPath id="label-holes-35b43d78"><path d="M-12 -12 L611.93 -12 L611.93 238 L-12 238 M334.57 151 L334.57 171 L417.29 171 L417.29 151 M190.66 51 L190.66 71 L284.93 71 L284.93 51"/></clipPath></defs>
 <line class="note-link" x1="79.83" y1="122" x2="79.83" y2="170" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M367.93 111 L367.93 123 C367.93 153 383.93 153 383.93 123 L383.93 111" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M151.83 61 L315.93 61" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-35b43d78)"><path class="edge" d="M367.93 111 L367.93 123 C367.93 153 383.93 153 383.93 123 L383.93 111" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-35b43d78)"><path class="edge" d="M151.83 61 L315.93 61" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
 <path class="edge" d="M435.93 61 L479.93 61" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="334.57" y="151" width="82.72" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="190.66" y="51" width="94.27" height="20" fill="#ffffff"/>
 <line class="arrowhead" x1="383.93" y1="111" x2="389.93" y2="122" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="383.93" y1="111" x2="377.93" y2="122" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="315.93" y1="61" x2="304.93" y2="67" fill="none" stroke="#3b4754" stroke-width="1.5"/>

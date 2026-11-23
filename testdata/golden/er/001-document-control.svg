@@ -1,16 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="872.5" height="682" viewBox="-12 -12 872.5 682" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<path class="edge" d="M309 160 L309 167 C309 171.4 305.4 175 301 175 L191 175 C186.6 175 183 178.6 183 183 L183 190 L183 244" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M349 160 L349 167 C349 171.4 352.6 175 357 175 L466 175 C470.4 175 474 178.6 474 183 L474 190 L474 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M236 404 L236 498 L236 505 C236 509.4 239.6 513 244 513 L381 513 C385.4 513 389 516.6 389 521 L389 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M130 404 L130 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M633 374 L633 498 L633 505 C633 509.4 629.4 513 625 513 L437 513 C432.6 513 429 516.6 429 521 L429 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M724 374 L724 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect class="edge-label-background" x="142.55" y="192" width="80.91" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="435.75" y="192" width="76.49" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="202.21" y="476" width="67.58" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="77.08" y="476" width="105.84" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="594.75" y="476" width="76.5" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="691.98" y="476" width="64.05" height="20" fill="#ffffff"/>
+<defs><clipPath id="label-holes-bfdd86a4"><path d="M-12 -12 L860.5 -12 L860.5 670 L-12 670 M142.55 192 L142.55 212 L223.45 212 L223.45 192 M435.75 192 L435.75 212 L512.25 212 L512.25 192 M202.21 476 L202.21 496 L269.79 496 L269.79 476 M77.08 476 L77.08 496 L182.92 496 L182.92 476 M594.75 476 L594.75 496 L671.25 496 L671.25 476 M691.98 476 L691.98 496 L756.02 496 L756.02 476"/></clipPath></defs>
+<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M309 160 L309 167 C309 171.4 305.4 175 301 175 L191 175 C186.6 175 183 178.6 183 183 L183 190 L183 244" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M349 160 L349 167 C349 171.4 352.6 175 357 175 L466 175 C470.4 175 474 178.6 474 183 L474 190 L474 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M236 404 L236 498 L236 505 C236 509.4 239.6 513 244 513 L381 513 C385.4 513 389 516.6 389 521 L389 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M130 404 L130 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
+<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M633 374 L633 498 L633 505 C633 509.4 629.4 513 625 513 L437 513 C432.6 513 429 516.6 429 521 L429 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M724 374 L724 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
 <line class="arrowhead" x1="315" y1="167" x2="303" y2="167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="315" y1="173" x2="303" y2="173" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="183" y1="233" x2="177" y2="244" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -18,29 +19,29 @@
 <line class="arrowhead" x1="177" y1="228" x2="189" y2="228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="349" y1="171" x2="355" y2="160" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="349" y1="171" x2="343" y2="160" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="349" cy="180" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="349" cy="180" r="5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="468" y1="297" x2="480" y2="297" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="468" y1="291" x2="480" y2="291" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="242" y1="411" x2="230" y2="411" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="242" y1="417" x2="230" y2="417" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="389" y1="517" x2="383" y2="528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="389" y1="517" x2="395" y2="528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="389" cy="508" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="389" cy="508" r="5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="130" y1="415" x2="136" y2="404" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="130" y1="415" x2="124" y2="404" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="130" cy="424" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="130" cy="424" r="5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="130" y1="562" x2="124" y2="573" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="130" y1="562" x2="136" y2="573" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="130" cy="553" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="130" cy="553" r="5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="639" y1="381" x2="627" y2="381" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="639" y1="387" x2="627" y2="387" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="429" y1="517" x2="423" y2="528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="429" y1="517" x2="435" y2="528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="429" cy="508" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="429" cy="508" r="5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="730" y1="381" x2="718" y2="381" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="724" cy="391" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="724" cy="391" r="5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="718" y1="566" x2="730" y2="566" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="arrowhead" cx="724" cy="556" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="arrowhead" cx="724" cy="556" r="5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="node" x="187.5" y="0" width="283" height="160" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node-detail" x="187.5" y="0" width="283" height="40" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <line class="node-detail" x1="187.5" y1="70" x2="470.5" y2="70" fill="none" stroke="#8a94a3" stroke-width="1"/>

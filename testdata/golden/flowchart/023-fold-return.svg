@@ -1,7 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="633" height="566" viewBox="-12 -12 633 566" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect class="cluster" x="0" y="0" width="418" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="0" y="194" width="469" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="cluster" x="0" y="388" width="609" height="154" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-075576a9"><path d="M-12 -12 L621 -12 L621 554 L-12 554 M8 6 L8 26 L65.8 26 L65.8 6 M8 200 L8 220 L104.95 220 L104.95 200 M8 394 L8 414 L92.48 414 L92.48 394 M165.86 154 L165.86 174 L260.14 174 L260.14 154 M187.86 348 L187.86 368 L282.14 368 L282.14 348"/></clipPath></defs>
+<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="0" width="418" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="194" width="469" height="134" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<g clip-path="url(#label-holes-075576a9)"><rect class="cluster" x="0" y="388" width="609" height="154" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <path class="edge" d="M123 82 L158.6 82" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M247 82 L282.6 82" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M143 276 L178.6 276" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -9,13 +13,10 @@
 <path class="edge" d="M148 480 L183.6 480" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M293 480 L328.6 480" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M434 480 L469.6 480" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M344.5 114 L344.5 156 C344.5 160.4 340.9 164 336.5 164 L89.5 164 C85.1 164 81.5 167.6 81.5 172 L81.5 235.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M386 308 L386 350 C386 354.4 382.4 358 378 358 L92 358 C87.6 358 84 361.6 84 366 L84 449.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect class="cluster-title-background" x="8" y="6" width="57.8" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="8" y="200" width="96.95" height="20" fill="#ffffff"/>
-<rect class="cluster-title-background" x="8" y="394" width="84.48" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="165.86" y="154" width="94.27" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="187.86" y="348" width="94.27" height="20" fill="#ffffff"/>
+<g clip-path="url(#label-holes-075576a9)"><path class="edge" d="M344.5 114 L344.5 156 C344.5 160.4 340.9 164 336.5 164 L89.5 164 C85.1 164 81.5 167.6 81.5 172 L81.5 235.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
+<g clip-path="url(#label-holes-075576a9)"><path class="edge" d="M386 308 L386 350 C386 354.4 382.4 358 378 358 L92 358 C87.6 358 84 361.6 84 366 L84 449.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
 <polygon class="arrowhead" points="167,82 155,76 155,88" fill="#3b4754"/>
 <polygon class="arrowhead" points="291,82 279,76 279,88" fill="#3b4754"/>
 <polygon class="arrowhead" points="187,276 175,270 175,282" fill="#3b4754"/>

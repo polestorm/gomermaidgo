@@ -581,13 +581,9 @@ func drawLink(sc *scene.Scene, e *graph.Edge, pts []scene.Point, u func(float64)
 
 // drawLinkLabel rysuje podpis łącznika na podkładzie w kolorze tła.
 func drawLinkLabel(sc *scene.Scene, e *graph.Edge, at scene.Point, w, h float64, o Options) {
-	bg := sc.Background
-	if bg == "" {
-		bg = "#ffffff"
-	}
 	pad := o.FontSize / 4
 	sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "edge-label-background",
-		X: at.X - w/2 - pad, Y: at.Y - h/2, W: w + 2*pad, H: h, Fill: bg})
+		X: at.X - w/2 - pad, Y: at.Y - h/2, W: w + 2*pad, H: h, Knockout: true})
 	lh := math.Round(o.FontSize * 1.25)
 	for k, line := range e.Label {
 		text := strings.TrimSpace(line)

@@ -377,7 +377,7 @@ func Layout(g *Graph, o Options) *scene.Scene {
 		if c.ID != "" {
 			// Podkład pod identyfikatorem: łącznik gałęzi odchodzącej w dół nie przekreśla tekstu.
 			w := o.Measure(c.ID, small)
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "git-commit-id-background", X: x - w/2 - u(2), Y: y + r + u(4), W: w + u(4), H: small * 1.3, Fill: "#ffffff"})
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "git-commit-id-background", X: x - w/2 - u(2), Y: y + r + u(4), W: w + u(4), H: small * 1.3, Knockout: true})
 			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-commit-id", X: x, Y: y + r + u(4) + small, W: o.Measure(c.ID, small), H: small * 1.25,
 				Text: c.ID, Anchor: "middle", FontSize: small, Fill: colorMuted})
 		}
@@ -567,7 +567,7 @@ func layoutVertical(sc *scene.Scene, g *Graph, o Options) {
 		tx := x + r + u(6)
 		if c.ID != "" {
 			w := o.Measure(c.ID, small)
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "git-commit-id-background", X: tx - u(2), Y: y - small*0.65, W: w + u(4), H: small * 1.3, Fill: "#ffffff"})
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "git-commit-id-background", X: tx - u(2), Y: y - small*0.65, W: w + u(4), H: small * 1.3, Knockout: true})
 			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "git-commit-id", X: tx, Y: y + small*0.35, W: w, H: small * 1.25,
 				Text: c.ID, FontSize: small, Fill: colorMuted})
 			tx += w + u(8)
