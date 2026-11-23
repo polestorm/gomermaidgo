@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/polestorm/gomermaidgo/internal/er"
+	"github.com/polestorm/gomermaidgo/internal/flowchart"
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/scene"
@@ -687,5 +688,57 @@ func TestFitPage(t *testing.T) {
 	}
 	if lines := len(byRole(auto, "node-label")); lines <= len(byRole(off, "node-label")) {
 		t.Errorf("fitted labels should break into more lines: %d", lines)
+	}
+}
+
+// REQ: LAY-018
+// Przy dopasowaniu do strony podpisy krawędzi łamią się do zwężonej szerokości, a słowo dłuższe niż
+// granica łamie się po łączniku; części jednego słowa w tej samej linii sklejają się bez spacji.
+func TestFitWrapsEdgeLabelsAndHyphens(t *testing.T) {
+	src := "flowchart LR\nA[design + shape authored as a pair] --> B[doc-review renders BOTH -> one page]\nB --> C[approve: design FREEZES, shape = authoritative]\nC -->|binding-markup change| D[supersede the design]\nC -->|implementing code lands| E[shape = superseded-by-code; code is truth]"
+	g, err := flowchart.Parse(src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	off := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, Fit: FitOff})
+	g, _ = flowchart.Parse(src)
+	fit := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	if a, b := off.Bounds(), fit.Bounds(); b.X1-b.X0 > 0.65*(a.X1-a.X0) {
+		t.Errorf("width %.0f -> %.0f, want at least -35%%", a.X1-a.X0, b.X1-b.X0)
+	}
+	labels := byRole(fit, "edge-label")
+	if len(labels) <= len(byRole(off, "edge-label")) {
+		t.Errorf("edge labels should break into more lines")
+	}
+	joined := ""
+	for _, it := range fit.Items {
+		if it.Kind == scene.Text {
+			if strings.Contains(it.Text, glue) || strings.Contains(it.Text, "- ") {
+				t.Errorf("text %q keeps a split mark or a space after a hyphen", it.Text)
+			}
+			joined += it.Text
+		}
+	}
+	for _, w := range []string{"binding-", "markup", "superseded-"} {
+		if !strings.Contains(joined, w) {
+			t.Errorf("%q is missing", w)
+		}
+	}
+}
+
+// REQ: FLOW-025
+// Ramka w trybie kolorowym nie bierze koloru pola, które w niej stoi (romb decyzji w pierwszej ramce,
+// której kolejny kolor serii byłby kolorem decyzji).
+func TestColouredFrameAvoidsNodeColour(t *testing.T) {
+	g, err := flowchart.Parse("flowchart TD\nsubgraph S\nA{Decyzja} --> B[Krok]\nend")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, Colors: true})
+	f := byRole(sc, "cluster")[0]
+	for _, n := range byRole(sc, "node") {
+		if n.Fill == f.Fill {
+			t.Errorf("the frame took the fill of a node inside it: %s", f.Fill)
+		}
 	}
 }

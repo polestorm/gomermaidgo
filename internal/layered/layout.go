@@ -248,10 +248,15 @@ func (l *layouter) wrap(lines []string, limit float64) []string {
 			continue
 		}
 		current := ""
-		for _, word := range strings.Fields(line) {
+		for _, word := range l.hyphenParts(strings.Fields(line), limit) {
+			// Dalsza część słowa złamanego po łączniku dokleja się bez spacji.
+			sep := " "
+			if rest, ok := strings.CutPrefix(word, glue); ok {
+				word, sep = rest, ""
+			}
 			candidate := word
 			if current != "" {
-				candidate = current + " " + word
+				candidate = current + sep + word
 			}
 			if current != "" && l.width(candidate) > limit {
 				out = append(out, current)
@@ -262,6 +267,36 @@ func (l *layouter) wrap(lines []string, limit float64) []string {
 		}
 		if current != "" {
 			out = append(out, current)
+		}
+	}
+	return out
+}
+
+// glue oznacza w wyniku hyphenParts dalszą część słowa, która dokleja się do poprzedniej bez spacji.
+const glue = "\x00"
+
+// hyphenParts przy dopasowaniu do strony dzieli słowo dłuższe niż granica po łącznikach
+// („binding-markup” → „binding-”, „markup”), żeby i ono mogło przejść do następnej linii. Słowa
+// z wyróżnieniem (znaczniki * i _) zostają całe, bo podział rozdzieliłby znaczniki.
+func (l *layouter) hyphenParts(words []string, limit float64) []string {
+	if l.narrow() >= 1 {
+		return words
+	}
+	var out []string
+	for _, w := range words {
+		if l.width(w) <= limit || strings.ContainsAny(w, "*_") || !strings.Contains(strings.Trim(w, "-"), "-") {
+			out = append(out, w)
+			continue
+		}
+		rest, prefix := w, ""
+		for {
+			i := strings.Index(rest[1:], "-")
+			if i < 0 || i+2 >= len(rest) {
+				out = append(out, prefix+rest)
+				break
+			}
+			out = append(out, prefix+rest[:i+2])
+			rest, prefix = rest[i+2:], glue
 		}
 	}
 	return out
@@ -699,7 +734,7 @@ func (l *layouter) sizeAll(lv *level) {
 		for _, e := range lv.loops[it] {
 			extra := l.u(40)
 			if len(e.Label) > 0 {
-				w, h := l.abstract(l.textSize(l.wrap(e.Label, l.u(200))))
+				w, h := l.abstract(l.textSize(l.wrap(e.Label, l.u(200)*l.narrow())))
 				_ = h
 				extra += w + l.u(8)
 			}
@@ -1081,7 +1116,7 @@ func (l *layouter) rank(lv *level) {
 			d := &item{kind: kindDummy, rank: r, w: l.u(8), lane: e.v.lane}
 			if r == labelRank {
 				d.kind = kindLabel
-				d.text = l.wrap(e.e.Label, l.u(200))
+				d.text = l.wrap(e.e.Label, l.u(200)*l.narrow())
 				tw, th := l.textSize(d.text)
 				d.w, d.h = l.abstract(tw+l.u(10), th+l.u(4))
 				e.label = d
@@ -1199,7 +1234,7 @@ func (l *layouter) boundRankWidth(lv *level, rank []int, succ [][]*ledge, index 
 			if a < r && r < b {
 				total += l.u(18)
 				if len(e.e.Label) > 0 && r == a+(b-a)/2 {
-					tw, _ := l.abstract(l.textSize(l.wrap(e.e.Label, l.u(200))))
+					tw, _ := l.abstract(l.textSize(l.wrap(e.e.Label, l.u(200)*l.narrow())))
 					total += tw + l.u(10)
 				}
 			}
