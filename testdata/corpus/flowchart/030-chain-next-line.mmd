@@ -1,0 +1,19 @@
+%% REQ: FLOW-022 FLOW-026 FLOW-027
+%% Tytuł: Łańcuch w kilku liniach, granica pętli
+%% Sprawdza: linie zaczęte od krawędzi przedłużają łańcuch z poprzedniej linii, także z podpisem; kształt notch-pent (granica pętli) w torze.
+swimlane-beta TD
+  subgraph mag [Magazyn]
+    przyj([Przyjęcie dostawy])
+    petla@{ shape: notch-pent, label: "Dla każdej partii" }
+    skl[Składowanie]
+  end
+  subgraph kj [Kontrola jakości]
+    pob[Pobranie próbki]
+    ok{Zgodna?}
+    blok[Blokada partii]
+  end
+  przyj --> petla
+  --> pob
+  --> ok
+  -->|Tak| skl
+  ok -->|Nie| blok

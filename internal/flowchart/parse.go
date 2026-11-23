@@ -44,7 +44,8 @@ var (
 		"lean-l": graph.ParallelogramAlt, "lean-left": graph.ParallelogramAlt, "out-in": graph.ParallelogramAlt,
 		"trap-b": graph.Trapezoid, "trapezoid": graph.Trapezoid, "trapezoid-bottom": graph.Trapezoid, "priority": graph.Trapezoid,
 		"trap-t": graph.TrapezoidAlt, "inv-trapezoid": graph.TrapezoidAlt, "trapezoid-top": graph.TrapezoidAlt, "manual": graph.TrapezoidAlt,
-		"odd": graph.Asymmetric,
+		"odd":        graph.Asymmetric,
+		"notch-pent": graph.LoopLimit, "loop-limit": graph.LoopLimit,
 	}
 	iconTag   = regexp.MustCompile(`\bfa[bsrlkd]?:fa-([a-z0-9-]+)`)
 	boldTag   = regexp.MustCompile(`(?i)</?(b|strong)>`)
@@ -104,7 +105,8 @@ type parser struct {
 	stack []string // otwarte podgrafy
 	auto  int
 	acc   syntax.Accessibility
-	lanes bool // nagłówek swimlane-beta: diagram torów
+	lanes bool     // nagłówek swimlane-beta: diagram torów
+	tail  []string // ostatnia grupa węzłów poprzedniego łańcucha (linia zaczęta od krawędzi)
 }
 
 func (p *parser) scope() string {
@@ -314,6 +316,8 @@ func (p *parser) header(s string, line int) error {
 }
 
 func (p *parser) statement(s string, line int) error {
+	tail := p.tail
+	p.tail = nil
 	word, rest := s, ""
 	if i := strings.IndexAny(s, " \t"); i >= 0 {
 		word, rest = s[:i], strings.TrimSpace(s[i+1:])
@@ -370,7 +374,7 @@ func (p *parser) statement(s string, line int) error {
 			return syntax.Errorf(line, CodeUnsupported, "%q is outside the supported profile", word)
 		}
 	}
-	return p.chain(s, line)
+	return p.chain(s, line, tail)
 }
 
 func (p *parser) subgraph(rest string, line int) error {
@@ -415,15 +419,23 @@ func (sc *scanner) skipSpace() {
 
 func (sc *scanner) rest() string { return sc.s[sc.pos:] }
 
-func (p *parser) chain(s string, line int) error {
+// chain czyta łańcuch „A --> B --> C”. Linia zaczynająca się od krawędzi przedłuża łańcuch
+// z poprzedniej instrukcji (tail: jej ostatnia grupa węzłów), jak w Mermaid.
+func (p *parser) chain(s string, line int, tail []string) error {
 	sc := &scanner{s: s, line: line}
-	from, err := p.group(sc)
-	if err != nil {
-		return err
+	var from []string
+	if tail != nil && idAt.FindString(s) == "" {
+		from = tail
+	} else {
+		var err error
+		if from, err = p.group(sc); err != nil {
+			return err
+		}
 	}
 	for {
 		sc.skipSpace()
 		if sc.pos >= len(sc.s) {
+			p.tail = from
 			return nil
 		}
 		edge, err := sc.edge()

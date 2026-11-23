@@ -193,7 +193,7 @@ func TestParseEmphasisTags(t *testing.T) {
 // REQ: FLOW-022
 // Nowy zapis kształtu @{ shape: …, label: … } dla kształtów, które rysujemy, z synonimami nazw.
 func TestParseNamedShapes(t *testing.T) {
-	g, err := Parse("flowchart TD\nA@{ shape: diam, label: \"Czy **na pewno**?\" } --> B@{ shape: database }\nB --> C@{ label: 'Sam tekst, z przecinkiem' }:::k\nC --> D@{ shape: lean-r, label: \"Wejście\" }\nclassDef k fill:#fde\nD --> E@{shape: dbl-circ}")
+	g, err := Parse("flowchart TD\nA@{ shape: diam, label: \"Czy **na pewno**?\" } --> B@{ shape: database }\nB --> C@{ label: 'Sam tekst, z przecinkiem' }:::k\nC --> D@{ shape: lean-r, label: \"Wejście\" }\nclassDef k fill:#fde\nD --> E@{shape: dbl-circ}\nE --> F@{ shape: notch-pent, label: \"Dla każdej partii\" }")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -206,7 +206,7 @@ func TestParseNamedShapes(t *testing.T) {
 	if c := g.Node("C"); c.Shape != graph.Rect || c.Label[0] != "Sam tekst, z przecinkiem" || c.Paint.Fill != "#fde" {
 		t.Errorf("C: %+v", c)
 	}
-	if g.Node("D").Shape != graph.Parallelogram || g.Node("E").Shape != graph.DoubleCircle || len(g.Edges) != 4 {
+	if g.Node("D").Shape != graph.Parallelogram || g.Node("E").Shape != graph.DoubleCircle || len(g.Edges) != 5 || g.Node("F").Shape != graph.LoopLimit {
 		t.Errorf("D, E and edges: %+v %+v %d", g.Node("D"), g.Node("E"), len(g.Edges))
 	}
 	for src, code := range map[string]string{
@@ -279,5 +279,25 @@ func TestSwimlaneBeta(t *testing.T) {
 	}
 	if _, err := Parse("swimlane-beta\n  subgraph a\n    x\n  end\n  x --> a"); err == nil {
 		t.Error("an edge to a lane should be an error")
+	}
+}
+
+// REQ: FLOW-027
+func TestChainContinuesOnNextLine(t *testing.T) {
+	g, err := Parse("flowchart TD\n  A --> B & C\n  -->|tak| D\n  --> E")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var got []string
+	for _, e := range g.Edges {
+		got = append(got, e.From+e.To)
+	}
+	if strings.Join(got, " ") != "AB AC BD CD DE" {
+		t.Errorf("edges %v", got)
+	}
+	for _, src := range []string{"flowchart TD\n  --> B", "flowchart TD\n  A --> B\n  style A fill:#fff\n  --> C"} {
+		if _, err := Parse(src); err == nil {
+			t.Errorf("%q: expected an error", src)
+		}
 	}
 }

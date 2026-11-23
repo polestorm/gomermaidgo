@@ -33,17 +33,50 @@ func TestParseErrors(t *testing.T) {
 		code string
 		line int
 	}{
-		"":                         {CodeHeader, 0},
-		"fishbone\nA":              {CodeHeader, 1},
-		"ishikawa-beta\n%% nic":    {CodeEmpty, 0},
-		"ishikawa-beta\n  Problem": {CodeEmpty, 0},
-		"ishikawa-beta\nP\nK\n a\n  b\n   c\n    d": {CodeStatement, 7},
+		"":                      {CodeHeader, 0},
+		"fishbone\nA":           {CodeHeader, 1},
+		"ishikawa-beta\n%% nic": {CodeEmpty, 0},
+		"ishikawa-beta\nP\nK\n a\n  b\n   c\n    d\n     e\n      f\n       g\n        h\n         i": {CodeStatement, 12},
 	} {
 		_, err := Parse(src)
 		e, ok := err.(*syntax.Error)
 		if !ok || e.Code != want.code || e.Line != want.line {
 			t.Errorf("%.30q: got %v, want code %s at line %d", src, err, want.code, want.line)
 		}
+	}
+}
+
+// REQ: ISH-002 ISH-003
+func TestDepthAndEffectOnly(t *testing.T) {
+	src := "ishikawa-beta\nP\nK\n"
+	for i := 1; i <= maxDepth; i++ {
+		src += strings.Repeat(" ", i) + "poziom\n"
+	}
+	d, err := Parse(src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	causes := 0
+	for _, it := range Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16}).Items {
+		if it.Role == "ishikawa-cause-label" {
+			causes++
+		}
+	}
+	if causes != maxDepth {
+		t.Errorf("%d cause labels, want %d", causes, maxDepth)
+	}
+	// Sam problem bez kategorii: pole problemu i krótka oś przed nim.
+	d, err = Parse("ishikawa-beta\n  Problem")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var effect, spine bool
+	for _, it := range Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16}).Items {
+		effect = effect || it.Role == "ishikawa-effect"
+		spine = spine || (it.Role == "ishikawa-spine" && it.Kind == scene.Line && it.X2-it.X > 50)
+	}
+	if !effect || !spine {
+		t.Errorf("effect only: effect box %v, spine %v", effect, spine)
 	}
 }
 
@@ -89,6 +122,41 @@ func TestLayout(t *testing.T) {
 			a, b := texts[i].Bounds(), texts[j].Bounds()
 			if a.X0 < b.X1 && b.X0 < a.X1 && a.Y0 < b.Y1 && b.Y0 < a.Y1 {
 				t.Errorf("texts %q and %q overlap", texts[i].Text, texts[j].Text)
+			}
+		}
+	}
+}
+
+// REQ: ISH-003
+// Długa lista przyczyn szczegółowych nie wchodzi w ukośną ość (ość odchodzi w lewo z oddaleniem od osi).
+func TestTextsClearBones(t *testing.T) {
+	src := "ishikawa-beta\nP\nA\n  a\nB\n  przyczyna\n"
+	for i := 0; i < 8; i++ {
+		src += "    szczegół\n"
+	}
+	d, err := Parse(src)
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	for _, bone := range sc.Items {
+		if bone.Role != "ishikawa-bone" {
+			continue
+		}
+		for _, it := range sc.Items {
+			if it.Kind != scene.Text || it.Role != "ishikawa-cause-label" {
+				continue
+			}
+			r := it.Bounds()
+			// Ość: odcinek od (X, Y) do (X2, Y2); sprawdzamy jej x na górze i na dole tekstu.
+			for _, y := range []float64{r.Y0, r.Y1} {
+				if (y-bone.Y)*(y-bone.Y2) > 0 {
+					continue
+				}
+				x := bone.X + (bone.X2-bone.X)*(y-bone.Y)/(bone.Y2-bone.Y)
+				if x > r.X0 && x < r.X1 {
+					t.Errorf("bone crosses text %q at y %.0f", it.Text, y)
+				}
 			}
 		}
 	}

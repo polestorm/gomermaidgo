@@ -73,7 +73,7 @@ func (l *layouter) nodeSize(shape graph.Shape, text []string) (w, h float64) {
 		tw, th = math.Max(tw, l.u(20))+l.u(12), th+l.u(8)
 		s := 1 + math.Sqrt(th/tw)
 		w, h = tw*s, th*s/(s-1)
-	case graph.Hexagon:
+	case graph.Hexagon, graph.LoopLimit:
 		w += h / 2
 	case graph.Parallelogram, graph.ParallelogramAlt, graph.Trapezoid, graph.TrapezoidAlt:
 		w += 2 * h / 3
@@ -155,7 +155,7 @@ func (l *layouter) portRange(it *item) float64 {
 		return 0
 	case graph.Stadium:
 		return w - it.h
-	case graph.Hexagon:
+	case graph.Hexagon, graph.LoopLimit:
 		return w - it.h/2 - 2*l.u(6)
 	case graph.Parallelogram, graph.ParallelogramAlt, graph.Trapezoid, graph.TrapezoidAlt:
 		return w - 2*it.h/3 - 2*l.u(6)
@@ -920,6 +920,9 @@ func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float
 	case graph.Hexagon:
 		m := h / 4
 		poly(pt(x0+m, y0), pt(x1-m, y0), pt(x1, cy), pt(x1-m, y1), pt(x0+m, y1), pt(x0, cy))
+	case graph.LoopLimit:
+		m := h / 4
+		poly(pt(x0+m, y0), pt(x1-m, y0), pt(x1, y0+m), pt(x1, y1), pt(x0, y1), pt(x0, y0+m))
 	case graph.Parallelogram:
 		m := h / 3
 		poly(pt(x0+m, y0), pt(x1, y0), pt(x1-m, y1), pt(x0, y1))

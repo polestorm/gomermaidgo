@@ -533,11 +533,11 @@ nie jest rysowany; domyślnie rysunek jest neutralny, `WithColors` nadaje kolumn
 |---|---|---|
 | problem | pierwsza linia po nagłówku | ISH-001 |
 | kategoria | linia na wcięciu pierwszej przyczyny | ISH-002 |
-| przyczyna | linia wcięta głębiej niż jej kategoria albo przyczyna nadrzędna (do trzech poziomów) | ISH-002 |
+| przyczyna | linia wcięta głębiej niż jej kategoria albo przyczyna nadrzędna (do ośmiu poziomów) | ISH-002 |
 | dostępność | `accTitle`, `accDescr` | ISH-001 |
 
 Świadome różnice wobec Mermaid: wygląd własny (oś z grotem do pola problemu po prawej, kategorie na przemian nad osią
-i pod nią w polach na końcach ukośnych ości, przyczyny na poziomych kreskach); głębsze niż trzy poziomy przyczyn
+i pod nią w polach na końcach ukośnych ości, przyczyny na poziomych kreskach); głębsze niż osiem poziomów przyczyn
 pod kategorią jest błędem.
 
 ## Diagram pakietu (`packet-beta`, `packet`)

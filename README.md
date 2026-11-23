@@ -25,7 +25,7 @@ program that needs no browser, but one that runs Mermaid itself in an embedded J
 | Output size, 79 diagrams: SVG / PDF / PNG | 0.43 / 1.5 / 3.1 MB | 13.8 / 11.7 / 2.6 MB |
 | Diagram types[^types] | 24 of Mermaid's 33 | 33 |
 | Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts |
-| This repository's corpus (84 diagrams) | 84 | 81 |
+| This repository's corpus (86 diagrams) | 86 | 83 |
 | Public diagrams from GitHub[^wild] | 138 of 139 | 137 of 139 |
 | Look | own, made for print; neutral by default | Mermaid's, byte for byte |
 | Page fitting | fit to A4, folding of long diagrams, chains and ranks | none |

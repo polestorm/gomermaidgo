@@ -61,6 +61,7 @@ const (
 	ParallelogramAlt Shape = "parallelogram-alt"
 	Trapezoid        Shape = "trapezoid"
 	TrapezoidAlt     Shape = "trapezoid-alt"
+	LoopLimit        Shape = "loop-limit" // granica pętli: prostokąt ze ściętymi górnymi narożnikami
 	StateStart       Shape = "state-start"
 	StateEnd         Shape = "state-end"
 	Choice           Shape = "choice"

@@ -1,0 +1,14 @@
+flowchart TB layout=swimlanes
+subgraph mag title="Magazyn"
+subgraph kj title="Kontrola jakości"
+node przyj stadium "Przyjęcie dostawy" in=mag
+node petla loop-limit "Dla każdej partii" in=mag
+node skl rect "Składowanie" in=mag
+node pob rect "Pobranie próbki" in=kj
+node ok rhombus "Zgodna?" in=kj
+node blok rect "Blokada partii" in=kj
+edge przyj -> petla normal none/arrow len=1
+edge petla -> pob normal none/arrow len=1
+edge pob -> ok normal none/arrow len=1
+edge ok -> skl normal none/arrow len=1 "Tak"
+edge ok -> blok normal none/arrow len=1 "Nie"

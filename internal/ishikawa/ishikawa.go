@@ -18,7 +18,7 @@ const (
 	CodeEmpty     = "ishikawa-empty"
 	maxCategories = 12
 	maxCauses     = 200
-	maxDepth      = 3 // poziomy przyczyn pod kategorią
+	maxDepth      = 8 // poziomy przyczyn pod kategorią
 )
 
 // Cause to kategoria albo przyczyna z przyczynami szczegółowymi.
@@ -119,9 +119,6 @@ func Parse(source string) (*Diagram, error) {
 	}
 	if d.Effect == nil {
 		return nil, syntax.Errorf(0, CodeEmpty, "the diagram needs a problem (the first line after the header)")
-	}
-	if len(d.Categories) == 0 {
-		return nil, syntax.Errorf(0, CodeEmpty, "the diagram needs at least one category of causes")
 	}
 	d.AccTitle, d.AccDescr = acc.Title, acc.Descr
 	return d, nil
@@ -268,6 +265,17 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 			}
 			r.x0 = r.x1 - r.textW - u(20)
 			r.stem = r.x0 + u(14)
+			if r.depth == 1 {
+				// Ukośna ość odchodzi w lewo w miarę oddalania się od osi, więc długa lista przyczyn
+				// szczegółowych mogłaby w nią wejść: odgałęzienie stoi na lewo od ości na całej
+				// wysokości potomków (ich tekstu i kresek), a kreska przyczyny wydłuża się do niego.
+				for c := k + 1; c <= r.last; c++ {
+					ch := b.rows[c]
+					top := ch.y - float64(len(ch.lines))*lh - u(2)
+					r.stem = math.Min(r.stem, math.Min(boneX(ch.y), boneX(top))-u(10))
+				}
+				r.x0 = math.Min(r.x0, r.stem-u(14))
+			}
 		}
 		tip := boneX(b.height)
 		b.minX, b.maxX = tip-b.labelW/2, math.Max(0, tip+b.labelW/2)
@@ -302,7 +310,10 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 		prev = b
 	}
 	// Oś zaczyna się tuż przed pierwszą ością; teksty przyczyn mogą sięgać dalej w lewo.
-	spineStart, spineEnd := math.Inf(1), 0.0
+	spineStart, spineEnd := -u(120), 0.0 // bez kategorii: sam problem z krótką osią
+	if len(bones) > 0 {
+		spineStart = math.Inf(1)
+	}
 	for _, b := range bones {
 		spineStart = math.Min(spineStart, b.at-u(24))
 		spineEnd = math.Max(spineEnd, b.at+b.maxX)
