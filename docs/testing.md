@@ -105,7 +105,7 @@ jest rysowane przez odniesienie i nie ma go w dokumentacji (teraz błąd `state-
 
 ## Stan po dodaniu wszystkich typów (2026-11-22)
 
-Korpus ma 89 diagramów w 23 typach, a wymagań z testami jest 216.
+Korpus ma 89 diagramów w 23 typach, a wymagań z testami jest 217.
 
 - Porównanie treści z `mmdg`: 49 plików zgodnych, 18 różnych, 2 bez wyniku odniesienia. Różnice są opisane
   w `profile.md` przy każdym typie (podziałki osi, skala ocen w podróży, znaczniki priorytetu, numery pod mapą

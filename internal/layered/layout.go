@@ -114,7 +114,10 @@ type item struct {
 	// textShift: środek etykiety krawędzi względem linii krawędzi (LAY-028: linia biegnie prosto,
 	// a etykieta stoi tam, gdzie się mieści, z linią przechodzącą przez jej pole).
 	textShift float64
-	band      float64 // wysokość warstwy, w której leży pole
+	// thin: etykieta krawędzi, która ma stanąć na odcinku poziomym (LAY-031), nie zajmuje miejsca
+	// w swojej warstwie przy prostowaniu krawędzi.
+	thin bool
+	band float64 // wysokość warstwy, w której leży pole
 
 	lane        int // numer toru, gdy diagram ma tory
 	column      int // kolumna w rzędzie: części w jednej kolumnie stoją jedna za drugą

@@ -980,3 +980,28 @@ func TestExitsWithFewestBends(t *testing.T) {
 		}
 	}
 }
+
+// REQ: LAY-031
+// Etykiety „Nie” przy krawędziach do wspólnego zakończenia stoją na ich odcinkach poziomych:
+// środek napisu leży na poziomym odcinku krawędzi.
+func TestLabelsOnHorizontalRuns(t *testing.T) {
+	sc := natural(t, "flowchart/033-swimlane-exits.mmd")
+	ss := straights(sc)
+	on := 0
+	for _, it := range byRole(sc, "edge-label") {
+		if it.Text != "Nie" {
+			continue
+		}
+		b := it.Bounds()
+		cx, cy := (b.X0+b.X1)/2, (b.Y0+b.Y1)/2
+		for _, s := range ss {
+			if math.Abs(s.a.Y-s.b.Y) < 0.01 && math.Abs(s.a.Y-cy) < 3 && cx > math.Min(s.a.X, s.b.X) && cx < math.Max(s.a.X, s.b.X) {
+				on++
+				break
+			}
+		}
+	}
+	if on < 2 {
+		t.Errorf("%d of the three labels Nie stand on horizontal runs, want at least 2", on)
+	}
+}

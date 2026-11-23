@@ -563,9 +563,13 @@ func (l *layouter) prepareRoutes() {
 			}
 		}
 		defer l.enter(lv)()
-		lv.routes = l.routes(lv)
-		if !l.o.CurvedEdges {
-			l.assignTracks(lv.routes)
+		if lv.vertical && !l.o.CurvedEdges {
+			l.routesWithLabels(lv)
+		} else {
+			lv.routes = l.routes(lv)
+			if !l.o.CurvedEdges {
+				l.assignTracks(lv.routes)
+			}
 		}
 		f := frame{lv.vertical, lv.flip, lv.ox, lv.oy}
 		if _, ok := groups[f]; !ok {
@@ -1188,7 +1192,10 @@ type edgeRoute struct {
 	runHops map[[2]int][]float64
 	side    bool // pierwszy odcinek wychodzi w poprzek z bocznego wierzchołka rombu
 	flat    bool // LAY-027: cała krawędź to jeden odcinek w poprzek, w jednej warstwie
-	order   int  // kolejność rysowania: krawędź późniejsza przeskakuje nad wcześniejszą
+	// labelAt: środek etykiety postawionej na odcinku poziomym (LAY-031); nil, gdy etykieta stoi
+	// w swojej warstwie.
+	labelAt *routePoint
+	order   int // kolejność rysowania: krawędź późniejsza przeskakuje nad wcześniejszą
 }
 
 // findHops wyznacza przecięcia krawędzi łamanych: odcinek poprzeczny jednej krawędzi z odcinkiem
@@ -1525,7 +1532,11 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "edge", Segments: segments,
 		Stroke: colorLine, StrokeWidth: width, Dash: dash})
 	if e.label != nil {
-		l.drawLabel(e.label.text, e.label.x+e.label.textShift, e.label.y)
+		if route.labelAt != nil {
+			l.drawLabel(e.label.text, route.labelAt.x, route.labelAt.y)
+		} else {
+			l.drawLabel(e.label.text, e.label.x+e.label.textShift, e.label.y)
+		}
 	}
 }
 
@@ -1611,10 +1622,14 @@ func (l *layouter) dummyRoom(lv *level, d *item) (lo, hi float64) {
 		if o == d {
 			continue
 		}
+		w := o.w
+		if o.thin {
+			w = l.u(8)
+		}
 		if o.x < d.x {
-			lo = math.Max(lo, o.x+o.textShift+o.w/2+gap(o))
+			lo = math.Max(lo, o.x+o.textShift+w/2+gap(o))
 		} else {
-			hi = math.Min(hi, o.x+o.textShift-o.w/2-gap(o))
+			hi = math.Min(hi, o.x+o.textShift-w/2-gap(o))
 		}
 	}
 	return lo, hi
@@ -1828,7 +1843,7 @@ func (l *layouter) alignChain(e *ledge) {
 			ln := l.lanes[d.lane]
 			rlo, rhi = math.Max(rlo, ln.lo+l.u(4)), math.Min(rhi, ln.hi-l.u(4))
 		}
-		if d.kind == kindLabel {
+		if d.kind == kindLabel && !d.thin {
 			if rhi-rlo < d.w {
 				return // etykieta nie mieści się w żadnym położeniu
 			}
@@ -1836,7 +1851,7 @@ func (l *layouter) alignChain(e *ledge) {
 			margin = l.u(10)
 		}
 		lo, hi = math.Max(lo, rlo+margin-l.u(8)), math.Min(hi, rhi-margin+l.u(8))
-		if d.kind == kindLabel {
+		if d.kind == kindLabel && !d.thin {
 			lo, hi = math.Max(lo, rlo+l.u(10)), math.Min(hi, rhi-l.u(10))
 		}
 		if k == 0 {
@@ -1986,4 +2001,165 @@ func (l *layouter) alignEnd(e *ledge, x float64) {
 			*port = off
 		}
 	}
+}
+
+// routesWithLabels wyznacza przebiegi krawędzi poziomu pionowego razem z miejscami etykiet (LAY-031).
+// Etykieta stoi na odcinku poziomym krawędzi, bo tam czyta się ją najlepiej: najpierw krawędzie są
+// prostowane tak, jakby etykiety nie zajmowały miejsca w warstwach, potem każda etykieta szuka
+// miejsca na najdłuższym odcinku poziomym swojej krawędzi. Krawędzie, których etykiety nigdzie się
+// nie zmieściły, są prostowane jeszcze raz, już z etykietą w warstwie.
+func (l *layouter) routesWithLabels(lv *level) {
+	type spot struct{ x, shift float64 }
+	saved := map[*item]spot{}
+	var labels []*item
+	for _, e := range lv.edges {
+		for _, d := range e.chain {
+			saved[d] = spot{d.x, d.textShift}
+		}
+		if e.label != nil && !e.part {
+			labels = append(labels, e.label)
+			e.label.thin = true
+		}
+	}
+	lv.routes = l.routes(lv)
+	l.assignTracks(lv.routes)
+	failed := l.placeLabels(lv)
+	if len(failed) == 0 {
+		return
+	}
+	for d, sp := range saved {
+		d.x, d.textShift = sp.x, sp.shift
+	}
+	for _, d := range failed {
+		d.thin = false
+	}
+	lv.routes = l.routes(lv)
+	l.assignTracks(lv.routes)
+	l.placeLabels(lv)
+	_ = labels
+}
+
+// placeLabels stawia etykiety krawędzi poziomu na odcinkach poziomych: na najdłuższym, na którym
+// pole etykiety mieści się z dala od narożników i nie zachodzi na linie innych krawędzi, pola ani
+// inne etykiety; najpierw na środku odcinka, potem coraz dalej od niego. Zwraca etykiety, które
+// zostają w swoich warstwach.
+func (l *layouter) placeLabels(lv *level) []*item {
+	type seg struct {
+		r          *edgeRoute
+		a, b       routePoint
+		horizontal bool
+	}
+	var segs []seg
+	for _, r := range lv.routes {
+		r.labelAt = nil
+		p := r.pts
+		for i := 0; i+1 < len(p); i++ {
+			a, b := p[i], p[i+1]
+			switch {
+			case r.flat:
+				segs = append(segs, seg{r, a, b, true})
+			case i == 0 && r.side:
+				segs = append(segs, seg{r, a, routePoint{b.x, a.y}, true}, seg{r, routePoint{b.x, a.y}, b, false})
+			case math.Abs(a.x-b.x) < straightTolerance:
+				segs = append(segs, seg{r, a, b, false})
+			default:
+				mid, ok := r.track[i]
+				if !ok {
+					mid = (a.y + b.y) / 2
+				}
+				segs = append(segs, seg{r, a, routePoint{a.x, mid}, false}, seg{r, routePoint{a.x, mid}, routePoint{b.x, mid}, true},
+					seg{r, routePoint{b.x, mid}, b, false})
+			}
+		}
+	}
+	type rect struct{ x0, y0, x1, y1 float64 }
+	var obstacles []rect
+	for _, row := range lv.ranks {
+		for _, it := range row {
+			if it.real() {
+				obstacles = append(obstacles, rect{it.x - it.w/2 - l.u(4), it.y - it.h/2 - l.u(4), it.x + it.w/2 + l.u(4), it.y + it.h/2 + l.u(4)})
+			}
+		}
+	}
+	labelBox := func(d *item, x, y float64) rect { return rect{x - d.w/2, y - d.h/2, x + d.w/2, y + d.h/2} }
+	hits := func(b rect, own *edgeRoute) bool {
+		for _, o := range obstacles {
+			if b.x0 < o.x1 && o.x0 < b.x1 && b.y0 < o.y1 && o.y0 < b.y1 {
+				return true
+			}
+		}
+		for _, s := range segs {
+			if s.r == own {
+				continue
+			}
+			x0, x1 := math.Min(s.a.x, s.b.x), math.Max(s.a.x, s.b.x)
+			y0, y1 := math.Min(s.a.y, s.b.y), math.Max(s.a.y, s.b.y)
+			if x0 < b.x1+l.u(2) && b.x0-l.u(2) < x1 && y0 < b.y1+l.u(2) && b.y0-l.u(2) < y1 {
+				return true
+			}
+		}
+		return false
+	}
+	var failed []*item
+	placed := map[*edgeRoute]rect{}
+	// Etykiety stojące w warstwach (jeszcze nie postawione albo bez miejsca) też są przeszkodami.
+	inRank := func(skip *edgeRoute) []rect {
+		var out []rect
+		for _, r := range lv.routes {
+			if r == skip || r.e.label == nil {
+				continue
+			}
+			if b, ok := placed[r]; ok {
+				out = append(out, b)
+			} else if !r.e.label.thin {
+				d := r.e.label
+				out = append(out, labelBox(d, d.x+d.textShift, d.y))
+			}
+		}
+		return out
+	}
+	for _, r := range lv.routes {
+		d := r.e.label
+		if d == nil {
+			continue
+		}
+		var own []seg
+		for _, s := range segs {
+			if s.r == r && s.horizontal {
+				own = append(own, s)
+			}
+		}
+		sort.SliceStable(own, func(i, k int) bool { return math.Abs(own[i].b.x-own[i].a.x) > math.Abs(own[k].b.x-own[k].a.x) })
+		done := false
+		for _, s := range own {
+			lo, hi := math.Min(s.a.x, s.b.x)+l.u(14)+d.w/2, math.Max(s.a.x, s.b.x)-l.u(14)-d.w/2
+			if lo > hi {
+				continue
+			}
+			c := (lo + hi) / 2
+			for k := 0; !done && float64(k)*l.u(8) <= (hi-lo)/2+0.5; k++ {
+				for _, x := range []float64{c - float64(k)*l.u(8), c + float64(k)*l.u(8)} {
+					x = math.Max(lo, math.Min(hi, x))
+					b := labelBox(d, x, s.a.y)
+					bad := hits(b, r)
+					for _, o := range inRank(r) {
+						bad = bad || (b.x0 < o.x1 && o.x0 < b.x1 && b.y0 < o.y1 && o.y0 < b.y1)
+					}
+					if !bad {
+						r.labelAt = &routePoint{x, s.a.y}
+						placed[r] = b
+						done = true
+						break
+					}
+				}
+			}
+			if done {
+				break
+			}
+		}
+		if !done {
+			failed = append(failed, d)
+		}
+	}
+	return failed
 }

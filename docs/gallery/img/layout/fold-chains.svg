@@ -15,12 +15,12 @@
 <path class="edge" d="M346.5 632 L346.5 667.89" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M282 714 L242 714 C237.6 714 234 717.6 234 722 L234 752 L234 884 L234 890.3 C234 894.7 237.6 898.3 242 898.3 L314 898.3 C318.4 898.3 322 901.9 322 906.3 L322 923.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M347 752 L347 831.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M412 714 L423 714 C427.4 714 431 717.6 431 722 L431 752 L431 806 L431 806 C431 810.02 434.29 813.3 438.3 813.3 L569.7 813.3 C573.72 813.3 577 816.58 577 820.6 L577 831.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M412 714 L569 714 C573.4 714 577 717.6 577 722 L577 752 L577 831.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M347 884 L347 923.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M366 52.4 L366 69.7 C366 74.1 369.6 77.7 374 77.7 L589 77.7 C593.4 77.7 597 81.3 597 85.7 L597 92 L597 840" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="216.21" y="784" width="35.57" height="20" fill="white"/>
 <rect class="edge-label-background" x="322.55" y="784" width="48.9" height="20" fill="white"/>
-<rect class="edge-label-background" x="416.77" y="784" width="28.45" height="20" fill="white"/>
+<rect class="edge-label-background" x="480.27" y="704" width="28.45" height="20" fill="white"/>
 <polygon class="arrowhead" points="99.5,216 93.5,204 105.5,204" fill="#3b4754"/>
 <polygon class="arrowhead" points="99.5,314 93.5,302 105.5,302" fill="#3b4754"/>
 <polygon class="arrowhead" points="99.5,412 93.5,400 105.5,400" fill="#3b4754"/>
@@ -73,5 +73,5 @@
 <text class="node-label" x="342" y="959.6" text-anchor="middle" fill="#1b1f24">Closure</text>
 <text class="edge-label" x="234" y="799.6" text-anchor="middle" fill="#1b1f24">Yes</text>
 <text class="edge-label" x="347" y="799.6" text-anchor="middle" fill="#1b1f24">Partly</text>
-<text class="edge-label" x="431" y="799.6" text-anchor="middle" fill="#1b1f24">No</text>
+<text class="edge-label" x="494.5" y="719.6" text-anchor="middle" fill="#1b1f24">No</text>
 </svg>

@@ -1,24 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="552.01" height="1038" viewBox="-12 -64 552.01 1038" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-9ce3a64c"><path d="M-12 -64 L540.01 -64 L540.01 974 L-12 974 M327.66 231 L327.66 251 L362.34 251 L362.34 231 M327.66 422 L327.66 442 L362.34 442 L362.34 422 M316.66 636 L316.66 656 L351.34 656 L351.34 636 M476 518 L476 538 L508 538 L508 518 M444.99 636 L444.99 656 L477 656 L477 636 M413 718 L413 738 L445.01 738 L445.01 718"/></clipPath></defs>
-<rect class="lane" x="0" y="-52" width="236" height="1014" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-e1d851da"><path d="M-12 -64 L540.01 -64 L540.01 974 L-12 974 M205.84 185.5 L205.84 205.5 L240.51 205.5 L240.51 185.5 M327.66 422 L327.66 442 L362.34 442 L362.34 422 M316.66 636 L316.66 656 L351.34 656 L351.34 636 M297.32 165.5 L297.32 185.5 L329.33 185.5 L329.33 165.5 M390.37 849.3 L390.37 869.3 L422.38 869.3 L422.38 849.3 M374.46 584.95 L374.46 604.95 L406.47 604.95 L406.47 584.95"/></clipPath></defs>
+<g clip-path="url(#label-holes-e1d851da)"><rect class="lane" x="0" y="-52" width="236" height="1014" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
 <rect class="lane-header" x="0" y="-52" width="236" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<g clip-path="url(#label-holes-9ce3a64c)"><rect class="lane" x="236" y="-52" width="292.01" height="1014" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-e1d851da)"><rect class="lane" x="236" y="-52" width="292.01" height="1014" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
 <rect class="lane-header" x="236" y="-52" width="292.01" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
 <path class="edge" d="M118 44 L118 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-9ce3a64c)"><path class="edge" d="M101.35 159 L101.35 187.5 C101.35 191.9 104.95 195.5 109.35 195.5 L337 195.5 C341.4 195.5 345 199.1 345 203.5 L345 212 L345 305.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e1d851da)"><path class="edge" d="M101.35 159 L101.35 187.5 C101.35 191.9 104.95 195.5 109.35 195.5 L337 195.5 C341.4 195.5 345 199.1 345 203.5 L345 212 L345 305.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-9ce3a64c)"><path class="edge" d="M345 390 L345 483.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e1d851da)"><path class="edge" d="M345 390 L345 483.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-9ce3a64c)"><path class="edge" d="M334 557.11 L334 697.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e1d851da)"><path class="edge" d="M334 557.11 L334 697.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <path class="edge" d="M345 750 L345 785.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M300.75 838 L300.75 891.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-9ce3a64c)"><path class="edge" d="M134.65 159 L134.65 167.5 C134.65 171.9 138.25 175.5 142.65 175.5 L484 175.5 C488.4 175.5 492 179.1 492 183.5 L492 212 L492 838 L492 865.6 C492 870 488.4 873.6 484 873.6 L397.25 873.6 C392.85 873.6 389.25 877.2 389.25 881.6 L389.25 891.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e1d851da)"><path class="edge" d="M134.65 159 L134.65 167.5 C134.65 171.9 138.25 175.5 142.65 175.5 L484 175.5 C488.4 175.5 492 179.1 492 183.5 L492 212 L492 838 L492 865.6 C492 870 488.4 873.6 484 873.6 L397.25 873.6 C392.85 873.6 389.25 877.2 389.25 881.6 L389.25 891.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-9ce3a64c)"><path class="edge" d="M410 352 L456 352 C460.4 352 464 355.6 464 360 L464 390 L464 838 L464 851.3 C464 855.7 460.4 859.3 456 859.3 L367.75 859.3 C363.35 859.3 359.75 862.9 359.75 867.3 L359.75 891.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e1d851da)"><path class="edge" d="M410 352 L445 352 C449.4 352 453 355.6 453 360 L453 390 L453 838 L453 851.3 C453 855.7 449.4 859.3 445 859.3 L367.75 859.3 C363.35 859.3 359.75 862.9 359.75 867.3 L359.75 891.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-9ce3a64c)"><path class="edge" d="M357.94 555.9 L357.94 586.95 C357.94 591.35 361.54 594.95 365.94 594.95 L415 594.95 C419.4 594.95 423 598.55 423 602.95 L423 634 L423 838 L423 838 C423 841.85 419.85 845 416 845 L337.25 845 C333.4 845 330.25 848.15 330.25 852 L330.25 891.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e1d851da)"><path class="edge" d="M357.94 555.9 L357.94 586.95 C357.94 591.35 361.54 594.95 365.94 594.95 L415 594.95 C419.4 594.95 423 598.55 423 602.95 L423 634 L423 838 L423 838 C423 841.85 419.85 845 416 845 L337.25 845 C333.4 845 330.25 848.15 330.25 852 L330.25 891.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <polygon class="arrowhead" points="118,88 112,76 124,76" fill="#3b4754"/>
 <polygon class="arrowhead" points="345,314 339,302 351,302" fill="#3b4754"/>
@@ -51,10 +52,10 @@
 <text class="node-label" x="334" y="733.6" text-anchor="middle" fill="#1b1f24">Wykonanie</text>
 <text class="node-label" x="345" y="821.6" text-anchor="middle" fill="#1b1f24">Odbiór</text>
 <text class="node-label" x="345" y="927.6" text-anchor="middle" fill="#1b1f24">Koniec</text>
-<text class="edge-label" x="345" y="246.6" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="223.18" y="201.1" text-anchor="middle" fill="#1b1f24">Tak</text>
 <text class="edge-label" x="345" y="437.6" text-anchor="middle" fill="#1b1f24">Tak</text>
 <text class="edge-label" x="334" y="651.6" text-anchor="middle" fill="#1b1f24">Tak</text>
-<text class="edge-label" x="492" y="533.6" text-anchor="middle" fill="#1b1f24">Nie</text>
-<text class="edge-label" x="461" y="651.6" text-anchor="middle" fill="#1b1f24">Nie</text>
-<text class="edge-label" x="429" y="733.6" text-anchor="middle" fill="#1b1f24">Nie</text>
+<text class="edge-label" x="313.33" y="181.1" text-anchor="middle" fill="#1b1f24">Nie</text>
+<text class="edge-label" x="406.38" y="864.9" text-anchor="middle" fill="#1b1f24">Nie</text>
+<text class="edge-label" x="390.47" y="600.55" text-anchor="middle" fill="#1b1f24">Nie</text>
 </svg>

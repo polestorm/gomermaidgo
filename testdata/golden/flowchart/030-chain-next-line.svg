@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="510" height="472" viewBox="-12 -64 510 472" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-cfb88340"><path d="M-12 -64 L498 -64 L498 408 L-12 408 M113.66 282 L113.66 302 L148.34 302 L148.34 282 M358 282 L358 302 L390 302 L390 282"/></clipPath></defs>
-<g clip-path="url(#label-holes-cfb88340)"><rect class="lane" x="0" y="-52" width="262" height="448" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-172cacb0"><path d="M-12 -64 L498 -64 L498 408 L-12 408 M204.91 203 L204.91 223 L239.59 223 L239.59 203 M358 282 L358 302 L390 302 L390 282"/></clipPath></defs>
+<g clip-path="url(#label-holes-172cacb0)"><rect class="lane" x="0" y="-52" width="262" height="448" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
 <rect class="lane-header" x="0" y="-52" width="262" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<g clip-path="url(#label-holes-cfb88340)"><rect class="lane" x="262" y="-52" width="224" height="448" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-172cacb0)"><rect class="lane" x="262" y="-52" width="224" height="448" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
 <rect class="lane-header" x="262" y="-52" width="224" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
 <path class="edge" d="M131 44 L131 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M227 110 L281.6 110" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M374 132 L374 167.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-cfb88340)"><path class="edge" d="M313.5 213 L139 213 C134.6 213 131 216.6 131 221 L131 250 L131 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-172cacb0)"><path class="edge" d="M313.5 213 L139 213 C134.6 213 131 216.6 131 221 L131 250 L131 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-cfb88340)"><path class="edge" d="M374 250 L374 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-172cacb0)"><path class="edge" d="M374 250 L374 325.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <polygon class="arrowhead" points="131,88 125,76 137,76" fill="#3b4754"/>
 <polygon class="arrowhead" points="290,110 278,116 278,104" fill="#3b4754"/>
@@ -32,6 +32,6 @@
 <text class="node-label" x="374" y="218.6" text-anchor="middle" fill="#1b1f24">Zgodna?</text>
 <text class="node-label" x="131" y="361.6" text-anchor="middle" fill="#1b1f24">Składowanie</text>
 <text class="node-label" x="374" y="361.6" text-anchor="middle" fill="#1b1f24">Blokada partii</text>
-<text class="edge-label" x="131" y="297.6" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="222.25" y="218.6" text-anchor="middle" fill="#1b1f24">Tak</text>
 <text class="edge-label" x="374" y="297.6" text-anchor="middle" fill="#1b1f24">Nie</text>
 </svg>

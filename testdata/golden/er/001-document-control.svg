@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="872.5" height="682" viewBox="-12 -12 872.5 682" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-bfdd86a4"><path d="M-12 -12 L860.5 -12 L860.5 670 L-12 670 M142.55 192 L142.55 212 L223.45 212 L223.45 192 M435.75 192 L435.75 212 L512.25 212 L512.25 192 M202.21 476 L202.21 496 L269.79 496 L269.79 476 M77.08 476 L77.08 496 L182.92 496 L182.92 476 M594.75 476 L594.75 496 L671.25 496 L671.25 476 M691.98 476 L691.98 496 L756.02 496 L756.02 476"/></clipPath></defs>
-<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M309 160 L309 172.5 C309 176.9 305.4 180.5 301 180.5 L191 180.5 C186.6 180.5 183 184.1 183 188.5 L183 190 L183 244" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<defs><clipPath id="label-holes-e680cdc0"><path d="M-12 -12 L860.5 -12 L860.5 670 L-12 670 M205.55 170.5 L205.55 190.5 L286.45 190.5 L286.45 170.5 M373.25 170.5 L373.25 190.5 L449.75 190.5 L449.75 170.5 M278.71 497.5 L278.71 517.5 L346.29 517.5 L346.29 497.5 M77.08 476 L77.08 496 L182.92 496 L182.92 476 M492.75 497.5 L492.75 517.5 L569.25 517.5 L569.25 497.5 M691.98 476 L691.98 496 L756.02 496 L756.02 476"/></clipPath></defs>
+<g clip-path="url(#label-holes-e680cdc0)"><path class="edge" d="M309 160 L309 172.5 C309 176.9 305.4 180.5 301 180.5 L191 180.5 C186.6 180.5 183 184.1 183 188.5 L183 190 L183 244" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M349 160 L349 172.5 C349 176.9 352.6 180.5 357 180.5 L466 180.5 C470.4 180.5 474 184.1 474 188.5 L474 190 L474 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e680cdc0)"><path class="edge" d="M349 160 L349 172.5 C349 176.9 352.6 180.5 357 180.5 L466 180.5 C470.4 180.5 474 184.1 474 188.5 L474 190 L474 304" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M236 404 L236 498 L236 499.5 C236 503.9 239.6 507.5 244 507.5 L381 507.5 C385.4 507.5 389 511.1 389 515.5 L389 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e680cdc0)"><path class="edge" d="M236 404 L236 498 L236 499.5 C236 503.9 239.6 507.5 244 507.5 L381 507.5 C385.4 507.5 389 511.1 389 515.5 L389 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M130 404 L130 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-e680cdc0)"><path class="edge" d="M130 404 L130 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
-<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M633 374 L633 498 L633 499.5 C633 503.9 629.4 507.5 625 507.5 L437 507.5 C432.6 507.5 429 511.1 429 515.5 L429 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e680cdc0)"><path class="edge" d="M633 374 L633 498 L633 499.5 C633 503.9 629.4 507.5 625 507.5 L437 507.5 C432.6 507.5 429 511.1 429 515.5 L429 528" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-bfdd86a4)"><path class="edge" d="M724 374 L724 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-e680cdc0)"><path class="edge" d="M724 374 L724 573" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
 <line class="arrowhead" x1="315" y1="167" x2="303" y2="167" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="315" y1="173" x2="303" y2="173" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -106,10 +106,10 @@
 <text class="attribute" x="277" y="648.6" fill="#1b1f24">timestamp</text>
 <text class="attribute" x="370.8" y="648.6" fill="#1b1f24">podpisano</text>
 <text class="node-label" x="724" y="598.6" text-anchor="middle" fill="#1b1f24">PODPIS-KWALIFIKOWANY</text>
-<text class="edge-label" x="183" y="207.6" text-anchor="middle" fill="#1b1f24">ma wersje</text>
-<text class="edge-label" x="474" y="207.6" text-anchor="middle" fill="#1b1f24">należy do</text>
-<text class="edge-label" x="236" y="491.6" text-anchor="middle" fill="#1b1f24">wymaga</text>
+<text class="edge-label" x="246" y="186.1" text-anchor="middle" fill="#1b1f24">ma wersje</text>
+<text class="edge-label" x="411.5" y="186.1" text-anchor="middle" fill="#1b1f24">należy do</text>
+<text class="edge-label" x="312.5" y="513.1" text-anchor="middle" fill="#1b1f24">wymaga</text>
 <text class="edge-label" x="130" y="491.6" text-anchor="middle" fill="#1b1f24">jest podstawą</text>
-<text class="edge-label" x="633" y="491.6" text-anchor="middle" fill="#1b1f24">podpisuje</text>
+<text class="edge-label" x="531" y="513.1" text-anchor="middle" fill="#1b1f24">podpisuje</text>
 <text class="edge-label" x="724" y="491.6" text-anchor="middle" fill="#1b1f24">posiada</text>
 </svg>

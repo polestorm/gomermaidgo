@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="816" height="448" viewBox="-11.5 -12 816 448" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-8b1a5ced"><path d="M-11.5 -12 L804.5 -12 L804.5 436 L-11.5 436 M655.43 216 L655.43 236 L702.57 236 L702.57 216"/></clipPath></defs>
+<defs><clipPath id="label-holes-e337e0cd"><path d="M-11.5 -12 L804.5 -12 L804.5 436 L-11.5 436 M519.59 84.3 L519.59 104.3 L566.74 104.3 L566.74 84.3"/></clipPath></defs>
 <path class="edge" d="M340.67 44 L340.67 66.3 C340.67 70.7 337.07 74.3 332.67 74.3 L54 74.3 C49.6 74.3 46 77.9 46 82.3 L46 195.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M349 44 L349 86.3 C349 90.7 345.4 94.3 341 94.3 L121 94.3 C116.6 94.3 113 97.9 113 102.3 L113 204 L113 248 L113 252.3 C113 256.7 109.4 260.3 105 260.3 L72 260.3 C67.6 260.3 64 263.9 64 268.3 L64 283.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M357.33 44 L357.33 106.3 C357.33 110.7 353.73 114.3 349.33 114.3 L139 114.3 C134.6 114.3 131 117.9 131 122.3 L131 204 L131 371.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -7,8 +7,9 @@
 <path class="edge" d="M374 44 L374 146.3 C374 150.7 370.4 154.3 366 154.3 L346 154.3 C341.6 154.3 338 157.9 338 162.3 L338 204 L338 283.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M382.33 44 L382.33 146.3 C382.33 150.7 385.93 154.3 390.33 154.3 L397 154.3 C401.4 154.3 405 157.9 405 162.3 L405 204 L405 380" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path class="edge" d="M390.67 44 L390.67 126.3 C390.67 130.7 394.27 134.3 398.67 134.3 L465 134.3 C469.4 134.3 473 137.9 473 142.3 L473 204 L473 283.6" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="edge" d="M399 44 L399 106.3 C399 110.7 402.6 114.3 407 114.3 L604 114.3 C608.4 114.3 612 117.9 612 122.3 L612 204 L612 292" fill="none" stroke="#3b4754" stroke-width="3"/>
-<g clip-path="url(#label-holes-8b1a5ced)"><path class="edge" d="M407.33 44 L407.33 86.3 C407.33 90.7 410.93 94.3 415.33 94.3 L671 94.3 C675.4 94.3 679 97.9 679 102.3 L679 204 L679 371.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e337e0cd)"><path class="edge" d="M399 44 L399 106.3 C399 110.7 402.6 114.3 407 114.3 L604 114.3 C608.4 114.3 612 117.9 612 122.3 L612 204 L612 292" fill="none" stroke="#3b4754" stroke-width="3"/>
+</g>
+<g clip-path="url(#label-holes-e337e0cd)"><path class="edge" d="M407.33 44 L407.33 86.3 C407.33 90.7 410.93 94.3 415.33 94.3 L671 94.3 C675.4 94.3 679 97.9 679 102.3 L679 204 L679 371.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <polygon class="arrowhead" points="46,204 40,192 52,192" fill="#3b4754"/>
 <polygon class="arrowhead" points="64,292 58,280 70,280" fill="#3b4754"/>
@@ -38,5 +39,5 @@
 <text class="node-label" x="131" y="407.6" text-anchor="middle" fill="#1b1f24">D</text>
 <text class="node-label" x="405" y="407.6" text-anchor="middle" fill="#1b1f24">G</text>
 <text class="node-label" x="679" y="407.6" text-anchor="middle" fill="#1b1f24">J</text>
-<text class="edge-label" x="679" y="231.6" text-anchor="middle" fill="#1b1f24">długa</text>
+<text class="edge-label" x="543.17" y="99.9" text-anchor="middle" fill="#1b1f24">długa</text>
 </svg>
