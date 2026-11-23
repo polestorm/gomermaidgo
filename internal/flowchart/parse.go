@@ -104,6 +104,7 @@ type parser struct {
 	stack []string // otwarte podgrafy
 	auto  int
 	acc   syntax.Accessibility
+	lanes bool // nagłówek swimlane-beta: diagram torów
 }
 
 func (p *parser) scope() string {
@@ -270,14 +271,18 @@ func Parse(source string) (*graph.Graph, error) {
 	}
 	if p.g.Layout == "swimlanes" {
 		// Tor jest pasem przez cały rysunek: nie da się go zagnieździć ani do niego poprowadzić krawędzi.
-		for _, s := range p.g.Subgraphs {
-			if s.Parent != "" {
-				return nil, syntax.Errorf(s.Line, CodeSubgraph, "swimlanes do not support nested subgraphs (%q)", s.ID)
-			}
-		}
 		for _, e := range p.g.Edges {
 			if p.g.Subgraph(e.From) != nil || p.g.Subgraph(e.To) != nil {
 				return nil, syntax.Errorf(e.Line, CodeEdge, "in swimlanes an edge must connect nodes, not a lane")
+			}
+		}
+		if p.lanes {
+			// swimlane-beta: podgraf w torze jest częścią toru (FLOW-026).
+			p.g.FlattenNested()
+		}
+		for _, s := range p.g.Subgraphs {
+			if s.Parent != "" {
+				return nil, syntax.Errorf(s.Line, CodeSubgraph, "swimlanes do not support nested subgraphs (%q)", s.ID)
 			}
 		}
 	}
@@ -286,6 +291,11 @@ func Parse(source string) (*graph.Graph, error) {
 
 func (p *parser) header(s string, line int) error {
 	fields := strings.Fields(s)
+	if len(fields) > 0 && (fields[0] == "swimlane-beta" || fields[0] == "swimlane") {
+		// Diagram torów Mermaid: schemat blokowy, w którym podgrafy najwyższego poziomu są torami.
+		p.lanes, p.g.Layout = true, "swimlanes"
+		fields[0] = "flowchart"
+	}
 	if len(fields) == 0 || (fields[0] != "flowchart" && fields[0] != "graph") {
 		return syntax.Errorf(line, CodeHeader, "expected \"flowchart\" or \"graph\", found %q", s)
 	}

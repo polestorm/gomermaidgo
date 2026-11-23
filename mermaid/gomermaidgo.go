@@ -212,7 +212,7 @@ func DetectType(source string) (string, error) {
 		switch strings.TrimRight(word, ";") {
 		case "sequenceDiagram":
 			return TypeSequence, nil
-		case "flowchart", "graph":
+		case "flowchart", "graph", "swimlane-beta", "swimlane":
 			return TypeFlowchart, nil
 		case "stateDiagram-v2", "stateDiagram":
 			return TypeState, nil

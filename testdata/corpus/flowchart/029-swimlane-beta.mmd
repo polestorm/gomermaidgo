@@ -1,0 +1,25 @@
+%% REQ: FLOW-026
+%% Tytuł: Diagram torów swimlane-beta
+%% Sprawdza: nagłówek swimlane-beta z kierunkiem, tory z identyfikatorem i nazwą, decyzja z podpisanymi krawędziami, pole wymienione w dwóch torach zostaje w pierwszym, podgraf w torze należy do toru.
+swimlane-beta LR
+  accTitle: Rozpatrzenie reklamacji
+  subgraph klient [Klient]
+    zgl([Zgłoszenie reklamacji])
+    odp[Odpowiedź]
+  end
+  subgraph bok [Obsługa klienta]
+    rej[Rejestracja]
+    ocena{Zasadna?}
+    subgraph dok [Dokumentacja]
+      list[Pismo do klienta]
+    end
+  end
+  subgraph jakosc [Dział jakości]
+    analiza[Analiza przyczyn]
+    capa[Działania korygujące]
+    rej
+  end
+  zgl --> rej --> ocena
+  ocena -->|Tak| analiza --> capa --> list
+  ocena -->|Nie| list
+  list --> odp

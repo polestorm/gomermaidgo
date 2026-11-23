@@ -262,3 +262,22 @@ func TestParseEllipsisNodes(t *testing.T) {
 		t.Errorf("dotted edges: %v %+v", err, g)
 	}
 }
+
+// REQ: FLOW-026
+func TestSwimlaneBeta(t *testing.T) {
+	g, err := Parse("swimlane-beta LR\n  subgraph a [Pierwszy]\n    x[X]\n    subgraph box [Ramka]\n      y[Y]\n    end\n  end\n  subgraph b [Drugi]\n    z[Z]\n    x\n  end\n  x --> y --> z")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if g.Layout != "swimlanes" || g.Direction != graph.LeftRight || len(g.Subgraphs) != 2 {
+		t.Fatalf("layout %q, direction %v, %d subgraphs", g.Layout, g.Direction, len(g.Subgraphs))
+	}
+	for id, lane := range map[string]string{"x": "a", "y": "a", "z": "b"} {
+		if n := g.Node(id); n == nil || n.Parent != lane {
+			t.Errorf("node %s should stand in lane %s, got %+v", id, lane, n)
+		}
+	}
+	if _, err := Parse("swimlane-beta\n  subgraph a\n    x\n  end\n  x --> a"); err == nil {
+		t.Error("an edge to a lane should be an error")
+	}
+}

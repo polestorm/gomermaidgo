@@ -100,6 +100,7 @@ Stan: rysowany układem warstwowym (`internal/layered`).
 | identyfikatory, Markdown, dostępność | `krok-1.a`; ``"`tekst **pogrubiony** i *pochylony*`"``; `accTitle`, `accDescr` | FLOW-018 |
 | kierunek podgrafu | `direction LR` w podgrafie niepołączonym krawędziami z resztą | FLOW-019 |
 | tory | komentarz `%% layout: swimlanes` przed albo po nagłówku: podgrafy najwyższego poziomu stają się pasami | FLOW-021 |
+| diagram torów | nagłówek `swimlane-beta [kierunek]`: tory z podgrafów najwyższego poziomu; pole w kilku torach zostaje w pierwszym; podgraf w torze jest częścią toru, bez ramki | FLOW-026 |
 
 ### Dopasowanie do strony
 

@@ -208,6 +208,29 @@ func (g *Graph) Node(id string) *Node { return g.nodeIndex[id] }
 // Subgraph zwraca podgraf o podanym identyfikatorze albo nil.
 func (g *Graph) Subgraph(id string) *Subgraph { return g.subIndex[id] }
 
+// FlattenNested usuwa podgrafy zagnieżdżone: ich pola trafiają do podgrafu najwyższego poziomu,
+// w którym leżą (diagram torów swimlane-beta, gdzie torem jest tylko podgraf najwyższego poziomu).
+func (g *Graph) FlattenNested() {
+	top := func(id string) string {
+		for id != "" && g.subIndex[id] != nil && g.subIndex[id].Parent != "" {
+			id = g.subIndex[id].Parent
+		}
+		return id
+	}
+	for _, n := range g.Nodes {
+		n.Parent = top(n.Parent)
+	}
+	kept := g.Subgraphs[:0]
+	for _, s := range g.Subgraphs {
+		if s.Parent == "" {
+			kept = append(kept, s)
+		} else {
+			delete(g.subIndex, s.ID)
+		}
+	}
+	g.Subgraphs = kept
+}
+
 // EnsureNode zwraca istniejący węzeł albo tworzy nowy z etykietą równą identyfikatorowi.
 // Węzeł bez rodzica, wspomniany wewnątrz podgrafu, staje się jego członkiem.
 func (g *Graph) EnsureNode(id, parent string, shape Shape, line int) (*Node, error) {
