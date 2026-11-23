@@ -63,14 +63,14 @@ func requirements() map[string]string {
 var typeKinds = map[string]string{mermaid.TypeSequence: "sequence", mermaid.TypeFlowchart: "flowchart", mermaid.TypeState: "state",
 	mermaid.TypeGantt: "gantt", mermaid.TypeER: "er", mermaid.TypePie: "pie", mermaid.TypeClass: "class", mermaid.TypeTimeline: "timeline",
 	mermaid.TypeJourney: "journey", mermaid.TypeMindmap: "mindmap", mermaid.TypeXYChart: "xychart", mermaid.TypeQuadrant: "quadrant",
-	mermaid.TypeRequirement: "requirement", mermaid.TypeKanban: "kanban", mermaid.TypePacket: "packet", mermaid.TypeRadar: "radar",
+	mermaid.TypeRequirement: "requirement", mermaid.TypeKanban: "kanban", mermaid.TypeIshikawa: "ishikawa", mermaid.TypePacket: "packet", mermaid.TypeRadar: "radar",
 	mermaid.TypeTreemap: "treemap", mermaid.TypeSankey: "sankey", mermaid.TypeGit: "gitgraph", mermaid.TypeBlock: "block",
 	mermaid.TypeArchitecture: "architecture", mermaid.TypeC4: "c4"}
 
 // sampleThemes to motywy pokazywane wyrywkowo; kolorowy (default) ma własną kolumnę.
 var sampleThemes = []string{mermaid.ThemeForest, mermaid.ThemeDark}
 
-var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji", "pie": "Wykres kołowy", "class": "Diagram klas", "timeline": "Oś czasu", "journey": "Podróż użytkownika", "mindmap": "Mapa myśli", "xychart": "Wykres słupkowy i liniowy", "quadrant": "Wykres ćwiartkowy", "kanban": "Tablica kanban", "packet": "Diagram pakietu", "radar": "Wykres radarowy", "treemap": "Mapa drzewa", "requirement": "Diagram wymagań", "sankey": "Wykres Sankeya", "c4": "Diagram C4", "gitgraph": "Graf historii Gita", "block": "Diagram blokowy", "architecture": "Diagram architektury"}
+var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji", "pie": "Wykres kołowy", "class": "Diagram klas", "timeline": "Oś czasu", "journey": "Podróż użytkownika", "mindmap": "Mapa myśli", "xychart": "Wykres słupkowy i liniowy", "quadrant": "Wykres ćwiartkowy", "kanban": "Tablica kanban", "packet": "Diagram pakietu", "radar": "Wykres radarowy", "treemap": "Mapa drzewa", "requirement": "Diagram wymagań", "sankey": "Wykres Sankeya", "c4": "Diagram C4", "gitgraph": "Graf historii Gita", "block": "Diagram blokowy", "architecture": "Diagram architektury", "ishikawa": "Diagram Ishikawy"}
 
 func main() {
 	fontPath := flag.String("font", "", "font file used to measure text and embedded in the page")
@@ -138,7 +138,7 @@ func main() {
 	var groups []group
 	skipped := 0
 	if *dir == "" {
-		for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap", "requirement", "sankey", "c4", "gitgraph", "block", "architecture"} {
+		for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap", "requirement", "sankey", "c4", "gitgraph", "block", "architecture", "ishikawa"} {
 			files, _ := filepath.Glob("testdata/corpus/" + kind + "/*.mmd")
 			sort.Strings(files)
 			groups = append(groups, group{kind, files})

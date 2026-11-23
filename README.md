@@ -23,9 +23,9 @@ program that needs no browser, but one that runs Mermaid itself in an embedded J
 | PDF: time / memory per diagram[^bench] | 12 ms / 24 MB | 38 ms / 54 MB |
 | PNG at scale 1: time / memory per diagram[^bench] | 22 ms / 26 MB | 43 ms / 44 MB |
 | Output size, 79 diagrams: SVG / PDF / PNG | 0.43 / 1.5 / 3.1 MB | 13.8 / 11.7 / 2.6 MB |
-| Diagram types[^types] | 22 of Mermaid's 33 | 33 |
+| Diagram types[^types] | 23 of Mermaid's 33 | 33 |
 | Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts |
-| This repository's corpus (82 diagrams) | 82 | 79 |
+| This repository's corpus (83 diagrams) | 83 | 80 |
 | Public diagrams from GitHub[^wild] | 138 of 139 | 137 of 139 |
 | Look | own, made for print; neutral by default | Mermaid's, byte for byte |
 | Page fitting | fit to A4, folding of long diagrams, chains and ranks | none |
@@ -38,11 +38,11 @@ program that needs no browser, but one that runs Mermaid itself in an embedded J
 | Popularity (GitHub, 2026-11-23) | new | 5 stars, 1 fork |
 
 [^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
-[^bench]: Median over the 79 corpus diagrams both programs render, best of three runs of the command-line program
+[^bench]: Median over the 79 corpus diagrams both programs rendered at the time of measuring, best of three runs of the command-line program
     per file, process start included; memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon
     laptop.
-[^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here: `zenuml` (a separate Mermaid add-on) and ten
-    types added in Mermaid 12 as beta: `ishikawa`, `venn`, `swimlane`, `treeView`, `wardley`, `cynefin`, `railroad`,
+[^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here: `zenuml` (a separate Mermaid add-on) and nine
+    types added in Mermaid 12 as beta: `venn`, `swimlane`, `treeView`, `wardley`, `cynefin`, `railroad`,
     `eventmodeling`, `usecase` and `agentflow`. Process lanes are available here through `%% layout: swimlanes` on a
     flowchart.
 [^wild]: 175 blocks marked `mermaid` collected from public GitHub repositories; 36 are rejected by both programs
@@ -133,7 +133,7 @@ md, problems := markdown.Embed(source, markdown.Options{})
 
 Status: early. Supported diagram types: `sequenceDiagram`, `flowchart`/`graph`, `stateDiagram-v2`, `gantt`,
 `erDiagram`, `classDiagram`, `pie`, `timeline`, `journey`, `mindmap`, `xychart-beta`, `quadrantChart`,
-`kanban`, `packet-beta`, `radar-beta`, `treemap-beta`, `requirementDiagram`, `sankey-beta`, C4 diagrams, `gitGraph`, `block-beta` and `architecture-beta`. Graphs use a
+`kanban`, `packet-beta`, `radar-beta`, `treemap-beta`, `requirementDiagram`, `sankey-beta`, C4 diagrams, `gitGraph`, `block-beta`, `architecture-beta` and `ishikawa-beta`. Graphs use a
 layered layout written from the published algorithms; its current limits are listed in `docs/profile.md`. A construct outside the supported profile (`docs/profile.md`) is an error with a line number,
 never a partial drawing.
 

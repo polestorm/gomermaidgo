@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1181.2" height="476" viewBox="-12 -340 1181.2 476" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect class="ishikawa-effect" x="972.23" y="-32" width="184.97" height="64" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="2"/>
+<line class="ishikawa-spine" x1="281.83" y1="0" x2="960.23" y2="0" fill="none" stroke="#3b4754" stroke-width="2.5"/>
+<polygon class="ishikawa-spine" points="972.23,0 960.23,-6 960.23,6" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line class="ishikawa-bone" x1="167.83" y1="-276" x2="305.83" y2="0" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="ishikawa-category" x="127.38" y="-308" width="80.91" height="32" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="ishikawa-cause" x1="47.54" y1="-224" x2="193.83" y2="-224" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-cause" x1="121.58" y1="-172" x2="219.83" y2="-172" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-cause" x1="135.58" y1="-172" x2="135.58" y2="-120" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-cause" x1="0" y1="-120" x2="135.58" y2="-120" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-bone" x1="331.83" y1="92" x2="377.83" y2="0" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="ishikawa-category" x="287.82" y="92" width="88.02" height="32" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="ishikawa-cause" x1="244.47" y1="40" x2="357.83" y2="40" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-cause" x1="185.79" y1="72" x2="341.83" y2="72" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-bone" x1="518.16" y1="-276" x2="656.16" y2="0" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="ishikawa-category" x="479.47" y="-308" width="77.37" height="32" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="ishikawa-cause" x1="442.31" y1="-224" x2="544.16" y2="-224" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-cause" x1="438.13" y1="-172" x2="570.16" y2="-172" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-cause" x1="452.13" y1="-172" x2="452.13" y2="-28" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-cause" x1="298.71" y1="-100" x2="452.13" y2="-100" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-cause" x1="313.83" y1="-28" x2="452.13" y2="-28" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-bone" x1="682.16" y1="92" x2="728.16" y2="0" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="ishikawa-category" x="638.15" y="92" width="88.02" height="32" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="ishikawa-cause" x1="543.87" y1="60" x2="698.16" y2="60" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-bone" x1="662.16" y1="-276" x2="800.16" y2="0" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="ishikawa-category" x="617.7" y="-328" width="88.92" height="52" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="ishikawa-cause" x1="574.79" y1="-224" x2="688.16" y2="-224" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line class="ishikawa-bone" x1="878.88" y1="92" x2="924.88" y2="0" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<rect class="ishikawa-category" x="825.52" y="92" width="106.7" height="32" rx="4" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<line class="ishikawa-cause" x1="744.16" y1="60" x2="894.88" y2="60" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<text class="ishikawa-effect-label" x="1064.71" y="-4.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Reklamacja: pęknięta</text>
+<text class="ishikawa-effect-label" x="1064.71" y="15.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">obudowa</text>
+<text class="ishikawa-category-label" x="167.83" y="-286.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Materiał</text>
+<text class="ishikawa-cause-label" x="163.83" y="-250.4" text-anchor="end" fill="#1b1f24">Partia tworzywa</text>
+<text class="ishikawa-cause-label" x="163.83" y="-230.4" text-anchor="end" fill="#1b1f24">poza specyfikacją</text>
+<text class="ishikawa-cause-label" x="189.83" y="-198.4" text-anchor="end" fill="#1b1f24">Wilgotność</text>
+<text class="ishikawa-cause-label" x="189.83" y="-178.4" text-anchor="end" fill="#1b1f24">granulatu</text>
+<text class="ishikawa-cause-label" x="125.58" y="-146.4" text-anchor="end" fill="#1b1f24">Brak suszenia</text>
+<text class="ishikawa-cause-label" x="125.58" y="-126.4" text-anchor="end" fill="#1b1f24">przed wtryskiem</text>
+<text class="ishikawa-category-label" x="331.83" y="113.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Maszyna</text>
+<text class="ishikawa-cause-label" x="337.83" y="33.6" text-anchor="end" fill="#1b1f24">Zużyta forma</text>
+<text class="ishikawa-cause-label" x="321.83" y="65.6" text-anchor="end" fill="#1b1f24">Temperatura formy</text>
+<text class="ishikawa-category-label" x="518.16" y="-286.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Metoda</text>
+<text class="ishikawa-cause-label" x="514.16" y="-250.4" text-anchor="end" fill="#1b1f24">Instrukcja</text>
+<text class="ishikawa-cause-label" x="514.16" y="-230.4" text-anchor="end" fill="#1b1f24">nieaktualna</text>
+<text class="ishikawa-cause-label" x="540.16" y="-198.4" text-anchor="end" fill="#1b1f24">Brak kontroli</text>
+<text class="ishikawa-cause-label" x="540.16" y="-178.4" text-anchor="end" fill="#1b1f24">pierwszej sztuki</text>
+<text class="ishikawa-cause-label" x="442.13" y="-146.4" text-anchor="end" fill="#1b1f24">Kontrola pominięta</text>
+<text class="ishikawa-cause-label" x="442.13" y="-126.4" text-anchor="end" fill="#1b1f24">przy zmianie</text>
+<text class="ishikawa-cause-label" x="442.13" y="-106.4" text-anchor="end" fill="#1b1f24">zmiany</text>
+<text class="ishikawa-cause-label" x="442.13" y="-74.4" text-anchor="end" fill="#1b1f24">Brak przyrządu</text>
+<text class="ishikawa-cause-label" x="442.13" y="-54.4" text-anchor="end" fill="#1b1f24">pomiarowego na</text>
+<text class="ishikawa-cause-label" x="442.13" y="-34.4" text-anchor="end" fill="#1b1f24">stanowisku</text>
+<text class="ishikawa-category-label" x="682.16" y="113.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Człowiek</text>
+<text class="ishikawa-cause-label" x="668.16" y="33.6" text-anchor="end" fill="#1b1f24">Nowy operator bez</text>
+<text class="ishikawa-cause-label" x="668.16" y="53.6" text-anchor="end" fill="#1b1f24">szkolenia</text>
+<text class="ishikawa-category-label" x="662.16" y="-306.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Pomiar</text>
+<text class="ishikawa-category-label" x="662.16" y="-286.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">i kontrola</text>
+<text class="ishikawa-cause-label" x="658.16" y="-250.4" text-anchor="end" fill="#1b1f24">Przyrząd bez</text>
+<text class="ishikawa-cause-label" x="658.16" y="-230.4" text-anchor="end" fill="#1b1f24">wzorcowania</text>
+<text class="ishikawa-category-label" x="878.88" y="113.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Środowisko</text>
+<text class="ishikawa-cause-label" x="864.88" y="33.6" text-anchor="end" fill="#1b1f24">Niska temperatura</text>
+<text class="ishikawa-cause-label" x="864.88" y="53.6" text-anchor="end" fill="#1b1f24">w hali zimą</text>
+</svg>

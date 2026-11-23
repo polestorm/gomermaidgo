@@ -4,6 +4,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/architecture"
 	"github.com/polestorm/gomermaidgo/internal/block"
 	"github.com/polestorm/gomermaidgo/internal/gitgraph"
+	"github.com/polestorm/gomermaidgo/internal/ishikawa"
 	"github.com/polestorm/gomermaidgo/internal/kanban"
 	"github.com/polestorm/gomermaidgo/internal/packet"
 	"github.com/polestorm/gomermaidgo/internal/radar"
@@ -22,6 +23,7 @@ const (
 	TypeGit          = "gitGraph"
 	TypeBlock        = "block"
 	TypeArchitecture = "architecture"
+	TypeIshikawa     = "ishikawa"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -91,6 +93,13 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return sankey.Layout(c, sankey.Options(o)), nil
+	}},
+	{TypeIshikawa, []string{"ishikawa-beta", "ishikawa"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		d, err := ishikawa.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return ishikawa.Layout(d, ishikawa.Options(o)), nil
 	}},
 	{TypeTreemap, []string{"treemap-beta", "treemap"}, func(source string, o layoutOptions) (*scene.Scene, error) {
 		d, err := treemap.Parse(source)
