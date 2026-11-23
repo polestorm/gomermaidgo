@@ -1,30 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="716.5" height="738" viewBox="-12 -12 716.5 738" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-f4686a96"><path d="M-12 -12 L704.5 -12 L704.5 726 L-12 726 M124.3 252 L124.3 272 L209.7 272 L209.7 252 M284.31 499 L284.31 519 L361.69 519 L361.69 499 M440.76 252 L440.76 272 L517.24 272 L517.24 252 M572.2 499 L572.2 519 L655.8 519 L655.8 499"/></clipPath></defs>
-<g clip-path="url(#label-holes-f4686a96)"><path class="edge" d="M167 229 L167 313" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="716.5" height="768" viewBox="-12 -12 716.5 768" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-985c73d6"><path d="M-12 -12 L704.5 -12 L704.5 756 L-12 756 M124.3 252 L124.3 272 L209.7 272 L209.7 252 M284.31 514 L284.31 534 L361.69 534 L361.69 514 M440.76 252 L440.76 272 L517.24 272 L517.24 252 M572.2 514 L572.2 534 L655.8 534 L655.8 514"/></clipPath></defs>
+<g clip-path="url(#label-holes-985c73d6)"><path class="edge" d="M167 229 L167 328" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-f4686a96)"><path class="edge" d="M323 467 L323 521 L323 527 C323 531.4 326.6 535 331 535 L440 535 C444.4 535 448 538.6 448 543 L448 560" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-985c73d6)"><path class="edge" d="M323 482 L323 536 L323 549.5 C323 553.9 326.6 557.5 331 557.5 L440 557.5 C444.4 557.5 448 561.1 448 565.5 L448 590" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
-<g clip-path="url(#label-holes-f4686a96)"><path class="edge" d="M479 165 L479 313" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-985c73d6)"><path class="edge" d="M479 165 L479 328" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
-<g clip-path="url(#label-holes-f4686a96)"><path class="edge" d="M614 434 L614 521 L614 527 C614 531.4 610.4 535 606 535 L496 535 C491.6 535 488 538.6 488 543 L488 560" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-985c73d6)"><path class="edge" d="M614 449 L614 536 L614 549.5 C614 553.9 610.4 557.5 606 557.5 L496 557.5 C491.6 557.5 488 561.1 488 565.5 L488 590" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 </g>
 <circle class="arrowhead" cx="167" cy="225" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="448" y1="560" x2="454" y2="549" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="448" y1="560" x2="442" y2="549" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="479" y1="313" x2="485" y2="302" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="479" y1="313" x2="473" y2="302" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="488" y1="560" x2="494" y2="549" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<line class="arrowhead" x1="488" y1="560" x2="482" y2="549" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="448" y1="590" x2="454" y2="579" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="448" y1="590" x2="442" y2="579" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="479" y1="328" x2="485" y2="317" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="479" y1="328" x2="473" y2="317" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="488" y1="590" x2="494" y2="579" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<line class="arrowhead" x1="488" y1="590" x2="482" y2="579" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="node" x="0" y="0" width="334" height="220" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node-detail" x="0" y="0" width="334" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="382" y="55" width="194" height="110" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node-detail" x="382" y="55" width="194" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="159" y="313" width="328" height="154" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
-<rect class="node-detail" x="159" y="313" width="328" height="56" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
-<rect class="node" x="535.5" y="346" width="157" height="88" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="535.5" y="346" width="157" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="359" y="560" width="218" height="154" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="359" y="560" width="218" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="159" y="328" width="328" height="154" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="node-detail" x="159" y="328" width="328" height="56" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<rect class="node" x="535.5" y="361" width="157" height="88" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="535.5" y="361" width="157" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="359" y="590" width="218" height="154" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="359" y="590" width="218" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="167" y="23.6" text-anchor="middle" fill="#1b1f24">«Requirement»</text>
 <text class="node-label" x="167" y="43.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">sterylnosc</text>
 <text class="member" x="12" y="77.6" fill="#1b1f24">Id: URS-01</text>
@@ -38,23 +38,23 @@
 <text class="node-label" x="479" y="98.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">walidacja_zgrzewania</text>
 <text class="member" x="394" y="132.6" fill="#1b1f24">Type: raport walidacji</text>
 <text class="member" x="394" y="154.6" fill="#1b1f24">Doc Ref: VAL-2026-004</text>
-<text class="node-label" x="323" y="336.6" text-anchor="middle" fill="#1b1f24">«Functional Requirement»</text>
-<text class="node-label" x="323" y="356.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">szczelność opakowania</text>
-<text class="member" x="171" y="390.6" fill="#1b1f24">Id: FRS-07</text>
-<text class="member" x="171" y="412.6" fill="#1b1f24">Text: Zgrzew wytrzymuje próbę rozrywania</text>
-<text class="member" x="171" y="434.6" fill="#1b1f24">Risk: Medium</text>
-<text class="member" x="171" y="456.6" fill="#1b1f24">Verification: Inspection</text>
-<text class="node-label" x="614" y="369.6" text-anchor="middle" fill="#1b1f24">«Element»</text>
-<text class="node-label" x="614" y="389.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">specyfikacja_folii</text>
-<text class="member" x="547.5" y="423.6" fill="#1b1f24">Type: specyfikacja</text>
-<text class="node-label" x="468" y="583.6" text-anchor="middle" fill="#1b1f24">«Design Constraint»</text>
-<text class="node-label" x="468" y="603.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">material</text>
-<text class="member" x="371" y="637.6" fill="#1b1f24">Id: DC-03</text>
-<text class="member" x="371" y="659.6" fill="#1b1f24">Text: Folia zgodna z normą</text>
-<text class="member" x="371" y="681.6" fill="#1b1f24">Risk: Low</text>
-<text class="member" x="371" y="703.6" fill="#1b1f24">Verification: Analysis</text>
+<text class="node-label" x="323" y="351.6" text-anchor="middle" fill="#1b1f24">«Functional Requirement»</text>
+<text class="node-label" x="323" y="371.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">szczelność opakowania</text>
+<text class="member" x="171" y="405.6" fill="#1b1f24">Id: FRS-07</text>
+<text class="member" x="171" y="427.6" fill="#1b1f24">Text: Zgrzew wytrzymuje próbę rozrywania</text>
+<text class="member" x="171" y="449.6" fill="#1b1f24">Risk: Medium</text>
+<text class="member" x="171" y="471.6" fill="#1b1f24">Verification: Inspection</text>
+<text class="node-label" x="614" y="384.6" text-anchor="middle" fill="#1b1f24">«Element»</text>
+<text class="node-label" x="614" y="404.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">specyfikacja_folii</text>
+<text class="member" x="547.5" y="438.6" fill="#1b1f24">Type: specyfikacja</text>
+<text class="node-label" x="468" y="613.6" text-anchor="middle" fill="#1b1f24">«Design Constraint»</text>
+<text class="node-label" x="468" y="633.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">material</text>
+<text class="member" x="371" y="667.6" fill="#1b1f24">Id: DC-03</text>
+<text class="member" x="371" y="689.6" fill="#1b1f24">Text: Folia zgodna z normą</text>
+<text class="member" x="371" y="711.6" fill="#1b1f24">Risk: Low</text>
+<text class="member" x="371" y="733.6" fill="#1b1f24">Verification: Analysis</text>
 <text class="edge-label" x="167" y="267.6" text-anchor="middle" fill="#1b1f24">«contains»</text>
-<text class="edge-label" x="323" y="514.6" text-anchor="middle" fill="#1b1f24">«derives»</text>
+<text class="edge-label" x="323" y="529.6" text-anchor="middle" fill="#1b1f24">«derives»</text>
 <text class="edge-label" x="479" y="267.6" text-anchor="middle" fill="#1b1f24">«verifies»</text>
-<text class="edge-label" x="614" y="514.6" text-anchor="middle" fill="#1b1f24">«satisfies»</text>
+<text class="edge-label" x="614" y="529.6" text-anchor="middle" fill="#1b1f24">«satisfies»</text>
 </svg>

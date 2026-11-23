@@ -1,27 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="168" height="535" viewBox="-12 -12 168 535" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-21dfb2e5"><path d="M-12 -12 L156 -12 L156 523 L-12 523 M84.1 106 L84.1 126 L125.9 126 L125.9 106"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="168" height="565" viewBox="-12 -12 168 565" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-5f1f4b13"><path d="M-12 -12 L156 -12 L156 553 L-12 553 M84.1 106 L84.1 126 L125.9 126 L125.9 106"/></clipPath></defs>
 <path class="edge" d="M43 44 L43 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M61 44 L61 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-21dfb2e5)"><path class="edge" d="M105 44 L105 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-5f1f4b13)"><path class="edge" d="M105 44 L105 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<path class="edge" d="M61 232 L61 298.33" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M79 232 L79 298.33" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M61 367.27 L61 434.79" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M79 367.27 L79 434.79" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 232 L61 313.33" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M79 232 L79 313.33" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M61 382.27 L61 464.79" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M79 382.27 L79 464.79" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="43,188 37,176 49,176" fill="#3b4754"/>
 <polygon class="arrowhead" points="61,188 55,176 67,176" fill="#3b4754"/>
 <polygon class="arrowhead" points="105,188 99,176 111,176" fill="#3b4754"/>
-<polygon class="arrowhead" points="61,306.73 55,294.73 67,294.73" fill="#3b4754"/>
-<polygon class="arrowhead" points="79,306.73 73,294.73 85,294.73" fill="#3b4754"/>
-<polygon class="arrowhead" points="61,443.19 55,431.19 67,431.19" fill="#3b4754"/>
-<polygon class="arrowhead" points="79,443.19 73,431.19 85,431.19" fill="#3b4754"/>
+<polygon class="arrowhead" points="61,321.73 55,309.73 67,309.73" fill="#3b4754"/>
+<polygon class="arrowhead" points="79,321.73 73,309.73 85,309.73" fill="#3b4754"/>
+<polygon class="arrowhead" points="61,473.19 55,461.19 67,461.19" fill="#3b4754"/>
+<polygon class="arrowhead" points="79,473.19 73,461.19 85,461.19" fill="#3b4754"/>
 <rect class="node" x="4" y="0" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="188" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="70,301 126.5,337 70,373 13.5,337" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="70" cy="476.5" r="34.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="70,316 126.5,352 70,388 13.5,352" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="70" cy="506.5" r="34.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="74" y="27.6" text-anchor="middle" fill="#1b1f24">Wniosek</text>
 <text class="node-label" x="70" y="215.6" text-anchor="middle" fill="#1b1f24">Ocena</text>
-<text class="node-label" x="70" y="342.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
-<text class="node-label" x="70" y="482.1" text-anchor="middle" fill="#1b1f24">Koniec</text>
+<text class="node-label" x="70" y="357.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
+<text class="node-label" x="70" y="512.1" text-anchor="middle" fill="#1b1f24">Koniec</text>
 <text class="edge-label" x="105" y="121.6" text-anchor="middle" fill="#1b1f24">pilne</text>
 </svg>

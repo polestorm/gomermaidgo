@@ -242,7 +242,6 @@ func (l *layouter) chainPositions(lv *level) (width, height float64) {
 		y += rowH[r] + gapY
 	}
 	y -= gapY
-	height = y + margin
 	for i, col := range g.columns {
 		for r, it := range col {
 			row := r
@@ -250,6 +249,14 @@ func (l *layouter) chainPositions(lv *level) (width, height float64) {
 				row = per - 1 - r
 			}
 			it.x, it.y, it.band = g.colX[i]+g.colW[i]/2, rowY[row], it.h
+		}
+	}
+	// Margines u dołu tylko wtedy, gdy łącznik biegnie pod ostatnim wierszem: łącznik spod krótszej
+	// kolumny mieści się w jej pustym miejscu, a wyjście z bloku nie musi być dłuższe od innych krawędzi.
+	height = y
+	for i := 0; i+1 < len(g.columns); i++ {
+		if _, low := l.connectorLevels(g, i, i+1); low+margin/2 > height {
+			height = low + margin/2
 		}
 	}
 	width = g.colX[len(g.colX)-1] + g.colW[len(g.colW)-1]
@@ -283,17 +290,35 @@ func (l *layouter) chainPositions(lv *level) (width, height float64) {
 	return width, height
 }
 
+// connectorLevels zwraca wysokości poziomych odcinków łącznika z kolumny ca do cb: nad pierwszym
+// polem kolumny, do której wchodzi od góry, i pod ostatnim polem kolumny, z której wychodzi dołem.
+// Liczy z położeń pól, więc zgadza się przed przesunięciem bloku i po nim.
+func (l *layouter) connectorLevels(g chainGeometry, ca, cb int) (high, low float64) {
+	top := func(c int) float64 {
+		v := math.Inf(1)
+		for _, it := range g.columns[c] {
+			v = math.Min(v, it.y-it.h/2)
+		}
+		return v
+	}
+	bottom := func(c int) float64 {
+		v := math.Inf(-1)
+		for _, it := range g.columns[c] {
+			v = math.Max(v, it.y+it.h/2)
+		}
+		return v
+	}
+	d := l.u(36) / 2
+	if g.up[ca] || g.up[cb] {
+		// Wężyk: odcinek łączy obie kolumny poziomo, więc mija obie.
+		return math.Min(top(ca), top(cb)) - d, math.Max(bottom(ca), bottom(cb)) + d
+	}
+	return top(cb) - d, bottom(ca) + d
+}
+
 // drawChain rysuje krawędzie wewnątrz bloku łańcucha: proste w kolumnie i łączniki między kolumnami.
 func (l *layouter) drawChain(lv *level) {
 	g := l.chainGeometry(lv)
-	// Wysokości łączników liczone tak samo jak w chainPositions.
-	top, bottom := math.Inf(1), math.Inf(-1)
-	for _, col := range g.columns {
-		for _, it := range col {
-			top, bottom = math.Min(top, it.y-it.h/2), math.Max(bottom, it.y+it.h/2)
-		}
-	}
-	high, low := top-l.u(36)/2, bottom+l.u(36)/2 // w połowie marginesu bloku (chainPositions)
 	edge := map[[2]*item]*graph.Edge{}
 	for _, e := range lv.edges {
 		if e.u.kind == kindNode && e.v.kind == kindNode {
@@ -319,6 +344,10 @@ func (l *layouter) drawChain(lv *level) {
 			continue
 		}
 		ca, cb := column[a], column[b]
+		var high, low float64
+		if ca != cb {
+			high, low = l.connectorLevels(g, ca, cb)
+		}
 		var pts [][2]float64
 		switch {
 		case ca == cb && !g.up[ca]:

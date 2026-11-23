@@ -2164,6 +2164,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				}
 			}
 			pinned := map[*item]bool{} // już wyrównane: nie ustępują miejsca
+			moved := map[*item]bool{}  // przesunięte przez te kroki
 			movable := func(it *item) bool {
 				return !pinned[it] && (it.kind == kindDummy || it.kind == kindLabel) && len(it.up) == 1 && len(it.down) == 1
 			}
@@ -2221,6 +2222,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				}
 				for it, x := range moves {
 					it.x = x
+					moved[it] = true
 				}
 				for it := range targets {
 					pinned[it] = true
@@ -2298,6 +2300,39 @@ func (l *layouter) position(lv *level) (width, height float64) {
 						if q.x != axis && math.Abs(q.x-axis) <= l.u(60) {
 							try(map[*item]float64{q: axis})
 						}
+					}
+				}
+			}
+			// Pole, którego sąsiedzi w krawędziach to same punkty pomocnicze i podpisy, a któryś z nich
+			// został przesunięty, dosuwa się w zwolnione miejsce do ich średniej, bez odsuwania innych.
+			for _, row := range rows {
+				for i, v := range row {
+					if v.kind != kindNode || pinned[v] {
+						continue
+					}
+					ns := append(append([]*item(nil), v.up...), v.down...)
+					touched, straight, sum := false, false, 0.0
+					for _, n := range ns {
+						if n.real() {
+							straight = true // pole sąsiaduje z polem: zostaje, gdzie je ustawił układ
+						}
+						touched = touched || moved[n]
+						straight = straight || math.Abs(n.nodeX()-v.nodeX()) < 0.5
+						sum += n.nodeX()
+					}
+					if !touched || straight || len(ns) == 0 {
+						continue
+					}
+					want := v.x + sum/float64(len(ns)) - v.nodeX()
+					if i > 0 {
+						want = math.Max(want, row[i-1].x+sep(row[i-1], v))
+					}
+					if i+1 < len(row) {
+						want = math.Min(want, row[i+1].x-sep(v, row[i+1]))
+					}
+					if math.Abs(want-v.x) >= 0.5 && (i == 0 || want >= row[i-1].x+sep(row[i-1], v)-0.01) &&
+						(i+1 == len(row) || want <= row[i+1].x-sep(v, row[i+1])+0.01) {
+						v.x = want
 					}
 				}
 			}
@@ -2446,8 +2481,10 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			}
 			// Krawędzie skręcające tuż nad polem: tory odcinków poprzecznych i pod najniższym kawałek prostej
 			// przed grotem (zapas toru przy grocie w assignTracks).
-			if !l.o.CurvedEdges && turns > 0 && anyReal(row) {
-				gap = math.Max(gap, l.u(25)+float64(turns-1)*l.u(14))
+			// Dwa tory mają 20 px odstępu; przy większej liczbie torów działa reguła niżej, żeby rysunki
+			// z wieloma skrętami nie rosły. Encje nie mają grotów.
+			if !l.o.CurvedEdges && turns > 0 && anyReal(row) && l.g.Kind != "er" {
+				gap = math.Max(gap, l.u(34)+float64(min(turns-1, 1))*l.u(20))
 			}
 			// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
 			if !l.o.CurvedEdges && turns > 2 {

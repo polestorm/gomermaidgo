@@ -1321,7 +1321,7 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 		step := 0.0
 		if tracks > 1 {
 			// Tory są na tyle daleko od siebie, żeby mostek zmieścił się obok narożnika sąsiedniej krawędzi.
-			step = math.Min(l.u(14), (hi-lo)/float64(tracks-1))
+			step = math.Min(l.u(20), (hi-lo)/float64(tracks-1))
 		}
 		for _, j := range group {
 			// Tor zerowy leży najbliżej następnej warstwy.

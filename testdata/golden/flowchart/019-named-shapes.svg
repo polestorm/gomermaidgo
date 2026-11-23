@@ -1,31 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="381.5" height="436" viewBox="-12 -12 381.5 436" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-93a16c32"><path d="M-12 -12 L369.5 -12 L369.5 424 L-12 424 M55.33 205 L55.33 225 L84.67 225 L84.67 205 M104.32 205 L104.32 225 L133.68 225 L133.68 205"/></clipPath></defs>
-<path class="edge" d="M95 44 L95 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-93a16c32)"><path class="edge" d="M70 160.72 L70 257.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="381.5" height="461" viewBox="-12 -12 381.5 461" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-8135a368"><path d="M-12 -12 L369.5 -12 L369.5 449 L-12 449 M55.33 215 L55.33 235 L84.67 235 L84.67 215 M104.32 215 L104.32 235 L133.68 235 L133.68 215"/></clipPath></defs>
+<path class="edge" d="M95 44 L95 89.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8135a368)"><path class="edge" d="M70 170.72 L70 282.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-93a16c32)"><path class="edge" d="M119 161.21 L119 227 L119 238.6 C119 243 122.6 246.6 127 246.6 L245 246.6 C249.4 246.6 253 250.2 253 254.6 L253 264.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8135a368)"><path class="edge" d="M119 171.21 L119 237 L119 259.8 C119 264.2 122.6 267.8 127 267.8 L245 267.8 C249.4 267.8 253 271.4 253 275.8 L253 289.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<path class="edge" d="M203 52.4 L203 227 L203 227 C203 230.85 206.15 234 210 234 L286 234 C289.85 234 293 237.15 293 241 L293 273" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M70 324 L70 359.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="95,88 89,76 101,76" fill="#3b4754"/>
-<polygon class="arrowhead" points="70,266 64,254 76,254" fill="#3b4754"/>
-<polygon class="arrowhead" points="253,273 247,261 259,261" fill="#3b4754"/>
+<path class="edge" d="M203 52.4 L203 237 L203 239.8 C203 244.2 206.6 247.8 211 247.8 L285 247.8 C289.4 247.8 293 251.4 293 255.8 L293 298" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 349 L70 384.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="95,98 89,86 101,86" fill="#3b4754"/>
+<polygon class="arrowhead" points="70,291 64,279 76,279" fill="#3b4754"/>
+<polygon class="arrowhead" points="253,298 247,286 259,286" fill="#3b4754"/>
 <polygon class="arrowhead" points="203,44 209,56 197,56" fill="#3b4754"/>
-<polygon class="arrowhead" points="70,368 64,356 76,356" fill="#3b4754"/>
+<polygon class="arrowhead" points="70,393 64,381 76,381" fill="#3b4754"/>
 <rect class="node" x="43.5" y="0" width="211" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="95,88 181.5,130.5 95,173 8.5,130.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="70" cy="317" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="273" width="140" height="44" fill="#eef2f7"/>
-<line class="node-detail" x1="0" y1="273" x2="0" y2="317" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<line class="node-detail" x1="140" y1="273" x2="140" y2="317" fill="none" stroke="#55657a" stroke-width="1.5"/>
-<ellipse class="node-detail" cx="70" cy="273" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="203.17,273 357.5,273 342.83,317 188.5,317" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="368" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="95,98 181.5,140.5 95,183 8.5,140.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="70" cy="342" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="298" width="140" height="44" fill="#eef2f7"/>
+<line class="node-detail" x1="0" y1="298" x2="0" y2="342" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<line class="node-detail" x1="140" y1="298" x2="140" y2="342" fill="none" stroke="#55657a" stroke-width="1.5"/>
+<ellipse class="node-detail" cx="70" cy="298" rx="70" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="203.17,298 357.5,298 342.83,342 188.5,342" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="393" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="149" y="27.6" text-anchor="middle" fill="#1b1f24">Projekt dokumentu</text>
-<text class="node-label" x="95" y="136.1" text-anchor="middle" fill="#1b1f24">Zatwierdzony?</text>
-<text class="node-label" x="70" y="304.1" text-anchor="middle" fill="#1b1f24">Rejestr</text>
-<text class="node-label" x="273" y="300.6" text-anchor="middle" fill="#1b1f24">Uwagi</text>
-<text class="node-label" x="70" y="395.6" text-anchor="middle" fill="#1b1f24">Odbiorcy</text>
-<text class="edge-label" x="70" y="220.6" text-anchor="middle" fill="#1b1f24">tak</text>
-<text class="edge-label" x="119" y="220.6" text-anchor="middle" fill="#1b1f24">nie</text>
+<text class="node-label" x="95" y="146.1" text-anchor="middle" fill="#1b1f24">Zatwierdzony?</text>
+<text class="node-label" x="70" y="329.1" text-anchor="middle" fill="#1b1f24">Rejestr</text>
+<text class="node-label" x="273" y="325.6" text-anchor="middle" fill="#1b1f24">Uwagi</text>
+<text class="node-label" x="70" y="420.6" text-anchor="middle" fill="#1b1f24">Odbiorcy</text>
+<text class="edge-label" x="70" y="230.6" text-anchor="middle" fill="#1b1f24">tak</text>
+<text class="edge-label" x="119" y="230.6" text-anchor="middle" fill="#1b1f24">nie</text>
 </svg>
