@@ -1,0 +1,32 @@
+flowchart LR
+node Polityka rect "Polityka jakości"
+node KJ rect "Księga jakości"
+node P1 rect "Dokumenty"
+node P2 rect "Zapisy"
+node P3 rect "Audyty"
+node P4 rect "Niezgodności"
+node P5 rect "CAPA"
+node P6 rect "Szkolenia"
+node P7 rect "Zakupy"
+node P8 rect "Dostawcy"
+node P9 rect "Walidacja"
+node P10 rect "Reklamacje"
+node P11 rect "Ryzyko"
+node P12 rect "Przegląd"
+node P13 rect "Infrastruktura"
+node P14 rect "Pomiary"
+edge Polityka -> KJ normal none/arrow len=1
+edge KJ -> P1 normal none/arrow len=1
+edge KJ -> P2 normal none/arrow len=1
+edge KJ -> P3 normal none/arrow len=1
+edge KJ -> P4 normal none/arrow len=1
+edge KJ -> P5 normal none/arrow len=1
+edge KJ -> P6 normal none/arrow len=1
+edge KJ -> P7 normal none/arrow len=1
+edge KJ -> P8 normal none/arrow len=1
+edge KJ -> P9 normal none/arrow len=1
+edge KJ -> P10 normal none/arrow len=1
+edge KJ -> P11 normal none/arrow len=1
+edge KJ -> P12 normal none/arrow len=1
+edge KJ -> P13 normal none/arrow len=1
+edge KJ -> P14 normal none/arrow len=1

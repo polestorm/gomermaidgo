@@ -317,3 +317,35 @@ func TestMiddleBranchAndArrowClearance(t *testing.T) {
 		}
 	}
 }
+
+// REQ: LAY-025
+func TestFoldRanks(t *testing.T) {
+	src := readFile(t, "testdata/corpus/flowchart/028-fold-ranks.mmd")
+	leaves := regexp.MustCompile(`<text class="node-label" x="([-\d.]+)" y="([-\d.]+)"[^>]*>(Dokumenty|Zapisy|Audyty|Niezgodności|CAPA|Szkolenia|Zakupy|Dostawcy|Walidacja|Reklamacje|Ryzyko|Przegląd|Infrastruktura|Pomiary)<`)
+	columns := func(src string, opts ...Option) (int, bool) {
+		svg, err := Render(src, opts...)
+		if err != nil {
+			t.Fatal(err)
+		}
+		xs, ys := map[string]bool{}, map[string]float64{}
+		for _, m := range leaves.FindAllStringSubmatch(string(svg), -1) {
+			xs[m[1]] = true
+			ys[m[3]], _ = strconv.ParseFloat(m[2], 64)
+		}
+		ordered, last := true, math.Inf(-1)
+		for _, name := range []string{"Dokumenty", "Zapisy", "Audyty", "Niezgodności", "CAPA", "Szkolenia", "Zakupy", "Dostawcy", "Walidacja", "Reklamacje", "Ryzyko", "Przegląd", "Infrastruktura", "Pomiary"} {
+			ordered = ordered && ys[name] > last
+			last = ys[name]
+		}
+		return len(xs), ordered
+	}
+	if n, ordered := columns(src); n != 2 || !ordered {
+		t.Errorf("fold-ranks from the source: want 2 staggered columns in source order, got %d columns, ordered %v", n, ordered)
+	}
+	if n, _ := columns(src, WithFoldRanks(FoldOff)); n != 1 {
+		t.Errorf("fold-ranks off: leaves should stand in one column, got %d", n)
+	}
+	if n, _ := columns(strings.Replace(src, "%% layout: fold-ranks\n", "", 1)); n != 1 {
+		t.Errorf("default: spreading should be off, got %d columns", n)
+	}
+}

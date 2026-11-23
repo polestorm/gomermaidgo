@@ -27,6 +27,11 @@ razy szerszy niż wysoki i w druku musi być mocno pomniejszony. Mermaid nie ma 
    zmieniają kolejność czytania, więc nie każdy autor tego chce. Włączona działa jak zwijanie: tylko przy zysku
    skali na A4 co najmniej 20%; sposób `return` (domyślny) albo `snake` z `WithFoldType`. Blok jest podgrafem
    bez ramki: wejście i wyjście przechodzą przez zwykłe punkty na jego obrysie, więc reszta układu się nie zmienia.
+7. **Rozkładanie warstwy liści** (LAY-025, dopisane 2026-11-23): pole z co najmniej sześcioma liśćmi stawia co
+   drugi warstwę dalej, zygzakiem. Też osobna opcja, domyślnie wyłączona, przy zysku skali co najmniej 20%.
+   Realizacja to wydłużenie co drugiej krawędzi o warstwę (jak ręczne `--->` autora), więc kolejność, porządkowanie
+   i trasowanie zostają wspólne; przebiegi dłuższych krawędzi mają między bliższymi liśćmi taki odstęp, żeby
+   trafiać prosto w środki dalszych. Trzy podwarstwy odrzuciliśmy: dawały uskoki przy tym samym zysku.
 
 ## Skutki
 

@@ -26,7 +26,7 @@ przed źródłem tam, gdzie oba ustawiają to samo.
 | `flowchart.wrappingWidth` | obsługiwane | granica łamania napisów w polach i na krawędziach (COM-008) |
 | `darkMode` | przez motyw | odpowiednik: `theme: dark` |
 | `fontFamily`, `fontSize` | tylko z wywołania | `WithFont`, `WithFontSize`; źródło nie zmienia kroju dokumentu |
-| `layout` (`dagre`, `elk`), `elk.*` | pomijane | własny układ warstwowy; własne dyrektywy `%% layout: swimlanes`, `fit`/`nofit`, `fold`/`nofold`, `fold-chains` |
+| `layout` (`dagre`, `elk`), `elk.*` | pomijane | własny układ warstwowy; własne dyrektywy `%% layout: swimlanes`, `fit`/`nofit`, `fold`/`nofold`, `fold-chains`, `fold-ranks` |
 | `look` (`handDrawn`), `handDrawnSeed` | pomijane | jeden wygląd rysunku |
 | `flowchart.nodeSpacing`, `rankSpacing`, `padding`, `diagramPadding`, `subGraphTitleMargin`, `curve` | pomijane | odstępy stałe, względem pisma; krzywe: `WithCurvedEdges` |
 | `maxTextSize`, `maxEdges` | pomijane | własne, stałe limity; źródło jest danymi z zewnątrz i nie może ich podnieść |
@@ -114,6 +114,10 @@ wybierany linią `%% layout: fold snake` albo `fold return`; `%% layout: nofold`
 
 Długi łańcuch pól wewnątrz diagramu może być zwinięty w kolumny (TB) albo rzędy (LR) bloku (LAY-022). To opcja,
 domyślnie wyłączona: `%% layout: fold-chains` (z `return` albo `snake`), `WithFoldChains`, flaga `-fold-chains`.
+
+Pole z co najmniej sześcioma liśćmi może postawić je w dwóch warstwach zygzakiem zamiast w jednej bardzo długiej
+(LAY-025), np. schemat LR z jednym polem rozchodzącym się do wielu pól. Też opcja, domyślnie wyłączona:
+`%% layout: fold-ranks`, `WithFoldRanks`, flaga `-fold-ranks`.
 
 ### Poza profilem (błąd `flowchart-unsupported`)
 

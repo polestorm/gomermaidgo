@@ -88,6 +88,7 @@ type config struct {
 	foldMode   string  // "", "auto", "off"
 	foldType   string  // "", "return", "snake"
 	foldChains string  // "", "auto", "off"
+	foldRanks  string  // "", "auto", "off"
 	curved     bool
 	theme      string
 	themeSet   bool
@@ -180,6 +181,14 @@ func WithFold(mode string) Option { return func(c *config) { c.foldMode = mode }
 // przejścia do następnej kolumny wybiera WithFoldType. W źródle: "%% layout: fold-chains"
 // (auto) i "%% layout: nofold-chains" (off); opcja ma pierwszeństwo przed źródłem.
 func WithFoldChains(mode string) Option { return func(c *config) { c.foldChains = mode } }
+
+// WithFoldRanks wybiera tryb rozkładania długiej warstwy liści: gdy jeden węzeł ma co najmniej
+// sześć następników bez dalszych połączeń (albo tyle samo poprzedników bez innych połączeń), stoją
+// one w dwóch podwarstwach ustawionych zygzakiem, więc rysunek LR nie jest wąskim
+// słupem, a TB szerokim pasem. Domyślny jest FoldOff; FoldAuto rozkłada warstwę, jeśli rysunek
+// zyskuje co najmniej 20% skali na stronie A4. W źródle: "%% layout: fold-ranks" (auto)
+// i "%% layout: nofold-ranks" (off); opcja ma pierwszeństwo przed źródłem.
+func WithFoldRanks(mode string) Option { return func(c *config) { c.foldRanks = mode } }
 
 // WithFoldType wybiera sposób przejścia do następnego rzędu: FoldReturn (domyślny) albo FoldSnake.
 // W źródle: "%% layout: fold return" albo "%% layout: fold snake".
@@ -371,6 +380,20 @@ func foldChains(c config, source string) bool {
 	mode := c.foldChains
 	if mode == "" {
 		if m := chainsDirective.FindStringSubmatch(source); m != nil && m[1] == "fold-chains" {
+			mode = FoldAuto
+		}
+	}
+	return mode == FoldAuto
+}
+
+// ranksDirective ustawia w źródle rozkładanie warstw liści (WithFoldRanks).
+var ranksDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fold-ranks|nofold-ranks)\s*$`)
+
+// foldRanks rozstrzyga tryb rozkładania warstw: opcja, potem linia w źródle, domyślnie wyłączone.
+func foldRanks(c config, source string) bool {
+	mode := c.foldRanks
+	if mode == "" {
+		if m := ranksDirective.FindStringSubmatch(source); m != nil && m[1] == "fold-ranks" {
 			mode = FoldAuto
 		}
 	}
@@ -599,7 +622,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 		} else if styled, err = styledMeasure(c.boldData, c.italicData); err != nil {
 			return nil, nil, err
 		}
-		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, NoWrap: c.wrap.off, WrapWidth: c.wrap.width, Fit: fitMode(c, source), FitRatio: c.fitRatio, Fold: foldMode(c, source), FoldType: foldType(c, source), FoldChains: foldChains(c, source)}), face, nil
+		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, NoWrap: c.wrap.off, WrapWidth: c.wrap.width, Fit: fitMode(c, source), FitRatio: c.fitRatio, Fold: foldMode(c, source), FoldType: foldType(c, source), FoldChains: foldChains(c, source), FoldRanks: foldRanks(c, source)}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {

@@ -47,7 +47,11 @@ type Options struct {
 	// FoldChains zwija długie łańcuchy pól wewnątrz diagramu w kolumny (TB) albo rzędy (LR), gdy
 	// rysunek zyskuje na tym co najmniej 20% skali na stronie A4 (LAY-022). Sposób: FoldType.
 	FoldChains bool
-	chainBad   *bool // ustawiane, gdy blok łańcucha musiałby być przecięty (próba w foldChains)
+	// FoldRanks rozkłada długą warstwę liści jednego węzła (albo korzeni wchodzących do jednego
+	// węzła) na dwie podwarstwy ustawione zygzakiem, gdy rysunek zyskuje na tym co
+	// najmniej 20% skali na stronie A4 (LAY-025).
+	FoldRanks bool
+	chainBad  *bool // ustawiane, gdy blok łańcucha musiałby być przecięty (próba w foldChains)
 
 	// NoWrap wyłącza automatyczne łamanie napisów (konfiguracja Mermaid „markdownAutoWrap: false”
 	// albo „wrap: false”): zostają przełamania autora; łamie się tylko linia szersza niż authorLimit.
@@ -394,6 +398,9 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	o.painted = g.SourceFills
 	if o.FoldChains {
 		g = foldChains(g, o)
+	}
+	if o.FoldRanks {
+		g = spreadFans(g, o)
 	}
 	if g.Kind != "er" {
 		best := layout(g, o, 0, 1)
@@ -1849,12 +1856,27 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		}
 		return width, height
 	}
+	// LAY-025: przebieg krawędzi do dalszego liścia stoi między bliższymi liśćmi; odstęp od nich
+	// jest taki, żeby para „liść + przebieg” zajmowała tyle, co dalszy liść z odstępem, i przebieg
+	// trafiał w środek dalszego liścia.
+	spread := map[*item]bool{}
+	for _, e := range lv.edges {
+		if e.e != nil && e.e.Spread {
+			for _, d := range e.chain {
+				spread[d] = true
+			}
+		}
+	}
 	gap := func(a, b *item) float64 {
 		switch {
 		case a.real() && b.real():
 			return l.u(48)
 		case a.kind == kindDummy && b.kind == kindDummy:
 			return l.u(10)
+		case a.real() && spread[b]:
+			return math.Max(l.u(18), (l.u(48)-b.w)/2)
+		case b.real() && spread[a]:
+			return math.Max(l.u(18), (l.u(48)-a.w)/2)
 		}
 		return l.u(18)
 	}

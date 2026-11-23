@@ -137,7 +137,8 @@ type Edge struct {
 	Style     LineStyle
 	StartHead Head
 	EndHead   Head
-	MinLen    int // minimalna liczba warstw między końcami, od 1
+	MinLen    int  // minimalna liczba warstw między końcami, od 1
+	Spread    bool // krawędź wydłużona przy rozkładaniu warstwy liści (fold-ranks)
 	Label     []string
 	Line      int
 	Paint     Paint // wygląd narzucony przez źródło (linkStyle)

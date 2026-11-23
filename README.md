@@ -52,7 +52,9 @@ columns (TB) joined by connectors: `return` (default, every row in the same dire
 `WithFold`, `WithFoldType`, `-fold`, `-fold-type` and `%% layout: fold snake|return` / `%% layout: nofold`.
 Optionally (off by default), a long chain of nodes inside a diagram can be folded into columns (TB) or rows (LR)
 of its own, when that makes the drawing at least 20% larger on the page: `WithFoldChains(FoldAuto)`,
-`-fold-chains auto` or `%% layout: fold-chains`.
+`-fold-chains auto` or `%% layout: fold-chains`. Likewise (off by default), a node with six or more leaves
+can stand them in two staggered ranks instead of one very long rank: `WithFoldRanks(FoldAuto)`,
+`-fold-ranks auto` or `%% layout: fold-ranks`.
 
 Themes: `neutral` (the default, made for print), `default` (colours), `forest`, `dark` and `base`. They are this
 library's own looks under Mermaid's theme names, so a source that selects a theme in its front matter or `init`
