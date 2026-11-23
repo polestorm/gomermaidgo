@@ -1,0 +1,23 @@
+flowchart LR
+subgraph Projekt title="Projekt"
+subgraph Uzgodnienia title="Uzgodnienia"
+subgraph Wdrozenie title="Wdrożenie"
+node P1 rect "Wniosek o zmianę" in=Projekt
+node P2 rect "Ocena wpływu" in=Projekt
+node P3 rect "Projekt dokumentu" in=Projekt
+node U1 rect "Przegląd merytoryczny" in=Uzgodnienia
+node U2 rect "Uwagi i poprawki" in=Uzgodnienia
+node U3 rect "Wersja do zatwierdzenia" in=Uzgodnienia
+node W1 rect "Zatwierdzenie" in=Wdrozenie
+node W2 rect "Publikacja" in=Wdrozenie
+node W3 rect "Szkolenie" in=Wdrozenie
+node W4 rect "Wycofanie poprzedniej wersji" in=Wdrozenie
+edge P1 -> P2 normal none/arrow len=1
+edge P2 -> P3 normal none/arrow len=1
+edge U1 -> U2 normal none/arrow len=1
+edge U2 -> U3 normal none/arrow len=1
+edge W1 -> W2 normal none/arrow len=1
+edge W2 -> W3 normal none/arrow len=1
+edge W3 -> W4 normal none/arrow len=1
+edge P3 -> U1 dotted none/arrow len=1 "przekazanie"
+edge U3 -> W1 dotted none/arrow len=1 "przekazanie"

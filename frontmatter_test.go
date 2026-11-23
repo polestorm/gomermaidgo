@@ -122,12 +122,12 @@ func TestFitOptions(t *testing.T) {
 		w, _ := strconv.ParseFloat(string(m[1]), 64)
 		return w
 	}
-	def, _ := Render(src)
-	auto, _ := Render(src, WithFit(FitAuto))
-	off, _ := Render(src, WithFit(FitOff))
-	nofit, _ := Render("%% layout: nofit\n" + src)
-	forced, _ := Render("%% layout: nofit\n"+src, WithFit(FitOn))
-	high, _ := Render(src, WithFitRatio(100))
+	def, _ := Render(src, WithFold(FoldOff))
+	auto, _ := Render(src, WithFit(FitAuto), WithFold(FoldOff))
+	off, _ := Render(src, WithFit(FitOff), WithFold(FoldOff))
+	nofit, _ := Render("%% layout: nofit\n"+src, WithFold(FoldOff))
+	forced, _ := Render("%% layout: nofit\n"+src, WithFit(FitOn), WithFold(FoldOff))
+	high, _ := Render(src, WithFitRatio(100), WithFold(FoldOff))
 	if string(def) != string(auto) || width(def) >= width(off)*0.85 {
 		t.Errorf("default should be auto and narrower: %.0f vs off %.0f", width(def), width(off))
 	}

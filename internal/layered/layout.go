@@ -38,8 +38,30 @@ type Options struct {
 	// tylko dla rysunku co najmniej FitRatio razy szerszego niż wysoki; FitOn dla każdego, który nie
 	// mieści się na stronie; FitOff nigdy.
 	Fit      FitMode
-	FitRatio float64 // próg proporcji szerokości do wysokości dla FitAuto; 0 oznacza 2
+	FitRatio float64 // próg proporcji szerokości do wysokości dla FitAuto i FoldAuto; 0 oznacza 2
+	// Fold: zwijanie długiego, prostego diagramu w kilka rzędów (LR) albo kolumn (TB), gdy rysunek
+	// jest co najmniej FitRatio razy dłuższy niż szeroki i nie mieści się na stronie A4 w skali 1.
+	Fold     FoldMode
+	FoldType FoldType
+
+	boxes map[string]scene.Box // wypełniane przy rysowaniu, gdy nie nil (layoutBoxes)
 }
+
+// FoldMode to tryb zwijania.
+type FoldMode int
+
+const (
+	FoldAuto FoldMode = iota
+	FoldOff
+)
+
+// FoldType to sposób przejścia do następnego rzędu: powrót do początku albo wężyk.
+type FoldType int
+
+const (
+	FoldReturn FoldType = iota // każdy rząd w tym samym kierunku; łącznik wraca pod rzędem na początek
+	FoldSnake                  // co drugi rząd w przeciwnym kierunku; łącznik przy końcu rzędu
+)
 
 // FitMode to tryb dopasowania do strony.
 type FitMode int
@@ -335,28 +357,38 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	}
 	if g.Kind != "er" {
 		best := layout(g, o, 0, 1)
+		skipFit := false
 		switch o.Fit {
 		case FitOff:
-			return best
+			skipFit = true
 		case FitAuto:
 			ratio := o.FitRatio
 			if ratio <= 0 {
 				ratio = 2
 			}
 			if b := best.Bounds(); b.X1-b.X0 < ratio*(b.Y1-b.Y0) {
-				return best
+				skipFit = true
 			}
 		}
+		if skipFit {
+			if folded := fold(g, o, best, 1); folded != nil {
+				return folded
+			}
+			return best
+		}
 		// Dopasowanie do strony: kolejne próby z węższymi polami; wygrywa wyraźnie większa skala.
-		bestScale := pageScale(best, o.FontSize)
+		bestScale, bestFit := pageScale(best, o.FontSize), 1.0
 		for _, fit := range []float64{0.8, 0.65, 0.5, 0.38, 0.28} {
 			if bestScale >= 1 {
 				break
 			}
 			sc := layout(g, o, 0, fit)
 			if s := pageScale(sc, o.FontSize); s > bestScale+0.02 {
-				best, bestScale = sc, s
+				best, bestScale, bestFit = sc, s, fit
 			}
+		}
+		if folded := fold(g, o, best, bestFit); folded != nil {
+			return folded
 		}
 		return best
 	}
@@ -418,6 +450,14 @@ func layout(g *graph.Graph, o Options, rankLimit, fit float64) *scene.Scene {
 	l.place(l.levels[""], 0, 0)
 	l.draw()
 	return l.sc
+}
+
+// layoutBoxes rozmieszcza graf jak layout i zwraca też prostokąty narysowanych pól i ramek według
+// identyfikatorów (do łączenia części zwiniętego diagramu).
+func layoutBoxes(g *graph.Graph, o Options, fit float64) (*scene.Scene, map[string]scene.Box) {
+	boxes := map[string]scene.Box{}
+	o.boxes = boxes
+	return layout(g, o, 0, fit), boxes
 }
 
 // build tworzy poziomy i pola węzłów; noty diagramu stanów stają się węzłami z krawędzią do celu.

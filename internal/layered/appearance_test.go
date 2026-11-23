@@ -700,9 +700,9 @@ func TestFitWrapsEdgeLabelsAndHyphens(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	off := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, Fit: FitOff})
+	off := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, Fit: FitOff, Fold: FoldOff})
 	g, _ = flowchart.Parse(src)
-	fit := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	fit := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, Fold: FoldOff})
 	if a, b := off.Bounds(), fit.Bounds(); b.X1-b.X0 > 0.65*(a.X1-a.X0) {
 		t.Errorf("width %.0f -> %.0f, want at least -35%%", a.X1-a.X0, b.X1-b.X0)
 	}
@@ -739,6 +739,66 @@ func TestColouredFrameAvoidsNodeColour(t *testing.T) {
 	for _, n := range byRole(sc, "node") {
 		if n.Fill == f.Fill {
 			t.Errorf("the frame took the fill of a node inside it: %s", f.Fill)
+		}
+	}
+}
+
+// REQ: LAY-019
+// Zwijanie: długi prosty diagram LR staje w kilku rzędach, ramki nie są dzielone, wężyk odwraca co
+// drugi rząd; diagram z cyklem, z krawędzią przeskakującą przez grupę albo krótki zostaje bez zmian.
+func TestFold(t *testing.T) {
+	o := Options{Measure: font.ApproxTextWidth, FontSize: 16}
+	rows := func(sc *scene.Scene, role string) []scene.Box {
+		var out []scene.Box
+		for _, it := range byRole(sc, role) {
+			out = append(out, it.Bounds())
+		}
+		return out
+	}
+	sc := Layout(parse(t, "../../testdata/corpus/flowchart/023-fold-return.mmd"), o)
+	frames := rows(sc, "cluster")
+	if len(frames) != 3 || !(frames[0].Y1 < frames[1].Y0 && frames[1].Y1 < frames[2].Y0) {
+		t.Fatalf("the three frames should stand one under another: %+v", frames)
+	}
+	if b := sc.Bounds(); b.X1-b.X0 > 2*(b.Y1-b.Y0) {
+		t.Errorf("folded drawing is still %.0f x %.0f", b.X1-b.X0, b.Y1-b.Y0)
+	}
+	for _, f := range []string{"023-fold-return", "024-fold-snake", "025-fold-tb"} {
+		g := parse(t, "../../testdata/corpus/flowchart/"+f+".mmd")
+		off := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, Fold: FoldOff})
+		on := Layout(parse(t, "../../testdata/corpus/flowchart/"+f+".mmd"), o)
+		if pageScale(on, 16) < pageScale(off, 16)-0.001 {
+			t.Errorf("%s: folding lowered the page scale", f)
+		}
+		if crossingCount(on) != 0 {
+			t.Errorf("%s: folded drawing has crossings", f)
+		}
+		if len(byRole(on, "edge")) != len(byRole(off, "edge")) {
+			t.Errorf("%s: folding changed the number of edges", f)
+		}
+	}
+	// Wężyk: w drugim rzędzie strzałki biegną w lewo.
+	g := parse(t, "../../testdata/corpus/flowchart/024-fold-snake.mmd")
+	snake := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, FoldType: FoldSnake})
+	a, b := nodeOf(t, snake, "Analiza"), nodeOf(t, snake, "Działania")
+	if !(b.X1 < a.X0 && math.Abs(a.Y0-b.Y0) < 1) {
+		t.Errorf("snake: the second row should run right to left: %+v %+v", a, b)
+	}
+	// Bez zwijania: cykl, krawędź przez całą grupę, krótki diagram.
+	for _, src := range []string{
+		"flowchart LR\nA[Pierwszy długi krok] --> B[Drugi długi krok] --> C[Trzeci długi krok] --> D[Czwarty długi krok] --> E[Piąty długi krok] --> A",
+		"flowchart LR\nA[Pierwszy długi krok] --> B[Drugi długi krok] --> C[Trzeci długi krok] --> D[Czwarty długi krok] --> E[Piąty długi krok]\nA --> D\nB --> E\nA --> E",
+		"flowchart LR\nA --> B --> C",
+	} {
+		g, err := flowchart.Parse(src)
+		if err != nil {
+			t.Fatal(err)
+		}
+		on := Layout(g, o)
+		g, _ = flowchart.Parse(src)
+		off := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, Fold: FoldOff})
+		if fmt.Sprint(on.Bounds()) != fmt.Sprint(off.Bounds()) {
+			t.Errorf("%q should not fold", src)
 		}
 	}
 }

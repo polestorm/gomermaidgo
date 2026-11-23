@@ -47,7 +47,9 @@ font embedded.
 Graph diagrams are fitted to an A4 page by default: a drawing at least twice as wide as it is tall is laid out
 again with narrower fields, wrapping text more often, and the version that fits the page at the largest scale is
 kept. `WithFit(FitOn|FitOff|FitAuto)` and `WithFitRatio` (or `-fit on|off|auto`, `-fit-ratio`, or a
-`%% layout: fit` / `%% layout: nofit` line in the source) change that.
+`%% layout: fit` / `%% layout: nofit` line in the source) change that. Long, simple diagrams are also folded into rows (LR) or
+columns (TB) joined by connectors: `return` (default, every row in the same direction) or `snake`; see
+`WithFold`, `WithFoldType`, `-fold`, `-fold-type` and `%% layout: fold snake|return` / `%% layout: nofold`.
 
 Themes: `neutral` (the default, made for print), `default` (colours), `forest`, `dark` and `base`. They are this
 library's own looks under Mermaid's theme names, so a source that selects a theme in its front matter or `init`

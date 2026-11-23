@@ -210,13 +210,13 @@ func TestThemeFlag(t *testing.T) {
 // REQ: LAY-018
 func TestFitFlag(t *testing.T) {
 	src := "flowchart LR\nA[Pierwszy długi krok] --> B[Drugi długi krok] --> C[Trzeci długi krok] --> D[Czwarty długi krok] --> E[Piąty długi krok]"
-	on, _, err := start(t, src, "-fit", "on")
-	off, _, err2 := start(t, src, "-fit", "off")
-	auto, _, err3 := start(t, src)
+	on, _, err := start(t, src, "-fit", "on", "-fold", "off")
+	off, _, err2 := start(t, src, "-fit", "off", "-fold", "off")
+	auto, _, err3 := start(t, src, "-fold", "off")
 	if err != nil || err2 != nil || err3 != nil || on == off || auto != on {
 		t.Errorf("fit modes: %v %v %v", err, err2, err3)
 	}
-	if high, _, _ := start(t, src, "-fit-ratio", "100"); high != off {
+	if high, _, _ := start(t, src, "-fit-ratio", "100", "-fold", "off"); high != off {
 		t.Errorf("a high -fit-ratio should leave the drawing unfitted")
 	}
 	if _, _, err := start(t, src, "-fit", "maybe"); err == nil {

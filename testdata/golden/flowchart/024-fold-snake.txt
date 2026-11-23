@@ -1,0 +1,16 @@
+flowchart LR
+node A rect "Zgłoszenie reklamacji"
+node B rect "Rejestracja"
+node C rect "Ocena zasadności"
+node D rect "Analiza przyczyn"
+node E rect "Działania korygujące"
+node F rect "Weryfikacja skuteczności"
+node G rect "Odpowiedź dla klienta"
+node H rect "Zamknięcie"
+edge A -> B normal none/arrow len=1
+edge B -> C normal none/arrow len=1
+edge C -> D normal none/arrow len=1
+edge D -> E normal none/arrow len=1
+edge E -> F normal none/arrow len=1
+edge F -> G normal none/arrow len=1
+edge G -> H normal none/arrow len=1

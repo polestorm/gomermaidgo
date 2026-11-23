@@ -83,6 +83,8 @@ type config struct {
 	emojiText  bool
 	fitMode    string  // "", "auto", "on", "off"
 	fitRatio   float64 // próg proporcji dla trybu auto; 0 oznacza 2
+	foldMode   string  // "", "auto", "off"
+	foldType   string  // "", "return", "snake"
 	curved     bool
 	theme      string
 	themeSet   bool
@@ -155,6 +157,23 @@ func WithFit(mode string) Option { return func(c *config) { c.fitMode = mode } }
 // WithFitRatio ustawia próg trybu FitAuto: dopasowanie rusza, gdy szerokość rysunku jest co najmniej
 // tyle razy większa od wysokości. Domyślnie 2.
 func WithFitRatio(ratio float64) Option { return func(c *config) { c.fitRatio = ratio } }
+
+// Tryby i sposoby zwijania (WithFold, WithFoldType).
+const (
+	FoldAuto   = "auto"   // domyślny: zwija prosty diagram co najmniej WithFitRatio razy dłuższy niż szeroki
+	FoldOff    = "off"    // bez zwijania
+	FoldReturn = "return" // domyślny sposób: każdy rząd w tym samym kierunku, łącznik wraca do początku
+	FoldSnake  = "snake"  // wężyk: co drugi rząd w przeciwnym kierunku
+)
+
+// WithFold wybiera tryb zwijania długiego, prostego diagramu układu warstwowego w kilka rzędów (LR)
+// albo kolumn (TB). Domyślny jest FoldAuto. W źródle to samo ustawiają linie "%% layout: fold"
+// (auto) i "%% layout: nofold" (off); opcja ma pierwszeństwo przed źródłem.
+func WithFold(mode string) Option { return func(c *config) { c.foldMode = mode } }
+
+// WithFoldType wybiera sposób przejścia do następnego rzędu: FoldReturn (domyślny) albo FoldSnake.
+// W źródle: "%% layout: fold return" albo "%% layout: fold snake".
+func WithFoldType(kind string) Option { return func(c *config) { c.foldType = kind } }
 
 // DetectType zwraca typ diagramu z pierwszej znaczącej linii źródła.
 func DetectType(source string) (string, error) {
@@ -284,6 +303,37 @@ func Check(source string) error {
 
 // fitDirective ustawia w źródle tryb dopasowania do strony (WithFit).
 var fitDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fit|nofit)\s*$`)
+
+// foldDirective ustawia w źródle zwijanie (WithFold, WithFoldType).
+var foldDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fold|nofold)(?:\s+(return|snake))?\s*$`)
+
+// foldMode rozstrzyga tryb zwijania: opcja, potem linia w źródle, domyślnie auto.
+func foldMode(c config, source string) layered.FoldMode {
+	mode := c.foldMode
+	if mode == "" {
+		if m := foldDirective.FindStringSubmatch(source); m != nil && m[1] == "nofold" {
+			mode = FoldOff
+		}
+	}
+	if mode == FoldOff {
+		return layered.FoldOff
+	}
+	return layered.FoldAuto
+}
+
+// foldType rozstrzyga sposób zwijania: opcja, potem linia w źródle, domyślnie powrót.
+func foldType(c config, source string) layered.FoldType {
+	kind := c.foldType
+	if kind == "" {
+		if m := foldDirective.FindStringSubmatch(source); m != nil {
+			kind = m[2]
+		}
+	}
+	if kind == FoldSnake {
+		return layered.FoldSnake
+	}
+	return layered.FoldReturn
+}
 
 // fitMode rozstrzyga tryb dopasowania: opcja, potem linia w źródle, domyślnie auto.
 func fitMode(c config, source string) layered.FitMode {
@@ -487,7 +537,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 		} else if styled, err = styledMeasure(c.boldData, c.italicData); err != nil {
 			return nil, nil, err
 		}
-		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, Fit: fitMode(c, source), FitRatio: c.fitRatio}), face, nil
+		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, Fit: fitMode(c, source), FitRatio: c.fitRatio, Fold: foldMode(c, source), FoldType: foldType(c, source)}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {

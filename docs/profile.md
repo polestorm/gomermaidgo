@@ -87,6 +87,10 @@ szerszy niż wysoki jest układany jeszcze raz z węższymi polami, w których t
 `%% layout: nofit` wyłącza dopasowanie, `%% layout: fit` włącza je dla każdego rysunku, który nie mieści się na
 stronie; to samo opcje `WithFit` i `WithFitRatio` oraz flagi `-fit` i `-fit-ratio`.
 
+Długi, prosty diagram LR albo TB jest domyślnie zwijany w kilka rzędów albo kolumn połączonych łącznikami
+(LAY-019, ADR 0008): sposób `return` (każdy rząd w tym samym kierunku) albo `snake` (co drugi rząd odwrócony),
+wybierany linią `%% layout: fold snake` albo `fold return`; `%% layout: nofold` wyłącza zwijanie.
+
 ### Poza profilem (błąd `flowchart-unsupported`)
 
 Kształty zapisu `@{ shape: … }`, których nie rysujemy pod starą składnią (np. `doc`, `cloud`, `delay`; pozostałe

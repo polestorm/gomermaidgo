@@ -1,0 +1,30 @@
+flowchart TB
+node K1 rect "Planowanie audytu"
+node K2 rect "Powiadomienie"
+node K3 rect "Przegląd dokumentacji"
+node K4 rect "Lista kontrolna"
+node K5 rect "Spotkanie otwierające"
+node K6 rect "Wywiady"
+node K7 rect "Obserwacje"
+node K8 rect "Zebranie dowodów"
+node K9 rect "Ocena zgodności"
+node K10 rect "Ustalenia"
+node K11 rect "Spotkanie zamykające"
+node K12 rect "Raport z audytu"
+node K13 rect "Działania korygujące"
+node K14 rect "Weryfikacja"
+node K15 rect "Zamknięcie audytu"
+edge K1 -> K2 normal none/arrow len=1
+edge K2 -> K3 normal none/arrow len=1
+edge K3 -> K4 normal none/arrow len=1
+edge K4 -> K5 normal none/arrow len=1
+edge K5 -> K6 normal none/arrow len=1
+edge K6 -> K7 normal none/arrow len=1
+edge K7 -> K8 normal none/arrow len=1
+edge K8 -> K9 normal none/arrow len=1
+edge K9 -> K10 normal none/arrow len=1
+edge K10 -> K11 normal none/arrow len=1
+edge K11 -> K12 normal none/arrow len=1
+edge K12 -> K13 normal none/arrow len=1
+edge K13 -> K14 normal none/arrow len=1
+edge K14 -> K15 normal none/arrow len=1

@@ -1,0 +1,19 @@
+%% REQ: LAY-019
+%% Tytuł: Zwijanie: powrót do początku
+%% Sprawdza: długi diagram LR z trzema ramkami zwinięty w trzy rzędy; łączniki z podpisem schodzą między rzędami i wchodzą do celu od góry; ramki nie są dzielone.
+flowchart LR
+    subgraph Projekt
+        P1[Wniosek o zmianę] --> P2[Ocena wpływu]
+        P2 --> P3[Projekt dokumentu]
+    end
+    subgraph Uzgodnienia
+        U1[Przegląd merytoryczny] --> U2[Uwagi i poprawki]
+        U2 --> U3[Wersja do zatwierdzenia]
+    end
+    subgraph Wdrozenie[Wdrożenie]
+        W1[Zatwierdzenie] --> W2[Publikacja]
+        W2 --> W3[Szkolenie]
+        W3 --> W4[Wycofanie poprzedniej wersji]
+    end
+    P3 -.->|przekazanie| U1
+    U3 -.->|przekazanie| W1

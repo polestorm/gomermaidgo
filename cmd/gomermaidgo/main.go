@@ -73,7 +73,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	var fontPath, family, background, input, themeName string
 	var size float64
 	var colors, shadows, curved, emojiText bool
-	var fitMode string
+	var fitMode, foldMode, foldType string
 	var fitRatio float64
 	both := func(p *string, short, long, usage string) {
 		fs.StringVar(p, short, "", usage)
@@ -95,8 +95,11 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	fs.BoolVar(&shadows, "shadows", false, "draw shadows under participants, nodes and notes")
 	fs.BoolVar(&curved, "curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
 	fs.BoolVar(&emojiText, "emoji-text", false, "keep emoji in SVG as text set in the Noto Emoji font instead of outlines")
-	fs.StringVar(&fitMode, "fit", "auto", "fit graph diagrams to an A4 page by narrowing their fields: auto (only drawings at least -fit-ratio times wider than tall), on or off")
-	fs.Float64Var(&fitRatio, "fit-ratio", 2, "width-to-height ratio from which -fit auto fits the drawing")
+	// Bez flagi decyduje źródło diagramu (linie %% layout: …), a bez niego wartość domyślna.
+	fs.StringVar(&fitMode, "fit", "", "fit graph diagrams to an A4 page by narrowing their fields: auto (default; only drawings at least -fit-ratio times wider than tall), on or off")
+	fs.Float64Var(&fitRatio, "fit-ratio", 0, "width-to-height ratio from which -fit auto and -fold auto act (default 2)")
+	fs.StringVar(&foldMode, "fold", "", "fold a long, simple graph diagram into rows (LR) or columns (TB): auto (default) or off")
+	fs.StringVar(&foldType, "fold-type", "", "how a folded diagram continues: return (default; every row in the same direction) or snake (every other row reversed)")
 	// Flagi mermaid-cli bez odpowiednika: wygląd jest własny, a wynik wektorowy.
 	ignored := map[string]*string{}
 	for _, names := range [][2]string{{"w", "width"}, {"H", "height"}, {"c", "configFile"},
@@ -145,9 +148,30 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	if colors {
 		j.opts = append(j.opts, gomermaidgo.WithColors())
 	}
+	switch foldMode {
+	case "":
+	case gomermaidgo.FoldAuto, gomermaidgo.FoldOff:
+		j.opts = append(j.opts, gomermaidgo.WithFold(foldMode))
+	default:
+		return nil, fmt.Errorf("-fold must be auto or off, not %q", foldMode)
+	}
+	switch foldType {
+	case "":
+	case gomermaidgo.FoldReturn, gomermaidgo.FoldSnake:
+		j.opts = append(j.opts, gomermaidgo.WithFoldType(foldType))
+	default:
+		return nil, fmt.Errorf("-fold-type must be return or snake, not %q", foldType)
+	}
+	if fitRatio < 0 {
+		return nil, fmt.Errorf("-fit-ratio must not be negative")
+	}
+	if fitRatio > 0 {
+		j.opts = append(j.opts, gomermaidgo.WithFitRatio(fitRatio))
+	}
 	switch fitMode {
+	case "":
 	case gomermaidgo.FitAuto, gomermaidgo.FitOn, gomermaidgo.FitOff:
-		j.opts = append(j.opts, gomermaidgo.WithFit(fitMode), gomermaidgo.WithFitRatio(fitRatio))
+		j.opts = append(j.opts, gomermaidgo.WithFit(fitMode))
 	default:
 		return nil, fmt.Errorf("-fit must be auto, on or off, not %q", fitMode)
 	}

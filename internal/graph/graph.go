@@ -413,3 +413,35 @@ func (g *Graph) Texts() []string {
 	}
 	return out
 }
+
+// Part zwraca graf złożony z podanych węzłów i podgrafów: krawędzie, których oba końce należą do
+// części, notatki przy jej węzłach i te same ustawienia. Węzły, krawędzie i podgrafy są wspólne
+// z grafem źródłowym (nie są kopiowane), więc części nie wolno zmieniać.
+func (g *Graph) Part(nodes, subs map[string]bool) *Graph {
+	out := New(g.Kind)
+	out.Direction, out.Layout, out.AccTitle, out.AccDescr = g.Direction, g.Layout, g.AccTitle, g.AccDescr
+	for _, n := range g.Nodes {
+		if nodes[n.ID] {
+			out.Nodes = append(out.Nodes, n)
+			out.nodeIndex[n.ID] = n
+		}
+	}
+	for _, s := range g.Subgraphs {
+		if subs[s.ID] {
+			out.Subgraphs = append(out.Subgraphs, s)
+			out.subIndex[s.ID] = s
+		}
+	}
+	in := func(id string) bool { return nodes[id] || subs[id] }
+	for _, e := range g.Edges {
+		if in(e.From) && in(e.To) {
+			out.Edges = append(out.Edges, e)
+		}
+	}
+	for _, n := range g.Notes {
+		if nodes[n.Target] {
+			out.Notes = append(out.Notes, n)
+		}
+	}
+	return out
+}

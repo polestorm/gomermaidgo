@@ -386,6 +386,9 @@ func (l *layouter) drawLevel(lv *level) {
 	defer l.enter(lv)()
 	if lv.sub != nil {
 		cx, cy, w, h := l.rect(lv.offsetX+lv.w/2, lv.offsetY+lv.h/2, lv.w, lv.h)
+		if l.o.boxes != nil {
+			l.o.boxes[lv.sub.ID] = scene.Box{X0: cx - w/2, Y0: cy - h/2, X1: cx + w/2, Y1: cy + h/2}
+		}
 		from := len(l.sc.Items)
 		frame := scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "cluster",
 			X: cx - w/2, Y: cy - h/2, W: w, H: h, RX: l.u(4), Stroke: colorFrame, StrokeWidth: 1}
@@ -498,6 +501,9 @@ func (l *layouter) drawLevelContent(lv *level) {
 				l.drawLevel(it.child)
 			case kindNode:
 				cx, cy, w, h := l.rect(it.nodeX(), it.y, it.nodeW(), it.h)
+				if l.o.boxes != nil {
+					l.o.boxes[it.node.ID] = scene.Box{X0: cx - w/2, Y0: cy - h/2, X1: cx + w/2, Y1: cy + h/2}
+				}
 				if it.node.Shape == graph.Entity || it.node.Shape == graph.Class || it.node.Shape == graph.Requirement {
 					from := len(l.sc.Items)
 					if it.node.Shape != graph.Entity {
