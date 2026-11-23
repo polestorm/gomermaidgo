@@ -26,13 +26,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/polestorm/gomermaidgo"
 	"github.com/polestorm/gomermaidgo/markdown"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 // formats to dodatkowe formaty wyniku według rozszerzenia pliku. Rejestrują je pliki kompilowane
 // warunkowo (np. pdf.go), więc program zbudowany bez nich zna tylko SVG.
-var formats = map[string]func(string, ...gomermaidgo.Option) ([]byte, error){}
+var formats = map[string]func(string, ...mermaid.Option) ([]byte, error){}
 
 // scale to skala obrazu rastrowego z flagi -s; zero oznacza skalę domyślną formatu.
 var scale float64
@@ -44,7 +44,7 @@ type job struct {
 	format    string // "svg", "pdf" albo pusty: według rozszerzenia wyniku
 	artefacts string // katalog na obrazki dokumentu Markdown
 	quiet     bool
-	opts      []gomermaidgo.Option
+	opts      []mermaid.Option
 	stdin     io.Reader
 	stdout    io.Writer
 	stderr    io.Writer
@@ -83,7 +83,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	both(&j.out, "o", "output", "output file; the extension selects the format: .svg (default), .pdf, .png or .md for Markdown input")
 	both(&j.format, "e", "outputFormat", "output format: svg, pdf or png (default: from the output extension)")
 	both(&background, "b", "backgroundColor", "background colour (default: transparent)")
-	both(&themeName, "t", "theme", "theme: "+strings.Join(gomermaidgo.Themes(), ", ")+" (default: the theme named in the source, else neutral)")
+	both(&themeName, "t", "theme", "theme: "+strings.Join(mermaid.Themes(), ", ")+" (default: the theme named in the source, else neutral)")
 	both(&j.artefacts, "a", "artefacts", "directory for the images of a Markdown document (default: next to the output)")
 	fs.StringVar(&background, "background", "", "same as -b")
 	fs.BoolVar(&j.quiet, "q", false, "no notes or warnings on stderr")
@@ -146,35 +146,35 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 			}
 		}
 	}
-	j.opts = []gomermaidgo.Option{gomermaidgo.WithFontSize(size)}
+	j.opts = []mermaid.Option{mermaid.WithFontSize(size)}
 	if colors {
-		j.opts = append(j.opts, gomermaidgo.WithColors())
+		j.opts = append(j.opts, mermaid.WithColors())
 	}
 	switch foldMode {
 	case "":
-	case gomermaidgo.FoldAuto, gomermaidgo.FoldOff:
-		j.opts = append(j.opts, gomermaidgo.WithFold(foldMode))
+	case mermaid.FoldAuto, mermaid.FoldOff:
+		j.opts = append(j.opts, mermaid.WithFold(foldMode))
 	default:
 		return nil, fmt.Errorf("-fold must be auto or off, not %q", foldMode)
 	}
 	switch foldChains {
 	case "":
-	case gomermaidgo.FoldAuto, gomermaidgo.FoldOff:
-		j.opts = append(j.opts, gomermaidgo.WithFoldChains(foldChains))
+	case mermaid.FoldAuto, mermaid.FoldOff:
+		j.opts = append(j.opts, mermaid.WithFoldChains(foldChains))
 	default:
 		return nil, fmt.Errorf("-fold-chains must be auto or off, not %q", foldChains)
 	}
 	switch foldRanks {
 	case "":
-	case gomermaidgo.FoldAuto, gomermaidgo.FoldOff:
-		j.opts = append(j.opts, gomermaidgo.WithFoldRanks(foldRanks))
+	case mermaid.FoldAuto, mermaid.FoldOff:
+		j.opts = append(j.opts, mermaid.WithFoldRanks(foldRanks))
 	default:
 		return nil, fmt.Errorf("-fold-ranks must be auto or off, not %q", foldRanks)
 	}
 	switch foldType {
 	case "":
-	case gomermaidgo.FoldReturn, gomermaidgo.FoldSnake:
-		j.opts = append(j.opts, gomermaidgo.WithFoldType(foldType))
+	case mermaid.FoldReturn, mermaid.FoldSnake:
+		j.opts = append(j.opts, mermaid.WithFoldType(foldType))
 	default:
 		return nil, fmt.Errorf("-fold-type must be return or snake, not %q", foldType)
 	}
@@ -182,39 +182,39 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 		return nil, fmt.Errorf("-fit-ratio must not be negative")
 	}
 	if fitRatio > 0 {
-		j.opts = append(j.opts, gomermaidgo.WithFitRatio(fitRatio))
+		j.opts = append(j.opts, mermaid.WithFitRatio(fitRatio))
 	}
 	switch fitMode {
 	case "":
-	case gomermaidgo.FitAuto, gomermaidgo.FitOn, gomermaidgo.FitOff:
-		j.opts = append(j.opts, gomermaidgo.WithFit(fitMode))
+	case mermaid.FitAuto, mermaid.FitOn, mermaid.FitOff:
+		j.opts = append(j.opts, mermaid.WithFit(fitMode))
 	default:
 		return nil, fmt.Errorf("-fit must be auto, on or off, not %q", fitMode)
 	}
 	if emojiText {
-		j.opts = append(j.opts, gomermaidgo.WithEmojiText())
+		j.opts = append(j.opts, mermaid.WithEmojiText())
 	}
 	if curved {
-		j.opts = append(j.opts, gomermaidgo.WithCurvedEdges())
+		j.opts = append(j.opts, mermaid.WithCurvedEdges())
 	}
 	if shadows {
-		j.opts = append(j.opts, gomermaidgo.WithShadows())
+		j.opts = append(j.opts, mermaid.WithShadows())
 	}
 	if themeName != "" {
-		j.opts = append(j.opts, gomermaidgo.WithTheme(themeName))
+		j.opts = append(j.opts, mermaid.WithTheme(themeName))
 	}
 	if fontPath != "" {
 		data, err := os.ReadFile(fontPath)
 		if err != nil {
 			return nil, err
 		}
-		j.opts = append(j.opts, gomermaidgo.WithFont(data))
+		j.opts = append(j.opts, mermaid.WithFont(data))
 	}
 	if family != "" {
-		j.opts = append(j.opts, gomermaidgo.WithFontFamily(family))
+		j.opts = append(j.opts, mermaid.WithFontFamily(family))
 	}
 	if background != "" && background != "transparent" {
-		j.opts = append(j.opts, gomermaidgo.WithBackground(background))
+		j.opts = append(j.opts, mermaid.WithBackground(background))
 	}
 	return j, nil
 }
@@ -237,7 +237,7 @@ func isMarkdown(name string) bool {
 }
 
 // renderer zwraca funkcję rysującą i rozszerzenie dla wyniku o podanej nazwie.
-func (j *job) renderer(out string) (func(string, ...gomermaidgo.Option) ([]byte, error), string) {
+func (j *job) renderer(out string) (func(string, ...mermaid.Option) ([]byte, error), string) {
 	ext := strings.ToLower(filepath.Ext(out))
 	if j.format != "" {
 		ext = "." + j.format
@@ -245,7 +245,7 @@ func (j *job) renderer(out string) (func(string, ...gomermaidgo.Option) ([]byte,
 	if alt, ok := formats[ext]; ok {
 		return alt, ext
 	}
-	return gomermaidgo.Render, ".svg"
+	return mermaid.Render, ".svg"
 }
 
 func (j *job) run() error {
@@ -286,7 +286,7 @@ func (j *job) warn(source, where string) {
 	if j.quiet {
 		return
 	}
-	if missing, _ := gomermaidgo.MissingGlyphs(source, j.opts...); len(missing) > 0 {
+	if missing, _ := mermaid.MissingGlyphs(source, j.opts...); len(missing) > 0 {
 		fmt.Fprintf(j.stderr, "gomermaidgo: warning: %sthe font has no glyphs for %q\n", where, string(missing))
 	}
 }

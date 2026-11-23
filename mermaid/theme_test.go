@@ -1,4 +1,4 @@
-package gomermaidgo
+package mermaid
 
 import (
 	"errors"
@@ -15,7 +15,7 @@ var paintAttr = regexp.MustCompile(`(fill|stroke)="(#[0-9a-f]{6})"`)
 // Motyw neutralny nie zmienia rysunku, default jest trybem kolorowym, a każdy motyw rysuje każdy
 // diagram korpusu z tymi samymi kształtami i tekstami.
 func TestThemesOverCorpus(t *testing.T) {
-	files, _ := filepath.Glob("testdata/corpus/*/*.mmd")
+	files, _ := filepath.Glob("../testdata/corpus/*/*.mmd")
 	shape := regexp.MustCompile(` (fill|stroke)="[^"]*"`)
 	for _, path := range files {
 		data, _ := os.ReadFile(path)

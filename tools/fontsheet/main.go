@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/polestorm/gomermaidgo"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 var diagrams = []string{
@@ -68,7 +68,7 @@ func main() {
 					fmt.Fprintln(os.Stderr, err)
 					os.Exit(1)
 				}
-				svg, err := gomermaidgo.Render(string(src), gomermaidgo.WithFont(data), gomermaidgo.WithFontFamily(family), gomermaidgo.WithFontSize(size))
+				svg, err := mermaid.Render(string(src), mermaid.WithFont(data), mermaid.WithFontFamily(family), mermaid.WithFontSize(size))
 				if err != nil {
 					fmt.Fprintf(&body, "<div class=\"draw\"><p class=\"error\">%s</p></div>\n", html.EscapeString(err.Error()))
 					continue

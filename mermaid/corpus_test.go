@@ -1,4 +1,4 @@
-package gomermaidgo
+package mermaid
 
 import (
 	"bytes"
@@ -29,7 +29,7 @@ var update = flag.Bool("update", false, "rewrite golden SVG files")
 // sequenceFiles zwraca pliki korpusu diagramów sekwencji.
 func sequenceFiles(t *testing.T) []string {
 	t.Helper()
-	files, err := filepath.Glob("testdata/corpus/sequence/*.mmd")
+	files, err := filepath.Glob("../testdata/corpus/sequence/*.mmd")
 	if err != nil || len(files) == 0 {
 		t.Fatalf("no corpus files: %v", err)
 	}
@@ -39,7 +39,7 @@ func sequenceFiles(t *testing.T) []string {
 // corpusFiles zwraca wszystkie pliki korpusu.
 func corpusFiles(t *testing.T) []string {
 	t.Helper()
-	files, err := filepath.Glob("testdata/corpus/*/*.mmd")
+	files, err := filepath.Glob("../testdata/corpus/*/*.mmd")
 	if err != nil || len(files) == 0 {
 		t.Fatalf("no corpus files: %v", err)
 	}
@@ -51,7 +51,7 @@ func graphCorpusFiles(t *testing.T) []string {
 	t.Helper()
 	var files []string
 	for _, dir := range []string{"flowchart", "state", "er", "class", "mindmap", "requirement", "c4"} {
-		m, _ := filepath.Glob("testdata/corpus/" + dir + "/*.mmd")
+		m, _ := filepath.Glob("../testdata/corpus/" + dir + "/*.mmd")
 		if len(m) == 0 {
 			t.Fatalf("no corpus files for %s", dir)
 		}
@@ -89,7 +89,7 @@ func parseGraph(t *testing.T, path string) *graph.Graph {
 // REQ: GANTT-001
 // Model wykresu Gantta z każdego pliku korpusu zgadza się z plikiem wzorcowym.
 func TestGanttCorpusGolden(t *testing.T) {
-	files, _ := filepath.Glob("testdata/corpus/gantt/*.mmd")
+	files, _ := filepath.Glob("../testdata/corpus/gantt/*.mmd")
 	if len(files) == 0 {
 		t.Fatal("no corpus files for gantt")
 	}
@@ -107,7 +107,7 @@ func TestGanttCorpusGolden(t *testing.T) {
 			continue
 		}
 		if want, err := os.ReadFile(golden); err != nil || string(want) != got {
-			t.Errorf("%s: model differs from %s (run go test . -update and review the diff): %v", f, golden, err)
+			t.Errorf("%s: model differs from %s (run go test ./mermaid -update and review the diff): %v", f, golden, err)
 		}
 		// Każda nazwa zadania, sekcji i tytuł są na rysunku.
 		svg, err := Render(readFile(t, f))
@@ -147,7 +147,7 @@ func TestGraphCorpusGolden(t *testing.T) {
 		}
 		want, err := os.ReadFile(golden)
 		if err != nil {
-			t.Errorf("%s: missing golden file (run go test . -update): %v", f, err)
+			t.Errorf("%s: missing golden file (run go test ./mermaid -update): %v", f, err)
 			continue
 		}
 		if got != string(want) {
@@ -166,8 +166,8 @@ func readFile(t *testing.T, path string) string {
 }
 
 func goldenPath(corpus string) string {
-	rel := strings.TrimPrefix(corpus, "testdata/corpus/")
-	return filepath.Join("testdata/golden", strings.TrimSuffix(rel, ".mmd")+".svg")
+	rel := strings.TrimPrefix(corpus, "../testdata/corpus/")
+	return filepath.Join("../testdata/golden", strings.TrimSuffix(rel, ".mmd")+".svg")
 }
 
 // REQ: SEQ-012
@@ -426,7 +426,7 @@ var reqRef = regexp.MustCompile(`\b[A-Z]{3,5}-\d{3}\b`)
 // Każde wymaganie ma pokrycie w korpusie albo w testach, a każde odwołanie wskazuje istniejące wymaganie.
 func TestRequirementsCovered(t *testing.T) {
 	defined := map[string]bool{}
-	docs, _ := filepath.Glob("requirements/*.md")
+	docs, _ := filepath.Glob("../requirements/*.md")
 	for _, doc := range docs {
 		for _, line := range strings.Split(readFile(t, doc), "\n") {
 			if id := reqRef.FindString(line); id != "" && strings.HasPrefix(line, "| "+id) {
@@ -439,9 +439,9 @@ func TestRequirementsCovered(t *testing.T) {
 	}
 	used := map[string]bool{}
 	var sources []string
-	all, _ := filepath.Glob("testdata/corpus/*/*.mmd")
+	all, _ := filepath.Glob("../testdata/corpus/*/*.mmd")
 	sources = append(sources, all...)
-	for _, pattern := range []string{"*_test.go", "internal/*/*_test.go", "markdown/*_test.go", "pdf/*_test.go", "png/*_test.go", "cmd/*/*_test.go"} {
+	for _, pattern := range []string{"*_test.go", "../internal/*/*_test.go", "../markdown/*_test.go", "../pdf/*_test.go", "../png/*_test.go", "../cmd/*/*_test.go"} {
 		m, _ := filepath.Glob(pattern)
 		sources = append(sources, m...)
 	}
@@ -499,7 +499,7 @@ func TestRejectsCharactersInvalidInXML(t *testing.T) {
 
 // REQ: SEQ-012
 func FuzzRender(f *testing.F) {
-	files, _ := filepath.Glob("testdata/corpus/*/*.mmd")
+	files, _ := filepath.Glob("../testdata/corpus/*/*.mmd")
 	for _, p := range files {
 		b, _ := os.ReadFile(p)
 		f.Add(string(b))

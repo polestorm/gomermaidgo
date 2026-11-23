@@ -4,8 +4,47 @@ Renders diagrams written in Mermaid syntax to SVG (and optionally PDF and PNG) i
 Go standard library. The same source and options always give the same SVG, byte for byte.
 
 ```go
-svg, err := gomermaidgo.Render(source)
+import "github.com/polestorm/gomermaidgo/mermaid"
+
+svg, err := mermaid.Render(source)
 ```
+
+## At a glance
+
+Compared with [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer)[^ref], the closest alternative: also a Go
+program that needs no browser, but one that runs Mermaid itself in an embedded JavaScript engine.
+
+| | gomermaidgo | mmdg 0.14.1 |
+|---|---|---|
+| Approach | own parsers and layout in Go | Mermaid 12.2.0 (JavaScript) in an embedded engine |
+| Dependencies (Go modules) | 0, standard library only | 7 (4 direct, 3 indirect) |
+| Program size (`go build`) | 8.2 MB | 53.0 MB |
+| SVG: time / memory per diagram[^bench] | 9 ms / 18 MB | 38 ms / 41 MB |
+| PDF: time / memory per diagram[^bench] | 12 ms / 24 MB | 38 ms / 54 MB |
+| PNG at scale 1: time / memory per diagram[^bench] | 22 ms / 26 MB | 43 ms / 44 MB |
+| Output size, 79 diagrams: SVG / PDF / PNG | 0.43 / 1.5 / 3.1 MB | 13.8 / 11.7 / 2.6 MB |
+| Diagram types | 22 (list below) | all of Mermaid 12.2 |
+| Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts |
+| This repository's corpus (82 diagrams) | 82 | 79 |
+| Public diagrams from GitHub[^wild] | 138 of 139 | 137 of 139 |
+| Look | own, made for print; neutral by default | Mermaid's, byte for byte |
+| Page fitting | fit to A4, folding of long diagrams, chains and ranks | none |
+| SVG content | basic SVG 1.1 elements, no CSS, no scripts, no `foreignObject` | Mermaid's SVG with CSS and embedded fonts |
+| PDF and PNG | own writers, real text in PDF, optional (build tags) | yes |
+| Markdown documents | yes (`markdown.Embed`, CLI) | yes (CLI) |
+| `mermaid-cli` flags | yes | yes |
+| Output identical byte for byte on every run | yes | yes |
+| License | Apache 2.0 | MIT |
+| Popularity (GitHub, 2026-11-23) | new | 5 stars, 1 fork |
+
+[^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
+[^bench]: Median over the 79 corpus diagrams both programs render, best of three runs of the command-line program
+    per file, process start included; memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon
+    laptop.
+[^wild]: 175 blocks marked `mermaid` collected from public GitHub repositories; 36 are rejected by both programs
+    (fragments without a diagram header, or not Mermaid at all), which leaves 139.
+
+## Usage
 
 By default text is measured with the bundled Arimo typeface (`fonts.Arimo()`, SIL Open Font License 1.1, see
 `fonts/OFL-Arimo.txt`), and the SVG asks for `Arimo, Arial, 'Liberation Sans', sans-serif`. Arimo has the same
@@ -14,9 +53,9 @@ desktops without any font file; elsewhere, give the file to whatever draws the S
 converter as an embedded font). To use another typeface, pass both its file and its name:
 
 ```go
-svg, err := gomermaidgo.Render(source,
-	gomermaidgo.WithFont(fontBytes),         // measure text with the font that will draw it
-	gomermaidgo.WithFontFamily("Noto Sans"),
+svg, err := mermaid.Render(source,
+	mermaid.WithFont(fontBytes),         // measure text with the font that will draw it
+	mermaid.WithFontFamily("Noto Sans"),
 )
 ```
 
@@ -104,39 +143,17 @@ painted in that colour and the clip is not used.
 Documentation (in Polish): `docs/profile.md` (supported syntax), `docs/provenance.md` (sources and clean-room rules),
 `docs/testing.md` (corpus, invariants, comparison with reference renderers), `requirements/` (numbered requirements).
 
-## Compared with a Mermaid-based renderer
+## How the comparison was measured
 
-Measured on 2026-11-22 against `mmdg` 0.13.0 (Mermaid 12.2.0 with an embedded JavaScript engine), on the 70 diagrams
-of this repository's corpus that both programs render, on one Apple-silicon laptop. Time is the best of three runs
-of the command-line program per file, process start included; memory is the peak resident size. Time and memory
-are medians over the files; the output figure is the total size of the 70 files written. Both programs read the
-same 70 sources (43 kB in all).
-
-| | | gomermaidgo | mmdg[^ref] | Difference |
-|---|---|---:|---:|---|
-| Binary | size | 8.0 MB | 53.4 MB | 85% smaller |
-| | dependencies | 0 | 10 | - |
-| SVG | conversion time | 7 ms | 32 ms | 77% faster |
-| | memory usage | 14 MB | 43 MB | 68% less |
-| | output size[^out] | 0.34 MB | 11.8 MB | 97% smaller |
-| PDF | conversion time | 9 ms | 33 ms | 73% faster |
-| | memory usage | 19 MB | 55 MB | 65% less |
-| | output size[^out] | 1.0 MB | 10.9 MB | 91% smaller |
-| PNG | conversion time | 16 ms | 38 ms | 57% faster |
-| | memory usage | 21 MB | 46 MB | 54% less |
-| | output size[^out] | 2.7 MB | 2.3 MB | 16% larger |
-
-[^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
-[^out]: Total size of the 70 files written, one per corpus diagram.
-
-PNG is measured at scale 1 in both programs (one image pixel per drawing pixel); this library's default is scale 2.
-Percentages are computed from the unrounded measurements.
-
-The corpus is written for this library's profile, so it says nothing about coverage: Mermaid accepts syntax this
-library rejects (see `docs/profile.md`), and the drawings differ on purpose. Three corpus diagrams are left out
-because the other program does not render them.
+Both programs read the same corpus sources (`testdata/corpus/`). Times and memory come from the command-line
+programs, so they include process start; for `mmdg` that includes starting its JavaScript engine. PNG is compared at
+scale 1 in both programs (one image pixel per drawing pixel); this library's default is scale 2. The corpus is written
+for this library's profile, so the corpus row says little about coverage: Mermaid accepts syntax this library rejects
+(see `docs/profile.md`), and the drawings differ on purpose. The three corpus diagrams `mmdg` does not render are a
+`block-beta` grid and two `sankey-beta` diagrams; the one public diagram this library rejects uses `subgraph` inside a
+state diagram.
 
 ## License
 
-Apache License 2.0, see `LICENSE` and `NOTICE`. The bundled Arimo and Noto Emoji typefaces are distributed under the
+Apache License 2.0, see `LICENSE` and `fonts/NOTICE`. The bundled Arimo and Noto Emoji typefaces are distributed under the
 SIL Open Font License 1.1 (`fonts/OFL-Arimo.txt`, `fonts/OFL-NotoEmoji.txt`).

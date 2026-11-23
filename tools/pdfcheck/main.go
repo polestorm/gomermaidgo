@@ -22,8 +22,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/polestorm/gomermaidgo"
 	"github.com/polestorm/gomermaidgo/fonts"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 // words dopisuje do out wyrazy elementów text dokumentu SVG.
@@ -108,7 +108,7 @@ func run() error {
 		if err != nil {
 			return err
 		}
-		svg, err := gomermaidgo.Render(string(source))
+		svg, err := mermaid.Render(string(source))
 		if err != nil {
 			return fmt.Errorf("%s: %w", f, err)
 		}

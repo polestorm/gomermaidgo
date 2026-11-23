@@ -21,8 +21,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/polestorm/gomermaidgo"
 	"github.com/polestorm/gomermaidgo/fonts"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 type entry struct {
@@ -60,15 +60,15 @@ func requirements() map[string]string {
 }
 
 // typeKinds przypisuje typom rozpoznanym w źródle nazwy katalogów korpusu, od których zależą nagłówki.
-var typeKinds = map[string]string{gomermaidgo.TypeSequence: "sequence", gomermaidgo.TypeFlowchart: "flowchart", gomermaidgo.TypeState: "state",
-	gomermaidgo.TypeGantt: "gantt", gomermaidgo.TypeER: "er", gomermaidgo.TypePie: "pie", gomermaidgo.TypeClass: "class", gomermaidgo.TypeTimeline: "timeline",
-	gomermaidgo.TypeJourney: "journey", gomermaidgo.TypeMindmap: "mindmap", gomermaidgo.TypeXYChart: "xychart", gomermaidgo.TypeQuadrant: "quadrant",
-	gomermaidgo.TypeRequirement: "requirement", gomermaidgo.TypeKanban: "kanban", gomermaidgo.TypePacket: "packet", gomermaidgo.TypeRadar: "radar",
-	gomermaidgo.TypeTreemap: "treemap", gomermaidgo.TypeSankey: "sankey", gomermaidgo.TypeGit: "gitgraph", gomermaidgo.TypeBlock: "block",
-	gomermaidgo.TypeArchitecture: "architecture", gomermaidgo.TypeC4: "c4"}
+var typeKinds = map[string]string{mermaid.TypeSequence: "sequence", mermaid.TypeFlowchart: "flowchart", mermaid.TypeState: "state",
+	mermaid.TypeGantt: "gantt", mermaid.TypeER: "er", mermaid.TypePie: "pie", mermaid.TypeClass: "class", mermaid.TypeTimeline: "timeline",
+	mermaid.TypeJourney: "journey", mermaid.TypeMindmap: "mindmap", mermaid.TypeXYChart: "xychart", mermaid.TypeQuadrant: "quadrant",
+	mermaid.TypeRequirement: "requirement", mermaid.TypeKanban: "kanban", mermaid.TypePacket: "packet", mermaid.TypeRadar: "radar",
+	mermaid.TypeTreemap: "treemap", mermaid.TypeSankey: "sankey", mermaid.TypeGit: "gitgraph", mermaid.TypeBlock: "block",
+	mermaid.TypeArchitecture: "architecture", mermaid.TypeC4: "c4"}
 
 // sampleThemes to motywy pokazywane wyrywkowo; kolorowy (default) ma własną kolumnę.
-var sampleThemes = []string{gomermaidgo.ThemeForest, gomermaidgo.ThemeDark}
+var sampleThemes = []string{mermaid.ThemeForest, mermaid.ThemeDark}
 
 var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji", "pie": "Wykres kołowy", "class": "Diagram klas", "timeline": "Oś czasu", "journey": "Podróż użytkownika", "mindmap": "Mapa myśli", "xychart": "Wykres słupkowy i liniowy", "quadrant": "Wykres ćwiartkowy", "kanban": "Tablica kanban", "packet": "Diagram pakietu", "radar": "Wykres radarowy", "treemap": "Mapa drzewa", "requirement": "Diagram wymagań", "sankey": "Wykres Sankeya", "c4": "Diagram C4", "gitgraph": "Graf historii Gita", "block": "Diagram blokowy", "architecture": "Diagram architektury"}
 
@@ -84,7 +84,7 @@ func main() {
 	dir := flag.String("dir", "", "draw every .mmd file of this directory instead of the corpus, grouped by detected type")
 	flag.Parse()
 
-	var opts []gomermaidgo.Option
+	var opts []mermaid.Option
 	// Bez wskazania fontu rysunki używają kroju dołączonego; strona musi go mieć, żeby tekst
 	// pasował do pól.
 	fontFace := fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", fonts.ArimoFamily, base64.StdEncoding.EncodeToString(fonts.Arimo())) +
@@ -97,7 +97,7 @@ func main() {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
-		opts = append(opts, gomermaidgo.WithFont(data), gomermaidgo.WithFontFamily(*family))
+		opts = append(opts, mermaid.WithFont(data), mermaid.WithFontFamily(*family))
 		// Nazwa kroju strony: pierwsza pozycja listy font-family, bez cudzysłowów.
 		name := strings.Trim(strings.TrimSpace(strings.Split(*family, ",")[0]), `'"`)
 		fontFace = fmt.Sprintf("@font-face{font-family:%q;src:url(data:font/ttf;base64,%s)}", name, base64.StdEncoding.EncodeToString(data))
@@ -117,7 +117,7 @@ func main() {
 			fontFace += fmt.Sprintf("@font-face{font-family:%q;%s;src:url(data:font/ttf;base64,%s)}", name, rule, base64.StdEncoding.EncodeToString(styled[i]))
 		}
 		if styled[0] != nil || styled[1] != nil {
-			opts = append(opts, gomermaidgo.WithStyledFonts(styled[0], styled[1]))
+			opts = append(opts, mermaid.WithStyledFonts(styled[0], styled[1]))
 		}
 	}
 	tmp, err := os.MkdirTemp("", "review")
@@ -150,7 +150,7 @@ func main() {
 		var kinds []string
 		for _, f := range files {
 			data, _ := os.ReadFile(f)
-			kind, err := gomermaidgo.DetectType(string(data))
+			kind, err := mermaid.DetectType(string(data))
 			if err != nil {
 				skipped++ // bez nagłówka typu: fragment, którego nie narysuje żaden renderer
 				continue
@@ -196,18 +196,18 @@ func main() {
 			if e.Title == "" {
 				e.Title = filepath.Base(f)
 			}
-			if svg, err := gomermaidgo.Render(e.Source, opts...); err != nil {
+			if svg, err := mermaid.Render(e.Source, opts...); err != nil {
 				e.Err = err.Error()
 			} else {
 				e.SVG = string(svg)
-				styled, _ := gomermaidgo.Render(e.Source, append(opts[:len(opts):len(opts)], gomermaidgo.WithColors(), gomermaidgo.WithShadows())...)
+				styled, _ := mermaid.Render(e.Source, append(opts[:len(opts):len(opts)], mermaid.WithColors(), mermaid.WithShadows())...)
 				e.Styled = string(styled)
 				// Z flagą -themes, wyrywkowo: pierwszy diagram każdego typu i co czwarty z kolei dostają rysunek w jednym
 				// z motywów, na zmianę, żeby dało się je ocenić bez osobnej strony.
 				if first := len(entries) == 0 || entries[len(entries)-1].Kind != kind; *themes && (first || len(entries)%4 == 0) {
 					e.Theme = sampleThemes[themed%len(sampleThemes)]
 					themed++
-					if drawn, err := gomermaidgo.Render(e.Source, append(opts[:len(opts):len(opts)], gomermaidgo.WithTheme(e.Theme))...); err == nil {
+					if drawn, err := mermaid.Render(e.Source, append(opts[:len(opts):len(opts)], mermaid.WithTheme(e.Theme))...); err == nil {
 						e.Themed = string(drawn)
 					}
 				}

@@ -11,5 +11,5 @@ type Fonts struct {
 	Fallback              []byte // krój zapasowy dla znaków spoza powyższych; może być nil
 }
 
-// Build buduje scenę ze źródła. Opcje są wartościami typu gomermaidgo.Option.
+// Build buduje scenę ze źródła. Opcje są wartościami typu mermaid.Option.
 var Build func(source string, options []any) (*scene.Scene, Fonts, error)

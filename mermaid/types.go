@@ -1,4 +1,4 @@
-package gomermaidgo
+package mermaid
 
 import (
 	"github.com/polestorm/gomermaidgo/internal/architecture"

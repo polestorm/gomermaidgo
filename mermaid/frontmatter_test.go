@@ -1,4 +1,4 @@
-package gomermaidgo
+package mermaid
 
 import (
 	"math"
@@ -138,7 +138,7 @@ func TestFitOptions(t *testing.T) {
 
 // REQ: COM-006
 func TestLabelBackingFollowsBackground(t *testing.T) {
-	src := readFile(t, "testdata/corpus/flowchart/005-edge-labels.mmd")
+	src := readFile(t, "../testdata/corpus/flowchart/005-edge-labels.mmd")
 	clear, err := Render(src)
 	if err != nil {
 		t.Fatal(err)
@@ -224,7 +224,7 @@ func TestWrapSettingsFromSource(t *testing.T) {
 
 // REQ: LAY-021
 func TestChainKeepsAxis(t *testing.T) {
-	svg, err := Render(readFile(t, "testdata/corpus/flowchart/026-chain-axis.mmd"), WithFold(FoldOff))
+	svg, err := Render(readFile(t, "../testdata/corpus/flowchart/026-chain-axis.mmd"), WithFold(FoldOff))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -243,7 +243,7 @@ func TestChainKeepsAxis(t *testing.T) {
 
 // REQ: LAY-022
 func TestFoldChains(t *testing.T) {
-	src := readFile(t, "testdata/corpus/flowchart/027-fold-chains.mmd")
+	src := readFile(t, "../testdata/corpus/flowchart/027-fold-chains.mmd")
 	columns := func(opts ...Option) int {
 		svg, err := Render(src, opts...)
 		if err != nil {
@@ -282,7 +282,7 @@ func TestFoldChains(t *testing.T) {
 
 // REQ: LAY-023 LAY-024
 func TestMiddleBranchAndArrowClearance(t *testing.T) {
-	svg, err := Render(readFile(t, "testdata/corpus/flowchart/027-fold-chains.mmd"), WithFoldChains(FoldOff))
+	svg, err := Render(readFile(t, "../testdata/corpus/flowchart/027-fold-chains.mmd"), WithFoldChains(FoldOff))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -320,7 +320,7 @@ func TestMiddleBranchAndArrowClearance(t *testing.T) {
 
 // REQ: LAY-025
 func TestFoldRanks(t *testing.T) {
-	src := readFile(t, "testdata/corpus/flowchart/028-fold-ranks.mmd")
+	src := readFile(t, "../testdata/corpus/flowchart/028-fold-ranks.mmd")
 	leaves := regexp.MustCompile(`<text class="node-label" x="([-\d.]+)" y="([-\d.]+)"[^>]*>(Dokumenty|Zapisy|Audyty|Niezgodności|CAPA|Szkolenia|Zakupy|Dostawcy|Walidacja|Reklamacje|Ryzyko|Przegląd|Infrastruktura|Pomiary)<`)
 	columns := func(src string, opts ...Option) (int, bool) {
 		svg, err := Render(src, opts...)

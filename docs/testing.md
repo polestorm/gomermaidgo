@@ -5,7 +5,7 @@
 | Warstwa | Gdzie | Co sprawdza |
 |---|---|---|
 | korpus | `testdata/corpus/<typ>/*.mmd` | po pliku na grupę elementów profilu; polskie znaki w każdym; linia `%% REQ:` wskazuje wymagania |
-| pliki wzorcowe | `testdata/golden/<typ>/*.svg` | wynik co do bajta; zmiana przez `go test . -update` i przegląd różnicy |
+| pliki wzorcowe | `testdata/golden/<typ>/*.svg` | wynik co do bajta; zmiana przez `go test ./mermaid -update` i przegląd różnicy |
 | pliki wzorcowe modelu | `testdata/golden/<typ>/*.txt` | dla typów grafowych: model grafu z parsera (`Graph.Dump`), obok pliku SVG |
 | niezmienniki układu grafu | `internal/layered/layout_test.go` | cały korpus w czterech kierunkach: węzły nie nachodzą na siebie, ramki rozłączne albo zagnieżdżone, etykiety krawędzi nie kolidują, każda krawędź ma ścieżkę i nie przechodzi przez obcy węzeł; cykle i pętle; graf na granicy limitów |
 | reguły wyglądu | `internal/layered/appearance_test.go` | reguły z przeglądu rysunków (`requirements/layout.md`): odcinki krawędzi równoległe do osi, bez cofania i drobnych uskoków; mostek w każdym przecięciu, także między poziomami podgrafów; równe pola w ciągu; wspólna wysokość skrętu gałęzi; paski stanu złożonego i krótsze strzałki w jego wnętrzu; oś pola z pętlą własną; pakowanie ramek bez połączeń; kolumny w torach |

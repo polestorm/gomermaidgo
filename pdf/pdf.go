@@ -19,16 +19,16 @@ import (
 	"strings"
 	"unicode/utf16"
 
-	"github.com/polestorm/gomermaidgo"
 	"github.com/polestorm/gomermaidgo/internal/bridge"
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/scene"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 // Render zamienia źródło diagramu na dokument PDF o stronie dopasowanej do rysunku. Przyjmuje te
-// same opcje co gomermaidgo.Render. Krój musi być znany z pliku: dołączony albo podany w WithFont;
-// inaczej zwraca gomermaidgo.ErrFontRequired.
-func Render(source string, opts ...gomermaidgo.Option) ([]byte, error) {
+// same opcje co mermaid.Render. Krój musi być znany z pliku: dołączony albo podany w WithFont;
+// inaczej zwraca mermaid.ErrFontRequired.
+func Render(source string, opts ...mermaid.Option) ([]byte, error) {
 	options := make([]any, len(opts))
 	for i, o := range opts {
 		options[i] = o

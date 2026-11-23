@@ -13,8 +13,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/polestorm/gomermaidgo"
 	"github.com/polestorm/gomermaidgo/fonts"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 var svgSize = regexp.MustCompile(`<svg[^>]* width="([\d.]+)" height="([\d.]+)"`)
@@ -46,7 +46,7 @@ func TestCorpus(t *testing.T) {
 			continue
 		}
 		img := decode(t, path, data)
-		svg, _ := gomermaidgo.Render(string(src))
+		svg, _ := mermaid.Render(string(src))
 		m := svgSize.FindSubmatch(svg)
 		w, _ := strconv.ParseFloat(string(m[1]), 64)
 		h, _ := strconv.ParseFloat(string(m[2]), 64)
@@ -102,7 +102,7 @@ func TestScaleBackgroundDeterminism(t *testing.T) {
 	if red < 500 || blue < 100 {
 		t.Errorf("styled colours: red %d, blue %d", red, blue)
 	}
-	withBg, err := RenderScale(src, 1, gomermaidgo.WithBackground("#fff8e1"))
+	withBg, err := RenderScale(src, 1, mermaid.WithBackground("#fff8e1"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -110,7 +110,7 @@ func TestScaleBackgroundDeterminism(t *testing.T) {
 		t.Errorf("background corner: %v", got)
 	}
 	// Cień jest półprzezroczysty: na przezroczystym tle zostają piksele czerni o częściowym kryciu.
-	shadow, err := RenderScale("flowchart TD\nA --> B", 1, gomermaidgo.WithShadows())
+	shadow, err := RenderScale("flowchart TD\nA --> B", 1, mermaid.WithShadows())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -134,14 +134,14 @@ func TestScaleBackgroundDeterminism(t *testing.T) {
 	if _, err := RenderScale(src, 400); !errors.Is(err, ErrTooLarge) {
 		t.Errorf("huge scale: %v", err)
 	}
-	var se *gomermaidgo.SyntaxError
+	var se *mermaid.SyntaxError
 	if _, err := Render("flowchart TD\nA -->"); !errors.As(err, &se) || se.Line != 2 {
 		t.Errorf("syntax error should pass through: %v", err)
 	}
 }
 
 // ink liczy ciemne piksele obrazu.
-func ink(t *testing.T, src string, opts ...gomermaidgo.Option) int {
+func ink(t *testing.T, src string, opts ...mermaid.Option) int {
 	t.Helper()
 	data, err := RenderScale(src, 2, opts...)
 	if err != nil {
@@ -173,15 +173,15 @@ func TestText(t *testing.T) {
 	if plain, marked := ink(t, "flowchart TD\nA[\"oooooooo\"]"), ink(t, "flowchart TD\nA[\"óóóóóóóó\"]"); marked < plain+40 {
 		t.Errorf("letters with marks: %d against %d", marked, plain)
 	}
-	if custom := ink(t, "flowchart TD\nA[\"mmmm\"]", gomermaidgo.WithFont(fonts.ArimoBold())); custom <= base {
+	if custom := ink(t, "flowchart TD\nA[\"mmmm\"]", mermaid.WithFont(fonts.ArimoBold())); custom <= base {
 		t.Errorf("WithFont: %d against %d", custom, base)
 	}
 	// Emoji rysuje krój zapasowy: rakieta zostawia inną ilość farby niż puste pole braku znaku.
 	if emoji, box := ink(t, "flowchart TD\nA[\"🚀🚀🚀🚀\"]"), ink(t, "flowchart TD\nA[\"漢漢漢漢\"]"); emoji < 200 || emoji == box {
 		t.Errorf("emoji ink %d, missing-glyph ink %d", emoji, box)
 	}
-	measure := gomermaidgo.WithMeasure(func(s string, size float64) float64 { return float64(len(s)) * size / 2 })
-	if _, err := Render("flowchart TD\nA --> B", measure); !errors.Is(err, gomermaidgo.ErrFontRequired) {
+	measure := mermaid.WithMeasure(func(s string, size float64) float64 { return float64(len(s)) * size / 2 })
+	if _, err := Render("flowchart TD\nA --> B", measure); !errors.Is(err, mermaid.ErrFontRequired) {
 		t.Errorf("WithMeasure: %v", err)
 	}
 }

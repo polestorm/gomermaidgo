@@ -9,7 +9,7 @@
 | 6 | tory (`%% layout: swimlanes`), krawędzie łamane z mostkami, wyrównywanie pól, rzędy pod proporcje strony | zrobione 2026-11-21 po przeglądzie rysunków |
 | 7 | próba na cudzych diagramach; diagram encji pod proporcje strony; nowe typy: wykres kołowy (`pie`), diagram klas (`classDiagram`), oś czasu (`timeline`), podróż użytkownika (`journey`), mapa myśli (`mindmap`), wykres słupkowy i liniowy (`xychart-beta`), wykres ćwiartkowy (`quadrantChart`) | zrobione 2026-11-21 |
 | 8 | wynik PDF bez pośrednictwa SVG i HTML: opcjonalny pakiet `pdf`, krój osadzony jako podzbiór (ADR 0003) | zrobione 2026-11-21 |
-| 9 | pozostałe typy Mermaid: `kanban`, `packet`, `radar`, `treemap`, `requirementDiagram`, `sankey`, C4, `gitGraph`, `block`, `architecture`; rejestr typów w `types.go` | zrobione 2026-11-22 |
+| 9 | pozostałe typy Mermaid: `kanban`, `packet`, `radar`, `treemap`, `requirementDiagram`, `sankey`, C4, `gitGraph`, `block`, `architecture`; rejestr typów w `mermaid/types.go` | zrobione 2026-11-22 |
 | 10 | składnia spoza diagramów i zgodność z cudzymi źródłami: blok nagłówkowy, dyrektywy, nazwane kształty, przestrzenie nazw klas; program przyjmuje Markdown i flagi `mermaid-cli` | zrobione 2026-11-22 |
 | 11 | wynik PNG: opcjonalny pakiet `png`, własny rasteryzator i kontury glifów (ADR 0004) | zrobione 2026-11-22 |
 | 12 | motywy: własne, pod nazwami Mermaid, wybierane opcją, flagą `-t` albo w źródle; tekst obrócony w scenie (ADR 0005) | zrobione 2026-11-22 |

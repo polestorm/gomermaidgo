@@ -10,7 +10,7 @@ import (
 	"html"
 	"strings"
 
-	"github.com/polestorm/gomermaidgo"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 // CSS to reguły dla strony i wydruku: rysunek mieści się na szerokość i na wysokość strony
@@ -25,15 +25,15 @@ pre.diagram-error strong{display:block;color:#b42318;margin-bottom:.6em}
 // Problem opisuje blok, którego nie udało się narysować.
 type Problem struct {
 	Line int   // linia dokumentu Markdown, w której leży błąd (albo początek bloku)
-	Err  error // błąd z gomermaidgo.Render
+	Err  error // błąd z mermaid.Render
 }
 
 func (p Problem) Error() string { return fmt.Sprintf("line %d: %v", p.Line, p.Err) }
 
 // Options to ustawienia zamiany.
 type Options struct {
-	Render      []gomermaidgo.Option // opcje rysowania wspólne dla wszystkich bloków
-	ErrorPrefix string               // początek komunikatu w miejscu błędnego bloku; domyślnie "Diagram error"
+	Render      []mermaid.Option // opcje rysowania wspólne dla wszystkich bloków
+	ErrorPrefix string           // początek komunikatu w miejscu błędnego bloku; domyślnie "Diagram error"
 }
 
 // fence rozpoznaje linię otwierającą blok ogrodzony: znak ogrodzenia, jego długość i opis.
@@ -69,10 +69,10 @@ func Embed(source string, o Options) (string, []Problem) {
 		prefix = "Diagram error"
 	}
 	return Replace(source, func(b Block) ([]string, error) {
-		svg, err := gomermaidgo.Render(b.Source, o.Render...)
+		svg, err := mermaid.Render(b.Source, o.Render...)
 		if err != nil {
 			at, message := b.Line, err.Error()
-			var se *gomermaidgo.SyntaxError
+			var se *mermaid.SyntaxError
 			if errors.As(err, &se) {
 				message = se.Message // numer linii podajemy sami, w numeracji dokumentu
 				if se.Line > 0 {
@@ -130,7 +130,7 @@ func Replace(source string, replace func(Block) ([]string, error)) (string, []Pr
 		with, err := replace(Block{Index: index, Line: i + 1, Source: strings.Join(body, "\n")})
 		if err != nil {
 			at := i + 1
-			var se *gomermaidgo.SyntaxError
+			var se *mermaid.SyntaxError
 			if errors.As(err, &se) && se.Line > 0 {
 				at += se.Line
 			}

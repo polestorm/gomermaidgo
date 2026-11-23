@@ -4,7 +4,7 @@ Projekt: renderer diagramów zapisanych składnią Mermaid do SVG w czystym Go. 
 standardową, bez JS, wynik powtarzalny co do bajta, SVG z samych elementów podstawowych (rysuje go `gopdfgo`),
 mały kod, który da się przeczytać i zwalidować. Projekt jest agnostyczny wobec odbiorców.
 
-Zacznij od `README.md`, potem `docs/roadmap.md`, `docs/profile.md` i `docs/provenance.md`.
+Zacznij od `README.md` (pakiet główny to `mermaid/`), potem `docs/roadmap.md`, `docs/profile.md` i `docs/provenance.md`.
 
 Zasady:
 - **czysty rodowód** (`docs/provenance.md`): piszemy ze specyfikacji i publikacji. Nie czytaj, nie kopiuj i nie przenoś
@@ -17,7 +17,7 @@ Zasady:
 - wzorcem są normy (SVG W3C, OpenType) i dokumentacja składni Mermaid, nie zachowanie innych rendererów;
 - każdy obsługiwany element składni ma wymaganie w `requirements/`, plik w `testdata/corpus/` z linią `%% REQ:` i wpis
   w `docs/profile.md`; element nieobsługiwany daje błąd z numerem linii;
-- pliki wzorcowe `testdata/golden/` zmieniamy przez `go test . -update` i oglądamy różnicę przed commitem;
+- pliki wzorcowe `testdata/golden/` zmieniamy przez `go test ./mermaid -update` i oglądamy różnicę przed commitem;
 - wygląd jest własny i stały: nie odtwarzamy motywów Mermaid ani wyniku co do piksela; celem jest rysunek czytelny
   i przewidywalny;
 - każda decyzja = plik w `docs/adr/`;

@@ -20,7 +20,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/polestorm/gomermaidgo"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 // texts zwraca wyrazy rysunku z krotnością: zawartość elementów text oraz foreignObject.
@@ -116,7 +116,7 @@ func main() {
 			os.Exit(1)
 		}
 		var ours map[string]int
-		oursSVG, err := gomermaidgo.Render(string(src))
+		oursSVG, err := mermaid.Render(string(src))
 		if err == nil {
 			ours, err = texts(oursSVG)
 		}

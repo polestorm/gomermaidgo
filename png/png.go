@@ -14,13 +14,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/polestorm/gomermaidgo"
 	"github.com/polestorm/gomermaidgo/internal/bridge"
 	"github.com/polestorm/gomermaidgo/internal/csscolor"
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/glyf"
 	"github.com/polestorm/gomermaidgo/internal/raster"
 	"github.com/polestorm/gomermaidgo/internal/scene"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 // DefaultScale to liczba pikseli obrazu na piksel rysunku w Render: 2, czyli 192 punkty na cal,
@@ -37,14 +37,14 @@ var ErrTooLarge = errors.New("png: the image would be too large; use a smaller s
 var ErrOutlines = glyf.ErrOutlines
 
 // Render zamienia źródło diagramu na obraz PNG w skali DefaultScale, z przezroczystym tłem, jeśli
-// nie podano WithBackground. Przyjmuje te same opcje co gomermaidgo.Render. Krój musi być znany
-// z pliku: dołączony albo podany w WithFont; inaczej zwraca gomermaidgo.ErrFontRequired.
-func Render(source string, opts ...gomermaidgo.Option) ([]byte, error) {
+// nie podano WithBackground. Przyjmuje te same opcje co mermaid.Render. Krój musi być znany
+// z pliku: dołączony albo podany w WithFont; inaczej zwraca mermaid.ErrFontRequired.
+func Render(source string, opts ...mermaid.Option) ([]byte, error) {
 	return RenderScale(source, DefaultScale, opts...)
 }
 
 // RenderScale działa jak Render, w podanej skali: 1 daje obraz o wymiarach rysunku SVG w pikselach.
-func RenderScale(source string, scale float64, opts ...gomermaidgo.Option) ([]byte, error) {
+func RenderScale(source string, scale float64, opts ...mermaid.Option) ([]byte, error) {
 	if !(scale > 0) || math.IsInf(scale, 0) {
 		return nil, fmt.Errorf("png: scale %v is not a positive number", scale)
 	}
@@ -88,7 +88,7 @@ func (p *painter) face(data []byte) (*face, error) {
 		return f, nil
 	}
 	if len(data) == 0 {
-		return nil, gomermaidgo.ErrFontRequired
+		return nil, mermaid.ErrFontRequired
 	}
 	outlines, err := glyf.Parse(data)
 	if err != nil {

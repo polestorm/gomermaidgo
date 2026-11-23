@@ -1,10 +1,10 @@
-// Package gomermaidgo renderuje diagramy zapisane składnią Mermaid do SVG w czystym Go:
+// Package mermaid renderuje diagramy zapisane składnią Mermaid do SVG w czystym Go:
 // bez JavaScriptu, bez przeglądarki i bez zależności poza biblioteką standardową.
 // Ten sam tekst i te same opcje dają zawsze ten sam SVG co do bajta.
 //
 // Obsługiwany zakres składni opisuje docs/profile.md. Element spoza zakresu daje błąd
 // z numerem linii, nigdy niepełny rysunek.
-package gomermaidgo
+package mermaid
 
 import (
 	"errors"

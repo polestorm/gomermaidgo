@@ -16,8 +16,8 @@ import (
 	"testing"
 	"unicode/utf16"
 
-	"github.com/polestorm/gomermaidgo"
 	"github.com/polestorm/gomermaidgo/fonts"
+	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
 func corpus(t *testing.T) []string {
@@ -155,7 +155,7 @@ func TestCorpus(t *testing.T) {
 			continue
 		}
 		objs := objects(t, f, doc)
-		svg, err := gomermaidgo.Render(src, gomermaidgo.WithEmojiText()) // PDF trzyma emoji jako tekst
+		svg, err := mermaid.Render(src, mermaid.WithEmojiText()) // PDF trzyma emoji jako tekst
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -186,7 +186,7 @@ func TestCorpus(t *testing.T) {
 // poprawny dokument, a cień jest kształtem półprzezroczystym.
 func TestDeterministicAndOptions(t *testing.T) {
 	src := source(t, "../testdata/corpus/flowchart/015-styles.mmd")
-	opts := []gomermaidgo.Option{gomermaidgo.WithBackground("#ffffff"), gomermaidgo.WithColors(), gomermaidgo.WithShadows(), gomermaidgo.WithFontSize(20)}
+	opts := []mermaid.Option{mermaid.WithBackground("#ffffff"), mermaid.WithColors(), mermaid.WithShadows(), mermaid.WithFontSize(20)}
 	a, err := Render(src, opts...)
 	if err != nil {
 		t.Fatal(err)
@@ -269,13 +269,13 @@ func TestSubset(t *testing.T) {
 // korzysta z kroju zwykłego.
 func TestFonts(t *testing.T) {
 	src := "flowchart TD\nA[\"`**gruby** i *pochylony*`\"] --> B"
-	if _, err := Render(src, gomermaidgo.WithMeasure(func(string, float64) float64 { return 10 })); !errors.Is(err, gomermaidgo.ErrFontRequired) {
+	if _, err := Render(src, mermaid.WithMeasure(func(string, float64) float64 { return 10 })); !errors.Is(err, mermaid.ErrFontRequired) {
 		t.Errorf("custom measure: got %v", err)
 	}
-	if _, err := Render(src, gomermaidgo.WithFontFamily("Arial")); !errors.Is(err, gomermaidgo.ErrFontRequired) {
+	if _, err := Render(src, mermaid.WithFontFamily("Arial")); !errors.Is(err, mermaid.ErrFontRequired) {
 		t.Errorf("font known by name only: got %v", err)
 	}
-	doc, err := Render(src, gomermaidgo.WithFont(fonts.ArimoItalic()), gomermaidgo.WithFontFamily("Własny"))
+	doc, err := Render(src, mermaid.WithFont(fonts.ArimoItalic()), mermaid.WithFontFamily("Własny"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -324,7 +324,7 @@ func FuzzRender(f *testing.F) {
 		f.Add(string(b))
 	}
 	f.Fuzz(func(t *testing.T, src string) {
-		_, svgErr := gomermaidgo.Render(src)
+		_, svgErr := mermaid.Render(src)
 		doc, err := Render(src)
 		if (svgErr == nil) != (err == nil) {
 			t.Fatalf("SVG error %v, PDF error %v", svgErr, err)
