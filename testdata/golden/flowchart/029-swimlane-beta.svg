@@ -1,51 +1,49 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1293.96" height="396" viewBox="-168.29 -12 1293.96 396" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="867.67" height="407.2" viewBox="-66 -12 867.67 407.2" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Rozpatrzenie reklamacji</title>
-<defs><clipPath id="label-holes-25ea79ac"><path d="M-168.29 -12 L1125.67 -12 L1125.67 384 L-168.29 384 M495 302 L495 322 L529.67 322 L529.67 302 M590.17 159 L590.17 179 L622.18 179 L622.18 159"/></clipPath></defs>
-<rect class="lane" x="-156.29" y="0" width="1269.96" height="120" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane-header" x="-156.29" y="0" width="138.29" height="120" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<g clip-path="url(#label-holes-25ea79ac)"><rect class="lane" x="-156.29" y="120" width="1269.96" height="132" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-cbbc8a70"><path d="M-66 -12 L801.67 -12 L801.67 395.2 L-66 395.2 M352 313 L352 333 L386.67 333 L386.67 313 M353.33 181 L353.33 201 L385.34 201 L385.34 181"/></clipPath></defs>
+<rect class="lane" x="-54" y="0" width="843.67" height="120" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-54" y="0" width="36" height="120" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-cbbc8a70)"><rect class="lane" x="-54" y="120" width="843.67" height="142.29" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
-<rect class="lane-header" x="-156.29" y="120" width="138.29" height="132" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<g clip-path="url(#label-holes-25ea79ac)"><rect class="lane" x="-156.29" y="252" width="1269.96" height="120" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-54" y="120" width="36" height="142.29" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-cbbc8a70)"><rect class="lane" x="-54" y="262.29" width="843.67" height="120.91" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
-<rect class="lane-header" x="-156.29" y="252" width="138.29" height="120" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<path class="edge" d="M137 60 L141.3 60 C145.7 60 149.3 63.6 149.3 68 L149.3 178 C149.3 182.4 152.9 186 157.3 186 L172.6 186" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M289 186 L324.6 186" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-25ea79ac)"><path class="edge" d="M449.26 194.55 L463.63 194.55 C468.03 194.55 471.63 198.15 471.63 202.55 L471.63 304 C471.63 308.4 475.23 312 479.63 312 L494 312 L552.27 312" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="lane-header" x="-54" y="262.29" width="36" height="120.91" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M73 92 L73 150.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M146 191 L181.6 191" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-cbbc8a70)"><path class="edge" d="M255.5 229 L255.5 315 C255.5 319.4 259.1 323 263.5 323 L321 323 L409.27 323" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<path class="edge" d="M651.67 312 L687.27 312" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M800.67 312 L806.97 312 C811.37 312 814.97 308.4 814.97 304 L814.97 206 C814.97 201.6 818.57 198 822.97 198 L840.27 198" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-25ea79ac)"><path class="edge" d="M434.7 169 L840.27 169" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M573.67 323 L609.27 323" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M694.67 291 L694.67 221.4" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-cbbc8a70)"><path class="edge" d="M321 191 L609.27 191" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<path class="edge" d="M943.67 186 L947.97 186 C952.37 186 955.97 182.4 955.97 178 L955.97 68 C955.97 63.6 959.57 60 963.97 60 L979.27 60" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="181,186 169,180 169,192" fill="#3b4754"/>
-<polygon class="arrowhead" points="333,186 321,180 321,192" fill="#3b4754"/>
-<polygon class="arrowhead" points="560.67,312 548.67,306 548.67,318" fill="#3b4754"/>
-<polygon class="arrowhead" points="695.67,312 683.67,306 683.67,318" fill="#3b4754"/>
-<polygon class="arrowhead" points="848.67,198 836.67,192 836.67,204" fill="#3b4754"/>
-<polygon class="arrowhead" points="848.67,169 836.67,163 836.67,175" fill="#3b4754"/>
-<polygon class="arrowhead" points="987.67,60 975.67,54 975.67,66" fill="#3b4754"/>
-<rect class="node" x="0" y="28" width="137" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="181" y="154" width="108" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="398.5,148 464,186 398.5,224 333,186" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="560.67" y="280" width="91" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="695.67" y="280" width="105" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="848.67" y="154" width="95" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="987.67" y="28" width="108" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="lane-title" x="-87.14" y="65.6" text-anchor="middle" fill="#1b1f24">Klient</text>
-<text class="lane-title" x="-87.14" y="191.6" text-anchor="middle" fill="#1b1f24">Obsługa klienta</text>
-<text class="lane-title" x="-87.14" y="317.6" text-anchor="middle" fill="#1b1f24">Dział jakości</text>
-<text class="node-label" x="68.5" y="55.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie</text>
-<text class="node-label" x="68.5" y="75.6" text-anchor="middle" fill="#1b1f24">reklamacji</text>
-<text class="node-label" x="235" y="191.6" text-anchor="middle" fill="#1b1f24">Rejestracja</text>
-<text class="node-label" x="398.5" y="191.6" text-anchor="middle" fill="#1b1f24">Zasadna?</text>
-<text class="node-label" x="606.17" y="307.6" text-anchor="middle" fill="#1b1f24">Analiza</text>
-<text class="node-label" x="606.17" y="327.6" text-anchor="middle" fill="#1b1f24">przyczyn</text>
-<text class="node-label" x="748.17" y="307.6" text-anchor="middle" fill="#1b1f24">Działania</text>
-<text class="node-label" x="748.17" y="327.6" text-anchor="middle" fill="#1b1f24">korygujące</text>
-<text class="node-label" x="896.17" y="181.6" text-anchor="middle" fill="#1b1f24">Pismo do</text>
-<text class="node-label" x="896.17" y="201.6" text-anchor="middle" fill="#1b1f24">klienta</text>
-<text class="node-label" x="1041.67" y="65.6" text-anchor="middle" fill="#1b1f24">Odpowiedź</text>
-<text class="edge-label" x="512.34" y="317.6" text-anchor="middle" fill="#1b1f24">Tak</text>
-<text class="edge-label" x="606.17" y="174.6" text-anchor="middle" fill="#1b1f24">Nie</text>
+<path class="edge" d="M694.67 169 L694.67 90.4" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="73,159 79,147 67,147" fill="#3b4754"/>
+<polygon class="arrowhead" points="190,191 178,185 178,197" fill="#3b4754"/>
+<polygon class="arrowhead" points="417.67,323 405.67,317 405.67,329" fill="#3b4754"/>
+<polygon class="arrowhead" points="617.67,323 605.67,317 605.67,329" fill="#3b4754"/>
+<polygon class="arrowhead" points="694.67,213 688.67,225 700.67,225" fill="#3b4754"/>
+<polygon class="arrowhead" points="617.67,191 605.67,185 605.67,197" fill="#3b4754"/>
+<polygon class="arrowhead" points="694.67,82 688.67,94 700.67,94" fill="#3b4754"/>
+<rect class="node" x="0" y="28" width="146" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="159" width="146" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="255.5,153 321,191 255.5,229 190,191" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="417.67" y="291" width="156" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="617.67" y="38" width="154" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="617.67" y="169" width="154" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="617.67" y="291" width="154" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="lane-title" x="-30.4" y="60" text-anchor="middle" fill="#1b1f24" transform="rotate(-90 -30.4 60)">Klient</text>
+<text class="lane-title" x="-30.4" y="191.14" text-anchor="middle" fill="#1b1f24" transform="rotate(-90 -30.4 191.14)">Obsługa klienta</text>
+<text class="lane-title" x="-30.4" y="322.75" text-anchor="middle" fill="#1b1f24" transform="rotate(-90 -30.4 322.75)">Dział jakości</text>
+<text class="node-label" x="73" y="55.6" text-anchor="middle" fill="#1b1f24">Zgłoszenie</text>
+<text class="node-label" x="73" y="75.6" text-anchor="middle" fill="#1b1f24">reklamacji</text>
+<text class="node-label" x="73" y="196.6" text-anchor="middle" fill="#1b1f24">Rejestracja</text>
+<text class="node-label" x="255.5" y="196.6" text-anchor="middle" fill="#1b1f24">Zasadna?</text>
+<text class="node-label" x="495.67" y="328.6" text-anchor="middle" fill="#1b1f24">Analiza przyczyn</text>
+<text class="node-label" x="694.67" y="65.6" text-anchor="middle" fill="#1b1f24">Odpowiedź</text>
+<text class="node-label" x="694.67" y="196.6" text-anchor="middle" fill="#1b1f24">Pismo do klienta</text>
+<text class="node-label" x="694.67" y="318.6" text-anchor="middle" fill="#1b1f24">Działania</text>
+<text class="node-label" x="694.67" y="338.6" text-anchor="middle" fill="#1b1f24">korygujące</text>
+<text class="edge-label" x="369.34" y="328.6" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="369.34" y="196.6" text-anchor="middle" fill="#1b1f24">Nie</text>
 </svg>

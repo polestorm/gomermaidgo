@@ -1,0 +1,12 @@
+flowchart LR layout=swimlanes
+subgraph przyj title="Przyjęcie"
+subgraph kontrola title="Kontrola"
+node start stadium "Start" in=przyj
+node praca rect "Wykonanie" in=przyj
+node popr rect "Poprawki" in=przyj
+node gotowe rhombus "Gotowe?" in=kontrola
+node rejestr cylinder "Rejestr kontroli" in=kontrola
+edge start -> praca normal none/arrow len=1
+edge praca -> gotowe normal none/arrow len=1
+edge gotowe -> popr normal none/arrow len=1 "Nie"
+edge popr -> praca normal none/arrow len=1

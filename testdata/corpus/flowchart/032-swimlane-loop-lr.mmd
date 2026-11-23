@@ -1,0 +1,16 @@
+%% REQ: LAY-028 FLOW-028 FLOW-029
+%% Tytuł: Pętla poprawek w torach poziomych
+%% Sprawdza: krawędź wsteczna między polami, których boki dzielą inne krawędzie, biegnie prosto; tytuły torów poziomych obrócone; pole bez krawędzi stoi za poprzednim polem swojego toru.
+swimlane-beta LR
+  subgraph przyj [Przyjęcie]
+    start([Start])
+    praca[Wykonanie]
+    popr[Poprawki]
+  end
+  subgraph kontrola [Kontrola]
+    gotowe{Gotowe?}
+    rejestr[(Rejestr kontroli)]
+  end
+  start --> praca --> gotowe
+  gotowe -->|Nie| popr
+  popr --> praca

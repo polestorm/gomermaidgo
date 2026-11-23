@@ -1,0 +1,31 @@
+%% REQ: LAY-027 LAY-029
+%% Tytuł: Przekazania między torami w jednej warstwie
+%% Sprawdza: krawędź między torami bez etykiety biegnie poziomo w jednej warstwie (łańcuch przez trzy tory, przekazania w lewo i w prawo), krawędzie z etykietą i przechodzące przez zajęty tor schodzą warstwę niżej, zejście jednej krawędzi nie leży na dojściu innej.
+swimlane-beta TD
+  zgl[Zgłoszenie] --> rej[Rejestracja] --> ocena[Ocena] --> anal[Analiza] --> wdr[Wdrożenie] --> szk[Szkolenie] --> arch[Archiwum]
+  anal --> prz[Przegląd] --> dec{Zgodne?} -->|Tak| zatw[Zatwierdzenie] --> wdr
+  dec -->|Nie| odrz[Odrzucenie] --> kor[Korekta] --> pismo[Pismo] & rap[Raport]
+  subgraph kl [Klient]
+    zgl
+  end
+  subgraph bok [Obsługa]
+    rej
+    pismo
+  end
+  subgraph jak [Jakość]
+    ocena
+    anal
+    wdr
+    prz
+    kor
+    rap
+  end
+  subgraph pr [Dział prawny]
+    dec
+    zatw
+    odrz
+  end
+  subgraph kad [Kadry]
+    szk
+    arch
+  end

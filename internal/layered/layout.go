@@ -155,6 +155,7 @@ type ledge struct {
 	// tego podgrafu, między polem a punktem na jego ramce.
 	upperCont, lowerCont *ledge
 	part                 bool // odcinek krawędzi z poziomu wyżej; nie jest rysowany osobno
+	flat                 bool // LAY-027: oba końce w jednej warstwie, krawędź biegnie w poprzek
 }
 
 // level to układ jednego zakresu: całego diagramu albo wnętrza podgrafu.
@@ -1089,96 +1090,132 @@ func (l *layouter) rank(lv *level) {
 		}
 	}
 
+	// LAY-027: w diagramie torów krawędź między torami może zostać w jednej warstwie i biec
+	// w poprzek, prosto od boku pola do boku pola, jak przekazanie sprawy między rolami. Dotyczy
+	// krawędzi bez etykiety i bez długości nadanej przez autora; płaska krawędź nie może przechodzić
+	// przez pole w torze pośrednim ani biec po płaskiej krawędzi tej samej warstwy (wtedy wraca do
+	// zwykłej długości i podział liczony jest od nowa).
+	zero := map[*ledge]bool{}
+	if l.lanes != nil {
+		for _, e := range lv.edges {
+			if e.e.From != "" && e.u != e.v && e.u.kind == kindNode && e.v.kind == kindNode && e.u.lane != e.v.lane &&
+				extra[e] == 0 && e.e.MinLen <= 1 && e.e.Style != graph.Invisible {
+				zero[e] = true
+			}
+		}
+	}
 	// Warstwy: najdłuższa ścieżka od źródeł, z minimalną długością krawędzi.
-	minLen := func(e *ledge) int { return e.e.MinLen + extra[e] }
+	minLen := func(e *ledge) int {
+		if zero[e] {
+			return 0
+		}
+		return e.e.MinLen + extra[e]
+	}
 	indeg := make([]int, len(lv.items))
 	succ := make([][]*ledge, len(lv.items))
 	for _, e := range lv.edges {
 		indeg[index[e.v]]++
 		succ[index[e.u]] = append(succ[index[e.u]], e)
 	}
-	rank := make([]int, len(lv.items))
-	// Punkty wejścia leżą w warstwie zerowej, nad całą zawartością podgrafu.
-	hasTopPort := false
-	for _, it := range lv.items {
-		hasTopPort = hasTopPort || (it.kind == kindPort && it.portTop)
-	}
-	if hasTopPort {
-		for i, it := range lv.items {
-			if it.kind != kindPort || !it.portTop {
-				rank[i] = 1
-			}
+	var rank []int
+	for {
+		rank = make([]int, len(lv.items))
+		indeg := append([]int(nil), indeg...)
+		// Punkty wejścia leżą w warstwie zerowej, nad całą zawartością podgrafu.
+		hasTopPort := false
+		for _, it := range lv.items {
+			hasTopPort = hasTopPort || (it.kind == kindPort && it.portTop)
 		}
-	}
-	var queue []int
-	for i := range lv.items {
-		if indeg[i] == 0 {
-			queue = append(queue, i)
-		}
-	}
-	for len(queue) > 0 {
-		i := queue[0]
-		queue = queue[1:]
-		for _, e := range succ[i] {
-			j := index[e.v]
-			rank[j] = max(rank[j], rank[i]+minLen(e))
-			if indeg[j]--; indeg[j] == 0 {
-				queue = append(queue, j)
-			}
-		}
-	}
-	// Źródła dosuwamy do następników, żeby nie wisiały wysoko nad resztą.
-	for i := range lv.items {
-		if len(succ[i]) == 0 || lv.items[i].kind == kindPort {
-			continue
-		}
-		hasIn := false
-		for _, e := range lv.edges {
-			if e.v == lv.items[i] {
-				hasIn = true
-				break
-			}
-		}
-		if hasIn {
-			continue
-		}
-		best := math.MaxInt
-		for _, e := range succ[i] {
-			best = min(best, rank[index[e.v]]-minLen(e))
-		}
-		rank[i] = max(rank[i], best)
-	}
-	// Podział z najdłuższej ścieżki jest dopuszczalny; sympleks sieciowy skraca w nim krawędzie.
-	// Punkty na ramce nie biorą udziału: ich warstwy są ustalone.
-	var inner []int
-	number := map[int]int{}
-	for i, it := range lv.items {
-		if it.kind != kindPort {
-			number[i] = len(inner)
-			inner = append(inner, i)
-		}
-	}
-	var triples [][3]int
-	for _, e := range lv.edges {
-		a, okA := number[index[e.u]]
-		b, okB := number[index[e.v]]
-		if okA && okB {
-			triples = append(triples, [3]int{a, b, minLen(e)})
-		}
-	}
-	if len(triples) > 0 {
-		local := make([]int, len(inner))
-		for k, i := range inner {
-			local[k] = rank[i]
-		}
-		networkSimplex(len(inner), triples, local)
-		base := 0
 		if hasTopPort {
-			base = 1
+			for i, it := range lv.items {
+				if it.kind != kindPort || !it.portTop {
+					rank[i] = 1
+				}
+			}
 		}
-		for k, i := range inner {
-			rank[i] = local[k] + base
+		var queue []int
+		for i := range lv.items {
+			if indeg[i] == 0 {
+				queue = append(queue, i)
+			}
 		}
+		for len(queue) > 0 {
+			i := queue[0]
+			queue = queue[1:]
+			for _, e := range succ[i] {
+				j := index[e.v]
+				rank[j] = max(rank[j], rank[i]+minLen(e))
+				if indeg[j]--; indeg[j] == 0 {
+					queue = append(queue, j)
+				}
+			}
+		}
+		// Źródła dosuwamy do następników, żeby nie wisiały wysoko nad resztą.
+		for i := range lv.items {
+			if len(succ[i]) == 0 || lv.items[i].kind == kindPort {
+				continue
+			}
+			hasIn := false
+			for _, e := range lv.edges {
+				if e.v == lv.items[i] {
+					hasIn = true
+					break
+				}
+			}
+			if hasIn {
+				continue
+			}
+			best := math.MaxInt
+			for _, e := range succ[i] {
+				best = min(best, rank[index[e.v]]-minLen(e))
+			}
+			rank[i] = max(rank[i], best)
+		}
+		// Podział z najdłuższej ścieżki jest dopuszczalny; sympleks sieciowy skraca w nim krawędzie.
+		// Punkty na ramce nie biorą udziału: ich warstwy są ustalone.
+		var inner []int
+		number := map[int]int{}
+		for i, it := range lv.items {
+			if it.kind != kindPort {
+				number[i] = len(inner)
+				inner = append(inner, i)
+			}
+		}
+		var triples [][3]int
+		for _, e := range lv.edges {
+			a, okA := number[index[e.u]]
+			b, okB := number[index[e.v]]
+			if okA && okB {
+				triples = append(triples, [3]int{a, b, minLen(e)})
+			}
+		}
+		if len(triples) > 0 {
+			local := make([]int, len(inner))
+			for k, i := range inner {
+				local[k] = rank[i]
+			}
+			networkSimplex(len(inner), triples, local)
+			base := 0
+			if hasTopPort {
+				base = 1
+			}
+			for k, i := range inner {
+				rank[i] = local[k] + base
+			}
+		}
+		if l.lanes != nil {
+			l.placeLoose(lv, rank, index)
+		}
+		bad := l.flatConflicts(lv, rank, index, zero)
+		if len(bad) == 0 {
+			break
+		}
+		for _, e := range bad {
+			delete(zero, e)
+		}
+	}
+	for e := range zero {
+		e.flat = rank[index[e.u]] == rank[index[e.v]]
 	}
 	if l.rankLimit > 0 {
 		l.boundRankWidth(lv, rank, succ, index, minLen)
@@ -1206,6 +1243,9 @@ func (l *layouter) rank(lv *level) {
 
 	// Punkty pomocnicze i pole etykiety na każdej krawędzi dłuższej niż jedna warstwa.
 	for _, e := range lv.edges {
+		if e.flat {
+			continue // płaska krawędź nie ma punktów pośrednich ani sąsiadów w warstwach obok
+		}
 		span := e.v.rank - e.u.rank
 		labelRank := -1
 		if len(e.e.Label) > 0 {

@@ -183,7 +183,7 @@ func (l *layouter) spreadPorts() {
 	}
 	for _, s := range append([]string{""}, l.subgraphIDs()...) {
 		for _, e := range l.levels[s].edges {
-			if e.e.Style == graph.Invisible {
+			if e.e.Style == graph.Invisible || e.flat {
 				continue
 			}
 			next, prev := e.v.nodeX(), e.u.nodeX()
@@ -624,6 +624,18 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 		r.side = first.sideExit != 0
 		last := len(pts) - 1
 		r.top, r.bottom = pts[0], pts[last]
+		if e.flat {
+			r.flat = true
+			dir := 1.0
+			if pts[last].x < pts[0].x {
+				dir = -1
+			}
+			pts[0].x += dir * l.headLength(topHead)
+			pts[last].x -= dir * l.headLength(bottomHead)
+			r.pts = pts
+			routes = append(routes, r)
+			continue
+		}
 		pts[0].y += l.headLength(topHead)
 		pts[last].y -= l.headLength(bottomHead)
 		// Punkty pośrednie leżące na jednej prostej z sąsiadami są zbędne, a punkt, który po
@@ -1089,6 +1101,15 @@ func inset(it *item, off float64) float64 {
 // route zwraca punkty krawędzi od górnego końca do dolnego. Koniec leżący głębiej, w podgrafie,
 // jest prowadzony odcinkiem z układu tego podgrafu: od pola do punktu na ramce albo odwrotnie.
 func (l *layouter) route(e *ledge) []routePoint {
+	if e.flat {
+		// LAY-027: od boku pola do boku pola, w poprzek, na wysokości środków obu pól.
+		dir := 1.0
+		if e.v.x < e.u.x {
+			dir = -1
+		}
+		return []routePoint{{e.u.nodeX() + dir*e.u.nodeW()/2, e.u.y}, {e.v.nodeX() - dir*e.v.nodeW()/2, e.v.y}}
+	}
+	l.alignChain(e)
 	var pts []routePoint
 	switch {
 	case e.upperCont != nil:
@@ -1157,6 +1178,7 @@ type edgeRoute struct {
 	// (0: przed odcinkiem poprzecznym albo cały odcinek prosty, 1: za odcinkiem poprzecznym).
 	runHops map[[2]int][]float64
 	side    bool // pierwszy odcinek wychodzi w poprzek z bocznego wierzchołka rombu
+	flat    bool // LAY-027: cała krawędź to jeden odcinek w poprzek, w jednej warstwie
 	order   int  // kolejność rysowania: krawędź późniejsza przeskakuje nad wcześniejszą
 }
 
@@ -1258,6 +1280,10 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 	var jogs []*jog
 	for _, r := range routes {
 		r.track = map[int]float64{}
+		if r.flat {
+			r.track[0] = r.pts[0].y // odcinek poprzeczny na wysokości pól, poza odstępem warstw
+			continue
+		}
 		for i := 0; i+1 < len(r.pts); i++ {
 			a, b := r.pts[i], r.pts[i+1]
 			if i == 0 && r.side {
@@ -1314,12 +1340,48 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 			}
 			tracks = max(tracks, j.track+1)
 		}
+		// Odcinek, który zaczyna się w osi, w której inny się kończy, biegnie wyżej od niego: inaczej
+		// zejście jednej krawędzi i dojście drugiej leżą na sobie i wyglądają jak połączenie pól.
+		for round := 0; round < 2*len(group); round++ {
+			changed := false
+			for _, p := range group {
+				for _, q := range group {
+					if p != q && math.Abs(p.a.x-q.b.x) < straightTolerance && p.track <= q.track {
+						p.track = q.track + 1
+						changed = true
+					}
+				}
+			}
+			for i, j := range group {
+				for _, prev := range group[:i] {
+					m := l.u(5)
+					if (prev.b.x > prev.a.x) != (j.b.x > j.a.x) {
+						m = 0
+					}
+					if prev.lo+l.u(5)-m < j.hi-l.u(5)+m && j.lo+l.u(5)-m < prev.hi-l.u(5)+m && j.track == prev.track {
+						j.track++
+						changed = true
+					}
+				}
+			}
+			if !changed {
+				break
+			}
+		}
+		for _, j := range group {
+			tracks = max(tracks, j.track+1)
+		}
 		lo, hi := maxA+l.u(7), minB-l.u(7)
 		for _, j := range group {
 			lo, hi = math.Max(lo, j.a.y+j.padA), math.Min(hi, j.b.y-j.padB)
 		}
 		if hi < lo {
-			lo, hi = (maxA+minB)/2, (maxA+minB)/2
+			// Za mało miejsca na zapasy przy narożnikach i grotach: tory zajmują cały odstęp, żeby
+			// odcinki różnych krawędzi nie wypadły na jednej wysokości.
+			lo, hi = maxA+l.u(3), minB-l.u(3)
+			if hi < lo || tracks == 1 {
+				lo, hi = (maxA+minB)/2, (maxA+minB)/2
+			}
 		}
 		step := 0.0
 		if tracks > 1 {
@@ -1340,6 +1402,10 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 	e, pts := r.e, r.pts
 	from := len(l.sc.Items)
 	defer func() { l.repaint(from, len(l.sc.Items), e.e.Paint, colorLine) }()
+	if r.flat {
+		l.drawFlatEdge(r)
+		return
+	}
 	l.headAt(r.topHead, r.top.x, r.top.y, 0, -1)
 	l.headAt(r.bottomHead, r.bottom.x, r.bottom.y, 0, 1)
 	// Opisy przy końcach (liczność): obok linii, tuż przy polu.
@@ -1661,4 +1727,125 @@ func withoutTurnBacks(pts []routePoint) []routePoint {
 		out = append(out, p)
 	}
 	return out
+}
+
+// drawFlatEdge rysuje płaską krawędź (LAY-027): prosty odcinek w poprzek osi warstw, z mostkami nad
+// krawędziami biegnącymi wzdłuż osi, i zakończenia skierowane w boki pól.
+func (l *layouter) drawFlatEdge(r *edgeRoute) {
+	e := r.e
+	from := len(l.sc.Items)
+	defer func() { l.repaint(from, len(l.sc.Items), e.e.Paint, colorLine) }()
+	a, b := r.pts[0], r.pts[len(r.pts)-1]
+	dir := 1.0
+	if b.x < a.x {
+		dir = -1
+	}
+	l.headAt(r.topHead, r.top.x, r.top.y, -dir, 0)
+	l.headAt(r.bottomHead, r.bottom.x, r.bottom.y, dir, 0)
+	segments := []scene.Segment{{Cmd: 'M', To: l.point(a.x, a.y)}}
+	hops := append([]float64(nil), r.hops[0]...)
+	if dir < 0 {
+		sort.Sort(sort.Reverse(sort.Float64Slice(hops)))
+	}
+	for _, x := range hops {
+		const q = 0.55
+		hh := l.u(6)
+		segments = append(segments,
+			scene.Segment{Cmd: 'L', To: l.point(x-dir*hh, a.y)},
+			scene.Segment{Cmd: 'C', C1: l.point(x-dir*hh, a.y-hh*q), C2: l.point(x-dir*hh*q, a.y-hh), To: l.point(x, a.y-hh)},
+			scene.Segment{Cmd: 'C', C1: l.point(x+dir*hh*q, a.y-hh), C2: l.point(x+dir*hh, a.y-hh*q), To: l.point(x+dir*hh, a.y)})
+	}
+	segments = append(segments, scene.Segment{Cmd: 'L', To: l.point(b.x, b.y)})
+	width, dash := l.strokeOf(e.e)
+	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "edge", Segments: segments,
+		Stroke: colorLine, StrokeWidth: width, Dash: dash})
+}
+
+// alignChain (LAY-028) przesuwa punkty pośrednie krawędzi, stojące w jednej osi, w oś punktu
+// zaczepienia jednego z końców, jeśli mają tam miejsce: krawędź biegnie wtedy prosto albo skręca
+// raz, zamiast zejść z punktu zaczepienia do osi pól i wrócić (np. krawędź wsteczna między polami,
+// których boki dzielą inne krawędzie). Punkty stojące już w osi jednego z końców zostają; przesunięte
+// trafiają najpierw w oś dolnego końca, potem górnego.
+// Etykieta przesuwa się razem z punktami, jeśli mieści się w wolnym miejscu warstwy; punkty w torze
+// zostają w jego granicach.
+func (l *layouter) alignChain(e *ledge) {
+	if len(e.chain) == 0 || e.upperCont != nil || e.lowerCont != nil || e.sideExit != 0 ||
+		e.u.kind != kindNode || e.v.kind != kindNode {
+		return
+	}
+	at := e.chain[0].x
+	for _, d := range e.chain {
+		if math.Abs(d.x-at) >= straightTolerance {
+			return
+		}
+	}
+	ux, vx := e.u.nodeX()+e.upperPort, e.v.nodeX()+e.lowerPort
+	fits := func(x float64) bool {
+		for _, d := range e.chain {
+			lo, hi := l.dummyRoom(e.lv, d)
+			half := 0.0
+			if d.kind == kindLabel {
+				half = d.w / 2
+			}
+			if x-half < lo-0.5 || x+half > hi+0.5 {
+				return false
+			}
+			if l.lanes != nil && e.lv == l.levels[""] {
+				ln := l.lanes[d.lane]
+				if x-half < ln.lo+l.u(8) || x+half > ln.hi-l.u(8) {
+					return false
+				}
+			}
+		}
+		return true
+	}
+	for _, x := range []float64{vx, ux} {
+		if math.Abs(x-at) < straightTolerance {
+			l.alignEnd(e, x) // już w osi jednego z końców; drugi koniec może dojść bez uskoku
+			return
+		}
+	}
+	// Najpierw oś dolnego końca: jedyny skręt wypada wtedy przy początku, a grot dochodzi prosto.
+	targets := []float64{vx, ux}
+	if math.Abs(ux-vx) < straightTolerance {
+		targets = targets[:1]
+	}
+	for _, x := range targets {
+		if fits(x) {
+			for _, d := range e.chain {
+				d.x = x
+			}
+			l.alignEnd(e, x)
+			return
+		}
+	}
+	l.alignEnd(e, at) // punkty nie mają dokąd przejść: końce, które mogą, dochodzą do nich prosto
+}
+
+// alignEnd usuwa uskok przy końcu krawędzi: punkt zaczepienia przesuwa się w oś x jej punktów
+// pośrednich, jeśli krawędź jest jedyną na tym boku pola, a oś leży w zasięgu boku.
+func (l *layouter) alignEnd(e *ledge, x float64) {
+	alone := func(it *item, upper bool) bool {
+		n := 0
+		for _, o := range e.lv.edges {
+			if o.flat || o.e.Style == graph.Invisible {
+				continue
+			}
+			if (upper && o.u == it && o.upperCont == nil) || (!upper && o.v == it && o.lowerCont == nil) {
+				n++
+			}
+		}
+		return n == 1
+	}
+	for _, upper := range []bool{true, false} {
+		it, port := e.v, &e.lowerPort
+		if upper {
+			it, port = e.u, &e.upperPort
+		}
+		off := x - it.nodeX()
+		jog := math.Abs(off - *port)
+		if jog >= straightTolerance && math.Abs(off) <= l.portRange(it)/2 && alone(it, upper) {
+			*port = off
+		}
+	}
 }

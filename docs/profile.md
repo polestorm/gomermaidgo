@@ -149,10 +149,13 @@ działają, FLOW-022), `interpolate`, `flowchart-elk`.
 
 ### Tory
 
-Tory nie mają w Mermaid własnej składni. Dyrektywa jest komentarzem, więc to samo źródło w innych narzędziach rysuje
-się jak zwykły schemat z podgrafami. Pas biegnie przez cały rysunek wzdłuż kierunku diagramu (kolumny przy `TB`,
+Mermaid 12 ma diagram torów `swimlane-beta` (FLOW-026); dyrektywa `%% layout: swimlanes` jest komentarzem, więc to
+samo źródło w innych narzędziach rysuje się jak zwykły schemat z podgrafami. Pas biegnie przez cały rysunek wzdłuż kierunku diagramu (kolumny przy `TB`,
 wiersze przy `LR`), nagłówek z tytułem stoi przy początku. Warstwy są wspólne dla wszystkich pasów: położenie kroku
-wzdłuż pasa mówi o kolejności w całym procesie. Krawędź zmienia pas raz, przy swoim początku. Pole, które
+wzdłuż pasa mówi o kolejności w całym procesie. Przekazanie między torami (krawędź bez etykiety) zostaje w jednej
+warstwie i biegnie w poprzek, od boku pola do boku pola, jeśli nie przechodzi przez pole innego toru (LAY-027);
+pozostałe krawędzie zmieniają pas raz, przy swoim początku. Pole bez krawędzi stoi za poprzednim polem swojego toru
+(FLOW-029). W torach poziomych tytuł jest obrócony, a w trybie kolorowym tory mają kolejne tony palety (FLOW-028). Pole, które
 w swoim rzędzie jest jedynym polem toru, stoi pośrodku pasa, więc kroki jednej roli tworzą kolumnę. Tory są
 tylko w schemacie blokowym: stan złożony nie jest rolą, więc diagram stanów ich nie ma. W torach nie ma
 podgrafów zagnieżdżonych ani krawędzi do samego toru (błąd), a `direction` w podgrafie nie ma znaczenia.

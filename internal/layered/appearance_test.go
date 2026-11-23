@@ -289,10 +289,11 @@ func TestLaneNodesFormColumn(t *testing.T) {
 
 // REQ: LAY-009
 // Romb decyzji z gałęzią biegnącą prosto w osi: pozostałe gałęzie wychodzą z bocznych wierzchołków
-// i biegną w poprzek na wysokości środka pola.
+// i biegną w poprzek na wysokości środka pola. („Wymaga działań?” ma lewy wierzchołek zajęty przez
+// płaską krawędź wchodzącą, LAY-027, więc gałąź „nie” wychodzi dołem.)
 func TestDecisionBranchLeavesSideVertex(t *testing.T) {
 	sc := natural(t, "flowchart/017-swimlanes.mmd")
-	for _, label := range []string{"Kompletne?", "Wymaga działań?"} {
+	for _, label := range []string{"Kompletne?"} {
 		node := nodeOf(t, sc, label)
 		side, down := 0, 0
 		for _, e := range byRole(sc, "edge") {
@@ -335,7 +336,7 @@ func widestEmptyColumn(sc *scene.Scene) float64 {
 func TestNoEmptyColumns(t *testing.T) {
 	const limit = 60
 	for name, sc := range corpusScenes(t) {
-		if !strings.HasSuffix(name, " TB") || strings.Contains(name, "swimlanes") {
+		if !strings.HasSuffix(name, " TB") || strings.Contains(name, "swimlane") {
 			continue
 		}
 		if w := widestEmptyColumn(sc); w > limit {
@@ -800,5 +801,124 @@ func TestFold(t *testing.T) {
 		if fmt.Sprint(on.Bounds()) != fmt.Sprint(off.Bounds()) {
 			t.Errorf("%q should not fold", src)
 		}
+	}
+}
+
+// REQ: LAY-027
+// Przekazania między torami bez etykiety biegną poziomo w jednej warstwie: Zgłoszenie, Rejestracja
+// i Ocena stoją w jednym rzędzie, a krawędź między sąsiednimi biegnie od boku do boku.
+func TestLaneHandoffsStayInRank(t *testing.T) {
+	sc := natural(t, "flowchart/031-swimlane-handoffs.mmd")
+	a, b, c := nodeOf(t, sc, "Zgłoszenie"), nodeOf(t, sc, "Rejestracja"), nodeOf(t, sc, "Ocena")
+	mid := func(x scene.Box) float64 { return (x.Y0 + x.Y1) / 2 }
+	if math.Abs(mid(a)-mid(b)) > 0.5 || math.Abs(mid(b)-mid(c)) > 0.5 {
+		t.Fatalf("handoffs are not in one rank: %.1f %.1f %.1f", mid(a), mid(b), mid(c))
+	}
+	found := false
+	for _, s := range straights(sc) {
+		if math.Abs(s.a.Y-mid(a)) < 0.5 && math.Abs(s.b.Y-mid(a)) < 0.5 && math.Abs(s.a.X-a.X1) < 0.5 && s.b.X > a.X1 && s.b.X <= b.X0+0.5 {
+			found = true
+		}
+	}
+	if !found {
+		t.Errorf("no straight edge from the side of Zgłoszenie to the side of Rejestracja")
+	}
+	// Krawędź z etykietą schodzi warstwę niżej.
+	if d, z := nodeOf(t, sc, "Zgodne?"), nodeOf(t, sc, "Zatwierdzenie"); z.Y0 < d.Y1 {
+		t.Errorf("a labelled edge should not stay in one rank")
+	}
+	// Żadna płaska krawędź nie przechodzi przez pole.
+	for name, sc := range corpusScenes(t) {
+		var boxes []scene.Box
+		for _, it := range byRole(sc, "node") {
+			boxes = append(boxes, it.Bounds())
+		}
+		for _, s := range straights(sc) {
+			lo, hi := math.Min(s.a.X, s.b.X), math.Max(s.a.X, s.b.X)
+			if math.Abs(s.a.Y-s.b.Y) > 0.01 {
+				continue
+			}
+			for _, bx := range boxes {
+				if s.a.Y > bx.Y0+1 && s.a.Y < bx.Y1-1 && lo < bx.X0+1 && hi > bx.X1-1 {
+					t.Errorf("%s: edge at y %.1f runs through a node %+v", name, s.a.Y, bx)
+				}
+			}
+		}
+	}
+}
+
+// REQ: LAY-028
+// Krawędź wsteczna Poprawki → Wykonanie biegnie prosto, choć boki obu pól dzielą inne krawędzie.
+func TestChainFollowsPort(t *testing.T) {
+	sc := natural(t, "flowchart/032-swimlane-loop-lr.mmd")
+	p := nodeOf(t, sc, "Poprawki")
+	w := nodeOf(t, sc, "Wykonanie")
+	for _, e := range byRole(sc, "edge") {
+		first, last := e.Segments[0].To, e.Segments[len(e.Segments)-1].To
+		// Krawędź wsteczna jest rysowana od Wykonania (z grotem przy nim) do Poprawek.
+		if math.Abs(first.X-w.X1) > 30 || math.Abs(last.X-p.X0) > 30 || first.Y < w.Y0 || first.Y > w.Y1 {
+			continue
+		}
+		for _, sg := range e.Segments[1:] {
+			if math.Abs(sg.To.Y-first.Y) > 0.01 {
+				t.Fatalf("the back edge between Wykonanie and Poprawki turns at (%.1f, %.1f)", sg.To.X, sg.To.Y)
+			}
+		}
+		return
+	}
+	t.Fatal("no edge between the right side of Wykonanie and the left side of Poprawki")
+}
+
+// REQ: LAY-029
+// Dwie różne krawędzie nie biegną po sobie: żadne ich proste odcinki nie leżą na jednej prostej
+// i nie zachodzą na siebie. Sprawdzane na diagramach torów w czterech kierunkach układu (w części
+// zwykłych schematów takie miejsca jeszcze są: krawędzie równoległe i wejścia w jeden punkt).
+func TestEdgesDoNotShareRuns(t *testing.T) {
+	for name, sc := range corpusScenes(t) {
+		if !strings.Contains(name, "swim") && !strings.Contains(name, "031-") && !strings.Contains(name, "032-") {
+			continue
+		}
+		ss := straights(sc)
+		for i, a := range ss {
+			for _, b := range ss[i+1:] {
+				if a.edge == b.edge {
+					continue
+				}
+				switch {
+				case math.Abs(a.a.X-a.b.X) < 0.01 && math.Abs(b.a.X-b.b.X) < 0.01 && math.Abs(a.a.X-b.a.X) < 0.01:
+					if math.Min(math.Max(a.a.Y, a.b.Y), math.Max(b.a.Y, b.b.Y))-math.Max(math.Min(a.a.Y, a.b.Y), math.Min(b.a.Y, b.b.Y)) > 2 {
+						t.Errorf("%s: two edges run on one vertical line at x %.1f", name, a.a.X)
+					}
+				case math.Abs(a.a.Y-a.b.Y) < 0.01 && math.Abs(b.a.Y-b.b.Y) < 0.01 && math.Abs(a.a.Y-b.a.Y) < 0.01:
+					if math.Min(math.Max(a.a.X, a.b.X), math.Max(b.a.X, b.b.X))-math.Max(math.Min(a.a.X, a.b.X), math.Min(b.a.X, b.b.X)) > 2 {
+						t.Errorf("%s: two edges run on one horizontal line at y %.1f", name, a.a.Y)
+					}
+				}
+			}
+		}
+	}
+}
+
+// REQ: FLOW-028 FLOW-029
+// Tory poziome: tytuły obrócone; w trybie kolorowym tory mają różne tła. Pole bez krawędzi
+// (Rejestr kontroli) stoi za poprzednim polem swojego toru (Gotowe?), nie w pierwszej warstwie.
+func TestLaneLookAndLooseNode(t *testing.T) {
+	sc := natural(t, "flowchart/032-swimlane-loop-lr.mmd")
+	titles := byRole(sc, "lane-title")
+	if len(titles) != 2 {
+		t.Fatalf("%d lane titles", len(titles))
+	}
+	for _, it := range titles {
+		if !it.Vertical {
+			t.Errorf("lane title %q is not turned", it.Text)
+		}
+	}
+	if r, g := nodeOf(t, sc, "Rejestr kontroli"), nodeOf(t, sc, "Gotowe?"); r.X0 < g.X1 {
+		t.Errorf("the loose node stands at %.1f, before the previous node of its lane (ends at %.1f)", r.X0, g.X1)
+	}
+	colored := Layout(parse(t, "../../testdata/corpus/flowchart/032-swimlane-loop-lr.mmd"), Options{Measure: font.ApproxTextWidth, FontSize: 16, Colors: true})
+	lanes := byRole(colored, "lane")
+	if len(lanes) != 2 || lanes[0].Fill == "" || lanes[0].Fill == lanes[1].Fill {
+		t.Errorf("coloured lanes should have distinct fills: %+v", lanes)
 	}
 }
