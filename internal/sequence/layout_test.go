@@ -153,3 +153,24 @@ func TestEvenParticipants(t *testing.T) {
 		}
 	}
 }
+
+// REQ: SEQ-020
+// D7: wyróżnienie „rect” ma równy margines nad pierwszym podpisem i pod ostatnią strzałką.
+func TestHighlightCentred(t *testing.T) {
+	sc := corpusScenes(t)["007-nested-blocks.mmd"]
+	var hl scene.Item
+	for _, it := range sc.Items {
+		if it.Role == "highlight" {
+			hl = it // ostatnie wyróżnienie: „Zamknięcie”
+		}
+	}
+	top, bottom := math.Inf(1), math.Inf(-1)
+	for _, it := range sc.Items {
+		if (it.Role == "message" || it.Role == "message-label") && it.Bounds().Y0 > hl.Y && it.Bounds().Y1 < hl.Y+hl.H {
+			top, bottom = math.Min(top, it.Bounds().Y0), math.Max(bottom, it.Bounds().Y1)
+		}
+	}
+	if above, below := top-hl.Y, hl.Y+hl.H-bottom; math.Abs(above-below) > 1 {
+		t.Errorf("margin above %.1f, below %.1f", above, below)
+	}
+}

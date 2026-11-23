@@ -48,6 +48,7 @@ type frame struct {
 	title    string
 	color    string
 	y0       float64
+	first    int // indeks pierwszego elementu sceny dodanego wewnątrz bloku
 	minX     float64
 	maxX     float64
 	sections []section
@@ -728,7 +729,7 @@ func (l *layout) note(e Event) {
 
 func (l *layout) blockStart(e Event) {
 	l.cursor += l.u(4)
-	f := &frame{kind: e.Block, title: strings.Join(e.Text, " "), color: e.Color, y0: l.cursor, minX: math.Inf(1), maxX: math.Inf(-1)}
+	f := &frame{kind: e.Block, title: strings.Join(e.Text, " "), color: e.Color, y0: l.cursor, first: len(l.sc.Items), minX: math.Inf(1), maxX: math.Inf(-1)}
 	l.frames = append(l.frames, f)
 	if e.Block == "rect" {
 		l.fills = append(l.fills, blend(e.Color, l.fills[len(l.fills)-1]))
@@ -757,6 +758,21 @@ func (l *layout) blockEnd() {
 
 	if f.kind == "rect" {
 		l.fills = l.fills[:len(l.fills)-1]
+		// SEQ-020: wyróżnienie obejmuje treść z równym marginesem u góry i u dołu, więc jego środek
+		// leży między pierwszym podpisem a ostatnią strzałką, a nie na samej strzałce.
+		top, bottom := math.Inf(1), math.Inf(-1)
+		for _, it := range l.sc.Items[f.first:] {
+			switch it.Role {
+			case "activation", "lifeline", "label-background", "arrowhead":
+				continue
+			}
+			b := it.Bounds()
+			top, bottom = math.Min(top, b.Y0), math.Max(bottom, b.Y1)
+		}
+		if !math.IsInf(top, 1) && top > f.y0 && bottom+(top-f.y0) < y1 {
+			y1 = math.Round(bottom + (top - f.y0))
+			l.cursor = y1 + l.u(14)
+		}
 		fill, opacity := splitColor(f.color)
 		if strings.HasPrefix(f.color, "rgba(") && opacity == 0 {
 			fill = "" // w pełni przezroczyste wyróżnienie: prostokąt bez wypełnienia
