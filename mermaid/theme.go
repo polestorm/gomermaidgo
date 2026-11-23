@@ -2,8 +2,8 @@ package mermaid
 
 import (
 	"fmt"
+	"github.com/polestorm/gomermaidgo/internal/syntax"
 	"math"
-	"regexp"
 	"sort"
 	"strings"
 
@@ -51,8 +51,8 @@ type theme struct {
 }
 
 var (
-	themeName = regexp.MustCompile(`["']?\btheme["']?\s*:\s*["']?([A-Za-z]+)`)
-	themeVar  = regexp.MustCompile(`["']?\b(primaryColor|lineColor|primaryTextColor|textColor|background)["']?\s*:\s*["']?(#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b|[A-Za-z]+)`)
+	themeName = syntax.Lazy(`["']?\btheme["']?\s*:\s*["']?([A-Za-z]+)`)
+	themeVar  = syntax.Lazy(`["']?\b(primaryColor|lineColor|primaryTextColor|textColor|background)["']?\s*:\s*["']?(#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b|[A-Za-z]+)`)
 )
 
 // resolveTheme wybiera motyw: z opcji, a bez niej ze źródła.

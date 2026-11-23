@@ -4,7 +4,6 @@ package gitgraph
 
 import (
 	"math"
-	"regexp"
 	"sort"
 	"strings"
 
@@ -55,9 +54,9 @@ type Graph struct {
 }
 
 var (
-	header = regexp.MustCompile(`^gitGraph\s*(LR|TB|BT)?\s*:?$`)
-	option = regexp.MustCompile(`(id|tag|type|msg|parent|order)\s*:\s*(?:"([^"]*)"|(\S+))`)
-	ident  = regexp.MustCompile(`^(?:"([^"]+)"|([^\s"]+))`)
+	header = syntax.Lazy(`^gitGraph\s*(LR|TB|BT)?\s*:?$`)
+	option = syntax.Lazy(`(id|tag|type|msg|parent|order)\s*:\s*(?:"([^"]*)"|(\S+))`)
+	ident  = syntax.Lazy(`^(?:"([^"]+)"|([^\s"]+))`)
 )
 
 // Parse rozbiera źródło grafu Gita.

@@ -3,7 +3,6 @@
 package requirement
 
 import (
-	"regexp"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -22,11 +21,11 @@ const (
 const name = `"[^"]+"|[\p{L}\p{N}_][\p{L}\p{N}_.-]*`
 
 var (
-	block    = regexp.MustCompile(`^(\w+)\s+(` + name + `)\s*(?::::\s*([\p{L}\p{N}_,-]+))?\s*\{$`)
-	fieldRow = regexp.MustCompile(`^(\w+)\s*:\s*(.*)$`)
-	forward  = regexp.MustCompile(`^(` + name + `)\s*-\s*(\w+)\s*->\s*(` + name + `)$`)
-	backward = regexp.MustCompile(`^(` + name + `)\s*<-\s*(\w+)\s*-\s*(` + name + `)$`)
-	target   = regexp.MustCompile(`^(\S+)\s+(.+)$`)
+	block    = syntax.Lazy(`^(\w+)\s+(` + name + `)\s*(?::::\s*([\p{L}\p{N}_,-]+))?\s*\{$`)
+	fieldRow = syntax.Lazy(`^(\w+)\s*:\s*(.*)$`)
+	forward  = syntax.Lazy(`^(` + name + `)\s*-\s*(\w+)\s*->\s*(` + name + `)$`)
+	backward = syntax.Lazy(`^(` + name + `)\s*<-\s*(\w+)\s*-\s*(` + name + `)$`)
+	target   = syntax.Lazy(`^(\S+)\s+(.+)$`)
 
 	// Rodzaje bloków i ich nazwy na rysunku.
 	kinds = map[string]string{

@@ -22,6 +22,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/requirement"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/state"
+	"github.com/polestorm/gomermaidgo/internal/syntax"
 )
 
 var update = flag.Bool("update", false, "rewrite golden SVG files")
@@ -537,5 +538,19 @@ func TestMissingGlyphs(t *testing.T) {
 	m, err := MissingGlyphs("flowchart TD\nA[漢字]", WithMeasure(func(s string, size float64) float64 { return size }))
 	if err != nil || m != nil {
 		t.Errorf("custom measure: %q %v", string(m), err)
+	}
+}
+
+// Wzorce kompilowane leniwie (syntax.Lazy) muszą być poprawne: błąd ujawniłby się dopiero przy
+// pierwszym użyciu, więc test kompiluje wszystkie od razu.
+func TestLazyPatternsCompile(t *testing.T) {
+	ps := syntax.Patterns()
+	if len(ps) < 100 {
+		t.Fatalf("only %d lazy patterns registered", len(ps))
+	}
+	for _, p := range ps {
+		if _, err := regexp.Compile(p); err != nil {
+			t.Errorf("pattern %q: %v", p, err)
+		}
 	}
 }

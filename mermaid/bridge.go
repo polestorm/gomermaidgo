@@ -2,8 +2,8 @@ package mermaid
 
 import (
 	"errors"
+	"github.com/polestorm/gomermaidgo/internal/fontdata"
 
-	"github.com/polestorm/gomermaidgo/fonts"
 	"github.com/polestorm/gomermaidgo/internal/bridge"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 )
@@ -25,11 +25,11 @@ func init() {
 		case c.fontData != nil:
 			f = bridge.Fonts{Regular: c.fontData, Bold: c.boldData, Italic: c.italicData}
 		case c.measure == nil && c.fontFamily == "":
-			f = bridge.Fonts{Regular: fonts.Arimo(), Bold: fonts.ArimoBold(), Italic: fonts.ArimoItalic()}
+			f = bridge.Fonts{Regular: fontdata.Arimo, Bold: fontdata.ArimoBold, Italic: fontdata.ArimoItalic}
 		default:
 			return nil, f, ErrFontRequired
 		}
-		f.Fallback = fonts.NotoEmoji()
+		f.Fallback = fontdata.NotoEmoji
 		if f.Bold == nil {
 			f.Bold = f.Regular
 		}

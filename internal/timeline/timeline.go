@@ -4,7 +4,6 @@ package timeline
 
 import (
 	"math"
-	"regexp"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/scene"
@@ -40,7 +39,7 @@ type Diagram struct {
 	List bool
 }
 
-var listDirective = regexp.MustCompile(`^%%\s*layout:\s*list\s*$`)
+var listDirective = syntax.Lazy(`^%%\s*layout:\s*list\s*$`)
 
 // Parse rozbiera źródło osi czasu.
 func Parse(source string) (*Diagram, error) {

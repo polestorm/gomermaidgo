@@ -4,7 +4,6 @@ package mindmap
 
 import (
 	"fmt"
-	"regexp"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -20,22 +19,22 @@ const (
 )
 
 var (
-	lineBreak     = regexp.MustCompile(`(?i)<br\s*/?>`)
-	listDirective = regexp.MustCompile(`^%%\s*layout:\s*list\s*$`)
-	strong        = regexp.MustCompile(`\*\*([^*]+)\*\*`)
-	emphasis      = regexp.MustCompile(`\*([^*]+)\*`)
+	lineBreak     = syntax.Lazy(`(?i)<br\s*/?>`)
+	listDirective = syntax.Lazy(`^%%\s*layout:\s*list\s*$`)
+	strong        = syntax.Lazy(`\*\*([^*]+)\*\*`)
+	emphasis      = syntax.Lazy(`\*([^*]+)\*`)
 
 	// Kształty w kolejności dopasowywania: dłuższe ograniczniki przed krótszymi.
 	shapes = []struct {
-		pattern *regexp.Regexp
+		pattern *syntax.Regexp
 		shape   graph.Shape
 	}{
-		{regexp.MustCompile(`^[^\[\](){}]*\(\((.*)\)\)$`), graph.Circle},
-		{regexp.MustCompile(`^[^\[\](){}]*\)\)(.*)\(\($`), graph.Hexagon}, // „wybuch” rysowany jak sześciokąt
-		{regexp.MustCompile(`^[^\[\](){}]*\)(.*)\($`), graph.Stadium},     // „chmura” rysowana jak pole z półkolami
-		{regexp.MustCompile(`^[^\[\](){}]*\{\{(.*)\}\}$`), graph.Hexagon},
-		{regexp.MustCompile(`^[^\[\](){}]*\[(.*)\]$`), graph.Rect},
-		{regexp.MustCompile(`^[^\[\](){}]*\((.*)\)$`), graph.Round},
+		{syntax.Lazy(`^[^\[\](){}]*\(\((.*)\)\)$`), graph.Circle},
+		{syntax.Lazy(`^[^\[\](){}]*\)\)(.*)\(\($`), graph.Hexagon}, // „wybuch” rysowany jak sześciokąt
+		{syntax.Lazy(`^[^\[\](){}]*\)(.*)\($`), graph.Stadium},     // „chmura” rysowana jak pole z półkolami
+		{syntax.Lazy(`^[^\[\](){}]*\{\{(.*)\}\}$`), graph.Hexagon},
+		{syntax.Lazy(`^[^\[\](){}]*\[(.*)\]$`), graph.Rect},
+		{syntax.Lazy(`^[^\[\](){}]*\((.*)\)$`), graph.Round},
 	}
 )
 

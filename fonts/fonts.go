@@ -11,7 +11,11 @@
 // domyślna kroju zmiennego, bez tabel odmian (tools/staticfont).
 package fonts
 
-import _ "embed"
+import (
+	_ "embed"
+
+	"github.com/polestorm/gomermaidgo/internal/fontdata"
+)
 
 // ArimoFamily to nazwa kroju domyślnego.
 const ArimoFamily = "Arimo"
@@ -59,3 +63,7 @@ func NotoEmoji() []byte { return append([]byte(nil), notoEmoji...) }
 
 // NotoEmojiLicense zwraca tekst licencji kroju zapasowego.
 func NotoEmojiLicense() string { return emojiLicense }
+
+func init() {
+	fontdata.Arimo, fontdata.ArimoBold, fontdata.ArimoItalic, fontdata.NotoEmoji = arimo, arimoBold, arimoItalic, notoEmoji
+}

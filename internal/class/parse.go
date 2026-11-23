@@ -3,7 +3,6 @@
 package class
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -26,22 +25,22 @@ const (
 const name = `[\p{L}\p{N}_](?:[\p{L}\p{N}_.-]*[\p{L}\p{N}_])?(?:~[^~]+~)?`
 
 var (
-	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+	lineBreak = syntax.Lazy(`(?i)<br\s*/?>`)
 
-	relation       = regexp.MustCompile(`^(` + name + `)\s*(?:"([^"]*)")?\s*(<\||\*|o|<|\(\))?(--|\.\.)(\|>|\*|o|>|\(\))?\s*(?:"([^"]*)")?\s*(` + name + `)\s*(?::\s*(.*))?$`)
-	declare        = regexp.MustCompile(`^class\s+(` + name + `)\s*(?:\[\s*"([^"]*)"\s*\])?\s*(?::::\s*([\p{L}\p{N}_-]+))?\s*(\{)?\s*(\})?$`)
-	colon          = regexp.MustCompile(`^(` + name + `)\s*:\s*(.+)$`)
-	annotate       = regexp.MustCompile(`^<<\s*([^<>]+?)\s*>>\s*(` + name + `)?$`)
-	noteFree       = regexp.MustCompile(`^note\s+"([^"]*)"$`)
-	namespaceStart = regexp.MustCompile(`^namespace\s+([\p{L}\p{N}_][\p{L}\p{N}_.-]*)\s*\{$`)
-	oneLine        = regexp.MustCompile(`^(class\s+[^{]+?)\s*\{\s*(\S.*?)\s*\}$`)
-	noteFor        = regexp.MustCompile(`^note\s+for\s+(` + name + `)\s+"([^"]*)"$`)
-	cssClass       = regexp.MustCompile(`^cssClass\s+"([^"]+)"\s+([\p{L}\p{N}_-]+)$`)
-	target         = regexp.MustCompile(`^(\S+)\s+(.+)$`)
+	relation       = syntax.Lazy(`^(` + name + `)\s*(?:"([^"]*)")?\s*(<\||\*|o|<|\(\))?(--|\.\.)(\|>|\*|o|>|\(\))?\s*(?:"([^"]*)")?\s*(` + name + `)\s*(?::\s*(.*))?$`)
+	declare        = syntax.Lazy(`^class\s+(` + name + `)\s*(?:\[\s*"([^"]*)"\s*\])?\s*(?::::\s*([\p{L}\p{N}_-]+))?\s*(\{)?\s*(\})?$`)
+	colon          = syntax.Lazy(`^(` + name + `)\s*:\s*(.+)$`)
+	annotate       = syntax.Lazy(`^<<\s*([^<>]+?)\s*>>\s*(` + name + `)?$`)
+	noteFree       = syntax.Lazy(`^note\s+"([^"]*)"$`)
+	namespaceStart = syntax.Lazy(`^namespace\s+([\p{L}\p{N}_][\p{L}\p{N}_.-]*)\s*\{$`)
+	oneLine        = syntax.Lazy(`^(class\s+[^{]+?)\s*\{\s*(\S.*?)\s*\}$`)
+	noteFor        = syntax.Lazy(`^note\s+for\s+(` + name + `)\s+"([^"]*)"$`)
+	cssClass       = syntax.Lazy(`^cssClass\s+"([^"]+)"\s+([\p{L}\p{N}_-]+)$`)
+	target         = syntax.Lazy(`^(\S+)\s+(.+)$`)
 	// Klasyfikator składowej: gwiazdka (abstrakcyjna) albo dolar (statyczna), po nawiasie metody
 	// albo na końcu tekstu.
-	classifier = regexp.MustCompile(`^(.*\))([*$])(.*)$|^(.*?)([*$])$`)
-	returns    = regexp.MustCompile(`^(.*\))\s+(\S.*)$`)
+	classifier = syntax.Lazy(`^(.*\))([*$])(.*)$|^(.*?)([*$])$`)
+	returns    = syntax.Lazy(`^(.*\))\s+(\S.*)$`)
 
 	// „()” to interfejs „lizak”: kółko przy klasie, która go udostępnia.
 	leftHeads  = map[string]graph.Head{"<|": graph.Triangle, "*": graph.DiamondFilled, "o": graph.DiamondHollow, "<": graph.OpenArrow, "()": graph.CircleHead, "": graph.NoHead}

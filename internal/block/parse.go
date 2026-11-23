@@ -3,7 +3,6 @@
 package block
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -77,11 +76,12 @@ var (
 		{`((`, `))`, Circle}, {`([`, `])`, Stadium}, {`[(`, `)]`, Cylinder}, {`{{`, `}}`, Hexagon},
 		{`(`, `)`, Round}, {`[`, `]`, Rect}, {`{`, `}`, Diamond},
 	}
-	arrow      = regexp.MustCompile(`^(` + id + `)<\[(.*)\]>\((right|left|up|down|x|y)(?:\s*,\s*(?:right|left|up|down|x|y))*\)(?::(\d+))?$`)
-	plain      = regexp.MustCompile(`^(` + id + `)(?::(\d+))?$`)
-	edge       = regexp.MustCompile(`^(` + id + `)\s*(?:--\s*"([^"]*)"\s*)?(-->|---|-\.->|-\.-)\s*(?:\|([^|]*)\|\s*)?(` + id + `)$`)
-	blockStart = regexp.MustCompile(`^block(?::(` + id + `))?(?::(\d+))?$`)
-	styleLine  = regexp.MustCompile(`^(\S+)\s+(.+)$`)
+	arrow      = syntax.Lazy(`^(` + id + `)<\[(.*)\]>\((right|left|up|down|x|y)(?:\s*,\s*(?:right|left|up|down|x|y))*\)(?::(\d+))?$`)
+	plain      = syntax.Lazy(`^(` + id + `)(?::(\d+))?$`)
+	edge       = syntax.Lazy(`^(` + id + `)\s*(?:--\s*"([^"]*)"\s*)?(-->|---|-\.->|-\.-)\s*(?:\|([^|]*)\|\s*)?(` + id + `)$`)
+	blockStart = syntax.Lazy(`^block(?::(` + id + `))?(?::(\d+))?$`)
+	styleLine  = syntax.Lazy(`^(\S+)\s+(.+)$`)
+	wholeID    = syntax.Lazy(`^` + id + `$`)
 )
 
 // tokens dzieli linię na elementy rozdzielone odstępami poza nawiasami i cudzysłowami.
@@ -150,7 +150,7 @@ func item(tok string, line int) (*Item, error) {
 			continue
 		}
 		name := body[:at]
-		if !regexp.MustCompile(`^` + id + `$`).MatchString(name) {
+		if !wholeID.MatchString(name) {
 			continue
 		}
 		label := textwrap.Split(strings.Trim(strings.TrimSpace(body[at+len(sh.open):len(body)-len(sh.close)]), `"`))

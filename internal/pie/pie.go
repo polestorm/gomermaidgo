@@ -4,7 +4,6 @@ package pie
 
 import (
 	"math"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -39,8 +38,8 @@ type Chart struct {
 }
 
 var (
-	header = regexp.MustCompile(`^pie(?:\s+(showData))?(?:\s+title\s+(.*))?$`)
-	slice  = regexp.MustCompile(`^"([^"]*)"\s*:\s*(\S+)$`)
+	header = syntax.Lazy(`^pie(?:\s+(showData))?(?:\s+title\s+(.*))?$`)
+	slice  = syntax.Lazy(`^"([^"]*)"\s*:\s*(\S+)$`)
 )
 
 // Parse rozbiera źródło wykresu kołowego.

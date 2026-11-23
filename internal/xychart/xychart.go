@@ -4,7 +4,6 @@ package xychart
 
 import (
 	"math"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -46,8 +45,8 @@ type Chart struct {
 }
 
 var (
-	rangeTail = regexp.MustCompile(`^(.*?)\s*(-?\d+(?:\.\d+)?)\s*-->\s*(-?\d+(?:\.\d+)?)$`)
-	listTail  = regexp.MustCompile(`^(.*?)\s*\[(.*)\]$`)
+	rangeTail = syntax.Lazy(`^(.*?)\s*(-?\d+(?:\.\d+)?)\s*-->\s*(-?\d+(?:\.\d+)?)$`)
+	listTail  = syntax.Lazy(`^(.*?)\s*\[(.*)\]$`)
 )
 
 func unquote(s string) string {

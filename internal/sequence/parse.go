@@ -1,7 +1,6 @@
 package sequence
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -23,7 +22,7 @@ const (
 )
 
 var (
-	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+	lineBreak = syntax.Lazy(`(?i)<br\s*/?>`)
 
 	// Strzałki w kolejności od najdłuższej, żeby „-->>” nie zostało odczytane jako „-->”.
 	arrows = []struct {
@@ -483,7 +482,7 @@ func leadingColor(s string) (color, rest string, ok bool) {
 	return "", s, false
 }
 
-var leadingFunc = regexp.MustCompile(`^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(?:,\s*(?:0|1|0?\.\d+)\s*)?\)`)
+var leadingFunc = syntax.Lazy(`^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(?:,\s*(?:0|1|0?\.\d+)\s*)?\)`)
 
 // basicColors to szesnaście podstawowych nazw kolorów CSS i kilka często używanych w przykładach.
 var basicColors = map[string]string{
@@ -495,7 +494,7 @@ var basicColors = map[string]string{
 	"lavender": "#e6e6fa", "beige": "#f5f5dc",
 }
 
-var colorPattern = regexp.MustCompile(`^(?:#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(?:,\s*(?:0|1|0?\.\d+)\s*)?\))$`)
+var colorPattern = syntax.Lazy(`^(?:#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(?:,\s*(?:0|1|0?\.\d+)\s*)?\))$`)
 
 func validColor(s string) bool { return colorPattern.MatchString(strings.TrimSpace(s)) }
 

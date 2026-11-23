@@ -4,7 +4,6 @@ package quadrant
 
 import (
 	"math"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -87,11 +86,11 @@ type Chart struct {
 }
 
 var (
-	point    = regexp.MustCompile(`^(.+?)(?::::([\p{L}\p{N}_-]+))?\s*:\s*\[\s*([^,\]]+?)\s*,\s*([^,\]]+?)\s*\](.*)$`)
-	classDef = regexp.MustCompile(`^classDef\s+([\p{L}\p{N}_-]+)\s+(.+)$`)
+	point    = syntax.Lazy(`^(.+?)(?::::([\p{L}\p{N}_-]+))?\s*:\s*\[\s*([^,\]]+?)\s*,\s*([^,\]]+?)\s*\](.*)$`)
+	classDef = syntax.Lazy(`^classDef\s+([\p{L}\p{N}_-]+)\s+(.+)$`)
 	// Kolor: zapis szesnastkowy albo nazwa; nic, co mogłoby wyjść poza atrybut.
-	paint    = regexp.MustCompile(`^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|[a-zA-Z]+)$`)
-	quadrant = regexp.MustCompile(`^quadrant-([1-4])\s+(.+)$`)
+	paint    = syntax.Lazy(`^(#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|[a-zA-Z]+)$`)
+	quadrant = syntax.Lazy(`^quadrant-([1-4])\s+(.+)$`)
 )
 
 func unquote(s string) string {

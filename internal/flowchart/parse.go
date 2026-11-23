@@ -3,7 +3,6 @@
 package flowchart
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -26,9 +25,9 @@ const (
 const idPattern = `(?:[\p{L}\p{N}_]+(?:[-.][\p{L}\p{N}_]+)*|\.{3,}|…)`
 
 var (
-	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+	lineBreak = syntax.Lazy(`(?i)<br\s*/?>`)
 	// Atrybuty zapisu @{ … }: klucz i wartość w cudzysłowach albo bez.
-	attribute = regexp.MustCompile(`([\w-]+)\s*:\s*(?:"([^"]*)"|'([^']*)'|([^,}]*))`)
+	attribute = syntax.Lazy(`([\w-]+)\s*:\s*(?:"([^"]*)"|'([^']*)'|([^,}]*))`)
 	// Nazwy kształtów nowego zapisu, wraz z synonimami, dla kształtów, które rysujemy.
 	namedShapes = map[string]graph.Shape{
 		"rect": graph.Rect, "rectangle": graph.Rect, "process": graph.Rect, "proc": graph.Rect,
@@ -47,38 +46,38 @@ var (
 		"odd":        graph.Asymmetric,
 		"notch-pent": graph.LoopLimit, "loop-limit": graph.LoopLimit,
 	}
-	iconTag   = regexp.MustCompile(`\bfa[bsrlkd]?:fa-([a-z0-9-]+)`)
-	boldTag   = regexp.MustCompile(`(?i)</?(b|strong)>`)
-	italicTag = regexp.MustCompile(`(?i)</?(i|em)>`)
-	swimlanes = regexp.MustCompile(`^%%\s*layout:\s*swimlanes\s*$`)
+	iconTag   = syntax.Lazy(`\bfa[bsrlkd]?:fa-([a-z0-9-]+)`)
+	boldTag   = syntax.Lazy(`(?i)</?(b|strong)>`)
+	italicTag = syntax.Lazy(`(?i)</?(i|em)>`)
+	swimlanes = syntax.Lazy(`^%%\s*layout:\s*swimlanes\s*$`)
 	// Identyfikator: litery, cyfry i podkreślenie; łącznik i kropka tylko między nimi, żeby
 	// „A-->B” i „A-.->B” nadal zaczynały krawędź.
-	idAt      = regexp.MustCompile(`^` + idPattern)
-	classAt   = regexp.MustCompile(`^:::\s*([\p{L}\p{N}_-]+)`)
-	styleHead = regexp.MustCompile(`^(\S+)\s+(.+)$`)
+	idAt      = syntax.Lazy(`^` + idPattern)
+	classAt   = syntax.Lazy(`^:::\s*([\p{L}\p{N}_-]+)`)
+	styleHead = syntax.Lazy(`^(\S+)\s+(.+)$`)
 
-	subgraphWithTitle = regexp.MustCompile(`^(` + idPattern + `)\s*\[(.*)\]$`)
-	singleID          = regexp.MustCompile(`^` + idPattern + `$`)
+	subgraphWithTitle = syntax.Lazy(`^(` + idPattern + `)\s*\[(.*)\]$`)
+	singleID          = syntax.Lazy(`^` + idPattern + `$`)
 
 	// Krawędzie z tekstem w środku: „-- tekst -->”, „== tekst ==>”, „-. tekst .->”.
 	// Tekst może stać po odstępie („-- tekst -->”) albo od razu („--tekst-->”); bez odstępu nie
 	// może zaczynać się znakiem, który należy do samej krawędzi, a po „o” albo „x” musi iść dalszy
 	// tekst, bo „--o” i „--x” są zakończeniami.
-	inlineNormal = regexp.MustCompile(`^([<ox])?--(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s\-].*?)\s*(-{2,})([>ox])?`)
-	inlineThick  = regexp.MustCompile(`^([<ox])?==(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s=].*?)\s*(={2,})([>ox])?`)
-	inlineDotted = regexp.MustCompile(`^([<ox])?-\.(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s.\-].*?)\s*(\.+)-([>ox])?`)
+	inlineNormal = syntax.Lazy(`^([<ox])?--(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s\-].*?)\s*(-{2,})([>ox])?`)
+	inlineThick  = syntax.Lazy(`^([<ox])?==(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s=].*?)\s*(={2,})([>ox])?`)
+	inlineDotted = syntax.Lazy(`^([<ox])?-\.(\s+\S.*?|[^\s>\-.=|ox].*?|[ox][^\s.\-].*?)\s*(\.+)-([>ox])?`)
 	// Krawędzie bez tekstu.
-	plainDotted = regexp.MustCompile(`^([<ox])?-(\.+)-([>ox])?`)
-	plainNormal = regexp.MustCompile(`^([<ox])?(-{2,})([>ox])?`)
-	plainThick  = regexp.MustCompile(`^([<ox])?(={2,})([>ox])?`)
-	invisible   = regexp.MustCompile(`^~{3,}`)
+	plainDotted = syntax.Lazy(`^([<ox])?-(\.+)-([>ox])?`)
+	plainNormal = syntax.Lazy(`^([<ox])?(-{2,})([>ox])?`)
+	plainThick  = syntax.Lazy(`^([<ox])?(={2,})([>ox])?`)
+	invisible   = syntax.Lazy(`^~{3,}`)
 
 	// Instrukcje Mermaid poza profilem: znane, ale świadomie nieobsługiwane.
 	unsupported = []string{"interpolate"}
 
 	// Wyróżnienia w tekście Markdown: pogrubienie i kursywa.
-	strong   = regexp.MustCompile(`\*\*([^*]+)\*\*|\b__([^_]+)__\b`)
-	emphasis = regexp.MustCompile(`\*([^*]+)\*|\b_([^_]+)_\b`)
+	strong   = syntax.Lazy(`\*\*([^*]+)\*\*|\b__([^_]+)__\b`)
+	emphasis = syntax.Lazy(`\*([^*]+)\*|\b_([^_]+)_\b`)
 )
 
 // shapes: nawias otwierający, zamykający i kształt; dłuższe otwarcia przed krótszymi.

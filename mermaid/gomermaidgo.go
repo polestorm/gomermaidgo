@@ -9,7 +9,7 @@ package mermaid
 import (
 	"errors"
 	"fmt"
-	"regexp"
+	"github.com/polestorm/gomermaidgo/internal/fontdata"
 	"slices"
 	"strconv"
 	"strings"
@@ -330,9 +330,9 @@ type wrapSettings struct {
 }
 
 var (
-	autoWrapKey  = regexp.MustCompile(`["']?\bmarkdownAutoWrap["']?\s*:\s*["']?(true|false)\b`)
-	wrapKey      = regexp.MustCompile(`["']?\bwrap["']?\s*:\s*["']?(true|false)\b`)
-	wrapWidthKey = regexp.MustCompile(`["']?\bwrappingWidth["']?\s*:\s*["']?(\d+(?:\.\d+)?)\b`)
+	autoWrapKey  = syntax.Lazy(`["']?\bmarkdownAutoWrap["']?\s*:\s*["']?(true|false)\b`)
+	wrapKey      = syntax.Lazy(`["']?\bwrap["']?\s*:\s*["']?(true|false)\b`)
+	wrapWidthKey = syntax.Lazy(`["']?\bwrappingWidth["']?\s*:\s*["']?(\d+(?:\.\d+)?)\b`)
 )
 
 // wrapSettingsFrom czyta ustawienia łamania z konfiguracji źródła. Szerokość spoza 50–2000 px
@@ -353,10 +353,10 @@ func wrapSettingsFrom(settings string) wrapSettings {
 	return w
 }
 
-var fitDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fit|nofit)\s*$`)
+var fitDirective = syntax.Lazy(`(?m)^\s*%%\s*layout:\s*(fit|nofit)\s*$`)
 
 // foldDirective ustawia w źródle zwijanie (WithFold, WithFoldType).
-var foldDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fold|nofold)(?:\s+(return|snake))?\s*$`)
+var foldDirective = syntax.Lazy(`(?m)^\s*%%\s*layout:\s*(fold|nofold)(?:\s+(return|snake))?\s*$`)
 
 // foldMode rozstrzyga tryb zwijania: opcja, potem linia w źródle, domyślnie auto.
 func foldMode(c config, source string) layered.FoldMode {
@@ -373,7 +373,7 @@ func foldMode(c config, source string) layered.FoldMode {
 }
 
 // chainsDirective ustawia w źródle zwijanie łańcuchów (WithFoldChains).
-var chainsDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fold-chains|nofold-chains)(?:\s+(return|snake))?\s*$`)
+var chainsDirective = syntax.Lazy(`(?m)^\s*%%\s*layout:\s*(fold-chains|nofold-chains)(?:\s+(return|snake))?\s*$`)
 
 // foldChains rozstrzyga tryb zwijania łańcuchów: opcja, potem linia w źródle, domyślnie wyłączone.
 func foldChains(c config, source string) bool {
@@ -387,7 +387,7 @@ func foldChains(c config, source string) bool {
 }
 
 // ranksDirective ustawia w źródle rozkładanie warstw liści (WithFoldRanks).
-var ranksDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fold-ranks|nofold-ranks)\s*$`)
+var ranksDirective = syntax.Lazy(`(?m)^\s*%%\s*layout:\s*(fold-ranks|nofold-ranks)\s*$`)
 
 // foldRanks rozstrzyga tryb rozkładania warstw: opcja, potem linia w źródle, domyślnie wyłączone.
 func foldRanks(c config, source string) bool {
@@ -436,7 +436,7 @@ func fitMode(c config, source string) layered.FitMode {
 
 // emojiFace to krój zapasowy z emoji; nil, gdyby pliku nie dało się odczytać.
 var emojiFace = sync.OnceValue(func() *font.Face {
-	face, err := font.Parse(fonts.NotoEmoji())
+	face, err := font.Parse(fontdata.NotoEmoji)
 	if err != nil {
 		return nil
 	}
@@ -445,7 +445,7 @@ var emojiFace = sync.OnceValue(func() *font.Face {
 
 // defaultFace to krój dołączony; plik jest czytany raz na proces.
 var defaultFace = sync.OnceValue(func() *font.Face {
-	face, err := font.Parse(fonts.Arimo())
+	face, err := font.Parse(fontdata.Arimo)
 	if err != nil {
 		return nil
 	}
@@ -634,7 +634,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 
 // defaultStyled mierzy odmianami kroju dołączonego; pliki są czytane raz na proces.
 var defaultStyled = sync.OnceValue(func() func(string, float64, bool, bool) float64 {
-	m, _ := styledMeasure(fonts.ArimoBold(), fonts.ArimoItalic())
+	m, _ := styledMeasure(fontdata.ArimoBold, fontdata.ArimoItalic)
 	return m
 })
 

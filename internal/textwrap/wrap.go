@@ -3,11 +3,11 @@
 package textwrap
 
 import (
-	"regexp"
+	"github.com/polestorm/gomermaidgo/internal/syntax"
 	"strings"
 )
 
-var lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+var lineBreak = syntax.Lazy(`(?i)<br\s*/?>`)
 
 // Split dzieli tekst na linie w miejscach znacznika <br>.
 func Split(text string) []string {

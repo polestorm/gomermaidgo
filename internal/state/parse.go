@@ -3,7 +3,6 @@
 package state
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -25,21 +24,21 @@ const (
 const idPattern = `(?:[\p{L}\p{N}_]+|\.{3,}|…)`
 
 var (
-	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+	lineBreak = syntax.Lazy(`(?i)<br\s*/?>`)
 
-	transition  = regexp.MustCompile(`^(\[\*\]|` + idPattern + `)\s*-->\s*(\[\*\]|` + idPattern + `)\s*(?::\s*(.*))?$`)
-	described   = regexp.MustCompile(`^state\s+"([^"]*)"\s+as\s+(` + idPattern + `)\s*(\{)?$`)
-	stereotype  = regexp.MustCompile(`^state\s+(` + idPattern + `)\s+<<(choice|fork|join)>>$`)
-	declared    = regexp.MustCompile(`^state\s+(` + idPattern + `)\s*(\{)?$`)
-	description = regexp.MustCompile(`^(` + idPattern + `)\s*:\s*(.*)$`)
-	bareID      = regexp.MustCompile(`^` + idPattern + `$`)
-	noteLine    = regexp.MustCompile(`(?i)^note\s+(left|right)\s+of\s+(` + idPattern + `)\s*(?::\s*(.*))?$`)
+	transition  = syntax.Lazy(`^(\[\*\]|` + idPattern + `)\s*-->\s*(\[\*\]|` + idPattern + `)\s*(?::\s*(.*))?$`)
+	described   = syntax.Lazy(`^state\s+"([^"]*)"\s+as\s+(` + idPattern + `)\s*(\{)?$`)
+	stereotype  = syntax.Lazy(`^state\s+(` + idPattern + `)\s+<<(choice|fork|join)>>$`)
+	declared    = syntax.Lazy(`^state\s+(` + idPattern + `)\s*(\{)?$`)
+	description = syntax.Lazy(`^(` + idPattern + `)\s*:\s*(.*)$`)
+	bareID      = syntax.Lazy(`^` + idPattern + `$`)
+	noteLine    = syntax.Lazy(`(?i)^note\s+(left|right)\s+of\s+(` + idPattern + `)\s*(?::\s*(.*))?$`)
 
 	// Instrukcje Mermaid poza profilem: znane, ale świadomie nieobsługiwane.
 	unsupported = []string{"scale", "hide"}
 
-	classUse  = regexp.MustCompile(`(` + idPattern + `):::\s*([\p{L}\p{N}_-]+)`)
-	styleHead = regexp.MustCompile(`^(\S+)\s+(.+)$`)
+	classUse  = syntax.Lazy(`(` + idPattern + `):::\s*([\p{L}\p{N}_-]+)`)
+	styleHead = syntax.Lazy(`^(\S+)\s+(.+)$`)
 )
 
 func split(text string) []string {

@@ -16,9 +16,6 @@ and [`go-mermaid`](https://github.com/zkrebbekx/go-mermaid) (details in [At a gl
 
 - **Small program, no dependencies at all**: 8.4 MB, against 53 MB for mmdg (which embeds a JavaScript engine) and
   11.7 MB for go-mermaid; standard library only, PDF and PNG included.
-- **2–3× faster than mmdg, with half the memory**: an SVG in 10 ms instead of 32 ms, a PDF in 12 ms instead of 32 ms.
-  go-mermaid, which draws fewer types, is faster still for SVG (6 ms); for PNG this library is the fastest of the
-  three.
 - **Fits diagrams to an A4 page**: narrows fields, folds long processes into rows, folds long chains and staggers
   long ranks, so a printed diagram stays readable ([examples](docs/gallery/page-fitting.md)). Neither of the others
   does this.
@@ -48,9 +45,9 @@ which, like this library, has its own parsers and layout.
 | Approach | own parsers and layout in Go | Mermaid 12.2.0 (JavaScript) in an embedded engine | own parsers and layout in Go |
 | Dependencies (Go modules) | 0, standard library only | 7 (4 direct, 3 indirect) | 10 (4 direct, 6 indirect); SVG needs none, PNG needs 5 |
 | Program size (`go build`) | 8.4 MB | 53.0 MB | 11.7 MB |
-| SVG: time / memory per diagram[^bench] | 10 ms / 18 MB | 32 ms / 41 MB | 6 ms / 12 MB |
-| PDF: time / memory per diagram[^bench] | 12 ms / 24 MB | 32 ms / 54 MB | no PDF |
-| PNG at scale 1: time / memory per diagram[^bench] | 20 ms / 27 MB | 38 ms / 44 MB | 26 ms / 16 MB |
+| SVG: time / memory per diagram[^bench] | 3.1 ms / 8 MB | 31 ms / 41 MB | 3.9 ms / 12 MB |
+| PDF: time / memory per diagram[^bench] | 4.6 ms / 16 MB | 30 ms / 54 MB | no PDF |
+| PNG at scale 1: time / memory per diagram[^bench] | 12 ms / 18 MB | 36 ms / 44 MB | 24 ms / 16 MB |
 | Output size, SVG / PNG, the same 62 diagrams | 0.32 / 2.4 MB | 11.6 / 2.1 MB | 0.21 / 1.9 MB |
 | Output size, PDF, the same 86 diagrams | 1.7 MB | 13.0 MB | no PDF |
 | Diagram types[^types] | 24 of Mermaid's 33 | 33 | 20 |

@@ -1,6 +1,7 @@
 package mermaid
 
 import (
+	"github.com/polestorm/gomermaidgo/internal/fontdata"
 	"math"
 	"strings"
 	"sync"
@@ -102,7 +103,7 @@ func splitFallback(sc *scene.Scene, face, fallback *font.Face, styled func(strin
 
 // emojiOutlines to kontury kroju zapasowego; nil, gdyby pliku nie dało się odczytać.
 var emojiOutlines = sync.OnceValue(func() *glyf.Font {
-	f, err := glyf.Parse(fonts.NotoEmoji())
+	f, err := glyf.Parse(fontdata.NotoEmoji)
 	if err != nil {
 		return nil
 	}

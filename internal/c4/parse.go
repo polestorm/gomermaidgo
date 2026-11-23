@@ -4,7 +4,6 @@
 package c4
 
 import (
-	"regexp"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -20,7 +19,7 @@ const (
 )
 
 var (
-	call    = regexp.MustCompile(`^([A-Za-z_]+)\s*\((.*)\)\s*(\{)?$`)
+	call    = syntax.Lazy(`^([A-Za-z_]+)\s*\((.*)\)\s*(\{)?$`)
 	headers = map[string]bool{"C4Context": true, "C4Container": true, "C4Component": true, "C4Dynamic": true, "C4Deployment": true}
 
 	// Rodzaje elementów: nazwa na rysunku i to, czy czwarty argument jest technologią.

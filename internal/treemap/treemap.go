@@ -5,7 +5,6 @@ package treemap
 
 import (
 	"math"
-	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -42,7 +41,7 @@ type Diagram struct {
 	AccDescr string
 }
 
-var entry = regexp.MustCompile(`^"([^"]*)"\s*(?::\s*([^:\s]+))?\s*(?::::[\p{L}\p{N}_-]+)?$`)
+var entry = syntax.Lazy(`^"([^"]*)"\s*(?::\s*([^:\s]+))?\s*(?::::[\p{L}\p{N}_-]+)?$`)
 
 // Parse rozbiera źródło mapy drzewa. Hierarchię wyznacza wcięcie; linia z wartością jest liściem.
 func Parse(source string) (*Diagram, error) {

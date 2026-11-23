@@ -5,7 +5,6 @@ package architecture
 
 import (
 	"math"
-	"regexp"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/scene"
@@ -63,9 +62,9 @@ type Diagram struct {
 const id = `[\p{L}\p{N}_][\p{L}\p{N}_-]*`
 
 var (
-	declare = regexp.MustCompile(`^(group|service)\s+(` + id + `)\s*(?:\(([^)]*)\))?\s*(?:\[([^\]]*)\])?\s*(?:in\s+(` + id + `))?$`)
-	junct   = regexp.MustCompile(`^junction\s+(` + id + `)\s*(?:in\s+(` + id + `))?$`)
-	link    = regexp.MustCompile(`^(` + id + `)(\{group\})?\s*:\s*([LRTB])\s*(<)?-(?:\[([^\]]*)\])?-(>)?\s*([LRTB])\s*:\s*(` + id + `)(\{group\})?$`)
+	declare = syntax.Lazy(`^(group|service)\s+(` + id + `)\s*(?:\(([^)]*)\))?\s*(?:\[([^\]]*)\])?\s*(?:in\s+(` + id + `))?$`)
+	junct   = syntax.Lazy(`^junction\s+(` + id + `)\s*(?:in\s+(` + id + `))?$`)
+	link    = syntax.Lazy(`^(` + id + `)(\{group\})?\s*:\s*([LRTB])\s*(<)?-(?:\[([^\]]*)\])?-(>)?\s*([LRTB])\s*:\s*(` + id + `)(\{group\})?$`)
 )
 
 // Parse rozbiera źródło diagramu architektury.

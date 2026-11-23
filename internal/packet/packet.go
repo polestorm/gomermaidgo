@@ -4,7 +4,6 @@ package packet
 
 import (
 	"math"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -37,7 +36,7 @@ type Diagram struct {
 	AccDescr string
 }
 
-var field = regexp.MustCompile(`^(\+)?(\d+)(?:\s*-\s*(\d+))?\s*:\s*"([^"]*)"$`)
+var field = syntax.Lazy(`^(\+)?(\d+)(?:\s*-\s*(\d+))?\s*:\s*"([^"]*)"$`)
 
 // Parse rozbiera źródło diagramu pakietu. Pola muszą następować po sobie bez przerw, od bitu 0.
 func Parse(source string) (*Diagram, error) {

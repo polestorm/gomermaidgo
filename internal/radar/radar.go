@@ -4,7 +4,6 @@ package radar
 
 import (
 	"math"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -47,8 +46,8 @@ type Chart struct {
 }
 
 var (
-	named = regexp.MustCompile(`^([\p{L}\p{N}_-]+)\s*(?:\[\s*"([^"]*)"\s*\])?$`)
-	curve = regexp.MustCompile(`^curve\s+([\p{L}\p{N}_-]+)\s*(?:\[\s*"([^"]*)"\s*\])?\s*\{(.*)\}$`)
+	named = syntax.Lazy(`^([\p{L}\p{N}_-]+)\s*(?:\[\s*"([^"]*)"\s*\])?$`)
+	curve = syntax.Lazy(`^curve\s+([\p{L}\p{N}_-]+)\s*(?:\[\s*"([^"]*)"\s*\])?\s*\{(.*)\}$`)
 )
 
 // Parse rozbiera źródło wykresu radarowego.

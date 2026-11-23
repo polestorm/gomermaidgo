@@ -1,7 +1,6 @@
 package graph
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -42,9 +41,9 @@ func (p Paint) Merge(over Paint) Paint {
 }
 
 var (
-	colorValue = regexp.MustCompile(`^(?:#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)|[a-zA-Z]{3,20})$`)
-	lengthPx   = regexp.MustCompile(`^(\d+(?:\.\d+)?)(?:px)?$`)
-	dashValue  = regexp.MustCompile(`^\d+(?:\.\d+)?(?:[ ,]+\d+(?:\.\d+)?)*$`)
+	colorValue = syntax.Lazy(`^(?:#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)|[a-zA-Z]{3,20})$`)
+	lengthPx   = syntax.Lazy(`^(\d+(?:\.\d+)?)(?:px)?$`)
+	dashValue  = syntax.Lazy(`^\d+(?:\.\d+)?(?:[ ,]+\d+(?:\.\d+)?)*$`)
 )
 
 // ParsePaint czyta listę właściwości w zapisie CSS („fill:#f9f,stroke:#333,stroke-width:2px”).
@@ -121,7 +120,7 @@ func splitProps(s string) []string {
 	return out
 }
 
-var propertyStart = regexp.MustCompile(`^\s*[a-zA-Z-]+\s*:`)
+var propertyStart = syntax.Lazy(`^\s*[a-zA-Z-]+\s*:`)
 
 func startsProperty(s string) bool { return propertyStart.MatchString(s) }
 

@@ -5,7 +5,6 @@ package sankey
 
 import (
 	"math"
-	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -39,7 +38,7 @@ type Chart struct {
 	Wrap  bool // %% layout: wrap: nazwy węzłów łamane na słowach
 }
 
-var wrapDirective = regexp.MustCompile(`^%%\s*layout:\s*wrap\s*$`)
+var wrapDirective = syntax.Lazy(`^%%\s*layout:\s*wrap\s*$`)
 
 // fields dzieli linię CSV na pola; pole w cudzysłowach może zawierać przecinek, a podwojony
 // cudzysłów oznacza cudzysłów.

@@ -4,7 +4,6 @@ package kanban
 
 import (
 	"math"
-	"regexp"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/scene"
@@ -45,9 +44,9 @@ type Board struct {
 }
 
 var (
-	item  = regexp.MustCompile(`^[^\[\]@]*\[(.*)\]$`)
-	meta  = regexp.MustCompile(`^(.*?)\s*@\{(.*)\}$`)
-	field = regexp.MustCompile(`(\w+)\s*:\s*(?:'([^']*)'|"([^"]*)"|([^,]*))`)
+	item  = syntax.Lazy(`^[^\[\]@]*\[(.*)\]$`)
+	meta  = syntax.Lazy(`^(.*?)\s*@\{(.*)\}$`)
+	field = syntax.Lazy(`(\w+)\s*:\s*(?:'([^']*)'|"([^"]*)"|([^,]*))`)
 )
 
 // Parse rozbiera źródło tablicy. Wcięcie wyznacza poziom: najpłytsze linie są kolumnami,

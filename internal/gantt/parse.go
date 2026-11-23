@@ -3,7 +3,6 @@
 package gantt
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -55,8 +54,8 @@ type Task struct {
 }
 
 var (
-	durationSpec = regexp.MustCompile(`^(\d+(?:\.\d+)?)(ms|s|m|h|d|w|M|y)$`)
-	tickSpec     = regexp.MustCompile(`^(\d+)(day|week|month|year)$`)
+	durationSpec = syntax.Lazy(`^(\d+(?:\.\d+)?)(ms|s|m|h|d|w|M|y)$`)
+	tickSpec     = syntax.Lazy(`^(\d+)(day|week|month|year)$`)
 	weekdays     = map[string]time.Weekday{"sunday": time.Sunday, "monday": time.Monday, "tuesday": time.Tuesday,
 		"wednesday": time.Wednesday, "thursday": time.Thursday, "friday": time.Friday, "saturday": time.Saturday}
 	tags = map[string]bool{"active": true, "done": true, "crit": true, "milestone": true}

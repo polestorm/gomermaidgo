@@ -1,8 +1,8 @@
 package sequence
 
 import (
+	"github.com/polestorm/gomermaidgo/internal/syntax"
 	"math"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -811,7 +811,7 @@ func (l *layout) blockEnd() {
 	l.extent(x0, x1)
 }
 
-var rgbaPattern = regexp.MustCompile(`^rgba\((\d+),(\d+),(\d+),([0-9.]+)\)$`)
+var rgbaPattern = syntax.Lazy(`^rgba\((\d+),(\d+),(\d+),([0-9.]+)\)$`)
 
 // splitColor rozdziela kolor z kanałem alfa na kolor i krycie, bo SVG 1.1 nie zna rgba().
 func splitColor(c string) (fill string, opacity float64) {
@@ -822,7 +822,7 @@ func splitColor(c string) (fill string, opacity float64) {
 	return c, 0
 }
 
-var rgbPattern = regexp.MustCompile(`^rgba?\((\d+),(\d+),(\d+)(?:,([0-9.]+))?\)$`)
+var rgbPattern = syntax.Lazy(`^rgba?\((\d+),(\d+),(\d+)(?:,([0-9.]+))?\)$`)
 
 // parseColor czyta kolor w zapisie #rgb, #rrggbb, rgb() albo rgba().
 func parseColor(c string) (r, g, b, a float64, ok bool) {

@@ -3,7 +3,6 @@
 package er
 
 import (
-	"regexp"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/graph"
@@ -23,12 +22,12 @@ const (
 const name = `"[^"]+"|[\p{L}\p{N}_][\p{L}\p{N}_-]*`
 
 var (
-	lineBreak = regexp.MustCompile(`(?i)<br\s*/?>`)
+	lineBreak = syntax.Lazy(`(?i)<br\s*/?>`)
 
-	relation  = regexp.MustCompile(`^(` + name + `)\s*(\|o|\|\||\}o|\}\|)(--|\.\.)(o\||\|\||o\{|\|\{)\s*(` + name + `)\s*(?::\s*(.*))?$`)
-	entity    = regexp.MustCompile(`^(` + name + `)\s*(?:\[\s*"?([^"\]]*)"?\s*\])?\s*(?::::\s*([\p{L}\p{N}_-]+))?\s*(\{)?\s*(\})?$`)
-	attribute = regexp.MustCompile(`^(\S+)\s+(\S+)(?:\s+((?:PK|FK|UK)(?:\s*,\s*(?:PK|FK|UK))*))?(?:\s+"([^"]*)")?$`)
-	styleHead = regexp.MustCompile(`^(\S+)\s+(.+)$`)
+	relation  = syntax.Lazy(`^(` + name + `)\s*(\|o|\|\||\}o|\}\|)(--|\.\.)(o\||\|\||o\{|\|\{)\s*(` + name + `)\s*(?::\s*(.*))?$`)
+	entity    = syntax.Lazy(`^(` + name + `)\s*(?:\[\s*"?([^"\]]*)"?\s*\])?\s*(?::::\s*([\p{L}\p{N}_-]+))?\s*(\{)?\s*(\})?$`)
+	attribute = syntax.Lazy(`^(\S+)\s+(\S+)(?:\s+((?:PK|FK|UK)(?:\s*,\s*(?:PK|FK|UK))*))?(?:\s+"([^"]*)")?$`)
+	styleHead = syntax.Lazy(`^(\S+)\s+(.+)$`)
 
 	heads = map[string]graph.Head{
 		"|o": graph.ZeroOrOne, "o|": graph.ZeroOrOne, "||": graph.OnlyOne,
