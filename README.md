@@ -71,9 +71,9 @@ which, like this library, has its own parsers and layout.
     (62 for SVG and PNG; 86 for PDF, which go-mermaid does not write), best of three runs of the command-line program
     per file, process start included; memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon
     laptop. 🥇 marks the best value in a row.
-[^det]: The same source gives the same file byte for byte on every run. Here it is documented (see the top of this page) and tested; for the
-    other two, three runs of the 62 (mmdg) and 65 (go-mermaid) corpus diagrams gave identical SVG, PNG and PDF
-    files, but neither documents it.
+[^det]: The same source gives the same file byte for byte on every run. Here it is documented (see the top of this
+    page) and tested; for the other two, three runs of the 62 (mmdg) and 65 (go-mermaid) corpus diagrams gave
+    identical SVG, PNG and PDF files, but neither documents it.
 [^size]: Total size of the files written for the same diagrams: 62 for SVG and PNG, 86 for PDF.
 [^pop]: Stars and forks on 2026-11-23.
 [^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here: `zenuml` (a separate Mermaid add-on) and eight
