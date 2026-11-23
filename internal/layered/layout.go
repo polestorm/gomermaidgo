@@ -2498,7 +2498,11 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		for _, it := range row {
 			band = math.Max(band, it.h)
 			for _, up := range it.up {
-				if math.Abs(up.nodeX()-it.nodeX()) > 0.5 {
+				// Gałąź rombu daleko z boku wyjdzie z jego bocznego wierzchołka (sideExitsOf) i skręci
+				// na wysokości rombu, nie w odstępie pod nim.
+				side := up.kind == kindNode && len(up.down) >= 2 && (up.node.Shape == graph.Rhombus || up.node.Shape == graph.Choice) &&
+					math.Abs(it.nodeX()-up.nodeX()) > up.nodeW()/2+l.u(16)
+				if math.Abs(up.nodeX()-it.nodeX()) > 0.5 && !side {
 					turns++
 				}
 			}
