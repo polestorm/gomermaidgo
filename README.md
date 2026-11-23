@@ -16,6 +16,8 @@ and [`go-mermaid`](https://github.com/zkrebbekx/go-mermaid) (details in [At a gl
 
 - **Small program, no dependencies at all**: 8.4 MB, against 53 MB for mmdg (which embeds a JavaScript engine) and
   11.7 MB for go-mermaid; standard library only, PDF and PNG included.
+- **The fastest of the three**: an SVG in 3.1 ms per diagram (go-mermaid 3.9 ms, mmdg 31 ms), a PDF in 4.6 ms
+  (mmdg 30 ms), a PNG in 12 ms (go-mermaid 24 ms, mmdg 36 ms), with the least memory for SVG and PDF.
 - **Fits diagrams to an A4 page**: narrows fields, folds long processes into rows, folds long chains and staggers
   long ranks, so a printed diagram stays readable ([examples](docs/gallery/page-fitting.md)). Neither of the others
   does this.
