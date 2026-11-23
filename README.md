@@ -54,7 +54,6 @@ which, like this library, has its own parsers and layout.
 | PDF output | 1.7 MB 🥇 | 13.0 MB | no PDF |
 | Diagram types[^types] | 24 of Mermaid's 33 | 33 🥇 | 20 |
 | Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts | a documented subset per type |
-| Corpus, 89 diagrams | 89 🥇 | 86 | 65 |
 | Public diagrams[^wild] | 138 of 139 🥇 | 137 of 139 | 123 of 139 |
 | Look | own, made for print; neutral by default | Mermaid's, byte for byte | own; Mermaid's theme names |
 | Page fitting | fit to A4, folding of long diagrams, chains and ranks | none | none |
@@ -126,15 +125,15 @@ with a line number, never a partial drawing.
 ## How the comparison was measured
 
 All three programs read the same corpus sources (`testdata/corpus/`); for the comparison the other renderers are only
-run as programs (what was ever read of them is listed in `docs/provenance.md`). Times and memory come from the command-line programs, so they include
-process start; for `mmdg` that includes starting its JavaScript engine. PNG is compared at scale 1 (one image pixel
+run as programs (what was ever read of them is listed in `docs/provenance.md`). Times and memory come from the
+command-line programs, so they include process start; for `mmdg` that includes starting its JavaScript engine. PNG is compared at scale 1 (one image pixel
 per drawing pixel); this library's default is scale 2. A diagram counts as rendered when the program exits without an
-error and writes a non-empty file; how well it is drawn is not compared here. The corpus is written for this library's
-profile, so the corpus row says little about coverage: Mermaid accepts syntax this library rejects (see
-`docs/profile.md`), and the drawings differ on purpose. The three corpus diagrams `mmdg` does not render are a
-`block-beta` grid and two `sankey-beta` diagrams; `go-mermaid` rejects the diagram types it does not draw and
-constructs outside its syntax (for example newer flowchart shapes, sequence participant groups, gantt excludes). The
-one public diagram this library rejects uses `subgraph` inside a state diagram.
+error and writes a non-empty file; how well it is drawn is not compared here. Times and sizes use only the corpus
+diagrams all compared programs render; the corpus itself is written for this library's profile, so how many of its
+diagrams each program renders is not a fair measure and is not shown. Coverage is compared on public diagrams
+instead: `go-mermaid` rejects the diagram types it does not draw and constructs outside its syntax (for example newer
+flowchart shapes, sequence participant groups, gantt excludes); the one public diagram this library rejects uses
+`subgraph` inside a state diagram.
 
 ## License
 
