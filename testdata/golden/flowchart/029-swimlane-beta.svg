@@ -4,39 +4,45 @@
 <g stroke="#8a94a3" stroke-width="1">
 <rect x="-54" y="0" width="843.67" height="120" fill="none"/>
 <rect x="-54" y="0" width="36" height="120" fill="#eef2f7"/>
-<g clip-path="url(#label-holes-cbbc8a70)"><rect x="-54" y="120" width="843.67" height="142.29" fill="none"/>
+<g clip-path="url(#label-holes-cbbc8a70)">
+<rect x="-54" y="120" width="843.67" height="142.29" fill="none"/>
 </g>
 <rect x="-54" y="120" width="36" height="142.29" fill="#eef2f7"/>
-<g clip-path="url(#label-holes-cbbc8a70)"><rect x="-54" y="262.29" width="843.67" height="120.91" fill="none"/>
+<g clip-path="url(#label-holes-cbbc8a70)">
+<rect x="-54" y="262.29" width="843.67" height="120.91" fill="none"/>
 </g>
 <rect x="-54" y="262.29" width="36" height="120.91" fill="#eef2f7"/>
 </g>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M73 92 L73 150.6" fill="none"/>
-<path d="M146 191 L181.6 191" fill="none"/>
-<g clip-path="url(#label-holes-cbbc8a70)"><path d="M255.5 229 L255.5 315 C255.5 319.4 259.1 323 263.5 323 L321 323 L409.27 323" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M73 92 L73 150.6"/>
+<path d="M146 191 L181.6 191"/>
+<g clip-path="url(#label-holes-cbbc8a70)">
+<path d="M255.5 229 L255.5 315 C255.5 319.4 259.1 323 263.5 323 L409.27 323"/>
 </g>
-<path d="M573.67 323 L609.27 323" fill="none"/>
-<path d="M694.67 291 L694.67 221.4" fill="none"/>
-<g clip-path="url(#label-holes-cbbc8a70)"><path d="M321 191 L609.27 191" fill="none"/>
+<path d="M573.67 323 L609.27 323"/>
+<path d="M694.67 291 L694.67 221.4"/>
+<g clip-path="url(#label-holes-cbbc8a70)">
+<path d="M321 191 L609.27 191"/>
 </g>
-<path d="M694.67 169 L694.67 90.4" fill="none"/>
+<path d="M694.67 169 L694.67 90.4"/>
 </g>
-<polygon points="73,159 79,147 67,147" fill="#3b4754"/>
-<polygon points="190,191 178,185 178,197" fill="#3b4754"/>
-<polygon points="417.67,323 405.67,317 405.67,329" fill="#3b4754"/>
-<polygon points="617.67,323 605.67,317 605.67,329" fill="#3b4754"/>
-<polygon points="694.67,213 688.67,225 700.67,225" fill="#3b4754"/>
-<polygon points="617.67,191 605.67,185 605.67,197" fill="#3b4754"/>
-<polygon points="694.67,82 688.67,94 700.67,94" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="0" y="28" width="146" height="64" rx="32" fill="#eef2f7"/>
-<rect x="0" y="159" width="146" height="64" fill="#eef2f7"/>
-<polygon points="255.5,153 321,191 255.5,229 190,191" fill="#eef2f7"/>
-<rect x="417.67" y="291" width="156" height="64" fill="#eef2f7"/>
-<rect x="617.67" y="38" width="154" height="44" fill="#eef2f7"/>
-<rect x="617.67" y="169" width="154" height="44" fill="#eef2f7"/>
-<rect x="617.67" y="291" width="154" height="64" fill="#eef2f7"/>
+<g fill="#3b4754">
+<polygon points="73,159 79,147 67,147"/>
+<polygon points="190,191 178,185 178,197"/>
+<polygon points="417.67,323 405.67,317 405.67,329"/>
+<polygon points="617.67,323 605.67,317 605.67,329"/>
+<polygon points="694.67,213 688.67,225 700.67,225"/>
+<polygon points="617.67,191 605.67,185 605.67,197"/>
+<polygon points="694.67,82 688.67,94 700.67,94"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="0" y="28" width="146" height="64" rx="32"/>
+<rect x="0" y="159" width="146" height="64"/>
+<polygon points="255.5,153 321,191 255.5,229 190,191"/>
+<rect x="417.67" y="291" width="156" height="64"/>
+<rect x="617.67" y="38" width="154" height="44"/>
+<rect x="617.67" y="169" width="154" height="44"/>
+<rect x="617.67" y="291" width="154" height="64"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="-30.4" y="60" transform="rotate(-90 -30.4 60)">Klient</text>

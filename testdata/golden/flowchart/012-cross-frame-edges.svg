@@ -1,53 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="447" height="1139" viewBox="-11.5 -12 447 1139" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-37cadccb"><path d="M-11.5 -12 L435.5 -12 L435.5 1127 L-11.5 1127 M8.5 98 L8.5 118 L105.41 118 L105.41 98 M28.5 499 L28.5 519 L138.77 519 L138.77 499 M138.93 335 L138.93 355 L194.07 355 L194.07 335 M255.59 399 L255.59 419 L313.41 419 L313.41 399 M85 897 L85 917 L164.15 917 L164.15 897 M94.2 807 L94.2 827 L169.8 827 L169.8 807 M247 807 L247 827 L295 827 L295 807"/></clipPath></defs>
-<g stroke="#8a94a3" stroke-width="1">
-<g clip-path="url(#label-holes-37cadccb)"><rect x="0.5" y="92" width="423" height="653" rx="4" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-37cadccb)"><rect x="20.5" y="493" width="180" height="122" rx="4" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-37cadccb)"><rect x="77" y="891" width="264" height="224" rx="4" fill="none"/>
-</g>
-</g>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M259.5 190 L259.5 225.6" fill="none"/>
-<g clip-path="url(#label-holes-37cadccb)"><path d="M248.25 295.24 L248.25 306.12 C248.25 310.52 244.65 314.12 240.25 314.12 L174.5 314.12 C170.1 314.12 166.5 317.72 166.5 322.12 L166.5 333 L166.5 378.6" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-37cadccb)"><path d="M270.75 295.24 L270.75 307.24 C270.75 311.02 273.84 314.12 277.63 314.12 L277.63 314.12 C281.41 314.12 284.5 317.21 284.5 320.99 L284.5 333 L284.5 668.6" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-37cadccb)"><path d="M110.5 431 L110.5 538.6" fill="none"/>
-</g>
-<path d="M123.5 591 L123.5 615 L123.5 628.3 C123.5 632.7 127.1 636.3 131.5 636.3 L266.5 636.3 C270.9 636.3 274.5 639.9 274.5 644.3 L274.5 668.6" fill="none"/>
-<path d="M211 989 L211 1042.6" fill="none"/>
-<path d="M259.5 44 L259.5 137.6" fill="none"/>
-<g clip-path="url(#label-holes-37cadccb)"><path d="M97.5 591 L97.5 745 L97.5 767 C97.5 771.4 101.1 775 105.5 775 L124 775 C128.4 775 132 778.6 132 783 L132 805 L132 829 L132 852 C132 856.4 135.6 860 140 860 L159 860 C163.4 860 167 863.6 167 868 L167 891 L167 936.6" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-37cadccb)"><path d="M314.5 729.4 L314.5 745 L314.5 767 C314.5 771.4 310.9 775 306.5 775 L293 775 C288.6 775 285 778.6 285 783 L285 805 L285 1051" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-37cadccb)"><path d="M273.5 52.4 L273.5 69.7 C273.5 74.1 277.1 77.7 281.5 77.7 L391.5 77.7 C395.9 77.7 399.5 81.3 399.5 85.7 L399.5 92 L399.5 431 L399.5 454 C399.5 458.4 395.9 462 391.5 462 L322.5 462 C318.1 462 314.5 465.6 314.5 470 L314.5 493 L314.5 677" fill="none"/>
+<g fill="none" stroke="#8a94a3" stroke-width="1">
+<g clip-path="url(#label-holes-37cadccb)">
+<rect x="0.5" y="92" width="423" height="653" rx="4"/>
+<rect x="20.5" y="493" width="180" height="122" rx="4"/>
+<rect x="77" y="891" width="264" height="224" rx="4"/>
 </g>
 </g>
-<g clip-path="url(#label-holes-37cadccb)"><path d="M222.5 431 L222.5 630.3 C219.2 630.3 216.5 633 216.5 636.3 C216.5 639.6 219.2 642.3 222.5 642.3 L222.5 829 L222.5 852 C222.5 856.4 226.1 860 230.5 860 L251 860 C255.4 860 259 863.6 259 868 L259 891 L259 1042.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M259.5 190 L259.5 225.6"/>
+<g clip-path="url(#label-holes-37cadccb)">
+<path d="M248.25 295.24 L248.25 306.12 C248.25 310.52 244.65 314.12 240.25 314.12 L174.5 314.12 C170.1 314.12 166.5 317.72 166.5 322.12 L166.5 378.6"/>
+<path d="M270.75 295.24 L270.75 307.24 C270.75 311.02 273.84 314.12 277.63 314.12 L277.63 314.12 C281.41 314.12 284.5 317.21 284.5 320.99 L284.5 668.6"/>
+<path d="M110.5 431 L110.5 538.6"/>
 </g>
-<polygon points="259.5,234 253.5,222 265.5,222" fill="#3b4754"/>
-<polygon points="166.5,387 160.5,375 172.5,375" fill="#3b4754"/>
-<polygon points="284.5,677 278.5,665 290.5,665" fill="#3b4754"/>
-<polygon points="110.5,547 104.5,535 116.5,535" fill="#3b4754"/>
-<polygon points="274.5,677 268.5,665 280.5,665" fill="#3b4754"/>
-<polygon points="211,1051 205,1039 217,1039" fill="#3b4754"/>
-<polygon points="259.5,146 253.5,134 265.5,134" fill="#3b4754"/>
-<polygon points="167,945 161,933 173,933" fill="#3b4754"/>
-<polygon points="314.5,721 320.5,733 308.5,733" fill="#3b4754"/>
-<polygon points="273.5,44 279.5,56 267.5,56" fill="#3b4754"/>
-<polygon points="259,1051 253,1039 265,1039" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="144" y="0" width="140" height="44" fill="#eef2f7"/>
-<rect x="189.5" y="146" width="140" height="44" fill="#eef2f7"/>
-<polygon points="259.5,234 309.5,268.5 259.5,303 209.5,268.5" fill="#eef2f7"/>
-<rect x="96.5" y="387" width="140" height="44" fill="#eef2f7"/>
-<rect x="40.5" y="547" width="140" height="44" fill="#eef2f7"/>
-<rect x="244.5" y="677" width="140" height="44" fill="#eef2f7"/>
-<rect x="97" y="945" width="140" height="44" fill="#eef2f7"/>
-<rect x="181" y="1051" width="140" height="44" fill="#eef2f7"/>
+<path d="M123.5 591 L123.5 628.3 C123.5 632.7 127.1 636.3 131.5 636.3 L266.5 636.3 C270.9 636.3 274.5 639.9 274.5 644.3 L274.5 668.6"/>
+<path d="M211 989 L211 1042.6"/>
+<path d="M259.5 44 L259.5 137.6"/>
+<g clip-path="url(#label-holes-37cadccb)">
+<path d="M97.5 591 L97.5 767 C97.5 771.4 101.1 775 105.5 775 L124 775 C128.4 775 132 778.6 132 783 L132 852 C132 856.4 135.6 860 140 860 L159 860 C163.4 860 167 863.6 167 868 L167 936.6"/>
+<path d="M314.5 729.4 L314.5 767 C314.5 771.4 310.9 775 306.5 775 L293 775 C288.6 775 285 778.6 285 783 L285 1051"/>
+<path d="M273.5 52.4 L273.5 69.7 C273.5 74.1 277.1 77.7 281.5 77.7 L391.5 77.7 C395.9 77.7 399.5 81.3 399.5 85.7 L399.5 454 C399.5 458.4 395.9 462 391.5 462 L322.5 462 C318.1 462 314.5 465.6 314.5 470 L314.5 677"/>
+</g>
+</g>
+<g clip-path="url(#label-holes-37cadccb)">
+<path d="M222.5 431 L222.5 630.3 C219.2 630.3 216.5 633 216.5 636.3 C216.5 639.6 219.2 642.3 222.5 642.3 L222.5 852 C222.5 856.4 226.1 860 230.5 860 L251 860 C255.4 860 259 863.6 259 868 L259 1042.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
+<g fill="#3b4754">
+<polygon points="259.5,234 253.5,222 265.5,222"/>
+<polygon points="166.5,387 160.5,375 172.5,375"/>
+<polygon points="284.5,677 278.5,665 290.5,665"/>
+<polygon points="110.5,547 104.5,535 116.5,535"/>
+<polygon points="274.5,677 268.5,665 280.5,665"/>
+<polygon points="211,1051 205,1039 217,1039"/>
+<polygon points="259.5,146 253.5,134 265.5,134"/>
+<polygon points="167,945 161,933 173,933"/>
+<polygon points="314.5,721 320.5,733 308.5,733"/>
+<polygon points="273.5,44 279.5,56 267.5,56"/>
+<polygon points="259,1051 253,1039 265,1039"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="144" y="0" width="140" height="44"/>
+<rect x="189.5" y="146" width="140" height="44"/>
+<polygon points="259.5,234 309.5,268.5 259.5,303 209.5,268.5"/>
+<rect x="96.5" y="387" width="140" height="44"/>
+<rect x="40.5" y="547" width="140" height="44"/>
+<rect x="244.5" y="677" width="140" height="44"/>
+<rect x="97" y="945" width="140" height="44"/>
+<rect x="181" y="1051" width="140" height="44"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="214" y="27.6">Klient</text>

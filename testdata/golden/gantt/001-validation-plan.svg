@@ -1,20 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="802.95" height="348.65" viewBox="-12 -12.4 802.95 348.65" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Walidacja procesu sterylizacji</title>
-<rect x="0" y="52.25" width="768.95" height="68" fill="#f6f8fa"/>
-<rect x="0" y="222.25" width="768.95" height="102" fill="#f6f8fa"/>
+<g fill="#f6f8fa">
+<rect x="0" y="52.25" width="768.95" height="68"/>
+<rect x="0" y="222.25" width="768.95" height="102"/>
+</g>
 <g stroke="#d5dae1" stroke-width="1">
-<line x1="128.95" y1="52.25" x2="128.95" y2="324.25" fill="none"/>
-<line x1="230.76" y1="52.25" x2="230.76" y2="324.25" fill="none"/>
-<line x1="332.58" y1="52.25" x2="332.58" y2="324.25" fill="none"/>
-<line x1="434.4" y1="52.25" x2="434.4" y2="324.25" fill="none"/>
-<line x1="536.22" y1="52.25" x2="536.22" y2="324.25" fill="none"/>
-<line x1="638.04" y1="52.25" x2="638.04" y2="324.25" fill="none"/>
-<line x1="739.85" y1="52.25" x2="739.85" y2="324.25" fill="none"/>
+<line x1="128.95" y1="52.25" x2="128.95" y2="324.25"/>
+<line x1="230.76" y1="52.25" x2="230.76" y2="324.25"/>
+<line x1="332.58" y1="52.25" x2="332.58" y2="324.25"/>
+<line x1="434.4" y1="52.25" x2="434.4" y2="324.25"/>
+<line x1="536.22" y1="52.25" x2="536.22" y2="324.25"/>
+<line x1="638.04" y1="52.25" x2="638.04" y2="324.25"/>
+<line x1="739.85" y1="52.25" x2="739.85" y2="324.25"/>
 </g>
 <rect x="128.95" y="52.25" width="640" height="272" fill="none" stroke="#6b7785" stroke-width="1"/>
-<g stroke="#9aa5b1" stroke-width="1.5">
-<rect x="128.95" y="58.25" width="72.73" height="22" rx="3" fill="#e6e8eb"/>
-<rect x="201.67" y="92.25" width="36.36" height="22" rx="3" fill="#e6e8eb"/>
+<g fill="#e6e8eb" stroke="#9aa5b1" stroke-width="1.5">
+<rect x="128.95" y="58.25" width="72.73" height="22" rx="3"/>
+<rect x="201.67" y="92.25" width="36.36" height="22" rx="3"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
 <rect x="238.04" y="126.25" width="101.82" height="22" rx="3" fill="#c9d6e8"/>

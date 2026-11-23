@@ -1,38 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="438.97" height="464" viewBox="45.08 -12 438.97 464" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-9b5371d8"><path d="M45.08 -12 L484.05 -12 L484.05 452 L45.08 452 M96.42 43.55 L96.42 60.45 L125.7 60.45 L125.7 43.55 M96.42 87.55 L96.42 104.45 L145.23 104.45 L145.23 87.55 M265.26 131.55 L265.26 148.45 L297.43 148.45 L297.43 131.55 M265.26 175.55 L265.26 192.45 L319.12 192.45 L319.12 175.55 M96.42 219.55 L96.42 236.45 L156.79 236.45 L156.79 219.55 M434.09 263.55 L434.09 280.45 L472.05 280.45 L472.05 263.55"/></clipPath></defs>
 <g stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4">
-<line x1="84.42" y1="36" x2="84.42" y2="440" fill="none"/>
-<line x1="253.26" y1="36" x2="253.26" y2="440" fill="none"/>
-<line x1="422.09" y1="36" x2="422.09" y2="440" fill="none"/>
+<line x1="84.42" y1="36" x2="84.42" y2="440"/>
+<line x1="253.26" y1="36" x2="253.26" y2="440"/>
+<line x1="422.09" y1="36" x2="422.09" y2="440"/>
 </g>
-<g stroke="#3b4754" stroke-width="3">
-<line x1="84.42" y1="52" x2="84.42" y2="404" fill="none"/>
-<line x1="253.26" y1="140" x2="253.26" y2="184" fill="none"/>
-<line x1="422.09" y1="272" x2="422.09" y2="272" fill="none"/>
-<g clip-path="url(#label-holes-9b5371d8)"><path d="M84.42 96 L243.26 96 C248.76 96 253.26 100.5 253.26 106 L253.26 140" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-9b5371d8)"><path d="M84.42 228 L248.26 228 C248.26 225.24 250.49 223 253.26 223 C256.02 223 258.26 225.24 258.26 228 L412.09 228 C417.59 228 422.09 232.5 422.09 238 L422.09 272" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-9b5371d8)"><path d="M253.26 184 L253.26 306 C253.26 311.5 248.76 316 243.26 316 L84.42 316" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="3">
+<line x1="84.42" y1="52" x2="84.42" y2="404"/>
+<line x1="253.26" y1="140" x2="253.26" y2="184"/>
+<line x1="422.09" y1="272" x2="422.09" y2="272"/>
+<g clip-path="url(#label-holes-9b5371d8)">
+<path d="M84.42 96 L243.26 96 C248.76 96 253.26 100.5 253.26 106 L253.26 140"/>
+<path d="M84.42 228 L248.26 228 C248.26 225.24 250.49 223 253.26 223 C256.02 223 258.26 225.24 258.26 228 L412.09 228 C417.59 228 422.09 232.5 422.09 238 L422.09 272"/>
+<path d="M253.26 184 L253.26 306 C253.26 311.5 248.76 316 243.26 316 L84.42 316"/>
 </g>
 </g>
 <path d="M422.09 272 L422.09 350 C422.09 355.5 417.59 360 412.09 360 L84.42 360" fill="none" stroke="#3b4754" stroke-width="2" stroke-dasharray="4 3"/>
-<g stroke="#3b4754" stroke-width="1.5">
-<rect x="57.08" y="0" width="54.68" height="28" rx="4" fill="#eef2f7"/>
-<rect x="213.02" y="0" width="80.48" height="28" rx="4" fill="#eef2f7"/>
-<rect x="395.19" y="0" width="53.8" height="28" rx="4" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#3b4754" stroke-width="1.5">
+<rect x="57.08" y="0" width="54.68" height="28" rx="4"/>
+<rect x="213.02" y="0" width="80.48" height="28" rx="4"/>
+<rect x="395.19" y="0" width="53.8" height="28" rx="4"/>
 </g>
-<g stroke="#3b4754" stroke-width="2">
-<circle cx="84.42" cy="52" r="8" fill="#3b4754"/>
-<circle cx="84.42" cy="96" r="8" fill="#3b4754"/>
+<g fill="#3b4754" stroke="#3b4754" stroke-width="2">
+<circle cx="84.42" cy="52" r="8"/>
+<circle cx="84.42" cy="96" r="8"/>
 </g>
 <polygon points="151.23,96 160.33,86.9 197.5,86.9 197.5,105.1 160.33,105.1" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
 <circle cx="158.96" cy="96" r="1.82" fill="#3b4754"/>
-<g stroke="#3b4754" stroke-width="2">
-<circle cx="253.26" cy="140" r="8" fill="#3b4754"/>
-<rect x="245.26" y="176" width="16" height="16" fill="#3b4754"/>
-<circle cx="84.42" cy="228" r="8" fill="#3b4754"/>
-<circle cx="422.09" cy="272" r="8" fill="#3b4754"/>
+<g fill="#3b4754" stroke="#3b4754" stroke-width="2">
+<circle cx="253.26" cy="140" r="8"/>
+<rect x="245.26" y="176" width="16" height="16"/>
+<circle cx="84.42" cy="228" r="8"/>
+<circle cx="422.09" cy="272" r="8"/>
 </g>
 <circle cx="84.42" cy="316" r="8" fill="#ffffff" stroke="#3b4754" stroke-width="2.5"/>
 <circle cx="84.42" cy="316" r="3.6" fill="#3b4754"/>
@@ -58,14 +57,14 @@
 <text x="98.42" y="232.55" font-size="13">poprawka</text>
 </g>
 <g stroke="#ffffff" stroke-width="2">
-<line x1="418.09" y1="276" x2="426.09" y2="268" fill="none"/>
-<line x1="418.09" y1="268" x2="426.09" y2="276" fill="none"/>
+<line x1="418.09" y1="276" x2="426.09" y2="268"/>
+<line x1="418.09" y1="268" x2="426.09" y2="276"/>
 </g>
 <text x="436.09" y="276.55" font-size="13" fill="#5b6570">errata</text>
 <text x="127.4" y="320.55" text-anchor="middle" font-size="13" fill="#1b1f24">v1.0</text>
-<line x1="85.22" y1="355.04" x2="81.54" y2="360.8" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<line x1="85.22" y1="355.04" x2="81.54" y2="360.8" stroke="#ffffff" stroke-width="1.2"/>
 <circle cx="81.54" cy="362.4" r="2.4" fill="#ffffff"/>
-<line x1="85.22" y1="355.04" x2="87.3" y2="360.8" fill="none" stroke="#ffffff" stroke-width="1.2"/>
+<line x1="85.22" y1="355.04" x2="87.3" y2="360.8" stroke="#ffffff" stroke-width="1.2"/>
 <circle cx="87.3" cy="362.4" r="2.4" fill="#ffffff"/>
 <text x="165.69" y="364.55" text-anchor="middle" font-size="13" fill="#1b1f24">cherry-pick:errata</text>
 </svg>

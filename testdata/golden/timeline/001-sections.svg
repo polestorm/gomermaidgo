@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="994" height="392.4" viewBox="-12 -12.4 994 392.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Wdrożenie systemu zarządzania jakością</title>
-<line x1="0" y1="130" x2="958" y2="130" fill="none" stroke="#3b4754" stroke-width="2"/>
+<line x1="0" y1="130" x2="958" y2="130" stroke="#3b4754" stroke-width="2"/>
 <polygon points="970,130 958,124 958,136" fill="#3b4754"/>
 <g stroke="#3b4754" stroke-width="1.5" stroke-dasharray="4 4">
-<line x1="75" y1="110" x2="75" y2="266" fill="none"/>
-<line x1="235" y1="110" x2="235" y2="226" fill="none"/>
-<line x1="395" y1="110" x2="395" y2="368" fill="none"/>
-<line x1="555" y1="110" x2="555" y2="224" fill="none"/>
-<line x1="715" y1="110" x2="715" y2="184" fill="none"/>
-<line x1="875" y1="110" x2="875" y2="130" fill="none"/>
+<line x1="75" y1="110" x2="75" y2="266"/>
+<line x1="235" y1="110" x2="235" y2="226"/>
+<line x1="395" y1="110" x2="395" y2="368"/>
+<line x1="555" y1="110" x2="555" y2="224"/>
+<line x1="715" y1="110" x2="715" y2="184"/>
+<line x1="875" y1="110" x2="875" y2="130"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
 <rect x="0" y="34" width="310" height="32" rx="4" fill="#f1f4f8"/>
@@ -17,22 +17,22 @@
 <rect x="0" y="74" width="150" height="36" rx="4" fill="#e3e8ef"/>
 </g>
 <circle cx="75" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<g stroke="#9aa5b1" stroke-width="1">
-<rect x="0" y="150" width="150" height="54" rx="4" fill="#ffffff"/>
-<rect x="0" y="212" width="150" height="54" rx="4" fill="#ffffff"/>
+<g fill="#ffffff" stroke="#9aa5b1" stroke-width="1">
+<rect x="0" y="150" width="150" height="54" rx="4"/>
+<rect x="0" y="212" width="150" height="54" rx="4"/>
 </g>
 <rect x="160" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
 <circle cx="235" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<g stroke="#9aa5b1" stroke-width="1">
-<rect x="160" y="150" width="150" height="34" rx="4" fill="#ffffff"/>
-<rect x="160" y="192" width="150" height="34" rx="4" fill="#ffffff"/>
+<g fill="#ffffff" stroke="#9aa5b1" stroke-width="1">
+<rect x="160" y="150" width="150" height="34" rx="4"/>
+<rect x="160" y="192" width="150" height="34" rx="4"/>
 </g>
 <rect x="320" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
 <circle cx="395" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>
-<g stroke="#9aa5b1" stroke-width="1">
-<rect x="320" y="150" width="150" height="94" rx="4" fill="#ffffff"/>
-<rect x="320" y="252" width="150" height="54" rx="4" fill="#ffffff"/>
-<rect x="320" y="314" width="150" height="54" rx="4" fill="#ffffff"/>
+<g fill="#ffffff" stroke="#9aa5b1" stroke-width="1">
+<rect x="320" y="150" width="150" height="94" rx="4"/>
+<rect x="320" y="252" width="150" height="54" rx="4"/>
+<rect x="320" y="314" width="150" height="54" rx="4"/>
 </g>
 <rect x="480" y="74" width="150" height="36" rx="4" fill="#e3e8ef" stroke="#55657a" stroke-width="1.5"/>
 <circle cx="555" cy="130" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="2"/>

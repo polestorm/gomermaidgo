@@ -1,31 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="572.07" height="472" viewBox="-11.6 -12 572.07 472" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-a6b71a40"><path d="M-11.6 -12 L560.47 -12 L560.47 460 L-11.6 460 M227.21 136 L227.21 156 L302.79 156 L302.79 136 M237.43 276 L237.43 296 L292.57 296 L292.57 276"/></clipPath></defs>
 <g stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3">
-<line x1="187" y1="82" x2="138.79" y2="82" fill="none"/>
-<line x1="343" y1="82" x2="391.43" y2="82" fill="none"/>
-<line x1="343" y1="216" x2="391.53" y2="216" fill="none"/>
-<line x1="187" y1="356" x2="139.6" y2="356" fill="none"/>
+<line x1="187" y1="82" x2="138.79" y2="82"/>
+<line x1="343" y1="82" x2="391.43" y2="82"/>
+<line x1="343" y1="216" x2="391.53" y2="216"/>
+<line x1="187" y1="356" x2="139.6" y2="356"/>
 </g>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M265 16 L265 51.6" fill="none"/>
-<g clip-path="url(#label-holes-a6b71a40)"><path d="M265 104 L265 185.6" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M265 16 L265 51.6"/>
+<g clip-path="url(#label-holes-a6b71a40)">
+<path d="M265 104 L265 185.6"/>
+<path d="M265 238 L265 325.6"/>
 </g>
-<g clip-path="url(#label-holes-a6b71a40)"><path d="M265 238 L265 325.6" fill="none"/>
+<path d="M265 378 L265 419.6"/>
 </g>
-<path d="M265 378 L265 419.6" fill="none"/>
+<g fill="#3b4754">
+<polygon points="265,60 259,48 271,48"/>
+<polygon points="265,194 259,182 271,182"/>
+<polygon points="265,334 259,322 271,322"/>
+<polygon points="265,428 259,416 271,416"/>
+<circle cx="265" cy="8" r="8"/>
 </g>
-<polygon points="265,60 259,48 271,48" fill="#3b4754"/>
-<polygon points="265,194 259,182 271,182" fill="#3b4754"/>
-<polygon points="265,334 259,322 271,322" fill="#3b4754"/>
-<polygon points="265,428 259,416 271,416" fill="#3b4754"/>
-<circle cx="265" cy="8" r="8" fill="#3b4754"/>
 <rect x="43.21" y="64" width="95.57" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
 <rect x="187" y="60" width="156" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect x="391.43" y="64" width="99.14" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
 <rect x="187" y="194" width="156" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<g stroke="#b59a1b" stroke-width="1">
-<rect x="391.53" y="188" width="156.95" height="56" fill="#fff6c2"/>
-<rect x="0.4" y="328" width="139.2" height="56" fill="#fff6c2"/>
+<g fill="#fff6c2" stroke="#b59a1b" stroke-width="1">
+<rect x="391.53" y="188" width="156.95" height="56"/>
+<rect x="0.4" y="328" width="139.2" height="56"/>
 </g>
 <rect x="187" y="334" width="156" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <circle cx="265" cy="438" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>

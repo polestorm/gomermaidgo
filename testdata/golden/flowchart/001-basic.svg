@@ -1,20 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="282.5" height="503" viewBox="-12 -12 282.5 503" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M143 44 L143 79.6" fill="none"/>
-<path d="M123.43 193.61 L123.43 206.61 C123.43 211.01 119.83 214.61 115.43 214.61 L96 214.61 C91.6 214.61 88 218.21 88 222.61 L88 246.6" fill="none"/>
-<path d="M162.57 193.61 L162.57 206.61 C162.57 211.01 166.18 214.61 170.58 214.61 L190 214.61 C194.4 214.61 198 218.21 198 222.61 L198 255 L198 338.6" fill="none"/>
-<path d="M141 299 L141 338.6" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M143 44 L143 79.6"/>
+<path d="M123.43 193.61 L123.43 206.61 C123.43 211.01 119.83 214.61 115.43 214.61 L96 214.61 C91.6 214.61 88 218.21 88 222.61 L88 246.6"/>
+<path d="M162.57 193.61 L162.57 206.61 C162.57 211.01 166.18 214.61 170.58 214.61 L190 214.61 C194.4 214.61 198 218.21 198 222.61 L198 338.6"/>
+<path d="M141 299 L141 338.6"/>
 </g>
-<polygon points="143,88 137,76 149,76" fill="#3b4754"/>
-<polygon points="88,255 82,243 94,243" fill="#3b4754"/>
-<polygon points="198,347 192,335 204,335" fill="#3b4754"/>
-<polygon points="141,347 135,335 147,335" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="27.5" y="0" width="231" height="44" fill="#eef2f7"/>
-<polygon points="143,88 230,147.5 143,207 56,147.5" fill="#eef2f7"/>
-<rect x="0" y="255" width="176" height="44" fill="#eef2f7"/>
-<rect x="91" y="347" width="140" height="44" fill="#eef2f7"/>
-<rect x="0" y="435" width="140" height="44" fill="#eef2f7"/>
+<g fill="#3b4754">
+<polygon points="143,88 137,76 149,76"/>
+<polygon points="88,255 82,243 94,243"/>
+<polygon points="198,347 192,335 204,335"/>
+<polygon points="141,347 135,335 147,335"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="27.5" y="0" width="231" height="44"/>
+<polygon points="143,88 230,147.5 143,207 56,147.5"/>
+<rect x="0" y="255" width="176" height="44"/>
+<rect x="91" y="347" width="140" height="44"/>
+<rect x="0" y="435" width="140" height="44"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="143" y="27.6">Zgłoszenie niezgodności</text>

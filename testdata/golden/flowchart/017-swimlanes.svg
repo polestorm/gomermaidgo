@@ -1,56 +1,62 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="830" height="710" viewBox="-12 -64 830 710" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-67d8e10a"><path d="M-12 -64 L818 -64 L818 646 L-12 646 M264.32 118 L264.32 138 L293.68 138 L293.68 118 M401.33 200 L401.33 220 L430.67 220 L430.67 200 M662.33 392 L662.33 412 L691.67 412 L691.67 392 M521.82 392 L521.82 412 L551.18 412 L551.18 392"/></clipPath></defs>
 <g stroke="#8a94a3" stroke-width="1">
-<g clip-path="url(#label-holes-67d8e10a)"><rect x="0" y="-52" width="284" height="686" fill="none"/>
+<g clip-path="url(#label-holes-67d8e10a)">
+<rect x="0" y="-52" width="284" height="686" fill="none"/>
 </g>
 <rect x="0" y="-52" width="284" height="34" fill="#eef2f7"/>
-<g clip-path="url(#label-holes-67d8e10a)"><rect x="284" y="-52" width="264" height="686" fill="none"/>
+<g clip-path="url(#label-holes-67d8e10a)">
+<rect x="284" y="-52" width="264" height="686" fill="none"/>
 </g>
 <rect x="284" y="-52" width="264" height="34" fill="#eef2f7"/>
-<g clip-path="url(#label-holes-67d8e10a)"><rect x="548" y="-52" width="258" height="686" fill="none"/>
+<g clip-path="url(#label-holes-67d8e10a)">
+<rect x="548" y="-52" width="258" height="686" fill="none"/>
 </g>
 <rect x="548" y="-52" width="258" height="34" fill="#eef2f7"/>
 </g>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M256 22 L303.6 22" fill="none"/>
-<path d="M416 44 L416 79.6" fill="none"/>
-<g clip-path="url(#label-holes-67d8e10a)"><path d="M341 128 L225 128 C220.6 128 217 131.6 217 136 L217 168 L217 284.6" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M256 22 L303.6 22"/>
+<path d="M416 44 L416 79.6"/>
+<g clip-path="url(#label-holes-67d8e10a)">
+<path d="M341 128 L225 128 C220.6 128 217 131.6 217 136 L217 284.6"/>
+<path d="M396 52.4 L396 67.7 C396 72.1 392.4 75.7 388 75.7 L211 75.7 C206.6 75.7 203 79.3 203 83.7 L203 293"/>
+<path d="M416 168 L416 284.6"/>
 </g>
-<g clip-path="url(#label-holes-67d8e10a)"><path d="M396 52.4 L396 67.7 C396 72.1 392.4 75.7 388 75.7 L211 75.7 C206.6 75.7 203 79.3 203 83.7 L203 88 L203 293" fill="none"/>
+<path d="M494.5 315 L567.6 315"/>
+<g clip-path="url(#label-holes-67d8e10a)">
+<path d="M677 360 L677 435.6"/>
 </g>
-<g clip-path="url(#label-holes-67d8e10a)"><path d="M416 168 L416 284.6" fill="none"/>
+<path d="M677 508 L677 543.6"/>
+<path d="M588.5 584 L520.9 584"/>
+<g clip-path="url(#label-holes-67d8e10a)">
+<path d="M657 351.09 L657 394 C657 398.4 653.4 402 649 402 L424 402 C419.6 402 416 405.6 416 410 L416 543.6"/>
 </g>
-<path d="M494.5 315 L567.6 315" fill="none"/>
-<g clip-path="url(#label-holes-67d8e10a)"><path d="M677 360 L677 435.6" fill="none"/>
+<path d="M319.5 584 L246.9 584"/>
 </g>
-<path d="M677 508 L677 543.6" fill="none"/>
-<path d="M588.5 584 L520.9 584" fill="none"/>
-<g clip-path="url(#label-holes-67d8e10a)"><path d="M657 351.09 L657 394 C657 398.4 653.4 402 649 402 L424 402 C419.6 402 416 405.6 416 410 L416 543.6" fill="none"/>
+<g fill="#3b4754">
+<polygon points="312,22 300,28 300,16"/>
+<polygon points="416,88 410,76 422,76"/>
+<polygon points="217,293 211,281 223,281"/>
+<polygon points="396,44 402,56 390,56"/>
+<polygon points="416,293 410,281 422,281"/>
+<polygon points="576,315 564,321 564,309"/>
+<polygon points="677,444 671,432 683,432"/>
+<polygon points="677,552 671,540 683,540"/>
+<polygon points="512.5,584 524.5,578 524.5,590"/>
+<polygon points="416,552 410,540 422,540"/>
+<polygon points="238.5,584 250.5,578 250.5,590"/>
 </g>
-<path d="M319.5 584 L246.9 584" fill="none"/>
-</g>
-<polygon points="312,22 300,28 300,16" fill="#3b4754"/>
-<polygon points="416,88 410,76 422,76" fill="#3b4754"/>
-<polygon points="217,293 211,281 223,281" fill="#3b4754"/>
-<polygon points="396,44 402,56 390,56" fill="#3b4754"/>
-<polygon points="416,293 410,281 422,281" fill="#3b4754"/>
-<polygon points="576,315 564,321 564,309" fill="#3b4754"/>
-<polygon points="677,444 671,432 683,432" fill="#3b4754"/>
-<polygon points="677,552 671,540 683,540" fill="#3b4754"/>
-<polygon points="512.5,584 524.5,578 524.5,590" fill="#3b4754"/>
-<polygon points="416,552 410,540 422,540" fill="#3b4754"/>
-<polygon points="238.5,584 250.5,578 250.5,590" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="28" y="0" width="228" height="44" rx="22" fill="#eef2f7"/>
-<rect x="312" y="0" width="208" height="44" fill="#eef2f7"/>
-<polygon points="416,88 491,128 416,168 341,128" fill="#eef2f7"/>
-<rect x="38.5" y="293" width="207" height="44" fill="#eef2f7"/>
-<rect x="337.5" y="293" width="157" height="44" fill="#eef2f7"/>
-<polygon points="677,270 778,315 677,360 576,315" fill="#eef2f7"/>
-<rect x="588.5" y="444" width="177" height="64" fill="#eef2f7"/>
-<rect x="45.5" y="552" width="193" height="64" rx="32" fill="#eef2f7"/>
-<rect x="319.5" y="552" width="193" height="64" fill="#eef2f7"/>
-<rect x="588.5" y="552" width="177" height="64" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="28" y="0" width="228" height="44" rx="22"/>
+<rect x="312" y="0" width="208" height="44"/>
+<polygon points="416,88 491,128 416,168 341,128"/>
+<rect x="38.5" y="293" width="207" height="44"/>
+<rect x="337.5" y="293" width="157" height="44"/>
+<polygon points="677,270 778,315 677,360 576,315"/>
+<rect x="588.5" y="444" width="177" height="64"/>
+<rect x="45.5" y="552" width="193" height="64" rx="32"/>
+<rect x="319.5" y="552" width="193" height="64"/>
+<rect x="588.5" y="552" width="177" height="64"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="142" y="-29.4">Pracownik</text>

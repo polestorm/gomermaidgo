@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1293" height="362.4" viewBox="-12 -12.4 1293 362.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Obsługa reklamacji okiem klienta</title>
-<line x1="139" y1="332" x2="1257" y2="332" fill="none" stroke="#3b4754" stroke-width="2"/>
+<line x1="139" y1="332" x2="1257" y2="332" stroke="#3b4754" stroke-width="2"/>
 <polygon points="1269,332 1257,326 1257,338" fill="#3b4754"/>
 <g stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4">
-<line x1="214" y1="170" x2="214" y2="332" fill="none"/>
-<line x1="374" y1="170" x2="374" y2="332" fill="none"/>
-<line x1="534" y1="170" x2="534" y2="332" fill="none"/>
-<line x1="694" y1="170" x2="694" y2="332" fill="none"/>
-<line x1="854" y1="170" x2="854" y2="332" fill="none"/>
-<line x1="1014" y1="170" x2="1014" y2="332" fill="none"/>
-<line x1="1174" y1="170" x2="1174" y2="332" fill="none"/>
+<line x1="214" y1="170" x2="214" y2="332"/>
+<line x1="374" y1="170" x2="374" y2="332"/>
+<line x1="534" y1="170" x2="534" y2="332"/>
+<line x1="694" y1="170" x2="694" y2="332"/>
+<line x1="854" y1="170" x2="854" y2="332"/>
+<line x1="1014" y1="170" x2="1014" y2="332"/>
+<line x1="1174" y1="170" x2="1174" y2="332"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
 <rect x="139" y="34" width="470" height="32" rx="4" fill="#dde3ea"/>
@@ -44,16 +44,20 @@
 <text x="214" y="147.6">stronie</text>
 </g>
 <circle cx="151" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle cx="208.75" cy="273.25" r="1.5" fill="#3b4754"/>
-<circle cx="219.25" cy="273.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="208.75" cy="273.25" r="1.5"/>
+<circle cx="219.25" cy="273.25" r="1.5"/>
+</g>
 <path d="M207.25 285.7 C211 279.4 217 279.4 220.75 285.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="374" y="117.6">Opisanie</text>
 <text x="374" y="137.6">problemu</text>
 </g>
 <circle cx="311" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle cx="368.75" cy="221.25" r="1.5" fill="#3b4754"/>
-<circle cx="379.25" cy="221.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="368.75" cy="221.25" r="1.5"/>
+<circle cx="379.25" cy="221.25" r="1.5"/>
+</g>
 <path d="M367.25 228 C371 234.3 377 234.3 380.75 228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="534" y="117.6">Potwierdzenie</text>
@@ -63,8 +67,10 @@
 <circle cx="471" cy="74" r="5.5" fill="#3b4754"/>
 <circle cx="484" cy="74" r="5.5" fill="#c9d1da"/>
 </g>
-<circle cx="528.75" cy="195.25" r="1.5" fill="#3b4754"/>
-<circle cx="539.25" cy="195.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="528.75" cy="195.25" r="1.5"/>
+<circle cx="539.25" cy="195.25" r="1.5"/>
+</g>
 <path d="M527.25 202 C531 208.3 537 208.3 540.75 202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="694" y="97.6">Oczekiwanie na</text>
@@ -73,8 +79,10 @@
 <text x="694" y="157.6">postępie sprawy</text>
 </g>
 <circle cx="631" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle cx="688.75" cy="299.25" r="1.5" fill="#3b4754"/>
-<circle cx="699.25" cy="299.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="688.75" cy="299.25" r="1.5"/>
+<circle cx="699.25" cy="299.25" r="1.5"/>
+</g>
 <path d="M687.25 311.7 C691 305.4 697 305.4 700.75 311.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="854" y="117.6">Dodatkowe</text>
@@ -84,17 +92,23 @@
 <circle cx="791" cy="74" r="5.5" fill="#3b4754"/>
 <circle cx="804" cy="74" r="5.5" fill="#c9d1da"/>
 </g>
-<circle cx="848.75" cy="247.25" r="1.5" fill="#3b4754"/>
-<circle cx="859.25" cy="247.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="848.75" cy="247.25" r="1.5"/>
+<circle cx="859.25" cy="247.25" r="1.5"/>
+</g>
 <path d="M848 257 L860 257" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <text x="1014" y="127.6" text-anchor="middle" fill="#1b1f24">Decyzja</text>
 <circle cx="951" cy="74" r="5.5" fill="#c9d1da" stroke="#3b4754" stroke-width="1"/>
-<circle cx="1008.75" cy="221.25" r="1.5" fill="#3b4754"/>
-<circle cx="1019.25" cy="221.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="1008.75" cy="221.25" r="1.5"/>
+<circle cx="1019.25" cy="221.25" r="1.5"/>
+</g>
 <path d="M1007.25 228 C1011 234.3 1017 234.3 1020.75 228" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <text x="1174" y="127.6" text-anchor="middle" fill="#1b1f24">Wymiana wyrobu</text>
-<circle cx="1168.75" cy="195.25" r="1.5" fill="#3b4754"/>
-<circle cx="1179.25" cy="195.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="1168.75" cy="195.25" r="1.5"/>
+<circle cx="1179.25" cy="195.25" r="1.5"/>
+</g>
 <path d="M1167.25 202 C1171 208.3 1177 208.3 1180.75 202" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24">
 <text x="22" y="89.6">Klient</text>

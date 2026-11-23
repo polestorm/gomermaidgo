@@ -2,66 +2,76 @@
 <title>Sterylizator w trakcie cyklu</title>
 <defs><clipPath id="label-holes-1d056386"><path d="M-11.95 -12 L585.95 -12 L585.95 970 L-11.95 970 M266.11 136 L266.11 156 L307.89 156 L307.89 136 M318.43 770 L318.43 790 L373.57 790 L373.57 770"/></clipPath></defs>
 <rect x="0.05" y="188" width="573.9" height="522" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect x="0.05" y="188" width="573.9" height="32" rx="8" fill="#eef2f7"/>
-<rect x="0.05" y="204" width="573.9" height="16" fill="#eef2f7"/>
-<line x1="0.05" y1="220" x2="573.95" y2="220" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g fill="#eef2f7">
+<rect x="0.05" y="188" width="573.9" height="32" rx="8"/>
+<rect x="0.05" y="204" width="573.9" height="16"/>
+</g>
+<line x1="0.05" y1="220" x2="573.95" y2="220" stroke="#8a94a3" stroke-width="1"/>
 <path d="M1.12 706 C2.55 708.48 5.19 710 8.05 710 L565.95 710 C568.81 710 571.45 708.48 572.88 706 L1.12 706" fill="#eef2f7"/>
-<g stroke="#8a94a3" stroke-width="1">
-<line x1="1.12" y1="706" x2="572.88" y2="706" fill="none"/>
-<rect x="0.05" y="188" width="573.9" height="522" rx="8" fill="none"/>
+<g fill="none" stroke="#8a94a3" stroke-width="1">
+<line x1="1.12" y1="706" x2="572.88" y2="706"/>
+<rect x="0.05" y="188" width="573.9" height="522" rx="8"/>
 </g>
-<g stroke="#8a94a3" stroke-width="1" stroke-dasharray="5 4">
-<rect x="20.14" y="248" width="213.83" height="438" rx="6" fill="#f1f4f8"/>
-<rect x="274.16" y="248" width="279.79" height="136" rx="6" fill="#f1f4f8"/>
-<rect x="274.05" y="420" width="194" height="264" rx="6" fill="#f1f4f8"/>
+<g fill="#f1f4f8" stroke="#8a94a3" stroke-width="1" stroke-dasharray="5 4">
+<rect x="20.14" y="248" width="213.83" height="438" rx="6"/>
+<rect x="274.16" y="248" width="279.79" height="136" rx="6"/>
+<rect x="274.05" y="420" width="194" height="264" rx="6"/>
 </g>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M127.14 294 L127.14 311.6" fill="none"/>
-<path d="M127.14 364 L127.14 439.6" fill="none"/>
-<path d="M127.14 492 L127.14 567.6" fill="none"/>
-<path d="M127.14 620 L127.14 637.6" fill="none"/>
-<path d="M434.36 334 L446.36 334 C476.36 334 476.36 350 446.36 350 L442.76 350" fill="none"/>
-<path d="M364.16 294 L364.16 311.6" fill="none"/>
-<path d="M371.05 466 L371.05 483.6" fill="none"/>
-<path d="M371.05 536 L371.05 611.6" fill="none"/>
-<path d="M287 16 L287 51.6" fill="none"/>
-<g clip-path="url(#label-holes-1d056386)"><path d="M287 104 L287 179.6" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M127.14 294 L127.14 311.6"/>
+<path d="M127.14 364 L127.14 439.6"/>
+<path d="M127.14 492 L127.14 567.6"/>
+<path d="M127.14 620 L127.14 637.6"/>
+<path d="M434.36 334 L446.36 334 C476.36 334 476.36 350 446.36 350 L442.76 350"/>
+<path d="M364.16 294 L364.16 311.6"/>
+<path d="M371.05 466 L371.05 483.6"/>
+<path d="M371.05 536 L371.05 611.6"/>
+<path d="M287 16 L287 51.6"/>
+<g clip-path="url(#label-holes-1d056386)">
+<path d="M287 104 L287 179.6"/>
 </g>
-<path d="M228 710 L228 749.6" fill="none"/>
-<g clip-path="url(#label-holes-1d056386)"><path d="M346 710 L346 837.6" fill="none"/>
+<path d="M228 710 L228 749.6"/>
+<g clip-path="url(#label-holes-1d056386)">
+<path d="M346 710 L346 837.6"/>
 </g>
-<path d="M228 802 L228 890 L228 896.3 C228 900.7 231.6 904.3 236 904.3 L279 904.3 C283.4 904.3 287 907.9 287 912.3 L287 929.6" fill="none"/>
-<path d="M287 890 L287 929.6" fill="none"/>
+<path d="M228 802 L228 896.3 C228 900.7 231.6 904.3 236 904.3 L279 904.3 C283.4 904.3 287 907.9 287 912.3 L287 929.6"/>
+<path d="M287 890 L287 929.6"/>
 </g>
-<rect x="41.31" y="396" width="171.66" height="20" fill="#f1f4f8"/>
-<rect x="85.35" y="524" width="83.58" height="20" fill="#f1f4f8"/>
-<rect x="470.36" y="332" width="59.59" height="20" fill="#f1f4f8"/>
-<rect x="314.58" y="568" width="112.95" height="20" fill="#f1f4f8"/>
-<polygon points="127.14,320 121.14,308 133.14,308" fill="#3b4754"/>
-<polygon points="127.14,448 121.14,436 133.14,436" fill="#3b4754"/>
-<polygon points="127.14,576 121.14,564 133.14,564" fill="#3b4754"/>
-<polygon points="127.14,646 121.14,634 133.14,634" fill="#3b4754"/>
-<polygon points="434.36,350 446.36,344 446.36,356" fill="#3b4754"/>
-<polygon points="364.16,320 358.16,308 370.16,308" fill="#3b4754"/>
-<polygon points="371.05,492 365.05,480 377.05,480" fill="#3b4754"/>
-<polygon points="371.05,620 365.05,608 377.05,608" fill="#3b4754"/>
-<polygon points="287,60 281,48 293,48" fill="#3b4754"/>
-<polygon points="287,188 281,176 293,176" fill="#3b4754"/>
-<polygon points="228,758 222,746 234,746" fill="#3b4754"/>
-<polygon points="346,846 340,834 352,834" fill="#3b4754"/>
-<polygon points="287,938 281,926 293,926" fill="#3b4754"/>
-<polygon points="287,938 281,926 293,926" fill="#3b4754"/>
-<circle cx="287" cy="8" r="8" fill="#3b4754"/>
+<g fill="#f1f4f8">
+<rect x="41.31" y="396" width="171.66" height="20"/>
+<rect x="85.35" y="524" width="83.58" height="20"/>
+<rect x="470.36" y="332" width="59.59" height="20"/>
+<rect x="314.58" y="568" width="112.95" height="20"/>
+</g>
+<g fill="#3b4754">
+<polygon points="127.14,320 121.14,308 133.14,308"/>
+<polygon points="127.14,448 121.14,436 133.14,436"/>
+<polygon points="127.14,576 121.14,564 133.14,564"/>
+<polygon points="127.14,646 121.14,634 133.14,634"/>
+<polygon points="434.36,350 446.36,344 446.36,356"/>
+<polygon points="364.16,320 358.16,308 370.16,308"/>
+<polygon points="371.05,492 365.05,480 377.05,480"/>
+<polygon points="371.05,620 365.05,608 377.05,608"/>
+<polygon points="287,60 281,48 293,48"/>
+<polygon points="287,188 281,176 293,176"/>
+<polygon points="228,758 222,746 234,746"/>
+<polygon points="346,846 340,834 352,834"/>
+<polygon points="287,938 281,926 293,926"/>
+<polygon points="287,938 281,926 293,926"/>
+<circle cx="287" cy="8" r="8"/>
+</g>
 <rect x="217" y="60" width="140" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <circle cx="127.14" cy="286" r="8" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="52.64" y="320" width="149" height="44" rx="8" fill="#ffffff"/>
-<rect x="52.64" y="448" width="149" height="44" rx="8" fill="#ffffff"/>
-<rect x="52.64" y="576" width="149" height="44" rx="8" fill="#ffffff"/>
+<g fill="#ffffff" stroke="#55657a" stroke-width="1.5">
+<rect x="52.64" y="320" width="149" height="44" rx="8"/>
+<rect x="52.64" y="448" width="149" height="44" rx="8"/>
+<rect x="52.64" y="576" width="149" height="44" rx="8"/>
 </g>
 <circle cx="127.14" cy="656" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle cx="127.14" cy="656" r="6" fill="#3b4754"/>
-<circle cx="364.16" cy="286" r="8" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="127.14" cy="656" r="6"/>
+<circle cx="364.16" cy="286" r="8"/>
+</g>
 <rect x="294.36" y="320" width="140" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <circle cx="371.05" cy="458" r="8" fill="#3b4754"/>
 <rect x="294.05" y="492" width="154" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>

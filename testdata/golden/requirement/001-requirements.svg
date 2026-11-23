@@ -1,39 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="716.5" height="756" viewBox="-12 -12 716.5 756" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-5a07e4b8"><path d="M-12 -12 L704.5 -12 L704.5 744 L-12 744 M124.3 252 L124.3 272 L209.7 272 L209.7 252 M346.81 544 L346.81 564 L424.19 564 L424.19 544 M440.76 252 L440.76 272 L517.24 272 L517.24 252 M509.2 544 L509.2 564 L592.8 564 L592.8 544"/></clipPath></defs>
-<g clip-path="url(#label-holes-5a07e4b8)"><path d="M167 229 L167 322" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-5a07e4b8)">
+<path d="M167 229 L167 322" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
-<g clip-path="url(#label-holes-5a07e4b8)"><path d="M323 476 L323 530 L323 546 C323 550.4 326.6 554 331 554 L440 554 C444.4 554 448 557.6 448 562 L448 578" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
+<g clip-path="url(#label-holes-5a07e4b8)">
+<path d="M323 476 L323 546 C323 550.4 326.6 554 331 554 L440 554 C444.4 554 448 557.6 448 562 L448 578"/>
+<path d="M479 165 L479 322"/>
+<path d="M614 443 L614 546 C614 550.4 610.4 554 606 554 L496 554 C491.6 554 488 557.6 488 562 L488 578"/>
 </g>
-<g clip-path="url(#label-holes-5a07e4b8)"><path d="M479 165 L479 322" fill="none"/>
 </g>
-<g clip-path="url(#label-holes-5a07e4b8)"><path d="M614 443 L614 530 L614 546 C614 550.4 610.4 554 606 554 L496 554 C491.6 554 488 557.6 488 562 L488 578" fill="none"/>
+<g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
+<circle cx="167" cy="225" r="5"/>
+<line x1="448" y1="578" x2="454" y2="567"/>
+<line x1="448" y1="578" x2="442" y2="567"/>
+<line x1="479" y1="322" x2="485" y2="311"/>
+<line x1="479" y1="322" x2="473" y2="311"/>
+<line x1="488" y1="578" x2="494" y2="567"/>
+<line x1="488" y1="578" x2="482" y2="567"/>
 </g>
+<g fill="#ffffff" stroke="#55657a" stroke-width="1.5">
+<rect x="0" y="0" width="334" height="220"/>
+<rect x="0" y="0" width="334" height="56"/>
+<rect x="382" y="55" width="194" height="110"/>
+<rect x="382" y="55" width="194" height="56"/>
 </g>
-<g stroke="#3b4754" stroke-width="1.5">
-<circle cx="167" cy="225" r="5" fill="#ffffff"/>
-<line x1="448" y1="578" x2="454" y2="567" fill="none"/>
-<line x1="448" y1="578" x2="442" y2="567" fill="none"/>
-<line x1="479" y1="322" x2="485" y2="311" fill="none"/>
-<line x1="479" y1="322" x2="473" y2="311" fill="none"/>
-<line x1="488" y1="578" x2="494" y2="567" fill="none"/>
-<line x1="488" y1="578" x2="482" y2="567" fill="none"/>
+<g fill="#fde8e8" stroke="#b42318" stroke-width="2">
+<rect x="159" y="322" width="328" height="154"/>
+<rect x="159" y="322" width="328" height="56"/>
 </g>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="0" y="0" width="334" height="220" fill="#ffffff"/>
-<rect x="0" y="0" width="334" height="56" fill="#ffffff"/>
-<rect x="382" y="55" width="194" height="110" fill="#ffffff"/>
-<rect x="382" y="55" width="194" height="56" fill="#ffffff"/>
-</g>
-<g stroke="#b42318" stroke-width="2">
-<rect x="159" y="322" width="328" height="154" fill="#fde8e8"/>
-<rect x="159" y="322" width="328" height="56" fill="#fde8e8"/>
-</g>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="535.5" y="355" width="157" height="88" fill="#ffffff"/>
-<rect x="535.5" y="355" width="157" height="56" fill="#ffffff"/>
-<rect x="359" y="578" width="218" height="154" fill="#ffffff"/>
-<rect x="359" y="578" width="218" height="56" fill="#ffffff"/>
+<g fill="#ffffff" stroke="#55657a" stroke-width="1.5">
+<rect x="535.5" y="355" width="157" height="88"/>
+<rect x="535.5" y="355" width="157" height="56"/>
+<rect x="359" y="578" width="218" height="154"/>
+<rect x="359" y="578" width="218" height="56"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="167" y="23.6">«Requirement»</text>

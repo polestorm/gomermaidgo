@@ -1,51 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1181.2" height="476" viewBox="-12 -340 1181.2 476" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="972.23" y="-32" width="184.97" height="64" rx="4" fill="#eef2f7" stroke="#3b4754" stroke-width="2"/>
-<line x1="281.83" y1="0" x2="960.23" y2="0" fill="none" stroke="#3b4754" stroke-width="2.5"/>
+<line x1="281.83" y1="0" x2="960.23" y2="0" stroke="#3b4754" stroke-width="2.5"/>
 <polygon points="972.23,0 960.23,-6 960.23,6" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<g stroke="#55657a" stroke-width="1.5">
-<line x1="167.83" y1="-276" x2="305.83" y2="0" fill="none"/>
-<rect x="127.38" y="-308" width="80.91" height="32" rx="4" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="167.83" y1="-276" x2="305.83" y2="0"/>
+<rect x="127.38" y="-308" width="80.91" height="32" rx="4"/>
 </g>
 <g stroke="#9aa5b1" stroke-width="1">
-<line x1="47.54" y1="-224" x2="193.83" y2="-224" fill="none"/>
-<line x1="121.58" y1="-172" x2="219.83" y2="-172" fill="none"/>
-<line x1="135.58" y1="-172" x2="135.58" y2="-120" fill="none"/>
-<line x1="0" y1="-120" x2="135.58" y2="-120" fill="none"/>
+<line x1="47.54" y1="-224" x2="193.83" y2="-224"/>
+<line x1="121.58" y1="-172" x2="219.83" y2="-172"/>
+<line x1="135.58" y1="-172" x2="135.58" y2="-120"/>
+<line x1="0" y1="-120" x2="135.58" y2="-120"/>
 </g>
-<g stroke="#55657a" stroke-width="1.5">
-<line x1="331.83" y1="92" x2="377.83" y2="0" fill="none"/>
-<rect x="287.82" y="92" width="88.02" height="32" rx="4" fill="#eef2f7"/>
-</g>
-<g stroke="#9aa5b1" stroke-width="1">
-<line x1="244.47" y1="40" x2="357.83" y2="40" fill="none"/>
-<line x1="185.79" y1="72" x2="341.83" y2="72" fill="none"/>
-</g>
-<g stroke="#55657a" stroke-width="1.5">
-<line x1="518.16" y1="-276" x2="656.16" y2="0" fill="none"/>
-<rect x="479.47" y="-308" width="77.37" height="32" rx="4" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="331.83" y1="92" x2="377.83" y2="0"/>
+<rect x="287.82" y="92" width="88.02" height="32" rx="4"/>
 </g>
 <g stroke="#9aa5b1" stroke-width="1">
-<line x1="442.31" y1="-224" x2="544.16" y2="-224" fill="none"/>
-<line x1="438.13" y1="-172" x2="570.16" y2="-172" fill="none"/>
-<line x1="452.13" y1="-172" x2="452.13" y2="-28" fill="none"/>
-<line x1="298.71" y1="-100" x2="452.13" y2="-100" fill="none"/>
-<line x1="313.83" y1="-28" x2="452.13" y2="-28" fill="none"/>
+<line x1="244.47" y1="40" x2="357.83" y2="40"/>
+<line x1="185.79" y1="72" x2="341.83" y2="72"/>
 </g>
-<g stroke="#55657a" stroke-width="1.5">
-<line x1="682.16" y1="92" x2="728.16" y2="0" fill="none"/>
-<rect x="638.15" y="92" width="88.02" height="32" rx="4" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="518.16" y1="-276" x2="656.16" y2="0"/>
+<rect x="479.47" y="-308" width="77.37" height="32" rx="4"/>
 </g>
-<line x1="543.87" y1="60" x2="698.16" y2="60" fill="none" stroke="#9aa5b1" stroke-width="1"/>
-<g stroke="#55657a" stroke-width="1.5">
-<line x1="662.16" y1="-276" x2="800.16" y2="0" fill="none"/>
-<rect x="617.7" y="-328" width="88.92" height="52" rx="4" fill="#eef2f7"/>
+<g stroke="#9aa5b1" stroke-width="1">
+<line x1="442.31" y1="-224" x2="544.16" y2="-224"/>
+<line x1="438.13" y1="-172" x2="570.16" y2="-172"/>
+<line x1="452.13" y1="-172" x2="452.13" y2="-28"/>
+<line x1="298.71" y1="-100" x2="452.13" y2="-100"/>
+<line x1="313.83" y1="-28" x2="452.13" y2="-28"/>
 </g>
-<line x1="574.79" y1="-224" x2="688.16" y2="-224" fill="none" stroke="#9aa5b1" stroke-width="1"/>
-<g stroke="#55657a" stroke-width="1.5">
-<line x1="878.88" y1="92" x2="924.88" y2="0" fill="none"/>
-<rect x="825.52" y="92" width="106.7" height="32" rx="4" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="682.16" y1="92" x2="728.16" y2="0"/>
+<rect x="638.15" y="92" width="88.02" height="32" rx="4"/>
 </g>
-<line x1="744.16" y1="60" x2="894.88" y2="60" fill="none" stroke="#9aa5b1" stroke-width="1"/>
+<line x1="543.87" y1="60" x2="698.16" y2="60" stroke="#9aa5b1" stroke-width="1"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="662.16" y1="-276" x2="800.16" y2="0"/>
+<rect x="617.7" y="-328" width="88.92" height="52" rx="4"/>
+</g>
+<line x1="574.79" y1="-224" x2="688.16" y2="-224" stroke="#9aa5b1" stroke-width="1"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="878.88" y1="92" x2="924.88" y2="0"/>
+<rect x="825.52" y="92" width="106.7" height="32" rx="4"/>
+</g>
+<line x1="744.16" y1="60" x2="894.88" y2="60" stroke="#9aa5b1" stroke-width="1"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="1064.71" y="-4.4" font-weight="bold">Reklamacja: pęknięta</text>
 <text x="1064.71" y="15.6" font-weight="bold">obudowa</text>

@@ -1,23 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="261" height="701" viewBox="-11.5 -12 261 701" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M119 64 L119 99.6" fill="none"/>
-<path d="M119 192 L119 227.6" fill="none"/>
-<path d="M119 300 L119 335.6" fill="none"/>
-<path d="M119 408 L119 443.6" fill="none"/>
-<path d="M119 569 L119 604.6" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M119 64 L119 99.6"/>
+<path d="M119 192 L119 227.6"/>
+<path d="M119 300 L119 335.6"/>
+<path d="M119 408 L119 443.6"/>
+<path d="M119 569 L119 604.6"/>
 </g>
-<polygon points="119,108 113,96 125,96" fill="#3b4754"/>
-<polygon points="119,236 113,224 125,224" fill="#3b4754"/>
-<polygon points="119,344 113,332 125,332" fill="#3b4754"/>
-<polygon points="119,452 113,440 125,440" fill="#3b4754"/>
-<polygon points="119,613 113,601 125,601" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="0.5" y="0" width="237" height="64" fill="#eef2f7"/>
-<rect x="0.5" y="108" width="237" height="84" fill="#eef2f7"/>
-<rect x="0.5" y="236" width="237" height="64" fill="#eef2f7"/>
-<rect x="0.5" y="344" width="237" height="64" rx="8" fill="#eef2f7"/>
-<polygon points="119,452 202.5,510.5 119,569 35.5,510.5" fill="#eef2f7"/>
-<rect x="10" y="613" width="218" height="64" fill="#eef2f7"/>
+<g fill="#3b4754">
+<polygon points="119,108 113,96 125,96"/>
+<polygon points="119,236 113,224 125,224"/>
+<polygon points="119,344 113,332 125,332"/>
+<polygon points="119,452 113,440 125,440"/>
+<polygon points="119,613 113,601 125,601"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="0.5" y="0" width="237" height="64"/>
+<rect x="0.5" y="108" width="237" height="84"/>
+<rect x="0.5" y="236" width="237" height="64"/>
+<rect x="0.5" y="344" width="237" height="64" rx="8"/>
+<polygon points="119,452 202.5,510.5 119,569 35.5,510.5"/>
+<rect x="10" y="613" width="218" height="64"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="119" y="27.6">Tekst z (nawiasami),</text>

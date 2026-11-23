@@ -1,48 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="633" height="566" viewBox="-12 -12 633 566" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-075576a9"><path d="M-12 -12 L621 -12 L621 554 L-12 554 M8 6 L8 26 L65.8 26 L65.8 6 M8 200 L8 220 L104.95 220 L104.95 200 M8 394 L8 414 L92.48 414 L92.48 394 M165.86 154 L165.86 174 L260.14 174 L260.14 154 M187.86 348 L187.86 368 L282.14 368 L282.14 348"/></clipPath></defs>
-<g stroke="#8a94a3" stroke-width="1">
-<g clip-path="url(#label-holes-075576a9)"><rect x="0" y="0" width="418" height="134" rx="4" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-075576a9)"><rect x="0" y="194" width="469" height="134" rx="4" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-075576a9)"><rect x="0" y="388" width="609" height="154" rx="4" fill="none"/>
-</g>
-</g>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M123 82 L158.6 82" fill="none"/>
-<path d="M247 82 L282.6 82" fill="none"/>
-<path d="M143 276 L178.6 276" fill="none"/>
-<path d="M279 276 L314.6 276" fill="none"/>
-<path d="M148 480 L183.6 480" fill="none"/>
-<path d="M293 480 L328.6 480" fill="none"/>
-<path d="M434 480 L469.6 480" fill="none"/>
-</g>
-<g stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
-<g clip-path="url(#label-holes-075576a9)"><path d="M344.5 114 L344.5 156 C344.5 160.4 340.9 164 336.5 164 L89.5 164 C85.1 164 81.5 167.6 81.5 172 L81.5 235.6" fill="none"/>
-</g>
-<g clip-path="url(#label-holes-075576a9)"><path d="M386 308 L386 350 C386 354.4 382.4 358 378 358 L92 358 C87.6 358 84 361.6 84 366 L84 449.6" fill="none"/>
+<g fill="none" stroke="#8a94a3" stroke-width="1">
+<g clip-path="url(#label-holes-075576a9)">
+<rect x="0" y="0" width="418" height="134" rx="4"/>
+<rect x="0" y="194" width="469" height="134" rx="4"/>
+<rect x="0" y="388" width="609" height="154" rx="4"/>
 </g>
 </g>
-<polygon points="167,82 155,76 155,88" fill="#3b4754"/>
-<polygon points="291,82 279,76 279,88" fill="#3b4754"/>
-<polygon points="187,276 175,270 175,282" fill="#3b4754"/>
-<polygon points="323,276 311,270 311,282" fill="#3b4754"/>
-<polygon points="192,480 180,474 180,486" fill="#3b4754"/>
-<polygon points="337,480 325,474 325,486" fill="#3b4754"/>
-<polygon points="478,480 466,474 466,486" fill="#3b4754"/>
-<polygon points="81.5,244 75.5,232 87.5,232" fill="#3b4754"/>
-<polygon points="84,458 78,446 90,446" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="20" y="50" width="103" height="64" fill="#eef2f7"/>
-<rect x="167" y="50" width="80" height="64" fill="#eef2f7"/>
-<rect x="291" y="50" width="107" height="64" fill="#eef2f7"/>
-<rect x="20" y="244" width="123" height="64" fill="#eef2f7"/>
-<rect x="187" y="244" width="92" height="64" fill="#eef2f7"/>
-<rect x="323" y="244" width="126" height="64" fill="#eef2f7"/>
-<rect x="20" y="458" width="128" height="44" fill="#eef2f7"/>
-<rect x="192" y="458" width="101" height="44" fill="#eef2f7"/>
-<rect x="337" y="458" width="97" height="44" fill="#eef2f7"/>
-<rect x="478" y="438" width="111" height="84" fill="#eef2f7"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M123 82 L158.6 82"/>
+<path d="M247 82 L282.6 82"/>
+<path d="M143 276 L178.6 276"/>
+<path d="M279 276 L314.6 276"/>
+<path d="M148 480 L183.6 480"/>
+<path d="M293 480 L328.6 480"/>
+<path d="M434 480 L469.6 480"/>
+</g>
+<g fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
+<g clip-path="url(#label-holes-075576a9)">
+<path d="M344.5 114 L344.5 156 C344.5 160.4 340.9 164 336.5 164 L89.5 164 C85.1 164 81.5 167.6 81.5 172 L81.5 235.6"/>
+<path d="M386 308 L386 350 C386 354.4 382.4 358 378 358 L92 358 C87.6 358 84 361.6 84 366 L84 449.6"/>
+</g>
+</g>
+<g fill="#3b4754">
+<polygon points="167,82 155,76 155,88"/>
+<polygon points="291,82 279,76 279,88"/>
+<polygon points="187,276 175,270 175,282"/>
+<polygon points="323,276 311,270 311,282"/>
+<polygon points="192,480 180,474 180,486"/>
+<polygon points="337,480 325,474 325,486"/>
+<polygon points="478,480 466,474 466,486"/>
+<polygon points="81.5,244 75.5,232 87.5,232"/>
+<polygon points="84,458 78,446 90,446"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="20" y="50" width="103" height="64"/>
+<rect x="167" y="50" width="80" height="64"/>
+<rect x="291" y="50" width="107" height="64"/>
+<rect x="20" y="244" width="123" height="64"/>
+<rect x="187" y="244" width="92" height="64"/>
+<rect x="323" y="244" width="126" height="64"/>
+<rect x="20" y="458" width="128" height="44"/>
+<rect x="192" y="458" width="101" height="44"/>
+<rect x="337" y="458" width="97" height="44"/>
+<rect x="478" y="438" width="111" height="84"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="36.9" y="21.6">Projekt</text>

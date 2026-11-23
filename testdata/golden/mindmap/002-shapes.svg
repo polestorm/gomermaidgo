@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="573" height="336" viewBox="-12 -12 573 336" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M144 156 L158 156 C162.4 156 166 152.4 166 148 L166 68 C166 63.6 169.6 60 174 60 L188 60" fill="none"/>
-<path d="M305 60 L319 60 C323.4 60 327 56.4 327 52 L327 25 C327 20.6 330.6 17 335 17 L349 17" fill="none"/>
-<path d="M305 60 L319 60 C323.4 60 327 63.6 327 68 L327 74 C327 78.4 330.6 82 335 82 L349 82" fill="none"/>
-<path d="M144 156 L158 156 C162.4 156 166 159.6 166 164 L166 171 C166 175.4 169.6 179 174 179 L188 179" fill="none"/>
-<path d="M279 179 L319 179 C323.4 179 327 175.4 327 171 L327 165 C327 160.6 330.6 157 335 157 L349 157" fill="none"/>
-<path d="M279 179 L319 179 C323.4 179 327 182.6 327 187 L327 203 C327 207.4 330.6 211 335 211 L349 211" fill="none"/>
-<path d="M144 156 L158 156 C162.4 156 166 159.6 166 164 L166 267 C166 271.4 169.6 275 174 275 L188 275" fill="none"/>
-<path d="M284 275 L349 275" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M144 156 L158 156 C162.4 156 166 152.4 166 148 L166 68 C166 63.6 169.6 60 174 60 L188 60"/>
+<path d="M305 60 L319 60 C323.4 60 327 56.4 327 52 L327 25 C327 20.6 330.6 17 335 17 L349 17"/>
+<path d="M305 60 L319 60 C323.4 60 327 63.6 327 68 L327 74 C327 78.4 330.6 82 335 82 L349 82"/>
+<path d="M144 156 L158 156 C162.4 156 166 159.6 166 164 L166 171 C166 175.4 169.6 179 174 179 L188 179"/>
+<path d="M279 179 L319 179 C323.4 179 327 175.4 327 171 L327 165 C327 160.6 330.6 157 335 157 L349 157"/>
+<path d="M279 179 L319 179 C323.4 179 327 182.6 327 187 L327 203 C327 207.4 330.6 211 335 211 L349 211"/>
+<path d="M144 156 L158 156 C162.4 156 166 159.6 166 164 L166 267 C166 271.4 169.6 275 174 275 L188 275"/>
+<path d="M284 275 L349 275"/>
 </g>
 <rect x="0" y="139" width="144" height="34" rx="17" fill="#dde3ea" stroke="#55657a" stroke-width="2"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="188" y="43" width="117" height="34" fill="#eef2f7"/>
-<rect x="349" y="0" width="108" height="34" rx="6" fill="#eef2f7"/>
-<ellipse cx="387" cy="82" rx="38" ry="38" fill="#eef2f7"/>
-<polygon points="200,162 267,162 279,179 267,196 200,196 188,179" fill="#eef2f7"/>
-<rect x="349" y="130" width="200" height="54" rx="6" fill="#eef2f7"/>
-<polygon points="361,194 485,194 497,211 485,228 361,228 349,211" fill="#eef2f7"/>
-<rect x="188" y="258" width="96" height="34" rx="17" fill="#eef2f7"/>
-<rect x="349" y="238" width="185" height="74" rx="6" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="188" y="43" width="117" height="34"/>
+<rect x="349" y="0" width="108" height="34" rx="6"/>
+<ellipse cx="387" cy="82" rx="38" ry="38"/>
+<polygon points="200,162 267,162 279,179 267,196 200,196 188,179"/>
+<rect x="349" y="130" width="200" height="54" rx="6"/>
+<polygon points="361,194 485,194 497,211 485,228 361,228 349,211"/>
+<rect x="188" y="258" width="96" height="34" rx="17"/>
+<rect x="349" y="238" width="185" height="74" rx="6"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="72" y="161.6">Ryzyko wyrobu</text>

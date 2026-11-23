@@ -1,27 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="168" height="555" viewBox="-12 -12 168 555" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-84b37825"><path d="M-12 -12 L156 -12 L156 543 L-12 543 M84.1 106 L84.1 126 L125.9 126 L125.9 106"/></clipPath></defs>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M43 44 L43 181.6" fill="none"/>
-<path d="M61 44 L61 181.6" fill="none"/>
-<g clip-path="url(#label-holes-84b37825)"><path d="M105 44 L105 181.6" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M43 44 L43 181.6"/>
+<path d="M61 44 L61 181.6"/>
+<g clip-path="url(#label-holes-84b37825)">
+<path d="M105 44 L105 181.6"/>
 </g>
-<path d="M61 234 L61 309.33" fill="none"/>
-<path d="M79 234 L79 309.33" fill="none"/>
-<path d="M61 378.27 L61 454.79" fill="none"/>
-<path d="M79 378.27 L79 454.79" fill="none"/>
+<path d="M61 234 L61 309.33"/>
+<path d="M79 234 L79 309.33"/>
+<path d="M61 378.27 L61 454.79"/>
+<path d="M79 378.27 L79 454.79"/>
 </g>
-<polygon points="43,190 37,178 49,178" fill="#3b4754"/>
-<polygon points="61,190 55,178 67,178" fill="#3b4754"/>
-<polygon points="105,190 99,178 111,178" fill="#3b4754"/>
-<polygon points="61,317.73 55,305.73 67,305.73" fill="#3b4754"/>
-<polygon points="79,317.73 73,305.73 85,305.73" fill="#3b4754"/>
-<polygon points="61,463.19 55,451.19 67,451.19" fill="#3b4754"/>
-<polygon points="79,463.19 73,451.19 85,451.19" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="4" y="0" width="140" height="44" fill="#eef2f7"/>
-<rect x="0" y="190" width="140" height="44" fill="#eef2f7"/>
-<polygon points="70,312 126.5,348 70,384 13.5,348" fill="#eef2f7"/>
-<circle cx="70" cy="496.5" r="34.5" fill="#eef2f7"/>
+<g fill="#3b4754">
+<polygon points="43,190 37,178 49,178"/>
+<polygon points="61,190 55,178 67,178"/>
+<polygon points="105,190 99,178 111,178"/>
+<polygon points="61,317.73 55,305.73 67,305.73"/>
+<polygon points="79,317.73 73,305.73 85,305.73"/>
+<polygon points="61,463.19 55,451.19 67,451.19"/>
+<polygon points="79,463.19 73,451.19 85,451.19"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="4" y="0" width="140" height="44"/>
+<rect x="0" y="190" width="140" height="44"/>
+<polygon points="70,312 126.5,348 70,384 13.5,348"/>
+<circle cx="70" cy="496.5" r="34.5"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="74" y="27.6">Wniosek</text>

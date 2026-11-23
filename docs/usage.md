@@ -148,7 +148,8 @@ The output uses only basic SVG 1.1 elements (`rect`, `line`, `polyline`, `polygo
 `path` restricted to M, L and C commands) with presentation attributes: no `foreignObject`, no style sheets, no
 scripts, no links. The one exception is a `clipPath` (in `defs`, applied through `g`) on a transparent background:
 lines under edge labels and frame titles are cut out, so a label sits on whatever the drawing is placed on instead
-of a white patch. With a background colour the label backing is painted in that colour and the clip is not used.
+of a white patch. With a background colour the label backing is painted in that colour and the clip is not used. Elements that share a stroke, fill or text colour
+stand in a common `g` that carries those attributes.
 
 Elements carry no `class` attributes by default. `WithClasses` (`-classes`) adds one with the element's role
 (`node`, `edge`, `edge-label`, `arrowhead`, `lane` and others), so a page that embeds the SVG inline can restyle it

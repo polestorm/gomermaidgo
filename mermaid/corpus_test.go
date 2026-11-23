@@ -223,7 +223,7 @@ var allowedSVG = map[string][]string{
 	"title":    {},
 	"defs":     {},
 	"clipPath": {"id"},
-	"g":        {"clip-path", "fill", "text-anchor", "stroke", "stroke-width", "stroke-dasharray"},
+	"g":        {"clip-path", "fill", "fill-opacity", "text-anchor", "stroke", "stroke-width", "stroke-dasharray"},
 	"desc":     {},
 	"rect":     {"class", "x", "y", "width", "height", "rx", "fill", "fill-opacity", "stroke", "stroke-width", "stroke-dasharray"},
 	"line":     {"class", "x1", "y1", "x2", "y2", "fill", "stroke", "stroke-width", "stroke-dasharray"},

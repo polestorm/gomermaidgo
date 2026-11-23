@@ -276,19 +276,47 @@ func attr(b *strings.Builder, name, value string) {
 	b.WriteString(`"`)
 }
 
-// paint zapisuje wypełnienie i obrys; inherited: obrys jest w otaczającej grupie (strokeAttrs).
-func (it Item) paint(b *strings.Builder, inherited bool) {
-	fill := it.Fill
-	if fill == "" {
-		fill = "none"
+// inheritance mówi, które atrybuty element dziedziczy z otaczającej grupy.
+type inheritance struct{ stroke, fill bool }
+
+// paint zapisuje wypełnienie i obrys, pomijając dziedziczone z grupy. Linia nie ma wypełnienia, więc
+// go nie zapisuje.
+func (it Item) paint(b *strings.Builder, in inheritance) {
+	if !in.fill && it.Kind != Line {
+		attr(b, "fill", fillOf(it))
+		if it.FillOpacity > 0 && it.FillOpacity < 1 {
+			attr(b, "fill-opacity", num(it.FillOpacity))
+		}
 	}
-	attr(b, "fill", fill)
-	if it.FillOpacity > 0 && it.FillOpacity < 1 {
-		attr(b, "fill-opacity", num(it.FillOpacity))
-	}
-	if it.Stroke != "" && !inherited {
+	if it.Stroke != "" && !in.stroke {
 		it.strokeAttrs(b)
 	}
+}
+
+// fillOf zwraca wypełnienie kształtu, jakie trafia do SVG ("none" dla pustego).
+func fillOf(it Item) string {
+	if it.Fill == "" {
+		return "none"
+	}
+	return it.Fill
+}
+
+// commonFill zwraca wypełnienie wspólne dla wszystkich kształtów grupy (linie nie mają wypełnienia
+// i niczego nie przesądzają) i czy takie jest.
+func commonFill(items []Item) (string, bool) {
+	fill, opacity, seen := "", 0.0, false
+	for _, it := range items {
+		if it.Kind == Line {
+			continue
+		}
+		f := fillOf(it)
+		if !seen {
+			fill, opacity, seen = f, it.FillOpacity, true
+		} else if f != fill || it.FillOpacity != opacity {
+			return "", false
+		}
+	}
+	return fill, seen
 }
 
 // class zapisuje atrybut class z rolą elementu, gdy scena ich chce (Classes).
@@ -317,11 +345,33 @@ func (it Item) shared() string {
 		return "T\x00" + it.Fill + "\x00" + it.Anchor
 	case it.Stroke != "":
 		return "S\x00" + it.Stroke + "\x00" + num(it.StrokeWidth) + "\x00" + it.Dash
+	case it.Kind != Line:
+		return "F\x00" + fillOf(it) + "\x00" + num(it.FillOpacity)
 	}
 	return ""
 }
 
+// straightRuns pomija punkty ścieżki, które leżą w środku prostego odcinka: punkt L, przed którym
+// i za którym jest odcinek L na tej samej poziomej albo pionowej prostej, w tym samym kierunku.
+// Rysunek jest ten sam, zapis krótszy.
+func straightRuns(segments []Segment) []Segment {
+	out := make([]Segment, 0, len(segments))
+	for i, sg := range segments {
+		if sg.Cmd == 'L' && i > 0 && i+1 < len(segments) && segments[i+1].Cmd == 'L' {
+			p, q, r := out[len(out)-1].To, sg.To, segments[i+1].To
+			vertical := p.X == q.X && q.X == r.X && (q.Y-p.Y)*(r.Y-q.Y) >= 0
+			horizontal := p.Y == q.Y && q.Y == r.Y && (q.X-p.X)*(r.X-q.X) >= 0
+			if vertical || horizontal {
+				continue
+			}
+		}
+		out = append(out, sg)
+	}
+	return out
+}
+
 func pathData(segments []Segment) string {
+	segments = straightRuns(segments)
 	var b strings.Builder
 	pt := func(p Point) {
 		b.WriteString(num(p.X))
@@ -454,35 +504,76 @@ func (s *Scene) SVG() []byte {
 		clip = fmt.Sprintf("label-holes-%08x", sum.Sum32())
 		b.WriteString(`<defs><clipPath id="` + clip + `"><path d="` + d.String()[1:] + `"/></clipPath></defs>` + "\n")
 	}
-	// Kolejne elementy o tych samych atrybutach dziedziczonych (obrys kształtów, kolor i wyrównanie
-	// tekstów) stoją we wspólnej grupie, która niesie te atrybuty: plik jest mniejszy, a wygląd ten sam.
-	group := ""
-	for k, it := range items {
-		key := it.shared()
-		if key != group {
-			if group != "" {
-				b.WriteString("</g>\n")
-				group = ""
+	// Kolejne elementy o tych samych atrybutach dziedziczonych stoją we wspólnej grupie, która niesie
+	// te atrybuty: obrys kształtów (i wypełnienie, gdy wszystkie mają to samo), wypełnienie kształtów
+	// bez obrysu, kolor i wyrównanie tekstów. Kolejne elementy przycinane otworami pod podpisami stoją
+	// w jednej grupie przycięcia. Plik jest mniejszy, wygląd ten sam.
+	type run struct {
+		end      int    // indeks za ostatnim elementem grupy
+		fill     string // wspólne wypełnienie zapisane na grupie; puste, gdy go nie ma
+		fillDone bool   // wypełnienie elementów jest na grupie
+	}
+	runs := map[int]run{}
+	for k := 0; k < len(items); {
+		key := items[k].shared()
+		e := k + 1
+		for key != "" && e < len(items) && items[e].shared() == key {
+			e++
+		}
+		if e-k >= 2 {
+			r := run{end: e}
+			if items[k].Kind != Text {
+				r.fill, r.fillDone = commonFill(items[k:e])
 			}
-			if key != "" && k+1 < len(items) && items[k+1].shared() == key {
-				group = key
-				b.WriteString("<g")
-				if it.Kind == Text {
-					attr(&b, "fill", it.Fill)
-					if it.Anchor != "" && it.Anchor != "start" {
-						attr(&b, "text-anchor", it.Anchor)
+			runs[k] = r
+		}
+		k = e
+	}
+	inRun, runEnd, fillOnGroup := false, 0, false
+	clipOpen := false
+	closeClip := func() {
+		if clipOpen {
+			b.WriteString("</g>\n")
+			clipOpen = false
+		}
+	}
+	for k, it := range items {
+		if inRun && k == runEnd {
+			closeClip()
+			b.WriteString("</g>\n")
+			inRun, fillOnGroup = false, false
+		}
+		if r, ok := runs[k]; ok {
+			closeClip()
+			inRun, runEnd, fillOnGroup = true, r.end, r.fillDone
+			b.WriteString("<g")
+			if it.Kind == Text {
+				attr(&b, "fill", it.Fill)
+				if it.Anchor != "" && it.Anchor != "start" {
+					attr(&b, "text-anchor", it.Anchor)
+				}
+			} else {
+				if fillOnGroup {
+					attr(&b, "fill", r.fill)
+					if it.FillOpacity > 0 && it.FillOpacity < 1 {
+						attr(&b, "fill-opacity", num(it.FillOpacity))
 					}
-				} else {
+				}
+				if it.Stroke != "" {
 					it.strokeAttrs(&b)
 				}
-				b.WriteString(">\n")
 			}
+			b.WriteString(">\n")
 		}
-		grouped := group != ""
+		grouped := inRun
 		cut := clip != "" && Cut(it, holes)
-		if cut {
-			b.WriteString(`<g clip-path="url(#` + clip + `)">`)
+		if cut && !clipOpen {
+			b.WriteString(`<g clip-path="url(#` + clip + `)">` + "\n")
+			clipOpen = true
+		} else if !cut {
+			closeClip()
 		}
+		inherit := inheritance{stroke: grouped, fill: grouped && fillOnGroup}
 		switch it.Kind {
 		case Rect:
 			b.WriteString("<rect")
@@ -494,7 +585,7 @@ func (s *Scene) SVG() []byte {
 			if it.RX > 0 {
 				attr(&b, "rx", num(it.RX))
 			}
-			it.paint(&b, grouped)
+			it.paint(&b, inherit)
 			b.WriteString("/>\n")
 		case Line:
 			b.WriteString("<line")
@@ -503,7 +594,7 @@ func (s *Scene) SVG() []byte {
 			attr(&b, "y1", num(it.Y))
 			attr(&b, "x2", num(it.X2))
 			attr(&b, "y2", num(it.Y2))
-			it.paint(&b, grouped)
+			it.paint(&b, inherit)
 			b.WriteString("/>\n")
 		case Polyline, Polygon:
 			name := "polyline"
@@ -513,7 +604,7 @@ func (s *Scene) SVG() []byte {
 			b.WriteString("<" + name)
 			s.class(&b, it.Role)
 			attr(&b, "points", points(it.Points))
-			it.paint(&b, grouped)
+			it.paint(&b, inherit)
 			b.WriteString("/>\n")
 		case Circle:
 			b.WriteString("<circle")
@@ -521,7 +612,7 @@ func (s *Scene) SVG() []byte {
 			attr(&b, "cx", num(it.X))
 			attr(&b, "cy", num(it.Y))
 			attr(&b, "r", num(it.R))
-			it.paint(&b, grouped)
+			it.paint(&b, inherit)
 			b.WriteString("/>\n")
 		case Ellipse:
 			b.WriteString("<ellipse")
@@ -530,13 +621,13 @@ func (s *Scene) SVG() []byte {
 			attr(&b, "cy", num(it.Y))
 			attr(&b, "rx", num(it.W/2))
 			attr(&b, "ry", num(it.H/2))
-			it.paint(&b, grouped)
+			it.paint(&b, inherit)
 			b.WriteString("/>\n")
 		case Path:
 			b.WriteString("<path")
 			s.class(&b, it.Role)
 			attr(&b, "d", pathData(it.Segments))
-			it.paint(&b, grouped)
+			it.paint(&b, inherit)
 			b.WriteString("/>\n")
 		case Text:
 			b.WriteString("<text")
@@ -568,11 +659,9 @@ func (s *Scene) SVG() []byte {
 			b.WriteString(Escape(it.Text))
 			b.WriteString("</text>\n")
 		}
-		if cut {
-			b.WriteString("</g>\n")
-		}
 	}
-	if group != "" {
+	closeClip()
+	if inRun {
 		b.WriteString("</g>\n")
 	}
 	b.WriteString("</svg>\n")

@@ -153,7 +153,9 @@ func TestLabelBackingFollowsBackground(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if strings.Contains(string(filled), "<clipPath") || !regexp.MustCompile(`class="edge-label-background"[^>]*fill="#123456"`).Match(filled) {
+	// Kolor tła stoi przy podkładzie albo na grupie podkładów (wspólne wypełnienie).
+	painted := regexp.MustCompile(`class="edge-label-background"[^>]*fill="#123456"|<g fill="#123456">\n<rect class="edge-label-background"`)
+	if strings.Contains(string(filled), "<clipPath") || !painted.Match(filled) {
 		t.Error("background colour: label backings should be painted in it, without a clip")
 	}
 }

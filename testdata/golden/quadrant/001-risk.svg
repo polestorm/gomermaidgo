@@ -12,8 +12,8 @@
 </g>
 <rect x="28" y="32" width="400" height="400" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g stroke="#3b4754" stroke-width="1">
-<line x1="228" y1="32" x2="228" y2="432" fill="none"/>
-<line x1="28" y1="232" x2="428" y2="232" fill="none"/>
+<line x1="228" y1="32" x2="228" y2="432"/>
+<line x1="28" y1="232" x2="428" y2="232"/>
 </g>
 <text x="228" y="15.6" text-anchor="middle" fill="#1b1f24">Ocena ryzyka procesów</text>
 <circle cx="128" cy="72" r="5" fill="#3b4754" stroke="#ffffff" stroke-width="1"/>

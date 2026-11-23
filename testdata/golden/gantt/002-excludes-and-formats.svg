@@ -1,25 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="690.27" height="213" viewBox="-28.27 -8.75 690.27 213" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Audyt wewnętrzny</title>
 <desc>Dwa tygodnie audytu z dniem wolnym w środku.</desc>
-<rect x="213.33" y="22.25" width="85.33" height="170" fill="#eceff3"/>
-<rect x="384" y="22.25" width="42.67" height="170" fill="#eceff3"/>
-<rect x="512" y="22.25" width="85.33" height="170" fill="#eceff3"/>
+<g fill="#eceff3">
+<rect x="213.33" y="22.25" width="85.33" height="170"/>
+<rect x="384" y="22.25" width="42.67" height="170"/>
+<rect x="512" y="22.25" width="85.33" height="170"/>
+</g>
 <g stroke="#d5dae1" stroke-width="1">
-<line x1="0" y1="22.25" x2="0" y2="192.25" fill="none"/>
-<line x1="85.33" y1="22.25" x2="85.33" y2="192.25" fill="none"/>
-<line x1="170.67" y1="22.25" x2="170.67" y2="192.25" fill="none"/>
-<line x1="256" y1="22.25" x2="256" y2="192.25" fill="none"/>
-<line x1="341.33" y1="22.25" x2="341.33" y2="192.25" fill="none"/>
-<line x1="426.67" y1="22.25" x2="426.67" y2="192.25" fill="none"/>
-<line x1="512" y1="22.25" x2="512" y2="192.25" fill="none"/>
-<line x1="597.33" y1="22.25" x2="597.33" y2="192.25" fill="none"/>
+<line x1="0" y1="22.25" x2="0" y2="192.25"/>
+<line x1="85.33" y1="22.25" x2="85.33" y2="192.25"/>
+<line x1="170.67" y1="22.25" x2="170.67" y2="192.25"/>
+<line x1="256" y1="22.25" x2="256" y2="192.25"/>
+<line x1="341.33" y1="22.25" x2="341.33" y2="192.25"/>
+<line x1="426.67" y1="22.25" x2="426.67" y2="192.25"/>
+<line x1="512" y1="22.25" x2="512" y2="192.25"/>
+<line x1="597.33" y1="22.25" x2="597.33" y2="192.25"/>
 </g>
 <rect x="0" y="22.25" width="640" height="170" fill="none" stroke="#6b7785" stroke-width="1"/>
 <rect x="0" y="28.25" width="128" height="22" rx="3" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect x="128" y="62.25" width="341.33" height="22" rx="3" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="469.33" y="96.25" width="128" height="22" rx="3" fill="#eef2f7"/>
-<rect x="298.67" y="130.25" width="341.33" height="22" rx="3" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="469.33" y="96.25" width="128" height="22" rx="3"/>
+<rect x="298.67" y="130.25" width="341.33" height="22" rx="3"/>
 </g>
 <polygon points="640,165.25 650,175.25 640,185.25 630,175.25" fill="#3b4754" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#5b6570" text-anchor="middle">
