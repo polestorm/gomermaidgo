@@ -41,7 +41,7 @@ which, like this library, has its own parsers and layout.
 | | gomermaidgo | mmdg 0.14.1 | go-mermaid 0.1.6 |
 |---|:---:|:---:|:---:|
 | Approach | own parsers and layout in Go | Mermaid 12.2.0 (JavaScript) in an embedded engine | own parsers and layout in Go |
-| Dependencies (Go modules) | 0 🥇, standard library only | 7 (4 direct, 3 indirect) | 10 (4 direct, 6 indirect); SVG needs none, PNG needs 5 |
+| Dependencies (Go modules) | 0 🥇 | 7 | 10 |
 | Program size (`go build`) | 8.4 MB 🥇 | 53.0 MB | 11.7 MB |
 | SVG: time per diagram[^bench] | 3.1 ms 🥇 | 31 ms | 3.9 ms |
 | SVG: memory per diagram | 8 MB 🥇 | 41 MB | 12 MB |
