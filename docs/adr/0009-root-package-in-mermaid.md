@@ -25,3 +25,11 @@ tylko podkatalogi i najwyżej trzy pliki.
   (pusty import w `deps.go`, wersja przypięta w `go.mod`); przy podniesieniu wersji import trzeba zmienić na
   `…/gomermaidgo/mermaid`.
 - Wzorce zmieniamy przez `go test ./mermaid -update`.
+
+## Rozważone i odrzucone (2026-11-23)
+
+Krótszy import `github.com/polestorm/gomermaidgo` (wywołanie `gomermaidgo.Render`) przez plik pośredniczący
+w katalogu głównym, przekazujący publiczne nazwy z `mermaid/` (aliasy typów, zmienne z funkcjami, stałe).
+Odrzucone: czwarty plik w katalogu głównym i druga lista około 60 publicznych nazw, którą trzeba uzupełniać przy
+każdej nowej opcji (z testem strażnikiem pilnującym zgodności). Import pisze się raz, a `mermaid.Render` pasuje do
+pakietów `pdf`, `png` i `markdown`.
