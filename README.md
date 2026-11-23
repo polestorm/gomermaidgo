@@ -23,7 +23,7 @@ program that needs no browser, but one that runs Mermaid itself in an embedded J
 | PDF: time / memory per diagram[^bench] | 12 ms / 24 MB | 38 ms / 54 MB |
 | PNG at scale 1: time / memory per diagram[^bench] | 22 ms / 26 MB | 43 ms / 44 MB |
 | Output size, 79 diagrams: SVG / PDF / PNG | 0.43 / 1.5 / 3.1 MB | 13.8 / 11.7 / 2.6 MB |
-| Diagram types | 22 (list below) | all of Mermaid 12.2 |
+| Diagram types[^types] | 22 of Mermaid's 33 | 33 |
 | Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts |
 | This repository's corpus (82 diagrams) | 82 | 79 |
 | Public diagrams from GitHub[^wild] | 138 of 139 | 137 of 139 |
@@ -41,6 +41,10 @@ program that needs no browser, but one that runs Mermaid itself in an embedded J
 [^bench]: Median over the 79 corpus diagrams both programs render, best of three runs of the command-line program
     per file, process start included; memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon
     laptop.
+[^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here: `zenuml` (a separate Mermaid add-on) and ten
+    types added in Mermaid 12 as beta: `ishikawa`, `venn`, `swimlane`, `treeView`, `wardley`, `cynefin`, `railroad`,
+    `eventmodeling`, `usecase` and `agentflow`. Process lanes are available here through `%% layout: swimlanes` on a
+    flowchart.
 [^wild]: 175 blocks marked `mermaid` collected from public GitHub repositories; 36 are rejected by both programs
     (fragments without a diagram header, or not Mermaid at all), which leaves 139.
 
