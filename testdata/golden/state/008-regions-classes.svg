@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="597.9" height="994" viewBox="-11.95 -12 597.9 994" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="597.9" height="982" viewBox="-11.95 -12 597.9 982" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Sterylizator w trakcie cyklu</title>
-<defs><clipPath id="label-holes-c7c0da76"><path d="M-11.95 -12 L585.95 -12 L585.95 982 L-11.95 982 M266.11 136 L266.11 156 L307.89 156 L307.89 136 M318.43 776 L318.43 796 L373.57 796 L373.57 776"/></clipPath></defs>
+<defs><clipPath id="label-holes-1d056386"><path d="M-11.95 -12 L585.95 -12 L585.95 970 L-11.95 970 M266.11 136 L266.11 156 L307.89 156 L307.89 136 M318.43 770 L318.43 790 L373.57 790 L373.57 770"/></clipPath></defs>
 <rect class="cluster" x="0.05" y="188" width="573.9" height="522" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <rect class="cluster-title-strip" x="0.05" y="188" width="573.9" height="32" rx="8" fill="#eef2f7"/>
 <rect class="cluster-title-strip" x="0.05" y="204" width="573.9" height="16" fill="#eef2f7"/>
@@ -20,13 +20,13 @@
 <path class="edge" d="M371.05 466 L371.05 483.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M371.05 536 L371.05 611.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M287 16 L287 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-c7c0da76)"><path class="edge" d="M287 104 L287 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-1d056386)"><path class="edge" d="M287 104 L287 179.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<path class="edge" d="M228 710 L228 755.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-c7c0da76)"><path class="edge" d="M346 710 L346 843.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M228 710 L228 749.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-1d056386)"><path class="edge" d="M346 710 L346 837.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<path class="edge" d="M228 808 L228 896 L228 905.3 C228 909.7 231.6 913.3 236 913.3 L279 913.3 C283.4 913.3 287 916.9 287 921.3 L287 941.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M287 896 L287 941.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M228 802 L228 890 L228 896.3 C228 900.7 231.6 904.3 236 904.3 L279 904.3 C283.4 904.3 287 907.9 287 912.3 L287 929.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M287 890 L287 929.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="41.31" y="396" width="171.66" height="20" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="85.35" y="524" width="83.58" height="20" fill="#f1f4f8"/>
 <rect class="edge-label-background" x="470.36" y="332" width="59.59" height="20" fill="#f1f4f8"/>
@@ -41,10 +41,10 @@
 <polygon class="arrowhead" points="371.05,620 365.05,608 377.05,608" fill="#3b4754"/>
 <polygon class="arrowhead" points="287,60 281,48 293,48" fill="#3b4754"/>
 <polygon class="arrowhead" points="287,188 281,176 293,176" fill="#3b4754"/>
-<polygon class="arrowhead" points="228,764 222,752 234,752" fill="#3b4754"/>
-<polygon class="arrowhead" points="346,852 340,840 352,840" fill="#3b4754"/>
-<polygon class="arrowhead" points="287,950 281,938 293,938" fill="#3b4754"/>
-<polygon class="arrowhead" points="287,950 281,938 293,938" fill="#3b4754"/>
+<polygon class="arrowhead" points="228,758 222,746 234,746" fill="#3b4754"/>
+<polygon class="arrowhead" points="346,846 340,834 352,834" fill="#3b4754"/>
+<polygon class="arrowhead" points="287,938 281,926 293,926" fill="#3b4754"/>
+<polygon class="arrowhead" points="287,938 281,926 293,926" fill="#3b4754"/>
 <circle class="node" cx="287" cy="8" r="8" fill="#3b4754"/>
 <rect class="node" x="217" y="60" width="140" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="127.14" cy="286" r="8" fill="#3b4754"/>
@@ -58,10 +58,10 @@
 <circle class="node" cx="371.05" cy="458" r="8" fill="#3b4754"/>
 <rect class="node" x="294.05" y="492" width="154" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="294.05" y="620" width="154" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
-<rect class="node" x="157" y="764" width="142" height="44" rx="8" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
-<rect class="node" x="276" y="852" width="140" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
-<circle class="node" cx="287" cy="960" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle class="node-detail" cx="287" cy="960" r="6" fill="#3b4754"/>
+<rect class="node" x="157" y="758" width="142" height="44" rx="8" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
+<rect class="node" x="276" y="846" width="140" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
+<circle class="node" cx="287" cy="948" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle class="node-detail" cx="287" cy="948" r="6" fill="#3b4754"/>
 <text class="node-label" x="287" y="87.6" text-anchor="middle" fill="#1b1f24">Gotowy</text>
 <text class="cluster-title" x="287" y="209.6" text-anchor="middle" fill="#1b1f24">W_cyklu</text>
 <text class="node-label" x="127.14" y="347.6" text-anchor="middle" fill="#1b1f24">Nagrzewanie</text>
@@ -74,8 +74,8 @@
 <text class="node-label" x="371.05" y="519.6" text-anchor="middle" fill="#1b1f24">Nadzór_drzwi</text>
 <text class="node-label" x="371.05" y="647.6" text-anchor="middle" fill="#1b1f24">Blokada</text>
 <text class="edge-label" x="371.05" y="583.6" text-anchor="middle" fill="#1b1f24">próba otwarcia</text>
-<text class="node-label" x="228" y="791.6" text-anchor="middle" fill="#1b1f24">Zakończony</text>
-<text class="node-label" x="346" y="879.6" text-anchor="middle" fill="#1b1f24">Przerwany</text>
+<text class="node-label" x="228" y="785.6" text-anchor="middle" fill="#1b1f24">Zakończony</text>
+<text class="node-label" x="346" y="873.6" text-anchor="middle" fill="#1b1f24">Przerwany</text>
 <text class="edge-label" x="287" y="151.6" text-anchor="middle" fill="#1b1f24">Start</text>
-<text class="edge-label" x="346" y="791.6" text-anchor="middle" fill="#1b1f24">awaria</text>
+<text class="edge-label" x="346" y="785.6" text-anchor="middle" fill="#1b1f24">awaria</text>
 </svg>

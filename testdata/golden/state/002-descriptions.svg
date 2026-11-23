@@ -1,29 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="350.35" height="556" viewBox="-12 -12 350.35 556" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-2d49355b"><path d="M-12 -12 L338.35 -12 L338.35 544 L-12 544 M0.85 156 L0.85 176 L175.15 176 L175.15 156 M195.65 156 L195.65 176 L326.35 176 L326.35 156 M134.42 308 L134.42 348 L213.58 348 L213.58 308"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="350.35" height="550" viewBox="-12 -12 350.35 550" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-69537251"><path d="M-12 -12 L338.35 -12 L338.35 538 L-12 538 M0.85 156 L0.85 176 L175.15 176 L175.15 156 M195.65 156 L195.65 176 L326.35 176 L326.35 156 M134.42 302 L134.42 342 L213.58 342 L213.58 302"/></clipPath></defs>
 <path class="edge" d="M174 16 L174 51.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-2d49355b)"><path class="edge" d="M154 124 L154 135.2 C154 139.6 150.4 143.2 146 143.2 L96 143.2 C91.6 143.2 88 146.8 88 151.2 L88 154 L88 178 L88 187.3 C88 191.7 91.6 195.3 96 195.3 L146 195.3 C150.4 195.3 154 198.9 154 203.3 L154 223.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-69537251)"><path class="edge" d="M154 124 L154 135.2 C154 139.6 150.4 143.2 146 143.2 L96 143.2 C91.6 143.2 88 146.8 88 151.2 L88 154 L88 178 L88 184.3 C88 188.7 91.6 192.3 96 192.3 L146 192.3 C150.4 192.3 154 195.9 154 200.3 L154 217.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-2d49355b)"><path class="edge" d="M194 132.4 L194 135.2 C194 139.6 197.6 143.2 202 143.2 L253 143.2 C257.4 143.2 261 146.8 261 151.2 L261 154 L261 178 L261 187.3 C261 191.7 257.4 195.3 253 195.3 L202 195.3 C197.6 195.3 194 198.9 194 203.3 L194 232" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-69537251)"><path class="edge" d="M194 132.4 L194 135.2 C194 139.6 197.6 143.2 202 143.2 L253 143.2 C257.4 143.2 261 146.8 261 151.2 L261 154 L261 178 L261 184.3 C261 188.7 257.4 192.3 253 192.3 L202 192.3 C197.6 192.3 194 195.9 194 200.3 L194 226" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-2d49355b)"><path class="edge" d="M174 276 L174 371.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-69537251)"><path class="edge" d="M174 270 L174 365.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <polygon class="arrowhead" points="174,60 168,48 180,48" fill="#3b4754"/>
-<polygon class="arrowhead" points="154,232 148,220 160,220" fill="#3b4754"/>
+<polygon class="arrowhead" points="154,226 148,214 160,214" fill="#3b4754"/>
 <polygon class="arrowhead" points="194,124 200,136 188,136" fill="#3b4754"/>
-<polygon class="arrowhead" points="174,380 168,368 180,368" fill="#3b4754"/>
+<polygon class="arrowhead" points="174,374 168,362 180,362" fill="#3b4754"/>
 <circle class="node" cx="174" cy="8" r="8" fill="#3b4754"/>
 <rect class="node" x="91.5" y="60" width="165" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="91.5" y="232" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="70.5" y="380" width="207" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0" y="488" width="148" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="91.5" y="226" width="165" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="70.5" y="374" width="207" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0" y="482" width="148" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="174" y="87.6" text-anchor="middle" fill="#1b1f24">Wersja</text>
 <text class="node-label" x="174" y="107.6" text-anchor="middle" fill="#1b1f24">robocza</text>
-<text class="node-label" x="174" y="259.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
-<text class="node-label" x="174" y="407.6" text-anchor="middle" fill="#1b1f24">Wersja obowiązująca</text>
-<text class="node-label" x="174" y="427.6" text-anchor="middle" fill="#1b1f24">szkolenie ukończone</text>
-<text class="node-label" x="74" y="515.6" text-anchor="middle" fill="#1b1f24">Samodzielny</text>
+<text class="node-label" x="174" y="253.6" text-anchor="middle" fill="#1b1f24">W sprawdzeniu</text>
+<text class="node-label" x="174" y="401.6" text-anchor="middle" fill="#1b1f24">Wersja obowiązująca</text>
+<text class="node-label" x="174" y="421.6" text-anchor="middle" fill="#1b1f24">szkolenie ukończone</text>
+<text class="node-label" x="74" y="509.6" text-anchor="middle" fill="#1b1f24">Samodzielny</text>
 <text class="edge-label" x="88" y="171.6" text-anchor="middle" fill="#1b1f24">prześlij do sprawdzenia</text>
 <text class="edge-label" x="261" y="171.6" text-anchor="middle" fill="#1b1f24">zwróć z uwagami</text>
-<text class="edge-label" x="174" y="323.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
-<text class="edge-label" x="174" y="343.6" text-anchor="middle" fill="#1b1f24">i opublikuj</text>
+<text class="edge-label" x="174" y="317.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>
+<text class="edge-label" x="174" y="337.6" text-anchor="middle" fill="#1b1f24">i opublikuj</text>
 </svg>

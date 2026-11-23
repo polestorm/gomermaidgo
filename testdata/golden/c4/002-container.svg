@@ -1,26 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="666" height="930" viewBox="-12 -12 666 930" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="666" height="924" viewBox="-12 -12 666 924" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Kontenery systemu jakości</title>
-<defs><clipPath id="label-holes-c5ad8417"><path d="M-12 -12 L654 -12 L654 918 L-12 918 M8 178 L8 218 L122.7 218 L122.7 178 M446.98 392 L446.98 432 L567.02 432 L567.02 392 M119.44 402 L119.44 422 L166.56 422 L166.56 402 M132.32 594 L132.32 614 L217.68 614 L217.68 594 M283.55 503 L283.55 523 L372.45 523 L372.45 503 M259.4 96 L259.4 136 L434.6 136 L434.6 96 M80.22 790 L80.22 810 L139.78 810 L139.78 790"/></clipPath></defs>
-<g clip-path="url(#label-holes-c5ad8417)"><rect class="cluster" x="0" y="172" width="642" height="586" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
+<defs><clipPath id="label-holes-390539b5"><path d="M-12 -12 L654 -12 L654 912 L-12 912 M8 178 L8 218 L122.7 218 L122.7 178 M446.98 392 L446.98 432 L567.02 432 L567.02 392 M119.44 402 L119.44 422 L166.56 422 L166.56 402 M132.32 594 L132.32 614 L217.68 614 L217.68 594 M283.55 503 L283.55 523 L372.45 523 L372.45 503 M259.4 96 L259.4 136 L434.6 136 L434.6 96 M80.22 784 L80.22 804 L139.78 804 L139.78 784"/></clipPath></defs>
+<g clip-path="url(#label-holes-390539b5)"><rect class="cluster" x="0" y="172" width="642" height="580" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
 </g>
-<g clip-path="url(#label-holes-c5ad8417)"><path class="edge" d="M387 330 L387 352 C387 356.4 390.6 360 395 360 L499 360 C503.4 360 507 363.6 507 368 L507 390 L507 455.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-390539b5)"><path class="edge" d="M387 330 L387 352 C387 356.4 390.6 360 395 360 L499 360 C503.4 360 507 363.6 507 368 L507 390 L507 455.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-c5ad8417)"><path class="edge" d="M307 330 L307 352 C307 356.4 303.4 360 299 360 L151 360 C146.6 360 143 363.6 143 368 L143 390 L143 472.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-390539b5)"><path class="edge" d="M307 330 L307 352 C307 356.4 303.4 360 299 360 L151 360 C146.6 360 143 363.6 143 368 L143 390 L143 472.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-c5ad8417)"><path class="edge" d="M175 545 L175 661.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-390539b5)"><path class="edge" d="M175 545 L175 655.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-c5ad8417)"><path class="edge" d="M328 338.4 L328 670" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-390539b5)"><path class="edge" d="M328 338.4 L328 664" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-c5ad8417)"><path class="edge" d="M347 64 L347 237.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-390539b5)"><path class="edge" d="M347 64 L347 237.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-c5ad8417)"><path class="edge" d="M110 545 L110 833.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-390539b5)"><path class="edge" d="M110 545 L110 827.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <polygon class="arrowhead" points="507,464 501,452 513,452" fill="#3b4754"/>
 <polygon class="arrowhead" points="143,481 137,469 149,469" fill="#3b4754"/>
-<polygon class="arrowhead" points="175,670 169,658 181,658" fill="#3b4754"/>
+<polygon class="arrowhead" points="175,664 169,652 181,652" fill="#3b4754"/>
 <polygon class="arrowhead" points="328,330 334,342 322,342" fill="#3b4754"/>
 <polygon class="arrowhead" points="347,246 341,234 353,234" fill="#3b4754"/>
-<polygon class="arrowhead" points="110,842 104,830 116,830" fill="#3b4754"/>
+<polygon class="arrowhead" points="110,836 104,824 116,824" fill="#3b4754"/>
 <rect class="node" x="259" y="0" width="176" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="237.5" y="246" width="219" height="84" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="20.5" y="481" width="245" height="64" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
@@ -29,8 +29,8 @@
 <line class="node-detail" x1="392" y1="471" x2="392" y2="555" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <line class="node-detail" x1="622" y1="471" x2="622" y2="555" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <ellipse class="node-detail" cx="507" cy="471" rx="115" ry="7" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="151.5" y="670" width="201" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="16" y="842" width="188" height="64" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
+<rect class="node" x="151.5" y="664" width="201" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="16" y="836" width="188" height="64" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
 <text class="node-label" x="302.99" y="27.6" font-weight="bold" fill="#1b1f24">Użytkownik</text>
 <text class="node-label" x="347" y="47.6" text-anchor="middle" fill="#1b1f24">[Person]</text>
 <text class="cluster-title" x="65.35" y="193.6" text-anchor="middle" fill="#1b1f24">System jakości</text>
@@ -43,16 +43,16 @@
 <text class="node-label" x="488.32" y="502.1" font-weight="bold" fill="#1b1f24">Baza</text>
 <text class="node-label" x="507" y="522.1" text-anchor="middle" fill="#1b1f24">[Container: PostgreSQL]</text>
 <text class="node-label" x="507" y="542.1" text-anchor="middle" fill="#1b1f24">Dokumenty i zapisy</text>
-<text class="node-label" x="198.65" y="697.6" font-weight="bold" fill="#1b1f24">Renderer PDF</text>
-<text class="node-label" x="252" y="717.6" text-anchor="middle" fill="#1b1f24">[Container: gopdfgo]</text>
+<text class="node-label" x="198.65" y="691.6" font-weight="bold" fill="#1b1f24">Renderer PDF</text>
+<text class="node-label" x="252" y="711.6" text-anchor="middle" fill="#1b1f24">[Container: gopdfgo]</text>
 <text class="edge-label" x="507" y="407.6" text-anchor="middle" fill="#1b1f24">Czyta i zapisuje</text>
 <text class="edge-label" x="507" y="427.6" text-anchor="middle" fill="#1b1f24">[SQL]</text>
 <text class="edge-label" x="143" y="417.6" text-anchor="middle" fill="#1b1f24">Zleca</text>
 <text class="edge-label" x="175" y="609.6" text-anchor="middle" fill="#1b1f24">Uruchamia</text>
 <text class="edge-label" x="328" y="518.6" text-anchor="middle" fill="#1b1f24">Zwraca plik</text>
-<text class="node-label" x="55.76" y="869.6" font-weight="bold" fill="#1b1f24">Serwer poczty</text>
-<text class="node-label" x="110" y="889.6" text-anchor="middle" fill="#1b1f24">[Container: SMTP]</text>
+<text class="node-label" x="55.76" y="863.6" font-weight="bold" fill="#1b1f24">Serwer poczty</text>
+<text class="node-label" x="110" y="883.6" text-anchor="middle" fill="#1b1f24">[Container: SMTP]</text>
 <text class="edge-label" x="347" y="111.6" text-anchor="middle" fill="#1b1f24">Pracuje w przeglądarce</text>
 <text class="edge-label" x="347" y="131.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
-<text class="edge-label" x="110" y="805.6" text-anchor="middle" fill="#1b1f24">Wysyła</text>
+<text class="edge-label" x="110" y="799.6" text-anchor="middle" fill="#1b1f24">Wysyła</text>
 </svg>

@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="444" height="184" viewBox="-12 -12 444 184" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<path class="edge" d="M106.4 25 L319.89 25" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M106.4 43 L319.89 43" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M140 129 L271.6 129" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M148.4 147 L280 147" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<polygon class="arrowhead" points="328.29,25 316.29,19 316.29,31" fill="#3b4754"/>
-<polygon class="arrowhead" points="328.29,43 316.29,37 316.29,49" fill="#3b4754"/>
-<polygon class="arrowhead" points="280,129 268,123 268,135" fill="#3b4754"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="450" height="184" viewBox="-12 -12 450 184" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<path class="edge" d="M106.4 25 L325.89 25" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M106.4 43 L325.89 43" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M140 129 L277.6 129" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M148.4 147 L286 147" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon class="arrowhead" points="334.29,25 322.29,19 322.29,31" fill="#3b4754"/>
+<polygon class="arrowhead" points="334.29,43 322.29,37 322.29,49" fill="#3b4754"/>
+<polygon class="arrowhead" points="286,129 274,123 274,135" fill="#3b4754"/>
 <polygon class="arrowhead" points="140,147 152,153 152,141" fill="#3b4754"/>
 <polygon class="node" points="70,0 119.5,34 70,68 20.5,34" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="0" y="116" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle class="node" cx="350" cy="34" r="23.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="280" y="116" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle class="node" cx="356" cy="34" r="23.5" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="286" y="116" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="70" y="39.6" text-anchor="middle" fill="#1b1f24">Wybór</text>
 <text class="node-label" x="70" y="143.6" text-anchor="middle" fill="#1b1f24">Nadawca</text>
-<text class="node-label" x="350" y="39.6" text-anchor="middle" fill="#1b1f24">Cel</text>
-<text class="node-label" x="350" y="143.6" text-anchor="middle" fill="#1b1f24">Odbiorca</text>
+<text class="node-label" x="356" y="39.6" text-anchor="middle" fill="#1b1f24">Cel</text>
+<text class="node-label" x="356" y="143.6" text-anchor="middle" fill="#1b1f24">Odbiorca</text>
 </svg>

@@ -2336,6 +2336,42 @@ func (l *layouter) position(lv *level) (width, height float64) {
 					}
 				}
 			}
+			// Skręt długiej krawędzi tuż przed jej końcem przechodzi o warstwę wyżej, jeśli tam odstęp jest
+			// pusty, a w odstępie przy końcu skręcają też inne krawędzie: linie się nie stłaczają.
+			// jogsBelow liczy skręty w odstępie pod warstwą r, które w poprzek zachodzą na zakres lo–hi.
+			jogsBelow := func(r int, skip *item, lo, hi float64) int {
+				n := 0
+				if r+1 >= len(rows) {
+					return 0
+				}
+				for _, it := range rows[r+1] {
+					for _, up := range it.up {
+						a, b := math.Min(up.nodeX(), it.nodeX()), math.Max(up.nodeX(), it.nodeX())
+						if up != skip && b-a > 0.5 && a < hi+l.u(10) && lo-l.u(10) < b {
+							n++
+						}
+					}
+				}
+				return n
+			}
+			for _, row := range rows {
+				for _, d := range row {
+					if d.kind != kindDummy || len(d.down) != 1 || len(d.up) != 1 || d.down[0].kind == kindDummy {
+						continue
+					}
+					end, r := d.down[0], rowOf[d]
+					target := end.nodeX()
+					lo, hi := math.Min(d.x, target), math.Max(d.x, target)
+					// Koniec w zasięgu boku pola: krawędź i tak dochodzi prosto (straighten), nie ma skrętu.
+					if end.kind == kindNode && math.Abs(d.x-target) <= l.portRange(end)/2 {
+						continue
+					}
+					if math.Abs(d.x-target) < 0.5 || r == 0 || jogsBelow(r, d, lo, hi) == 0 || jogsBelow(r-1, nil, lo, hi) > 0 {
+						continue
+					}
+					try(map[*item]float64{d: target})
+				}
+			}
 		}
 
 		// Notatki dosuwamy do pól, których dotyczą; mają pierwszeństwo przed resztą warstwy.
@@ -2481,10 +2517,10 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			}
 			// Krawędzie skręcające tuż nad polem: tory odcinków poprzecznych i pod najniższym kawałek prostej
 			// przed grotem (zapas toru przy grocie w assignTracks).
-			// Dwa tory mają 20 px odstępu; przy większej liczbie torów działa reguła niżej, żeby rysunki
-			// z wieloma skrętami nie rosły. Encje nie mają grotów.
+			// Najniższy tor zostawia przed grotem kawałek prostej (LAY-024); kolejne tory mają odstęp jak
+			// dotąd, a rozsuwają się tylko w miejscu, które już jest (assignTracks). Encje nie mają grotów.
 			if !l.o.CurvedEdges && turns > 0 && anyReal(row) && l.g.Kind != "er" {
-				gap = math.Max(gap, l.u(34)+float64(min(turns-1, 1))*l.u(20))
+				gap = math.Max(gap, l.u(34)+float64(turns-1)*l.u(14))
 			}
 			// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
 			if !l.o.CurvedEdges && turns > 2 {
