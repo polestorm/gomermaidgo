@@ -264,8 +264,15 @@ func (l *layouter) runWidth(r graph.Run) float64 {
 	return l.o.Measure(r.Text, l.fs)
 }
 
-// wrap łamie linie szersze niż limit na granicach wyrazów.
+// wrap łamie linie szersze niż limit na granicach wyrazów. Napis złamany przez autora (kilka linii,
+// np. <br>) zachowuje jego przełamania: program nie dokłada własnych, także przy dopasowaniu do strony.
+// Bezpiecznik: linia szersza niż authorLimit i tak się łamie.
 func (l *layouter) wrap(lines []string, limit float64) []string {
+	// Linie pochodzą od autora tylko w schemacie i diagramie stanów; w C4, klasach czy wymaganiach
+	// kolejne linie (nazwa, typ, opis) składa sam program.
+	if len(lines) > 1 && (l.g.Kind == "flowchart" || l.g.Kind == "state") {
+		limit = math.Max(limit, l.u(authorLimit))
+	}
 	var out []string
 	for _, line := range lines {
 		line = graph.PerWord(line)
@@ -297,6 +304,10 @@ func (l *layouter) wrap(lines []string, limit float64) []string {
 	}
 	return out
 }
+
+// authorLimit to szerokość (przy piśmie 16 px), powyżej której łamie się nawet linia z napisu
+// złamanego przez autora: dwa razy więcej niż zwykła granica pola.
+const authorLimit = 400
 
 // glue oznacza w wyniku hyphenParts dalszą część słowa, która dokleja się do poprzedniej bez spacji.
 const glue = "\x00"

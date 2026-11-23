@@ -172,3 +172,17 @@ func TestUnstyledNodesStayNeutral(t *testing.T) {
 		}
 	}
 }
+
+// REQ: LAY-020
+func TestAuthorLineBreaksKept(t *testing.T) {
+	src := "graph LR\n  A[Month 1<br/>$250] --> B[Month 2<br/>$280] --> C[Month 3<br/>$310] --> D[Month 4<br/>$295] --> E[Month 5<br/>$420] --> F[Month 6<br/>$450] --> G[Month 7<br/>$480]\n"
+	svg, err := Render(src, WithFit(FitOn), WithFold(FoldOff))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, want := range []string{">Month 1<", ">Month 7<", ">$480<"} {
+		if !strings.Contains(string(svg), want) {
+			t.Errorf("fit on: line %q should stay as the author wrote it", want)
+		}
+	}
+}
