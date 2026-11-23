@@ -1,6 +1,6 @@
-# 0009 Pakiet główny w katalogu `mermaid/`, w katalogu głównym tylko trzy pliki
+# 0009 Pakiet główny w katalogu `mermaid/`, w katalogu głównym tylko cztery pliki
 
-Status: przyjęta · 2026-11-23
+Status: przyjęta · 2026-11-23, punkt 3 zmieniony 2026-11-23
 
 ## Kontekst
 
@@ -13,8 +13,12 @@ tylko podkatalogi i najwyżej trzy pliki.
 1. Kod pakietu głównego przechodzi do `mermaid/` (pakiet `mermaid`). Ścieżka importu zmienia się
    z `github.com/polestorm/gomermaidgo` na `github.com/polestorm/gomermaidgo/mermaid`, a wywołanie
    z `gomermaidgo.Render` na `mermaid.Render`; nazwa współgra z pakietami `pdf`, `png` i `markdown`.
-2. W katalogu głównym zostają `README.md`, `LICENSE` i `go.mod` (moduł Go musi mieć `go.mod` w katalogu głównym).
-3. `NOTICE` dotyczy głównie dołączonych krojów, więc przechodzi do `fonts/NOTICE`; README wskazuje to miejsce.
+2. W katalogu głównym zostają `README.md`, `LICENSE`, `NOTICE` i `go.mod` (moduł Go musi mieć `go.mod` w katalogu
+   głównym).
+3. `NOTICE` zostaje w katalogu głównym, obok `LICENSE`. Pierwotnie przeszedł do `fonts/NOTICE`, bo dotyczy głównie
+   dołączonych krojów; zmienione tego samego dnia: przy licencji Apache 2.0 `NOTICE` przyjęło się trzymać obok
+   `LICENSE`, tam szukają go ludzie i narzędzia sprawdzające licencje, a kto dołącza bibliotekę do swojego programu,
+   musi jego treść przenieść dalej.
 4. `CLAUDE.md` przechodzi do `.claude/CLAUDE.md` (miejsce czytane przez Claude Code) i zostaje w repozytorium.
 5. `testdata/` i `requirements/` zostają w katalogu głównym, bo czytają je też testy pakietów `internal/`;
    testy w `mermaid/` sięgają do nich przez `../`.

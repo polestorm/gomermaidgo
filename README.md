@@ -140,5 +140,5 @@ flowchart shapes, sequence participant groups, gantt excludes); the one public d
 
 ## License
 
-Apache License 2.0, see `LICENSE` and `fonts/NOTICE`. The bundled Arimo and Noto Emoji typefaces are distributed under the
+Apache License 2.0, see `LICENSE` and `NOTICE`. The bundled Arimo and Noto Emoji typefaces are distributed under the
 SIL Open Font License 1.1 (`fonts/OFL-Arimo.txt`, `fonts/OFL-NotoEmoji.txt`).
