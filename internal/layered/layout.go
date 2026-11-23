@@ -174,9 +174,13 @@ func (l *layouter) orient() {
 
 type layouter struct {
 	bg string // wypełnienie ramki, w której trwa rysowanie; pusty = tło rysunku
-	g  *graph.Graph
-	o  Options
-	sc *scene.Scene
+	// free: punkty przecięcia krawędzi z ramkami i zakres, w którym mogą się przesuwać wzdłuż ramki.
+	free map[routePoint][2]float64
+	// frameCross: punkty, w których krawędź przechodzi przez ramkę (podzbiór free).
+	frameCross map[routePoint]bool
+	g          *graph.Graph
+	o          Options
+	sc         *scene.Scene
 
 	fs, lh   float64
 	vertical bool    // TB albo BT: oś warstw jest pionowa
@@ -664,38 +668,58 @@ func (l *layouter) sizeAll(lv *level) {
 	// Drugie podejście: skoro wiadomo już, gdzie na tym poziomie leżą drugie końce krawędzi
 	// wchodzących do podgrafów, punkty na ich ramkach ustawiamy w tej kolejności i wnętrza
 	// rozmieszczamy od nowa.
-	changed := false
-	for _, it := range lv.items {
-		if it.kind == kindCluster && l.alignPorts(lv, it) {
-			l.finish(it.child)
-			it.w, it.h = it.child.w, it.child.h
-			changed = true
+	// Ramki mogą wskazywać na siebie nawzajem, więc wyrównanie powtarzamy, najwyżej dwa razy.
+	for round := 0; round < 2; round++ {
+		changed := false
+		for _, it := range lv.items {
+			if it.kind == kindCluster && l.alignPorts(lv, it) {
+				l.finish(it.child)
+				it.w, it.h = it.child.w, it.child.h
+				changed = true
+			}
 		}
-	}
-	if changed {
+		if !changed {
+			break
+		}
 		l.finish(lv)
 	}
+}
+
+// portOffset zwraca położenie punktu na ramce podgrafu względem środka ramki, wzdłuż osi kolejności.
+func portOffset(cluster, port *item) float64 {
+	c := cluster.child
+	return c.padX0 + port.x - c.w/2
 }
 
 // alignPorts ustawia punkty na ramce podgrafu w kolejności położenia drugich końców ich krawędzi
 // na poziomie lv i porządkuje wnętrze na nowo. Zmiana zostaje, jeśli nie dodaje przecięć we wnętrzu.
 func (l *layouter) alignPorts(lv *level, cluster *item) bool {
 	child := cluster.child
-	hint := map[*item]float64{}
+	// hint: położenie drugiego końca; second rozstrzyga remisy (kilka krawędzi do jednej ramki).
+	hint, second := map[*item]float64{}, map[*item]float64{}
 	for _, e := range lv.edges {
 		if e.upperCont != nil && e.u == cluster {
-			n := e.v
-			if len(e.chain) > 0 {
-				n = e.chain[0]
+			x := e.v.x
+			switch {
+			case len(e.chain) > 0:
+				x = e.chain[0].x
+			case e.lowerCont != nil:
+				// Drugi koniec też jest podgrafem: wyjścia układają się według ramek docelowych, a do
+				// jednej ramki w obecnej kolejności; ramka dolna dopasuje potem swoje wejścia do nich.
+				second[e.upperCont.v] = portOffset(cluster, e.upperCont.v)
 			}
-			hint[e.upperCont.v] = n.x
+			hint[e.upperCont.v] = x
 		}
 		if e.lowerCont != nil && e.v == cluster {
-			n := e.u
-			if len(e.chain) > 0 {
-				n = e.chain[len(e.chain)-1]
+			x := e.u.x
+			switch {
+			case len(e.chain) > 0:
+				x = e.chain[len(e.chain)-1].x
+			case e.upperCont != nil:
+				// Drugi koniec też jest podgrafem: liczy się punkt na jego ramce, nie środek ramki.
+				x = e.u.x + portOffset(e.u, e.upperCont.v)
 			}
-			hint[e.lowerCont.u] = n.x
+			hint[e.lowerCont.u] = x
 		}
 	}
 	if len(hint) < 2 {
@@ -712,7 +736,12 @@ func (l *layouter) alignPorts(lv *level, cluster *item) bool {
 			continue
 		}
 		sorted := append([]*item(nil), row...)
-		sort.SliceStable(sorted, func(a, b int) bool { return hint[sorted[a]] < hint[sorted[b]] })
+		sort.SliceStable(sorted, func(a, b int) bool {
+			if hint[sorted[a]] != hint[sorted[b]] {
+				return hint[sorted[a]] < hint[sorted[b]]
+			}
+			return second[sorted[a]] < second[sorted[b]]
+		})
 		for i, it := range sorted {
 			moved = moved || row[i] != it
 			row[i], it.order = it, i
@@ -1401,9 +1430,8 @@ func (l *layouter) packBoxes(lv *level) {
 func (l *layouter) attachments(lv *level) map[[2]*item]float64 {
 	sum, count := map[[2]*item]float64{}, map[[2]*item]float64{}
 	add := func(other, cluster, port *item) {
-		c := cluster.child
 		k := [2]*item{other, cluster}
-		sum[k] += c.padX0 + port.x - c.w/2
+		sum[k] += portOffset(cluster, port)
 		count[k]++
 	}
 	for _, e := range lv.edges {
@@ -1779,6 +1807,7 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		for r := 1; r < len(rows); r++ {
 			pull(rows[r], true, false)
 		}
+		l.settleFrames(lv, rows, place)
 
 		// Tory: pole, które w swoim rzędzie jest jedynym polem toru, staje pośrodku pasa. Kroki
 		// jednej roli tworzą wtedy kolumnę, a nie schodki ciągnięte ku sąsiadom z innych torów.
@@ -2100,6 +2129,34 @@ func components(lv *level) [][][]*item {
 			out[k][r] = append(out[k][r], it)
 		}
 	}
+	// Części z punktem na ramce stoją w kolejności tych punktów (ustalonej z drugimi końcami krawędzi
+	// na poziomie wyżej); zajmują swoje dotychczasowe miejsca, a pozostałe części zostają, gdzie były.
+	key := func(part [][]*item) (int, bool) {
+		for _, row := range part {
+			for _, it := range row {
+				if it.kind == kindPort {
+					return it.order, true
+				}
+			}
+		}
+		return 0, false
+	}
+	var slots []int
+	var withPorts [][][]*item
+	for i, part := range out {
+		if _, ok := key(part); ok {
+			slots = append(slots, i)
+			withPorts = append(withPorts, part)
+		}
+	}
+	sort.SliceStable(withPorts, func(a, b int) bool {
+		ka, _ := key(withPorts[a])
+		kb, _ := key(withPorts[b])
+		return ka < kb
+	})
+	for i, slot := range slots {
+		out[slot] = withPorts[i]
+	}
 	return out
 }
 
@@ -2165,6 +2222,109 @@ func (l *layouter) place(lv *level, ox, oy float64) {
 			restore()
 			c.ox, c.oy = cx-rw/2-math.Min(p0.X, p1.X), cy-rh/2-math.Min(p0.Y, p1.Y)
 			l.place(c, 0, 0)
+		}
+	}
+}
+
+// frameLink to krawędź przechodząca przez ramkę podgrafu na danym poziomie: punkt na ramce
+// (przesunięcie off względem środka ramki) i drugi koniec po tej stronie ramki.
+type frameLink struct {
+	cluster, other *item
+	off            float64
+	otherPort      *item // punkt na ramce drugiego końca, gdy ten też jest podgrafem
+}
+
+func frameLinks(lv *level) []frameLink {
+	var out []frameLink
+	for _, e := range lv.edges {
+		if e.upperCont != nil {
+			link := frameLink{cluster: e.u, other: e.v, off: portOffset(e.u, e.upperCont.v)}
+			if len(e.chain) > 0 {
+				link.other = e.chain[0]
+			} else if e.lowerCont != nil {
+				link.otherPort = e.lowerCont.u
+			}
+			out = append(out, link)
+		}
+		if e.lowerCont != nil {
+			link := frameLink{cluster: e.v, other: e.u, off: portOffset(e.v, e.lowerCont.u)}
+			if len(e.chain) > 0 {
+				link.other = e.chain[len(e.chain)-1]
+			} else if e.upperCont != nil {
+				link.otherPort = e.upperCont.v
+			}
+			out = append(out, link)
+		}
+	}
+	return out
+}
+
+// settleFrames przesuwa ramki podgrafów tak, żeby krawędzie przechodzące przez ramkę nie miały
+// drobnych uskoków. Uskok krawędzi jest dobry, gdy jest zerem, gdy pole po drugiej stronie wyprostuje
+// go, przesuwając swój punkt zaczepienia w zasięgu boku, albo gdy jest wyraźnym skrętem; drobny jest
+// każdy inny. Ramka staje w położeniu, w którym drobnych uskoków jest najmniej: obecnym albo takim,
+// w którym jedna z krawędzi biegnie dokładnie prosto; przy remisie bliżej obecnego.
+func (l *layouter) settleFrames(lv *level, rows [][]*item, place func(row []*item, want, priority []float64)) {
+	links := frameLinks(lv)
+	if len(links) == 0 {
+		return
+	}
+	clear := l.u(16)
+	target := func(k frameLink) (x, tolerance float64) {
+		switch {
+		case k.otherPort != nil:
+			return k.other.x + portOffset(k.other, k.otherPort), 0
+		case k.other.kind == kindNode:
+			return k.other.nodeX(), math.Max(l.portRange(k.other)/2, 0)
+		}
+		return k.other.x, 0
+	}
+	for _, row := range rows {
+		for i, c := range row {
+			if c.kind != kindCluster {
+				continue
+			}
+			var mine []frameLink
+			for _, k := range links {
+				if k.cluster == c {
+					mine = append(mine, k)
+				}
+			}
+			if len(mine) == 0 {
+				continue
+			}
+			bad := func(shift float64) int {
+				n := 0
+				for _, k := range mine {
+					x, tol := target(k)
+					d := math.Abs(x - (c.x + shift + k.off))
+					if d > 0.5 && d > tol+0.5 && d < clear {
+						n++
+					}
+				}
+				return n
+			}
+			best, bestBad := 0.0, bad(0)
+			if bestBad == 0 {
+				continue
+			}
+			for _, k := range mine {
+				x, _ := target(k)
+				shift := x - (c.x + k.off)
+				if b := bad(shift); b < bestBad || (b == bestBad && math.Abs(shift) < math.Abs(best)) {
+					best, bestBad = shift, b
+				}
+			}
+			if best == 0 {
+				continue
+			}
+			want := make([]float64, len(row))
+			priority := make([]float64, len(row))
+			for j, it := range row {
+				want[j], priority[j] = it.x, 100
+			}
+			want[i], priority[i] = c.x+best, 3000
+			place(row, want, priority)
 		}
 	}
 }

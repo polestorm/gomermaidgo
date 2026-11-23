@@ -9,6 +9,7 @@ import (
 
 	"github.com/polestorm/gomermaidgo/internal/er"
 	"github.com/polestorm/gomermaidgo/internal/font"
+	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 )
 
@@ -555,5 +556,70 @@ func TestColouredFrames(t *testing.T) {
 		if f.Fill != "" {
 			t.Errorf("without colours the frame should stay unfilled")
 		}
+	}
+}
+
+// crossingCount liczy przecięcia odcinków prostych różnych krawędzi (także pod mostkiem).
+func crossingCount(sc *scene.Scene) int {
+	ss := straights(sc)
+	n := 0
+	for i, p := range ss {
+		for _, q := range ss[i+1:] {
+			if p.edge == q.edge {
+				continue
+			}
+			h, v := p, q
+			if math.Abs(h.a.Y-h.b.Y) > 0.01 {
+				h, v = q, p
+			}
+			if math.Abs(h.a.Y-h.b.Y) > 0.01 || math.Abs(v.a.X-v.b.X) > 0.01 {
+				continue
+			}
+			x, y := v.a.X, h.a.Y
+			if x > math.Min(h.a.X, h.b.X)+0.5 && x < math.Max(h.a.X, h.b.X)-0.5 && y > math.Min(v.a.Y, v.b.Y)+0.5 && y < math.Max(v.a.Y, v.b.Y)-0.5 {
+				n++
+			}
+		}
+	}
+	return n
+}
+
+// REQ: LAY-015
+// Krawędzie między dwiema ramkami: wejścia na ramce dolnej stoją w kolejności wyjść z górnej, więc
+// krawędzie się nie przecinają; pola w ramce dolnej stoją w tej samej kolejności.
+func TestFrameToFrameOrder(t *testing.T) {
+	sc := natural(t, "flowchart/021-frames-order.mmd")
+	if n := crossingCount(sc); n != 0 {
+		t.Errorf("%d crossings", n)
+	}
+	// Źródła od lewej: Ocena (Rejestr, Archiwum), Analiza (Karty), Weryfikacja (Historia); w ramce
+	// „Zapisy” pola stoją w kolejności swoich źródeł.
+	x := func(label string) float64 { return centerX(nodeOf(t, sc, label)) }
+	src := map[string]string{"Rejestr niezgodności": "Ocena", "Archiwum": "Ocena", "Karty działań": "Analiza przyczyn", "Historia": "Weryfikacja"}
+	for a, sa := range src {
+		for b, sb := range src {
+			if x(sa) < x(sb)-0.5 && x(a) > x(b) {
+				t.Errorf("%s (from %s) stands right of %s (from %s)", a, sa, b, sb)
+			}
+		}
+	}
+}
+
+// REQ: LAY-016
+// Ramka stoi tak, że krawędzie przechodzące przez nią nie mają drobnych uskoków; z wachlarza trzech
+// krawędzi do ramki środkowa biegnie prosto.
+func TestFramesWithoutSmallJogs(t *testing.T) {
+	for _, d := range []graph.Direction{graph.LeftRight, graph.TopBottom} {
+		g := parse(t, "../../testdata/corpus/flowchart/022-frames-lr.mmd")
+		g.Direction = d
+		sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+		if j := smallestJog(sc); j < 16 {
+			t.Errorf("%s: jog of %.1f px", d, j)
+		}
+	}
+	sc := natural(t, "flowchart/022-frames-lr.mmd")
+	src, mid := nodeOf(t, sc, "Prognoza"), nodeOf(t, sc, "Alerty")
+	if math.Abs((src.Y0+src.Y1)/2-(mid.Y0+mid.Y1)/2) > 0.5 {
+		t.Errorf("the middle field of the output frame should stand level with its source")
 	}
 }

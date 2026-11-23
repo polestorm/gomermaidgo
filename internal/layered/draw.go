@@ -559,6 +559,22 @@ func (l *layouter) prepareRoutes() {
 // routes zwraca przebiegi krawędzi jednego poziomu, przygotowane do rysowania.
 func (l *layouter) routes(lv *level) []*edgeRoute {
 	var routes []*edgeRoute
+	// Najpierw przebiegi wszystkich krawędzi poziomu: wyrównanie przejść przez ramki musi znać
+	// przejścia pozostałych krawędzi przez te same ramki.
+	all := map[*ledge][]routePoint{}
+	for _, e := range lv.edges {
+		if !e.part && e.e.Style != graph.Invisible {
+			all[e] = l.route(e)
+		}
+	}
+	for _, e := range lv.edges {
+		if e.part || e.e.Style == graph.Invisible {
+			continue
+		}
+		// Dwa przebiegi: po wyrównaniu przejścia przez ramkę odcinek przed nim może dołączyć do niego.
+		l.snapCrossings(all[e])
+		l.snapCrossings(all[e])
+	}
 	for _, e := range lv.edges {
 		if e.part || e.e.Style == graph.Invisible {
 			continue
@@ -567,7 +583,7 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 		if e.rev {
 			topHead, bottomHead = bottomHead, topHead
 		}
-		pts := l.route(e)
+		pts := all[e]
 		// Różnice położeń poniżej progu to zaokrąglenia: odcinek ma być dokładnie prosty, nie skośny.
 		for i := 1; i < len(pts); i++ {
 			if math.Abs(pts[i].x-pts[i-1].x) < straightTolerance {
@@ -1050,9 +1066,9 @@ func (l *layouter) route(e *ledge) []routePoint {
 		pts = l.route(e.upperCont)
 	case e.u.kind == kindPort:
 		border := e.lv.offsetY
-		pts = append(pts, routePoint{e.u.x, border})
+		pts = append(pts, l.crossing(e.lv, routePoint{e.u.x, border}))
 		if e.u.y-border > 0.5 {
-			pts = append(pts, routePoint{e.u.x, e.u.y})
+			pts = append(pts, l.crossing(e.lv, routePoint{e.u.x, e.u.y}))
 		}
 	case e.sideExit != 0:
 		// Początek w bocznym wierzchołku; drugi punkt, pod miejscem skrętu, dopisuje koniec funkcji.
@@ -1067,10 +1083,11 @@ func (l *layouter) route(e *ledge) []routePoint {
 		}
 	}
 	for _, d := range e.chain {
+		lo, hi := l.dummyRoom(e.lv, d)
 		if d.band > 0 {
-			pts = append(pts, routePoint{d.x, d.y - d.band/2}, routePoint{d.x, d.y + d.band/2})
+			pts = append(pts, l.movable(routePoint{d.x, d.y - d.band/2}, lo, hi), l.movable(routePoint{d.x, d.y + d.band/2}, lo, hi))
 		} else {
-			pts = append(pts, routePoint{d.x, d.y})
+			pts = append(pts, l.movable(routePoint{d.x, d.y}, lo, hi))
 		}
 	}
 	switch {
@@ -1079,9 +1096,9 @@ func (l *layouter) route(e *ledge) []routePoint {
 	case e.v.kind == kindPort:
 		border := e.lv.offsetY + e.lv.h
 		if border-e.v.y > 0.5 {
-			pts = append(pts, routePoint{e.v.x, e.v.y})
+			pts = append(pts, l.crossing(e.lv, routePoint{e.v.x, e.v.y}))
 		}
-		pts = append(pts, routePoint{e.v.x, border})
+		pts = append(pts, l.crossing(e.lv, routePoint{e.v.x, border}))
 	default:
 		x := e.v.nodeX() + e.lowerPort
 		if e.v.band > e.v.h+1 {
@@ -1436,4 +1453,126 @@ func (l *layouter) subgraphIndex(id string) int {
 		}
 	}
 	return 0
+}
+
+// crossing zapamiętuje punkt, w którym krawędź przechodzi przez ramkę podgrafu lv: może on przesuwać
+// się wzdłuż boku ramki (w jej obrębie), bo na rysunku to tylko miejsce przecięcia linii z ramką.
+func (l *layouter) crossing(lv *level, p routePoint) routePoint {
+	if l.frameCross == nil {
+		l.frameCross = map[routePoint]bool{}
+	}
+	l.frameCross[p] = true
+	return l.movable(p, lv.offsetX+l.u(6), lv.offsetX+lv.w-l.u(6))
+}
+
+// movable zapamiętuje punkt krawędzi, który może przesunąć się w poprzek osi warstw w zakresie lo..hi.
+func (l *layouter) movable(p routePoint, lo, hi float64) routePoint {
+	if l.free == nil {
+		l.free = map[routePoint][2]float64{}
+	}
+	l.free[p] = [2]float64{lo, hi}
+	return p
+}
+
+// dummyRoom zwraca zakres, w którym punkt pośredni krawędzi może stanąć bez zbliżenia do sąsiadów
+// w swojej warstwie bardziej niż zwykły odstęp.
+func (l *layouter) dummyRoom(lv *level, d *item) (lo, hi float64) {
+	lo, hi = math.Inf(-1), math.Inf(1)
+	if d.rank < 0 || d.rank >= len(lv.ranks) {
+		return d.x, d.x
+	}
+	row := lv.ranks[d.rank]
+	gap := func(o *item) float64 {
+		if o.kind == kindDummy {
+			return l.u(10)
+		}
+		return l.u(8)
+	}
+	for _, o := range row {
+		if o == d {
+			continue
+		}
+		if o.x < d.x {
+			lo = math.Max(lo, o.x+o.w/2+gap(o))
+		} else {
+			hi = math.Min(hi, o.x-o.w/2-gap(o))
+		}
+	}
+	return lo, hi
+}
+
+// snapCrossings usuwa drobne uskoki przy przejściu przez ramkę: odcinek w poprzek ramki przesuwa się
+// w oś odcinka przed nim albo za nim, jeśli zostaje wtedy mniej drobnych uskoków (zero albo wyraźny
+// skręt są dobre), a nowe miejsce leży w obrębie boku ramki.
+func (l *layouter) snapCrossings(pts []routePoint) {
+	clear := l.u(16)
+	small := func(d float64) int {
+		if d = math.Abs(d); d > 0.5 && d < clear {
+			return 1
+		}
+		return 0
+	}
+	for i := 1; i < len(pts)-1; {
+		bounds, ok := l.free[pts[i]]
+		if !ok {
+			i++
+			continue
+		}
+		// Odcinek do przesunięcia: kolejne punkty w jednej osi, wszystkie ruchome; zakres to część
+		// wspólna ich zakresów. Przesuwa się tylko odcinek, który przechodzi przez ramkę.
+		j, frame := i, l.frameCross[pts[i]]
+		for j+1 < len(pts)-1 && pts[j+1].x == pts[i].x {
+			b, free := l.free[pts[j+1]]
+			if !free {
+				break
+			}
+			bounds = [2]float64{math.Max(bounds[0], b[0]), math.Min(bounds[1], b[1])}
+			frame = frame || l.frameCross[pts[j+1]]
+			j++
+		}
+		if !frame {
+			i = j + 1
+			continue
+		}
+		x, prev, next := pts[i].x, pts[i-1].x, pts[j+1].x
+		// passes mówi, czy przesunięcie do c mija inne przejście przez tę samą ramkę albo się do niego
+		// zbliża: kolejność krawędzi na boku ramki ma zostać ta sama.
+		passes := func(c float64) bool {
+			lo, hi := math.Min(x, c)-l.u(6), math.Max(x, c)+l.u(6)
+			for k := i; k <= j; k++ {
+				if !l.frameCross[pts[k]] {
+					continue
+				}
+				for q := range l.frameCross {
+					if math.Abs(q.y-pts[k].y) < 0.5 && q.x != x && q.x > lo && q.x < hi {
+						return true
+					}
+				}
+			}
+			return false
+		}
+		best, worst := x, small(x-prev)+small(next-x)
+		for _, c := range []float64{prev, next} {
+			if c < bounds[0] || c > bounds[1] || passes(c) {
+				continue
+			}
+			if n := small(c-prev) + small(next-c); n < worst {
+				best, worst = c, n
+			}
+		}
+		if best != x {
+			for k := i; k <= j; k++ {
+				old := pts[k]
+				pts[k].x = best
+				// Punkt zostaje ruchomy pod nowym położeniem: drugi przebieg może go jeszcze dołączyć.
+				l.free[pts[k]] = l.free[old]
+				delete(l.free, old)
+				if l.frameCross[old] {
+					delete(l.frameCross, old)
+					l.frameCross[pts[k]] = true
+				}
+			}
+		}
+		i = j + 1
+	}
 }

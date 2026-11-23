@@ -1,0 +1,37 @@
+%% REQ: LAY-016
+%% Tytuł: Ramki bez drobnych uskoków
+%% Sprawdza: ramka ustawiona tak, że krawędzie przechodzące przez nią biegną prosto albo skręcają wyraźnie; wachlarz z jednego pola do ramki ze środkową krawędzią prostą; kierunek LR.
+flowchart LR
+    subgraph Dane
+        Wniosek[wniosek.pdf]
+        Norma[Wymagania normy]
+        Wzorzec[wzorzec.docx]
+    end
+    subgraph Przetwarzanie
+        Odczyt[Odczyt pól]
+        Mapa[Przypisanie wymagań]
+        Ocena[Ocena zgodności]
+        Suma[Podsumowanie]
+    end
+    subgraph Analiza
+        Por[Porównanie ze wzorcem]
+        Tre[Trendy]
+        Pro[Prognoza]
+    end
+    subgraph Wynik
+        Rap[Raport]
+        Ale[Alerty]
+        Wsk[Wskaźniki]
+    end
+    Wniosek --> Odczyt
+    Norma --> Mapa
+    Odczyt --> Mapa
+    Mapa --> Ocena
+    Ocena --> Suma
+    Suma --> Por
+    Wzorzec --> Por
+    Por --> Tre
+    Tre --> Pro
+    Pro --> Rap
+    Pro --> Ale
+    Pro --> Wsk

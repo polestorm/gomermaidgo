@@ -1,0 +1,41 @@
+%% REQ: LAY-015
+%% Tytuł: Krawędzie między ramkami w kolejności
+%% Sprawdza: punkty wejścia na ramce dolnej w kolejności punktów wyjścia z ramki górnej, także gdy obie są podgrafami; wyjścia ułożone według ramek docelowych; bez przecięć.
+flowchart TB
+    subgraph Wejscie[Wejście]
+        Zgl[Zgłoszenie]
+        Aud[Audyt]
+        Rek[Reklamacja]
+    end
+    subgraph Rdzen[Obsługa]
+        Rej[Rejestracja]
+        Oce[Ocena]
+        Ana[Analiza przyczyn]
+        Pla[Plan działań]
+        Wer[Weryfikacja]
+    end
+    subgraph Zapisy
+        Rejestr[Rejestr niezgodności]
+        Kart[Karty działań]
+        Hist[Historia]
+        Ark[Archiwum]
+    end
+    subgraph Wyniki
+        Rap[Raport]
+        Pow[Powiadomienie]
+        Wsk[Wskaźniki]
+    end
+    Zgl --> Rej
+    Aud --> Rej
+    Rek --> Rej
+    Rej --> Oce
+    Oce --> Ana
+    Ana --> Pla
+    Pla --> Wer
+    Oce --> Rejestr
+    Ana --> Kart
+    Wer --> Hist
+    Oce --> Ark
+    Wer --> Rap
+    Wer --> Pow
+    Wer --> Wsk
