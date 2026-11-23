@@ -9,7 +9,7 @@
 <path class="edge" d="M163 172 L163 261.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <path class="edge" d="M81 575 L81 657.6" fill="none" stroke="#55657a" stroke-width="1.5"/>
 <path class="edge" d="M283 467 L283 650.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M107 575 L107 599 L107 616.8 C107 621.2 110.6 624.8 115 624.8 L261 624.8 C265.4 624.8 269 628.4 269 632.8 L269 650.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M107 575 L107 599 L107 611.3 C107 615.7 110.6 619.3 115 619.3 L261 619.3 C265.4 619.3 269 622.9 269 627.3 L269 650.6" fill="none" stroke="#55657a" stroke-width="1.5" stroke-dasharray="3 3"/>
 <rect class="cluster-title-background" x="12" y="222" width="96.91" height="20" fill="#f3f6fb"/>
 <rect class="edge-label-background" x="28.2" y="371" width="131.61" height="20" fill="#f3f6fb"/>
 <rect class="edge-label-background" x="230.98" y="371" width="104.05" height="20" fill="#f3f6fb"/>

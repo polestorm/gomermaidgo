@@ -2151,6 +2151,158 @@ func (l *layouter) position(lv *level) (width, height float64) {
 			}
 		}
 
+		// Pole albo podpis środkowy z nieparzystej liczby (co najmniej trzech) wyjść pola, do którego
+		// prowadzi tylko ta krawędź, staje pod nim: krawędź z dolnego wierzchołka biegnie prosto,
+		// a skrajne odchodzą symetrycznie; pole pod takim podpisem idzie za nim. Miejsca ustępują
+		// tylko punkty pomocnicze i podpisy innych krawędzi, przesuwane razem z całą krawędzią,
+		// żeby nie powstał na niej nowy uskok; pola się nie przesuwają (LAY-023).
+		if l.lanes == nil {
+			rowOf, indexOf := map[*item]int{}, map[*item]int{}
+			for r, row := range rows {
+				for k, it := range row {
+					rowOf[it], indexOf[it] = r, k
+				}
+			}
+			pinned := map[*item]bool{} // już wyrównane: nie ustępują miejsca
+			movable := func(it *item) bool {
+				return !pinned[it] && (it.kind == kindDummy || it.kind == kindLabel) && len(it.up) == 1 && len(it.down) == 1
+			}
+			// try przesuwa pola do podanych położeń, rozpychając sąsiadów w ich warstwach; wszystkie
+			// albo żadne. Zwraca, czy się udało.
+			try := func(targets map[*item]float64) bool {
+				moves := map[*item]float64{}
+				for it, x := range targets {
+					moves[it] = x
+				}
+				var row []*item
+				push := func(k int, to float64) bool {
+					p := row[k]
+					if !movable(p) {
+						return false
+					}
+					d := to - p.x
+					moves[p] = to
+					for q := p; len(q.up) == 1 && movable(q.up[0]); q = q.up[0] {
+						moves[q.up[0]] = q.up[0].x + d
+					}
+					for q := p; len(q.down) == 1 && movable(q.down[0]); q = q.down[0] {
+						moves[q.down[0]] = q.down[0].x + d
+					}
+					return true
+				}
+				at := func(it *item) float64 {
+					if x, ok := moves[it]; ok {
+						return x
+					}
+					return it.x
+				}
+				for v := range targets {
+					i := indexOf[v]
+					row = rows[rowOf[v]]
+					for k := i - 1; k >= 0; k-- {
+						if limit := at(row[k+1]) - sep(row[k], row[k+1]); at(row[k]) > limit+0.01 && !push(k, limit) {
+							return false
+						}
+					}
+					for k := i + 1; k < len(row); k++ {
+						if limit := at(row[k-1]) + sep(row[k-1], row[k]); at(row[k]) < limit-0.01 && !push(k, limit) {
+							return false
+						}
+					}
+				}
+				// Przesunięte krawędzie nie mogą wejść na sąsiadów w swoich warstwach.
+				for it := range moves {
+					r := rows[rowOf[it]]
+					for k := 0; k+1 < len(r); k++ {
+						if at(r[k+1])-at(r[k]) < sep(r[k], r[k+1])-0.01 {
+							return false
+						}
+					}
+				}
+				for it, x := range moves {
+					it.x = x
+				}
+				for it := range targets {
+					pinned[it] = true
+				}
+				return true
+			}
+			// Liczba krawędzi wychodzących z pola w źródle (bez pętli własnych): krawędź wsteczna
+			// odwrócona w układzie nie jest wyjściem.
+			outs := map[string]int{}
+			for _, e := range l.g.Edges {
+				if e.From != e.To {
+					outs[e.From]++
+				}
+			}
+			for _, row := range rows {
+				for _, v := range row {
+					if (v.kind != kindNode && v.kind != kindLabel) || len(v.up) != 1 {
+						continue
+					}
+					u := v.up[0]
+					if u.kind != kindNode || u.node == nil || len(u.down) < 3 || len(u.down)%2 == 0 || outs[u.node.ID] != len(u.down) {
+						continue
+					}
+					kids := append([]*item(nil), u.down...)
+					sort.SliceStable(kids, func(a, b int) bool { return kids[a].x < kids[b].x })
+					if kids[len(kids)/2] != v {
+						continue
+					}
+					target := u.nodeX()
+					d := target - v.nodeX()
+					if math.Abs(d) < 0.5 || math.Abs(d) > l.u(120) {
+						continue
+					}
+					targets := map[*item]float64{v: v.x + d}
+					if v.kind == kindLabel {
+						// Podpis idzie pod pole tylko razem z polem, do którego prowadzi: inaczej uskok
+						// przeniósłby się między podpis a pole.
+						if len(v.down) != 1 || v.down[0].kind != kindNode || len(v.down[0].up) != 1 {
+							continue
+						}
+						w := v.down[0]
+						targets[w] = w.x + target - w.nodeX()
+					}
+					try(targets)
+				}
+			}
+			// Długa krawędź z uskokiem między punktami pomocniczymi: odstający punkt wraca do osi, którą
+			// ma większość punktów tej krawędzi, jeśli obok da się przesunąć podpisy i punkty innych krawędzi.
+			seen := map[*item]bool{}
+			for _, row := range rows {
+				for _, it := range row {
+					if it.kind != kindDummy || seen[it] || (len(it.up) == 1 && it.up[0].kind == kindDummy) {
+						continue
+					}
+					var run []*item
+					for q := it; q != nil && q.kind == kindDummy && !seen[q]; {
+						run, seen[q] = append(run, q), true
+						if len(q.down) != 1 {
+							break
+						}
+						q = q.down[0]
+					}
+					count := map[float64]int{}
+					axis, best := 0.0, 0
+					for _, q := range run {
+						count[q.x]++
+						if count[q.x] > best {
+							axis, best = q.x, count[q.x]
+						}
+					}
+					if best < 2 || best == len(run) {
+						continue
+					}
+					for _, q := range run {
+						if q.x != axis && math.Abs(q.x-axis) <= l.u(60) {
+							try(map[*item]float64{q: axis})
+						}
+					}
+				}
+			}
+		}
+
 		// Notatki dosuwamy do pól, których dotyczą; mają pierwszeństwo przed resztą warstwy.
 		for _, row := range rows {
 			want := make([]float64, len(row))
@@ -2291,6 +2443,11 @@ func (l *layouter) position(lv *level) (width, height float64) {
 				// Wnętrze stanu złożonego: proste strzałki są krótsze niż na poziomie głównym, bo
 				// ramka i tak zajmuje miejsce, a jej zawartość czyta się jako jedną całość.
 				gap = l.u(26)
+			}
+			// Krawędzie skręcające tuż nad polem: tory odcinków poprzecznych i pod najniższym kawałek prostej
+			// przed grotem (zapas toru przy grocie w assignTracks).
+			if !l.o.CurvedEdges && turns > 0 && anyReal(row) {
+				gap = math.Max(gap, l.u(25)+float64(turns-1)*l.u(14))
 			}
 			// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
 			if !l.o.CurvedEdges && turns > 2 {

@@ -279,3 +279,41 @@ func TestFoldChains(t *testing.T) {
 		t.Errorf("default: chain folding should be off, got %d columns", len(xs))
 	}
 }
+
+// REQ: LAY-023 LAY-024
+func TestMiddleBranchAndArrowClearance(t *testing.T) {
+	svg, err := Render(readFile(t, "testdata/corpus/flowchart/027-fold-chains.mmd"), WithFoldChains(FoldOff))
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := string(svg)
+	// Romb „Skuteczne?” i pole „Działania uzupełniające”: środek pod środkiem.
+	rhomb := regexp.MustCompile(`<polygon class="node" points="([-\d.]+),`).FindStringSubmatch(s)
+	label := regexp.MustCompile(`<text class="node-label" x="([-\d.]+)"[^>]*>Działania uzupełniające<`).FindStringSubmatch(s)
+	if rhomb == nil || label == nil {
+		t.Fatal("decision or middle branch not found")
+	}
+	if rhomb[1] != label[1] {
+		t.Errorf("middle branch centre %s is not under the decision centre %s", label[1], rhomb[1])
+	}
+	// Każda krawędź schematu kończąca się zakrętem ma za nim co najmniej 4 px prostej przed grotem.
+	tail := regexp.MustCompile(`C[-\d. ]+ ([-\d.]+) ([-\d.]+) L([-\d.]+) ([-\d.]+)" fill="none"`)
+	for _, f := range corpusFiles(t) {
+		if !strings.Contains(f, "/flowchart/") {
+			continue
+		}
+		out, err := Render(readFile(t, f))
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, m := range tail.FindAllStringSubmatch(string(out), -1) {
+			x0, _ := strconv.ParseFloat(m[1], 64)
+			y0, _ := strconv.ParseFloat(m[2], 64)
+			x1, _ := strconv.ParseFloat(m[3], 64)
+			y1, _ := strconv.ParseFloat(m[4], 64)
+			if d := math.Hypot(x1-x0, y1-y0); d < 4 {
+				t.Errorf("%s: edge ends %.1f px after its last turn (%s,%s)", f, d, m[3], m[4])
+			}
+		}
+	}
+}

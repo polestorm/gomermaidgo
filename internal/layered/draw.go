@@ -1248,6 +1248,9 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 		a, b   routePoint
 		lo, hi float64
 		track  int
+		// Zapas od końców odcinka: przy grocie większy, żeby między narożnikiem a grotem został
+		// kawałek prostej linii, a grot nie siedział tuż przy zakręcie.
+		padA, padB float64
 	}
 	var jogs []*jog
 	for _, r := range routes {
@@ -1259,7 +1262,14 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 				continue
 			}
 			if math.Abs(a.x-b.x) >= straightTolerance {
-				jogs = append(jogs, &jog{r: r, seg: i, a: a, b: b, lo: math.Min(a.x, b.x) - l.u(5), hi: math.Max(a.x, b.x) + l.u(5)})
+				j := &jog{r: r, seg: i, a: a, b: b, lo: math.Min(a.x, b.x) - l.u(5), hi: math.Max(a.x, b.x) + l.u(5), padA: l.u(7), padB: l.u(7)}
+				if i == 0 && r.topHead != "" && r.topHead != graph.NoHead {
+					j.padA = l.u(18)
+				}
+				if i+2 == len(r.pts) && r.bottomHead != "" && r.bottomHead != graph.NoHead {
+					j.padB = l.u(18)
+				}
+				jogs = append(jogs, j)
 			}
 		}
 	}
@@ -1302,6 +1312,9 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 			tracks = max(tracks, j.track+1)
 		}
 		lo, hi := maxA+l.u(7), minB-l.u(7)
+		for _, j := range group {
+			lo, hi = math.Max(lo, j.a.y+j.padA), math.Min(hi, j.b.y-j.padB)
+		}
 		if hi < lo {
 			lo, hi = (maxA+minB)/2, (maxA+minB)/2
 		}

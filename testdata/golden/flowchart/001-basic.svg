@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="282.5" height="495" viewBox="-12 -12 282.5 495" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <path class="edge" d="M143 44 L143 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M123.43 193.61 L123.43 210.11 C123.43 214.51 119.83 218.11 115.43 218.11 L96 218.11 C91.6 218.11 88 221.71 88 226.11 L88 242.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M162.57 193.61 L162.57 210.11 C162.57 214.51 166.18 218.11 170.58 218.11 L190 218.11 C194.4 218.11 198 221.71 198 226.11 L198 251 L198 330.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M123.43 193.61 L123.43 204.61 C123.43 209.01 119.83 212.61 115.43 212.61 L96 212.61 C91.6 212.61 88 216.21 88 220.61 L88 242.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M162.57 193.61 L162.57 204.61 C162.57 209.01 166.18 212.61 170.58 212.61 L190 212.61 C194.4 212.61 198 216.21 198 220.61 L198 251 L198 330.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M141 295 L141 330.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="143,88 137,76 149,76" fill="#3b4754"/>
 <polygon class="arrowhead" points="88,251 82,239 94,239" fill="#3b4754"/>

@@ -1,42 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="816" height="418" viewBox="-11.5 -12 816 418" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-5081060b"><path d="M-11.5 -12 L804.5 -12 L804.5 406 L-11.5 406 M655.43 186 L655.43 206 L702.57 206 L702.57 186"/></clipPath></defs>
-<path class="edge" d="M340.67 44 L340.67 68.8 C340.67 73.2 337.07 76.8 332.67 76.8 L54 76.8 C49.6 76.8 46 80.4 46 84.8 L46 165.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M349 44 L349 82.8 C349 87.2 345.4 90.8 341 90.8 L121 90.8 C116.6 90.8 113 94.4 113 98.8 L113 174 L113 218 L113 227.8 C113 232.2 109.4 235.8 105 235.8 L72 235.8 C67.6 235.8 64 239.4 64 243.8 L64 253.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M357.33 44 L357.33 96.8 C357.33 101.2 353.73 104.8 349.33 104.8 L139 104.8 C134.6 104.8 131 108.4 131 112.8 L131 174 L131 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M365.67 44 L365.67 110.8 C365.67 115.2 362.07 118.8 357.67 118.8 L207 118.8 C202.6 118.8 199 122.4 199 126.8 L199 174 L199 262" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M374 44 L374 124.8 C374 129.2 370.4 132.8 366 132.8 L346 132.8 C341.6 132.8 338 136.4 338 140.8 L338 174 L338 253.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M382.33 44 L382.33 124.8 C382.33 129.2 385.93 132.8 390.33 132.8 L397 132.8 C401.4 132.8 405 136.4 405 140.8 L405 174 L405 350" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M390.67 44 L390.67 110.8 C390.67 115.2 394.27 118.8 398.67 118.8 L465 118.8 C469.4 118.8 473 122.4 473 126.8 L473 174 L473 253.6" fill="none" stroke="#3b4754" stroke-width="3"/>
-<path class="edge" d="M399 44 L399 96.8 C399 101.2 402.6 104.8 407 104.8 L604 104.8 C608.4 104.8 612 108.4 612 112.8 L612 174 L612 262" fill="none" stroke="#3b4754" stroke-width="3"/>
-<g clip-path="url(#label-holes-5081060b)"><path class="edge" d="M407.33 44 L407.33 82.8 C407.33 87.2 410.93 90.8 415.33 90.8 L671 90.8 C675.4 90.8 679 94.4 679 98.8 L679 174 L679 341.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="816" height="439" viewBox="-11.5 -12 816 439" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-14660d6d"><path d="M-11.5 -12 L804.5 -12 L804.5 427 L-11.5 427 M655.43 207 L655.43 227 L702.57 227 L702.57 207"/></clipPath></defs>
+<path class="edge" d="M340.67 44 L340.67 73.8 C340.67 78.2 337.07 81.8 332.67 81.8 L54 81.8 C49.6 81.8 46 85.4 46 89.8 L46 186.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M349 44 L349 87.8 C349 92.2 345.4 95.8 341 95.8 L121 95.8 C116.6 95.8 113 99.4 113 103.8 L113 195 L113 239 L113 243.3 C113 247.7 109.4 251.3 105 251.3 L72 251.3 C67.6 251.3 64 254.9 64 259.3 L64 274.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M357.33 44 L357.33 101.8 C357.33 106.2 353.73 109.8 349.33 109.8 L139 109.8 C134.6 109.8 131 113.4 131 117.8 L131 195 L131 362.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M365.67 44 L365.67 115.8 C365.67 120.2 362.07 123.8 357.67 123.8 L207 123.8 C202.6 123.8 199 127.4 199 131.8 L199 195 L199 283" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M374 44 L374 129.8 C374 134.2 370.4 137.8 366 137.8 L346 137.8 C341.6 137.8 338 141.4 338 145.8 L338 195 L338 274.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M382.33 44 L382.33 129.8 C382.33 134.2 385.93 137.8 390.33 137.8 L397 137.8 C401.4 137.8 405 141.4 405 145.8 L405 195 L405 371" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path class="edge" d="M390.67 44 L390.67 115.8 C390.67 120.2 394.27 123.8 398.67 123.8 L465 123.8 C469.4 123.8 473 127.4 473 131.8 L473 195 L473 274.6" fill="none" stroke="#3b4754" stroke-width="3"/>
+<path class="edge" d="M399 44 L399 101.8 C399 106.2 402.6 109.8 407 109.8 L604 109.8 C608.4 109.8 612 113.4 612 117.8 L612 195 L612 283" fill="none" stroke="#3b4754" stroke-width="3"/>
+<g clip-path="url(#label-holes-14660d6d)"><path class="edge" d="M407.33 44 L407.33 87.8 C407.33 92.2 410.93 95.8 415.33 95.8 L671 95.8 C675.4 95.8 679 99.4 679 103.8 L679 195 L679 362.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<polygon class="arrowhead" points="46,174 40,162 52,162" fill="#3b4754"/>
-<polygon class="arrowhead" points="64,262 58,250 70,250" fill="#3b4754"/>
-<polygon class="arrowhead" points="131,350 125,338 137,338" fill="#3b4754"/>
-<polygon class="arrowhead" points="338,262 332,250 344,250" fill="#3b4754"/>
-<polygon class="arrowhead" points="473,262 467,250 479,250" fill="#3b4754"/>
-<polygon class="arrowhead" points="679,350 673,338 685,338" fill="#3b4754"/>
+<polygon class="arrowhead" points="46,195 40,183 52,183" fill="#3b4754"/>
+<polygon class="arrowhead" points="64,283 58,271 70,271" fill="#3b4754"/>
+<polygon class="arrowhead" points="131,371 125,359 137,359" fill="#3b4754"/>
+<polygon class="arrowhead" points="338,283 332,271 344,271" fill="#3b4754"/>
+<polygon class="arrowhead" points="473,283 467,271 479,271" fill="#3b4754"/>
+<polygon class="arrowhead" points="679,371 673,359 685,359" fill="#3b4754"/>
 <rect class="node" x="328.5" y="0" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="0.5" y="174" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="18.5" y="262" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="153.5" y="262" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="292.5" y="262" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="427.5" y="262" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="566.5" y="262" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="701.5" y="262" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="85.5" y="350" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="359.5" y="350" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="633.5" y="350" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="0.5" y="195" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="18.5" y="283" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="153.5" y="283" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="292.5" y="283" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="427.5" y="283" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="566.5" y="283" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="701.5" y="283" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="85.5" y="371" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="359.5" y="371" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="633.5" y="371" width="91" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="374" y="27.6" text-anchor="middle" fill="#1b1f24">A</text>
-<text class="node-label" x="46" y="201.6" text-anchor="middle" fill="#1b1f24">B</text>
-<text class="node-label" x="64" y="289.6" text-anchor="middle" fill="#1b1f24">C</text>
-<text class="node-label" x="199" y="289.6" text-anchor="middle" fill="#1b1f24">E</text>
-<text class="node-label" x="338" y="289.6" text-anchor="middle" fill="#1b1f24">F</text>
-<text class="node-label" x="473" y="289.6" text-anchor="middle" fill="#1b1f24">H</text>
-<text class="node-label" x="612" y="289.6" text-anchor="middle" fill="#1b1f24">I</text>
-<text class="node-label" x="747" y="289.6" text-anchor="middle" fill="#1b1f24">K</text>
-<text class="node-label" x="131" y="377.6" text-anchor="middle" fill="#1b1f24">D</text>
-<text class="node-label" x="405" y="377.6" text-anchor="middle" fill="#1b1f24">G</text>
-<text class="node-label" x="679" y="377.6" text-anchor="middle" fill="#1b1f24">J</text>
-<text class="edge-label" x="679" y="201.6" text-anchor="middle" fill="#1b1f24">długa</text>
+<text class="node-label" x="46" y="222.6" text-anchor="middle" fill="#1b1f24">B</text>
+<text class="node-label" x="64" y="310.6" text-anchor="middle" fill="#1b1f24">C</text>
+<text class="node-label" x="199" y="310.6" text-anchor="middle" fill="#1b1f24">E</text>
+<text class="node-label" x="338" y="310.6" text-anchor="middle" fill="#1b1f24">F</text>
+<text class="node-label" x="473" y="310.6" text-anchor="middle" fill="#1b1f24">H</text>
+<text class="node-label" x="612" y="310.6" text-anchor="middle" fill="#1b1f24">I</text>
+<text class="node-label" x="747" y="310.6" text-anchor="middle" fill="#1b1f24">K</text>
+<text class="node-label" x="131" y="398.6" text-anchor="middle" fill="#1b1f24">D</text>
+<text class="node-label" x="405" y="398.6" text-anchor="middle" fill="#1b1f24">G</text>
+<text class="node-label" x="679" y="398.6" text-anchor="middle" fill="#1b1f24">J</text>
+<text class="edge-label" x="679" y="222.6" text-anchor="middle" fill="#1b1f24">długa</text>
 </svg>
