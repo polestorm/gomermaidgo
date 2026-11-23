@@ -158,6 +158,11 @@ type Subgraph struct {
 	// Region oznacza region współbieżny stanu złożonego (separator „--”): podgraf podrzędny
 	// bez tytułu, rysowany linią przerywaną.
 	Region bool
+
+	// Chain > 0 oznacza niewidoczny blok łańcucha zwiniętego w tyle kolumn (TB) albo rzędów (LR);
+	// tworzy go układ (WithChain), nie źródło. Snake: co druga kolumna biegnie w przeciwną stronę.
+	Chain int
+	Snake bool
 }
 
 // Note to notatka przy węźle (diagram stanów).
@@ -446,5 +451,40 @@ func (g *Graph) Part(nodes, subs map[string]bool) *Graph {
 			out.Notes = append(out.Notes, n)
 		}
 	}
+	return out
+}
+
+// WithChain zwraca kopię grafu, w której węzły ids (łańcuch o wspólnym rodzicu) leżą w nowym,
+// niewidocznym podgrafie zwiniętym w columns kolumn. Węzły spoza łańcucha, krawędzie i podgrafy
+// są wspólne z oryginałem; zmienione węzły są kopiami.
+func (g *Graph) WithChain(ids []string, columns int, snake bool) *Graph {
+	out := New(g.Kind)
+	out.Direction, out.Layout, out.AccTitle, out.AccDescr, out.SourceFills = g.Direction, g.Layout, g.AccTitle, g.AccDescr, g.SourceFills
+	in := map[string]bool{}
+	for _, id := range ids {
+		in[id] = true
+	}
+	parent, line := "", 0
+	if n := g.nodeIndex[ids[0]]; n != nil {
+		parent, line = n.Parent, n.Line
+	}
+	id := fmt.Sprintf("\x00chain%d", len(g.Subgraphs))
+	for _, s := range g.Subgraphs {
+		out.Subgraphs = append(out.Subgraphs, s)
+		out.subIndex[s.ID] = s
+	}
+	block := &Subgraph{ID: id, Parent: parent, Line: line, Chain: columns, Snake: snake}
+	out.Subgraphs = append(out.Subgraphs, block)
+	out.subIndex[id] = block
+	for _, n := range g.Nodes {
+		if in[n.ID] {
+			c := *n
+			c.Parent = id
+			n = &c
+		}
+		out.Nodes = append(out.Nodes, n)
+		out.nodeIndex[n.ID] = n
+	}
+	out.Edges, out.Notes = g.Edges, g.Notes
 	return out
 }

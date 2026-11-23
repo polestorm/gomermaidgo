@@ -73,7 +73,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	var fontPath, family, background, input, themeName string
 	var size float64
 	var colors, shadows, curved, emojiText bool
-	var fitMode, foldMode, foldType string
+	var fitMode, foldMode, foldType, foldChains string
 	var fitRatio float64
 	both := func(p *string, short, long, usage string) {
 		fs.StringVar(p, short, "", usage)
@@ -99,6 +99,7 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	fs.StringVar(&fitMode, "fit", "", "fit graph diagrams to an A4 page by narrowing their fields: auto (default; only drawings at least -fit-ratio times wider than tall), on or off")
 	fs.Float64Var(&fitRatio, "fit-ratio", 0, "width-to-height ratio from which -fit auto and -fold auto act (default 2)")
 	fs.StringVar(&foldMode, "fold", "", "fold a long, simple graph diagram into rows (LR) or columns (TB): auto (default) or off")
+	fs.StringVar(&foldChains, "fold-chains", "", "fold long chains of nodes inside a graph diagram into columns (TB) or rows (LR): off (default) or auto")
 	fs.StringVar(&foldType, "fold-type", "", "how a folded diagram continues: return (default; every row in the same direction) or snake (every other row reversed)")
 	// Flagi mermaid-cli bez odpowiednika: wygląd jest własny, a wynik wektorowy.
 	ignored := map[string]*string{}
@@ -154,6 +155,13 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 		j.opts = append(j.opts, gomermaidgo.WithFold(foldMode))
 	default:
 		return nil, fmt.Errorf("-fold must be auto or off, not %q", foldMode)
+	}
+	switch foldChains {
+	case "":
+	case gomermaidgo.FoldAuto, gomermaidgo.FoldOff:
+		j.opts = append(j.opts, gomermaidgo.WithFoldChains(foldChains))
+	default:
+		return nil, fmt.Errorf("-fold-chains must be auto or off, not %q", foldChains)
 	}
 	switch foldType {
 	case "":

@@ -26,7 +26,7 @@ przed źródłem tam, gdzie oba ustawiają to samo.
 | `flowchart.wrappingWidth` | obsługiwane | granica łamania napisów w polach i na krawędziach (COM-008) |
 | `darkMode` | przez motyw | odpowiednik: `theme: dark` |
 | `fontFamily`, `fontSize` | tylko z wywołania | `WithFont`, `WithFontSize`; źródło nie zmienia kroju dokumentu |
-| `layout` (`dagre`, `elk`), `elk.*` | pomijane | własny układ warstwowy; własne dyrektywy `%% layout: swimlanes`, `fit`/`nofit`, `fold`/`nofold` |
+| `layout` (`dagre`, `elk`), `elk.*` | pomijane | własny układ warstwowy; własne dyrektywy `%% layout: swimlanes`, `fit`/`nofit`, `fold`/`nofold`, `fold-chains` |
 | `look` (`handDrawn`), `handDrawnSeed` | pomijane | jeden wygląd rysunku |
 | `flowchart.nodeSpacing`, `rankSpacing`, `padding`, `diagramPadding`, `subGraphTitleMargin`, `curve` | pomijane | odstępy stałe, względem pisma; krzywe: `WithCurvedEdges` |
 | `maxTextSize`, `maxEdges` | pomijane | własne, stałe limity; źródło jest danymi z zewnątrz i nie może ich podnieść |
@@ -111,6 +111,9 @@ stronie; to samo opcje `WithFit` i `WithFitRatio` oraz flagi `-fit` i `-fit-rati
 Długi, prosty diagram LR albo TB jest domyślnie zwijany w kilka rzędów albo kolumn połączonych łącznikami
 (LAY-019, ADR 0008): sposób `return` (każdy rząd w tym samym kierunku) albo `snake` (co drugi rząd odwrócony),
 wybierany linią `%% layout: fold snake` albo `fold return`; `%% layout: nofold` wyłącza zwijanie.
+
+Długi łańcuch pól wewnątrz diagramu może być zwinięty w kolumny (TB) albo rzędy (LR) bloku (LAY-022). To opcja,
+domyślnie wyłączona: `%% layout: fold-chains` (z `return` albo `snake`), `WithFoldChains`, flaga `-fold-chains`.
 
 ### Poza profilem (błąd `flowchart-unsupported`)
 

@@ -1,0 +1,22 @@
+%% REQ: LAY-022
+%% Tytuł: Zwijanie łańcucha wewnątrz diagramu
+%% Sprawdza: długi łańcuch pól połączonych jeden do jednego, między rozgałęzieniami i z krawędzią wsteczną, zwinięty w kolumny bloku; decyzja na końcu łańcucha zostaje pod blokiem.
+%% layout: fold-chains
+flowchart TD
+    Start[Zgłoszenie niezgodności] --> Rej[Rejestracja]
+    Rej --> Izol[Izolacja wyrobu]
+    Izol --> Ocena[Ocena ryzyka]
+    Ocena --> Przyczyna[Analiza przyczyn]
+    Przyczyna --> Plan[Plan działań]
+    Plan --> Wdroz[Wdrożenie]
+    Wdroz --> Szkol[Szkolenie personelu]
+    Szkol --> Dok[Aktualizacja dokumentacji]
+    Dok --> Monit[Monitorowanie]
+    Monit --> Spraw[Sprawdzenie skuteczności]
+    Spraw --> Raport[Raport CAPA]
+    Raport --> Decyzja{Skuteczne?}
+    Decyzja -->|Tak| Zamk[Zamknięcie]
+    Decyzja -->|Częściowo| Uzup[Działania uzupełniające]
+    Decyzja -->|Nie| Eskal[Eskalacja]
+    Uzup --> Zamk
+    Eskal --> Start

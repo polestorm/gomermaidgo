@@ -44,6 +44,11 @@ type Options struct {
 	Fold     FoldMode
 	FoldType FoldType
 
+	// FoldChains zwija długie łańcuchy pól wewnątrz diagramu w kolumny (TB) albo rzędy (LR), gdy
+	// rysunek zyskuje na tym co najmniej 20% skali na stronie A4 (LAY-022). Sposób: FoldType.
+	FoldChains bool
+	chainBad   *bool // ustawiane, gdy blok łańcucha musiałby być przecięty (próba w foldChains)
+
 	// NoWrap wyłącza automatyczne łamanie napisów (konfiguracja Mermaid „markdownAutoWrap: false”
 	// albo „wrap: false”): zostają przełamania autora; łamie się tylko linia szersza niż authorLimit.
 	NoWrap bool
@@ -387,6 +392,9 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 		o.FontSize = 16
 	}
 	o.painted = g.SourceFills
+	if o.FoldChains {
+		g = foldChains(g, o)
+	}
 	if g.Kind != "er" {
 		best := layout(g, o, 0, 1)
 		skipFit := false
@@ -508,7 +516,18 @@ func (l *layouter) build() {
 	for i, s := range l.g.Subgraphs {
 		it := &item{kind: kindCluster, child: l.levels[s.ID]}
 		l.itemOf[s.ID] = it
-		entries = append(entries, entry{s.Line, i, it, s.Parent})
+		order := i
+		if s.Chain > 0 {
+			// Blok łańcucha stoi w kolejności tam, gdzie jego pierwsze pole: inaczej usuwanie cykli
+			// mogłoby zacząć od niego i odwrócić krawędź wchodzącą zamiast krawędzi wstecznej.
+			for k, n := range l.g.Nodes {
+				if n.Parent == s.ID {
+					order = len(l.g.Subgraphs) + k
+					break
+				}
+			}
+		}
+		entries = append(entries, entry{s.Line, order, it, s.Parent})
 	}
 	for i, n := range l.g.Nodes {
 		it := &item{kind: kindNode, node: n, lane: l.laneOf[n.ID]}
@@ -816,7 +835,7 @@ func (l *layouter) sizeAll(lv *level) {
 			}
 		}
 	}
-	if l.lanes == nil {
+	if l.lanes == nil && !chainBlock(lv) {
 		l.shelve(lv)
 	}
 	l.order(lv)
@@ -978,6 +997,9 @@ func (l *layouter) finish(lv *level) {
 		}
 	} else {
 		padX0, padX1, padY0, padY1 = 0, 0, 0, 0
+	}
+	if chainBlock(lv) {
+		padX0, padX1, padY0, padY1 = 0, 0, 0, 0 // blok niewidoczny: bez marginesów i tytułu
 	}
 	lv.padX0, lv.padY0 = padX0, padY0
 	lv.w, lv.h = contentW+padX0+padX1, contentH+padY0+padY1
@@ -1814,6 +1836,9 @@ func (l *layouter) order(lv *level) {
 
 // position wyznacza współrzędne pól poziomu i zwraca rozmiar zawartości.
 func (l *layouter) position(lv *level) (width, height float64) {
+	if chainBlock(lv) {
+		return l.chainPositions(lv)
+	}
 	if lv.free != nil {
 		for _, row := range lv.ranks {
 			for _, it := range row {

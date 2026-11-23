@@ -21,6 +21,12 @@ razy szerszy niż wysoki i w druku musi być mocno pomniejszony. Mermaid nie ma 
 4. Diagram LR zwija się, gdy jest szerszy niż pionowa kartka A4 i zwinięcie daje większą skalę albo proporcje
    bliższe kartki; diagram TB tylko dla większej skali, bo pionowa kartka dobrze mieści wysoki rysunek.
 5. Oba mechanizmy można wyłączyć opcją, flagą albo linią w źródle (`%% layout: nofit`, `%% layout: nofold`).
+6. **Zwijanie łańcuchów** (LAY-022, dopisane 2026-11-23): długi łańcuch pól wewnątrz diagramu, którego nie da się
+   zwinąć w całości (cykle, rozgałęzienia), staje w kilku kolumnach (TB) albo rzędach (LR) niewidocznego bloku.
+   To osobna opcja, **domyślnie wyłączona**: pionowa kartka dobrze mieści wysoki rysunek, a kolumny łańcucha
+   zmieniają kolejność czytania, więc nie każdy autor tego chce. Włączona działa jak zwijanie: tylko przy zysku
+   skali na A4 co najmniej 20%; sposób `return` (domyślny) albo `snake` z `WithFoldType`. Blok jest podgrafem
+   bez ramki: wejście i wyjście przechodzą przez zwykłe punkty na jego obrysie, więc reszta układu się nie zmienia.
 
 ## Skutki
 

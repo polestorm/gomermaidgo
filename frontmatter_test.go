@@ -240,3 +240,42 @@ func TestChainKeepsAxis(t *testing.T) {
 		t.Errorf("decision centre %.1f is off the chain axis %.1f", top, x+w/2)
 	}
 }
+
+// REQ: LAY-022
+func TestFoldChains(t *testing.T) {
+	src := readFile(t, "testdata/corpus/flowchart/027-fold-chains.mmd")
+	columns := func(opts ...Option) int {
+		svg, err := Render(src, opts...)
+		if err != nil {
+			t.Fatal(err)
+		}
+		// Środki pól łańcucha (od „Ocena ryzyka” do „Raport CAPA”) w osi x.
+		xs := map[string]bool{}
+		for _, m := range regexp.MustCompile(`<text class="node-label" x="([-\d.]+)"[^>]*>(Ocena ryzyka|Szkolenie personelu|Raport CAPA)<`).FindAllStringSubmatch(string(svg), -1) {
+			xs[m[1]] = true
+		}
+		return len(xs)
+	}
+	if n := columns(); n < 2 {
+		t.Errorf("fold-chains from the source: chain should stand in at least 2 columns, got %d", n)
+	}
+	if n := columns(WithFoldChains(FoldOff)); n != 1 {
+		t.Errorf("fold-chains off: chain should stand in one column, got %d", n)
+	}
+	if n := columns(WithFoldChains(FoldAuto), WithFoldType(FoldSnake)); n < 2 {
+		t.Errorf("fold-chains snake: chain should stand in at least 2 columns, got %d", n)
+	}
+	// Domyślnie wyłączone: bez linii w źródle łańcuch zostaje w jednej kolumnie.
+	plain := strings.Replace(src, "%% layout: fold-chains\n", "", 1)
+	svg, err := Render(plain)
+	if err != nil {
+		t.Fatal(err)
+	}
+	xs := map[string]bool{}
+	for _, m := range regexp.MustCompile(`<text class="node-label" x="([-\d.]+)"[^>]*>(Ocena ryzyka|Raport CAPA)<`).FindAllStringSubmatch(string(svg), -1) {
+		xs[m[1]] = true
+	}
+	if len(xs) != 1 {
+		t.Errorf("default: chain folding should be off, got %d columns", len(xs))
+	}
+}

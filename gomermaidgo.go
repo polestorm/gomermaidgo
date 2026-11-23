@@ -87,6 +87,7 @@ type config struct {
 	fitRatio   float64 // próg proporcji dla trybu auto; 0 oznacza 2
 	foldMode   string  // "", "auto", "off"
 	foldType   string  // "", "return", "snake"
+	foldChains string  // "", "auto", "off"
 	curved     bool
 	theme      string
 	themeSet   bool
@@ -172,6 +173,13 @@ const (
 // albo kolumn (TB). Domyślny jest FoldAuto. W źródle to samo ustawiają linie "%% layout: fold"
 // (auto) i "%% layout: nofold" (off); opcja ma pierwszeństwo przed źródłem.
 func WithFold(mode string) Option { return func(c *config) { c.foldMode = mode } }
+
+// WithFoldChains wybiera tryb zwijania długich łańcuchów pól wewnątrz diagramu (co najmniej sześć
+// pól połączonych jeden do jednego) w kilka kolumn (TB) albo rzędów (LR). Domyślny jest FoldOff;
+// FoldAuto zwija łańcuch, jeśli rysunek zyskuje co najmniej 20% skali na stronie A4. Sposób
+// przejścia do następnej kolumny wybiera WithFoldType. W źródle: "%% layout: fold-chains"
+// (auto) i "%% layout: nofold-chains" (off); opcja ma pierwszeństwo przed źródłem.
+func WithFoldChains(mode string) Option { return func(c *config) { c.foldChains = mode } }
 
 // WithFoldType wybiera sposób przejścia do następnego rzędu: FoldReturn (domyślny) albo FoldSnake.
 // W źródle: "%% layout: fold return" albo "%% layout: fold snake".
@@ -355,11 +363,28 @@ func foldMode(c config, source string) layered.FoldMode {
 	return layered.FoldAuto
 }
 
+// chainsDirective ustawia w źródle zwijanie łańcuchów (WithFoldChains).
+var chainsDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fold-chains|nofold-chains)(?:\s+(return|snake))?\s*$`)
+
+// foldChains rozstrzyga tryb zwijania łańcuchów: opcja, potem linia w źródle, domyślnie wyłączone.
+func foldChains(c config, source string) bool {
+	mode := c.foldChains
+	if mode == "" {
+		if m := chainsDirective.FindStringSubmatch(source); m != nil && m[1] == "fold-chains" {
+			mode = FoldAuto
+		}
+	}
+	return mode == FoldAuto
+}
+
 // foldType rozstrzyga sposób zwijania: opcja, potem linia w źródle, domyślnie powrót.
 func foldType(c config, source string) layered.FoldType {
 	kind := c.foldType
 	if kind == "" {
-		if m := foldDirective.FindStringSubmatch(source); m != nil {
+		if m := chainsDirective.FindStringSubmatch(source); m != nil && m[2] != "" {
+			kind = m[2]
+		}
+		if m := foldDirective.FindStringSubmatch(source); m != nil && m[2] != "" {
 			kind = m[2]
 		}
 	}
@@ -574,7 +599,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 		} else if styled, err = styledMeasure(c.boldData, c.italicData); err != nil {
 			return nil, nil, err
 		}
-		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, NoWrap: c.wrap.off, WrapWidth: c.wrap.width, Fit: fitMode(c, source), FitRatio: c.fitRatio, Fold: foldMode(c, source), FoldType: foldType(c, source)}), face, nil
+		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, NoWrap: c.wrap.off, WrapWidth: c.wrap.width, Fit: fitMode(c, source), FitRatio: c.fitRatio, Fold: foldMode(c, source), FoldType: foldType(c, source), FoldChains: foldChains(c, source)}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {

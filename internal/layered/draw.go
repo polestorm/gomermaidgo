@@ -384,6 +384,11 @@ func (l *layouter) subgraphIDs() []string {
 
 func (l *layouter) drawLevel(lv *level) {
 	defer l.enter(lv)()
+	if chainBlock(lv) {
+		l.drawLevelContent(lv)
+		l.drawChain(lv)
+		return
+	}
 	if lv.sub != nil {
 		cx, cy, w, h := l.rect(lv.offsetX+lv.w/2, lv.offsetY+lv.h/2, lv.w, lv.h)
 		if l.o.boxes != nil {
@@ -582,13 +587,14 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 	// Najpierw przebiegi wszystkich krawędzi poziomu: wyrównanie przejść przez ramki musi znać
 	// przejścia pozostałych krawędzi przez te same ramki.
 	all := map[*ledge][]routePoint{}
+	inside := func(e *ledge) bool { return chainBlock(lv) && e.u.kind == kindNode && e.v.kind == kindNode }
 	for _, e := range lv.edges {
-		if !e.part && e.e.Style != graph.Invisible {
+		if !e.part && e.e.Style != graph.Invisible && !inside(e) {
 			all[e] = l.route(e)
 		}
 	}
 	for _, e := range lv.edges {
-		if e.part || e.e.Style == graph.Invisible {
+		if e.part || e.e.Style == graph.Invisible || inside(e) {
 			continue
 		}
 		// Dwa przebiegi: po wyrównaniu przejścia przez ramkę odcinek przed nim może dołączyć do niego.
@@ -596,7 +602,7 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 		l.snapCrossings(all[e])
 	}
 	for _, e := range lv.edges {
-		if e.part || e.e.Style == graph.Invisible {
+		if e.part || e.e.Style == graph.Invisible || inside(e) {
 			continue
 		}
 		topHead, bottomHead := e.e.StartHead, e.e.EndHead
