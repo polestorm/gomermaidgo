@@ -72,7 +72,9 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	j := &job{}
 	var fontPath, family, background, input, themeName string
 	var size float64
-	var colors, shadows, curved, emojiText, fitPage bool
+	var colors, shadows, curved, emojiText bool
+	var fitMode string
+	var fitRatio float64
 	both := func(p *string, short, long, usage string) {
 		fs.StringVar(p, short, "", usage)
 		fs.StringVar(p, long, "", "same as -"+short)
@@ -93,7 +95,8 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	fs.BoolVar(&shadows, "shadows", false, "draw shadows under participants, nodes and notes")
 	fs.BoolVar(&curved, "curved", false, "draw graph edges as smooth curves instead of right angles with rounded corners")
 	fs.BoolVar(&emojiText, "emoji-text", false, "keep emoji in SVG as text set in the Noto Emoji font instead of outlines")
-	fs.BoolVar(&fitPage, "fit", false, "narrow the fields of a much too wide or too tall graph diagram so that it fits an A4 page at a larger scale")
+	fs.StringVar(&fitMode, "fit", "auto", "fit graph diagrams to an A4 page by narrowing their fields: auto (only drawings at least -fit-ratio times wider than tall), on or off")
+	fs.Float64Var(&fitRatio, "fit-ratio", 2, "width-to-height ratio from which -fit auto fits the drawing")
 	// Flagi mermaid-cli bez odpowiednika: wygląd jest własny, a wynik wektorowy.
 	ignored := map[string]*string{}
 	for _, names := range [][2]string{{"w", "width"}, {"H", "height"}, {"c", "configFile"},
@@ -142,8 +145,11 @@ func parse(args []string, stderr io.Writer) (*job, error) {
 	if colors {
 		j.opts = append(j.opts, gomermaidgo.WithColors())
 	}
-	if fitPage {
-		j.opts = append(j.opts, gomermaidgo.WithFitPage())
+	switch fitMode {
+	case gomermaidgo.FitAuto, gomermaidgo.FitOn, gomermaidgo.FitOff:
+		j.opts = append(j.opts, gomermaidgo.WithFit(fitMode), gomermaidgo.WithFitRatio(fitRatio))
+	default:
+		return nil, fmt.Errorf("-fit must be auto, on or off, not %q", fitMode)
 	}
 	if emojiText {
 		j.opts = append(j.opts, gomermaidgo.WithEmojiText())

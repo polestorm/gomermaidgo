@@ -206,3 +206,20 @@ func TestThemeFlag(t *testing.T) {
 		t.Errorf("unknown theme: want an error")
 	}
 }
+
+// REQ: LAY-018
+func TestFitFlag(t *testing.T) {
+	src := "flowchart LR\nA[Pierwszy długi krok] --> B[Drugi długi krok] --> C[Trzeci długi krok] --> D[Czwarty długi krok] --> E[Piąty długi krok]"
+	on, _, err := start(t, src, "-fit", "on")
+	off, _, err2 := start(t, src, "-fit", "off")
+	auto, _, err3 := start(t, src)
+	if err != nil || err2 != nil || err3 != nil || on == off || auto != on {
+		t.Errorf("fit modes: %v %v %v", err, err2, err3)
+	}
+	if high, _, _ := start(t, src, "-fit-ratio", "100"); high != off {
+		t.Errorf("a high -fit-ratio should leave the drawing unfitted")
+	}
+	if _, _, err := start(t, src, "-fit", "maybe"); err == nil {
+		t.Errorf("unknown -fit mode: want an error")
+	}
+}

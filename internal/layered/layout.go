@@ -33,11 +33,22 @@ type Options struct {
 	// CurvedEdges przywraca krawędzie prowadzone łagodnymi łukami; domyślnie są łamane pod kątem
 	// prostym, z zaokrąglonymi narożnikami.
 	CurvedEdges bool
-	// FitPage: gdy rysunek ma proporcje dalekie od strony A4 (w pionie albo w poziomie), układ jest
-	// powtarzany z węższymi polami (tekst łamany częściej) i wygrywa wersja mieszcząca się na stronie
-	// w największej skali.
-	FitPage bool
+	// Fit: dopasowanie do strony. Układ jest powtarzany z węższymi polami (tekst łamany częściej)
+	// i wygrywa wersja mieszcząca się na stronie A4 w największej skali. FitAuto (domyślnie) robi to
+	// tylko dla rysunku co najmniej FitRatio razy szerszego niż wysoki; FitOn dla każdego, który nie
+	// mieści się na stronie; FitOff nigdy.
+	Fit      FitMode
+	FitRatio float64 // próg proporcji szerokości do wysokości dla FitAuto; 0 oznacza 2
 }
+
+// FitMode to tryb dopasowania do strony.
+type FitMode int
+
+const (
+	FitAuto FitMode = iota
+	FitOn
+	FitOff
+)
 
 type itemKind int
 
@@ -289,8 +300,17 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	}
 	if g.Kind != "er" {
 		best := layout(g, o, 0, 1)
-		if !o.FitPage {
+		switch o.Fit {
+		case FitOff:
 			return best
+		case FitAuto:
+			ratio := o.FitRatio
+			if ratio <= 0 {
+				ratio = 2
+			}
+			if b := best.Bounds(); b.X1-b.X0 < ratio*(b.Y1-b.Y0) {
+				return best
+			}
 		}
 		// Dopasowanie do strony: kolejne próby z węższymi polami; wygrywa wyraźnie większa skala.
 		bestScale := pageScale(best, o.FontSize)
@@ -2106,9 +2126,6 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		if r > 0 {
 			// Warstwa samych punktów na ramce potrzebuje tylko miejsca na łuk krawędzi.
 			gap := l.u(44)
-			if l.narrow() < 1 {
-				gap = l.u(32) // dopasowanie do strony: krótsze proste strzałki między warstwami
-			}
 			if portsOnly(row) || portsOnly(lv.ranks[r-1]) {
 				gap = l.u(24)
 			} else if !anyReal(row) || !anyReal(lv.ranks[r-1]) {

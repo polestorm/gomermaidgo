@@ -82,9 +82,10 @@ Stan: rysowany układem warstwowym (`internal/layered`).
 
 ### Dopasowanie do strony
 
-Linia `%% layout: fit` (albo opcja `WithFitPage`, flaga `-fit`) włącza dopasowanie do strony A4 dla wszystkich
-diagramów układu warstwowego: zbyt szeroki albo zbyt wysoki rysunek jest układany jeszcze raz z węższymi polami,
-w których tekst łamie się częściej (LAY-018). Najwięcej daje dla schematów szerokich i płaskich (kierunek LR).
+Diagramy układu warstwowego są domyślnie dopasowywane do strony A4 (tryb `auto`): rysunek co najmniej dwa razy
+szerszy niż wysoki jest układany jeszcze raz z węższymi polami, w których tekst łamie się częściej (LAY-018).
+`%% layout: nofit` wyłącza dopasowanie, `%% layout: fit` włącza je dla każdego rysunku, który nie mieści się na
+stronie; to samo opcje `WithFit` i `WithFitRatio` oraz flagi `-fit` i `-fit-ratio`.
 
 ### Poza profilem (błąd `flowchart-unsupported`)
 

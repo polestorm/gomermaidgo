@@ -1,42 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1279.51" height="479" viewBox="-164.7 -12 1279.51 479" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect class="lane" x="-152.7" y="0" width="1255.51" height="100" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane-header" x="-152.7" y="0" width="134.7" height="100" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane" x="-152.7" y="100" width="1255.51" height="120" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane-header" x="-152.7" y="100" width="134.7" height="120" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane" x="-152.7" y="220" width="1255.51" height="135" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane-header" x="-152.7" y="220" width="134.7" height="135" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane" x="-152.7" y="355" width="1255.51" height="100" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect class="lane-header" x="-152.7" y="355" width="134.7" height="100" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<path class="edge" d="M878.8 405 L914.4 405" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M162 50 L171.8 50 C176.2 50 179.8 53.6 179.8 58 L179.8 152 C179.8 156.4 183.4 160 187.8 160 L197.6 160" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M411 160 L420.8 160 C425.2 160 428.8 163.6 428.8 168 L428.8 280 C428.8 284.4 432.4 288 436.8 288 L446.6 288" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M575.7 276.15 L616.2 276.15 C620.6 276.15 624.2 272.55 624.2 268.15 L624.2 162 C624.2 157.6 627.8 154 632.2 154 L657 154 L730.4 154" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M605.4 288 L630.2 288 C634.6 288 638.2 284.4 638.2 280 L638.2 196 C638.2 191.6 641.8 188 646.2 188 L657 188 L708.8 188 L715.8 188 C720.2 188 723.8 184.4 723.8 180 L723.8 180 C723.8 175.6 727.4 172 731.8 172 L738.8 172" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M575.7 299.85 L630.2 299.85 C634.6 299.85 638.2 303.45 638.2 307.85 L638.2 397 C638.2 401.4 641.8 405 646.2 405 L657 405 L730.4 405" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="658" y="144" width="49.8" height="20" fill="#ffffff"/>
-<rect class="edge-label-background" x="668.23" y="395" width="29.34" height="20" fill="#ffffff"/>
-<polygon class="arrowhead" points="922.8,405 910.8,399 910.8,411" fill="#3b4754"/>
-<polygon class="arrowhead" points="206,160 194,154 194,166" fill="#3b4754"/>
-<polygon class="arrowhead" points="455,288 443,282 443,294" fill="#3b4754"/>
-<polygon class="arrowhead" points="738.8,154 726.8,148 726.8,160" fill="#3b4754"/>
-<polygon class="arrowhead" points="597,288 609,294 609,282" fill="#3b4754"/>
-<polygon class="arrowhead" points="738.8,405 726.8,399 726.8,411" fill="#3b4754"/>
-<rect class="node" x="0" y="28" width="162" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="206" y="138" width="205" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<polygon class="node" points="526,248.5 597,288 526,327.5 455,288" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="738.8" y="128" width="140" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="738.8" y="383" width="140" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="922.8" y="383" width="162" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<text class="lane-title" x="-85.35" y="165.6" text-anchor="middle" fill="#1b1f24">Autor</text>
-<text class="lane-title" x="-85.35" y="293.1" text-anchor="middle" fill="#1b1f24">Sprawdzający</text>
-<text class="lane-title" x="-85.35" y="410.6" text-anchor="middle" fill="#1b1f24">Zatwierdzający</text>
-<text class="node-label" x="81" y="55.6" text-anchor="middle" fill="#1b1f24">Start</text>
-<text class="node-label" x="308.5" y="165.6" text-anchor="middle" fill="#1b1f24">Przygotowuje projekt</text>
-<text class="node-label" x="526" y="293.6" text-anchor="middle" fill="#1b1f24">Bez uwag?</text>
-<text class="node-label" x="808.8" y="155.6" text-anchor="middle" fill="#1b1f24">Nanosi</text>
-<text class="node-label" x="808.8" y="175.6" text-anchor="middle" fill="#1b1f24">poprawki</text>
-<text class="node-label" x="808.8" y="410.6" text-anchor="middle" fill="#1b1f24">Zatwierdza</text>
-<text class="node-label" x="1003.8" y="410.6" text-anchor="middle" fill="#1b1f24">Publikuje</text>
-<text class="edge-label" x="682.9" y="159.6" text-anchor="middle" fill="#1b1f24">uwagi</text>
-<text class="edge-label" x="682.9" y="410.6" text-anchor="middle" fill="#1b1f24">tak</text>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1017.51" height="521" viewBox="-164.7 -12 1017.51 521" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect class="lane" x="-152.7" y="0" width="993.51" height="120" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-152.7" y="0" width="134.7" height="120" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane" x="-152.7" y="120" width="993.51" height="120" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-152.7" y="120" width="134.7" height="120" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane" x="-152.7" y="240" width="993.51" height="157" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-152.7" y="240" width="134.7" height="157" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane" x="-152.7" y="397" width="993.51" height="100" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<rect class="lane-header" x="-152.7" y="397" width="134.7" height="100" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
+<path class="edge" d="M663.8 447 L699.4 447" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M92 60 L101.8 60 C106.2 60 109.8 63.6 109.8 68 L109.8 172 C109.8 176.4 113.4 180 117.8 180 L127.6 180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M260 180 L269.8 180 C274.2 180 277.8 183.6 277.8 188 L277.8 311 C277.8 315.4 281.4 319 285.8 319 L295.6 319" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M399.2 303.85 L435.2 303.85 C439.6 303.85 443.2 300.25 443.2 295.85 L443.2 182 C443.2 177.6 446.8 174 451.2 174 L476 174 L549.4 174" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M424.4 319 L449.2 319 C453.6 319 457.2 315.4 457.2 311 L457.2 216 C457.2 211.6 460.8 208 465.2 208 L476 208 L527.8 208 L534.8 208 C539.2 208 542.8 204.4 542.8 200 L542.8 200 C542.8 195.6 546.4 192 550.8 192 L557.8 192" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M399.2 334.15 L449.2 334.15 C453.6 334.15 457.2 337.75 457.2 342.15 L457.2 439 C457.2 443.4 460.8 447 465.2 447 L476 447 L549.4 447" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<rect class="edge-label-background" x="477" y="164" width="49.8" height="20" fill="#ffffff"/>
+<rect class="edge-label-background" x="487.23" y="437" width="29.34" height="20" fill="#ffffff"/>
+<polygon class="arrowhead" points="707.8,447 695.8,441 695.8,453" fill="#3b4754"/>
+<polygon class="arrowhead" points="136,180 124,174 124,186" fill="#3b4754"/>
+<polygon class="arrowhead" points="304,319 292,313 292,325" fill="#3b4754"/>
+<polygon class="arrowhead" points="557.8,174 545.8,168 545.8,180" fill="#3b4754"/>
+<polygon class="arrowhead" points="416,319 428,325 428,313" fill="#3b4754"/>
+<polygon class="arrowhead" points="557.8,447 545.8,441 545.8,453" fill="#3b4754"/>
+<rect class="node" x="0" y="28" width="92" height="64" rx="32" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="136" y="148" width="124" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<polygon class="node" points="360,268.5 416,319 360,369.5 304,319" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="557.8" y="148" width="106" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="557.8" y="425" width="106" height="44" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="707.8" y="425" width="115" height="44" rx="22" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<text class="lane-title" x="-85.35" y="185.6" text-anchor="middle" fill="#1b1f24">Autor</text>
+<text class="lane-title" x="-85.35" y="324.1" text-anchor="middle" fill="#1b1f24">Sprawdzający</text>
+<text class="lane-title" x="-85.35" y="452.6" text-anchor="middle" fill="#1b1f24">Zatwierdzający</text>
+<text class="node-label" x="46" y="65.6" text-anchor="middle" fill="#1b1f24">Start</text>
+<text class="node-label" x="198" y="175.6" text-anchor="middle" fill="#1b1f24">Przygotowuje</text>
+<text class="node-label" x="198" y="195.6" text-anchor="middle" fill="#1b1f24">projekt</text>
+<text class="node-label" x="360" y="314.6" text-anchor="middle" fill="#1b1f24">Bez</text>
+<text class="node-label" x="360" y="334.6" text-anchor="middle" fill="#1b1f24">uwag?</text>
+<text class="node-label" x="610.8" y="175.6" text-anchor="middle" fill="#1b1f24">Nanosi</text>
+<text class="node-label" x="610.8" y="195.6" text-anchor="middle" fill="#1b1f24">poprawki</text>
+<text class="node-label" x="610.8" y="452.6" text-anchor="middle" fill="#1b1f24">Zatwierdza</text>
+<text class="node-label" x="765.3" y="452.6" text-anchor="middle" fill="#1b1f24">Publikuje</text>
+<text class="edge-label" x="501.9" y="179.6" text-anchor="middle" fill="#1b1f24">uwagi</text>
+<text class="edge-label" x="501.9" y="452.6" text-anchor="middle" fill="#1b1f24">tak</text>
 </svg>

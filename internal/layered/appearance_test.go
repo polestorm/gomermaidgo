@@ -613,12 +613,13 @@ func TestFramesWithoutSmallJogs(t *testing.T) {
 	for _, d := range []graph.Direction{graph.LeftRight, graph.TopBottom} {
 		g := parse(t, "../../testdata/corpus/flowchart/022-frames-lr.mmd")
 		g.Direction = d
-		sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+		// Ustawianie ramek bez dopasowania do strony; po zwężeniu pól obowiązuje ogólny próg LAY-002.
+		sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16, Fit: FitOff})
 		if j := smallestJog(sc); j < 16 {
 			t.Errorf("%s: jog of %.1f px", d, j)
 		}
 	}
-	sc := natural(t, "flowchart/022-frames-lr.mmd")
+	sc := Layout(parse(t, "../../testdata/corpus/flowchart/022-frames-lr.mmd"), Options{Measure: font.ApproxTextWidth, FontSize: 16, Fit: FitOff})
 	src, mid := nodeOf(t, sc, "Prognoza"), nodeOf(t, sc, "Alerty")
 	if math.Abs((src.Y0+src.Y1)/2-(mid.Y0+mid.Y1)/2) > 0.5 {
 		t.Errorf("the middle field of the output frame should stand level with its source")
@@ -653,17 +654,23 @@ func TestLongEdgeIntoFrameTurnsOnce(t *testing.T) {
 }
 
 // REQ: LAY-018
-// Dopasowanie do strony: szeroki i płaski schemat z włączonym FitPage mieści się na A4 w wyraźnie
-// większej skali, bo pola są węższe (tekst łamany na więcej linii); żaden wyraz nie znika. Bez opcji
-// rysunek jest taki jak zawsze.
+// Dopasowanie do strony: szeroki i płaski schemat mieści się na A4 w wyraźnie większej skali, bo pola
+// są węższe (tekst łamany na więcej linii); żaden wyraz nie znika. Tryb auto działa tylko od progu
+// proporcji, off nigdy, on także poniżej progu.
 func TestFitPage(t *testing.T) {
 	src := "../../testdata/corpus/flowchart/022-frames-lr.mmd"
-	o := Options{Measure: font.ApproxTextWidth, FontSize: 16}
-	plain := Layout(parse(t, src), o)
-	o.FitPage = true
-	fit := Layout(parse(t, src), o)
-	if a, b := pageScale(plain, 16), pageScale(fit, 16); b < a*1.25 {
-		t.Errorf("page scale %.2f -> %.2f, want at least +25%%", a, b)
+	run := func(mode FitMode, ratio float64) *scene.Scene {
+		return Layout(parse(t, src), Options{Measure: font.ApproxTextWidth, FontSize: 16, Fit: mode, FitRatio: ratio})
+	}
+	off, auto, on := run(FitOff, 0), run(FitAuto, 0), run(FitOn, 0)
+	if a, b := pageScale(off, 16), pageScale(auto, 16); b < a*1.25 {
+		t.Errorf("auto: page scale %.2f -> %.2f, want at least +25%%", a, b)
+	}
+	if fmt.Sprint(on.Bounds()) != fmt.Sprint(auto.Bounds()) {
+		t.Errorf("on and auto should agree for a drawing past the ratio")
+	}
+	if high := run(FitAuto, 50); fmt.Sprint(high.Bounds()) != fmt.Sprint(off.Bounds()) {
+		t.Errorf("auto below its ratio should leave the drawing as it is")
 	}
 	words := func(sc *scene.Scene) string {
 		var all []string
@@ -675,14 +682,10 @@ func TestFitPage(t *testing.T) {
 		sort.Strings(all)
 		return strings.Join(all, " ")
 	}
-	if words(plain) != words(fit) {
+	if words(off) != words(auto) {
 		t.Errorf("fitting changed the words of the drawing")
 	}
-	if lines := len(byRole(fit, "node-label")); lines <= len(byRole(plain, "node-label")) {
+	if lines := len(byRole(auto, "node-label")); lines <= len(byRole(off, "node-label")) {
 		t.Errorf("fitted labels should break into more lines: %d", lines)
-	}
-	again := Layout(parse(t, src), Options{Measure: font.ApproxTextWidth, FontSize: 16})
-	if fmt.Sprint(again.Bounds()) != fmt.Sprint(plain.Bounds()) {
-		t.Errorf("without FitPage the layout should not change")
 	}
 }

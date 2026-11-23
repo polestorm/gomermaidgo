@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="381.5" height="427" viewBox="-12 -12 381.5 427" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <path class="edge" d="M95 44 L95 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M70 160.72 L70 248.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M119 161.21 L119 227 L119 241 C119 245.4 122.6 249 127 249 L245 249 C249.4 249 253 252.6 253 257 L253 257 L253 255.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M203 52.4 L203 227 L203 227 C203 231.4 206.6 235 211 235 L285 235 C289.4 235 293 238.6 293 243 L293 257 L293 264" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M119 161.21 L119 227 L119 241 C119 245.02 122.29 248.3 126.3 248.3 L245.7 248.3 C249.72 248.3 253 251.59 253 255.6 L253 255.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M203 52.4 L203 227 L203 227 C203 231.02 206.29 234.3 210.3 234.3 L285.7 234.3 C289.71 234.3 293 237.59 293 241.6 L293 264" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M70 315 L70 350.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="55.33" y="205" width="29.34" height="20" fill="#ffffff"/>
 <rect class="edge-label-background" x="104.32" y="205" width="29.35" height="20" fill="#ffffff"/>

@@ -597,7 +597,7 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 		if e.rev {
 			topHead, bottomHead = bottomHead, topHead
 		}
-		pts := all[e]
+		pts := withoutTurnBacks(all[e])
 		// Różnice położeń poniżej progu to zaokrąglenia: odcinek ma być dokładnie prosty, nie skośny.
 		for i := 1; i < len(pts); i++ {
 			if math.Abs(pts[i].x-pts[i-1].x) < straightTolerance {
@@ -1092,7 +1092,7 @@ func (l *layouter) route(e *ledge) []routePoint {
 		pts = append(pts, routePoint{x, e.u.y + e.u.h/2 - inset(e.u, e.upperPort)})
 		// Pole niższe niż jego warstwa: krawędź biegnie prosto do granicy warstwy, żeby nie skręcać
 		// obok wyższych sąsiadów.
-		if e.u.band > e.u.h+1 {
+		if (e.u.band-e.u.h)/2 > l.u(12) {
 			pts = append(pts, routePoint{x, e.u.y + e.u.band/2})
 		}
 	}
@@ -1115,7 +1115,9 @@ func (l *layouter) route(e *ledge) []routePoint {
 		pts = append(pts, l.crossing(e.lv, routePoint{e.v.x, border}))
 	default:
 		x := e.v.nodeX() + e.lowerPort
-		if e.v.band > e.v.h+1 {
+		// Tylko gdy między granicą warstwy a polem mieści się grot; inaczej skrócenie o grot cofnęłoby
+		// koniec krawędzi za ten punkt.
+		if (e.v.band-e.v.h)/2 > l.u(12) {
 			pts = append(pts, routePoint{x, e.v.y - e.v.band/2})
 		}
 		pts = append(pts, routePoint{x, e.v.y - e.v.h/2 + inset(e.v, e.lowerPort)})
@@ -1615,4 +1617,20 @@ func (l *layouter) snapCrossings(pts []routePoint) {
 		}
 		i = j + 1
 	}
+}
+
+// withoutTurnBacks usuwa punkt, w którym krawędź zawraca w tej samej osi (np. granica warstwy leży za
+// brzegiem pola węższego niż jego warstwa): odcinek biegnie wtedy wprost do następnego punktu.
+func withoutTurnBacks(pts []routePoint) []routePoint {
+	out := make([]routePoint, 0, len(pts))
+	for i, p := range pts {
+		if n := len(out); n > 0 && i+1 < len(pts) {
+			prev, next := out[n-1], pts[i+1]
+			if prev.x == p.x && p.x == next.x && (p.y-prev.y)*(next.y-p.y) < 0 {
+				continue
+			}
+		}
+		out = append(out, p)
+	}
+	return out
 }

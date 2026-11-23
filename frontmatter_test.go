@@ -114,18 +114,24 @@ func TestEmojiFallback(t *testing.T) {
 }
 
 // REQ: LAY-018
-// Dopasowanie do strony z opcji i z linii w źródle daje ten sam, węższy rysunek.
-func TestFitPageOption(t *testing.T) {
+// Tryby dopasowania z opcji i z linii w źródle; opcja ma pierwszeństwo, auto jest domyślny.
+func TestFitOptions(t *testing.T) {
 	src := "flowchart LR\nA[Pierwszy długi krok procesu] --> B[Drugi długi krok procesu] --> C[Trzeci długi krok procesu] --> D[Czwarty długi krok procesu] --> E[Piąty długi krok procesu] --> F[Szósty długi krok procesu]"
 	width := func(svg []byte) float64 {
 		m := regexp.MustCompile(`<svg[^>]* width="([\d.]+)"`).FindSubmatch(svg)
 		w, _ := strconv.ParseFloat(string(m[1]), 64)
 		return w
 	}
-	plain, _ := Render(src)
-	opt, _ := Render(src, WithFitPage())
-	dir, _ := Render("%% layout: fit\n" + src)
-	if width(opt) >= width(plain)*0.85 || string(opt) != string(dir) {
-		t.Errorf("widths: plain %.0f, option %.0f, directive %.0f", width(plain), width(opt), width(dir))
+	def, _ := Render(src)
+	auto, _ := Render(src, WithFit(FitAuto))
+	off, _ := Render(src, WithFit(FitOff))
+	nofit, _ := Render("%% layout: nofit\n" + src)
+	forced, _ := Render("%% layout: nofit\n"+src, WithFit(FitOn))
+	high, _ := Render(src, WithFitRatio(100))
+	if string(def) != string(auto) || width(def) >= width(off)*0.85 {
+		t.Errorf("default should be auto and narrower: %.0f vs off %.0f", width(def), width(off))
+	}
+	if string(nofit) != string(off) || width(forced) != width(def) || string(high) != string(off) {
+		t.Errorf("directive, option precedence or ratio: nofit %.0f, forced %.0f, high ratio %.0f", width(nofit), width(forced), width(high))
 	}
 }

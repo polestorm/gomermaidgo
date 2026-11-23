@@ -81,7 +81,8 @@ type config struct {
 	colors     bool
 	shadows    bool
 	emojiText  bool
-	fitPage    bool
+	fitMode    string  // "", "auto", "on", "off"
+	fitRatio   float64 // próg proporcji dla trybu auto; 0 oznacza 2
 	curved     bool
 	theme      string
 	themeSet   bool
@@ -137,11 +138,23 @@ func WithShadows() Option { return func(c *config) { c.shadows = true } }
 // obok zostają tekstem). PDF i PNG ta opcja nie dotyczy.
 func WithEmojiText() Option { return func(c *config) { c.emojiText = true } }
 
-// WithFitPage włącza dopasowanie do strony dla diagramów rysowanych układem warstwowym (schemat
-// blokowy, stany, encje, klasy, wymagania, C4): gdy rysunek jest dużo szerszy albo wyższy niż strona
-// A4, układ jest powtarzany z węższymi polami i wygrywa wersja, która mieści się na stronie
-// w największej skali. To samo włącza w źródle linia "%% layout: fit".
-func WithFitPage() Option { return func(c *config) { c.fitPage = true } }
+// Tryby dopasowania do strony (WithFit).
+const (
+	FitAuto = "auto" // domyślny: dopasowanie tylko rysunku co najmniej WithFitRatio razy szerszego niż wysoki
+	FitOn   = "on"   // dopasowanie każdego rysunku, który nie mieści się na stronie A4 w skali 1
+	FitOff  = "off"  // bez dopasowania
+)
+
+// WithFit wybiera tryb dopasowania do strony dla diagramów rysowanych układem warstwowym (schemat
+// blokowy, stany, klasy, wymagania, C4): rysunek jest układany jeszcze raz z węższymi polami, w których
+// tekst łamie się częściej, i wygrywa wersja mieszcząca się na stronie A4 w największej skali.
+// Domyślny jest FitAuto. W źródle to samo ustawia linia "%% layout: fit" (FitOn) albo
+// "%% layout: nofit" (FitOff); opcja ma pierwszeństwo przed źródłem. Nieznany tryb jest pomijany.
+func WithFit(mode string) Option { return func(c *config) { c.fitMode = mode } }
+
+// WithFitRatio ustawia próg trybu FitAuto: dopasowanie rusza, gdy szerokość rysunku jest co najmniej
+// tyle razy większa od wysokości. Domyślnie 2.
+func WithFitRatio(ratio float64) Option { return func(c *config) { c.fitRatio = ratio } }
 
 // DetectType zwraca typ diagramu z pierwszej znaczącej linii źródła.
 func DetectType(source string) (string, error) {
@@ -269,8 +282,25 @@ func Check(source string) error {
 	return err
 }
 
-// fitDirective włącza w źródle dopasowanie do strony (WithFitPage).
-var fitDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*fit\s*$`)
+// fitDirective ustawia w źródle tryb dopasowania do strony (WithFit).
+var fitDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fit|nofit)\s*$`)
+
+// fitMode rozstrzyga tryb dopasowania: opcja, potem linia w źródle, domyślnie auto.
+func fitMode(c config, source string) layered.FitMode {
+	mode := c.fitMode
+	if mode == "" {
+		if m := fitDirective.FindStringSubmatch(source); m != nil {
+			mode = map[string]string{"fit": FitOn, "nofit": FitOff}[m[1]]
+		}
+	}
+	switch mode {
+	case FitOn:
+		return layered.FitOn
+	case FitOff:
+		return layered.FitOff
+	}
+	return layered.FitAuto
+}
 
 // emojiFace to krój zapasowy z emoji; nil, gdyby pliku nie dało się odczytać.
 var emojiFace = sync.OnceValue(func() *font.Face {
@@ -457,7 +487,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 		} else if styled, err = styledMeasure(c.boldData, c.italicData); err != nil {
 			return nil, nil, err
 		}
-		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, FitPage: c.fitPage || fitDirective.MatchString(source)}), face, nil
+		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, Fit: fitMode(c, source), FitRatio: c.fitRatio}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {
