@@ -304,6 +304,20 @@ func (l *layout) columns() {
 			l.header = math.Max(l.header, lines*l.lh+2*l.u(14))
 		}
 	}
+	// SEQ-019: okienka uczestników mają wspólną szerokość najszerszego z nich (do u(160)), żeby
+	// rząd nagłówków był równy; dłuższa nazwa poszerza tylko własne okienko.
+	common := 0.0
+	for i, p := range l.d.Participants {
+		if !p.Actor {
+			common = math.Max(common, l.boxW[i])
+		}
+	}
+	common = math.Min(common, l.u(160))
+	for i, p := range l.d.Participants {
+		if !p.Actor {
+			l.boxW[i] = math.Max(l.boxW[i], common)
+		}
+	}
 	group := make([]int, n) // numer grupy „box” uczestnika + 1; 0 = poza grupami
 	for k, b := range l.d.Boxes {
 		for i := b.First; i <= b.Last; i++ {
@@ -404,6 +418,20 @@ func (l *layout) columns() {
 			}
 			if b.Last < n-1 {
 				gap[b.Last] += extra
+			}
+		}
+	}
+	// SEQ-019: równe odstępy między liniami życia, gdy wyrównanie do największego odstępu
+	// poszerza rysunek najwyżej o ćwierć; inaczej każdy odstęp zostaje taki, jak wymaga treść.
+	if len(gap) > 1 {
+		sum, most := 0.0, 0.0
+		for _, g := range gap {
+			sum += g
+			most = math.Max(most, g)
+		}
+		if most*float64(len(gap)) <= 1.25*sum {
+			for i := range gap {
+				gap[i] = most
 			}
 		}
 	}

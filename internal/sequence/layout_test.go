@@ -1,6 +1,7 @@
 package sequence
 
 import (
+	"math"
 	"os"
 	"path/filepath"
 	"testing"
@@ -124,6 +125,31 @@ func TestBlend(t *testing.T) {
 	for _, c := range cases {
 		if got := blend(c.top, c.under); got != c.want {
 			t.Errorf("blend(%q, %q) = %q, want %q", c.top, c.under, got, c.want)
+		}
+	}
+}
+
+// REQ: SEQ-019
+// D5 i D7: trzech uczestników o krótkich nazwach ma okienka tej samej szerokości i stoi
+// w równych odstępach.
+func TestEvenParticipants(t *testing.T) {
+	scenes := corpusScenes(t)
+	for _, name := range []string{"005-activations.mmd", "007-nested-blocks.mmd"} {
+		var xs, ws []float64
+		for _, it := range scenes[name].Items {
+			if it.Kind == scene.Rect && it.Role == "participant" && it.Y == 0 {
+				xs = append(xs, it.X+it.W/2)
+				ws = append(ws, it.W)
+			}
+		}
+		if len(xs) != 3 {
+			t.Fatalf("%s: %d participant boxes", name, len(xs))
+		}
+		if ws[0] != ws[1] || ws[1] != ws[2] {
+			t.Errorf("%s: box widths %v differ", name, ws)
+		}
+		if d1, d2 := xs[1]-xs[0], xs[2]-xs[1]; math.Abs(d1-d2) > 0.5 {
+			t.Errorf("%s: spacing %.1f and %.1f differ", name, d1, d2)
 		}
 	}
 }
