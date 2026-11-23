@@ -24,5 +24,5 @@ Zasady:
   i przewidywalny;
 - każda decyzja = plik w `docs/adr/`;
 - opisy commitów po angielsku; przed commitem muszą przechodzić `go vet ./...` i `go test ./...`;
-- commit i push do `origin` (prywatne `polestorm/gomermaidgo`) po każdej zakończonej rundzie pracy, bez pytania
+- commit i push do `origin` (`polestorm/gomermaidgo`) po każdej zakończonej rundzie pracy, bez pytania
   (decyzja użytkownika z 2026-11-21).

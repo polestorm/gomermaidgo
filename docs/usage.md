@@ -117,6 +117,8 @@ go build -tags nopdf,nopng ./cmd/gomermaidgo   # SVG only
 
 ## Command line
 
+Go 1.22 or later.
+
 ```sh
 go install github.com/polestorm/gomermaidgo/cmd/gomermaidgo@latest
 gomermaidgo -o diagram.svg diagram.mmd

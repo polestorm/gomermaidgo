@@ -145,7 +145,8 @@ wszystkich 62 rysunków zgadza się z odniesieniem po dodaniu znaczników `<b>` 
 są znaki, których krój Recursive nie ma (emoji). Rysunki są przeciętnie o 15% szersze niż w odniesieniu i o 4% niższe.
 Próba jest mała i przechylona ku prostym schematom blokowym.
 
-Diagram encji z dokumentacji produktu (35 encji, 36 relacji, `internal/layered/testdata/er/wide-er.mmd`) pokazał pustą
+Szeroki diagram encji (35 encji, 36 relacji, `internal/layered/testdata/er/wide-er.mmd`; liczby poniżej zmierzono na
+wcześniejszej treści o tej samej budowie) pokazał pustą
 kolumnę szerokości 1744 px; po jej zamknięciu (LAY-010) rysunek ma 2607 px zamiast 4197. Odniesienie: 2551 px. Z limitem
 szerokości warstwy (LAY-011) ma 1769 × 1628 px i mieści się na stronie A4 w skali 0,37 zamiast 0,24.
 
