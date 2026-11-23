@@ -45,6 +45,10 @@ type Options struct {
 	FoldType FoldType
 
 	boxes map[string]scene.Box // wypełniane przy rysowaniu, gdy nie nil (layoutBoxes)
+	// painted: źródło samo nadaje wypełnienie choć jednemu polu albo ramce. Pola bez koloru
+	// zostają wtedy neutralne (białe), a ramki bez koloru bez tła trybu kolorowego: brak koloru
+	// znaczy w takim rysunku „zwykłe pole”, a nie „pokoloruj według palety”.
+	painted bool
 }
 
 // FoldMode to tryb zwijania.
@@ -355,6 +359,7 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	if o.FontSize <= 0 {
 		o.FontSize = 16
 	}
+	o.painted = g.SourceFills
 	if g.Kind != "er" {
 		best := layout(g, o, 0, 1)
 		skipFit := false

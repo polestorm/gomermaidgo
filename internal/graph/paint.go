@@ -174,6 +174,7 @@ func (g *Graph) SetLinkStyle(indexes string, paint Paint, line int) {
 func (g *Graph) resolvePaint() error {
 	base, hasBase := g.classes["default"]
 	if hasBase {
+		g.SourceFills = base.Fill != "" && base.Fill != "none"
 		for _, n := range g.Nodes {
 			n.Paint = base
 		}
@@ -187,6 +188,10 @@ func (g *Graph) resolvePaint() error {
 			}
 		}
 		// Nieznany element pomijamy: klasa przypisana na zapas nie psuje rysunku.
+		filled := paint.Fill != "" && paint.Fill != "none"
+		if g.nodeIndex[u.target] != nil || g.subIndex[u.target] != nil {
+			g.SourceFills = g.SourceFills || filled
+		}
 		if n := g.nodeIndex[u.target]; n != nil {
 			n.Paint = n.Paint.Merge(paint)
 		} else if s := g.subIndex[u.target]; s != nil {

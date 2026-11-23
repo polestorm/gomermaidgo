@@ -170,15 +170,18 @@ type Note struct {
 
 // Graph to cały diagram.
 type Graph struct {
-	Kind      string // "flowchart" albo "state"
-	Direction Direction
-	Nodes     []*Node
-	Edges     []*Edge
-	Subgraphs []*Subgraph
-	Notes     []*Note
-	Layout    string // "" albo "swimlanes": podgrafy najwyższego poziomu są torami
-	AccTitle  string // tytuł dostępności (accTitle)
-	AccDescr  string // opis dostępności (accDescr)
+	Kind string // "flowchart" albo "state"
+	// SourceFills: autor nadał wypełnienie (style, classDef z class lub :::) choć jednemu polu
+	// albo ramce. Wygląd nadany przez sam typ diagramu (np. element zewnętrzny C4) się nie liczy.
+	SourceFills bool
+	Direction   Direction
+	Nodes       []*Node
+	Edges       []*Edge
+	Subgraphs   []*Subgraph
+	Notes       []*Note
+	Layout      string // "" albo "swimlanes": podgrafy najwyższego poziomu są torami
+	AccTitle    string // tytuł dostępności (accTitle)
+	AccDescr    string // opis dostępności (accDescr)
 
 	classes  map[string]Paint
 	uses     []classUse

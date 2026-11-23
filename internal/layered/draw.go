@@ -402,7 +402,7 @@ func (l *layouter) drawLevel(lv *level) {
 		paint := lv.sub.Paint
 		// Tryb kolorowy: ramka podgrafu dostaje jasne tło i obrys w kolejnym kolorze serii, od drugiego:
 		// pierwszy (niebieski) mają pola, więc pole nie ginie na tle ramki. Kolor ze źródła wygrywa.
-		if l.o.Colors && !lv.sub.Region && !l.titleStrip(lv) && (paint.Fill == "" || paint.Fill == "none") {
+		if l.o.Colors && !l.o.painted && !lv.sub.Region && !l.titleStrip(lv) && (paint.Fill == "" || paint.Fill == "none") {
 			// Kolor nie może być kolorem żadnego pola stojącego bezpośrednio w ramce: kolejny z serii.
 			used := map[string]bool{}
 			for _, it := range lv.items {
@@ -638,6 +638,9 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 
 // tone zwraca kolory węzła w trybie kolorowym: kolor mówi, czym węzeł jest w procesie.
 func (l *layouter) tone(shape graph.Shape) (fill, stroke string) {
+	if l.o.painted {
+		return "#ffffff", colorNodeStroke
+	}
 	if !l.o.Colors {
 		return colorNodeFill, colorNodeStroke
 	}

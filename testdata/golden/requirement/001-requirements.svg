@@ -16,15 +16,15 @@
 <line class="arrowhead" x1="488" y1="542" x2="494" y2="531" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="488" y1="542" x2="482" y2="531" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="node" x="0" y="0" width="334" height="220" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="0" y="0" width="334" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="0" y="0" width="334" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="382" y="55" width="194" height="110" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="382" y="55" width="194" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="382" y="55" width="194" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="159" y="304" width="328" height="154" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
 <rect class="node-detail" x="159" y="304" width="328" height="56" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
 <rect class="node" x="535.5" y="337" width="157" height="88" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="535.5" y="337" width="157" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="535.5" y="337" width="157" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="359" y="542" width="218" height="154" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node-detail" x="359" y="542" width="218" height="56" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node-detail" x="359" y="542" width="218" height="56" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <text class="node-label" x="167" y="23.6" text-anchor="middle" fill="#1b1f24">«Requirement»</text>
 <text class="node-label" x="167" y="43.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">sterylnosc</text>
 <text class="member" x="12" y="77.6" fill="#1b1f24">Id: URS-01</text>

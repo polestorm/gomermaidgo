@@ -157,3 +157,18 @@ func TestLabelBackingFollowsBackground(t *testing.T) {
 		t.Error("background colour: label backings should be painted in it, without a clip")
 	}
 }
+
+// REQ: COM-007
+func TestUnstyledNodesStayNeutral(t *testing.T) {
+	src := "graph LR\n  A[Plain] --> B[Styled]\n  style B fill:#cce5ff\n"
+	for _, opts := range [][]Option{nil, {WithColors()}} {
+		svg, err := Render(src, opts...)
+		if err != nil {
+			t.Fatal(err)
+		}
+		fills := regexp.MustCompile(`class="node"[^>]*fill="([^"]+)"`).FindAllStringSubmatch(string(svg), -1)
+		if len(fills) != 2 || fills[0][1] != "#ffffff" || fills[1][1] != "#cce5ff" {
+			t.Errorf("colors=%v: node fills %v, want #ffffff and #cce5ff", opts != nil, fills)
+		}
+	}
+}

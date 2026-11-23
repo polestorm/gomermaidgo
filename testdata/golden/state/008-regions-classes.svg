@@ -46,17 +46,17 @@
 <polygon class="arrowhead" points="287,930 281,918 293,918" fill="#3b4754"/>
 <polygon class="arrowhead" points="287,930 281,918 293,918" fill="#3b4754"/>
 <circle class="node" cx="287" cy="8" r="8" fill="#3b4754"/>
-<rect class="node" x="217" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="217" y="60" width="140" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="127.14" cy="286" r="8" fill="#3b4754"/>
-<rect class="node" x="52.64" y="320" width="149" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="52.64" y="448" width="149" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect class="node" x="52.64" y="576" width="149" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="52.64" y="320" width="149" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="52.64" y="448" width="149" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="52.64" y="576" width="149" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="127.14" cy="656" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <circle class="node-detail" cx="127.14" cy="656" r="6" fill="#3b4754"/>
 <circle class="node" cx="364.16" cy="286" r="8" fill="#3b4754"/>
-<rect class="node" x="294.36" y="320" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="294.36" y="320" width="140" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <circle class="node" cx="371.05" cy="458" r="8" fill="#3b4754"/>
-<rect class="node" x="294.05" y="492" width="154" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect class="node" x="294.05" y="492" width="154" height="44" rx="8" fill="#ffffff" stroke="#55657a" stroke-width="1.5"/>
 <rect class="node" x="294.05" y="620" width="154" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
 <rect class="node" x="157" y="754" width="142" height="44" rx="8" fill="#e6f4ea" stroke="#1e7b34" stroke-width="1.5"/>
 <rect class="node" x="276" y="842" width="140" height="44" rx="8" fill="#fde8e8" stroke="#b42318" stroke-width="2"/>
