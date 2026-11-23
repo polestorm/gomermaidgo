@@ -1,6 +1,7 @@
 package layered
 
 import (
+	"fmt"
 	"math"
 	"os"
 	"sort"
@@ -374,13 +375,13 @@ func TestEntityDiagramFitsPage(t *testing.T) {
 		b := sc.Bounds()
 		return math.Min(1, math.Min(650/(b.X1-b.X0), 870/(b.Y1-b.Y0)))
 	}
-	free, bound := fit(layout(g, o, 0)), fit(Layout(g, o))
+	free, bound := fit(layout(g, o, 0, 1)), fit(Layout(g, o))
 	if bound < 0.33 || bound < free*1.3 {
 		t.Errorf("page fit %.3f with the width limit, %.3f without", bound, free)
 	}
 	for _, f := range corpusNames(t, "er") {
 		g := parse(t, "../../testdata/corpus/"+f)
-		a, b := layout(g, o, 0).Bounds(), Layout(parse(t, "../../testdata/corpus/"+f), o).Bounds()
+		a, b := layout(g, o, 0, 1).Bounds(), Layout(parse(t, "../../testdata/corpus/"+f), o).Bounds()
 		if a != b {
 			t.Errorf("%s: a diagram that fits the page changed: %+v, %+v", f, a, b)
 		}
@@ -649,4 +650,39 @@ func TestLongEdgeIntoFrameTurnsOnce(t *testing.T) {
 		return
 	}
 	t.Fatal("no edge from wzorzec.docx")
+}
+
+// REQ: LAY-018
+// Dopasowanie do strony: szeroki i płaski schemat z włączonym FitPage mieści się na A4 w wyraźnie
+// większej skali, bo pola są węższe (tekst łamany na więcej linii); żaden wyraz nie znika. Bez opcji
+// rysunek jest taki jak zawsze.
+func TestFitPage(t *testing.T) {
+	src := "../../testdata/corpus/flowchart/022-frames-lr.mmd"
+	o := Options{Measure: font.ApproxTextWidth, FontSize: 16}
+	plain := Layout(parse(t, src), o)
+	o.FitPage = true
+	fit := Layout(parse(t, src), o)
+	if a, b := pageScale(plain, 16), pageScale(fit, 16); b < a*1.25 {
+		t.Errorf("page scale %.2f -> %.2f, want at least +25%%", a, b)
+	}
+	words := func(sc *scene.Scene) string {
+		var all []string
+		for _, it := range sc.Items {
+			if it.Kind == scene.Text {
+				all = append(all, strings.Fields(it.Text)...)
+			}
+		}
+		sort.Strings(all)
+		return strings.Join(all, " ")
+	}
+	if words(plain) != words(fit) {
+		t.Errorf("fitting changed the words of the drawing")
+	}
+	if lines := len(byRole(fit, "node-label")); lines <= len(byRole(plain, "node-label")) {
+		t.Errorf("fitted labels should break into more lines: %d", lines)
+	}
+	again := Layout(parse(t, src), Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	if fmt.Sprint(again.Bounds()) != fmt.Sprint(plain.Bounds()) {
+		t.Errorf("without FitPage the layout should not change")
+	}
 }

@@ -80,6 +80,12 @@ Stan: rysowany układem warstwowym (`internal/layered`).
 | kierunek podgrafu | `direction LR` w podgrafie niepołączonym krawędziami z resztą | FLOW-019 |
 | tory | komentarz `%% layout: swimlanes` przed albo po nagłówku: podgrafy najwyższego poziomu stają się pasami | FLOW-021 |
 
+### Dopasowanie do strony
+
+Linia `%% layout: fit` (albo opcja `WithFitPage`, flaga `-fit`) włącza dopasowanie do strony A4 dla wszystkich
+diagramów układu warstwowego: zbyt szeroki albo zbyt wysoki rysunek jest układany jeszcze raz z węższymi polami,
+w których tekst łamie się częściej (LAY-018). Najwięcej daje dla schematów szerokich i płaskich (kierunek LR).
+
 ### Poza profilem (błąd `flowchart-unsupported`)
 
 Kształty zapisu `@{ shape: … }`, których nie rysujemy pod starą składnią (np. `doc`, `cloud`, `delay`; pozostałe

@@ -44,6 +44,10 @@ Emoji and other characters the main typeface lacks are drawn with a bundled fall
 font file for them; `WithEmojiText` (`-emoji-text`) keeps them as text instead. PDF keeps them as text with the
 font embedded.
 
+Wide or tall graph diagrams can be fitted to an A4 page: `WithFitPage()` (or `-fit`, or a `%% layout: fit` line in the
+source) lays the diagram out again with narrower fields, wrapping text more often, and keeps the version that fits
+the page at the largest scale. It helps most with wide, flat left-to-right flowcharts.
+
 Themes: `neutral` (the default, made for print), `default` (colours), `forest`, `dark` and `base`. They are this
 library's own looks under Mermaid's theme names, so a source that selects a theme in its front matter or `init`
 directive gets the counterpart. `WithTheme` (or `-t`) overrides the source.

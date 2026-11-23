@@ -9,6 +9,7 @@ package gomermaidgo
 import (
 	"errors"
 	"fmt"
+	"regexp"
 	"slices"
 	"strings"
 	"sync"
@@ -80,6 +81,7 @@ type config struct {
 	colors     bool
 	shadows    bool
 	emojiText  bool
+	fitPage    bool
 	curved     bool
 	theme      string
 	themeSet   bool
@@ -134,6 +136,12 @@ func WithShadows() Option { return func(c *config) { c.shadows = true } }
 // potrzebuje pliku kroju zapasowego, ale samego emoji nie da się skopiować ani wyszukać (słowa
 // obok zostają tekstem). PDF i PNG ta opcja nie dotyczy.
 func WithEmojiText() Option { return func(c *config) { c.emojiText = true } }
+
+// WithFitPage włącza dopasowanie do strony dla diagramów rysowanych układem warstwowym (schemat
+// blokowy, stany, encje, klasy, wymagania, C4): gdy rysunek jest dużo szerszy albo wyższy niż strona
+// A4, układ jest powtarzany z węższymi polami i wygrywa wersja, która mieści się na stronie
+// w największej skali. To samo włącza w źródle linia "%% layout: fit".
+func WithFitPage() Option { return func(c *config) { c.fitPage = true } }
 
 // DetectType zwraca typ diagramu z pierwszej znaczącej linii źródła.
 func DetectType(source string) (string, error) {
@@ -260,6 +268,9 @@ func Check(source string) error {
 	}
 	return err
 }
+
+// fitDirective włącza w źródle dopasowanie do strony (WithFitPage).
+var fitDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*fit\s*$`)
 
 // emojiFace to krój zapasowy z emoji; nil, gdyby pliku nie dało się odczytać.
 var emojiFace = sync.OnceValue(func() *font.Face {
@@ -446,7 +457,7 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 		} else if styled, err = styledMeasure(c.boldData, c.italicData); err != nil {
 			return nil, nil, err
 		}
-		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved}), face, nil
+		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, FitPage: c.fitPage || fitDirective.MatchString(source)}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {

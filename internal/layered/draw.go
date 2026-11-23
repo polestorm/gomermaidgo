@@ -25,10 +25,19 @@ const (
 const shapeNote graph.Shape = "note"
 
 func (l *layouter) wrapLimit(shape graph.Shape) float64 {
+	limit := l.u(200)
 	if shape == graph.Rhombus || shape == graph.Circle || shape == graph.DoubleCircle {
-		return l.u(150)
+		limit = l.u(150)
 	}
-	return l.u(200)
+	return limit * l.narrow()
+}
+
+// narrow zwraca mnożnik szerokości pól przy dopasowaniu do strony (1, gdy go nie ma).
+func (l *layouter) narrow() float64 {
+	if l.fit <= 0 {
+		return 1
+	}
+	return l.fit
 }
 
 // nodeSize zwraca rzeczywisty rozmiar kształtu mieszczącego podany tekst.
@@ -39,7 +48,12 @@ func (l *layouter) nodeSize(shape graph.Shape, text []string) (w, h float64) {
 	// Pola są płaskie: szerokość co najmniej trzykrotnie większa od wysokości pola z jedną linią
 	// tekstu, więc krótkie napisy dają pola tej samej szerokości i schemat wygląda równo.
 	padX, padY := l.u(28), l.u(12)
-	w, h = math.Max(tw+2*padX, l.u(140)), math.Max(th+2*padY, l.u(44))
+	minW := l.u(140)
+	if f := l.narrow(); f < 1 {
+		// Dopasowanie do strony: mniejsze marginesy i najmniejsza szerokość, żeby pola mogły się zwęzić.
+		padX, minW = l.u(28)*math.Max(f, 0.5), l.u(140)*math.Max(f, 0.4)
+	}
+	w, h = math.Max(tw+2*padX, minW), math.Max(th+2*padY, l.u(44))
 	switch shape {
 	case graph.Stadium:
 		w += h / 2
@@ -1434,7 +1448,7 @@ func (l *layouter) drawLoop(it *item, e *graph.Edge, index int) {
 	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "edge", Segments: segments,
 		Stroke: colorLine, StrokeWidth: width, Dash: dash})
 	if len(e.Label) > 0 {
-		lines := l.wrap(e.Label, l.u(200))
+		lines := l.wrap(e.Label, l.u(200)*l.narrow())
 		w, _ := l.abstract(l.textSize(lines))
 		l.drawLabel(lines, edge+l.u(40)+w/2, it.y)
 	}

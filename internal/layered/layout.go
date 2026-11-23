@@ -33,6 +33,10 @@ type Options struct {
 	// CurvedEdges przywraca krawędzie prowadzone łagodnymi łukami; domyślnie są łamane pod kątem
 	// prostym, z zaokrąglonymi narożnikami.
 	CurvedEdges bool
+	// FitPage: gdy rysunek ma proporcje dalekie od strony A4 (w pionie albo w poziomie), układ jest
+	// powtarzany z węższymi polami (tekst łamany częściej) i wygrywa wersja mieszcząca się na stronie
+	// w największej skali.
+	FitPage bool
 }
 
 type itemKind int
@@ -191,6 +195,8 @@ type layouter struct {
 	laneOf map[string]int // węzeł → numer toru
 	// rankLimit: mnożnik limitu szerokości warstwy w diagramie encji; 0 = bez limitu.
 	rankLimit float64
+	// fit: mnożnik granicy łamania tekstu i najmniejszej szerokości pola (dopasowanie do strony).
+	fit float64
 
 	levels map[string]*level
 	itemOf map[string]*item // węzeł albo podgraf → jego pole na poziomie rodzica
@@ -282,7 +288,22 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 		o.FontSize = 16
 	}
 	if g.Kind != "er" {
-		return layout(g, o, 0)
+		best := layout(g, o, 0, 1)
+		if !o.FitPage {
+			return best
+		}
+		// Dopasowanie do strony: kolejne próby z węższymi polami; wygrywa wyraźnie większa skala.
+		bestScale := pageScale(best, o.FontSize)
+		for _, fit := range []float64{0.8, 0.65, 0.5, 0.38, 0.28} {
+			if bestScale >= 1 {
+				break
+			}
+			sc := layout(g, o, 0, fit)
+			if s := pageScale(sc, o.FontSize); s > bestScale+0.02 {
+				best, bestScale = sc, s
+			}
+		}
+		return best
 	}
 	// Diagram encji: kierunek nie niesie znaczenia, więc wygrywa układ, który mieści się na stronie
 	// w największej skali. Kandydaci różnią się limitem szerokości warstwy; pierwszy jest bez limitu
@@ -292,7 +313,7 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	var best *scene.Scene
 	bestScale := 0.0
 	for _, factor := range []float64{0, 1.4, 1, 0.75, 0.55} {
-		sc := layout(g, o, factor)
+		sc := layout(g, o, factor, 1)
 		b := sc.Bounds()
 		w, h := b.X1-b.X0, b.Y1-b.Y0
 		scale := math.Min(1, math.Min(pageW/w, pageH/h))
@@ -307,14 +328,26 @@ func Layout(g *graph.Graph, o Options) *scene.Scene {
 	return best
 }
 
-// layout rozmieszcza graf przy podanym limicie szerokości warstwy (0: bez limitu).
-func layout(g *graph.Graph, o Options, rankLimit float64) *scene.Scene {
+// pageScale zwraca skalę, w której rysunek mieści się na stronie A4 z marginesami, w lepszym
+// z dwóch położeń strony (najwyżej 1).
+func pageScale(sc *scene.Scene, fs float64) float64 {
+	u := fs / 16
+	b := sc.Bounds()
+	w, h := b.X1-b.X0+2*sc.Margin, b.Y1-b.Y0+2*sc.Margin
+	portrait := math.Min(650*u/w, 870*u/h)
+	landscape := math.Min(870*u/w, 650*u/h)
+	return math.Min(1, math.Max(portrait, landscape))
+}
+
+// layout rozmieszcza graf przy podanym limicie szerokości warstwy (0: bez limitu) i szerokości pól
+// (fit: mnożnik granicy łamania tekstu i najmniejszej szerokości pola; 1 = zwykła).
+func layout(g *graph.Graph, o Options, rankLimit, fit float64) *scene.Scene {
 	var lanes []*lane
 	var laneOf map[string]int
 	if g.Layout == "swimlanes" && len(g.Subgraphs) > 0 {
 		g, lanes, laneOf = flattenLanes(g)
 	}
-	l := &layouter{g: g, o: o, fs: o.FontSize, levels: map[string]*level{}, itemOf: map[string]*item{}, lanes: lanes, laneOf: laneOf, rankLimit: rankLimit}
+	l := &layouter{g: g, o: o, fs: o.FontSize, levels: map[string]*level{}, itemOf: map[string]*item{}, lanes: lanes, laneOf: laneOf, rankLimit: rankLimit, fit: fit}
 	l.lh = math.Round(l.fs * 1.25)
 	l.vertical = g.Direction == graph.TopBottom || g.Direction == graph.BottomTop
 	l.flip = g.Direction == graph.BottomTop || g.Direction == graph.RightLeft
@@ -2073,6 +2106,9 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		if r > 0 {
 			// Warstwa samych punktów na ramce potrzebuje tylko miejsca na łuk krawędzi.
 			gap := l.u(44)
+			if l.narrow() < 1 {
+				gap = l.u(32) // dopasowanie do strony: krótsze proste strzałki między warstwami
+			}
 			if portsOnly(row) || portsOnly(lv.ranks[r-1]) {
 				gap = l.u(24)
 			} else if !anyReal(row) || !anyReal(lv.ranks[r-1]) {

@@ -112,3 +112,20 @@ func TestEmojiFallback(t *testing.T) {
 		t.Errorf("caller's font: %q %v", string(m), err)
 	}
 }
+
+// REQ: LAY-018
+// Dopasowanie do strony z opcji i z linii w źródle daje ten sam, węższy rysunek.
+func TestFitPageOption(t *testing.T) {
+	src := "flowchart LR\nA[Pierwszy długi krok procesu] --> B[Drugi długi krok procesu] --> C[Trzeci długi krok procesu] --> D[Czwarty długi krok procesu] --> E[Piąty długi krok procesu] --> F[Szósty długi krok procesu]"
+	width := func(svg []byte) float64 {
+		m := regexp.MustCompile(`<svg[^>]* width="([\d.]+)"`).FindSubmatch(svg)
+		w, _ := strconv.ParseFloat(string(m[1]), 64)
+		return w
+	}
+	plain, _ := Render(src)
+	opt, _ := Render(src, WithFitPage())
+	dir, _ := Render("%% layout: fit\n" + src)
+	if width(opt) >= width(plain)*0.85 || string(opt) != string(dir) {
+		t.Errorf("widths: plain %.0f, option %.0f, directive %.0f", width(plain), width(opt), width(dir))
+	}
+}
