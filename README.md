@@ -41,35 +41,39 @@ which, like this library, has its own parsers and layout.
 | | gomermaidgo | mmdg 0.14.1 | go-mermaid 0.1.6 |
 |---|:---:|:---:|:---:|
 | Approach | own parsers and layout in Go | Mermaid 12.2.0 (JavaScript) in an embedded engine | own parsers and layout in Go |
-| Dependencies (Go modules) | 0 🥇 | 7 | 10 |
-| Program size (`go build`) | 8.4 MB 🥇 | 53.0 MB | 11.7 MB |
-| SVG: time per diagram[^bench] | 3.1 ms 🥇 | 31 ms | 3.9 ms |
-| SVG: memory per diagram | 8 MB 🥇 | 41 MB | 12 MB |
-| PDF: time per diagram | 4.6 ms 🥇 | 30 ms | no PDF |
-| PDF: memory per diagram | 16 MB 🥇 | 54 MB | no PDF |
-| PNG at scale 1: time per diagram | 12 ms 🥇 | 36 ms | 24 ms |
-| PNG at scale 1: memory per diagram | 18 MB | 44 MB | 16 MB 🥇 |
-| Output size, SVG, the same 62 diagrams | 0.20 MB 🥇 | 11.6 MB | 0.21 MB |
-| Output size, PNG, the same 62 diagrams | 2.4 MB | 2.1 MB | 1.9 MB 🥇 |
-| Output size, PDF, the same 86 diagrams | 1.7 MB 🥇 | 13.0 MB | no PDF |
+| Dependencies[^deps] | 0 🥇 | 7 | 10 |
+| Program size | 8.4 MB 🥇 | 53.0 MB | 11.7 MB |
+| SVG time[^bench] | 3.1 ms 🥇 | 31 ms | 3.9 ms |
+| SVG memory | 8 MB 🥇 | 41 MB | 12 MB |
+| PDF time | 4.6 ms 🥇 | 30 ms | no PDF |
+| PDF memory | 16 MB 🥇 | 54 MB | no PDF |
+| PNG time | 12 ms 🥇 | 36 ms | 24 ms |
+| PNG memory | 18 MB | 44 MB | 16 MB 🥇 |
+| SVG output[^size] | 0.20 MB 🥇 | 11.6 MB | 0.21 MB |
+| PNG output | 2.4 MB | 2.1 MB | 1.9 MB 🥇 |
+| PDF output | 1.7 MB 🥇 | 13.0 MB | no PDF |
 | Diagram types[^types] | 24 of Mermaid's 33 | 33 🥇 | 20 |
 | Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts | a documented subset per type |
-| This repository's corpus (89 diagrams) | 89 🥇 | 86 | 65 |
-| Public diagrams from GitHub[^wild] | 138 of 139 🥇 | 137 of 139 | 123 of 139 |
+| Corpus, 89 diagrams | 89 🥇 | 86 | 65 |
+| Public diagrams[^wild] | 138 of 139 🥇 | 137 of 139 | 123 of 139 |
 | Look | own, made for print; neutral by default | Mermaid's, byte for byte | own; Mermaid's theme names |
 | Page fitting | fit to A4, folding of long diagrams, chains and ranks | none | none |
 | SVG content | basic SVG 1.1 elements, no CSS, no scripts, no `foreignObject`; role classes on request | Mermaid's SVG with CSS and embedded fonts | basic SVG elements, no CSS, no scripts, no `foreignObject` |
 | PDF and PNG | own writers, real text in PDF, optional (build tags) | yes | PNG (separate package) |
 | Markdown documents | yes (`markdown.Embed`, CLI) | yes (CLI) | no |
 | `mermaid-cli` flags | yes | yes | own flags |
-| Output identical byte for byte on every run | yes | yes | yes (in our runs) |
+| Deterministic output | yes | yes | yes (in our runs) |
 | License | Apache 2.0 | MIT | MIT |
-| Popularity (GitHub, 2026-11-23) | new | 5 stars, 1 fork | 13 stars, 5 forks |
+| GitHub popularity[^pop] | new | 5 stars, 1 fork | 13 stars, 5 forks |
 
 [^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
-[^bench]: Median over the corpus diagrams all compared programs rendered (62 for SVG and PNG; 86 for PDF, which
-    go-mermaid does not write), best of three runs of the command-line program per file, process start included;
-    memory is the peak resident size. 🥇 marks the best value in a row. Measured on 2026-11-23 on one Apple-silicon laptop.
+[^deps]: Go modules the program needs; program size as built by `go build`.
+[^bench]: Time and memory per diagram, PNG at scale 1. Median over the corpus diagrams all compared programs rendered
+    (62 for SVG and PNG; 86 for PDF, which go-mermaid does not write), best of three runs of the command-line program
+    per file, process start included; memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon
+    laptop. 🥇 marks the best value in a row.
+[^size]: Total size of the files written for the same diagrams: 62 for SVG and PNG, 86 for PDF.
+[^pop]: Stars and forks on 2026-11-23.
 [^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here: `zenuml` (a separate Mermaid add-on) and eight
     types added in Mermaid 12 as beta: `venn`, `treeView`, `wardley`, `cynefin`, `railroad`, `eventmodeling`,
     `usecase` and `agentflow`. go-mermaid lists 20 types (`-list-types`); of those drawn here it lacks
