@@ -362,14 +362,20 @@ func (p *parser) resolve() error {
 		// Koniec.
 		if m := durationSpec.FindStringSubmatch(t.endSpec); m != nil {
 			n, _ := strconv.ParseFloat(m[1], 64)
+			// Czas dłuższy niż zakres wykresu (100 lat) i tak jest błędem (sprawdzenie zakresu niżej); 250 lat
+			// mieści się w time.Duration (do około 292 lat). Przycięcie
+			// przed zamianą na liczbę całkowitą: zamiana liczby spoza zakresu zależy od procesora
+			// (arm64 obcina, amd64 daje liczbę ujemną), a wynik ma być wszędzie ten sam.
+			if limit := 250 * 366 * 24 * float64(time.Hour) / float64(unitOf(m[2])); n > limit {
+				n = limit
+			}
 			switch m[2] {
 			case "M":
 				t.End = t.Start.AddDate(0, int(n), 0)
 			case "y":
 				t.End = t.Start.AddDate(int(n), 0, 0)
 			default:
-				unit := map[string]time.Duration{"ms": time.Millisecond, "s": time.Second, "m": time.Minute, "h": time.Hour, "d": 24 * time.Hour, "w": 7 * 24 * time.Hour}[m[2]]
-				t.End = p.addWork(t.Start, time.Duration(n*float64(unit)))
+				t.End = p.addWork(t.Start, time.Duration(n*float64(unitOf(m[2]))))
 			}
 			return true, nil
 		}
@@ -481,4 +487,26 @@ func (d *Diagram) Dump() string {
 		b.WriteByte('\n')
 	}
 	return b.String()
+}
+
+// unitOf zwraca długość jednostki czasu zadania; miesiąc i rok w przybliżeniu (31 i 366 dni), tylko do
+// ograniczenia liczby przed zamianą.
+func unitOf(u string) time.Duration {
+	switch u {
+	case "ms":
+		return time.Millisecond
+	case "s":
+		return time.Second
+	case "m":
+		return time.Minute
+	case "h":
+		return time.Hour
+	case "w":
+		return 7 * 24 * time.Hour
+	case "M":
+		return 31 * 24 * time.Hour
+	case "y":
+		return 366 * 24 * time.Hour
+	}
+	return 24 * time.Hour
 }
