@@ -1,0 +1,20 @@
+%% REQ: LAY-028 FLOW-030
+%% Tytuł: Kilka wyjść do jednego końca
+%% Sprawdza: trzy decyzje z wyjściem „Nie” do wspólnego zakończenia biegną z najmniejszą liczbą załamań, a napisy stoją przy liniach (niekoniecznie na środku); pola jednego toru stoją w jednej osi.
+swimlane-beta TD
+  subgraph zg [Zgłaszający]
+    start([Wniosek])
+    a{Kompletny?}
+    arch[(Rejestr wniosków)]
+  end
+  subgraph pr [Przegląd]
+    b{Zasadny?}
+    c{Budżet?}
+    wyk[Wykonanie]
+    odb[Odbiór]
+    kon([Koniec])
+  end
+  start --> a -->|Tak| b -->|Tak| c -->|Tak| wyk --> odb --> kon
+  a -->|Nie| kon
+  b -->|Nie| kon
+  c -->|Nie| kon

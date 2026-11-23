@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1289.36" height="168" viewBox="-12 -12 1289.36 168" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-d8e0a663"><path d="M-12 -12 L1277.36 -12 L1277.36 156 L-12 156 M181 21 L181 61 L278.83 61 L278.83 21 M193.9 83 L193.9 123 L265.93 123 L265.93 83 M476.83 62 L476.83 82 L552.41 82 L552.41 62 M737.41 42 L737.41 102 L813.87 102 L813.87 42 M987.87 42 L987.87 102 L1072.36 102 L1072.36 42"/></clipPath></defs>
+<defs><clipPath id="label-holes-c782757d"><path d="M-12 -12 L1277.36 -12 L1277.36 156 L-12 156 M181 31 L181 71 L278.83 71 L278.83 31 M193.9 83 L193.9 123 L265.93 123 L265.93 83 M476.83 62 L476.83 82 L552.41 82 L552.41 62 M737.41 42 L737.41 102 L813.87 102 L813.87 42 M987.87 42 L987.87 102 L1072.36 102 L1072.36 42"/></clipPath></defs>
 <path class="edge" d="M16 72 L51.6 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-d8e0a663)"><path class="edge" d="M150 60 L161.2 60 C165.6 60 169.2 56.4 169.2 52 L169.2 49 C169.2 44.6 172.8 41 177.2 41 L180 41 L279.83 41 L286.13 41 C290.53 41 294.13 44.6 294.13 49 L294.13 52 C294.13 56.4 297.73 60 302.13 60 L319.43 60" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-c782757d)"><path class="edge" d="M150 60 L319.43 60" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-d8e0a663)"><path class="edge" d="M158.4 84 L161.2 84 C165.6 84 169.2 87.6 169.2 92 L169.2 95 C169.2 99.4 172.8 103 177.2 103 L180 103 L279.83 103 L286.13 103 C290.53 103 294.13 99.4 294.13 95 L294.13 92 C294.13 87.6 297.73 84 302.13 84 L327.83 84" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-c782757d)"><path class="edge" d="M158.4 84 L161.2 84 C165.6 84 169.2 87.6 169.2 92 L169.2 95 C169.2 99.4 172.8 103 177.2 103 L180 103 L279.83 103 L295.83 103 C300.23 103 303.83 99.4 303.83 95 L303.83 92 C303.83 87.6 307.43 84 311.83 84 L327.83 84" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-d8e0a663)"><path class="edge" d="M445.83 72 L575.01 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-c782757d)"><path class="edge" d="M445.83 72 L575.01 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-d8e0a663)"><path class="edge" d="M706.41 72 L836.47 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-c782757d)"><path class="edge" d="M706.41 72 L836.47 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-d8e0a663)"><path class="edge" d="M956.87 72 L1094.96 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-c782757d)"><path class="edge" d="M956.87 72 L1094.96 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <path class="edge" d="M1201.36 72 L1236.96 72" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="60,72 48,66 48,78" fill="#3b4754"/>
@@ -38,8 +38,8 @@
 <text class="node-label" x="900.87" y="107.6" text-anchor="middle" fill="#1b1f24">&amp;</text>
 <text class="node-label" x="900.87" y="127.6" text-anchor="middle" fill="#1b1f24">&lt;znaczniki&gt;</text>
 <text class="node-label" x="1152.36" y="77.6" text-anchor="middle" fill="#1b1f24">Wycofany</text>
-<text class="edge-label" x="229.91" y="36.6" text-anchor="middle" fill="#1b1f24">prześlij do</text>
-<text class="edge-label" x="229.91" y="56.6" text-anchor="middle" fill="#1b1f24">sprawdzenia</text>
+<text class="edge-label" x="229.91" y="46.6" text-anchor="middle" fill="#1b1f24">prześlij do</text>
+<text class="edge-label" x="229.91" y="66.6" text-anchor="middle" fill="#1b1f24">sprawdzenia</text>
 <text class="edge-label" x="229.91" y="98.6" text-anchor="middle" fill="#1b1f24">zwróć z</text>
 <text class="edge-label" x="229.91" y="118.6" text-anchor="middle" fill="#1b1f24">uwagami</text>
 <text class="edge-label" x="514.62" y="77.6" text-anchor="middle" fill="#1b1f24">zatwierdź</text>

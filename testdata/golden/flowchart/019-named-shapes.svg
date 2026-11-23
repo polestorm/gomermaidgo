@@ -5,7 +5,7 @@
 </g>
 <g clip-path="url(#label-holes-48720d6e)"><path class="edge" d="M119 165.21 L119 261 L119 263.8 C119 268.2 122.6 271.8 127 271.8 L245 271.8 C249.4 271.8 253 275.4 253 279.8 L253 293.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<path class="edge" d="M203 52.4 L203 177 L203 199 C203 203.4 206.6 207 211 207 L265 207 C269.4 207 273 210.6 273 215 L273 237 L273 302" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M203 52.4 L203 69.7 C203 74.1 206.6 77.7 211 77.7 L265 77.7 C269.4 77.7 273 81.3 273 85.7 L273 92 L273 302" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M70 353 L70 388.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="95,92 89,80 101,80" fill="#3b4754"/>
 <polygon class="arrowhead" points="70,295 64,283 76,283" fill="#3b4754"/>

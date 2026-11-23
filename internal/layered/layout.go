@@ -111,6 +111,9 @@ type item struct {
 
 	w, h      float64 // rozmiar w osiach umownych
 	loopExtra float64 // miejsce po stronie +x na pętle własne
+	// textShift: środek etykiety krawędzi względem linii krawędzi (LAY-028: linia biegnie prosto,
+	// a etykieta stoi tam, gdzie się mieści, z linią przechodzącą przez jej pole).
+	textShift float64
 	band      float64 // wysokość warstwy, w której leży pole
 
 	lane        int // numer toru, gdy diagram ma tory
@@ -2071,6 +2074,59 @@ func (l *layouter) position(lv *level) (width, height float64) {
 					if it.real() && count[it.lane] == 1 {
 						ln := l.lanes[it.lane]
 						want[i], priority[i] = (ln.lo+ln.hi)/2+it.loopExtra/2, 2000
+					}
+				}
+				place(row, want, priority)
+			}
+			// Pola, które w rzędzie są jedynymi polami swojego toru (punkty pośrednie krawędzi się nie
+			// liczą), stają w jednej osi toru: w medianie swoich położeń. Punkty pośrednie ustępują.
+			solo := func(row []*item) map[*item]bool {
+				count := map[int]int{}
+				for _, it := range row {
+					if it.real() {
+						count[it.lane]++
+					}
+				}
+				out := map[*item]bool{}
+				for _, it := range row {
+					if it.real() && count[it.lane] == 1 {
+						out[it] = true
+					}
+				}
+				return out
+			}
+			at := map[int][]float64{}
+			// Zakres osi, w którym każde z tych pól mieści się w pasie (z marginesem jak w confine).
+			lo, hi := map[int]float64{}, map[int]float64{}
+			for _, row := range rows {
+				for it := range solo(row) {
+					at[it.lane] = append(at[it.lane], it.x-it.loopExtra/2)
+					ln := l.lanes[it.lane]
+					a, b := ln.lo+l.u(28)+it.w/2-it.loopExtra/2, ln.hi-l.u(28)-it.w/2-it.loopExtra/2
+					if v, ok := lo[it.lane]; !ok || a > v {
+						lo[it.lane] = a
+					}
+					if v, ok := hi[it.lane]; !ok || b < v {
+						hi[it.lane] = b
+					}
+				}
+			}
+			axis := map[int]float64{}
+			for k, xs := range at {
+				sort.Float64s(xs)
+				axis[k] = xs[len(xs)/2]
+				if lo[k] <= hi[k] {
+					axis[k] = math.Max(lo[k], math.Min(hi[k], axis[k]))
+				}
+			}
+			for _, row := range rows {
+				alone := solo(row)
+				want := make([]float64, len(row))
+				priority := make([]float64, len(row))
+				for i, it := range row {
+					want[i], priority[i] = it.x, 100
+					if alone[it] {
+						want[i], priority[i] = axis[it.lane]+it.loopExtra/2, 2000
 					}
 				}
 				place(row, want, priority)

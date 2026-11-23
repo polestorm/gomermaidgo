@@ -11,7 +11,7 @@
 <path class="edge" d="M243 398 L243 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M483 398 L483 411.3 C483 415.7 479.4 419.3 475 419.3 L279 419.3 C274.6 419.3 271 422.9 271 427.3 L271 451.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M257 468 L257 472.3 C257 476.7 253.4 480.3 249 480.3 L172 480.3 C167.6 480.3 164 483.9 164 488.3 L164 503.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M70 306 L70 398 L70 411.3 C70 415.7 73.6 419.3 78 419.3 L136 419.3 C140.4 419.3 144 422.9 144 427.3 L144 460 L144 503.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M70 306 L70 312.3 C70 316.7 73.6 320.3 78 320.3 L136 320.3 C140.4 320.3 144 323.9 144 328.3 L144 354 L144 503.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M144 556 L144 591.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon class="arrowhead" points="134,60 128,48 140,48" fill="#3b4754"/>
 <polygon class="arrowhead" points="134,148 128,136 140,136" fill="#3b4754"/>

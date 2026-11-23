@@ -588,6 +588,15 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 	// przejścia pozostałych krawędzi przez te same ramki.
 	all := map[*ledge][]routePoint{}
 	inside := func(e *ledge) bool { return chainBlock(lv) && e.u.kind == kindNode && e.v.kind == kindNode }
+	// LAY-028: punkty pośrednie wszystkich krawędzi poziomu wyrównywane kilka razy: przesunięcie jednej
+	// krawędzi zwalnia miejsce dla sąsiedniej.
+	for pass := 0; pass < 3; pass++ {
+		for _, e := range lv.edges {
+			if !e.part && !e.flat && e.e.Style != graph.Invisible && !inside(e) {
+				l.alignChain(e)
+			}
+		}
+	}
 	for _, e := range lv.edges {
 		if !e.part && e.e.Style != graph.Invisible && !inside(e) {
 			all[e] = l.route(e)
@@ -1516,7 +1525,7 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "edge", Segments: segments,
 		Stroke: colorLine, StrokeWidth: width, Dash: dash})
 	if e.label != nil {
-		l.drawLabel(e.label.text, e.label.x, e.label.y)
+		l.drawLabel(e.label.text, e.label.x+e.label.textShift, e.label.y)
 	}
 }
 
@@ -1603,9 +1612,9 @@ func (l *layouter) dummyRoom(lv *level, d *item) (lo, hi float64) {
 			continue
 		}
 		if o.x < d.x {
-			lo = math.Max(lo, o.x+o.w/2+gap(o))
+			lo = math.Max(lo, o.x+o.textShift+o.w/2+gap(o))
 		} else {
-			hi = math.Min(hi, o.x-o.w/2-gap(o))
+			hi = math.Min(hi, o.x+o.textShift-o.w/2-gap(o))
 		}
 	}
 	return lo, hi
@@ -1769,57 +1778,183 @@ func (l *layouter) drawFlatEdge(r *edgeRoute) {
 // Etykieta przesuwa się razem z punktami, jeśli mieści się w wolnym miejscu warstwy; punkty w torze
 // zostają w jego granicach.
 func (l *layouter) alignChain(e *ledge) {
-	if len(e.chain) == 0 || e.upperCont != nil || e.lowerCont != nil || e.sideExit != 0 ||
-		e.u.kind != kindNode || e.v.kind != kindNode {
+	if len(e.chain) == 0 || e.upperCont != nil || e.lowerCont != nil || e.u.kind != kindNode || e.v.kind != kindNode {
 		return
 	}
-	at := e.chain[0].x
+	at, same := e.chain[0].x, true
 	for _, d := range e.chain {
-		if math.Abs(d.x-at) >= straightTolerance {
-			return
-		}
+		same = same && math.Abs(d.x-at) < straightTolerance
 	}
 	ux, vx := e.u.nodeX()+e.upperPort, e.v.nodeX()+e.lowerPort
-	fits := func(x float64) bool {
-		for _, d := range e.chain {
-			lo, hi := l.dummyRoom(e.lv, d)
-			half := 0.0
-			if d.kind == kindLabel {
-				half = d.w / 2
-			}
-			if x-half < lo-0.5 || x+half > hi+0.5 {
-				return false
-			}
-			if l.lanes != nil && e.lv == l.levels[""] {
-				ln := l.lanes[d.lane]
-				if x-half < ln.lo+l.u(8) || x+half > ln.hi-l.u(8) {
-					return false
+	// Wyjście z bocznego wierzchołka rombu skręca zawsze: oś pierwszego odcinka jest dowolna, byle
+	// poziomy odcinek od wierzchołka nie wszedł na sąsiednie pole w rzędzie rombu.
+	sideLo, sideHi := math.Inf(-1), math.Inf(1)
+	if e.sideExit != 0 {
+		ux = math.NaN()
+		vertex := e.u.nodeX() + e.sideExit*e.u.nodeW()/2
+		if e.sideExit > 0 {
+			sideLo = vertex + l.u(16)
+		} else {
+			sideHi = vertex - l.u(16)
+		}
+		for _, r := range e.lv.ranks {
+			for _, o := range r {
+				if o == e.u || o.rank != e.u.rank {
+					continue
+				}
+				if e.sideExit > 0 && o.x > e.u.x {
+					sideHi = math.Min(sideHi, o.x+o.textShift-o.w/2-l.u(10))
+				}
+				if e.sideExit < 0 && o.x < e.u.x {
+					sideLo = math.Max(sideLo, o.x+o.textShift+o.w/2+l.u(10))
 				}
 			}
 		}
-		return true
 	}
-	for _, x := range []float64{vx, ux} {
-		if math.Abs(x-at) < straightTolerance {
-			l.alignEnd(e, x) // już w osi jednego z końców; drugi koniec może dojść bez uskoku
-			return
+	// Wspólny zakres osi dla wszystkich punktów: każdy zostaje między swoimi sąsiadami w warstwie
+	// (kolejność się nie zmienia, więc nie przybywa przecięć), a punkty w torze zostają w jego
+	// granicach. Etykieta nie musi stać na środku linii: linia ma tylko przechodzić przez jej pole,
+	// a pole mieścić się w wolnym miejscu warstwy.
+	lo, hi := math.Inf(-1), math.Inf(1)
+	type box = struct{ lo, hi float64 }
+	boxes := map[*item]box{}
+	ranges := make([]box, len(e.chain)) // zakres osi linii dla każdego punktu osobno
+	for k, d := range e.chain {
+		plo, phi := lo, hi
+		lo, hi = math.Inf(-1), math.Inf(1)
+		rlo, rhi := l.dummyRoom(e.lv, d)
+		margin := l.u(8)
+		if l.lanes != nil && e.lv == l.levels[""] {
+			ln := l.lanes[d.lane]
+			rlo, rhi = math.Max(rlo, ln.lo+l.u(4)), math.Min(rhi, ln.hi-l.u(4))
+		}
+		if d.kind == kindLabel {
+			if rhi-rlo < d.w {
+				return // etykieta nie mieści się w żadnym położeniu
+			}
+			boxes[d] = box{rlo, rhi}
+			margin = l.u(10)
+		}
+		lo, hi = math.Max(lo, rlo+margin-l.u(8)), math.Min(hi, rhi-margin+l.u(8))
+		if d.kind == kindLabel {
+			lo, hi = math.Max(lo, rlo+l.u(10)), math.Min(hi, rhi-l.u(10))
+		}
+		if k == 0 {
+			lo, hi = math.Max(lo, sideLo), math.Min(hi, sideHi)
+		}
+		ranges[k] = box{lo, hi}
+		lo, hi = math.Max(plo, lo), math.Min(phi, hi)
+	}
+	fits := func(x float64) bool { return x >= lo-0.5 && x <= hi+0.5 }
+	move := func(x float64) {
+		for _, d := range e.chain {
+			d.x, d.textShift = x, 0
+			if b, ok := boxes[d]; ok {
+				c := math.Max(b.lo+d.w/2, math.Min(b.hi-d.w/2, x))
+				d.textShift = c - x
+			}
+		}
+		l.alignEnd(e, x)
+	}
+	if same {
+		for _, x := range []float64{vx, ux} {
+			if math.Abs(x-at) < straightTolerance {
+				l.alignEnd(e, x) // już w osi jednego z końców; drugi koniec może dojść bez uskoku
+				return
+			}
 		}
 	}
 	// Najpierw oś dolnego końca: jedyny skręt wypada wtedy przy początku, a grot dochodzi prosto.
-	targets := []float64{vx, ux}
-	if math.Abs(ux-vx) < straightTolerance {
-		targets = targets[:1]
-	}
-	for _, x := range targets {
+	for _, x := range []float64{vx, ux} {
 		if fits(x) {
-			for _, d := range e.chain {
-				d.x = x
-			}
-			l.alignEnd(e, x)
+			move(x)
 			return
 		}
 	}
-	l.alignEnd(e, at) // punkty nie mają dokąd przejść: końce, które mogą, dochodzą do nich prosto
+	if same {
+		l.alignEnd(e, at) // punkty nie mają dokąd przejść: końce, które mogą, dochodzą do nich prosto
+		return
+	}
+	// Punkty w różnych osiach (każda warstwa po swojemu, także pod etykietą): ułożenie z najmniejszą
+	// liczbą załamań, licząc skręt przy początku i przy końcu; przy remisie zostaje obecne.
+	if xs := l.fewestBends(e, ranges, ux, vx); xs != nil {
+		for k, d := range e.chain {
+			d.x, d.textShift = xs[k], 0
+			if b, ok := boxes[d]; ok {
+				d.textShift = math.Max(b.lo+d.w/2, math.Min(b.hi-d.w/2, xs[k])) - xs[k]
+			}
+		}
+	}
+}
+
+// fewestBends szuka położeń punktów pośrednich krawędzi z najmniejszą liczbą załamań. Kolejne punkty
+// tworzą odcinek prosty, dopóki ich zakresy mają część wspólną; odcinki są budowane od dołu, a dolny
+// może zostać przy osi dolnego końca (grot dochodzi wtedy prosto) albo sięgać jak najwyżej. Każdy
+// odcinek staje jak najbliżej następnego, ale nie o drobny uskok (przejście co najmniej u(16)); górny
+// w osi górnego końca, jeśli może. Zwraca nil, gdy żadne ułożenie nie ma mniej załamań niż obecne.
+func (l *layouter) fewestBends(e *ledge, ranges []struct{ lo, hi float64 }, ux, vx float64) []float64 {
+	n := len(e.chain)
+	bends := func(xs []float64) int {
+		c, prev := 0, ux
+		for _, x := range append(append([]float64(nil), xs...), vx) {
+			if !math.IsNaN(prev) && math.Abs(x-prev) >= straightTolerance {
+				c++
+			}
+			prev = x
+		}
+		return c
+	}
+	now := make([]float64, n)
+	for k, d := range e.chain {
+		now[k] = d.x
+	}
+	for _, r := range ranges {
+		if r.lo > r.hi {
+			return nil // punkt nie ma żadnego miejsca: zostaje, jak był
+		}
+	}
+	clamp := func(lo, hi, x float64) float64 { return math.Max(lo, math.Min(hi, x)) }
+	plan := func(keepV bool) []float64 {
+		xs := make([]float64, n)
+		end := n
+		next := vx
+		first := true
+		for end > 0 {
+			lo, hi := ranges[end-1].lo, ranges[end-1].hi
+			from := end - 1
+			for from > 0 {
+				nlo, nhi := math.Max(lo, ranges[from-1].lo), math.Min(hi, ranges[from-1].hi)
+				if nlo > nhi || (first && keepV && (vx < nlo || vx > nhi) && vx >= lo && vx <= hi) {
+					break
+				}
+				lo, hi, from = nlo, nhi, from-1
+			}
+			x := clamp(lo, hi, next)
+			if d := math.Abs(x - next); !first && d >= straightTolerance && d < l.u(16) {
+				for _, c := range []float64{next - l.u(16), next + l.u(16)} {
+					if c >= lo && c <= hi {
+						x = c
+						break
+					}
+				}
+			}
+			if from == 0 && ux >= lo && ux <= hi && math.Abs(x-next) >= straightTolerance {
+				x = ux // górny odcinek w osi górnego końca: jego załamanie i tak jest potrzebne
+			}
+			for k := from; k < end; k++ {
+				xs[k] = x
+			}
+			next, end, first = x, from, false
+		}
+		return xs
+	}
+	best, score := []float64(nil), bends(now)
+	for _, keepV := range []bool{true, false} {
+		if xs := plan(keepV); bends(xs) < score {
+			best, score = xs, bends(xs)
+		}
+	}
+	return best
 }
 
 // alignEnd usuwa uskok przy końcu krawędzi: punkt zaczepienia przesuwa się w oś x jej punktów
@@ -1838,6 +1973,9 @@ func (l *layouter) alignEnd(e *ledge, x float64) {
 		return n == 1
 	}
 	for _, upper := range []bool{true, false} {
+		if upper && e.sideExit != 0 {
+			continue
+		}
 		it, port := e.v, &e.lowerPort
 		if upper {
 			it, port = e.u, &e.upperPort

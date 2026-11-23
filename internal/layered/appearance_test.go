@@ -873,15 +873,23 @@ func TestChainFollowsPort(t *testing.T) {
 // Dwie różne krawędzie nie biegną po sobie: żadne ich proste odcinki nie leżą na jednej prostej
 // i nie zachodzą na siebie. Sprawdzane na diagramach torów w czterech kierunkach układu (w części
 // zwykłych schematów takie miejsca jeszcze są: krawędzie równoległe i wejścia w jeden punkt).
+// Wspólne wejście kilku krawędzi w jeden punkt pola nie jest biegiem po sobie.
 func TestEdgesDoNotShareRuns(t *testing.T) {
 	for name, sc := range corpusScenes(t) {
-		if !strings.Contains(name, "swim") && !strings.Contains(name, "031-") && !strings.Contains(name, "032-") {
+		if !strings.Contains(name, "swim") && !strings.Contains(name, "031-") && !strings.Contains(name, "032-") && !strings.Contains(name, "033-") {
 			continue
 		}
 		ss := straights(sc)
+		// Krawędzie zbiegające się do jednego punktu pola (zaokrąglony bok bez miejsca na rozsunięcie)
+		// dzielą tylko ostatni kawałek przed grotem: to wspólne wejście, nie bieg po sobie.
+		ends := map[int]scene.Point{}
+		for i, e := range byRole(sc, "edge") {
+			ends[i] = e.Segments[len(e.Segments)-1].To
+		}
+		near := func(p, q scene.Point) bool { return math.Abs(p.X-q.X) < 0.5 && math.Abs(p.Y-q.Y) < 0.5 }
 		for i, a := range ss {
 			for _, b := range ss[i+1:] {
-				if a.edge == b.edge {
+				if a.edge == b.edge || (near(a.b, ends[a.edge]) && near(b.b, ends[b.edge]) && near(a.b, b.b)) {
 					continue
 				}
 				switch {
@@ -920,5 +928,55 @@ func TestLaneLookAndLooseNode(t *testing.T) {
 	lanes := byRole(colored, "lane")
 	if len(lanes) != 2 || lanes[0].Fill == "" || lanes[0].Fill == lanes[1].Fill {
 		t.Errorf("coloured lanes should have distinct fills: %+v", lanes)
+	}
+}
+
+// bends liczy załamania krawędzi: zmiany kierunku między kolejnymi prostymi odcinkami (odcinki
+// współliniowe, rozdzielone mostkiem, liczą się jako jeden).
+func bends(e scene.Item) int {
+	var dirs []byte
+	at := e.Segments[0].To
+	for _, sg := range e.Segments[1:] {
+		if sg.Cmd == 'L' {
+			dx, dy := sg.To.X-at.X, sg.To.Y-at.Y
+			d := byte('v')
+			if math.Abs(dx) > math.Abs(dy) {
+				d = 'h'
+			}
+			if (math.Abs(dx) > 0.5 || math.Abs(dy) > 0.5) && (len(dirs) == 0 || dirs[len(dirs)-1] != d) {
+				dirs = append(dirs, d)
+			}
+		}
+		at = sg.To
+	}
+	return max(0, len(dirs)-1)
+}
+
+// REQ: LAY-028 FLOW-030
+// Trzy wyjścia „Nie” do wspólnego zakończenia biegną z dwoma załamaniami (w bok, w dół, w bok, w dół);
+// pola toru Przegląd, które w rzędzie są same, stoją w jednej osi.
+func TestExitsWithFewestBends(t *testing.T) {
+	sc := natural(t, "flowchart/033-swimlane-exits.mmd")
+	end := nodeOf(t, sc, "Koniec")
+	long := 0
+	for _, e := range byRole(sc, "edge") {
+		last := e.Segments[len(e.Segments)-1].To
+		first := e.Segments[0].To
+		if math.Abs(last.Y-end.Y0) > 14 || first.Y > end.Y0-300 {
+			continue // tylko długie krawędzie do Końca
+		}
+		long++
+		if b := bends(e); b > 4 {
+			t.Errorf("edge into Koniec from (%.0f, %.0f) has %d bends", first.X, first.Y, b)
+		}
+	}
+	if long < 3 {
+		t.Fatalf("%d long edges into Koniec", long)
+	}
+	axis := centerX(nodeOf(t, sc, "Zasadny?"))
+	for _, label := range []string{"Budżet?", "Odbiór", "Koniec"} {
+		if x := centerX(nodeOf(t, sc, label)); math.Abs(x-axis) > 0.5 {
+			t.Errorf("%q stands at %.1f, the lane axis at %.1f", label, x, axis)
+		}
 	}
 }
