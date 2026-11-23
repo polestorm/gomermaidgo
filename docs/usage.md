@@ -20,8 +20,7 @@ svg, err := mermaid.Render(source)
 ```
 
 `Render` takes the Mermaid source and options (`mermaid.With…`) and returns the SVG. The same source and options
-always give the same SVG, byte for byte. A construct outside the supported profile ([`profile.md`](profile.md), in
-Polish) is an error with a line number and a fixed code, never a partial drawing.
+always give the same SVG, byte for byte. A construct outside the supported profile ([`profile.md`](profile.md)) is an error with a line number and a fixed code, never a partial drawing.
 
 ## Fonts
 

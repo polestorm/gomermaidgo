@@ -30,7 +30,7 @@ and [`go-mermaid`](https://github.com/zkrebbekx/go-mermaid) (details in [At a gl
 - [Usage](docs/usage.md): fonts, colours and themes, fitting to A4, PDF, PNG, command line, Markdown
 - [Gallery](docs/gallery/README.md): [page fitting](docs/gallery/page-fitting.md),
   [all diagram types](docs/gallery/types.md), [scripts and symbols](docs/gallery/scripts.md)
-- [Supported syntax](docs/profile.md) (in Polish)
+- [Supported syntax](docs/profile.md)
 
 ## At a glance
 
@@ -109,7 +109,8 @@ with a line number, never a partial drawing.
 
 - [`docs/usage.md`](docs/usage.md): how to use the library and the command.
 - [`docs/gallery/`](docs/gallery/README.md): pictures with their sources.
-- In Polish: [`docs/profile.md`](docs/profile.md) (supported syntax), [`docs/provenance.md`](docs/provenance.md)
+- [`docs/profile.md`](docs/profile.md): supported syntax and its limits.
+- In Polish: [`docs/provenance.md`](docs/provenance.md)
   (sources and clean-room rules), [`docs/testing.md`](docs/testing.md) (corpus, invariants, comparison with
   reference renderers), [`requirements/`](requirements/) (numbered requirements), [`docs/adr/`](docs/adr/)
   (decisions).

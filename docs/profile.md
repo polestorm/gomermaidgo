@@ -1,681 +1,695 @@
-# Profil składni
+# Syntax profile
 
-Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” daje błąd z numerem linii.
+The supported range of Mermaid syntax. Anything not listed in a "Supported" table is an error with a line number.
 
-## Wspólne dla wszystkich typów
+## Common to all types
 
-- Blok nagłówkowy YAML między liniami `---` jest przyjmowany; `title` daje tytuł nad rysunkiem (COM-001).
-- Dyrektywa `%%{init: … }%%`, także wieloliniowa, jest przyjmowana (COM-002).
-- Z bloku nagłówkowego i dyrektywy czytany jest motyw (`theme`), cztery zmienne motywu (`primaryColor`,
-  `lineColor`, `primaryTextColor`, `background`) i ustawienia łamania napisów (COM-008); reszta konfiguracji jest
-  pomijana, zob. tabela „Konfiguracja Mermaid” niżej. Motywy są własne, pod nazwami
-  Mermaid: `neutral` (domyślny), `default` (kolorowy), `forest`, `dark`, `base`. Wywołujący może narzucić motyw
-  (`WithTheme`, flaga `-t`), co wyłącza wybór ze źródła (THM-001…004, ADR 0005).
-- Numery linii w komunikatach błędów liczą się od początku źródła, razem z nagłówkiem (COM-003).
+- A YAML front matter block between `---` lines is accepted; `title` gives a title above the drawing (COM-001).
+- The `%%{init: … }%%` directive, including a multi-line one, is accepted (COM-002).
+- From the front matter and the directive, the theme (`theme`), four theme variables (`primaryColor`,
+  `lineColor`, `primaryTextColor`, `background`) and the text wrapping settings (COM-008) are read; the rest of the
+  configuration is ignored, see the "Mermaid configuration" table below. The themes are this library's own, under
+  Mermaid's names: `neutral` (the default), `default` (colours), `forest`, `dark`, `base`. The caller can impose a theme
+  (`WithTheme`, the `-t` flag), which disables the choice made in the source (THM-001…004, ADR 0005).
+- Line numbers in error messages count from the start of the source, front matter included (COM-003).
 
-### Konfiguracja Mermaid
+### Mermaid configuration
 
-Co dzieje się z kluczami konfiguracji zapisanymi w źródle (blok `---` z `config:` albo `%%{init}%%`). Klucze spoza
-tabeli są pomijane bez błędu. Opcje wywołania biblioteki (`WithTheme`, `WithFont`, `WithFit` itd.) mają pierwszeństwo
-przed źródłem tam, gdzie oba ustawiają to samo.
+What happens to configuration keys written in the source (a `---` block with `config:`, or `%%{init}%%`). Keys not in
+the table are ignored without an error. Library call options (`WithTheme`, `WithFont`, `WithFit` and so on) take
+precedence over the source where both set the same thing.
 
-| Klucz Mermaid | U nas | Uwagi |
+| Mermaid key | Here | Notes |
 |---|---|---|
-| `theme`, `themeVariables` (`primaryColor`, `lineColor`, `primaryTextColor`, `background`) | obsługiwane | motywy własne pod nazwami Mermaid (THM-001…004) |
-| `markdownAutoWrap`, `wrap` | obsługiwane | `false` wyłącza automatyczne łamanie napisów diagramów grafowych; `wrap: true` łamie teksty w sekwencji (COM-008) |
-| `flowchart.wrappingWidth` | obsługiwane | granica łamania napisów w polach i na krawędziach (COM-008) |
-| `darkMode` | przez motyw | odpowiednik: `theme: dark` |
-| `fontFamily`, `fontSize` | tylko z wywołania | `WithFont`, `WithFontSize`; źródło nie zmienia kroju dokumentu |
-| `layout` (`dagre`, `elk`), `elk.*` | pomijane | własny układ warstwowy; własne dyrektywy `%% layout: swimlanes`, `fit`/`nofit`, `fold`/`nofold`, `fold-chains`, `fold-ranks` |
-| `look` (`handDrawn`), `handDrawnSeed` | pomijane | jeden wygląd rysunku |
-| `flowchart.nodeSpacing`, `rankSpacing`, `padding`, `diagramPadding`, `subGraphTitleMargin`, `curve` | pomijane | odstępy stałe, względem pisma; krzywe: `WithCurvedEdges` |
-| `maxTextSize`, `maxEdges` | pomijane | własne, stałe limity; źródło jest danymi z zewnątrz i nie może ich podnieść |
-| `htmlLabels`, `securityLevel`, `startOnLoad`, `logLevel`, `deterministicIds`, `deterministicIDSeed`, `themeCSS`, `suppressErrorRendering`, `arrowMarkerAbsolute`, `secure`, `legacyMathML`, `forceLegacyMathML` | nie dotyczą | dotyczą przeglądarki; wynik nie ma HTML, CSS, skryptów ani losowych identyfikatorów |
-| klucze typów diagramów (`sequence.*`, `gantt.*`, `pie.*` itd.) | pomijane | poza wymienionymi (`sequence.wrap`); pominięte klucze są wymienione przy typach niżej |
+| `theme`, `themeVariables` (`primaryColor`, `lineColor`, `primaryTextColor`, `background`) | supported | own themes under Mermaid's names (THM-001…004) |
+| `markdownAutoWrap`, `wrap` | supported | `false` turns off automatic text wrapping in graph diagrams; `wrap: true` wraps texts in a sequence diagram (COM-008) |
+| `flowchart.wrappingWidth` | supported | the wrapping limit for text in fields and on edges (COM-008) |
+| `darkMode` | through the theme | equivalent: `theme: dark` |
+| `fontFamily`, `fontSize` | only from the call | `WithFont`, `WithFontSize`; the source does not change the document's typeface |
+| `layout` (`dagre`, `elk`), `elk.*` | ignored | own layered layout; own directives `%% layout: swimlanes`, `fit`/`nofit`, `fold`/`nofold`, `fold-chains`, `fold-ranks` |
+| `look` (`handDrawn`), `handDrawnSeed` | ignored | a single drawing style |
+| `flowchart.nodeSpacing`, `rankSpacing`, `padding`, `diagramPadding`, `subGraphTitleMargin`, `curve` | ignored | fixed spacing, relative to the font; curves: `WithCurvedEdges` |
+| `maxTextSize`, `maxEdges` | ignored | own fixed limits; the source is external data and cannot raise them |
+| `htmlLabels`, `securityLevel`, `startOnLoad`, `logLevel`, `deterministicIds`, `deterministicIDSeed`, `themeCSS`, `suppressErrorRendering`, `arrowMarkerAbsolute`, `secure`, `legacyMathML`, `forceLegacyMathML` | not applicable | they concern the browser; the output has no HTML, CSS, scripts or random identifiers |
+| diagram type keys (`sequence.*`, `gantt.*`, `pie.*` etc.) | ignored | except those listed (`sequence.wrap`); ignored keys are listed under the types below |
 
-## Diagram sekwencji (`sequenceDiagram`)
+## Sequence diagram (`sequenceDiagram`)
 
-### Obsługiwane
+### Supported
 
-| Element | Zapis | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek, komentarze | `sequenceDiagram`, `%% komentarz` | SEQ-001 |
-| uczestnik, aktor, alias | `participant A`, `actor A`, `participant A as Etykieta` | SEQ-002 |
-| uczestnik domyślny | pierwsze użycie w komunikacie albo notatce | SEQ-002 |
-| komunikat | `A->>B: tekst`; strzałki `->`, `-->`, `->>`, `-->>`, `-x`, `--x`, `-)`, `--)`, `<<->>`, `<<-->>` | SEQ-003 |
-| komunikat do siebie | `A->>A: tekst` | SEQ-003 |
-| notatka | `Note right of A: t`, `Note left of A: t`, `Note over A: t`, `Note over A,B: t` | SEQ-004 |
-| aktywacja | `activate A`, `deactivate A`, `A->>+B: t`, `B-->>-A: t` | SEQ-005 |
-| bloki | `loop`, `alt`/`else`, `opt`, `par`/`and`, `critical`/`option`, `break`, zamykane `end`; dowolnie zagnieżdżone | SEQ-006, SEQ-007 |
-| wyróżnienie tła | `rect rgb(r, g, b)`, `rect rgba(r, g, b, a)`, `rect #rrggbb` … `end` | SEQ-007 |
-| numeracja | `autonumber`, `autonumber 10`, `autonumber 10 5` (początek, krok) | SEQ-008 |
-| grupy uczestników | `box [kolor] [tytuł]` … `end`; kolor: `rgb()`, `rgba()`, `#hex`, nazwa podstawowa, `transparent` | SEQ-014 |
-| tworzenie i kończenie uczestnika | `create participant A`, `create actor A`, `destroy A` (każde przed komunikatem, którego dotyczy) | SEQ-015 |
-| dostępność | `accTitle: tekst`, `accDescr: tekst`, `accDescr { … }` → `title` i `desc` w SVG | SEQ-016 |
-| tytuł | `title Tekst` | SEQ-010 |
-| podział linii w tekście | `<br/>`, `<br>` | SEQ-010 |
+| header, comments | `sequenceDiagram`, `%% komentarz` | SEQ-001 |
+| participant, actor, alias | `participant A`, `actor A`, `participant A as Etykieta` | SEQ-002 |
+| implicit participant | first use in a message or a note | SEQ-002 |
+| message | `A->>B: tekst`; arrows `->`, `-->`, `->>`, `-->>`, `-x`, `--x`, `-)`, `--)`, `<<->>`, `<<-->>` | SEQ-003 |
+| message to self | `A->>A: tekst` | SEQ-003 |
+| note | `Note right of A: t`, `Note left of A: t`, `Note over A: t`, `Note over A,B: t` | SEQ-004 |
+| activation | `activate A`, `deactivate A`, `A->>+B: t`, `B-->>-A: t` | SEQ-005 |
+| blocks | `loop`, `alt`/`else`, `opt`, `par`/`and`, `critical`/`option`, `break`, closed with `end`; nested freely | SEQ-006, SEQ-007 |
+| background highlight | `rect rgb(r, g, b)`, `rect rgba(r, g, b, a)`, `rect #rrggbb` … `end` | SEQ-007 |
+| numbering | `autonumber`, `autonumber 10`, `autonumber 10 5` (start, step) | SEQ-008 |
+| participant groups | `box [kolor] [tytuł]` … `end`; colour: `rgb()`, `rgba()`, `#hex`, a basic colour name, `transparent` | SEQ-014 |
+| creating and destroying a participant | `create participant A`, `create actor A`, `destroy A` (each before the message it applies to) | SEQ-015 |
+| accessibility | `accTitle: tekst`, `accDescr: tekst`, `accDescr { … }` → `title` and `desc` in the SVG | SEQ-016 |
+| title | `title Tekst` | SEQ-010 |
+| line break in text | `<br/>`, `<br>` | SEQ-010 |
 
-### Poza profilem (błąd `sequence-unsupported`)
+### Outside the profile (error `sequence-unsupported`)
 
 `link`, `links`, `properties`, `details`.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- średnik nie rozdziela instrukcji i kody encji (`#35;`) nie są rozwijane: tekst trafia do rysunku dosłownie;
-- zawijanie tekstu tylko dla całego diagramu (`wrap: true` w konfiguracji, COM-008), bez przedrostka `wrap:` w treści komunikatu; dyrektywy `%%{init}%%` i blok `---` działają jak dla wszystkich typów (patrz wyżej);
-- limity: 50 uczestników, 2000 instrukcji, 20 poziomów zagnieżdżenia bloków;
-- dezaktywacja nieaktywnego uczestnika jest błędem, także w zapisie skróconym;
-- uczestnik zakończony przez `destroy` kończy się krzyżykiem i nie ma stopki; Mermaid rysuje w tym miejscu jego pole
-  po raz drugi. Gdy komunikat kończący ma grot-krzyżyk (`-x`), grot i znak zakończenia są jednym krzyżykiem.
-  Użycie takiego uczestnika po zakończeniu jest błędem;
-- etykieta komunikatu do siebie stoi nad pętlą; u ostatniego uczestnika kończy się nad pętlą i rośnie w lewo, żeby
-  nie poszerzać rysunku;
-- wygląd jest własny; motywy i zmienne motywu nie są obsługiwane. Kryterium wyglądu jest czytelność, nie zgodność
-  z notacją UML: ramki bloków (`alt`, `loop`, `opt` i pozostałe) są kropkowane, żeby nie konkurowały z uczestnikami
-  i komunikatami, a komunikat do siebie jest jedną krzywą;
-- kolory i cienie są opcjami wywołującego (`WithColors`, `WithShadows`), domyślnie wyłączonymi: w diagramie sekwencji
-  uczestnicy dostają kolejne kolory palety, w grafach kolor mówi, czym jest węzeł (krok, decyzja, początek i koniec,
-  dane, wejście i wyjście); cień jest zwykłym kształtem, nie filtrem.
+- a semicolon does not separate statements and entity codes (`#35;`) are not expanded: the text goes into the drawing
+  verbatim;
+- text wrapping only for the whole diagram (`wrap: true` in the configuration, COM-008), without the `wrap:` prefix in
+  the message text; `%%{init}%%` directives and the `---` block work as for all types (see above);
+- limits: 50 participants, 2000 statements, 20 levels of block nesting;
+- deactivating an inactive participant is an error, in the shorthand form too;
+- a participant ended by `destroy` ends with a cross and has no footer; Mermaid draws its box a second time at that
+  point. When the ending message has a cross arrowhead (`-x`), the arrowhead and the end mark are a single cross.
+  Using such a participant after it has ended is an error;
+- the label of a message to self stands above the loop; for the last participant it ends above the loop and grows to
+  the left, so as not to widen the drawing;
+- the look is this library's own; themes and theme variables are not supported. The criterion for the look is
+  legibility, not conformance to UML notation: block frames (`alt`, `loop`, `opt` and the others) are dotted so they
+  do not compete with participants and messages, and a message to self is a single curve;
+- colours and shadows are caller options (`WithColors`, `WithShadows`), off by default: in a sequence diagram
+  participants get successive palette colours, in graphs the colour says what a node is (a step, a decision, start and
+  end, data, input and output); a shadow is an ordinary shape, not a filter.
 
-## Schemat blokowy (`flowchart`, `graph`)
+## Flowchart (`flowchart`, `graph`)
 
-Stan: rysowany układem warstwowym (`internal/layered`).
+Status: drawn with the layered layout (`internal/layered`).
 
-### Obsługiwane
+### Supported
 
-| Element | Zapis | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek i kierunek | `flowchart TD`, `graph LR`; kierunki `TB`, `TD`, `BT`, `LR`, `RL` | FLOW-001 |
-| węzeł bez kształtu | `A` (prostokąt, etykietą jest identyfikator) | FLOW-002 |
-| kształty | `A[t]`, `A(t)`, `A([t])`, `A[[t]]`, `A[(t)]`, `A((t))`, `A(((t)))`, `A>t]`, `A{t}`, `A{{t}}`, `A[/t/]`, `A[\t\]`, `A[/t\]`, `A[\t/]` | FLOW-002 |
-| krawędzie | `-->`, `---`, `-.->`, `-.-`, `==>`, `===`, `--o`, `--x`, `<-->`, `o--o`, `x--x`, `~~~` | FLOW-003 |
-| etykieta krawędzi | `A -->\|tekst\| B`, `A -- tekst --> B`, `A == tekst ==> B`, `A -. tekst .-> B` | FLOW-004 |
-| długość krawędzi | dodatkowe znaki: `--->`, `----`, `-..->`, `===>`, `~~~~` | FLOW-005 |
-| łańcuchy i grupy | `A --> B --> C`, `A & B --> C & D` | FLOW-006 |
-| podgrafy | `subgraph id [tytuł]`, `subgraph id`, `subgraph tytuł ze spacjami` … `end`; `direction` w podgrafie; krawędź do podgrafu | FLOW-007 |
-| tekst | cudzysłów dla nawiasów i znaków specjalnych, `<br/>` | FLOW-008 |
-| średnik | rozdziela instrukcje, może kończyć linię | FLOW-009 |
-| rysunek | kształty, układ w czterech kierunkach, teksty z łamaniem | FLOW-012, FLOW-013 |
-| wygląd ze źródła | `classDef nazwa właściwości`, `class A,B nazwa`, `A:::nazwa`, `style A właściwości`, `linkStyle 0,1 właściwości`, `linkStyle default …`; właściwości: `fill`, `stroke`, `color`, `stroke-width`, `stroke-dasharray` | FLOW-017 |
-| identyfikatory, Markdown, dostępność | `krok-1.a`; ``"`tekst **pogrubiony** i *pochylony*`"``; `accTitle`, `accDescr` | FLOW-018 |
-| kierunek podgrafu | `direction LR` w podgrafie niepołączonym krawędziami z resztą | FLOW-019 |
-| tory | komentarz `%% layout: swimlanes` przed albo po nagłówku: podgrafy najwyższego poziomu stają się pasami | FLOW-021 |
-| diagram torów | nagłówek `swimlane-beta [kierunek]`: tory z podgrafów najwyższego poziomu; pole w kilku torach zostaje w pierwszym; podgraf w torze jest częścią toru, bez ramki | FLOW-026 |
+| header and direction | `flowchart TD`, `graph LR`; directions `TB`, `TD`, `BT`, `LR`, `RL` | FLOW-001 |
+| node without a shape | `A` (a rectangle; the identifier is the label) | FLOW-002 |
+| shapes | `A[t]`, `A(t)`, `A([t])`, `A[[t]]`, `A[(t)]`, `A((t))`, `A(((t)))`, `A>t]`, `A{t}`, `A{{t}}`, `A[/t/]`, `A[\t\]`, `A[/t\]`, `A[\t/]` | FLOW-002 |
+| edges | `-->`, `---`, `-.->`, `-.-`, `==>`, `===`, `--o`, `--x`, `<-->`, `o--o`, `x--x`, `~~~` | FLOW-003 |
+| edge label | `A -->\|tekst\| B`, `A -- tekst --> B`, `A == tekst ==> B`, `A -. tekst .-> B` | FLOW-004 |
+| edge length | extra characters: `--->`, `----`, `-..->`, `===>`, `~~~~` | FLOW-005 |
+| chains and groups | `A --> B --> C`, `A & B --> C & D` | FLOW-006 |
+| subgraphs | `subgraph id [tytuł]`, `subgraph id`, `subgraph tytuł ze spacjami` … `end`; `direction` in a subgraph; an edge to a subgraph | FLOW-007 |
+| text | quotes for brackets and special characters, `<br/>` | FLOW-008 |
+| semicolon | separates statements, may end a line | FLOW-009 |
+| drawing | shapes, layout in four directions, wrapped texts | FLOW-012, FLOW-013 |
+| styling from the source | `classDef nazwa właściwości`, `class A,B nazwa`, `A:::nazwa`, `style A właściwości`, `linkStyle 0,1 właściwości`, `linkStyle default …`; properties: `fill`, `stroke`, `color`, `stroke-width`, `stroke-dasharray` | FLOW-017 |
+| identifiers, Markdown, accessibility | `krok-1.a`; ``"`tekst **pogrubiony** i *pochylony*`"``; `accTitle`, `accDescr` | FLOW-018 |
+| subgraph direction | `direction LR` in a subgraph not connected by edges to the rest | FLOW-019 |
+| lanes | the comment `%% layout: swimlanes` before or after the header: top-level subgraphs become lanes | FLOW-021 |
+| swimlane diagram | the header `swimlane-beta [kierunek]`: lanes from top-level subgraphs; a field in several lanes stays in the first; a subgraph in a lane is part of the lane, without a frame | FLOW-026 |
 
-### Dopasowanie do strony
+### Fitting to the page
 
-Diagramy układu warstwowego są domyślnie dopasowywane do strony A4 (tryb `auto`): rysunek co najmniej dwa razy
-szerszy niż wysoki jest układany jeszcze raz z węższymi polami, w których tekst łamie się częściej (LAY-018).
-`%% layout: nofit` wyłącza dopasowanie, `%% layout: fit` włącza je dla każdego rysunku, który nie mieści się na
-stronie; to samo opcje `WithFit` i `WithFitRatio` oraz flagi `-fit` i `-fit-ratio`.
+Layered layout diagrams are fitted to an A4 page by default (`auto` mode): a drawing at least twice as wide as it is
+tall is laid out again with narrower fields, in which text wraps more often (LAY-018).
+`%% layout: nofit` turns fitting off, `%% layout: fit` turns it on for every drawing that does not fit on the
+page; the same is done by the `WithFit` and `WithFitRatio` options and the `-fit` and `-fit-ratio` flags.
 
-Długi, prosty diagram LR albo TB jest domyślnie zwijany w kilka rzędów albo kolumn połączonych łącznikami
-(LAY-019, ADR 0008): sposób `return` (każdy rząd w tym samym kierunku) albo `snake` (co drugi rząd odwrócony),
-wybierany linią `%% layout: fold snake` albo `fold return`; `%% layout: nofold` wyłącza zwijanie.
+A long, simple LR or TB diagram is folded by default into several rows or columns joined by connectors
+(LAY-019, ADR 0008): the `return` style (every row in the same direction) or `snake` (every other row reversed),
+chosen with the line `%% layout: fold snake` or `fold return`; `%% layout: nofold` turns folding off.
 
-Długi łańcuch pól wewnątrz diagramu może być zwinięty w kolumny (TB) albo rzędy (LR) bloku (LAY-022). To opcja,
-domyślnie wyłączona: `%% layout: fold-chains` (z `return` albo `snake`), `WithFoldChains`, flaga `-fold-chains`.
+A long chain of fields inside a diagram can be folded into columns (TB) or rows (LR) of its own block (LAY-022). This is
+an option, off by default: `%% layout: fold-chains` (with `return` or `snake`), `WithFoldChains`, the `-fold-chains`
+flag.
 
-Pole z co najmniej sześcioma liśćmi może postawić je w dwóch warstwach zygzakiem zamiast w jednej bardzo długiej
-(LAY-025), np. schemat LR z jednym polem rozchodzącym się do wielu pól. Też opcja, domyślnie wyłączona:
-`%% layout: fold-ranks`, `WithFoldRanks`, flaga `-fold-ranks`.
+A field with six or more leaves can stand them in two staggered ranks instead of one very long rank
+(LAY-025), e.g. an LR flowchart with one field branching out to many fields. Also an option, off by default:
+`%% layout: fold-ranks`, `WithFoldRanks`, the `-fold-ranks` flag.
 
-### Poza profilem (błąd `flowchart-unsupported`)
+### Outside the profile (error `flowchart-unsupported`)
 
-Kształty zapisu `@{ shape: … }`, których nie rysujemy pod starą składnią (np. `doc`, `cloud`, `delay`; pozostałe
-działają, FLOW-022), `interpolate`, `flowchart-elk`.
+Shapes of the `@{ shape: … }` syntax that are not drawn under the old syntax (e.g. `doc`, `cloud`, `delay`; the others
+work, FLOW-022), `interpolate`, `flowchart-elk`.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- ikony Font Awesome w tekście (`fa:fa-user`) nie są rysowane: znacznik znika z etykiety, a etykieta złożona
-  z samej ikony dostaje jej nazwę; rysunek nie zawiera cudzych krojów ikon;
-- tekst na krawędzi może stać także bez odstępów (`A --tekst--> B`);
-- identyfikator węzła składa się z liter, cyfr i podkreślenia, z łącznikiem albo kropką między nimi;
-- właściwości stylu inne niż pięć honorowanych (czcionka, zaokrąglenia, przejścia) są pomijane; błędna wartość
-  honorowanej właściwości jest błędem. Przy ciemnym wypełnieniu kolor tekstu trzeba podać samemu (`color`);
-- `click` jest przyjmowane i pomijane: rysunek statyczny nie ma odnośników;
-- znaczniki `<b>`, `<strong>`, `<i>` i `<em>` w etykiecie schematu blokowego dają pogrubienie i kursywę, także gdy
-  obejmują złamanie linii; pozostałe znaczniki HTML są rysowane jako tekst (renderer odniesienia je usuwa);
-- tekst Markdown może zajmować kilka linii źródła, koniec linii jest złamaniem tekstu; wyróżnienie musi się
-  zamknąć w tej samej linii; pogrubienie z kursywą naraz jest rysowane jako pogrubienie
-  z atrybutem kursywy, mierzone odmianą pogrubioną;
-- węzeł należy do podgrafu, w którym po raz pierwszy wystąpił wewnątrz jakiegokolwiek podgrafu; późniejsze wystąpienia
-  go nie przenoszą;
-- krawędź między podgrafem a jego własną zawartością jest błędem;
-- tekst w nawiasach ostrych (`<znaczniki>`) zostaje na rysunku dosłownie; Mermaid traktuje go jak znacznik HTML i usuwa.
-  Dotyczy też diagramu stanów. Jedynym rozpoznawanym znacznikiem jest `<br/>`;
-- kody encji (`#35;`) nie są rozwijane;
-- limity: 500 węzłów, 1000 krawędzi, 10 poziomów zagnieżdżenia.
+- Font Awesome icons in text (`fa:fa-user`) are not drawn: the marker disappears from the label, and a label consisting
+  only of an icon gets the icon's name; the drawing contains no third-party icon typefaces;
+- text on an edge may also stand without spaces (`A --tekst--> B`);
+- a node identifier consists of letters, digits and underscores, with a hyphen or a dot between them;
+- style properties other than the five honoured ones (font, rounded corners, transitions) are ignored; an invalid
+  value of an honoured property is an error. With a dark fill, the text colour has to be given explicitly (`color`);
+- `click` is accepted and ignored: a static drawing has no links;
+- the tags `<b>`, `<strong>`, `<i>` and `<em>` in a flowchart label give bold and italic, also when they
+  span a line break; other HTML tags are drawn as text (the reference renderer removes them);
+- Markdown text may span several source lines, and a line end is a text line break; emphasis must be
+  closed on the same line; bold and italic together are drawn as bold
+  with an italic attribute, measured with the bold face;
+- a node belongs to the subgraph in which it first appeared inside any subgraph; later occurrences
+  do not move it;
+- an edge between a subgraph and its own contents is an error;
+- text in angle brackets (`<znaczniki>`) stays in the drawing verbatim; Mermaid treats it as an HTML tag and removes it.
+  This also applies to state diagrams. The only recognised tag is `<br/>`;
+- entity codes (`#35;`) are not expanded;
+- limits: 500 nodes, 1000 edges, 10 levels of nesting.
 
-### Tory
+### Lanes
 
-Mermaid 12 ma diagram torów `swimlane-beta` (FLOW-026); dyrektywa `%% layout: swimlanes` jest komentarzem, więc to
-samo źródło w innych narzędziach rysuje się jak zwykły schemat z podgrafami. Pas biegnie przez cały rysunek wzdłuż kierunku diagramu (kolumny przy `TB`,
-wiersze przy `LR`), nagłówek z tytułem stoi przy początku. Warstwy są wspólne dla wszystkich pasów: położenie kroku
-wzdłuż pasa mówi o kolejności w całym procesie. Przekazanie między torami (krawędź bez etykiety) zostaje w jednej
-warstwie i biegnie w poprzek, od boku pola do boku pola, jeśli nie przechodzi przez pole innego toru (LAY-027);
-pozostałe krawędzie zmieniają pas raz, przy swoim początku. Pole bez krawędzi stoi za poprzednim polem swojego toru
-(FLOW-029). W torach poziomych tytuł jest obrócony, a w trybie kolorowym tory mają kolejne tony palety (FLOW-028). Pole, które
-w swoim rzędzie jest jedynym polem toru, stoi pośrodku pasa, więc kroki jednej roli tworzą kolumnę. Tory są
-tylko w schemacie blokowym: stan złożony nie jest rolą, więc diagram stanów ich nie ma. W torach nie ma
-podgrafów zagnieżdżonych ani krawędzi do samego toru (błąd), a `direction` w podgrafie nie ma znaczenia.
+Mermaid 12 has a swimlane diagram, `swimlane-beta` (FLOW-026); the `%% layout: swimlanes` directive is a comment, so the
+same source is drawn by other tools as an ordinary flowchart with subgraphs. A lane runs through the whole drawing along
+the diagram direction (columns for `TB`, rows for `LR`), with a header carrying the title at its start. Ranks are shared
+by all lanes: the position of a step along a lane tells its order in the whole process. A handover between lanes (an
+edge without a label) stays in one rank and runs across, from the side of one field to the side of the other, if it does
+not pass through a field of another lane (LAY-027); other edges change lanes once, at their start. A field without edges
+stands after the previous field of its lane (FLOW-029). In horizontal lanes the title is rotated, and in colour mode
+lanes get successive palette tones (FLOW-028). A field that is the only field of its lane in its row stands in the
+middle of the lane, so the steps of one role form a column. Lanes exist only in flowcharts: a composite state is not a
+role, so state diagrams do not have them. Lanes cannot contain nested subgraphs or edges to the lane itself (an error),
+and `direction` in a subgraph has no effect.
 
-### Ograniczenia rysunku (wspólne ze stanami)
+### Drawing limitations (shared with state diagrams)
 
-- `direction` w podgrafie i w stanie złożonym zmienia kierunek wnętrza tylko wtedy, gdy żadna krawędź nie łączy
-  wnętrza z resztą diagramu (tak samo rozstrzyga to Mermaid); inaczej wnętrze ma kierunek otoczenia;
-- krawędź wychodząca z podgrafu biegnie od swojego punktu na ramce; punkty na ramce stoją w kolejności drugich
-  końców krawędzi w otoczeniu, o ile nie dodaje to przecięć we wnętrzu podgrafu;
-- regiony współbieżne są osobnymi polami z lekko przyciemnionym tłem i przerywanym obrysem, bez tytułu;
-- poziom złożony z samych ramek bez połączeń (regiony, osobne podgrafy) jest pakowany swobodnie: niższe ramki stają
-  jedna pod drugą obok wyższej, w kolejności źródła; miarą jest skala, w jakiej całość mieści się na stronie;
-- części diagramu (i wnętrza podgrafu albo stanu złożonego) niepołączone krawędziami układają się w rzędy tak, żeby
-  całość miała proporcje zbliżone do strony (3:4); w rzędzie stoją obok siebie, w kolejności źródła;
-- krawędź wskazująca podgraf kończy się na jego ramce; krawędź do węzła wewnątrz podgrafu przechodzi przez punkt na
-  ramce i jest prowadzona we wnętrzu między węzłami (FLOW-014); może przejść pod tytułem ramki, który ma wtedy podkład;
-- krawędź niewidoczna (`~~~`) wpływa tylko na rozmieszczenie;
-- krawędź z etykietą jest o jedną warstwę dłuższa: etykieta zajmuje warstwę jak pole, obok pól innych gałęzi,
-  a krawędzie bez etykiet zostają krótkie. Krawędzie wielokrotne między tą samą parą pól też są o warstwę dłuższe;
-- dodatkowe znaki linii (`--->`) wydłużają krawędź o warstwę każdy, także gdy cel nie ma dalszych połączeń;
-  renderer odniesienia w takim przypadku ustawia cele w jednej linii;
-- krawędzie są łamane pod kątem prostym, z zaokrąglonymi narożnikami; odcinki poprzeczne w jednym odstępie między
-  warstwami dostają osobne tory, a odstęp rośnie z ich liczbą. Opcja `WithCurvedEdges` (w programie `-curved`)
-  przywraca łagodne łuki. Krawędź łamana skręca raz, przy końcu, z którego rozchodzi się kilka krawędzi; jej
-  etykieta stoi w osi drugiego końca, a pole z kilkoma gałęziami stoi pośrodku nich;
-- romb decyzji, z którego jedna gałąź biegnie prosto w dół: pozostałe gałęzie wychodzą z bocznych wierzchołków
-  i biegną w bok na wysokości środka rombu, jak w klasycznym schemacie blokowym (główny przebieg osią,
-  odgałęzienie w bok). Gdy żadna gałąź nie biegnie prosto albo coś stoi na drodze, gałęzie wychodzą z boków przy
-  dolnym wierzchołku. Krawędzi wstecznej (w górę) i łuków (`WithCurvedEdges`) reguła nie dotyczy;
-- w torach kolejność pól jednego toru jest po pogrupowaniu poprawiana tak, żeby nie dodawać przecięć; punkty
-  pośrednie krawędzi, której oba końce mają po kilka krawędzi, stoją w jednej osi przy dolnym końcu;
-- diagram encji jest układany pod proporcje strony: zbyt szeroka warstwa oddaje pola (najpierw encje z jedną
-  relacją) warstwie niżej, więc duży model rośnie w dół zamiast w bok; mały diagram zostaje bez zmian;
-- puste kolumny są zamykane: pas, w którym w żadnej warstwie nic nie stoi, kurczy się do zwykłego odstępu,
-  a krawędzie, które go przecinały, są krótsze;
-- gdzie krawędzie łamane się przecinają, krawędź zapisana w źródle później przeskakuje nad wcześniejszą półokrągłym
-  mostkiem, o ile obok jest na niego miejsce; dotyczy to także krawędzi z różnych poziomów zagnieżdżenia
-  podgrafów;
-- punkt zaczepienia krawędzi przesuwa się w oś jej następnego punktu, jeśli ten leży w zasięgu boku pola: krawędź
-  biegnie wtedy prosto, bez drobnego uskoku;
-- zakończenie krawędzi kółkiem albo krzyżykiem stoi przy polu, a linia kończy się na nim, nie na polu;
-- pola połączone w prosty ciąg (jedna krawędź wychodząca i jedna wchodząca) mają ten sam rozmiar w poprzek
-  kierunku diagramu, a pola jednej warstwy ten sam rozmiar wzdłuż niego, o ile różnią się najwyżej o 40%;
-  najszersze pole o jednej linii tekstu jest łamane na dwie, jeśli zmieści się wtedy w szerokości sąsiada;
-- pole z jednym sąsiadem staje w jego osi przed polem, które uśrednia położenie kilku sąsiadów;
-- pola są płaskie, o szerokości co najmniej 140 px przy piśmie 16 px; z rombu i koła krawędzie wychodzą osobno,
-  z boków przy wierzchołku;
-- notatka diagramu stanów stoi obok swojego stanu po wskazanej stronie osi kolejności: w układzie pionowym po lewej
-  albo po prawej, w układzie poziomym odpowiednio nad albo pod stanem;
-- etykiety szersze niż 200 px (150 px w rombie i kole) są łamane na granicach wyrazów.
+- `direction` in a subgraph or in a composite state changes the direction of the interior only when no edge connects the
+  interior with the rest of the diagram (Mermaid decides this the same way); otherwise the interior takes the
+  surrounding direction;
+- an edge leaving a subgraph runs from its own point on the frame; the points on the frame are ordered by the other
+  ends of the edges outside, as long as this does not add crossings inside the subgraph;
+- concurrent regions are separate fields with a slightly darkened background and a dashed outline, without a title;
+- a level made up only of unconnected frames (regions, separate subgraphs) is packed freely: lower frames stand
+  one below the other next to a taller one, in source order; the measure is the scale at which the whole fits the page;
+- parts of a diagram (and of the interior of a subgraph or composite state) not connected by edges are arranged in rows
+  so that the whole has proportions close to the page (3:4); within a row they stand side by side, in source order;
+- an edge pointing at a subgraph ends at its frame; an edge to a node inside a subgraph passes through a point on the
+  frame and is routed inside between nodes (FLOW-014); it may pass under the frame title, which then gets a backing;
+- an invisible edge (`~~~`) affects only placement;
+- an edge with a label is one rank longer: the label takes up a rank like a field, next to the fields of other branches,
+  while edges without labels stay short. Multiple edges between the same pair of fields are also one rank longer;
+- each extra line character (`--->`) lengthens the edge by one rank, also when the target has no further connections;
+  in that case the reference renderer places the targets in one line;
+- edges are drawn orthogonally, with rounded corners; cross segments in one gap between
+  ranks get separate tracks, and the gap grows with their number. The `WithCurvedEdges` option (`-curved` in the program)
+  restores gentle curves. An orthogonal edge turns once, at the end from which several edges fan out; its
+  label stands on the axis of the other end, and a field with several branches stands in the middle of them;
+- a decision diamond with one branch running straight down: the other branches leave from the side vertices and run
+  sideways at the height of the diamond's centre, as in a classic flowchart (the main flow along the axis, the branch to
+  the side). When no branch runs straight or something is in the way, the branches leave from the sides near the bottom
+  vertex. The rule does not apply to backward (upward) edges or to curves (`WithCurvedEdges`);
+- in lanes, the order of the fields of one lane is adjusted after grouping so as not to add crossings; the intermediate
+  points of an edge whose two ends each have several edges stand on one axis near the lower end;
+- an entity relationship diagram is laid out for the page proportions: a rank that is too wide hands fields (entities
+  with one relationship first) to the rank below, so a large model grows downwards instead of sideways; a small diagram
+  stays unchanged;
+- empty columns are closed: a strip in which nothing stands in any rank shrinks to the normal gap,
+  and the edges that crossed it become shorter;
+- where orthogonal edges cross, the edge written later in the source jumps over the earlier one with a semicircular
+  bridge, as long as there is room for it alongside; this also applies to edges from different nesting levels of
+  subgraphs;
+- an edge's attachment point moves onto the axis of the edge's next point if that point lies within the field's side:
+  the edge then runs straight, without a small jog;
+- a circle or cross edge end stands next to the field, and the line ends at it, not at the field;
+- fields joined in a simple sequence (one outgoing and one incoming edge) have the same size across
+  the diagram direction, and the fields of one rank the same size along it, as long as they differ by at most 40%;
+  the widest field with one line of text is wrapped onto two if it then fits within the width of its neighbour;
+- a field with one neighbour is placed on that neighbour's axis first; a field placed between several neighbours
+  gives way to it;
+- fields are flat, at least 140 px wide with a 16 px font; edges leave a diamond and a circle separately,
+  from the sides near the vertex;
+- a state diagram note stands next to its state on the indicated side of the ordering axis: in a vertical layout on the
+  left or on the right, in a horizontal layout above or below the state respectively;
+- labels wider than 200 px (150 px in a diamond and a circle) are wrapped at word boundaries.
 
-## Diagram stanów (`stateDiagram-v2`, `stateDiagram`)
+## State diagram (`stateDiagram-v2`, `stateDiagram`)
 
-Stan: rysowany tym samym układem warstwowym.
+Status: drawn with the same layered layout.
 
-### Obsługiwane
+### Supported
 
-| Element | Zapis | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek | `stateDiagram-v2`, `stateDiagram` | STATE-001 |
-| przejście | `A --> B`, `A --> B : etykieta`; `[*]` jako stan początkowy i końcowy | STATE-002 |
-| opis stanu | `state "Opis" as Id`, `Id : opis` (kolejne linie dopisują) | STATE-003 |
-| stan bez opisu | użyty w przejściu albo sam identyfikator w linii | STATE-004 |
-| stan złożony | `state Id { … }`, `state "Opis" as Id { … }`, zagnieżdżone; przejście do stanu złożonego | STATE-005 |
-| wybór, rozwidlenie, złączenie | `state Id <<choice>>`, `<<fork>>`, `<<join>>` | STATE-006 |
-| notatka | `note right of Id : tekst`, `note left of Id` … `end note` | STATE-007 |
-| rysunek | kształty stanów, układ, teksty | STATE-010, STATE-011 |
-| kierunek | `direction LR` na poziomie diagramu albo stanu złożonego | STATE-008 |
-| regiony współbieżne | `--` wewnątrz stanu złożonego | STATE-012 |
-| wygląd ze źródła | `classDef`, `class A nazwa`, `A:::nazwa`, `style` | STATE-013 |
-| dostępność | `accTitle`, `accDescr` | STATE-014 |
+| header | `stateDiagram-v2`, `stateDiagram` | STATE-001 |
+| transition | `A --> B`, `A --> B : etykieta`; `[*]` as the initial and final state | STATE-002 |
+| state description | `state "Opis" as Id`, `Id : opis` (subsequent lines append) | STATE-003 |
+| state without a description | used in a transition, or the identifier alone on a line | STATE-004 |
+| composite state | `state Id { … }`, `state "Opis" as Id { … }`, nested; a transition to a composite state | STATE-005 |
+| choice, fork, join | `state Id <<choice>>`, `<<fork>>`, `<<join>>` | STATE-006 |
+| note | `note right of Id : tekst`, `note left of Id` … `end note` | STATE-007 |
+| drawing | state shapes, layout, texts | STATE-010, STATE-011 |
+| direction | `direction LR` at the diagram level or in a composite state | STATE-008 |
+| concurrent regions | `--` inside a composite state | STATE-012 |
+| styling from the source | `classDef`, `class A nazwa`, `A:::nazwa`, `style` | STATE-013 |
+| accessibility | `accTitle`, `accDescr` | STATE-014 |
 
-### Poza profilem (błąd `state-unsupported`)
+### Outside the profile (error `state-unsupported`)
 
-`scale`, `hide`,
-`state Id` bez opisu, stereotypu i klamry (forma nieopisana w dokumentacji; renderer odniesienia jej nie rysuje).
+`scale`, `hide`, `state Id` without a description, stereotype or braces (a form not described in the documentation; the
+reference renderer does not draw it).
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- `subgraph` ze schematu blokowego jest błędem z podpowiedzią (Mermaid rysuje wtedy słowa „subgraph”, nazwę
-  grupy i „end” jako trzy osobne stany);
-- identyfikator stanu składa się z liter, cyfr i podkreślenia; łącznik jest błędem, tak jak w Mermaid;
-- stan złożony ma tytuł w osobnym pasku u góry ramki, z lekkim tłem i linią pod spodem, a ramka ma mocniej
-  zaokrąglone narożniki; u dołu ramkę zamyka wąski pasek (4 px) w kolorze paska tytułu, bez tekstu, żeby
-  dużą ramkę stanu dało się rozpoznać także od spodu; podgraf schematu blokowego zachowuje tytuł przy lewej
-  krawędzi;
-- wewnątrz stanu złożonego (i regionu) proste strzałki bez etykiety są krótsze niż na poziomie głównym
-  (odstęp warstw 26 zamiast 44 px); odstęp przy etykiecie i przy krawędzi ze skrętem zostaje bez zmian;
-- przejście między stanem złożonym a jego własną zawartością jest błędem.
+- `subgraph` from flowcharts is an error with a hint (Mermaid then draws the words "subgraph", the group
+  name and "end" as three separate states);
+- a state identifier consists of letters, digits and underscores; a hyphen is an error, as in Mermaid;
+- a composite state has its title in a separate bar at the top of the frame, with a light background and a line beneath,
+  and the frame has more rounded corners; at the bottom the frame is closed by a narrow bar (4 px) in the colour of the
+  title bar, without text, so that a large state frame can be recognised from below too; a flowchart subgraph keeps its
+  title by the left edge;
+- inside a composite state (and a region), straight arrows without a label are shorter than at the top level
+  (rank gap 26 instead of 44 px); the gap at a label and at an edge with a turn stays unchanged;
+- a transition between a composite state and its own contents is an error.
 
-## Wykres Gantta (`gantt`)
+## Gantt chart (`gantt`)
 
-### Obsługiwane
+### Supported
 
-| Element | Zapis | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek, tytuł, sekcje | `gantt`, `title Tekst`, `section Nazwa` | GANTT-001 |
-| zadanie | `Nazwa : [znaczniki,] [id,] [początek,] koniec` | GANTT-002 |
-| początek | data w zapisie `dateFormat`, `after id1 id2`, albo brak (po poprzednim zadaniu) | GANTT-002 |
-| koniec | data, czas trwania (`3d`, `2w`, `12h`, `1.5d`, `6M`, `1y`), `until id` | GANTT-002 |
-| znaczniki | `done`, `active`, `crit`, `milestone` | GANTT-003 |
-| zapis dat | `dateFormat` ze znaczników `YYYY`, `YY`, `MM`, `M`, `DD`, `D`, `HH`, `mm`, `ss` | GANTT-002 |
-| dni wyłączone | `excludes weekends`, nazwy dni, daty `YYYY-MM-DD`; `weekend friday`; `inclusiveEndDates` | GANTT-004 |
-| podziałka | `axisFormat` (strftime: `%Y %y %m %d %e %H %M %S %j %b %B %a %A`), `tickInterval 1day`/`week`/`month`/`year` | GANTT-006 |
-| dostępność | `accTitle`, `accDescr` | GANTT-001 |
+| header, title, sections | `gantt`, `title Tekst`, `section Nazwa` | GANTT-001 |
+| task | `Nazwa : [znaczniki,] [id,] [początek,] koniec` | GANTT-002 |
+| start | a date in the `dateFormat` notation, `after id1 id2`, or nothing (after the previous task) | GANTT-002 |
+| end | a date, a duration (`3d`, `2w`, `12h`, `1.5d`, `6M`, `1y`), `until id` | GANTT-002 |
+| tags | `done`, `active`, `crit`, `milestone` | GANTT-003 |
+| date notation | `dateFormat` from the tokens `YYYY`, `YY`, `MM`, `M`, `DD`, `D`, `HH`, `mm`, `ss` | GANTT-002 |
+| excluded days | `excludes weekends`, day names, `YYYY-MM-DD` dates; `weekend friday`; `inclusiveEndDates` | GANTT-004 |
+| axis ticks | `axisFormat` (strftime: `%Y %y %m %d %e %H %M %S %j %b %B %a %A`), `tickInterval 1day`/`week`/`month`/`year` | GANTT-006 |
+| accessibility | `accTitle`, `accDescr` | GANTT-001 |
 
-### Poza profilem (błąd `gantt-unsupported`)
+### Outside the profile (error `gantt-unsupported`)
 
-`includes`, `displayMode compact`, znaczniki pionowe `vert`.
+`includes`, `displayMode compact`, vertical markers `vert`.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- znacznik „dziś” nie jest rysowany nigdy (`todayMarker` jest przyjmowane i pomijane): ten sam tekst ma zawsze dawać
-  ten sam rysunek;
-- czas trwania przy `excludes` liczy czas pracy: dni wyłączone się nie liczą, także gdy zadanie na takim dniu się
-  zaczyna; koniec podany datą nie jest przesuwany;
-- `tickInterval` jest honorowany, o ile opisy podziałki się nie stykają; inaczej odstęp rośnie;
-- nazwy miesięcy i dni w `axisFormat` są angielskie; `topAxis` i `click` są przyjmowane i pomijane;
-- nazwa zadania kończy się na pierwszym dwukropku;
-- limity: 500 zadań, lata 1900–2200, rozpiętość do 100 lat.
+- the "today" marker is never drawn (`todayMarker` is accepted and ignored): the same text must always give
+  the same drawing;
+- with `excludes`, a duration counts working time: excluded days do not count, also when a task starts on such a
+  day; an end given as a date is not moved;
+- `tickInterval` is honoured as long as the tick labels do not touch; otherwise the interval grows;
+- month and day names in `axisFormat` are in English; `topAxis` and `click` are accepted and ignored;
+- a task name ends at the first colon;
+- limits: 500 tasks, years 1900–2200, a span of up to 100 years.
 
-## Diagram związków encji (`erDiagram`)
+## Entity relationship diagram (`erDiagram`)
 
-Stan: rysowany układem warstwowym; encja jest polem z nagłówkiem i tabelą atrybutów.
+Status: drawn with the layered layout; an entity is a field with a header and a table of attributes.
 
-### Obsługiwane
+### Supported
 
-| Element | Zapis | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek, kierunek | `erDiagram`, `direction LR` | ER-001 |
-| encja | `NAZWA`, `"Nazwa ze spacją"`, `NAZWA["Opis"]`, `NAZWA { … }` | ER-002 |
-| atrybut | `typ nazwa`, `typ nazwa PK`, `typ nazwa PK, FK "komentarz"` | ER-002 |
-| związek | `A \|\|--o{ B : etykieta`; liczności `\|o`, `\|\|`, `}o`, `}\|` i lustrzane; linia `--` albo `..` | ER-003 |
-| wygląd ze źródła | `classDef`, `class`, `NAZWA:::klasa`, `style` | ER-004 |
-| dostępność | `accTitle`, `accDescr` | ER-001 |
+| header, direction | `erDiagram`, `direction LR` | ER-001 |
+| entity | `NAZWA`, `"Nazwa ze spacją"`, `NAZWA["Opis"]`, `NAZWA { … }` | ER-002 |
+| attribute | `typ nazwa`, `typ nazwa PK`, `typ nazwa PK, FK "komentarz"` | ER-002 |
+| relationship | `A \|\|--o{ B : etykieta`; cardinalities `\|o`, `\|\|`, `}o`, `}\|` and their mirror forms; line `--` or `..` | ER-003 |
+| styling from the source | `classDef`, `class`, `NAZWA:::klasa`, `style` | ER-004 |
+| accessibility | `accTitle`, `accDescr` | ER-001 |
 
-### Poza profilem
+### Outside the profile
 
-Związki zapisane słowami (`only one to zero or more`; błąd `er-unsupported`), atrybuty o typach ze spacją.
+Relationships written in words (`only one to zero or more`; error `er-unsupported`), attributes with types containing a
+space.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- nazwa encji bez cudzysłowu składa się z liter, cyfr, podkreślenia i łącznika;
-- etykieta związku jest opcjonalna;
-- limit 100 atrybutów w encji; limity grafu jak w schemacie blokowym.
+- an unquoted entity name consists of letters, digits, underscores and hyphens;
+- a relationship label is optional;
+- a limit of 100 attributes per entity; graph limits as in flowcharts.
 
 
-## Wykres kołowy (`pie`)
+## Pie chart (`pie`)
 
-### Obsługiwane
+### Supported
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek | `pie`, `pie showData`, `pie title Tekst`, `pie showData title Tekst` | PIE-001 |
-| tytuł i wartości w legendzie | `title Tekst`, `showData` w osobnej linii | PIE-001, PIE-004 |
-| wycinek | `"etykieta" : 42.5` | PIE-002 |
-| dostępność | `accTitle`, `accDescr` | PIE-001 |
+| header | `pie`, `pie showData`, `pie title Tekst`, `pie showData title Tekst` | PIE-001 |
+| title and values in the legend | `title Tekst`, `showData` on a separate line | PIE-001, PIE-004 |
+| slice | `"etykieta" : 42.5` | PIE-002 |
+| accessibility | `accTitle`, `accDescr` | PIE-001 |
 
-### Poza profilem
+### Outside the profile
 
-Konfiguracja w bloku `%%{init}%%` i `---` (położenie tekstu, szerokość obrysu), motywy.
+Configuration in the `%%{init}%%` and `---` blocks (text position, outline width), themes.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- wycinki są w kolejności ze źródła, od godziny dwunastej zgodnie z ruchem wskazówek zegara;
-- wypełnienia domyślne to odcienie szarości o naprzemiennej jasności, żeby wykres dało się czytać w druku
-  czarno-białym; `WithColors` daje kolory palety;
-- udział procentowy stoi na wycinku tylko wtedy, gdy wycinek ma co najmniej 4% koła; mniejszego nie da się
-  podpisać bez nachodzenia na sąsiadów (renderer odniesienia podpisuje każdy);
-- udział jest zaokrąglany do liczby całkowitej, a poniżej 10% do jednego miejsca po przecinku;
-- etykieta wycinka nie może być pusta ani się powtarzać, a wartość ujemna jest błędem; wykres bez wycinka
-  o wartości powyżej zera jest błędem; limit to 24 wycinki.
+- slices are in source order, clockwise from twelve o'clock;
+- the default fills are shades of grey of alternating lightness, so the chart can be read in black-and-white
+  print; `WithColors` gives palette colours;
+- the percentage stands on a slice only when the slice covers at least 4% of the circle; a smaller one cannot be
+  labelled without overlapping its neighbours (the reference renderer labels every one);
+- the share is rounded to a whole number, and below 10% to one decimal place;
+- a slice label cannot be empty or repeated, and a negative value is an error; a chart without a slice
+  with a value above zero is an error; the limit is 24 slices.
 
-## Diagram klas (`classDiagram`)
+## Class diagram (`classDiagram`)
 
-Rysowany tym samym układem warstwowym co schemat blokowy; obowiązują te same reguły krawędzi i te same
-ograniczenia rysunku.
+Drawn with the same layered layout as flowcharts; the same edge rules and the same
+drawing limitations apply.
 
-### Obsługiwane
+### Supported
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek | `classDiagram`, `classDiagram-v2` | CLS-001 |
-| klasa | `class Nazwa`, `class Nazwa["Etykieta"]`, `class Lista~T~` | CLS-001 |
-| składowe | `class Nazwa { … }` po jednej w linii; `Nazwa : +pole`; `Nazwa : +metoda(arg) Typ` | CLS-002 |
-| klasyfikatory | `metoda()*` (abstrakcyjna, kursywa), `metoda()$` i `pole$` (statyczna, podkreślenie) | CLS-003 |
-| adnotacja | `<<interface>>` w bloku klasy; `<<interface>> Nazwa` | CLS-003 |
-| relacje | `<\|--`, `*--`, `o--`, `-->`, `--`, `..>`, `..\|>`, `..` i zapisy odwrócone | CLS-004 |
-| etykieta i liczności | `A "1" --> "0..*" B : etykieta` | CLS-005 |
-| kierunek, notatka | `direction LR`; `note for Nazwa "tekst"` | CLS-006 |
-| wygląd | `classDef`, `class Nazwa:::styl`, `cssClass "A,B" styl`, `style Nazwa …` | CLS-007 |
-| dostępność, odsyłacze | `accTitle`, `accDescr`; `click`, `link`, `callback` (pomijane) | CLS-006 |
-| przestrzeń nazw | `namespace Nazwa { class A … }` | CLS-009 |
-| blok w jednej linii, notatka | `class A { <<interface>> }`; `note "tekst"` | CLS-009 |
-| interfejs „lizak” | `Interfejs ()-- Klasa`, `Klasa --() Interfejs` | CLS-009 |
+| header | `classDiagram`, `classDiagram-v2` | CLS-001 |
+| class | `class Nazwa`, `class Nazwa["Etykieta"]`, `class Lista~T~` | CLS-001 |
+| members | `class Nazwa { … }` one per line; `Nazwa : +pole`; `Nazwa : +metoda(arg) Typ` | CLS-002 |
+| classifiers | `metoda()*` (abstract, italic), `metoda()$` and `pole$` (static, underlined) | CLS-003 |
+| annotation | `<<interface>>` in the class block; `<<interface>> Nazwa` | CLS-003 |
+| relationships | `<\|--`, `*--`, `o--`, `-->`, `--`, `..>`, `..\|>`, `..` and the reversed forms | CLS-004 |
+| label and cardinalities | `A "1" --> "0..*" B : etykieta` | CLS-005 |
+| direction, note | `direction LR`; `note for Nazwa "tekst"` | CLS-006 |
+| styling | `classDef`, `class Nazwa:::styl`, `cssClass "A,B" styl`, `style Nazwa …` | CLS-007 |
+| accessibility, links | `accTitle`, `accDescr`; `click`, `link`, `callback` (ignored) | CLS-006 |
+| namespace | `namespace Nazwa { class A … }` | CLS-009 |
+| one-line block, note | `class A { <<interface>> }`; `note "tekst"` | CLS-009 |
+| "lollipop" interface | `Interfejs ()-- Klasa`, `Klasa --() Interfejs` | CLS-009 |
 
-### Poza profilem (błąd `class-unsupported`)
+### Outside the profile (error `class-unsupported`)
 
-Zagnieżdżone przestrzenie nazw, nazwy klas w odwrotnych apostrofach, konfiguracja `hideEmptyMembersBox`.
+Nested namespaces, class names in backticks, the `hideEmptyMembersBox` configuration.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- notatka rozpisana na kilka linii pokazuje cały tekst (Mermaid rysuje tylko pierwszą linię);
-- klasa bez składowych jest prostym polem z nazwą; renderer odniesienia rysuje zawsze trzy przedziały;
-- klasa ze składowymi ma dwa przedziały; pusty zostaje jako wąski pasek;
-- asocjacja skierowana i zależność mają otwarty grot (dwie kreski), jak w UML, a nie grot wypełniony;
-- liczności stoją obok linii tuż przy polu; krawędź z licznościami przy obu końcach jest o warstwę dłuższa,
-  żeby opisy się nie stykały;
-- identyfikatorem klasy jest nazwa bez parametru typu: `Lista~T~` i `Lista` to ta sama klasa;
-- kolor nadany klasie stylem obejmuje całe pole, także linie przedziałów;
-- interfejs „lizak” jest zwykłą relacją z kółkiem przy końcu, a sam interfejs polem klasy (w Mermaid samo kółko
-  z nazwą).
+- a note spread over several lines shows the whole text (Mermaid draws only the first line);
+- a class without members is a plain field with its name; the reference renderer always draws three compartments;
+- a class with members has two compartments; an empty one remains as a narrow bar;
+- directed association and dependency have an open arrowhead (two strokes), as in UML, not a filled one;
+- cardinalities stand beside the line right next to the field; an edge with cardinalities at both ends is one rank longer,
+  so the labels do not touch;
+- a class identifier is the name without the type parameter: `Lista~T~` and `Lista` are the same class;
+- a colour given to a class by a style covers the whole field, compartment lines included;
+- a "lollipop" interface is an ordinary relationship with a circle at the end, and the interface itself is a class field
+  (in Mermaid just a circle with a name).
 
-## Oś czasu (`timeline`)
+## Timeline (`timeline`)
 
-### Obsługiwane
+### Supported
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek, tytuł | `timeline`; `title Tekst` | TML-001 |
-| okres ze zdarzeniami | `2024 : zdarzenie : zdarzenie`; kolejna linia `: zdarzenie` dopisuje zdarzenia | TML-002 |
-| sekcja | `section Tytuł` | TML-003 |
-| układ listowy | komentarz `%% layout: list` | TML-006 |
-| dostępność | `accTitle`, `accDescr` | TML-001 |
+| header, title | `timeline`; `title Tekst` | TML-001 |
+| period with events | `2024 : zdarzenie : zdarzenie`; a following line `: zdarzenie` appends events | TML-002 |
+| section | `section Tytuł` | TML-003 |
+| list layout | the comment `%% layout: list` | TML-006 |
+| accessibility | `accTitle`, `accDescr` | TML-001 |
 
-### Poza profilem
+### Outside the profile
 
-Konfiguracja w bloku `%%{init}%%` (`disableMulticolor`, motywy).
+Configuration in the `%%{init}%%` block (`disableMulticolor`, themes).
 
-### Układy
+### Layouts
 
-Domyślny układ jest taki jak w Mermaid: okresy w rzędzie od lewej do prawej, pod nimi oś ze strzałką, pod osią
-zdarzenia każdego okresu jedno pod drugim, nagłówek sekcji nad jej okresami. Dłuższa oś nie mieści się wtedy
-w szerokości strony i jest pomniejszana.
+The default layout is as in Mermaid: periods in a row from left to right, below them an axis with an arrow, below the axis
+the events of each period one below the other, and a section header above its periods. A longer axis then does not fit
+the page width and is scaled down.
 
-Układ listowy (`%% layout: list`) prowadzi oś z góry na dół: okresy stoją po lewej stronie osi, a zdarzenia okresu po prawej,
-jedno pod drugim w kolejności ze źródła, połączone linią przerywaną. Rysunek rośnie w dół i mieści się na stronie przy dowolnej liczbie okresów. Dyrektywa
-jest komentarzem, więc to samo źródło w innych narzędziach rysuje układ domyślny.
+The list layout (`%% layout: list`) runs the axis from top to bottom: periods stand on the left of the axis and a
+period's events on the right, one below the other in source order, joined by a dashed line. The drawing grows downwards
+and fits the page for any number of periods. The directive is a comment, so the same source is drawn in the default
+layout by other tools.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- `<br/>` w tekście okresu i zdarzenia łamie linię (renderer odniesienia rysuje znacznik dosłownie);
-- kierunek podany po nagłówku (`timeline LR`, `timeline TD`) jest przyjmowany i pomijany;
-- domyślnie rysunek jest neutralny; `WithColors` nadaje ton palety sekcji, a bez sekcji każdemu okresowi;
-- dwukropek zawsze rozdziela zdarzenia, więc tekst z dwukropkiem (np. godzina `10:30`) trzeba zapisać inaczej;
-  tak samo jest w Mermaid.
+- `<br/>` in period and event text breaks the line (the reference renderer draws the tag verbatim);
+- a direction given after the header (`timeline LR`, `timeline TD`) is accepted and ignored;
+- by default the drawing is neutral; `WithColors` gives a palette tone to each section, or to each period when there are
+  no sections;
+- a colon always separates events, so text with a colon (e.g. the time `10:30`) has to be written differently;
+  the same holds in Mermaid.
 
-## Podróż użytkownika (`journey`)
+## User journey (`journey`)
 
-### Obsługiwane
+### Supported
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek, tytuł | `journey`; `title Tekst` | JRN-001 |
-| krok | `Nazwa kroku: 4: Uczestnik, Uczestnik`; uczestnicy opcjonalni | JRN-002 |
-| sekcja | `section Tytuł` | JRN-003 |
-| układ listowy | komentarz `%% layout: list` | JRN-005 |
-| dostępność | `accTitle`, `accDescr` | JRN-001 |
+| header, title | `journey`; `title Tekst` | JRN-001 |
+| step | `Nazwa kroku: 4: Uczestnik, Uczestnik`; participants optional | JRN-002 |
+| section | `section Tytuł` | JRN-003 |
+| list layout | the comment `%% layout: list` | JRN-005 |
+| accessibility | `accTitle`, `accDescr` | JRN-001 |
 
-### Układy
+### Layouts
 
-Domyślny układ jest taki jak w Mermaid: kroki w rzędzie pod nagłówkami sekcji, pod każdym krokiem buźka na
-wysokości oceny, u dołu oś ze strzałką, z lewej legenda uczestników, a na krokach ich znaczniki.
+The default layout is as in Mermaid: steps in a row under the section headers, under each step a face at the height of
+its score, an axis with an arrow at the bottom, a legend of participants on the left, and their markers on the steps.
 
-Układ listowy (`%% layout: list`) stawia kroki z góry na dół: nazwa, znacznik oceny na skali od 1 do 5
-i uczestnicy wypisani przy kroku; linia łączy oceny kolejnych kroków. Mieści się na stronie przy wielu krokach,
-a ocena jest w nim czytelna bez koloru (położenie na skali; znacznik oceny 1–2 pełny, 3 szary, 4–5 pusty).
+The list layout (`%% layout: list`) places the steps from top to bottom: the name, a score marker on a scale from 1 to 5,
+and the participants listed by the step; a line joins the scores of successive steps. It fits the page with many steps,
+and the score is readable in it without colour (position on the scale; score marker 1–2 filled, 3 grey, 4–5 hollow).
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- buźka ma trzy miny: uśmiech dla ocen 4 i 5, usta proste dla 3, smutek dla 1 i 2;
-- domyślnie rysunek jest neutralny, a uczestnicy różnią się odcieniem szarości; `WithColors` daje kolory palety
-  sekcjom, uczestnikom i buźkom;
-- ocena spoza zakresu 1–5 albo niecałkowita jest błędem.
+- the face has three expressions: a smile for scores 4 and 5, a straight mouth for 3, sadness for 1 and 2;
+- by default the drawing is neutral and participants differ in shade of grey; `WithColors` gives palette colours
+  to sections, participants and faces;
+- a score outside the range 1–5, or a non-integer one, is an error.
 
-## Mapa myśli (`mindmap`)
+## Mind map (`mindmap`)
 
-### Obsługiwane
+### Supported
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek, hierarchia | `mindmap`; kolejne linie, wcięcie wyznacza rodzica | MND-001 |
-| gałąź | sam tekst; `"tekst w cudzysłowach"`; `<br/>` łamie linię | MND-002 |
-| kształty | `id[kwadrat]`, `id(zaokrąglony)`, `id((koło))`, `id{{sześciokąt}}`, `id))wybuch((`, `id)chmura(` | MND-004 |
-| tekst Markdown | ``"`**pogrubiony** i *pochylony*`"`` | MND-004 |
-| ikony, klasy | `::icon(…)`, `:::klasa` (pomijane) | MND-002 |
-| układ listowy | komentarz `%% layout: list` | MND-006 |
+| header, hierarchy | `mindmap`; successive lines, indentation determines the parent | MND-001 |
+| branch | plain text; `"tekst w cudzysłowach"`; `<br/>` breaks the line | MND-002 |
+| shapes | `id[kwadrat]`, `id(zaokrąglony)`, `id((koło))`, `id{{sześciokąt}}`, `id))wybuch((`, `id)chmura(` | MND-004 |
+| Markdown text | ``"`**pogrubiony** i *pochylony*`"`` | MND-004 |
+| icons, classes | `::icon(…)`, `:::klasa` (ignored) | MND-002 |
+| list layout | the comment `%% layout: list` | MND-006 |
 
-### Układy
+### Layouts
 
-Domyślnie korzeń stoi pośrodku, a gałęzie główne po obu jego stronach, jak w klasycznej mapie myśli. Układ listowy
-(`%% layout: list`) stawia wszystkie gałęzie po prawej stronie korzenia i czyta się jak konspekt. Dyrektywa jest
-komentarzem, więc to samo źródło w innych narzędziach rysuje układ domyślny.
+By default the root stands in the middle, with the main branches on both sides of it, as in a classic mind map. The list
+layout (`%% layout: list`) places all branches to the right of the root and reads like an outline. The directive is a
+comment, so the same source is drawn in the default layout by other tools.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- oba układy są drzewem z gałęziami jednej głębokości w jednej kolumnie i połączeniami pod kątem prostym; Mermaid
-  rozkłada gałęzie swobodnie wokół korzenia i łączy je łukami. Drzewo jest powtarzalne i mieści się na stronie;
-- „wybuch” jest rysowany jak sześciokąt, a „chmura” jak pole z półkolami: rysunek ma tylko proste kształty;
-- koło z dłuższym tekstem staje się elipsą, żeby pole nie rosło nad miarę;
-- gałąź bez kształtu jest polem zaokrąglonym (w Mermaid tekstem z podkreśleniem), a korzeń bez kształtu polem
-  z półkolami;
-- cudzysłowy wokół tekstu są zdejmowane (renderer odniesienia rysuje je dosłownie);
-- tabulacja we wcięciu liczy się jak cztery spacje;
-- domyślnie rysunek jest neutralny; `WithColors` nadaje każdej gałęzi głównej ton palety;
-- `accTitle` i `accDescr` nie są częścią składni mapy myśli: taka linia byłaby gałęzią.
+- both layouts are a tree with branches of the same depth in one column and right-angled connections; Mermaid
+  spreads branches freely around the root and joins them with curves. The tree is reproducible and fits the page;
+- "bang" is drawn as a hexagon and "cloud" as a field with semicircular ends: the drawing has only simple shapes;
+- a circle with longer text becomes an ellipse, so the field does not grow out of proportion;
+- a branch without a shape is a rounded field (in Mermaid, underlined text), and a root without a shape is a field
+  with semicircular ends;
+- quotes around text are removed (the reference renderer draws them verbatim);
+- a tab in indentation counts as four spaces;
+- by default the drawing is neutral; `WithColors` gives each main branch a palette tone;
+- `accTitle` and `accDescr` are not part of the mind map syntax: such a line would be a branch.
 
-## Wykres słupkowy i liniowy (`xychart-beta`, `xychart`)
+## Bar and line chart (`xychart-beta`, `xychart`)
 
-### Obsługiwane
+### Supported
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek, tytuł | `xychart-beta`; `title "Tekst"` | XY-001 |
-| oś pozioma | `x-axis [sty, lut, mar]`; `x-axis "Tytuł" [a, b]`; `x-axis Tytuł 0 --> 10` | XY-002 |
-| oś pionowa | `y-axis "Tytuł" 0 --> 40`; `y-axis Tytuł`; `y-axis 0 --> 40` | XY-002 |
-| serie | `bar [1, 2, 3]`; `line [1, 2, 3]`; z nazwą: `bar "Plan" [1, 2, 3]` | XY-002, XY-004 |
-| dostępność | `accTitle`, `accDescr` | XY-001 |
+| header, title | `xychart-beta`; `title "Tekst"` | XY-001 |
+| horizontal axis | `x-axis [sty, lut, mar]`; `x-axis "Tytuł" [a, b]`; `x-axis Tytuł 0 --> 10` | XY-002 |
+| vertical axis | `y-axis "Tytuł" 0 --> 40`; `y-axis Tytuł`; `y-axis 0 --> 40` | XY-002 |
+| series | `bar [1, 2, 3]`; `line [1, 2, 3]`; with a name: `bar "Plan" [1, 2, 3]` | XY-002, XY-004 |
+| accessibility | `accTitle`, `accDescr` | XY-001 |
 
-### Poza profilem
+### Outside the profile
 
-Konfiguracja w bloku `%%{init}%%` i `---` (rozmiary, `showDataLabel`).
+Configuration in the `%%{init}%%` and `---` blocks (sizes, `showDataLabel`).
 
-Wykres poziomy (`xychart-beta horizontal`, XY-006): kategorie z góry na dół, wartości w poziomie; tytuł osi
-kategorii jest obrócony wzdłuż osi.
+Horizontal chart (`xychart-beta horizontal`, XY-006): categories from top to bottom, values horizontal; the category
+axis title is rotated along the axis.
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- tytuł osi pionowej stoi poziomo nad osią, a nie obrócony wzdłuż niej;
-- bez podanego zakresu oś pionowa przy słupkach obejmuje zero, bo słupek mierzy się od zera; podziałka ma
-  okrągłe wartości;
-- kilka serii słupków stoi obok siebie w obrębie kategorii (w Mermaid nakładają się na siebie);
-- serie różnią się bez koloru: słupki jasnością, linie kreskowaniem; `WithColors` daje kolory palety;
-- nazwa serii przed listą wartości daje legendę pod wykresem;
-- gdy etykiety kategorii się nie mieszczą, zostaje co któraś, zamiast nachodzić na siebie;
-- seria musi mieć tyle wartości, ile jest kategorii; inna liczba jest błędem.
-- tytuł i kategorie przyjmujemy także bez cudzysłowów, gdy mają polskie litery albo kilka wyrazów; Mermaid
-  wymaga wtedy cudzysłowów, więc w źródle przenośnym warto je pisać;
-- podziałka osi pionowej ma inny krok niż w Mermaid, więc liczby przy osi się różnią.
+- the vertical axis title stands horizontally above the axis, not rotated along it;
+- without a given range, the vertical axis of a bar chart includes zero, because a bar is measured from zero; the ticks
+  have round values;
+- several bar series stand side by side within a category (in Mermaid they overlap);
+- series differ without colour: bars by lightness, lines by dash pattern; `WithColors` gives palette colours;
+- a series name before the list of values gives a legend below the chart;
+- when category labels do not fit, only every n-th one is kept, instead of overlapping;
+- a series must have as many values as there are categories; a different number is an error.
+- the title and categories are also accepted without quotes when they contain non-ASCII letters or several words; Mermaid
+  then requires quotes, so it is worth writing them in portable source;
+- the vertical axis ticks use a different step than in Mermaid, so the numbers on the axis differ.
 
-## Wykres ćwiartkowy (`quadrantChart`)
+## Quadrant chart (`quadrantChart`)
 
-### Obsługiwane
+### Supported
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| nagłówek, tytuł | `quadrantChart`; `title Tekst` | QDR-001 |
-| osie | `x-axis Lewy --> Prawy`; `y-axis Dolny --> Górny`; drugi opis opcjonalny | QDR-001 |
-| ćwiartki | `quadrant-1 Tekst` … `quadrant-4 Tekst` | QDR-001 |
-| punkt | `Nazwa: [0.3, 0.6]` | QDR-002 |
-| style punktów | `Nazwa:::klasa: [x, y]`, `radius: 12, color: #f00, stroke-color: #000, stroke-width: 2px` po nawiasie, `classDef` | QDR-002 |
-| dostępność | `accTitle`, `accDescr` | QDR-001 |
+| header, title | `quadrantChart`; `title Tekst` | QDR-001 |
+| axes | `x-axis Lewy --> Prawy`; `y-axis Dolny --> Górny`; the second label optional | QDR-001 |
+| quadrants | `quadrant-1 Tekst` … `quadrant-4 Tekst` | QDR-001 |
+| point | `Nazwa: [0.3, 0.6]` | QDR-002 |
+| point styles | `Nazwa:::klasa: [x, y]`, `radius: 12, color: #f00, stroke-color: #000, stroke-width: 2px` after the bracket, `classDef` | QDR-002 |
+| accessibility | `accTitle`, `accDescr` | QDR-001 |
 
-### Świadome różnice wobec Mermaid
+### Deliberate differences from Mermaid
 
-- nazwa punktu szuka miejsca: pod kropką, a gdy nachodziłaby tam na tytuł ćwiartki, inną kropkę albo nazwę, nad
-  kropką albo obok; tytuł ćwiartki, na którym leży kropka, zaczyna się tuż pod nią (w Mermaid napisy się nakładają);
-- ćwiartki stykające się bokiem różnią się jasnością; `WithColors` nadaje im tony palety;
-- współrzędna spoza zakresu 0–1 jest błędem.
+- a point's name looks for a place: below the dot, and when it would overlap a quadrant title, another dot or name
+  there, above the dot or beside it; a quadrant title that a dot lies on starts right below it (in Mermaid the labels
+  overlap);
+- quadrants that share a side differ in lightness; `WithColors` gives them palette tones;
+- a coordinate outside the range 0–1 is an error.
 
-## Tablica kanban (`kanban`)
+## Kanban board (`kanban`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| kolumna | linia na najpłytszym wcięciu: `Tekst` albo `id[Tekst]` | KBN-001 |
-| karta | linia wcięta głębiej: `[Tekst]`, `id[Tekst]` albo sam tekst | KBN-002 |
-| dane karty | `@{ ticket: NC-17, assigned: 'A. Nowak', priority: 'High' }` | KBN-002 |
-| dostępność | `accTitle`, `accDescr` | KBN-001 |
+| column | a line at the shallowest indentation: `Tekst` or `id[Tekst]` | KBN-001 |
+| card | a line indented deeper: `[Tekst]`, `id[Tekst]` or plain text | KBN-002 |
+| card data | `@{ ticket: NC-17, assigned: 'A. Nowak', priority: 'High' }` | KBN-002 |
+| accessibility | `accTitle`, `accDescr` | KBN-001 |
 
-Świadome różnice wobec Mermaid: priorytet (`Very High`, `High`, `Low`, `Very Low`) widać po grubości paska przy lewej
-krawędzi karty, a nie po kolorze; dane karty stoją w jednej linii pod tekstem; odsyłacz zgłoszenia (`ticketBaseUrl`)
-nie jest rysowany; domyślnie rysunek jest neutralny, `WithColors` nadaje kolumnom tony palety.
+Deliberate differences from Mermaid: the priority (`Very High`, `High`, `Low`, `Very Low`) is shown by the thickness of
+a bar at the left edge of the card, not by colour; the card data stands on one line below the text; the ticket link
+(`ticketBaseUrl`) is not drawn; by default the drawing is neutral, `WithColors` gives the columns palette tones.
 
-## Diagram Ishikawy (`ishikawa-beta`, `ishikawa`)
+## Ishikawa diagram (`ishikawa-beta`, `ishikawa`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| problem | pierwsza linia po nagłówku | ISH-001 |
-| kategoria | linia na wcięciu pierwszej przyczyny | ISH-002 |
-| przyczyna | linia wcięta głębiej niż jej kategoria albo przyczyna nadrzędna (do ośmiu poziomów) | ISH-002 |
-| dostępność | `accTitle`, `accDescr` | ISH-001 |
+| problem | the first line after the header | ISH-001 |
+| category | a line at the indentation of the first cause | ISH-002 |
+| cause | a line indented deeper than its category or parent cause (up to eight levels) | ISH-002 |
+| accessibility | `accTitle`, `accDescr` | ISH-001 |
 
-Świadome różnice wobec Mermaid: wygląd własny (oś z grotem do pola problemu po prawej, kategorie na przemian nad osią
-i pod nią w polach na końcach ukośnych ości, przyczyny na poziomych kreskach); głębsze niż osiem poziomów przyczyn
-pod kategorią jest błędem.
+Deliberate differences from Mermaid: an own look (a spine with an arrowhead to the problem field on the right,
+categories alternately above the spine and below it in fields at the ends of slanted bones, causes on horizontal
+strokes); more than eight levels of causes under a category is an error.
 
-## Diagram pakietu (`packet-beta`, `packet`)
+## Packet diagram (`packet-beta`, `packet`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| tytuł | `title Tekst` | PKT-001 |
-| pole | `0-15: "nazwa"`, `16: "nazwa"`, `+8: "nazwa"` | PKT-002 |
-| dostępność | `accTitle`, `accDescr` | PKT-001 |
+| title | `title Tekst` | PKT-001 |
+| field | `0-15: "nazwa"`, `16: "nazwa"`, `+8: "nazwa"` | PKT-002 |
+| accessibility | `accTitle`, `accDescr` | PKT-001 |
 
-Świadome różnice wobec Mermaid: wiersz ma zawsze 32 bity (konfiguracja `bitsPerRow` jest poza profilem); nazwa, która
-nie mieści się w polu, jest rysowana mniejszym pismem; tytuł stoi nad diagramem; przerwa między polami jest błędem.
+Deliberate differences from Mermaid: a row always has 32 bits (the `bitsPerRow` configuration is outside the profile); a
+name that does not fit in its field is drawn in a smaller font; the title stands above the diagram; a gap between fields
+is an error.
 
-## Wykres radarowy (`radar-beta`, `radar`)
+## Radar chart (`radar-beta`, `radar`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| tytuł | `title Tekst` | RDR-001 |
-| osie | `axis a["Podpis"], b["Podpis"]` | RDR-001 |
-| seria | `curve s["Podpis"]{1, 2, 3}`; `curve s{a: 1, b: 2, c: 3}` | RDR-002 |
-| zakres i siatka | `max 5`, `min 0`, `ticks 5`, `graticule circle` albo `polygon`, `showLegend false` | RDR-002 |
-| dostępność | `accTitle`, `accDescr` | RDR-001 |
+| title | `title Tekst` | RDR-001 |
+| axes | `axis a["Podpis"], b["Podpis"]` | RDR-001 |
+| series | `curve s["Podpis"]{1, 2, 3}`; `curve s{a: 1, b: 2, c: 3}` | RDR-002 |
+| range and grid | `max 5`, `min 0`, `ticks 5`, `graticule circle` or `polygon`, `showLegend false` | RDR-002 |
+| accessibility | `accTitle`, `accDescr` | RDR-001 |
 
-Świadome różnice wobec Mermaid: serie różnią się kreskowaniem linii, więc wykres czyta się bez koloru (`WithColors`
-daje kolory palety); legenda stoi z prawej strony; seria musi mieć wartość dla każdej osi; wartość spoza zakresu
-jest rysowana na jego brzegu.
+Deliberate differences from Mermaid: series differ by line dash pattern, so the chart reads without colour (`WithColors`
+gives palette colours); the legend stands on the right; a series must have a value for every axis; a value outside the
+range is drawn at its edge.
 
-## Mapa drzewa (`treemap-beta`, `treemap`)
+## Treemap (`treemap-beta`, `treemap`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| tytuł | `title Tekst` | TRM-001 |
-| sekcja | `"Nazwa"`, dzieci wcięte głębiej | TRM-001 |
-| liść | `"Nazwa": 12.5` | TRM-001 |
-| style | `:::klasa`, `classDef` (pomijane) | TRM-001 |
-| dostępność | `accTitle`, `accDescr` | TRM-001 |
+| title | `title Tekst` | TRM-001 |
+| section | `"Nazwa"`, children indented deeper | TRM-001 |
+| leaf | `"Nazwa": 12.5` | TRM-001 |
+| styles | `:::klasa`, `classDef` (ignored) | TRM-001 |
+| accessibility | `accTitle`, `accDescr` | TRM-001 |
 
-Świadome różnice wobec Mermaid: liść, którego nazwa nie mieści się w polu nawet mniejszym pismem, dostaje numer,
-a nazwa z wartością trafia do listy pod mapą, więc żadna dana nie znika; wartość jest zapisana tak jak w źródle,
-bez formatowania; mapa ma stały rozmiar 620 × 400 px; domyślnie rysunek jest neutralny, `WithColors` nadaje ton
-palety każdej gałęzi najwyższego poziomu.
+Deliberate differences from Mermaid: a leaf whose name does not fit in its field even in a smaller font gets a number,
+and the name with its value goes into a list below the map, so no data disappears; the value is written as in the source,
+without formatting; the map has a fixed size of 620 × 400 px; by default the drawing is neutral, `WithColors` gives a
+palette tone to each top-level branch.
 
-## Diagram wymagań (`requirementDiagram`)
+## Requirement diagram (`requirementDiagram`)
 
-Rysowany tym samym układem warstwowym co schemat blokowy i diagram klas.
+Drawn with the same layered layout as flowcharts and class diagrams.
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| wymaganie | `requirement nazwa { id: 1  text: …  risk: high  verifymethod: test }` i pięć rodzajów szczegółowych | RQD-001, RQD-002 |
+| requirement | `requirement nazwa { id: 1  text: …  risk: high  verifymethod: test }` and five specific kinds | RQD-001, RQD-002 |
 | element | `element nazwa { type: …  docref: … }` | RQD-001, RQD-002 |
-| relacja | `a - satisfies -> b`; `b <- satisfies - a` | RQD-003 |
-| kierunek, wygląd | `direction LR`; `classDef`, `class`, `nazwa:::styl`, `style` | RQD-003 |
-| dostępność | `accTitle`, `accDescr` | RQD-001 |
+| relationship | `a - satisfies -> b`; `b <- satisfies - a` | RQD-003 |
+| direction, styling | `direction LR`; `classDef`, `class`, `nazwa:::styl`, `style` | RQD-003 |
+| accessibility | `accTitle`, `accDescr` | RQD-001 |
 
-Świadome różnice wobec Mermaid: długi tekst wymagania jest łamany na linie o około 44 znakach; relacja `contains`
-ma kółko przy elemencie zawierającym (w Mermaid kółko z krzyżykiem); nazwa użyta w relacji musi być zdefiniowana blokiem; wartość pola przyjmujemy także bez cudzysłowów,
-gdy ma łącznik albo kropkę (Mermaid wymaga wtedy cudzysłowów).
+Deliberate differences from Mermaid: long requirement text is wrapped into lines of about 44 characters; the `contains`
+relationship has a circle at the containing element (in Mermaid a circle with a cross); a name used in a relationship
+must be defined by a block; a field value is also accepted without quotes when it contains a hyphen or a dot (Mermaid
+then requires quotes).
 
-## Wykres Sankeya (`sankey-beta`, `sankey`)
+## Sankey diagram (`sankey-beta`, `sankey`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| przepływ | `źródło,cel,wartość`; `"nazwa, z przecinkiem",cel,12.5` | SNK-001 |
-| łamanie nazw | `%% layout: wrap` (nazwy węzłów łamane na słowach) | SNK-006 |
+| flow | `źródło,cel,wartość`; `"nazwa, z przecinkiem",cel,12.5` | SNK-001 |
+| name wrapping | `%% layout: wrap` (node names wrapped at words) | SNK-006 |
 
-Węzły ustawiają się w pionie względem sąsiadów, a przepływ przez kilka kolumn omija węzły kolumn pośrednich, więc
-wstęgi biegną możliwie prosto i się nie krzyżują (SNK-005).
+Nodes are positioned vertically relative to their neighbours, and a flow across several columns avoids the nodes of the
+intermediate columns, so the bands run as straight as possible and do not cross (SNK-005).
 
-Świadome różnice wobec Mermaid: przy każdym węźle stoi jego wartość; wstęgi są domyślnie szare i półprzezroczyste,
-a `WithColors` nadaje im kolor węzła źródłowego; wykres ma stałą szerokość 620 px i wysokość rosnącą z liczbą węzłów
-w kolumnie; nazwy węzłów mogą zawierać polskie litery (Mermaid w tym typie odrzuca znaki spoza ASCII, także
-w cudzysłowach); cykl przepływów jest błędem; `accTitle` i `accDescr` nie są częścią składni (linia byłaby przepływem).
+Deliberate differences from Mermaid: each node shows its value; bands are grey and semi-transparent by default, and
+`WithColors` gives them the colour of the source node; the chart has a fixed width of 620 px and a height that grows
+with the number of nodes in a column; node names may contain non-ASCII letters (Mermaid rejects characters outside ASCII
+in this type, even in quotes); a cycle of flows is an error; `accTitle` and `accDescr` are not part of the syntax (the
+line would be a flow).
 
-## Diagramy C4 (`C4Context`, `C4Container`, `C4Component`, `C4Dynamic`, `C4Deployment`)
+## C4 diagrams (`C4Context`, `C4Container`, `C4Component`, `C4Dynamic`, `C4Deployment`)
 
-Rysowane tym samym układem warstwowym co schemat blokowy.
+Drawn with the same layered layout as flowcharts.
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| osoba, system | `Person(alias, "Etykieta", "Opis")`, `System(…)`, z przyrostkami `Db`, `Queue`, `_Ext` | C4D-001 |
-| kontener, komponent | `Container(alias, "Etykieta", "Technologia", "Opis")`, `Component(…)`, z tymi samymi przyrostkami | C4D-001 |
-| relacja | `Rel(a, b, "Etykieta", "Technologia")`, `BiRel`, `Rel_Back`, `Rel_U`/`D`/`L`/`R`, `RelIndex(1, a, b, "…")` | C4D-002 |
-| granica | `Enterprise_Boundary(alias, "Etykieta") { … }`, `System_Boundary`, `Container_Boundary`, `Boundary(alias, "Etykieta", "rodzaj")` | C4D-003 |
-| węzeł wdrożenia | `Deployment_Node(alias, "Etykieta", "Typ") { … }`, `Node(…)` | C4D-003 |
-| tytuł, dostępność | `title Tekst`; `accTitle`, `accDescr` | C4D-003 |
-| wygląd, układ | `UpdateElementStyle(…)`, `UpdateRelStyle(…)`, `UpdateLayoutConfig(…)`, argumenty `$klucz="…"` (pomijane) | C4D-003 |
+| person, system | `Person(alias, "Etykieta", "Opis")`, `System(…)`, with the suffixes `Db`, `Queue`, `_Ext` | C4D-001 |
+| container, component | `Container(alias, "Etykieta", "Technologia", "Opis")`, `Component(…)`, with the same suffixes | C4D-001 |
+| relationship | `Rel(a, b, "Etykieta", "Technologia")`, `BiRel`, `Rel_Back`, `Rel_U`/`D`/`L`/`R`, `RelIndex(1, a, b, "…")` | C4D-002 |
+| boundary | `Enterprise_Boundary(alias, "Etykieta") { … }`, `System_Boundary`, `Container_Boundary`, `Boundary(alias, "Etykieta", "rodzaj")` | C4D-003 |
+| deployment node | `Deployment_Node(alias, "Etykieta", "Typ") { … }`, `Node(…)` | C4D-003 |
+| title, accessibility | `title Tekst`; `accTitle`, `accDescr` | C4D-003 |
+| styling, layout | `UpdateElementStyle(…)`, `UpdateRelStyle(…)`, `UpdateLayoutConfig(…)`, `$klucz="…"` arguments (ignored) | C4D-003 |
 
-Świadome różnice wobec Mermaid: układ jest warstwowy, wyznaczony przez relacje, a nie siatką o stałej liczbie
-kształtów w rzędzie, więc wskazówki kierunku (`Rel_U`, `Rel_L`) i `UpdateLayoutConfig` nie wpływają na położenie;
-tytuł jest ramką wokół diagramu; osoba jest polem z półkolami bez ikony; element zewnętrzny odróżnia linia przerywana
-i jaśniejsze tło, a nie kolor; rodzaj elementu jest zapisany jak w Mermaid (`[Person]`, `[Software System]`); wszystkie pięć nagłówków rysuje się tak samo.
+Deliberate differences from Mermaid: the layout is layered, determined by the relationships, not a grid with a fixed
+number of shapes per row, so direction hints (`Rel_U`, `Rel_L`) and `UpdateLayoutConfig` do not affect placement; the
+title is a frame around the diagram; a person is a field with semicircular ends, without an icon; an external element is
+distinguished by a dashed line and a lighter background, not by colour; the element kind is written as in Mermaid
+(`[Person]`, `[Software System]`); all five headers are drawn the same way.
 
-## Graf historii Gita (`gitGraph`)
+## Git graph (`gitGraph`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
 | commit | `commit`, `commit id: "a" tag: "v1" type: HIGHLIGHT` | GIT-001 |
-| gałąź | `branch nazwa`, `checkout nazwa`, `switch nazwa` | GIT-002 |
-| scalenie, kopia | `merge nazwa tag: "v2"`; `cherry-pick id: "a"` | GIT-002 |
-| dostępność | `accTitle`, `accDescr` | GIT-001 |
+| branch | `branch nazwa`, `checkout nazwa`, `switch nazwa` | GIT-002 |
+| merge, cherry-pick | `merge nazwa tag: "v2"`; `cherry-pick id: "a"` | GIT-002 |
+| accessibility | `accTitle`, `accDescr` | GIT-001 |
 
-Orientacja pionowa (`gitGraph TB:`, `BT:`, GIT-005): gałęzie są kolumnami, a opis commitu stoi z jego prawej
-strony. Świadome różnice wobec
-Mermaid: commit bez podanego identyfikatora nie ma podpisu (Mermaid losuje identyfikator, więc rysunek nie byłby
-powtarzalny); identyfikator stoi poziomo pod commitem, a odstęp dwóch commitów mieści ich własne podpisy; gałęzie stoją
-w kolejności powstania (`order:` jest pomijane); domyślnie rysunek jest neutralny, `WithColors` nadaje gałęziom
-kolory palety.
+Vertical orientation (`gitGraph TB:`, `BT:`, GIT-005): branches are columns, and a commit's label stands on its right
+side. Deliberate differences from Mermaid: a commit without a given identifier has no label (Mermaid generates a random
+identifier, so the drawing would not be reproducible); the identifier stands horizontally below the commit, and the gap
+between two commits fits their own labels; branches stand in order of creation (`order:` is ignored); by default the
+drawing is neutral, `WithColors` gives the branches palette colours.
 
-## Diagram blokowy (`block-beta`, `block`)
+## Block diagram (`block-beta`, `block`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| siatka | `columns 3`, `columns auto` | BLK-001 |
-| blok | `id`, `id["Etykieta"]`, z szerokością `id:2`; `space`, `space:2` | BLK-001 |
-| kształty | `(…)`, `([…])`, `((…))`, `{…}`, `{{…}}`, `[(…)]`, strzałka `id<["…"]>(right)` | BLK-002 |
-| blok złożony | `block:id:3 … end` | BLK-002 |
-| połączenia | `a --> b`, `a --- b`, `a -.-> b`, `a -- "tekst" --> b` | BLK-003 |
-| wygląd | `style`, `classDef`, `class` | BLK-003 |
+| grid | `columns 3`, `columns auto` | BLK-001 |
+| block | `id`, `id["Etykieta"]`, with a width `id:2`; `space`, `space:2` | BLK-001 |
+| shapes | `(…)`, `([…])`, `((…))`, `{…}`, `{{…}}`, `[(…)]`, arrow `id<["…"]>(right)` | BLK-002 |
+| composite block | `block:id:3 … end` | BLK-002 |
+| connections | `a --> b`, `a --- b`, `a -.-> b`, `a -- "tekst" --> b` | BLK-003 |
+| styling | `style`, `classDef`, `class` | BLK-003 |
 
-Świadome różnice wobec Mermaid: połączenie jest prostym odcinkiem między brzegami kształtów i może przejść nad
-innym blokiem; gdy diagram ma połączenia, odstępy między blokami rosną tak, żeby zmieściły się groty i etykiety;
-strzałka blokowa z kierunkiem `y` jest rysowana w prawo.
+Deliberate differences from Mermaid: a connection is a straight segment between the edges of the shapes and may pass over
+another block; when the diagram has connections, the gaps between blocks grow so that arrowheads and labels fit;
+a block arrow with the `y` direction is drawn pointing right.
 
-## Diagram architektury (`architecture-beta`, `architecture`)
+## Architecture diagram (`architecture-beta`, `architecture`)
 
-| Element | Składnia | Wymaganie |
+| Element | Syntax | Requirement |
 |---|---|---|
-| usługa | `service id(ikona)[Podpis]`, z `in grupa` | ARC-001 |
-| grupa | `group id(ikona)[Podpis]`, z `in grupa` | ARC-001 |
-| rozgałęzienie | `junction id` | ARC-001 |
-| krawędź | `a:R -- L:b`, `a:B --> T:b`, `a:R <-[tekst]-> L:b`, `a{group}:R -- L:b` | ARC-002 |
-| tytuł, dostępność | `title Tekst`; `accTitle`, `accDescr` | ARC-001 |
+| service | `service id(ikona)[Podpis]`, with `in grupa` | ARC-001 |
+| group | `group id(ikona)[Podpis]`, with `in grupa` | ARC-001 |
+| junction | `junction id` | ARC-001 |
+| edge | `a:R -- L:b`, `a:B --> T:b`, `a:R <-[tekst]-> L:b`, `a{group}:R -- L:b` | ARC-002 |
+| title, accessibility | `title Tekst`; `accTitle`, `accDescr` | ARC-001 |
 
-Świadome różnice wobec Mermaid: ikony są własnymi, uproszczonymi znakami pięciu wbudowanych nazw (`database`,
-`server`, `disk`, `cloud`, `internet`); ikona o innej nazwie, także z zestawów zewnętrznych, jest pustym polem;
-ikona grupy nie jest rysowana, grupa ma sam podpis; położenie usług wynika wyłącznie z boków krawędzi, a usługa
-spoza grupy, która wypadłaby w obrębie jej ramki, odsuwa się dalej w swoim kierunku; krawędź jest łamaną
-z najwyżej dwoma zagięciami i może przejść nad inną usługą.
+Deliberate differences from Mermaid: the icons are this library's own simplified symbols for the five built-in names
+(`database`, `server`, `disk`, `cloud`, `internet`); an icon with any other name, including from external icon sets, is
+an empty field; a group's icon is not drawn, the group has only its label; the position of services follows solely from
+the edge sides, and a service outside a group that would land within the group's frame moves further in its direction;
+an edge is a polyline with at most two bends and may pass over another service.
