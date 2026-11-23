@@ -14,15 +14,11 @@ svg, err := mermaid.Render(source)
 Compared with two other Go renderers that need no browser, [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer)
 and [`go-mermaid`](https://github.com/zkrebbekx/go-mermaid) (details in [At a glance](#at-a-glance)):
 
-- **Smallest footprint**: a single 8.4 MB program with no dependencies at all, standard library only, PDF and PNG
-  included.
-- **The fastest of the three**: SVG about 20% faster than go-mermaid and 10× faster than mmdg, PDF about 6× faster
-  than mmdg, PNG about twice as fast as go-mermaid and 3× faster than mmdg, with the least memory for SVG and PDF.
-- **Fits diagrams to an A4 page**: narrows fields, folds long processes into rows, folds long chains and staggers
-  long ranks, so a printed diagram stays readable ([examples](docs/gallery/page-fitting.md)). Neither of the others
-  does this.
-- **Small output**: plain SVG 1.1 without embedded fonts, CSS or scripts, 59× smaller than mmdg's and a little smaller
-  than go-mermaid's; PDF with real, searchable text, 8× smaller than mmdg's.
+- **Smallest footprint**: a single 8.4 MB program with no dependencies at all, PDF and PNG included.
+- **The fastest of the three**: SVG, PDF, PNG creation 20–90% faster than the others.
+- **Printing friendly**: narrows fields, folds long processes/chains, staggers long ranks, to fit A4 pages.
+- **Small output**: plain SVG 1.1 without embedded fonts or CSS, much smaller than mmdg's and a little smaller than
+  go-mermaid's; PDF with real, searchable text.
 - **Made for documents**: a neutral look that prints well in black and white, Markdown documents with embedded
   diagrams, and the flags of `mermaid-cli`.
 
