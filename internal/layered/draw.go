@@ -25,9 +25,9 @@ const (
 const shapeNote graph.Shape = "note"
 
 func (l *layouter) wrapLimit(shape graph.Shape) float64 {
-	limit := l.u(200)
+	limit := l.u(l.baseWrap())
 	if shape == graph.Rhombus || shape == graph.Circle || shape == graph.DoubleCircle {
-		limit = l.u(150)
+		limit = l.u(l.baseWrap() * 0.75)
 	}
 	return limit * l.narrow()
 }
@@ -1456,7 +1456,7 @@ func (l *layouter) drawLoop(it *item, e *graph.Edge, index int) {
 	l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerLifeline, Role: "edge", Segments: segments,
 		Stroke: colorLine, StrokeWidth: width, Dash: dash})
 	if len(e.Label) > 0 {
-		lines := l.wrap(e.Label, l.u(200)*l.narrow())
+		lines := l.wrap(e.Label, l.u(l.baseWrap())*l.narrow())
 		w, _ := l.abstract(l.textSize(lines))
 		l.drawLabel(lines, edge+l.u(40)+w/2, it.y)
 	}

@@ -6,11 +6,32 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 
 - Blok nagłówkowy YAML między liniami `---` jest przyjmowany; `title` daje tytuł nad rysunkiem (COM-001).
 - Dyrektywa `%%{init: … }%%`, także wieloliniowa, jest przyjmowana (COM-002).
-- Z bloku nagłówkowego i dyrektywy czytany jest motyw (`theme`) i cztery zmienne motywu (`primaryColor`,
-  `lineColor`, `primaryTextColor`, `background`); reszta konfiguracji jest pomijana. Motywy są własne, pod nazwami
+- Z bloku nagłówkowego i dyrektywy czytany jest motyw (`theme`), cztery zmienne motywu (`primaryColor`,
+  `lineColor`, `primaryTextColor`, `background`) i ustawienia łamania napisów (COM-008); reszta konfiguracji jest
+  pomijana, zob. tabela „Konfiguracja Mermaid” niżej. Motywy są własne, pod nazwami
   Mermaid: `neutral` (domyślny), `default` (kolorowy), `forest`, `dark`, `base`. Wywołujący może narzucić motyw
   (`WithTheme`, flaga `-t`), co wyłącza wybór ze źródła (THM-001…004, ADR 0005).
 - Numery linii w komunikatach błędów liczą się od początku źródła, razem z nagłówkiem (COM-003).
+
+### Konfiguracja Mermaid
+
+Co dzieje się z kluczami konfiguracji zapisanymi w źródle (blok `---` z `config:` albo `%%{init}%%`). Klucze spoza
+tabeli są pomijane bez błędu. Opcje wywołania biblioteki (`WithTheme`, `WithFont`, `WithFit` itd.) mają pierwszeństwo
+przed źródłem tam, gdzie oba ustawiają to samo.
+
+| Klucz Mermaid | U nas | Uwagi |
+|---|---|---|
+| `theme`, `themeVariables` (`primaryColor`, `lineColor`, `primaryTextColor`, `background`) | obsługiwane | motywy własne pod nazwami Mermaid (THM-001…004) |
+| `markdownAutoWrap`, `wrap` | obsługiwane | `false` wyłącza automatyczne łamanie napisów diagramów grafowych; `wrap: true` łamie teksty w sekwencji (COM-008) |
+| `flowchart.wrappingWidth` | obsługiwane | granica łamania napisów w polach i na krawędziach (COM-008) |
+| `darkMode` | przez motyw | odpowiednik: `theme: dark` |
+| `fontFamily`, `fontSize` | tylko z wywołania | `WithFont`, `WithFontSize`; źródło nie zmienia kroju dokumentu |
+| `layout` (`dagre`, `elk`), `elk.*` | pomijane | własny układ warstwowy; własne dyrektywy `%% layout: swimlanes`, `fit`/`nofit`, `fold`/`nofold` |
+| `look` (`handDrawn`), `handDrawnSeed` | pomijane | jeden wygląd rysunku |
+| `flowchart.nodeSpacing`, `rankSpacing`, `padding`, `diagramPadding`, `subGraphTitleMargin`, `curve` | pomijane | odstępy stałe, względem pisma; krzywe: `WithCurvedEdges` |
+| `maxTextSize`, `maxEdges` | pomijane | własne, stałe limity; źródło jest danymi z zewnątrz i nie może ich podnieść |
+| `htmlLabels`, `securityLevel`, `startOnLoad`, `logLevel`, `deterministicIds`, `deterministicIDSeed`, `themeCSS`, `suppressErrorRendering`, `arrowMarkerAbsolute`, `secure`, `legacyMathML`, `forceLegacyMathML` | nie dotyczą | dotyczą przeglądarki; wynik nie ma HTML, CSS, skryptów ani losowych identyfikatorów |
+| klucze typów diagramów (`sequence.*`, `gantt.*`, `pie.*` itd.) | pomijane | poza wymienionymi (`sequence.wrap`); pominięte klucze są wymienione przy typach niżej |
 
 ## Diagram sekwencji (`sequenceDiagram`)
 
@@ -41,7 +62,7 @@ Obsługiwany zakres składni Mermaid. Wszystko poza tabelą „Obsługiwane” d
 ### Świadome różnice wobec Mermaid
 
 - średnik nie rozdziela instrukcji i kody encji (`#35;`) nie są rozwijane: tekst trafia do rysunku dosłownie;
-- nie ma zawijania tekstu (`wrap`); dyrektywy `%%{init}%%` i blok `---` działają jak dla wszystkich typów (patrz wyżej);
+- zawijanie tekstu tylko dla całego diagramu (`wrap: true` w konfiguracji, COM-008), bez przedrostka `wrap:` w treści komunikatu; dyrektywy `%%{init}%%` i blok `---` działają jak dla wszystkich typów (patrz wyżej);
 - limity: 50 uczestników, 2000 instrukcji, 20 poziomów zagnieżdżenia bloków;
 - dezaktywacja nieaktywnego uczestnika jest błędem, także w zapisie skróconym;
 - uczestnik zakończony przez `destroy` kończy się krzyżykiem i nie ma stopki; Mermaid rysuje w tym miejscu jego pole

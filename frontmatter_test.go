@@ -186,3 +186,38 @@ func TestAuthorLineBreaksKept(t *testing.T) {
 		}
 	}
 }
+
+// REQ: COM-008
+func TestWrapSettingsFromSource(t *testing.T) {
+	long := "Izolacja calej partii i oznaczenie wyrobow"
+	lines := func(svg []byte) int { return strings.Count(string(svg), `class="node-label"`) }
+	render := func(src string) []byte {
+		t.Helper()
+		svg, err := Render(src)
+		if err != nil {
+			t.Fatal(err)
+		}
+		return svg
+	}
+	base := lines(render("flowchart LR\n  A[" + long + "]\n"))
+	if base < 2 {
+		t.Fatalf("default: the long label should wrap, got %d line(s)", base)
+	}
+	for _, src := range []string{
+		"%%{init: {\"markdownAutoWrap\": false}}%%\nflowchart LR\n  A[" + long + "]\n",
+		"---\nconfig:\n  markdownAutoWrap: false\n---\nflowchart LR\n  A[" + long + "]\n",
+		"%%{init: {\"wrap\": false}}%%\nflowchart LR\n  A[" + long + "]\n",
+	} {
+		if n := lines(render(src)); n != 1 {
+			t.Errorf("auto wrap off: label should stay on one line, got %d\n%s", n, src)
+		}
+	}
+	if n := lines(render("%%{init: {\"flowchart\": {\"wrappingWidth\": 100}}}%%\nflowchart LR\n  A[" + long + "]\n")); n <= base {
+		t.Errorf("wrappingWidth 100: want more than %d lines, got %d", base, n)
+	}
+	msg := "sequenceDiagram\n  A->>B: " + long + " " + long + "\n"
+	count := func(svg []byte) int { return strings.Count(string(svg), `class="message-label"`) }
+	if a, b := count(render(msg)), count(render("%%{init: {\"sequence\": {\"wrap\": true}}}%%\n"+msg)); a != 1 || b < 2 {
+		t.Errorf("sequence wrap: want 1 line without and several with wrap, got %d and %d", a, b)
+	}
+}

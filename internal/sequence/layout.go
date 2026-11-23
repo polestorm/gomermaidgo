@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/scene"
+	"github.com/polestorm/gomermaidgo/internal/textwrap"
 )
 
 // Measure zwraca szerokość tekstu w pikselach dla podanego rozmiaru pisma.
@@ -20,6 +21,10 @@ type Options struct {
 	Background string
 	Colors     bool // uczestnicy w kolejnych kolorach palety
 	Shadows    bool // cień pod uczestnikami i notatkami
+	// Wrap łamie teksty komunikatów i notatek szersze niż WrapWidth (konfiguracja Mermaid
+	// „wrap: true”); WrapWidth 0 = 200 px przy piśmie 16 px.
+	Wrap      bool
+	WrapWidth float64
 }
 
 // Kolory rysunku. Wygląd jest stały i własny; nie naśladuje motywów Mermaid.
@@ -147,10 +152,31 @@ func (l *layout) extent(x0, x1 float64) {
 	f.minX, f.maxX = math.Min(f.minX, x0), math.Max(f.maxX, x1)
 }
 
+// wrapped zwraca kopię diagramu z tekstami komunikatów i notatek złamanymi na granicach wyrazów.
+func wrapped(d *Diagram, o Options) *Diagram {
+	limit := o.WrapWidth
+	if limit <= 0 {
+		limit = 200
+	}
+	limit *= o.FontSize / 16
+	out := *d
+	out.Events = make([]Event, len(d.Events))
+	copy(out.Events, d.Events)
+	for i := range out.Events {
+		if e := &out.Events[i]; e.Kind == EventMessage || e.Kind == EventNote {
+			e.Text = textwrap.Lines(e.Text, limit, func(s string) float64 { return o.Measure(s, o.FontSize) })
+		}
+	}
+	return &out
+}
+
 // Layout rozmieszcza diagram i zwraca scenę.
 func Layout(d *Diagram, o Options) *scene.Scene {
 	if o.FontSize <= 0 {
 		o.FontSize = 16
+	}
+	if o.Wrap {
+		d = wrapped(d, o)
 	}
 	l := &layout{d: d, o: o, fs: o.FontSize}
 	l.lh = math.Round(l.fs * 1.25)

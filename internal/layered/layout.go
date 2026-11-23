@@ -44,6 +44,13 @@ type Options struct {
 	Fold     FoldMode
 	FoldType FoldType
 
+	// NoWrap wyłącza automatyczne łamanie napisów (konfiguracja Mermaid „markdownAutoWrap: false”
+	// albo „wrap: false”): zostają przełamania autora; łamie się tylko linia szersza niż authorLimit.
+	NoWrap bool
+	// WrapWidth to granica łamania napisów w polach i na krawędziach przy piśmie 16 px
+	// („flowchart.wrappingWidth”); 0 = 200 px.
+	WrapWidth float64
+
 	boxes map[string]scene.Box // wypełniane przy rysowaniu, gdy nie nil (layoutBoxes)
 	// painted: źródło samo nadaje wypełnienie choć jednemu polu albo ramce. Pola bez koloru
 	// zostają wtedy neutralne (białe), a ramki bez koloru bez tła trybu kolorowego: brak koloru
@@ -270,8 +277,8 @@ func (l *layouter) runWidth(r graph.Run) float64 {
 func (l *layouter) wrap(lines []string, limit float64) []string {
 	// Linie pochodzą od autora tylko w schemacie i diagramie stanów; w C4, klasach czy wymaganiach
 	// kolejne linie (nazwa, typ, opis) składa sam program.
-	if len(lines) > 1 && (l.g.Kind == "flowchart" || l.g.Kind == "state") {
-		limit = math.Max(limit, l.u(authorLimit))
+	if l.o.NoWrap || len(lines) > 1 && (l.g.Kind == "flowchart" || l.g.Kind == "state") {
+		limit = math.Max(limit, l.u(l.authorLimit()))
 	}
 	var out []string
 	for _, line := range lines {
@@ -306,8 +313,17 @@ func (l *layouter) wrap(lines []string, limit float64) []string {
 }
 
 // authorLimit to szerokość (przy piśmie 16 px), powyżej której łamie się nawet linia z napisu
-// złamanego przez autora: dwa razy więcej niż zwykła granica pola.
-const authorLimit = 400
+// złamanego przez autora albo z rysunku bez automatycznego łamania: dwa razy więcej niż zwykła
+// granica pola.
+func (l *layouter) authorLimit() float64 { return 2 * l.baseWrap() }
+
+// baseWrap to zwykła granica łamania napisu w polu i na krawędzi przy piśmie 16 px.
+func (l *layouter) baseWrap() float64 {
+	if l.o.WrapWidth > 0 {
+		return l.o.WrapWidth
+	}
+	return 200
+}
 
 // glue oznacza w wyniku hyphenParts dalszą część słowa, która dokleja się do poprzedniej bez spacji.
 const glue = "\x00"
@@ -703,7 +719,7 @@ func (l *layouter) assignEdges() {
 		}
 		scope := l.scopeOf(n.Target)
 		it := &item{kind: kindNode, node: &graph.Node{ID: id, Shape: "note", Parent: scope}}
-		it.text = l.wrap(n.Text, l.u(200))
+		it.text = l.wrap(n.Text, l.u(l.baseWrap()))
 		restore := l.enter(l.levels[scope])
 		it.w, it.h = l.abstract(l.nodeSize("note", it.text))
 		restore()
@@ -790,7 +806,7 @@ func (l *layouter) sizeAll(lv *level) {
 		for _, e := range lv.loops[it] {
 			extra := l.u(40)
 			if len(e.Label) > 0 {
-				w, h := l.abstract(l.textSize(l.wrap(e.Label, l.u(200)*l.narrow())))
+				w, h := l.abstract(l.textSize(l.wrap(e.Label, l.u(l.baseWrap())*l.narrow())))
 				_ = h
 				extra += w + l.u(8)
 			}
@@ -1172,7 +1188,7 @@ func (l *layouter) rank(lv *level) {
 			d := &item{kind: kindDummy, rank: r, w: l.u(8), lane: e.v.lane}
 			if r == labelRank {
 				d.kind = kindLabel
-				d.text = l.wrap(e.e.Label, l.u(200)*l.narrow())
+				d.text = l.wrap(e.e.Label, l.u(l.baseWrap())*l.narrow())
 				tw, th := l.textSize(d.text)
 				d.w, d.h = l.abstract(tw+l.u(10), th+l.u(4))
 				e.label = d
@@ -1290,7 +1306,7 @@ func (l *layouter) boundRankWidth(lv *level, rank []int, succ [][]*ledge, index 
 			if a < r && r < b {
 				total += l.u(18)
 				if len(e.e.Label) > 0 && r == a+(b-a)/2 {
-					tw, _ := l.abstract(l.textSize(l.wrap(e.e.Label, l.u(200)*l.narrow())))
+					tw, _ := l.abstract(l.textSize(l.wrap(e.e.Label, l.u(l.baseWrap())*l.narrow())))
 					total += tw + l.u(10)
 				}
 			}

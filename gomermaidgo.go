@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 	"sync"
 	"unicode/utf8"
@@ -71,6 +72,7 @@ func SupportedTypes() []string {
 }
 
 type config struct {
+	wrap       wrapSettings // łamanie napisów z konfiguracji w źródle (wrapSettingsFrom)
 	fontData   []byte
 	boldData   []byte
 	italicData []byte
@@ -302,6 +304,38 @@ func Check(source string) error {
 }
 
 // fitDirective ustawia w źródle tryb dopasowania do strony (WithFit).
+// wrapSettings to ustawienia łamania napisów zapisane w źródle, w bloku nagłówkowym albo dyrektywie
+// %%{init}%%: markdownAutoWrap, wrap (globalnie albo w sequence) i flowchart.wrappingWidth.
+type wrapSettings struct {
+	off   bool    // markdownAutoWrap: false albo wrap: false
+	on    bool    // wrap: true (sekwencja: łamanie tekstów komunikatów i notatek)
+	width float64 // wrappingWidth; 0 = domyślne 200 px
+}
+
+var (
+	autoWrapKey  = regexp.MustCompile(`["']?\bmarkdownAutoWrap["']?\s*:\s*["']?(true|false)\b`)
+	wrapKey      = regexp.MustCompile(`["']?\bwrap["']?\s*:\s*["']?(true|false)\b`)
+	wrapWidthKey = regexp.MustCompile(`["']?\bwrappingWidth["']?\s*:\s*["']?(\d+(?:\.\d+)?)\b`)
+)
+
+// wrapSettingsFrom czyta ustawienia łamania z konfiguracji źródła. Szerokość spoza 50–2000 px
+// jest pomijana: źródło jest danymi z zewnątrz.
+func wrapSettingsFrom(settings string) wrapSettings {
+	var w wrapSettings
+	if m := autoWrapKey.FindStringSubmatch(settings); m != nil && m[1] == "false" {
+		w.off = true
+	}
+	if m := wrapKey.FindStringSubmatch(settings); m != nil {
+		w.on, w.off = m[1] == "true", w.off || m[1] == "false"
+	}
+	if m := wrapWidthKey.FindStringSubmatch(settings); m != nil {
+		if v, err := strconv.ParseFloat(m[1], 64); err == nil && v >= 50 && v <= 2000 {
+			w.width = v
+		}
+	}
+	return w
+}
+
 var fitDirective = regexp.MustCompile(`(?m)^\s*%%\s*layout:\s*(fit|nofit)\s*$`)
 
 // foldDirective ustawia w źródle zwijanie (WithFold, WithFoldType).
@@ -391,6 +425,9 @@ func build(source string, opts []Option) (*scene.Scene, *font.Face, error) {
 	}
 	if th.colors {
 		opts = append(append([]Option{}, opts...), WithColors())
+	}
+	if w := wrapSettingsFrom(settings); w != (wrapSettings{}) {
+		opts = append(append([]Option{}, opts...), func(c *config) { c.wrap = w })
 	}
 	sc, face, err := buildScene(clean, opts)
 	if err != nil {
@@ -537,13 +574,14 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 		} else if styled, err = styledMeasure(c.boldData, c.italicData); err != nil {
 			return nil, nil, err
 		}
-		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, Fit: fitMode(c, source), FitRatio: c.fitRatio, Fold: foldMode(c, source), FoldType: foldType(c, source)}), face, nil
+		return layered.Layout(g, layered.Options{Measure: measure, MeasureStyled: styled, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows, CurvedEdges: c.curved, NoWrap: c.wrap.off, WrapWidth: c.wrap.width, Fit: fitMode(c, source), FitRatio: c.fitRatio, Fold: foldMode(c, source), FoldType: foldType(c, source)}), face, nil
 	}
 	d, err := sequence.Parse(source)
 	if err != nil {
 		return nil, nil, err
 	}
-	return sequence.Layout(d, sequence.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows}), face, nil
+	return sequence.Layout(d, sequence.Options{Measure: measure, FontSize: c.fontSize, FontFamily: c.fontFamily, Background: c.background, Colors: c.colors, Shadows: c.shadows,
+		Wrap: c.wrap.on, WrapWidth: c.wrap.width}), face, nil
 }
 
 // defaultStyled mierzy odmianami kroju dołączonego; pliki są czytane raz na proces.
