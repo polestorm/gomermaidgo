@@ -9,6 +9,30 @@ import "github.com/polestorm/gomermaidgo/mermaid"
 svg, err := mermaid.Render(source)
 ```
 
+## Why gomermaidgo
+
+Compared with [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer), the closest alternative (details in
+[At a glance](#at-a-glance)):
+
+- **6.5× smaller program, no JavaScript engine, no dependencies**: 8.2 MB against 53 MB, standard library only.
+- **2–4× faster, about half the memory**: an SVG in 9 ms instead of 38 ms, a PDF 3× and a PNG 2× faster.
+- **Fits diagrams to an A4 page**: narrows fields, folds long processes into rows, folds long chains and staggers
+  long ranks, so a printed diagram stays readable ([examples](docs/gallery/page-fitting.md)).
+- **32× smaller SVG, 8× smaller PDF**: plain SVG 1.1 without embedded fonts, CSS or scripts; PDF with real,
+  searchable text.
+- **Made for documents**: a neutral look that prints well in black and white, Markdown documents with embedded
+  diagrams, and the flags of `mermaid-cli`.
+
+## Contents
+
+- [Why gomermaidgo](#why-gomermaidgo) · [At a glance](#at-a-glance) · [Examples](#examples) ·
+  [Diagram types](#diagram-types) · [Documentation](#documentation) ·
+  [How the comparison was measured](#how-the-comparison-was-measured) · [License](#license)
+- [Usage](docs/usage.md): fonts, colours and themes, fitting to A4, PDF, PNG, command line, Markdown
+- [Gallery](docs/gallery/README.md): [page fitting](docs/gallery/page-fitting.md),
+  [all diagram types](docs/gallery/types.md), [scripts and symbols](docs/gallery/scripts.md)
+- [Supported syntax](docs/profile.md) (in Polish)
+
 ## At a glance
 
 Compared with [`mmdg`](https://github.com/bvolpato/mermaid-go-renderer)[^ref], the closest alternative: also a Go
@@ -69,104 +93,24 @@ from 1770 × 404 to 631 × 756.</td>
 More in the [gallery](docs/gallery/README.md): [page fitting](docs/gallery/page-fitting.md) with and without each
 option, [all 24 diagram types](docs/gallery/types.md), and [scripts and symbols](docs/gallery/scripts.md).
 
-## Usage
+## Diagram types
 
-By default text is measured with the bundled Arimo typeface (`fonts.Arimo()`, SIL Open Font License 1.1, see
-`fonts/OFL-Arimo.txt`), and the SVG asks for `Arimo, Arial, 'Liberation Sans', sans-serif`. Arimo has the same
-character widths as Arial and Liberation Sans, so the drawing keeps its layout on Windows, macOS and most Linux
-desktops without any font file; elsewhere, give the file to whatever draws the SVG (a page through `@font-face`, a PDF
-converter as an embedded font). To use another typeface, pass both its file and its name:
+Status: early. Drawn: `flowchart`/`graph`, `sequenceDiagram`, `classDiagram`, `stateDiagram-v2`, `erDiagram`,
+`gantt`, `pie`, `journey`, `gitGraph`, `mindmap`, `timeline`, `quadrantChart`, `xychart-beta`, `sankey-beta`,
+`requirementDiagram`, C4 diagrams, `block-beta`, `packet-beta`, `kanban`, `architecture-beta`, `radar-beta`,
+`treemap-beta`, `ishikawa-beta` and `swimlane-beta`; one example of each is in the
+[gallery](docs/gallery/types.md). Graphs use a layered layout written from the published algorithms. The supported
+syntax and its current limits are listed in [`docs/profile.md`](docs/profile.md); a construct outside it is an error
+with a line number, never a partial drawing.
 
-```go
-svg, err := mermaid.Render(source,
-	mermaid.WithFont(fontBytes),         // measure text with the font that will draw it
-	mermaid.WithFontFamily("Noto Sans"),
-)
-```
+## Documentation
 
-Colours (`WithColors`) and shadows (`WithShadows`) are opt-in; the default drawing is neutral and prints well in black
-and white.
-
-```sh
-go run ./cmd/gomermaidgo -font NotoSans-Regular.ttf -family "Noto Sans" -o diagram.svg diagram.mmd
-```
-
-PDF output is an optional package: it writes the same drawing straight to a one-page PDF, with real text and the
-font embedded as a subset. No SVG or HTML in between, and still no dependencies.
-
-```go
-doc, err := pdf.Render(source) // import "github.com/polestorm/gomermaidgo/pdf"
-```
-
-```sh
-go run ./cmd/gomermaidgo -o diagram.pdf diagram.mmd   # the extension selects the format
-go build -tags nopdf ./cmd/gomermaidgo                # a build without the PDF writer
-```
-
-Emoji and other characters the main typeface lacks are drawn with a bundled fallback, a static cut of Noto Emoji
-(monochrome, OFL 1.1). In SVG they are written as outlines, so the drawing looks the same everywhere and needs no
-font file for them; `WithEmojiText` (`-emoji-text`) keeps them as text instead. PDF keeps them as text with the
-font embedded.
-
-Graph diagrams are fitted to an A4 page by default: a drawing at least twice as wide as it is tall is laid out
-again with narrower fields, wrapping text more often, and the version that fits the page at the largest scale is
-kept. `WithFit(FitOn|FitOff|FitAuto)` and `WithFitRatio` (or `-fit on|off|auto`, `-fit-ratio`, or a
-`%% layout: fit` / `%% layout: nofit` line in the source) change that. Long, simple diagrams are also folded into rows (LR) or
-columns (TB) joined by connectors: `return` (default, every row in the same direction) or `snake`; see
-`WithFold`, `WithFoldType`, `-fold`, `-fold-type` and `%% layout: fold snake|return` / `%% layout: nofold`.
-Optionally (off by default), a long chain of nodes inside a diagram can be folded into columns (TB) or rows (LR)
-of its own, when that makes the drawing at least 20% larger on the page: `WithFoldChains(FoldAuto)`,
-`-fold-chains auto` or `%% layout: fold-chains`. Likewise (off by default), a node with six or more leaves
-can stand them in two staggered ranks instead of one very long rank: `WithFoldRanks(FoldAuto)`,
-`-fold-ranks auto` or `%% layout: fold-ranks`.
-
-Themes: `neutral` (the default, made for print), `default` (colours), `forest`, `dark` and `base`. They are this
-library's own looks under Mermaid's theme names, so a source that selects a theme in its front matter or `init`
-directive gets the counterpart. `WithTheme` (or `-t`) overrides the source.
-
-PNG output is another optional package, with its own rasteriser and glyph outlines read from the font file:
-
-```go
-img, err := png.Render(source)            // 2 image pixels per drawing pixel; png.RenderScale for another scale
-```
-
-```sh
-go run ./cmd/gomermaidgo -o diagram.png -s 3 diagram.mmd
-go build -tags nopdf,nopng ./cmd/gomermaidgo   # SVG only
-```
-
-The command also takes a Markdown document and the flags of `mermaid-cli` (`-i`, `-o`, `-e`, `-b`, `-t`, `-s`, `-q`, `-a`), so it
-can stand in for `mmdc` in a script. Flags with no counterpart here (`-w`, `-H`, `-c`, `-C`, `-p`, `-I`)
-are accepted and ignored with a note.
-
-```sh
-gomermaidgo -i README.template.md -o README.md   # README-1.svg, README-2.svg … and the document with images
-gomermaidgo -i diagram.mmd -e pdf                # writes diagram.mmd.pdf
-```
-
-Diagrams inside a Markdown document: `markdown.Embed` replaces every fenced `mermaid` block with an inline SVG figure
-before the document reaches a Markdown parser (the parser must pass raw HTML blocks through), and `markdown.CSS` holds
-the page rules, including the height limit that keeps a tall diagram from being cut at a page break.
-
-```go
-md, problems := markdown.Embed(source, markdown.Options{})
-```
-
-Status: early. Supported diagram types: `sequenceDiagram`, `flowchart`/`graph`, `stateDiagram-v2`, `gantt`,
-`erDiagram`, `classDiagram`, `pie`, `timeline`, `journey`, `mindmap`, `xychart-beta`, `quadrantChart`,
-`kanban`, `packet-beta`, `radar-beta`, `treemap-beta`, `requirementDiagram`, `sankey-beta`, C4 diagrams, `gitGraph`, `block-beta`, `architecture-beta`, `ishikawa-beta` and `swimlane-beta`. Graphs use a
-layered layout written from the published algorithms; its current limits are listed in `docs/profile.md`. A construct outside the supported profile (`docs/profile.md`) is an error with a line number,
-never a partial drawing.
-
-The output uses only basic SVG 1.1 elements (`rect`, `line`, `polyline`, `polygon`, `circle`, `ellipse`, `text` and
-`path` restricted to M, L and C commands) with presentation
-attributes: no `foreignObject`, no style sheets, no scripts, no links. The one exception is a `clipPath` (in `defs`,
-applied through `g`) on a transparent background: lines under edge labels and frame titles are cut out, so a label
-sits on whatever the drawing is placed on instead of a white patch. With a background colour the label backing is
-painted in that colour and the clip is not used.
-
-Documentation (in Polish): `docs/profile.md` (supported syntax), `docs/provenance.md` (sources and clean-room rules),
-`docs/testing.md` (corpus, invariants, comparison with reference renderers), `requirements/` (numbered requirements).
+- [`docs/usage.md`](docs/usage.md): how to use the library and the command.
+- [`docs/gallery/`](docs/gallery/README.md): pictures with their sources.
+- In Polish: [`docs/profile.md`](docs/profile.md) (supported syntax), [`docs/provenance.md`](docs/provenance.md)
+  (sources and clean-room rules), [`docs/testing.md`](docs/testing.md) (corpus, invariants, comparison with
+  reference renderers), [`requirements/`](requirements/) (numbered requirements), [`docs/adr/`](docs/adr/)
+  (decisions).
 
 ## How the comparison was measured
 
