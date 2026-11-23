@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="475.5" height="1044" viewBox="-12 -12 475.5 1044" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-30608ddd"><path d="M-12 -12 L463.5 -12 L463.5 1032 L-12 1032 M47.66 574 L47.66 594 L82.34 594 L82.34 574 M98.85 412 L98.85 432 L249.15 432 L249.15 412 M286.09 574 L286.09 594 L391.91 594 L391.91 574 M117.16 826.3 L117.16 846.3 L151.84 846.3 L151.84 826.3 M208 786 L208 806 L240 806 L240 786"/></clipPath></defs>
+<defs><clipPath id="label-holes-964b5821"><path d="M-12 -12 L463.5 -12 L463.5 1032 L-12 1032 M47.66 574 L47.66 594 L82.34 594 L82.34 574 M98.85 412 L98.85 432 L249.15 432 L249.15 412 M286.09 574 L286.09 594 L391.91 594 L391.91 574 M117.16 832 L117.16 852 L151.84 852 L151.84 832 M208 786 L208 806 L240 806 L240 786"/></clipPath></defs>
 <path class="edge" d="M274 44 L274 60 C274 64.4 270.4 68 266 68 L182 68 C177.6 68 174 71.6 174 76 L174 83.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M174 136 L174 171.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M174 244 L174 279.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-30608ddd)"><path class="edge" d="M154 371.24 L154 382.62 C154 387.02 150.4 390.62 146 390.62 L73 390.62 C68.6 390.62 65 394.22 65 398.62 L65 410 L65 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M154 371.24 L154 382.62 C154 387.02 150.4 390.62 146 390.62 L73 390.62 C68.6 390.62 65 394.22 65 398.62 L65 410 L65 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-30608ddd)"><path class="edge" d="M174 380 L174 455.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M174 380 L174 455.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-30608ddd)"><path class="edge" d="M279 334 L331 334 C335.4 334 339 337.6 339 342 L339 380 L339 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M279 334 L331 334 C335.4 334 339 337.6 339 342 L339 380 L339 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <path class="edge" d="M184 508 L184 543.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M197 616 L197 651.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-30608ddd)"><path class="edge" d="M171 742.94 L171 808 L171 828.3 C171 832.7 167.4 836.3 163 836.3 L106 836.3 C101.6 836.3 98 839.9 98 844.3 L98 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M171 742.94 L171 808 L171 834 C171 838.4 167.4 842 163 842 L106 842 C101.6 842 98 845.6 98 850 L98 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-30608ddd)"><path class="edge" d="M224 742.52 L224 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M224 742.52 L224 875.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <path class="edge" d="M337 928 L337 967.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-30608ddd)"><path class="edge" d="M314 52.4 L314 60 C314 64.4 317.6 68 322 68 L407 68 C411.4 68 415 71.6 415 76 L415 92 L415 976" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-964b5821)"><path class="edge" d="M314 52.4 L314 60 C314 64.4 317.6 68 322 68 L407 68 C411.4 68 415 71.6 415 76 L415 92 L415 976" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <polygon class="arrowhead" points="174,92 168,80 180,80" fill="#3b4754"/>
 <polygon class="arrowhead" points="174,180 168,168 180,168" fill="#3b4754"/>
@@ -55,6 +55,6 @@
 <text class="edge-label" x="65" y="589.6" text-anchor="middle" fill="#1b1f24">Tak</text>
 <text class="edge-label" x="174" y="427.6" text-anchor="middle" fill="#1b1f24">Uwagi do procedury</text>
 <text class="edge-label" x="339" y="589.6" text-anchor="middle" fill="#1b1f24">Brak walidacji</text>
-<text class="edge-label" x="134.5" y="841.9" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="134.5" y="847.6" text-anchor="middle" fill="#1b1f24">Tak</text>
 <text class="edge-label" x="224" y="801.6" text-anchor="middle" fill="#1b1f24">Nie</text>
 </svg>

@@ -15,14 +15,14 @@
 <path class="edge" d="M108 104 L108 135.7 C108 140.1 104.4 143.7 100 143.7 L49 143.7 C44.6 143.7 41 147.3 41 151.7 L41 164 L41 227.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M161 112.4 L161 236" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M94 580 L94 634 L94 636.3 C94 640.7 97.6 644.3 102 644.3 L147 644.3 C151.4 644.3 155 647.9 155 652.3 L155 665.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M188 112.4 L188 135.7 C188 140.1 191.6 143.7 196 143.7 L248 143.7 C252.4 143.7 256 147.3 256 151.7 L256 164 L256 580 L256 587 C256 591.4 252.4 595 248 595 L183 595 C178.6 595 175 598.6 175 603 L175 610 L175 674" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M188 112.4 L188 156 C188 158.2 189.8 160 192 160 L314.93 160 C317.13 160 318.93 161.8 318.93 164 L318.93 164 L318.93 580 L318.93 587 C318.93 591.4 315.33 595 310.93 595 L183 595 C178.6 595 175 598.6 175 603 L175 610 L175 674" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M175 718 L175 799.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M175 852 L175 887.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="edge-label-background" x="20.46" y="414" width="146.72" height="20" fill="white"/>
 <rect class="edge-label-background" x="13.44" y="166" width="55.13" height="20" fill="white"/>
 <rect class="edge-label-background" x="88.95" y="166" width="144.1" height="20" fill="white"/>
 <rect class="edge-label-background" x="56.64" y="612" width="74.72" height="20" fill="white"/>
-<rect class="edge-label-background" x="207.54" y="398" width="96.93" height="20" fill="white"/>
+<rect class="edge-label-background" x="205" y="150" width="96.93" height="20" fill="white"/>
 <rect class="edge-label-background" x="134.98" y="756" width="80.03" height="20" fill="white"/>
 <polygon class="arrowhead" points="93.82,338 87.82,326 99.82,326" fill="#3b4754"/>
 <polygon class="arrowhead" points="93.82,466 87.82,454 99.82,454" fill="#3b4754"/>
@@ -58,6 +58,6 @@
 <text class="edge-label" x="41" y="181.6" text-anchor="middle" fill="#1b1f24">submit</text>
 <text class="edge-label" x="161" y="181.6" text-anchor="middle" fill="#1b1f24">changes requested</text>
 <text class="edge-label" x="94" y="627.6" text-anchor="middle" fill="#1b1f24">approved</text>
-<text class="edge-label" x="256" y="413.6" text-anchor="middle" fill="#1b1f24">new revision</text>
+<text class="edge-label" x="253.46" y="165.6" text-anchor="middle" fill="#1b1f24">new revision</text>
 <text class="edge-label" x="175" y="771.6" text-anchor="middle" fill="#1b1f24">withdrawn</text>
 </svg>

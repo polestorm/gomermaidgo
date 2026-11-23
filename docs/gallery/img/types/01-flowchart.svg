@@ -2,7 +2,7 @@
 <rect x="-12" y="-12" width="631" height="566" fill="white"/>
 <path class="edge" d="M224 44 L224 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M224 152 L224 187.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M204.09 272.33 L204.09 284.16 C204.09 288.56 200.49 292.16 196.09 292.16 L122 292.16 C117.6 292.16 114 295.76 114 300.16 L114 312 L114 357.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M204.09 272.33 L204.09 312 C204.09 316.4 200.49 320 196.09 320 L122 320 C117.6 320 114 323.6 114 328 L114 357.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M250 269.37 L250 469.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M162 430 L162 469.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M490 179.39 L490 191.19 C490 195.59 486.4 199.19 482 199.19 L472 199.19 C467.6 199.19 464 202.79 464 207.19 L464 219 L464 264.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -11,7 +11,7 @@
 <path class="edge" d="M526 429 L526 464.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M294 510 L346 510 C350.4 510 354 506.4 354 502 L354 37 C354 32.6 357.6 29 362 29 L383.6 29" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M294 510 L360 510 C364.4 510 368 506.4 368 502 L368 153.5 C368 149.1 371.6 145.5 376 145.5 L411.1 145.5" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<rect class="edge-label-background" x="96.21" y="314" width="35.57" height="20" fill="white"/>
+<rect class="edge-label-background" x="141.26" y="310" width="35.57" height="20" fill="white"/>
 <rect class="edge-label-background" x="235.77" y="314" width="28.45" height="20" fill="white"/>
 <rect class="edge-label-background" x="446.21" y="221" width="35.57" height="20" fill="white"/>
 <rect class="edge-label-background" x="542.77" y="221" width="28.45" height="20" fill="white"/>
@@ -50,7 +50,7 @@
 <text class="node-label" x="114" y="413.6" text-anchor="middle" fill="#1b1f24">authority</text>
 <text class="node-label" x="182" y="505.6" text-anchor="middle" fill="#1b1f24">Investigate the returned</text>
 <text class="node-label" x="182" y="525.6" text-anchor="middle" fill="#1b1f24">product</text>
-<text class="edge-label" x="114" y="329.6" text-anchor="middle" fill="#1b1f24">Yes</text>
+<text class="edge-label" x="159.04" y="325.6" text-anchor="middle" fill="#1b1f24">Yes</text>
 <text class="edge-label" x="250" y="329.6" text-anchor="middle" fill="#1b1f24">No</text>
 <text class="node-label" x="469" y="38.1" text-anchor="middle" fill="#1b1f24">Complaint log</text>
 <text class="node-label" x="510" y="151.1" text-anchor="middle" fill="#1b1f24">CAPA needed?</text>

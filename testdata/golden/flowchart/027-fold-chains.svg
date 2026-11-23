@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="822.5" height="1004" viewBox="-12 -12 822.5 1004" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-d8f6b2a1"><path d="M-12 -12 L810.5 -12 L810.5 992 L-12 992 M256.66 788 L256.66 808 L291.34 808 L291.34 788 M365.32 788 L365.32 808 L450.68 808 L450.68 788 M556.25 706 L556.25 726 L588.25 726 L588.25 706"/></clipPath></defs>
+<defs><clipPath id="label-holes-e940bc99"><path d="M-12 -12 L810.5 -12 L810.5 992 L-12 992 M307.66 896.3 L307.66 916.3 L342.34 916.3 L342.34 896.3 M365.32 788 L365.32 808 L450.68 808 L450.68 788 M556.25 706 L556.25 726 L588.25 726 L588.25 706"/></clipPath></defs>
 <path class="edge" d="M120 172 L120 207.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M120 260 L120 295.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M120 348 L120 383.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -12,14 +12,14 @@
 <path class="edge" d="M408 544 L408 579.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M387 44 L387 69.7 C387 74.1 383.4 77.7 379 77.7 L128 77.7 C123.6 77.7 120 81.3 120 85.7 L120 92 L120 119.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M408 632 L408 667.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-d8f6b2a1)"><path class="edge" d="M334.5 716 L282 716 C277.6 716 274 719.6 274 724 L274 756 L274 888 L274 894.3 C274 898.7 277.6 902.3 282 902.3 L368 902.3 C372.4 902.3 376 905.9 376 910.3 L376 927.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e940bc99)"><path class="edge" d="M334.5 716 L282 716 C277.6 716 274 719.6 274 724 L274 756 L274 888 L274 898.3 C274 902.7 277.6 906.3 282 906.3 L368 906.3 C372.4 906.3 376 909.9 376 914.3 L376 927.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-d8f6b2a1)"><path class="edge" d="M408 756 L408 835.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e940bc99)"><path class="edge" d="M408 756 L408 835.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-d8f6b2a1)"><path class="edge" d="M481.5 716 L655 716 C659.4 716 663 719.6 663 724 L663 756 L663 835.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e940bc99)"><path class="edge" d="M481.5 716 L655 716 C659.4 716 663 719.6 663 724 L663 756 L663 835.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <path class="edge" d="M408 888 L408 927.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-d8f6b2a1)"><path class="edge" d="M427 52.4 L427 69.7 C427 74.1 430.6 77.7 435 77.7 L675 77.7 C679.4 77.7 683 81.3 683 85.7 L683 92 L683 844" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-e940bc99)"><path class="edge" d="M427 52.4 L427 69.7 C427 74.1 430.6 77.7 435 77.7 L675 77.7 C679.4 77.7 683 81.3 683 85.7 L683 92 L683 844" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <polygon class="arrowhead" points="120,216 114,204 126,204" fill="#3b4754"/>
 <polygon class="arrowhead" points="120,304 114,292 126,292" fill="#3b4754"/>
@@ -71,7 +71,7 @@
 <text class="node-label" x="408" y="871.6" text-anchor="middle" fill="#1b1f24">Działania uzupełniające</text>
 <text class="node-label" x="683" y="871.6" text-anchor="middle" fill="#1b1f24">Eskalacja</text>
 <text class="node-label" x="396" y="963.6" text-anchor="middle" fill="#1b1f24">Zamknięcie</text>
-<text class="edge-label" x="274" y="803.6" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="325" y="911.9" text-anchor="middle" fill="#1b1f24">Tak</text>
 <text class="edge-label" x="408" y="803.6" text-anchor="middle" fill="#1b1f24">Częściowo</text>
 <text class="edge-label" x="572.25" y="721.6" text-anchor="middle" fill="#1b1f24">Nie</text>
 </svg>

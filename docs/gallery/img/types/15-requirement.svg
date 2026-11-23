@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="550.5" height="716" viewBox="-11.5 -12 550.5 716" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-11.5" y="-12" width="550.5" height="716" fill="white"/>
-<path class="edge" d="M143 185 L143 230 L143 240.5 C143 244.9 146.6 248.5 151 248.5 L258 248.5 C262.4 248.5 266 252.1 266 256.5 L266 278" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M143 185 L143 230 L143 246 C143 250.4 146.6 254 151 254 L258 254 C262.4 254 266 257.6 266 262 L266 278" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M286 432 L286 516" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<path class="edge" d="M430 143 L430 230 L430 240.5 C430 244.9 426.4 248.5 422 248.5 L314 248.5 C309.6 248.5 306 252.1 306 256.5 L306 278" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
-<rect class="edge-label-background" x="161.8" y="238.5" width="85.39" height="20" fill="white"/>
+<path class="edge" d="M430 143 L430 230 L430 246 C430 250.4 426.4 254 422 254 L314 254 C309.6 254 306 257.6 306 262 L306 278" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<rect class="edge-label-background" x="161.8" y="244" width="85.39" height="20" fill="white"/>
 <rect class="edge-label-background" x="247.31" y="464" width="77.38" height="20" fill="white"/>
-<rect class="edge-label-background" x="329.76" y="238.5" width="76.48" height="20" fill="white"/>
+<rect class="edge-label-background" x="329.76" y="244" width="76.48" height="20" fill="white"/>
 <circle class="arrowhead" cx="143" cy="181" r="5" fill="#ffffff" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="286" y1="516" x2="292" y2="505" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <line class="arrowhead" x1="286" y1="516" x2="280" y2="505" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -43,7 +43,7 @@
 <text class="member" x="146" y="637.6" fill="#1b1f24">  standard</text>
 <text class="member" x="146" y="659.6" fill="#1b1f24">Risk: Low</text>
 <text class="member" x="146" y="681.6" fill="#1b1f24">Verification: Analysis</text>
-<text class="edge-label" x="204.5" y="254.1" text-anchor="middle" fill="#1b1f24">«contains»</text>
+<text class="edge-label" x="204.5" y="259.6" text-anchor="middle" fill="#1b1f24">«contains»</text>
 <text class="edge-label" x="286" y="479.6" text-anchor="middle" fill="#1b1f24">«derives»</text>
-<text class="edge-label" x="368" y="254.1" text-anchor="middle" fill="#1b1f24">«verifies»</text>
+<text class="edge-label" x="368" y="259.6" text-anchor="middle" fill="#1b1f24">«verifies»</text>
 </svg>

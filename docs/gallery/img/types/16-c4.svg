@@ -4,13 +4,13 @@
 <rect class="cluster" x="-0.25" y="0" width="606.5" height="892" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <rect class="cluster" x="44.25" y="276" width="351" height="408" rx="4" fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4"/>
 <path class="edge" d="M181.25 478 L181.25 553.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path class="edge" d="M141.75 154 L141.75 161 C141.75 165.4 145.35 169 149.75 169 L273.75 169 C278.15 169 281.75 172.6 281.75 177 L281.75 184 L281.75 365.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path class="edge" d="M141.75 154 L141.75 194 C141.75 198.4 145.35 202 149.75 202 L273.75 202 C278.15 202 281.75 205.6 281.75 210 L281.75 365.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M399.75 154 L399.75 228 L399.75 244 C399.75 248.4 396.15 252 391.75 252 L316.25 252 C311.85 252 308.25 255.6 308.25 260 L308.25 276 L308.25 365.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M320.25 486.4 L320.25 779.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <rect class="cluster-title-background" x="7.75" y="6" width="185.84" height="20" fill="white"/>
 <rect class="cluster-title-background" x="52.25" y="282" width="212.54" height="40" fill="white"/>
 <rect class="edge-label-background" x="154.13" y="510" width="54.24" height="20" fill="white"/>
-<rect class="edge-label-background" x="247.08" y="186" width="69.34" height="40" fill="white"/>
+<rect class="edge-label-background" x="177.08" y="182" width="69.34" height="40" fill="white"/>
 <rect class="edge-label-background" x="336.62" y="196" width="126.26" height="20" fill="white"/>
 <rect class="edge-label-background" x="236.58" y="716" width="166.34" height="40" fill="white"/>
 <polygon class="arrowhead" points="181.25,562 175.25,550 187.25,550" fill="#3b4754"/>
@@ -49,8 +49,8 @@
 <text class="node-label" x="303.3" y="815.6" font-weight="bold" fill="#1b1f24">ERP</text>
 <text class="node-label" x="319.75" y="835.6" text-anchor="middle" fill="#1b1f24">[Software System]</text>
 <text class="node-label" x="319.75" y="855.6" text-anchor="middle" fill="#1b1f24">Batches, suppliers, orders</text>
-<text class="edge-label" x="281.75" y="201.6" text-anchor="middle" fill="#1b1f24">Uses</text>
-<text class="edge-label" x="281.75" y="221.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
+<text class="edge-label" x="211.75" y="197.6" text-anchor="middle" fill="#1b1f24">Uses</text>
+<text class="edge-label" x="211.75" y="217.6" text-anchor="middle" fill="#1b1f24">[HTTPS]</text>
 <text class="edge-label" x="399.75" y="211.6" text-anchor="middle" fill="#1b1f24">Reviews records</text>
 <text class="edge-label" x="319.75" y="731.6" text-anchor="middle" fill="#1b1f24">Exchanges batch data</text>
 <text class="edge-label" x="319.75" y="751.6" text-anchor="middle" fill="#1b1f24">[API]</text>

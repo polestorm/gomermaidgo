@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1234" height="656" viewBox="-12 -64 1234 656" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-cc217f46"><path d="M-12 -64 L1222 -64 L1222 592 L-12 592 M702.66 286 L702.66 306 L737.34 306 L737.34 286 M900 286 L900 306 L932 306 L932 286"/></clipPath></defs>
+<defs><clipPath id="label-holes-868ab21a"><path d="M-12 -64 L1222 -64 L1222 592 L-12 592 M742.86 282 L742.86 302 L777.53 302 L777.53 282 M855.8 282 L855.8 302 L887.81 302 L887.81 282"/></clipPath></defs>
 <rect class="lane" x="0" y="-52" width="196" height="632" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <rect class="lane-header" x="0" y="-52" width="196" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
 <rect class="lane" x="196" y="-52" width="196" height="632" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <rect class="lane-header" x="196" y="-52" width="196" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
 <rect class="lane" x="392" y="-52" width="222" height="632" fill="none" stroke="#8a94a3" stroke-width="1"/>
 <rect class="lane-header" x="392" y="-52" width="222" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
-<g clip-path="url(#label-holes-cc217f46)"><rect class="lane" x="614" y="-52" width="400" height="632" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g clip-path="url(#label-holes-868ab21a)"><rect class="lane" x="614" y="-52" width="400" height="632" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
 <rect class="lane-header" x="614" y="-52" width="400" height="34" fill="#eef2f7" stroke="#8a94a3" stroke-width="1"/>
 <rect class="lane" x="1014" y="-52" width="196" height="632" fill="none" stroke="#8a94a3" stroke-width="1"/>
@@ -19,10 +19,10 @@
 <path class="edge" d="M1112 474 L1112 509.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M516 132 L516 186.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M586 217 L745.1 217" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-cc217f46)"><path class="edge" d="M800.39 245.68 L800.39 261 C800.39 265.4 796.79 269 792.39 269 L728 269 C723.6 269 720 272.6 720 277 L720 284 L720 329.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-868ab21a)"><path class="edge" d="M800.39 245.68 L800.39 284 C800.39 288.4 796.79 292 792.39 292 L728 292 C723.6 292 720 295.6 720 300 L720 329.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <path class="edge" d="M642 360 L581.4 360" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-cc217f46)"><path class="edge" d="M827.61 245.68 L827.61 261 C827.61 265.4 831.21 269 835.61 269 L908 269 C912.4 269 916 272.6 916 277 L916 284 L916 329.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-868ab21a)"><path class="edge" d="M827.61 245.68 L827.61 284 C827.61 288.4 831.21 292 835.61 292 L908 292 C912.4 292 916 295.6 916 300 L916 329.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <path class="edge" d="M916 382 L916 388.3 C916 392.7 912.4 396.3 908 396.3 L511 396.3 C506.6 396.3 503 399.9 503 404.3 L503 421.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M433 452 L372.4 452" fill="none" stroke="#3b4754" stroke-width="1.5"/>
@@ -74,6 +74,6 @@
 <text class="node-label" x="1112" y="457.6" text-anchor="middle" fill="#1b1f24">Szkolenie</text>
 <text class="node-label" x="503" y="545.6" text-anchor="middle" fill="#1b1f24">Raport</text>
 <text class="node-label" x="1112" y="545.6" text-anchor="middle" fill="#1b1f24">Archiwum</text>
-<text class="edge-label" x="720" y="301.6" text-anchor="middle" fill="#1b1f24">Tak</text>
-<text class="edge-label" x="916" y="301.6" text-anchor="middle" fill="#1b1f24">Nie</text>
+<text class="edge-label" x="760.19" y="297.6" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="871.81" y="297.6" text-anchor="middle" fill="#1b1f24">Nie</text>
 </svg>

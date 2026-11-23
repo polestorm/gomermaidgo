@@ -1194,8 +1194,9 @@ type edgeRoute struct {
 	flat    bool // LAY-027: cała krawędź to jeden odcinek w poprzek, w jednej warstwie
 	// labelAt: środek etykiety postawionej na odcinku poziomym (LAY-031); nil, gdy etykieta stoi
 	// w swojej warstwie.
-	labelAt *routePoint
-	order   int // kolejność rysowania: krawędź późniejsza przeskakuje nad wcześniejszą
+	labelAt  *routePoint
+	labelJog int // numer odcinka z zakrętem, na którego części poziomej stoi etykieta; −1: inny odcinek
+	order    int // kolejność rysowania: krawędź późniejsza przeskakuje nad wcześniejszą
 }
 
 // findHops wyznacza przecięcia krawędzi łamanych: odcinek poprzeczny jednej krawędzi z odcinkiem
@@ -1796,6 +1797,7 @@ func (l *layouter) alignChain(e *ledge) {
 	if len(e.chain) == 0 || e.upperCont != nil || e.lowerCont != nil || e.u.kind != kindNode || e.v.kind != kindNode {
 		return
 	}
+	defer l.widenForLabel(e)
 	at, same := e.chain[0].x, true
 	for _, d := range e.chain {
 		same = same && math.Abs(d.x-at) < straightTolerance
@@ -2025,6 +2027,7 @@ func (l *layouter) routesWithLabels(lv *level) {
 	l.assignTracks(lv.routes)
 	failed := l.placeLabels(lv)
 	if len(failed) == 0 {
+		l.roomForLabels(lv)
 		return
 	}
 	for d, sp := range saved {
@@ -2036,7 +2039,226 @@ func (l *layouter) routesWithLabels(lv *level) {
 	lv.routes = l.routes(lv)
 	l.assignTracks(lv.routes)
 	l.placeLabels(lv)
+	l.roomForLabels(lv)
 	_ = labels
+}
+
+// jogBottom zwraca najniższą wysokość, na której może stać część pozioma odcinka i trasy r: dolny
+// koniec odcinka, a gdy krawędź biegnie za nim dalej prosto w dół — koniec tej prostej.
+func jogBottom(r *edgeRoute, i int) float64 {
+	b := r.pts[i+1]
+	if i+2 < len(r.pts) && math.Abs(r.pts[i+2].x-b.x) < straightTolerance {
+		return r.pts[i+2].y
+	}
+	return b.y
+}
+
+// jogLimit zwraca najniższą wysokość, do której wolno przesunąć część poziomą odcinka i trasy r:
+// jogBottom, ale nie dalej niż u(96) pod początkiem odcinka — odcinek z etykietą zostaje przy polu,
+// z którego wychodzi, a nie w połowie długiej prostej.
+func (l *layouter) jogLimit(r *edgeRoute, i int) float64 {
+	limit := math.Min(jogBottom(r, i), r.pts[i].y+l.u(96))
+	if t, ok := r.track[i]; ok {
+		limit = math.Max(limit, t+l.u(12)) // obecne położenie zostaje dopuszczalne
+	}
+	return limit
+}
+
+// jogFits mówi, czy część poziomą odcinka i trasy r można postawić na wysokości y: linia pozioma
+// i wydłużone albo skrócone części pionowe nie przechodzą przez pola, a między dotychczasową
+// a nową wysokością nie leży odcinek poziomy innej krawędzi zachodzący na ten w poziomie (kolejność
+// odcinków, więc i przecięcia, zostają).
+func (l *layouter) jogFits(lv *level, r *edgeRoute, i int, y float64) bool {
+	a, b := r.pts[i], r.pts[i+1]
+	x0, x1 := math.Min(a.x, b.x), math.Max(a.x, b.x)
+	now := r.track[i]
+	if y < a.y+l.u(12) || y > l.jogLimit(r, i)-l.u(12) {
+		return false
+	}
+	for _, row := range lv.ranks {
+		for _, it := range row {
+			if !it.real() {
+				continue
+			}
+			nx0, nx1, ny0, ny1 := it.x-it.w/2-l.u(4), it.x+it.w/2+l.u(4), it.y-it.h/2-l.u(4), it.y+it.h/2+l.u(4)
+			if y > ny0 && y < ny1 && x1 > nx0 && x0 < nx1 {
+				return false
+			}
+			for _, v := range []struct{ x, y0, y1 float64 }{{a.x, a.y, y}, {b.x, y, jogBottom(r, i)}} {
+				if v.x > nx0 && v.x < nx1 && math.Max(v.y0, ny0) < math.Min(v.y1, ny1) && !(it == r.e.u || it == r.e.v) {
+					return false
+				}
+			}
+		}
+	}
+	// Linia pozioma i części pionowe nie przechodzą pod etykietami innych krawędzi.
+	for _, o := range lv.routes {
+		if o == r || o.e.label == nil {
+			continue
+		}
+		d := o.e.label
+		var cx, cy float64
+		switch {
+		case o.labelAt != nil:
+			cx, cy = o.labelAt.x, o.labelAt.y
+		case !d.thin:
+			cx, cy = d.x+d.textShift, d.y
+		default:
+			continue
+		}
+		bx0, bx1, by0, by1 := cx-d.w/2-l.u(2), cx+d.w/2+l.u(2), cy-d.h/2-l.u(2), cy+d.h/2+l.u(2)
+		if y > by0 && y < by1 && x1 > bx0 && x0 < bx1 {
+			return false
+		}
+		for _, v := range []struct{ x, y0, y1 float64 }{{a.x, a.y, y}, {b.x, y, jogBottom(r, i)}} {
+			if v.x > bx0 && v.x < bx1 && math.Max(v.y0, by0) < math.Min(v.y1, by1) {
+				return false
+			}
+		}
+	}
+	lo, hi := math.Min(now, y), math.Max(now, y)
+	for _, o := range lv.routes {
+		if o == r {
+			continue
+		}
+		for k, t := range o.track {
+			if k+1 >= len(o.pts) || o.flat || (k == 0 && o.side) {
+				continue
+			}
+			ox0, ox1 := math.Min(o.pts[k].x, o.pts[k+1].x), math.Max(o.pts[k].x, o.pts[k+1].x)
+			if ox1 >= x0 && ox0 <= x1 && t >= lo-l.u(4) && t <= hi+l.u(4) && math.Abs(t-now) > 0.01 {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+// setJog stawia część poziomą odcinka i trasy r na wysokości y. Gdy schodzi ona poniżej dolnego końca
+// odcinka (krawędź biegnie dalej prosto w dół), ten koniec przestaje być potrzebny: odcinek kończy się
+// na końcu prostej.
+func setJog(r *edgeRoute, i int, y float64) {
+	r.track[i] = y
+	if y < r.pts[i+1].y || i+2 >= len(r.pts) || math.Abs(r.pts[i+2].x-r.pts[i+1].x) >= straightTolerance {
+		return
+	}
+	r.pts[i+1].y = r.pts[i+2].y
+	r.pts = append(r.pts[:i+2], r.pts[i+3:]...)
+	track := map[int]float64{}
+	for k, t := range r.track {
+		if k > i+1 {
+			k--
+		}
+		track[k] = t
+	}
+	r.track = track
+	if r.labelJog > i+1 {
+		r.labelJog--
+	}
+}
+
+// roomForLabels rozkłada w pionie odcinki poziome niosące etykiety (LAY-031): każdy staje na środku
+// swojego okna — między polami i odcinkami poziomymi, które leżą nad nim i pod nim i zachodzą na
+// niego w poziomie (kolejność zostaje) — w kilku przejściach, więc sąsiednie odcinki rozchodzą się
+// równo. Etykieta idzie za odcinkiem; przesunięcie zostaje tylko wtedy, gdy etykieta nie zachodzi
+// na inne linie, pola ani etykiety.
+func (l *layouter) roomForLabels(lv *level) {
+	for pass := 0; pass < 6; pass++ {
+		for _, r := range lv.routes {
+			i := r.labelJog
+			if r.labelAt == nil || i < 0 || i+1 >= len(r.pts) {
+				continue
+			}
+			d := r.e.label
+			now := r.track[i]
+			a, b := r.pts[i], r.pts[i+1]
+			x0, x1 := math.Min(a.x, b.x), math.Max(a.x, b.x)
+			lo, hi := a.y, l.jogLimit(r, i)
+			for _, row := range lv.ranks {
+				for _, it := range row {
+					if it.real() && it.x+it.w/2 > x0 && it.x-it.w/2 < x1 {
+						if it.y < now {
+							lo = math.Max(lo, it.y+it.h/2)
+						} else {
+							hi = math.Min(hi, it.y-it.h/2)
+						}
+					}
+				}
+			}
+			for _, o := range lv.routes {
+				for k, t := range o.track {
+					if o == r || k+1 >= len(o.pts) || o.flat || (k == 0 && o.side) {
+						continue
+					}
+					ox0, ox1 := math.Min(o.pts[k].x, o.pts[k+1].x), math.Max(o.pts[k].x, o.pts[k+1].x)
+					if ox1 < x0 || ox0 > x1 {
+						continue
+					}
+					if t < now {
+						lo = math.Max(lo, t)
+					} else {
+						hi = math.Min(hi, t)
+					}
+				}
+			}
+			y := math.Round((lo + hi) / 2)
+			if math.Abs(y-now) < l.u(2) || hi-lo < d.h+2*l.u(6) || !l.jogFits(lv, r, i, y) {
+				continue
+			}
+			box := [4]float64{r.labelAt.x - d.w/2, y - d.h/2, r.labelAt.x + d.w/2, y + d.h/2}
+			if l.labelBlocked(lv, r, box) {
+				continue
+			}
+			setJog(r, i, y)
+			r.labelAt.y = y
+		}
+	}
+}
+
+// labelBlocked mówi, czy pole etykiety krawędzi trasy own zachodzi na linię innej krawędzi, pole albo
+// etykietę innej krawędzi.
+func (l *layouter) labelBlocked(lv *level, own *edgeRoute, b [4]float64) bool {
+	m := l.u(2)
+	over := func(x0, y0, x1, y1 float64) bool { return x0 < b[2]+m && b[0]-m < x1 && y0 < b[3]+m && b[1]-m < y1 }
+	for _, row := range lv.ranks {
+		for _, it := range row {
+			if it.real() && over(it.x-it.w/2-l.u(2), it.y-it.h/2-l.u(2), it.x+it.w/2+l.u(2), it.y+it.h/2+l.u(2)) {
+				return true
+			}
+		}
+	}
+	for _, o := range lv.routes {
+		if o == own {
+			continue
+		}
+		for k := 0; k+1 < len(o.pts); k++ {
+			p, q := o.pts[k], o.pts[k+1]
+			t, ok := o.track[k]
+			switch {
+			case o.flat || (k == 0 && o.side):
+				y := p.y
+				if over(math.Min(p.x, q.x), y, math.Max(p.x, q.x), y) || over(q.x, math.Min(y, q.y), q.x, math.Max(y, q.y)) {
+					return true
+				}
+			case ok && math.Abs(p.x-q.x) >= straightTolerance:
+				if over(p.x, math.Min(p.y, t), p.x, math.Max(p.y, t)) || over(math.Min(p.x, q.x), t, math.Max(p.x, q.x), t) ||
+					over(q.x, math.Min(t, q.y), q.x, math.Max(t, q.y)) {
+					return true
+				}
+			default:
+				if over(math.Min(p.x, q.x), math.Min(p.y, q.y), math.Max(p.x, q.x), math.Max(p.y, q.y)) {
+					return true
+				}
+			}
+		}
+		if o.labelAt != nil {
+			od := o.e.label
+			if over(o.labelAt.x-od.w/2, o.labelAt.y-od.h/2, o.labelAt.x+od.w/2, o.labelAt.y+od.h/2) {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 // placeLabels stawia etykiety krawędzi poziomu na odcinkach poziomych: na najdłuższym, na którym
@@ -2048,30 +2270,19 @@ func (l *layouter) placeLabels(lv *level) []*item {
 		r          *edgeRoute
 		a, b       routePoint
 		horizontal bool
+		jog        int // numer odcinka z zakrętem (dla części poziomej), −1 dla pozostałych
 	}
 	var segs []seg
 	for _, r := range lv.routes {
-		r.labelAt = nil
-		p := r.pts
-		for i := 0; i+1 < len(p); i++ {
-			a, b := p[i], p[i+1]
-			switch {
-			case r.flat:
-				segs = append(segs, seg{r, a, b, true})
-			case i == 0 && r.side:
-				segs = append(segs, seg{r, a, routePoint{b.x, a.y}, true}, seg{r, routePoint{b.x, a.y}, b, false})
-			case math.Abs(a.x-b.x) < straightTolerance:
-				segs = append(segs, seg{r, a, b, false})
-			default:
-				mid, ok := r.track[i]
-				if !ok {
-					mid = (a.y + b.y) / 2
-				}
-				segs = append(segs, seg{r, a, routePoint{a.x, mid}, false}, seg{r, routePoint{a.x, mid}, routePoint{b.x, mid}, true},
-					seg{r, routePoint{b.x, mid}, b, false})
-			}
+		r.labelAt, r.labelJog = nil, -1
+	}
+	rebuild := func() {
+		segs = segs[:0]
+		for _, r := range lv.routes {
+			l.routeSegs(r, func(a, b routePoint, horizontal bool, jog int) { segs = append(segs, seg{r, a, b, horizontal, jog}) })
 		}
 	}
+	rebuild()
 	type rect struct{ x0, y0, x1, y1 float64 }
 	var obstacles []rect
 	for _, row := range lv.ranks {
@@ -2129,7 +2340,22 @@ func (l *layouter) placeLabels(lv *level) []*item {
 				own = append(own, s)
 			}
 		}
-		sort.SliceStable(own, func(i, k int) bool { return math.Abs(own[i].b.x-own[i].a.x) > math.Abs(own[k].b.x-own[k].a.x) })
+		// Najdłuższy odcinek, ale z odcinków o porównywalnej długości (co najmniej 80% najdłuższego)
+		// pierwszy na drodze krawędzi: etykieta stoi wtedy przy początku, skąd krawędź się czyta.
+		longest := 0.0
+		for _, s := range own {
+			longest = math.Max(longest, math.Abs(s.b.x-s.a.x))
+		}
+		near := func(s seg) bool { return math.Abs(s.b.x-s.a.x) >= 0.8*longest }
+		sort.SliceStable(own, func(i, k int) bool {
+			if near(own[i]) != near(own[k]) {
+				return near(own[i])
+			}
+			if near(own[i]) {
+				return false // kolejność drogi krawędzi
+			}
+			return math.Abs(own[i].b.x-own[i].a.x) > math.Abs(own[k].b.x-own[k].a.x)
+		})
 		done := false
 		for _, s := range own {
 			lo, hi := math.Min(s.a.x, s.b.x)+l.u(14)+d.w/2, math.Max(s.a.x, s.b.x)-l.u(14)-d.w/2
@@ -2137,20 +2363,39 @@ func (l *layouter) placeLabels(lv *level) []*item {
 				continue
 			}
 			c := (lo + hi) / 2
-			for k := 0; !done && float64(k)*l.u(8) <= (hi-lo)/2+0.5; k++ {
-				for _, x := range []float64{c - float64(k)*l.u(8), c + float64(k)*l.u(8)} {
-					x = math.Max(lo, math.Min(hi, x))
-					b := labelBox(d, x, s.a.y)
-					bad := hits(b, r)
-					for _, o := range inRank(r) {
-						bad = bad || (b.x0 < o.x1 && o.x0 < b.x1 && b.y0 < o.y1 && o.y0 < b.y1)
+			// Wysokości: tor odcinka, a dla części poziomej odcinka z zakrętem także niższe, na które
+			// odcinek może zejść (jogFits), gdy przy torze etykieta zahacza o pole albo linię.
+			ys := []float64{s.a.y}
+			if s.jog >= 0 {
+				for y := s.a.y + l.u(4); y <= l.jogLimit(r, s.jog)-l.u(12); y += l.u(4) {
+					if l.jogFits(lv, r, s.jog, y) {
+						ys = append(ys, y)
 					}
-					if !bad {
-						r.labelAt = &routePoint{x, s.a.y}
-						placed[r] = b
-						done = true
-						break
+				}
+			}
+			for _, y := range ys {
+				for k := 0; !done && float64(k)*l.u(8) <= (hi-lo)/2+0.5; k++ {
+					for _, x := range []float64{c - float64(k)*l.u(8), c + float64(k)*l.u(8)} {
+						x = math.Max(lo, math.Min(hi, x))
+						b := labelBox(d, x, y)
+						bad := hits(b, r)
+						for _, o := range inRank(r) {
+							bad = bad || (b.x0 < o.x1 && o.x0 < b.x1 && b.y0 < o.y1 && o.y0 < b.y1)
+						}
+						if !bad {
+							if y != s.a.y {
+								setJog(r, s.jog, y)
+								rebuild()
+							}
+							r.labelAt, r.labelJog = &routePoint{x, y}, s.jog
+							placed[r] = b
+							done = true
+							break
+						}
 					}
+				}
+				if done {
+					break
 				}
 			}
 			if done {
@@ -2162,4 +2407,163 @@ func (l *layouter) placeLabels(lv *level) []*item {
 		}
 	}
 	return failed
+}
+
+// routeSegs podaje proste odcinki trasy r: części pionowe i poziome, a dla części poziomej odcinka
+// z zakrętem także jego numer (−1 dla pozostałych).
+func (l *layouter) routeSegs(r *edgeRoute, add func(a, b routePoint, horizontal bool, jog int)) {
+	p := r.pts
+	for i := 0; i+1 < len(p); i++ {
+		a, b := p[i], p[i+1]
+		switch {
+		case r.flat:
+			add(a, b, true, -1)
+		case i == 0 && r.side:
+			add(a, routePoint{b.x, a.y}, true, -1)
+			add(routePoint{b.x, a.y}, b, false, -1)
+		case math.Abs(a.x-b.x) < straightTolerance:
+			add(a, b, false, -1)
+		default:
+			mid, ok := r.track[i]
+			if !ok {
+				mid = (a.y + b.y) / 2
+			}
+			add(a, routePoint{a.x, mid}, false, -1)
+			add(routePoint{a.x, mid}, routePoint{b.x, mid}, true, i)
+			add(routePoint{b.x, mid}, b, false, -1)
+		}
+	}
+}
+
+// widenForLabel (LAY-031): krawędź z etykietą, która ma stanąć na odcinku poziomym, a skręca przy
+// początku zbyt krótko, żeby etykieta się tam zmieściła, odsuwa pierwszy prosty odcinek punktów
+// pośrednich dalej od początku, jeśli te punkty mają tam miejsce w swoich warstwach i torze.
+func (l *layouter) widenForLabel(e *ledge) {
+	d := e.label
+	if d == nil || !d.thin || e.sideExit != 0 || len(e.chain) == 0 {
+		return
+	}
+	ux := e.u.nodeX() + e.upperPort
+	x := e.chain[0].x
+	gap := math.Abs(x - ux)
+	need := d.w + 2*l.u(14) + l.u(4)
+	if gap < straightTolerance || gap >= need {
+		return
+	}
+	run := 0
+	for run < len(e.chain) && math.Abs(e.chain[run].x-x) < straightTolerance {
+		run++
+	}
+	// Poszerzenie nie może dodać załamania: przesuwany odcinek nie może stać w osi dolnego końca
+	// (krawędź dochodzi wtedy do pola prosto) ani w osi następnego odcinka.
+	vx := e.v.nodeX() + e.lowerPort
+	if (run == len(e.chain) && math.Abs(x-vx) < straightTolerance) || (run < len(e.chain) && math.Abs(e.chain[run].x-x) < straightTolerance) {
+		return
+	}
+	target := ux + math.Copysign(need, x-ux)
+	// Krawędź w podgrafie nie wychodzi poza jego zawartość (ani więc poza ramkę).
+	if e.lv.sub != nil {
+		lo, hi := math.Inf(1), math.Inf(-1)
+		for _, row := range e.lv.ranks {
+			for _, it := range row {
+				if it.real() {
+					lo, hi = math.Min(lo, it.x-it.w/2), math.Max(hi, it.x+it.w/2)
+				}
+			}
+		}
+		if target < lo || target > hi {
+			return
+		}
+	}
+	room := func(c *item) (float64, float64) {
+		lo, hi := l.dummyRoom(e.lv, c)
+		if l.lanes != nil && e.lv == l.levels[""] {
+			ln := l.lanes[c.lane]
+			lo, hi = math.Max(lo, ln.lo+l.u(4)), math.Min(hi, ln.hi-l.u(4))
+		}
+		return lo, hi
+	}
+	for _, c := range e.chain[:run] {
+		lo, hi := room(c)
+		if target >= lo && target <= hi {
+			continue
+		}
+		// Przeszkodą jest prosty odcinek innej krawędzi: ustępuje, stając w środku miejsca między
+		// nową osią tej krawędzi a swoją dalszą granicą (odstępy między liniami wyrównują się).
+		if !l.yieldRun(e.lv, c, target, room) {
+			return
+		}
+		if lo, hi = room(c); target < lo || target > hi {
+			return
+		}
+	}
+	for _, c := range e.chain[:run] {
+		c.x, c.textShift = target, 0
+	}
+}
+
+// yieldRun przesuwa prosty odcinek punktów pośrednich innej krawędzi, który w warstwie punktu c stoi
+// na drodze do osi target, w środek miejsca między target a jego dalszą granicą. Zwraca, czy się udało.
+func (l *layouter) yieldRun(lv *level, c *item, target float64, room func(*item) (float64, float64)) bool {
+	right := target > c.x
+	var block *item
+	for _, o := range lv.ranks[c.rank] {
+		if o == c || (right && (o.x <= c.x || o.x > target+l.u(16))) || (!right && (o.x >= c.x || o.x < target-l.u(16))) {
+			continue
+		}
+		if block == nil || (right && o.x < block.x) || (!right && o.x > block.x) {
+			block = o
+		}
+	}
+	if block == nil || (block.kind != kindDummy && block.kind != kindLabel) {
+		return false
+	}
+	var other *ledge
+	for _, e := range lv.edges {
+		for _, d := range e.chain {
+			if d == block {
+				other = e
+			}
+		}
+	}
+	if other == nil {
+		return false
+	}
+	var run []*item
+	for _, d := range other.chain {
+		if math.Abs(d.x-block.x) < straightTolerance {
+			run = append(run, d)
+		}
+	}
+	far := math.Inf(1)
+	if !right {
+		far = math.Inf(-1)
+	}
+	for _, d := range run {
+		lo, hi := room(d)
+		if right {
+			far = math.Min(far, hi)
+		} else {
+			far = math.Max(far, lo)
+		}
+	}
+	if math.IsInf(far, 0) {
+		return false
+	}
+	// Granica room leży o odstęp przed sąsiednią linią: środek liczony do samej linii daje równe odstępy.
+	gap := l.u(10)
+	if !right {
+		gap = -gap
+	}
+	want := (target + far + gap) / 2
+	if (right && want > far) || (!right && want < far) {
+		want = far
+	}
+	if (right && want < target+l.u(14)) || (!right && want > target-l.u(14)) {
+		return false
+	}
+	for _, d := range run {
+		d.x, d.textShift = want, 0
+	}
+	return true
 }

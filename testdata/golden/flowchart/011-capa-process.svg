@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="532.95" height="967" viewBox="-11.95 -12 532.95 967" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-a4edd0cf"><path d="M-11.95 -12 L521 -12 L521 955 L-11.95 955 M8.05 425 L8.05 445 L249.95 445 L249.95 425 M229.66 255 L229.66 275 L264.34 275 L264.34 255 M424 816 L424 836 L456 836 L456 816 M245.64 843 L245.64 863 L328.36 863 L328.36 843 M266.95 534 L266.95 554 L444.8 554 L444.8 534"/></clipPath></defs>
-<g clip-path="url(#label-holes-a4edd0cf)"><rect class="cluster" x="0.05" y="419" width="257.89" height="250" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-8a5bf359"><path d="M-11.95 -12 L521 -12 L521 955 L-11.95 955 M8.05 425 L8.05 445 L249.95 445 L249.95 425 M264.66 251 L264.66 271 L299.34 271 L299.34 251 M408 256 L408 276 L440 276 L440 256 M245.64 843 L245.64 863 L328.36 863 L328.36 843 M266.95 534 L266.95 554 L444.8 554 L444.8 534"/></clipPath></defs>
+<g clip-path="url(#label-holes-8a5bf359)"><rect class="cluster" x="0.05" y="419" width="257.89" height="250" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
 <path class="edge" d="M129.25 557 L129.25 592.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <path class="edge" d="M337 44 L337 79.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-a4edd0cf)"><path class="edge" d="M317 212.02 L317 224.51 C317 228.91 313.4 232.51 309 232.51 L255 232.51 C250.6 232.51 247 236.11 247 240.51 L247 253 L247 298.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M317 212.02 L317 253 C317 257.4 313.4 261 309 261 L255 261 C250.6 261 247 264.6 247 269 L247 298.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-a4edd0cf)"><path class="edge" d="M357 212.02 L357 224.51 C357 228.91 360.6 232.51 365 232.51 L483 232.51 C487.4 232.51 491 236.11 491 240.51 L491 253 L491 811 L491 818 C491 822.4 487.4 826 483 826 L397 826 C392.6 826 389 829.6 389 834 L389 841 L389 890.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M357 212.02 L357 258 C357 262.4 360.6 266 365 266 L483 266 C487.4 266 491 269.6 491 274 L491 811 L491 818 C491 822.4 487.4 826 483 826 L397 826 C392.6 826 389 829.6 389 834 L389 841 L389 890.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-a4edd0cf)"><path class="edge" d="M227 371 L227 396.7 C227 401.1 223.4 404.7 219 404.7 L137.25 404.7 C132.85 404.7 129.25 408.3 129.25 412.7 L129.25 419 L129.25 464.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M227 371 L227 396.7 C227 401.1 223.4 404.7 219 404.7 L137.25 404.7 C132.85 404.7 129.25 408.3 129.25 412.7 L129.25 419 L129.25 464.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <path class="edge" d="M129.25 645 L129.25 669 L129.25 679.55 C129.25 683.95 132.85 687.55 137.25 687.55 L259 687.55 C263.4 687.55 267 691.15 267 695.55 L267 717.11" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<g clip-path="url(#label-holes-a4edd0cf)"><path class="edge" d="M287 811 L287 865 L287 865 C287 869.02 290.28 872.3 294.3 872.3 L361.7 872.3 C365.72 872.3 369 875.58 369 879.6 L369 890.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M287 811 L287 865 L287 865 C287 869.02 290.28 872.3 294.3 872.3 L361.7 872.3 C365.72 872.3 369 875.58 369 879.6 L369 890.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
-<g clip-path="url(#label-holes-a4edd0cf)"><path class="edge" d="M267 379.4 L267 396.7 C267 401.1 270.6 404.7 275 404.7 L299 404.7 C303.4 404.7 307 408.3 307 412.7 L307 419 L307 725.51" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g clip-path="url(#label-holes-8a5bf359)"><path class="edge" d="M267 379.4 L267 396.7 C267 401.1 270.6 404.7 275 404.7 L299 404.7 C303.4 404.7 307 408.3 307 412.7 L307 419 L307 725.51" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 </g>
 <polygon class="arrowhead" points="129.25,601 123.25,589 135.25,589" fill="#3b4754"/>
 <polygon class="arrowhead" points="337,88 331,76 343,76" fill="#3b4754"/>
@@ -42,8 +42,8 @@
 <text class="node-label" x="129.25" y="628.6" text-anchor="middle" fill="#1b1f24">Wdrożenie działań</text>
 <text class="node-label" x="287" y="769.6" text-anchor="middle" fill="#1b1f24">Ocena skuteczności</text>
 <text class="node-label" x="389" y="926.6" text-anchor="middle" fill="#1b1f24">Zamknięcie zgłoszenia</text>
-<text class="edge-label" x="247" y="270.6" text-anchor="middle" fill="#1b1f24">Tak</text>
-<text class="edge-label" x="440" y="831.6" text-anchor="middle" fill="#1b1f24">Nie</text>
+<text class="edge-label" x="282" y="266.6" text-anchor="middle" fill="#1b1f24">Tak</text>
+<text class="edge-label" x="424" y="271.6" text-anchor="middle" fill="#1b1f24">Nie</text>
 <text class="edge-label" x="287" y="858.6" text-anchor="middle" fill="#1b1f24">Skuteczne</text>
 <text class="edge-label" x="355.88" y="549.6" text-anchor="middle" fill="#1b1f24">Nieskuteczne – powtórz</text>
 </svg>
