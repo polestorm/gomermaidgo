@@ -19,6 +19,9 @@ Zasady:
 - wzorcem są normy (SVG W3C, OpenType) i dokumentacja składni Mermaid, nie zachowanie innych rendererów;
 - każdy obsługiwany element składni ma wymaganie w `requirements/`, plik w `testdata/corpus/` z linią `%% REQ:` i wpis
   w `docs/profile.md`; element nieobsługiwany daje błąd z numerem linii;
+- opis commita kończy się jedną linią `Made with the help of Claude Code` (po pustym wierszu); nie dopisuj
+  `Co-Authored-By` ani `Claude-Session` (decyzja właściciela z 2026-11-24; tego dnia przepisano opisy wszystkich
+  commitów, więc ich identyfikatory się zmieniły);
 - pliki wzorcowe `testdata/golden/` zmieniamy przez `go test ./mermaid -update` i oglądamy różnicę przed commitem;
 - wygląd jest własny i stały: nie odtwarzamy motywów Mermaid ani wyniku co do piksela; celem jest rysunek czytelny
   i przewidywalny;
