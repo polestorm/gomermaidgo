@@ -7,8 +7,8 @@ import (
 	"sort"
 )
 
-// ErrOutlines zwraca osadzanie kroju, który nie ma konturów TrueType (tabeli glyf), np. kroju
-// OpenType z konturami CFF.
+// ErrOutlines is returned when embedding a font that has no TrueType outlines (glyf table), e.g. an
+// OpenType font with CFF outlines.
 var ErrOutlines = errors.New("pdf: the font has no TrueType outlines (glyf table); fonts with CFF outlines are not supported")
 
 // ttf to krój TrueType odczytany w zakresie potrzebnym do osadzenia w PDF. Źródłem jest

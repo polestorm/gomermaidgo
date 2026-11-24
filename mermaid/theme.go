@@ -11,30 +11,30 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/scene"
 )
 
-// Nazwy motywów. Wygląd każdego jest własny; nazwy pokrywają się z motywami Mermaid, żeby źródło
-// napisane dla Mermaid wybierało odpowiednik.
+// Theme names. The look of each is this library's own; the names match the Mermaid themes, so that
+// source written for Mermaid selects the counterpart.
 const (
-	ThemeNeutral = "neutral" // domyślny: odcienie szarości, czytelny w druku czarno-białym
-	ThemeDefault = "default" // kolorowy: to samo co WithColors
-	ThemeForest  = "forest"  // zielony
-	ThemeDark    = "dark"    // jasny rysunek na ciemnym tle
-	ThemeBase    = "base"    // neutralny, przeznaczony do barwienia zmiennymi (primaryColor)
+	ThemeNeutral = "neutral" // default: shades of gray, legible in black-and-white print
+	ThemeDefault = "default" // colored: the same as WithColors
+	ThemeForest  = "forest"  // green
+	ThemeDark    = "dark"    // a light drawing on a dark background
+	ThemeBase    = "base"    // neutral, meant to be tinted with variables (primaryColor)
 )
 
-// Themes zwraca nazwy motywów w kolejności alfabetycznej.
+// Themes returns the theme names in alphabetical order.
 func Themes() []string {
 	names := []string{ThemeNeutral, ThemeDefault, ThemeForest, ThemeDark, ThemeBase}
 	sort.Strings(names)
 	return names
 }
 
-// ErrUnknownTheme zwraca rysowanie, gdy WithTheme dostało nazwę spoza Themes.
+// ErrUnknownTheme is returned by rendering when WithTheme was given a name not in Themes.
 var ErrUnknownTheme = fmt.Errorf("gomermaidgo: unknown theme (known: %s)", strings.Join(Themes(), ", "))
 
-// WithTheme wybiera motyw rysunku. Motyw podany tutaj ma pierwszeństwo przed motywem zapisanym
-// w źródle diagramu (blok nagłówkowy, dyrektywa init) i wyłącza jego zmienne: dokument, który ma
-// wyglądać jednolicie, podaje motyw sam, choćby ThemeNeutral. Bez tej opcji źródło może wybrać motyw;
-// nazwa nieznana w źródle oznacza motyw domyślny.
+// WithTheme selects the theme of the drawing. A theme given here takes precedence over the theme set
+// in the diagram source (front matter, init directive) and turns its variables off: a document that is
+// to look uniform sets the theme itself, even if only ThemeNeutral. Without this option the source may
+// select the theme; an unknown name in the source means the default theme.
 func WithTheme(name string) Option {
 	return func(c *config) { c.theme, c.themeSet = name, true }
 }

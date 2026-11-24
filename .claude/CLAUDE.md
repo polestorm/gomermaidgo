@@ -13,6 +13,9 @@ Zasady:
   żeby porównać wynik;
 - **zero zależności**: `go.mod` nie ma sekcji `require`; narzędzia porównawcze wywołują cudze programy przez proces;
 - nazwy plików, pakietów i identyfikatorów po angielsku; komentarze i dokumentacja po polsku; `README.md` po angielsku;
+  wyjątek: komentarze dokumentacyjne publicznego API (opis pakietu, eksportowane typy, funkcje, metody, stałe,
+  zmienne i pola struktur w `mermaid/`, `markdown/`, `pdf/`, `png/`) piszemy po angielsku, bo pokazuje je
+  pkg.go.dev (decyzja właściciela z 2026-11-24); komentarze wewnętrzne zostają po polsku;
   galeria `docs/gallery/`, `docs/usage.md` (przedłużenie README) i `docs/profile.md` (obsługiwana składnia) też po angielsku, obrazki odtwarza `go run ./tools/gallery`
   (po zmianie wyglądu warto je odtworzyć);
   komunikaty błędów biblioteki po angielsku, ze stałym kodem do tłumaczenia przez wywołującego;

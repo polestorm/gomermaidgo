@@ -1,7 +1,7 @@
-// Package png zapisuje diagram jako obraz PNG. Rysunek powstaje z tej samej sceny co SVG i PDF,
-// własnym rasteryzatorem z wygładzaniem krawędzi; tekst jest rysowany konturami glifów kroju,
-// którym rysunek został zmierzony. Pakiet jest opcjonalny i nie ma zależności poza biblioteką
-// standardową.
+// Package png writes a diagram as a PNG image. The drawing is made from the same scene as SVG and
+// PDF, by the package's own anti-aliasing rasterizer; text is drawn with the glyph outlines of the
+// font with which the drawing was measured. The package is optional and has no dependencies outside
+// the standard library.
 package png
 
 import (
@@ -23,27 +23,27 @@ import (
 	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
-// DefaultScale to liczba pikseli obrazu na piksel rysunku w Render: 2, czyli 192 punkty na cal,
-// żeby obraz był ostry na ekranach o dużej gęstości i w druku.
+// DefaultScale is the number of image pixels per drawing pixel in Render: 2, that is 192 dots per
+// inch, so that the image is sharp on high-density screens and in print.
 const DefaultScale = 2
 
-// MaxPixels ogranicza powierzchnię obrazu; większy rysunek jest błędem ErrTooLarge.
+// MaxPixels limits the area of the image; a larger drawing is the error ErrTooLarge.
 const MaxPixels = 64 << 20
 
-// ErrTooLarge zwraca rysowanie, gdy obraz przekroczyłby MaxPixels.
+// ErrTooLarge is returned by rendering when the image would exceed MaxPixels.
 var ErrTooLarge = errors.New("png: the image would be too large; use a smaller scale")
 
-// ErrOutlines zwraca rysowanie krojem bez konturów TrueType (np. OpenType z konturami CFF).
+// ErrOutlines is returned when rendering with a font that has no TrueType outlines (e.g. OpenType with CFF).
 var ErrOutlines = glyf.ErrOutlines
 
-// Render zamienia źródło diagramu na obraz PNG w skali DefaultScale, z przezroczystym tłem, jeśli
-// nie podano WithBackground. Przyjmuje te same opcje co mermaid.Render. Krój musi być znany
-// z pliku: dołączony albo podany w WithFont; inaczej zwraca mermaid.ErrFontRequired.
+// Render converts diagram source to a PNG image at the scale DefaultScale, with a transparent background
+// unless WithBackground is given. It accepts the same options as mermaid.Render. The font must be known
+// from a file: the bundled one or the one given in WithFont; otherwise it returns mermaid.ErrFontRequired.
 func Render(source string, opts ...mermaid.Option) ([]byte, error) {
 	return RenderScale(source, DefaultScale, opts...)
 }
 
-// RenderScale działa jak Render, w podanej skali: 1 daje obraz o wymiarach rysunku SVG w pikselach.
+// RenderScale works like Render, at the given scale: 1 gives an image of the SVG drawing's pixel size.
 func RenderScale(source string, scale float64, opts ...mermaid.Option) ([]byte, error) {
 	if !(scale > 0) || math.IsInf(scale, 0) {
 		return nil, fmt.Errorf("png: scale %v is not a positive number", scale)

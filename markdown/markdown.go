@@ -1,7 +1,7 @@
-// Package markdown wstawia diagramy do dokumentu Markdown: każdy blok kodu ogrodzony, którego
-// opis zaczyna się od słowa „mermaid”, zamienia na rysunek SVG osadzony jako blok HTML.
-// Działa na tekście, przed parserem Markdown, więc nie zależy od żadnego parsera; parser musi
-// tylko przepuszczać bloki HTML (w goldmark: opcja WithUnsafe).
+// Package markdown inserts diagrams into a Markdown document: every fenced code block whose
+// info string starts with the word "mermaid" is replaced with an SVG drawing embedded as an HTML block.
+// It works on the text, before the Markdown parser, so it does not depend on any parser; the parser
+// only has to pass HTML blocks through (in goldmark: the WithUnsafe option).
 package markdown
 
 import (
@@ -13,27 +13,27 @@ import (
 	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
-// CSS to reguły dla strony i wydruku: rysunek mieści się na szerokość i na wysokość strony
-// (rysunku nie da się podzielić między strony, więc wyższy zostałby ucięty) i nie odrywa się
-// od podpisu. Wysokość 230 mm odpowiada stronie A4 z marginesami; inny format wymaga innej.
+// CSS holds the rules for the page and print: a drawing fits the width and the height of the page
+// (a drawing cannot be split between pages, so a taller one would be cut off) and is not separated
+// from its caption. The height of 230 mm suits an A4 page with margins; another format needs another.
 const CSS = `figure.diagram{margin:1em 0;break-inside:avoid;page-break-inside:avoid}
 figure.diagram svg{display:block;margin:0 auto;max-width:100%;max-height:230mm;width:auto;height:auto}
 pre.diagram-error{border:1px solid #b42318;padding:.6em .8em;white-space:pre-wrap}
 pre.diagram-error strong{display:block;color:#b42318;margin-bottom:.6em}
 `
 
-// Problem opisuje blok, którego nie udało się narysować.
+// Problem describes a block that could not be rendered.
 type Problem struct {
-	Line int   // linia dokumentu Markdown, w której leży błąd (albo początek bloku)
-	Err  error // błąd z mermaid.Render
+	Line int   // the line of the Markdown document where the error lies (or where the block starts)
+	Err  error // the error from mermaid.Render
 }
 
 func (p Problem) Error() string { return fmt.Sprintf("line %d: %v", p.Line, p.Err) }
 
-// Options to ustawienia zamiany.
+// Options holds the settings of the replacement.
 type Options struct {
-	Render      []mermaid.Option // opcje rysowania wspólne dla wszystkich bloków
-	ErrorPrefix string           // początek komunikatu w miejscu błędnego bloku; domyślnie "Diagram error"
+	Render      []mermaid.Option // rendering options shared by all blocks
+	ErrorPrefix string           // start of the message shown in place of a faulty block; default "Diagram error"
 }
 
 // fence rozpoznaje linię otwierającą blok ogrodzony: znak ogrodzenia, jego długość i opis.
@@ -59,10 +59,10 @@ func closes(line string, char byte, length int) bool {
 	return ok && c == char && n >= length && info == ""
 }
 
-// Embed zamienia bloki „mermaid” na rysunki. Blok z błędem zostaje w dokumencie jako źródło
-// z komunikatem, a błąd trafia do wyniku z numerem linii dokumentu. Bloki zagnieżdżone
-// w cytatach i listach (wcięte albo poprzedzone „>”) oraz wewnątrz innych bloków kodu
-// pozostają nietknięte.
+// Embed replaces "mermaid" blocks with drawings. A block with an error stays in the document as
+// source with a message, and the error goes to the result with the document line number. Blocks
+// nested in block quotes and lists (indented or preceded by ">") and inside other code blocks
+// are left untouched.
 func Embed(source string, o Options) (string, []Problem) {
 	prefix := o.ErrorPrefix
 	if prefix == "" {
@@ -88,17 +88,17 @@ func Embed(source string, o Options) (string, []Problem) {
 	})
 }
 
-// Block to jeden blok „mermaid” znaleziony w dokumencie.
+// Block is one "mermaid" block found in the document.
 type Block struct {
-	Index  int    // numer bloku w dokumencie, od 1
-	Line   int    // linia dokumentu z ogrodzeniem otwierającym
-	Source string // źródło diagramu
+	Index  int    // the number of the block in the document, from 1
+	Line   int    // the document line with the opening fence
+	Source string // the diagram source
 }
 
-// Replace zamienia każdy blok „mermaid” na linie zwrócone przez funkcję. Błąd funkcji trafia do
-// wyniku z numerem linii dokumentu (dla błędu składni: linii, w której leży); linie zwrócone
-// razem z błędem i tak zastępują blok, a gdy funkcja nie zwróci żadnych, blok zostaje bez zmian.
-// Reguły rozpoznawania bloków są te same co w Embed.
+// Replace replaces every "mermaid" block with the lines returned by the function. An error from the
+// function goes to the result with the document line number (for a syntax error: the line where it lies);
+// lines returned together with an error replace the block anyway, and when the function returns none,
+// the block stays unchanged. The rules for recognizing blocks are the same as in Embed.
 func Replace(source string, replace func(Block) ([]string, error)) (string, []Problem) {
 	lines := strings.Split(source, "\n")
 	var out []string

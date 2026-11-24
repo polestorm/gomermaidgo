@@ -13,7 +13,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/treemap"
 )
 
-// Typy diagramów dodane po pierwszych dwunastu.
+// Diagram types added after the first ones.
 const (
 	TypeKanban       = "kanban"
 	TypePacket       = "packet"

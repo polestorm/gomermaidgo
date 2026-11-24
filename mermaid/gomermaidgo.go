@@ -1,9 +1,9 @@
-// Package mermaid renderuje diagramy zapisane składnią Mermaid do SVG w czystym Go:
-// bez JavaScriptu, bez przeglądarki i bez zależności poza biblioteką standardową.
-// Ten sam tekst i te same opcje dają zawsze ten sam SVG co do bajta.
+// Package mermaid renders diagrams written in Mermaid syntax to SVG in pure Go:
+// no JavaScript, no browser and no dependencies outside the standard library.
+// The same text and the same options always give the same SVG, byte for byte.
 //
-// Obsługiwany zakres składni opisuje docs/profile.md. Element spoza zakresu daje błąd
-// z numerem linii, nigdy niepełny rysunek.
+// The supported range of syntax is described in docs/profile.md. An element outside that range
+// gives an error with a line number, never an incomplete drawing.
 package mermaid
 
 import (
@@ -38,13 +38,13 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/xychart"
 )
 
-// SyntaxError to błąd w źródle diagramu, z numerem linii i stałym kodem.
+// SyntaxError is an error in the diagram source, with a line number and a stable code.
 type SyntaxError = syntax.Error
 
-// ErrUnsupportedType oznacza typ diagramu spoza obsługiwanego zakresu.
+// ErrUnsupportedType means a diagram type outside the supported range.
 var ErrUnsupportedType = errors.New("gomermaidgo: unsupported diagram type")
 
-// Typy diagramów.
+// Diagram types.
 const (
 	TypeSequence    = "sequenceDiagram"
 	TypeFlowchart   = "flowchart"
@@ -62,7 +62,7 @@ const (
 	TypeC4          = "C4"
 )
 
-// SupportedTypes zwraca obsługiwane typy diagramów.
+// SupportedTypes returns the supported diagram types.
 func SupportedTypes() []string {
 	out := []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant, TypeRequirement, TypeC4}
 	for _, t := range moreTypes {
@@ -95,112 +95,112 @@ type config struct {
 	themeSet   bool
 }
 
-// Option zmienia ustawienia renderowania.
+// Option changes the rendering settings.
 type Option func(*config)
 
-// WithFont podaje plik fontu (TrueType albo OpenType), z którego renderer czyta szerokości
-// znaków. Ten sam krój musi potem narysować tekst, więc jego nazwę trzeba podać w WithFontFamily.
+// WithFont supplies a font file (TrueType or OpenType) from which the renderer reads character
+// widths. The same typeface must later draw the text, so its name has to be given in WithFontFamily.
 func WithFont(data []byte) Option { return func(c *config) { c.fontData = data } }
 
-// WithStyledFonts podaje pliki odmiany pogrubionej i pochylonej kroju z WithFont; służą do
-// pomiaru wyróżnień w tekstach Markdown. Każdy może być nil: pogrubienie jest wtedy mierzone
-// krojem zwykłym z zapasem 6%, kursywa krojem zwykłym.
+// WithStyledFonts supplies the files of the bold and italic styles of the typeface from WithFont;
+// they are used to measure emphasis in Markdown texts. Either may be nil: bold text is then
+// measured with the regular style plus a 6% allowance, italic text with the regular style.
 func WithStyledFonts(bold, italic []byte) Option {
 	return func(c *config) { c.boldData, c.italicData = bold, italic }
 }
 
-// WithMeasure podaje własną funkcję pomiaru tekstu (szerokość w pikselach dla rozmiaru pisma);
-// ma pierwszeństwo przed WithFont.
+// WithMeasure supplies a custom text measuring function (width in pixels for a given font size);
+// it takes precedence over WithFont.
 func WithMeasure(f func(text string, size float64) float64) Option {
 	return func(c *config) { c.measure = f }
 }
 
-// WithFontFamily ustawia wartość atrybutu font-family w SVG. Domyślnie fonts.DefaultFamily:
-// krój dołączony do modułu (pakiet fonts), którym renderer wtedy także mierzy tekst. Kto podaje
-// inny krój, powinien podać też jego plik (WithFont) albo funkcję pomiaru (WithMeasure); bez
-// nich działa miara zastępcza, która zawyża.
+// WithFontFamily sets the value of the font-family attribute in the SVG. The default is
+// fonts.DefaultFamily: the typeface bundled with the module (package fonts), which the renderer then also
+// uses to measure text. A caller who names another typeface should also supply its file (WithFont) or
+// a measuring function (WithMeasure); without them a fallback measure is used, which overestimates.
 func WithFontFamily(family string) Option { return func(c *config) { c.fontFamily = family } }
 
-// WithFontSize ustawia rozmiar pisma w pikselach. Domyślnie 16.
+// WithFontSize sets the font size in pixels. The default is 16.
 func WithFontSize(px float64) Option { return func(c *config) { c.fontSize = px } }
 
-// WithBackground ustawia kolor tła. Domyślnie tło jest przezroczyste.
+// WithBackground sets the background color. By default the background is transparent.
 func WithBackground(color string) Option { return func(c *config) { c.background = color } }
 
-// WithCurvedEdges prowadzi krawędzie grafów łagodnymi łukami. Domyślnie krawędzie są łamane pod
-// kątem prostym, z zaokrąglonymi narożnikami.
+// WithCurvedEdges routes graph edges as smooth curves. By default edges bend at right angles,
+// with rounded corners.
 func WithCurvedEdges() Option { return func(c *config) { c.curved = true } }
 
-// WithColors włącza tryb kolorowy: uczestnicy diagramu sekwencji dostają kolejne kolory palety,
-// a węzły grafów kolor według roli (krok, decyzja, początek i koniec). Domyślnie rysunek jest
-// neutralny, bo dobrze wygląda także w druku czarno-białym.
+// WithColors turns the color mode on: sequence diagram participants get successive palette colors,
+// and graph nodes get a color according to their role (step, decision, start and end). By default
+// the drawing is neutral, because it then also looks good in black-and-white print.
 func WithColors() Option { return func(c *config) { c.colors = true } }
 
-// WithShadows dodaje cień pod uczestnikami, węzłami i notatkami. Cień jest zwykłym kształtem, nie filtrem.
+// WithShadows adds a shadow under participants, nodes and notes. The shadow is a plain shape, not a filter.
 func WithShadows() Option { return func(c *config) { c.shadows = true } }
 
-// WithClasses dopisuje do elementów SVG atrybut class z ich rolą (node, edge, edge-label, arrowhead,
-// lane…), żeby strona osadzająca rysunek mogła go stylować własnym CSS. Domyślnie wyłączone: bez
-// klas plik jest o około piątą część mniejszy, a wygląd ten sam (atrybuty prezentacji).
+// WithClasses adds to SVG elements a class attribute with their role (node, edge, edge-label, arrowhead,
+// lane…), so that the page embedding the drawing can style it with its own CSS. Off by default: without
+// classes the file is about one fifth smaller and looks the same (presentation attributes).
 func WithClasses() Option { return func(c *config) { c.classes = true } }
 
-// WithEmojiText zostawia w SVG emoji (znaki kroju zapasowego) jako tekst z nazwą kroju „Noto Emoji”.
-// Domyślnie są zapisane jako kontury: rysunek wygląda wtedy tak samo w każdym programie i nie
-// potrzebuje pliku kroju zapasowego, ale samego emoji nie da się skopiować ani wyszukać (słowa
-// obok zostają tekstem). PDF i PNG ta opcja nie dotyczy.
+// WithEmojiText keeps emoji (characters of the fallback font) in the SVG as text with the font name
+// "Noto Emoji". By default they are written as outlines: the drawing then looks the same in every
+// program and does not need the fallback font file, but the emoji itself cannot be copied or searched
+// for (the words next to it remain text). This option does not affect PDF and PNG.
 func WithEmojiText() Option { return func(c *config) { c.emojiText = true } }
 
-// Tryby dopasowania do strony (WithFit).
+// Fit-to-page modes (WithFit).
 const (
-	FitAuto = "auto" // domyślny: dopasowanie tylko rysunku co najmniej WithFitRatio razy szerszego niż wysoki
-	FitOn   = "on"   // dopasowanie każdego rysunku, który nie mieści się na stronie A4 w skali 1
-	FitOff  = "off"  // bez dopasowania
+	FitAuto = "auto" // default: fits only a drawing at least WithFitRatio times wider than tall
+	FitOn   = "on"   // fits every drawing that does not fit on an A4 page at scale 1
+	FitOff  = "off"  // no fitting
 )
 
-// WithFit wybiera tryb dopasowania do strony dla diagramów rysowanych układem warstwowym (schemat
-// blokowy, stany, klasy, wymagania, C4): rysunek jest układany jeszcze raz z węższymi polami, w których
-// tekst łamie się częściej, i wygrywa wersja mieszcząca się na stronie A4 w największej skali.
-// Domyślny jest FitAuto. W źródle to samo ustawia linia "%% layout: fit" (FitOn) albo
-// "%% layout: nofit" (FitOff); opcja ma pierwszeństwo przed źródłem. Nieznany tryb jest pomijany.
+// WithFit selects the fit-to-page mode for diagrams drawn with the layered layout (flowchart, state,
+// class, requirement, C4): the drawing is laid out again with narrower boxes, in which the text
+// wraps more often, and the version that fits on an A4 page at the largest scale wins.
+// The default is FitAuto. In the source the same is set by the line "%% layout: fit" (FitOn) or
+// "%% layout: nofit" (FitOff); the option takes precedence over the source. An unknown mode is ignored.
 func WithFit(mode string) Option { return func(c *config) { c.fitMode = mode } }
 
-// WithFitRatio ustawia próg trybu FitAuto: dopasowanie rusza, gdy szerokość rysunku jest co najmniej
-// tyle razy większa od wysokości. Domyślnie 2.
+// WithFitRatio sets the threshold of the FitAuto mode: fitting starts when the width of the drawing
+// is at least this many times greater than its height. The default is 2.
 func WithFitRatio(ratio float64) Option { return func(c *config) { c.fitRatio = ratio } }
 
-// Tryby i sposoby zwijania (WithFold, WithFoldType).
+// Folding modes and folding types (WithFold, WithFoldType).
 const (
-	FoldAuto   = "auto"   // domyślny: zwija prosty diagram co najmniej WithFitRatio razy dłuższy niż szeroki
-	FoldOff    = "off"    // bez zwijania
-	FoldReturn = "return" // domyślny sposób: każdy rząd w tym samym kierunku, łącznik wraca do początku
-	FoldSnake  = "snake"  // wężyk: co drugi rząd w przeciwnym kierunku
+	FoldAuto   = "auto"   // default mode: folds a simple diagram at least WithFitRatio times longer than wide
+	FoldOff    = "off"    // no folding
+	FoldReturn = "return" // default type: every row in the same direction, the connector returns to the start
+	FoldSnake  = "snake"  // serpentine: every other row in the opposite direction
 )
 
-// WithFold wybiera tryb zwijania długiego, prostego diagramu układu warstwowego w kilka rzędów (LR)
-// albo kolumn (TB). Domyślny jest FoldAuto. W źródle to samo ustawiają linie "%% layout: fold"
-// (auto) i "%% layout: nofold" (off); opcja ma pierwszeństwo przed źródłem.
+// WithFold selects the mode of folding a long, simple layered-layout diagram into several rows (LR)
+// or columns (TB). The default is FoldAuto. In the source the same is set by the lines
+// "%% layout: fold" (auto) and "%% layout: nofold" (off); the option takes precedence over the source.
 func WithFold(mode string) Option { return func(c *config) { c.foldMode = mode } }
 
-// WithFoldChains wybiera tryb zwijania długich łańcuchów pól wewnątrz diagramu (co najmniej sześć
-// pól połączonych jeden do jednego) w kilka kolumn (TB) albo rzędów (LR). Domyślny jest FoldOff;
-// FoldAuto zwija łańcuch, jeśli rysunek zyskuje co najmniej 20% skali na stronie A4. Sposób
-// przejścia do następnej kolumny wybiera WithFoldType. W źródle: "%% layout: fold-chains"
-// (auto) i "%% layout: nofold-chains" (off); opcja ma pierwszeństwo przed źródłem.
+// WithFoldChains selects the mode of folding long chains of boxes inside a diagram (at least six
+// boxes connected one to one) into several columns (TB) or rows (LR). The default is FoldOff;
+// FoldAuto folds a chain if the drawing gains at least 20% of scale on an A4 page. The way of
+// moving on to the next column is selected by WithFoldType. In the source: "%% layout: fold-chains"
+// (auto) and "%% layout: nofold-chains" (off); the option takes precedence over the source.
 func WithFoldChains(mode string) Option { return func(c *config) { c.foldChains = mode } }
 
-// WithFoldRanks wybiera tryb rozkładania długiej warstwy liści: gdy jeden węzeł ma co najmniej
-// sześć następników bez dalszych połączeń (albo tyle samo poprzedników bez innych połączeń), stoją
-// one w dwóch podwarstwach ustawionych zygzakiem, więc rysunek LR nie jest wąskim
-// słupem, a TB szerokim pasem. Domyślny jest FoldOff; FoldAuto rozkłada warstwę, jeśli rysunek
-// zyskuje co najmniej 20% skali na stronie A4. W źródle: "%% layout: fold-ranks" (auto)
-// i "%% layout: nofold-ranks" (off); opcja ma pierwszeństwo przed źródłem.
+// WithFoldRanks selects the mode of spreading out a long rank of leaves: when one node has at least
+// six successors with no further connections (or as many predecessors with no other connections),
+// they stand in two sub-ranks arranged in a zigzag, so an LR drawing is not a narrow
+// column and a TB drawing is not a wide strip. The default is FoldOff; FoldAuto spreads the rank out
+// if the drawing gains at least 20% of scale on an A4 page. In the source: "%% layout: fold-ranks"
+// (auto) and "%% layout: nofold-ranks" (off); the option takes precedence over the source.
 func WithFoldRanks(mode string) Option { return func(c *config) { c.foldRanks = mode } }
 
-// WithFoldType wybiera sposób przejścia do następnego rzędu: FoldReturn (domyślny) albo FoldSnake.
-// W źródle: "%% layout: fold return" albo "%% layout: fold snake".
+// WithFoldType selects the way of moving on to the next row: FoldReturn (the default) or FoldSnake.
+// In the source: "%% layout: fold return" or "%% layout: fold snake".
 func WithFoldType(kind string) Option { return func(c *config) { c.foldType = kind } }
 
-// DetectType zwraca typ diagramu z pierwszej znaczącej linii źródła.
+// DetectType returns the diagram type from the first significant line of the source.
 func DetectType(source string) (string, error) {
 	source, _, _, err := preamble(source)
 	if err != nil {
@@ -274,7 +274,7 @@ func checkCharacters(source string) error {
 	return nil
 }
 
-// Check sprawdza składnię źródła bez rysowania. Zwraca nil, *SyntaxError albo ErrUnsupportedType.
+// Check checks the syntax of the source without drawing. It returns nil, *SyntaxError or ErrUnsupportedType.
 func Check(source string) error {
 	if err := checkCharacters(source); err != nil {
 		return err
@@ -675,7 +675,7 @@ func styledMeasure(bold, italic []byte) (func(string, float64, bool, bool) float
 	}, nil
 }
 
-// Render zamienia źródło diagramu na dokument SVG.
+// Render converts diagram source to an SVG document.
 func Render(source string, opts ...Option) ([]byte, error) {
 	sc, _, err := build(source, opts)
 	if err != nil {
@@ -691,10 +691,10 @@ func Render(source string, opts ...Option) ([]byte, error) {
 	return sc.SVG(), nil
 }
 
-// MissingGlyphs zwraca znaki tekstów rysunku, których nie ma w kroju użytym do pomiaru
-// (dołączonym albo podanym w WithFont), w kolejności kodów. Taki znak zostanie narysowany
-// krojem zastępczym albo pustym polem, a jego szerokość jest tylko przybliżona. Gdy mierzy
-// funkcja z WithMeasure albo miara zastępcza, wynik jest pusty, bo krój nie jest znany.
+// MissingGlyphs returns the characters of the drawing's texts that are missing from the font used
+// for measuring (the bundled one or the one given in WithFont), in code point order. Such a character
+// will be drawn with a substitute font or as an empty box, and its width is only approximate. When
+// the function from WithMeasure or the fallback measure is used, the result is empty: the font is unknown.
 func MissingGlyphs(source string, opts ...Option) ([]rune, error) {
 	sc, face, err := build(source, opts)
 	if err != nil || face == nil {

@@ -1,11 +1,11 @@
-// Package pdf zapisuje diagram jako jednostronicowy dokument PDF, bez pośrednictwa SVG i HTML.
+// Package pdf writes a diagram as a single-page PDF document, without going through SVG or HTML.
 //
-// Rysunek pochodzi z tej samej sceny co SVG z pakietu gomermaidgo, więc oba formaty mają te same
-// położenia i rozmiary. Tekst jest prawdziwym tekstem (da się go zaznaczać i wyszukiwać), a krój
-// jest osadzony w pliku w wersji obciętej do użytych znaków. Źródłem jest specyfikacja PDF
-// (ISO 32000-1) i specyfikacja OpenType.
+// The drawing comes from the same scene as the SVG from package mermaid, so both formats have the
+// same positions and sizes. The text is real text (it can be selected and searched), and the font
+// is embedded in the file as a subset limited to the characters used. The sources are the PDF
+// specification (ISO 32000-1) and the OpenType specification.
 //
-// Pakiet jest opcjonalny: program, który go nie importuje, nie zawiera jego kodu.
+// The package is optional: a program that does not import it does not contain its code.
 package pdf
 
 import (
@@ -25,9 +25,9 @@ import (
 	"github.com/polestorm/gomermaidgo/mermaid"
 )
 
-// Render zamienia źródło diagramu na dokument PDF o stronie dopasowanej do rysunku. Przyjmuje te
-// same opcje co mermaid.Render. Krój musi być znany z pliku: dołączony albo podany w WithFont;
-// inaczej zwraca mermaid.ErrFontRequired.
+// Render converts diagram source to a PDF document whose page is sized to the drawing. It accepts
+// the same options as mermaid.Render. The font must be known from a file: the bundled one or the one
+// given in WithFont; otherwise it returns mermaid.ErrFontRequired.
 func Render(source string, opts ...mermaid.Option) ([]byte, error) {
 	options := make([]any, len(opts))
 	for i, o := range opts {

@@ -8,8 +8,8 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/scene"
 )
 
-// ErrFontRequired zwracają formaty, które osadzają krój w pliku (PDF), gdy rysunek był mierzony
-// funkcją z WithMeasure albo krojem znanym tylko z nazwy: nie ma wtedy pliku do osadzenia.
+// ErrFontRequired is returned by formats that embed the font in the file (PDF) when the drawing was
+// measured with the function from WithMeasure or with a font known only by name: there is no file to embed.
 var ErrFontRequired = errors.New("gomermaidgo: this output format embeds the font; use the bundled font or pass the font file with WithFont")
 
 func init() {
