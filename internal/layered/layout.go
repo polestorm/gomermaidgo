@@ -153,6 +153,9 @@ type ledge struct {
 	// sideExit: krawędź wychodzi z bocznego wierzchołka rombu (−1: po stronie −x, +1: po stronie +x)
 	// i biegnie w poprzek na wysokości środka pola, zanim skręci wzdłuż osi warstw.
 	sideExit float64
+	// sideEntry (LAY-032): krawędź wchodzi w bok pola dolnego końca (−1: po stronie −x, +1: po stronie
+	// +x), na wysokości jego środka; ustawiane razem z sideExit dla krawędzi obchodzącej pola bokiem.
+	sideEntry float64
 
 	lv *level
 	// Identyfikatory pól ze źródła na górnym i dolnym końcu (po odwróceniu); pusty dla punktu na ramce.
@@ -2647,12 +2650,13 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		}
 		return false
 	}
-	y := 0.0
+	gaps := make([]float64, len(lv.ranks))
 	for r, row := range lv.ranks {
-		band := 0.0
 		turns := 0 // krawędzie, które w odstępie nad tą warstwą zmieniają położenie w poprzek
+		// Zakresy odcinków poprzecznych biegnących w stronę +x i −x: gdy się pokrywają, krawędzie
+		// przetną się w odstępie i mostek potrzebuje miejsca (LAY-003).
+		var right, left [][2]float64
 		for _, it := range row {
-			band = math.Max(band, it.h)
 			for _, up := range it.up {
 				// Gałąź rombu daleko z boku wyjdzie z jego bocznego wierzchołka (sideExitsOf) i skręci
 				// na wysokości rombu, nie w odstępie pod nim.
@@ -2660,34 +2664,63 @@ func (l *layouter) position(lv *level) (width, height float64) {
 					math.Abs(it.nodeX()-up.nodeX()) > up.nodeW()/2+l.u(16)
 				if math.Abs(up.nodeX()-it.nodeX()) > 0.5 && !side {
 					turns++
+					span := [2]float64{math.Min(up.nodeX(), it.nodeX()), math.Max(up.nodeX(), it.nodeX())}
+					if it.nodeX() > up.nodeX() {
+						right = append(right, span)
+					} else {
+						left = append(left, span)
+					}
 				}
 			}
 		}
-		if r > 0 {
-			// Warstwa samych punktów na ramce potrzebuje tylko miejsca na łuk krawędzi.
-			gap := l.u(44)
-			if portsOnly(row) || portsOnly(lv.ranks[r-1]) {
-				gap = l.u(24)
-			} else if !anyReal(row) || !anyReal(lv.ranks[r-1]) {
-				gap = l.u(30)
-			} else if turns == 0 && lv.sub != nil && l.g.Kind == "state" {
-				// Wnętrze stanu złożonego: proste strzałki są krótsze niż na poziomie głównym, bo
-				// ramka i tak zajmuje miejsce, a jej zawartość czyta się jako jedną całość.
-				gap = l.u(26)
-			}
-			// Krawędzie skręcające tuż nad polem: tory odcinków poprzecznych i pod najniższym kawałek prostej
-			// przed grotem (zapas toru przy grocie w assignTracks).
-			// Najniższy tor zostawia przed grotem kawałek prostej (LAY-024); kolejne tory mają odstęp jak
-			// dotąd, a rozsuwają się tylko w miejscu, które już jest (assignTracks). Encje nie mają grotów.
-			if !l.o.CurvedEdges && turns > 0 && anyReal(row) && l.g.Kind != "er" {
-				gap = math.Max(gap, l.u(34)+float64(turns-1)*l.u(14))
-			}
-			// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
-			if !l.o.CurvedEdges && turns > 2 {
-				gap = math.Max(gap, math.Min(l.u(30)+float64(turns)*l.u(10), l.u(160)))
-			}
-			y += gap
+		if r == 0 {
+			continue
 		}
+		// Warstwa samych punktów na ramce potrzebuje tylko miejsca na łuk krawędzi.
+		gap := l.u(44)
+		if portsOnly(row) || portsOnly(lv.ranks[r-1]) {
+			gap = l.u(24)
+		} else if !anyReal(row) || !anyReal(lv.ranks[r-1]) {
+			gap = l.u(30)
+		} else if turns == 0 && lv.sub != nil && l.g.Kind == "state" {
+			// Wnętrze stanu złożonego: proste strzałki są krótsze niż na poziomie głównym, bo
+			// ramka i tak zajmuje miejsce, a jej zawartość czyta się jako jedną całość.
+			gap = l.u(26)
+		}
+		// Krawędzie skręcające tuż nad polem: tory odcinków poprzecznych i pod najniższym kawałek prostej
+		// przed grotem (zapas toru przy grocie w assignTracks).
+		// Najniższy tor zostawia przed grotem kawałek prostej (LAY-024); kolejne tory mają odstęp jak
+		// dotąd, a rozsuwają się tylko w miejscu, które już jest (assignTracks). Encje nie mają grotów.
+		if !l.o.CurvedEdges && turns > 0 && anyReal(row) && l.g.Kind != "er" {
+			gap = math.Max(gap, l.u(34)+float64(turns-1)*l.u(14))
+			// Odcinki biegnące w przeciwne strony, których zakresy się pokrywają, przecinają zejścia
+			// drugiej krawędzi: górny tor stoi wtedy dalej od pól nad odstępem, a tory dalej od siebie,
+			// żeby mostek nie siedział w narożniku ani przy polu (assignTracks, LAY-003).
+			if overlapping(right, left) {
+				gap = math.Max(gap, l.u(42)+float64(turns-1)*l.u(14))
+			}
+		}
+		// Krawędzie łamane: każdy odcinek poprzeczny potrzebuje własnego toru.
+		if !l.o.CurvedEdges && turns > 2 {
+			gap = math.Max(gap, math.Min(l.u(30)+float64(turns)*l.u(10), l.u(160)))
+		}
+		gaps[r] = gap
+	}
+	// Warstwa samych etykiet z etykietą prostej krawędzi ma nad sobą i pod sobą ten sam odstęp: etykieta
+	// stoi w środku między polami, nie bliżej jednego z nich.
+	for r := 1; r+1 < len(lv.ranks); r++ {
+		if straightLabel(lv.ranks[r]) {
+			g := math.Max(gaps[r], gaps[r+1])
+			gaps[r], gaps[r+1] = g, g
+		}
+	}
+	y := 0.0
+	for r, row := range lv.ranks {
+		band := 0.0
+		for _, it := range row {
+			band = math.Max(band, it.h)
+		}
+		y += gaps[r]
 		for _, it := range row {
 			it.x = math.Round(it.x - left)
 			it.y = y + band/2
@@ -2700,6 +2733,37 @@ func (l *layouter) position(lv *level) (width, height float64) {
 		y += band
 	}
 	return width, y
+}
+
+// overlapping mówi, czy któryś zakres z a pokrywa się z którymś zakresem z b.
+func overlapping(a, b [][2]float64) bool {
+	for _, p := range a {
+		for _, q := range b {
+			if p[0] < q[1] && q[0] < p[1] {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+// straightLabel mówi, czy warstwa składa się z samych etykiet krawędzi i punktów pośrednich, a któraś
+// etykieta należy do krawędzi biegnącej prosto między dwoma polami (etykieta stoi w zasięgu boków obu).
+func straightLabel(row []*item) bool {
+	found := false
+	for _, it := range row {
+		switch it.kind {
+		case kindLabel:
+			if len(it.up) == 1 && len(it.down) == 1 && it.up[0].real() && it.down[0].real() &&
+				math.Abs(it.x-it.up[0].nodeX()) < it.up[0].nodeW()/2 && math.Abs(it.x-it.down[0].nodeX()) < it.down[0].nodeW()/2 {
+				found = true
+			}
+		case kindDummy:
+		default:
+			return false
+		}
+	}
+	return found
 }
 
 // components dzieli pola poziomu na części spójne (połączone krawędziami albo notatką ze stanem)

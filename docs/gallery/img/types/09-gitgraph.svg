@@ -1,37 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="569.26" height="149.1" viewBox="-12 -16.2 569.26 149.1" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <rect x="-12" y="-16.2" width="569.26" height="149.1" fill="white"/>
 <g stroke="#9aa5b1" stroke-width="1" stroke-dasharray="2 4">
-<line x1="62.68" y1="28" x2="545.26" y2="28" fill="none"/>
-<line x1="62.68" y1="92" x2="545.26" y2="92" fill="none"/>
+<line x1="62.68" y1="28" x2="545.26" y2="28"/>
+<line x1="62.68" y1="92" x2="545.26" y2="92"/>
 </g>
-<g stroke="#3b4754" stroke-width="3">
-<line x1="78.68" y1="28" x2="509.26" y2="28" fill="none"/>
-<line x1="209.98" y1="92" x2="383.03" y2="92" fill="none"/>
-<path d="M139.63 28 L139.63 82 C139.63 87.5 144.13 92 149.63 92 L209.98 92" fill="none"/>
-<path d="M383.03 92 L439.03 92 C444.53 92 449.03 87.5 449.03 82 L449.03 28" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="3">
+<line x1="78.68" y1="28" x2="509.26" y2="28"/>
+<line x1="209.98" y1="92" x2="383.03" y2="92"/>
+<path d="M139.63 28 L139.63 82 C139.63 87.5 144.13 92 149.63 92 L209.98 92"/>
+<path d="M383.03 92 L439.03 92 C444.53 92 449.03 87.5 449.03 82 L449.03 28"/>
 </g>
-<rect x="51.75" y="40" width="53.86" height="16.9" fill="white"/>
-<rect x="120.29" y="40" width="38.69" height="16.9" fill="white"/>
-<rect x="173.65" y="104" width="72.65" height="16.9" fill="white"/>
-<rect x="252.3" y="104" width="41.57" height="16.9" fill="white"/>
-<rect x="299.87" y="40" width="45.18" height="16.9" fill="white"/>
-<rect x="351.05" y="104" width="63.96" height="16.9" fill="white"/>
-<rect x="483.05" y="40" width="52.41" height="16.9" fill="white"/>
-<g stroke="#3b4754" stroke-width="1.5">
-<rect x="0" y="14" width="54.68" height="28" rx="4" fill="#eef2f7"/>
-<rect x="2.66" y="78" width="52.02" height="28" rx="4" fill="#eef2f7"/>
+<g fill="white">
+<rect x="51.75" y="40" width="53.86" height="16.9"/>
+<rect x="120.29" y="40" width="38.69" height="16.9"/>
+<rect x="173.65" y="104" width="72.65" height="16.9"/>
+<rect x="252.3" y="104" width="41.57" height="16.9"/>
+<rect x="299.87" y="40" width="45.18" height="16.9"/>
+<rect x="351.05" y="104" width="63.96" height="16.9"/>
+<rect x="483.05" y="40" width="52.41" height="16.9"/>
 </g>
-<g stroke="#3b4754" stroke-width="2">
-<circle cx="78.68" cy="28" r="8" fill="#3b4754"/>
-<circle cx="139.63" cy="28" r="8" fill="#3b4754"/>
+<g fill="#eef2f7" stroke="#3b4754" stroke-width="1.5">
+<rect x="0" y="14" width="54.68" height="28" rx="4"/>
+<rect x="2.66" y="78" width="52.02" height="28" rx="4"/>
+</g>
+<g fill="#3b4754" stroke="#3b4754" stroke-width="2">
+<circle cx="78.68" cy="28" r="8"/>
+<circle cx="139.63" cy="28" r="8"/>
 </g>
 <polygon points="113.61,4.9 122.71,-4.2 165.65,-4.2 165.65,14 122.71,14" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
 <circle cx="121.35" cy="4.9" r="1.82" fill="#3b4754"/>
-<g stroke="#3b4754" stroke-width="2">
-<circle cx="209.98" cy="92" r="8" fill="#3b4754"/>
-<rect x="265.08" y="84" width="16" height="16" fill="#3b4754"/>
-<circle cx="322.46" cy="28" r="8" fill="#3b4754"/>
-<circle cx="383.03" cy="92" r="8" fill="#3b4754"/>
+<g fill="#3b4754" stroke="#3b4754" stroke-width="2">
+<circle cx="209.98" cy="92" r="8"/>
+<rect x="265.08" y="84" width="16" height="16"/>
+<circle cx="322.46" cy="28" r="8"/>
+<circle cx="383.03" cy="92" r="8"/>
 </g>
 <circle cx="449.03" cy="28" r="8" fill="#ffffff" stroke="#3b4754" stroke-width="2.5"/>
 <circle cx="449.03" cy="28" r="3.6" fill="#3b4754"/>

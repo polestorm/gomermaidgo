@@ -1,54 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1234" height="656" viewBox="-12 -64 1234 656" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-868ab21a"><path d="M-12 -64 L1222 -64 L1222 592 L-12 592 M742.86 282 L742.86 302 L777.53 302 L777.53 282 M855.8 282 L855.8 302 L887.81 302 L887.81 282"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1234" height="664" viewBox="-12 -64 1234 664" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-453ecaca"><path d="M-12 -64 L1222 -64 L1222 600 L-12 600 M742.86 282 L742.86 302 L777.53 302 L777.53 282 M855.8 282 L855.8 302 L887.81 302 L887.81 282"/></clipPath></defs>
 <g stroke="#8a94a3" stroke-width="1">
-<rect x="0" y="-52" width="196" height="632" fill="none"/>
+<rect x="0" y="-52" width="196" height="640" fill="none"/>
 <rect x="0" y="-52" width="196" height="34" fill="#eef2f7"/>
-<rect x="196" y="-52" width="196" height="632" fill="none"/>
+<rect x="196" y="-52" width="196" height="640" fill="none"/>
 <rect x="196" y="-52" width="196" height="34" fill="#eef2f7"/>
-<rect x="392" y="-52" width="222" height="632" fill="none"/>
+<rect x="392" y="-52" width="222" height="640" fill="none"/>
 <rect x="392" y="-52" width="222" height="34" fill="#eef2f7"/>
-<g clip-path="url(#label-holes-868ab21a)">
-<rect x="614" y="-52" width="400" height="632" fill="none"/>
+<g clip-path="url(#label-holes-453ecaca)">
+<rect x="614" y="-52" width="400" height="640" fill="none"/>
 </g>
 <rect x="614" y="-52" width="400" height="34" fill="#eef2f7"/>
-<rect x="1014" y="-52" width="196" height="632" fill="none"/>
+<rect x="1014" y="-52" width="196" height="640" fill="none"/>
 <rect x="1014" y="-52" width="196" height="34" fill="#eef2f7"/>
 </g>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
 <path d="M168 22 L215.6 22"/>
 <path d="M364 22 L424.6 22"/>
 <path d="M503 44 L503 79.6"/>
-<path d="M483 132 L483 148 C483 152.4 479.4 156 475 156 L432 156 C427.6 156 424 159.6 424 164 L424 261 C424 265.4 427.6 269 432 269 L495 269 C499.4 269 503 272.6 503 277 L503 329.6"/>
-<path d="M503 382 L503 382 C503 385.85 506.15 389 510 389 L1105 389 C1108.85 389 1112 392.15 1112 396 L1112 421.6"/>
-<path d="M1112 474 L1112 509.6"/>
+<path d="M433 110 L417 110 C412.6 110 409 113.6 409 118 L409 360 C409 360 409 360 409 360 L424.6 360"/>
+<path d="M503 382 L503 388 C503 392.4 506.6 396 511 396 L1104 396 C1108.4 396 1112 399.6 1112 404 L1112 429.6"/>
+<path d="M1112 482 L1112 517.6"/>
 <path d="M516 132 L516 186.6"/>
 <path d="M586 217 L745.1 217"/>
-<g clip-path="url(#label-holes-868ab21a)">
+<g clip-path="url(#label-holes-453ecaca)">
 <path d="M800.39 245.68 L800.39 284 C800.39 288.4 796.79 292 792.39 292 L728 292 C723.6 292 720 295.6 720 300 L720 329.6"/>
 </g>
 <path d="M642 360 L581.4 360"/>
-<g clip-path="url(#label-holes-868ab21a)">
+<g clip-path="url(#label-holes-453ecaca)">
 <path d="M827.61 245.68 L827.61 284 C827.61 288.4 831.21 292 835.61 292 L908 292 C912.4 292 916 295.6 916 300 L916 329.6"/>
 </g>
-<path d="M916 382 L916 388.3 C916 392.7 912.4 396.3 908 396.3 L511 396.3 C506.6 396.3 503 399.9 503 404.3 L503 421.6"/>
-<path d="M433 452 L372.4 452"/>
-<path d="M503 474 L503 509.6"/>
+<path d="M916 382 L916 390 C912.7 390 910 392.7 910 396 C910 399.3 912.7 402 916 402 L916 403.6 C916 408 912.4 411.6 908 411.6 L511 411.6 C506.6 411.6 503 415.2 503 419.6 L503 429.6"/>
+<path d="M433 460 L372.4 460"/>
+<path d="M503 482 L503 517.6"/>
 </g>
 <g fill="#3b4754">
 <polygon points="224,22 212,28 212,16"/>
 <polygon points="433,22 421,28 421,16"/>
 <polygon points="503,88 497,76 509,76"/>
-<polygon points="503,338 497,326 509,326"/>
-<polygon points="1112,430 1106,418 1118,418"/>
-<polygon points="1112,518 1106,506 1118,506"/>
+<polygon points="433,360 421,366 421,354"/>
+<polygon points="1112,438 1106,426 1118,426"/>
+<polygon points="1112,526 1106,514 1118,514"/>
 <polygon points="516,195 510,183 522,183"/>
 <polygon points="753.5,217 741.5,223 741.5,211"/>
 <polygon points="720,338 714,326 726,326"/>
 <polygon points="573,360 585,354 585,366"/>
 <polygon points="916,338 910,326 922,326"/>
-<polygon points="503,430 497,418 509,418"/>
-<polygon points="364,452 376,446 376,458"/>
-<polygon points="503,518 497,506 509,506"/>
+<polygon points="503,438 497,426 509,426"/>
+<polygon points="364,460 376,454 376,466"/>
+<polygon points="503,526 497,514 509,514"/>
 </g>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
 <rect x="28" y="0" width="140" height="44"/>
@@ -60,11 +60,11 @@
 <rect x="433" y="338" width="140" height="44"/>
 <rect x="642" y="338" width="156" height="44"/>
 <rect x="846" y="338" width="140" height="44"/>
-<rect x="224" y="430" width="140" height="44"/>
-<rect x="433" y="430" width="140" height="44"/>
-<rect x="1042" y="430" width="140" height="44"/>
-<rect x="433" y="518" width="140" height="44"/>
-<rect x="1042" y="518" width="140" height="44"/>
+<rect x="224" y="438" width="140" height="44"/>
+<rect x="433" y="438" width="140" height="44"/>
+<rect x="1042" y="438" width="140" height="44"/>
+<rect x="433" y="526" width="140" height="44"/>
+<rect x="1042" y="526" width="140" height="44"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="98" y="-29.4">Klient</text>
@@ -81,11 +81,11 @@
 <text x="503" y="365.6">Wdrożenie</text>
 <text x="720" y="365.6">Zatwierdzenie</text>
 <text x="916" y="365.6">Odrzucenie</text>
-<text x="294" y="457.6">Pismo</text>
-<text x="503" y="457.6">Korekta</text>
-<text x="1112" y="457.6">Szkolenie</text>
-<text x="503" y="545.6">Raport</text>
-<text x="1112" y="545.6">Archiwum</text>
+<text x="294" y="465.6">Pismo</text>
+<text x="503" y="465.6">Korekta</text>
+<text x="1112" y="465.6">Szkolenie</text>
+<text x="503" y="553.6">Raport</text>
+<text x="1112" y="553.6">Archiwum</text>
 <text x="760.19" y="297.6">Tak</text>
 <text x="871.81" y="297.6">Nie</text>
 </g>

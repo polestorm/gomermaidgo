@@ -1,57 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1289.36" height="168" viewBox="-12 -12 1289.36 168" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-c782757d"><path d="M-12 -12 L1277.36 -12 L1277.36 156 L-12 156 M181 31 L181 71 L278.83 71 L278.83 31 M193.9 83 L193.9 123 L265.93 123 L265.93 83 M476.83 62 L476.83 82 L552.41 82 L552.41 62 M737.41 42 L737.41 102 L813.87 102 L813.87 42 M987.87 42 L987.87 102 L1072.36 102 L1072.36 42"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1307.36" height="168" viewBox="-12 -12 1307.36 168" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-075dab17"><path d="M-12 -12 L1295.36 -12 L1295.36 156 L-12 156 M199 31 L199 71 L296.83 71 L296.83 31 M211.9 83 L211.9 123 L283.93 123 L283.93 83 M494.83 62 L494.83 82 L570.41 82 L570.41 62 M755.41 42 L755.41 102 L831.87 102 L831.87 42 M1005.87 42 L1005.87 102 L1090.36 102 L1090.36 42"/></clipPath></defs>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
 <path d="M16 72 L51.6 72"/>
-<g clip-path="url(#label-holes-c782757d)">
-<path d="M150 60 L319.43 60"/>
-<path d="M158.4 84 L161.2 84 C165.6 84 169.2 87.6 169.2 92 L169.2 95 C169.2 99.4 172.8 103 177.2 103 L295.83 103 C300.23 103 303.83 99.4 303.83 95 L303.83 92 C303.83 87.6 307.43 84 311.83 84 L327.83 84"/>
-<path d="M445.83 72 L575.01 72"/>
-<path d="M706.41 72 L836.47 72"/>
-<path d="M956.87 72 L1094.96 72"/>
+<g clip-path="url(#label-holes-075dab17)">
+<path d="M150 60 L337.43 60"/>
+<path d="M158.4 84 L175.7 84 C180.1 84 183.7 87.6 183.7 92 L183.7 95 C183.7 99.4 187.3 103 191.7 103 L313.83 103 C318.23 103 321.83 99.4 321.83 95 L321.83 92 C321.83 87.6 325.43 84 329.83 84 L345.83 84"/>
+<path d="M463.83 72 L593.01 72"/>
+<path d="M724.41 72 L854.47 72"/>
+<path d="M974.87 72 L1112.96 72"/>
 </g>
-<path d="M1201.36 72 L1236.96 72"/>
+<path d="M1219.36 72 L1254.96 72"/>
 </g>
 <g fill="#3b4754">
 <polygon points="60,72 48,66 48,78"/>
-<polygon points="327.83,60 315.83,54 315.83,66"/>
+<polygon points="345.83,60 333.83,54 333.83,66"/>
 <polygon points="150,84 162,90 162,78"/>
-<polygon points="583.41,72 571.41,66 571.41,78"/>
-<polygon points="844.87,72 832.87,66 832.87,78"/>
-<polygon points="1103.36,72 1091.36,66 1091.36,78"/>
-<polygon points="1245.36,72 1233.36,66 1233.36,78"/>
+<polygon points="601.41,72 589.41,66 589.41,78"/>
+<polygon points="862.87,72 850.87,66 850.87,78"/>
+<polygon points="1121.36,72 1109.36,66 1109.36,78"/>
+<polygon points="1263.36,72 1251.36,66 1251.36,78"/>
 <circle cx="8" cy="72" r="8"/>
 </g>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
 <rect x="60" y="40" width="90" height="64" rx="8"/>
-<rect x="327.83" y="40" width="118" height="64" rx="8"/>
-<rect x="583.41" y="50" width="123" height="44" rx="8"/>
-<rect x="844.87" y="0" width="112" height="144" rx="8"/>
-<rect x="1103.36" y="50" width="98" height="44" rx="8"/>
+<rect x="345.83" y="40" width="118" height="64" rx="8"/>
+<rect x="601.41" y="50" width="123" height="44" rx="8"/>
+<rect x="862.87" y="0" width="112" height="144" rx="8"/>
+<rect x="1121.36" y="50" width="98" height="44" rx="8"/>
 </g>
-<circle cx="1255.36" cy="72" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle cx="1255.36" cy="72" r="6" fill="#3b4754"/>
+<circle cx="1273.36" cy="72" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle cx="1273.36" cy="72" r="6" fill="#3b4754"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="105" y="77.6">Roboczy</text>
-<text x="386.83" y="67.6">W</text>
-<text x="386.83" y="87.6">sprawdzeniu</text>
-<text x="644.91" y="77.6">Zatwierdzony</text>
-<text x="900.87" y="27.6">Zażółć</text>
-<text x="900.87" y="47.6">gęślą jaźń</text>
-<text x="900.87" y="67.6">—</text>
-<text x="900.87" y="87.6">„cudzysłów”</text>
-<text x="900.87" y="107.6">&amp;</text>
-<text x="900.87" y="127.6">&lt;znaczniki&gt;</text>
-<text x="1152.36" y="77.6">Wycofany</text>
-<text x="229.91" y="46.6">prześlij do</text>
-<text x="229.91" y="66.6">sprawdzenia</text>
-<text x="229.91" y="98.6">zwróć z</text>
-<text x="229.91" y="118.6">uwagami</text>
-<text x="514.62" y="77.6">zatwierdź</text>
-<text x="775.64" y="57.6">data</text>
-<text x="775.64" y="77.6">wejścia w</text>
-<text x="775.64" y="97.6">życie</text>
-<text x="1030.11" y="57.6">zastąpiony</text>
-<text x="1030.11" y="77.6">nową</text>
-<text x="1030.11" y="97.6">wersją</text>
+<text x="404.83" y="67.6">W</text>
+<text x="404.83" y="87.6">sprawdzeniu</text>
+<text x="662.91" y="77.6">Zatwierdzony</text>
+<text x="918.87" y="27.6">Zażółć</text>
+<text x="918.87" y="47.6">gęślą jaźń</text>
+<text x="918.87" y="67.6">—</text>
+<text x="918.87" y="87.6">„cudzysłów”</text>
+<text x="918.87" y="107.6">&amp;</text>
+<text x="918.87" y="127.6">&lt;znaczniki&gt;</text>
+<text x="1170.36" y="77.6">Wycofany</text>
+<text x="247.91" y="46.6">prześlij do</text>
+<text x="247.91" y="66.6">sprawdzenia</text>
+<text x="247.91" y="98.6">zwróć z</text>
+<text x="247.91" y="118.6">uwagami</text>
+<text x="532.62" y="77.6">zatwierdź</text>
+<text x="793.64" y="57.6">data</text>
+<text x="793.64" y="77.6">wejścia w</text>
+<text x="793.64" y="97.6">życie</text>
+<text x="1048.11" y="57.6">zastąpiony</text>
+<text x="1048.11" y="77.6">nową</text>
+<text x="1048.11" y="97.6">wersją</text>
 </g>
 </svg>

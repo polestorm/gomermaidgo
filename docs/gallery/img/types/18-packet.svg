@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="632" height="291.4" viewBox="-12 -12.4 632 291.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Sensor data frame</title>
 <rect x="-12" y="-12.4" width="632" height="291.4" fill="white"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="0" y="45.75" width="152" height="36" fill="#eef2f7"/>
-<rect x="152" y="45.75" width="152" height="36" fill="#eef2f7"/>
-<rect x="304" y="45.75" width="19" height="36" fill="#eef2f7"/>
-<rect x="323" y="45.75" width="19" height="36" fill="#eef2f7"/>
-<rect x="342" y="45.75" width="114" height="36" fill="#eef2f7"/>
-<rect x="456" y="45.75" width="152" height="36" fill="#eef2f7"/>
-<rect x="0" y="107.5" width="304" height="36" fill="#eef2f7"/>
-<rect x="304" y="107.5" width="304" height="36" fill="#eef2f7"/>
-<rect x="0" y="169.25" width="304" height="36" fill="#eef2f7"/>
-<rect x="304" y="169.25" width="304" height="36" fill="#eef2f7"/>
-<rect x="0" y="231" width="152" height="36" fill="#eef2f7"/>
-<rect x="152" y="231" width="152" height="36" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="0" y="45.75" width="152" height="36"/>
+<rect x="152" y="45.75" width="152" height="36"/>
+<rect x="304" y="45.75" width="19" height="36"/>
+<rect x="323" y="45.75" width="19" height="36"/>
+<rect x="342" y="45.75" width="114" height="36"/>
+<rect x="456" y="45.75" width="152" height="36"/>
+<rect x="0" y="107.5" width="304" height="36"/>
+<rect x="304" y="107.5" width="304" height="36"/>
+<rect x="0" y="169.25" width="304" height="36"/>
+<rect x="304" y="169.25" width="304" height="36"/>
+<rect x="0" y="231" width="152" height="36"/>
+<rect x="152" y="231" width="152" height="36"/>
 </g>
 <text x="304" y="15.6" text-anchor="middle" fill="#1b1f24">Sensor data frame</text>
 <text x="4" y="41" font-size="11" fill="#5b6570">0</text>

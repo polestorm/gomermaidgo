@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1113" height="322.4" viewBox="-12 -12.4 1113 322.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>A complaint from the customer's side</title>
 <rect x="-12" y="-12.4" width="1113" height="322.4" fill="white"/>
-<line x1="119" y1="292" x2="1077" y2="292" fill="none" stroke="#3b4754" stroke-width="2"/>
+<line x1="119" y1="292" x2="1077" y2="292" stroke="#3b4754" stroke-width="2"/>
 <polygon points="1089,292 1077,286 1077,298" fill="#3b4754"/>
 <g stroke="#d5dae1" stroke-width="1.5" stroke-dasharray="4 4">
-<line x1="194" y1="130" x2="194" y2="292" fill="none"/>
-<line x1="354" y1="130" x2="354" y2="292" fill="none"/>
-<line x1="514" y1="130" x2="514" y2="292" fill="none"/>
-<line x1="674" y1="130" x2="674" y2="292" fill="none"/>
-<line x1="834" y1="130" x2="834" y2="292" fill="none"/>
-<line x1="994" y1="130" x2="994" y2="292" fill="none"/>
+<line x1="194" y1="130" x2="194" y2="292"/>
+<line x1="354" y1="130" x2="354" y2="292"/>
+<line x1="514" y1="130" x2="514" y2="292"/>
+<line x1="674" y1="130" x2="674" y2="292"/>
+<line x1="834" y1="130" x2="834" y2="292"/>
+<line x1="994" y1="130" x2="994" y2="292"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
 <rect x="119" y="34" width="470" height="32" rx="4" fill="#dde3ea"/>
@@ -41,16 +41,20 @@
 <text x="194" y="117.6">the website</text>
 </g>
 <circle cx="131" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle cx="188.75" cy="233.25" r="1.5" fill="#3b4754"/>
-<circle cx="199.25" cy="233.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="188.75" cy="233.25" r="1.5"/>
+<circle cx="199.25" cy="233.25" r="1.5"/>
+</g>
 <path d="M187.25 245.7 C191 239.4 197 239.4 200.75 245.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="354" y="97.6">Describe the</text>
 <text x="354" y="117.6">problem</text>
 </g>
 <circle cx="291" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle cx="348.75" cy="181.25" r="1.5" fill="#3b4754"/>
-<circle cx="359.25" cy="181.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="348.75" cy="181.25" r="1.5"/>
+<circle cx="359.25" cy="181.25" r="1.5"/>
+</g>
 <path d="M347.25 188 C351 194.3 357 194.3 360.75 188" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="514" y="97.6">Receive a</text>
@@ -60,13 +64,17 @@
 <circle cx="451" cy="74" r="5.5" fill="#3b4754"/>
 <circle cx="464" cy="74" r="5.5" fill="#c9d1da"/>
 </g>
-<circle cx="508.75" cy="155.25" r="1.5" fill="#3b4754"/>
-<circle cx="519.25" cy="155.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="508.75" cy="155.25" r="1.5"/>
+<circle cx="519.25" cy="155.25" r="1.5"/>
+</g>
 <path d="M507.25 162 C511 168.3 517 168.3 520.75 162" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <text x="674" y="107.6" text-anchor="middle" fill="#1b1f24">Wait without news</text>
 <circle cx="611" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle cx="668.75" cy="259.25" r="1.5" fill="#3b4754"/>
-<circle cx="679.25" cy="259.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="668.75" cy="259.25" r="1.5"/>
+<circle cx="679.25" cy="259.25" r="1.5"/>
+</g>
 <path d="M667.25 271.7 C671 265.4 677 265.4 680.75 271.7" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="834" y="97.6">Answer follow-up</text>
@@ -76,16 +84,20 @@
 <circle cx="771" cy="74" r="5.5" fill="#3b4754"/>
 <circle cx="784" cy="74" r="5.5" fill="#c9d1da"/>
 </g>
-<circle cx="828.75" cy="207.25" r="1.5" fill="#3b4754"/>
-<circle cx="839.25" cy="207.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="828.75" cy="207.25" r="1.5"/>
+<circle cx="839.25" cy="207.25" r="1.5"/>
+</g>
 <path d="M828 217 L840 217" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="994" y="97.6">Replacement</text>
 <text x="994" y="117.6">shipped</text>
 </g>
 <circle cx="931" cy="74" r="5.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<circle cx="988.75" cy="155.25" r="1.5" fill="#3b4754"/>
-<circle cx="999.25" cy="155.25" r="1.5" fill="#3b4754"/>
+<g fill="#3b4754">
+<circle cx="988.75" cy="155.25" r="1.5"/>
+<circle cx="999.25" cy="155.25" r="1.5"/>
+</g>
 <path d="M987.25 162 C991 168.3 997 168.3 1000.75 162" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <g fill="#1b1f24">
 <text x="22" y="89.6">Customer</text>

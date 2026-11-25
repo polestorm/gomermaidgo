@@ -1,21 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="786.05" height="314.65" viewBox="-12 -12.4 786.05 314.65" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Sterilisation process validation</title>
 <rect x="-12" y="-12.4" width="786.05" height="314.65" fill="white"/>
-<rect x="0" y="52.25" width="752.05" height="68" fill="#f6f8fa"/>
-<rect x="0" y="222.25" width="752.05" height="68" fill="#f6f8fa"/>
+<g fill="#f6f8fa">
+<rect x="0" y="52.25" width="752.05" height="68"/>
+<rect x="0" y="222.25" width="752.05" height="68"/>
+</g>
 <g stroke="#d5dae1" stroke-width="1">
-<line x1="112.05" y1="52.25" x2="112.05" y2="290.25" fill="none"/>
-<line x1="213.87" y1="52.25" x2="213.87" y2="290.25" fill="none"/>
-<line x1="315.68" y1="52.25" x2="315.68" y2="290.25" fill="none"/>
-<line x1="417.5" y1="52.25" x2="417.5" y2="290.25" fill="none"/>
-<line x1="519.32" y1="52.25" x2="519.32" y2="290.25" fill="none"/>
-<line x1="621.14" y1="52.25" x2="621.14" y2="290.25" fill="none"/>
-<line x1="722.96" y1="52.25" x2="722.96" y2="290.25" fill="none"/>
+<line x1="112.05" y1="52.25" x2="112.05" y2="290.25"/>
+<line x1="213.87" y1="52.25" x2="213.87" y2="290.25"/>
+<line x1="315.68" y1="52.25" x2="315.68" y2="290.25"/>
+<line x1="417.5" y1="52.25" x2="417.5" y2="290.25"/>
+<line x1="519.32" y1="52.25" x2="519.32" y2="290.25"/>
+<line x1="621.14" y1="52.25" x2="621.14" y2="290.25"/>
+<line x1="722.96" y1="52.25" x2="722.96" y2="290.25"/>
 </g>
 <rect x="112.05" y="52.25" width="640" height="238" fill="none" stroke="#6b7785" stroke-width="1"/>
-<g stroke="#9aa5b1" stroke-width="1.5">
-<rect x="112.05" y="58.25" width="72.73" height="22" rx="3" fill="#e6e8eb"/>
-<rect x="184.77" y="92.25" width="36.36" height="22" rx="3" fill="#e6e8eb"/>
+<g fill="#e6e8eb" stroke="#9aa5b1" stroke-width="1.5">
+<rect x="112.05" y="58.25" width="72.73" height="22" rx="3"/>
+<rect x="184.77" y="92.25" width="36.36" height="22" rx="3"/>
 </g>
 <g stroke="#55657a" stroke-width="1.5">
 <rect x="221.14" y="126.25" width="101.82" height="22" rx="3" fill="#c9d6e8"/>

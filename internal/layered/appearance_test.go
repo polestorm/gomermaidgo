@@ -1005,3 +1005,61 @@ func TestLabelsOnHorizontalRuns(t *testing.T) {
 		t.Errorf("%d of the three labels Nie stand on horizontal runs, want at least 2", on)
 	}
 }
+
+// REQ: LAY-032 LAY-029
+// Analiza → Wdrożenie obchodzi pole Przegląd bokiem: zaczyna się w lewym boku Analizy, kończy grotem
+// w lewym boku Wdrożenia i ma dwa załamania. Odcinki poprzeczne pod Wdrożeniem i Odrzuceniem,
+// biegnące w przeciwne strony, leżą co najmniej 14 px od siebie.
+func TestEdgeBypassesNodesSideways(t *testing.T) {
+	sc := natural(t, "flowchart/031-swimlane-handoffs.mmd")
+	from, to := nodeOf(t, sc, "Analiza"), nodeOf(t, sc, "Wdrożenie")
+	found := false
+	for _, e := range byRole(sc, "edge") {
+		p := e.Segments[0].To
+		if math.Abs(p.X-from.X0) > 0.5 || math.Abs(p.Y-(from.Y0+from.Y1)/2) > 0.5 {
+			continue
+		}
+		found = true
+		last := e.Segments[len(e.Segments)-1].To
+		if math.Abs(last.Y-(to.Y0+to.Y1)/2) > 0.5 || last.X > to.X0 || to.X0-last.X > 14 {
+			t.Errorf("the bypass ends at (%.1f, %.1f), not at the left side of Wdrożenie", last.X, last.Y)
+		}
+		if b := bends(e); b != 2 {
+			t.Errorf("the bypass has %d bends, want 2", b)
+		}
+	}
+	if !found {
+		t.Fatal("no edge leaves the left side of Analiza")
+	}
+	var ys []float64
+	low := nodeOf(t, sc, "Wdrożenie").Y1
+	for _, s := range straights(sc) {
+		if math.Abs(s.a.Y-s.b.Y) < 0.01 && s.a.Y > low && s.a.Y < low+60 && math.Abs(s.a.X-s.b.X) > 200 {
+			ys = append(ys, s.a.Y)
+		}
+	}
+	sort.Float64s(ys)
+	for i := 1; i < len(ys); i++ {
+		if d := ys[i] - ys[i-1]; d > 0.01 && d < 14 {
+			t.Errorf("horizontal runs at %.1f and %.1f are %.1f px apart", ys[i-1], ys[i], d)
+		}
+	}
+}
+
+// REQ: LAY-033
+// Etykieta „Tak” prostej krawędzi Start → Krok pierwszy stoi w środku między polami, choć krawędź
+// powrotna potrzebuje miejsca na zakręt tylko z jednej strony warstwy etykiety.
+func TestStraightEdgeLabelCentred(t *testing.T) {
+	sc := natural(t, "flowchart/034-label-centre.mmd")
+	left, right := nodeOf(t, sc, "Start"), nodeOf(t, sc, "Krok pierwszy")
+	for _, text := range byRole(sc, "edge-label") {
+		if text.Text != "Tak" {
+			continue
+		}
+		if d := math.Abs(text.X - (left.X1+right.X0)/2); d > 0.5 {
+			t.Errorf("label centre %.1f is %.1f px off the middle between the nodes", text.X, d)
+		}
+		return
+	}
+	t.Fatal("no edge label Tak")
+}

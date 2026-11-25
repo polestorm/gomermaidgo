@@ -1,73 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="478.88" height="940" viewBox="-12.18 -12 478.88 940" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect x="-12.18" y="-12" width="478.88" height="940" fill="white"/>
-<rect x="-0.18" y="236" width="188.36" height="344" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<rect x="-0.18" y="236" width="188.36" height="32" rx="8" fill="#eef2f7"/>
-<rect x="-0.18" y="252" width="188.36" height="16" fill="#eef2f7"/>
-<line x1="-0.18" y1="268" x2="188.18" y2="268" fill="none" stroke="#8a94a3" stroke-width="1"/>
-<path d="M0.89 576 C2.32 578.48 4.96 580 7.82 580 L180.18 580 C183.04 580 185.68 578.48 187.11 576 L0.89 576" fill="#eef2f7"/>
-<g stroke="#8a94a3" stroke-width="1">
-<line x1="0.89" y1="576" x2="187.11" y2="576" fill="none"/>
-<rect x="-0.18" y="236" width="188.36" height="344" rx="8" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="478.88" height="952" viewBox="-12.18 -12 478.88 952" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-12.18" y="-12" width="478.88" height="952" fill="white"/>
+<rect x="-0.18" y="248" width="188.36" height="344" rx="8" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g fill="#eef2f7">
+<rect x="-0.18" y="248" width="188.36" height="32" rx="8"/>
+<rect x="-0.18" y="264" width="188.36" height="16"/>
 </g>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M93.82 312 L93.82 329.6" fill="none"/>
-<path d="M93.82 382 L93.82 457.6" fill="none"/>
-<path d="M93.82 510 L93.82 527.6" fill="none"/>
+<line x1="-0.18" y1="280" x2="188.18" y2="280" stroke="#8a94a3" stroke-width="1"/>
+<path d="M0.89 588 C2.32 590.48 4.96 592 7.82 592 L180.18 592 C183.04 592 185.68 590.48 187.11 588 L0.89 588" fill="#eef2f7"/>
+<g fill="none" stroke="#8a94a3" stroke-width="1">
+<line x1="0.89" y1="588" x2="187.11" y2="588"/>
+<rect x="-0.18" y="248" width="188.36" height="344" rx="8"/>
 </g>
-<line x1="245" y1="696" x2="293.3" y2="696" fill="none" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M148 16 L148 51.6" fill="none"/>
-<path d="M108 104 L108 135.7 C108 140.1 104.4 143.7 100 143.7 L49 143.7 C44.6 143.7 41 147.3 41 151.7 L41 164 L41 227.6" fill="none"/>
-<path d="M161 112.4 L161 236" fill="none"/>
-<path d="M94 580 L94 634 L94 636.3 C94 640.7 97.6 644.3 102 644.3 L147 644.3 C151.4 644.3 155 647.9 155 652.3 L155 665.6" fill="none"/>
-<path d="M188 112.4 L188 156 C188 158.2 189.8 160 192 160 L314.93 160 C317.13 160 318.93 161.8 318.93 164 L318.93 164 L318.93 580 L318.93 587 C318.93 591.4 315.33 595 310.93 595 L183 595 C178.6 595 175 598.6 175 603 L175 610 L175 674" fill="none"/>
-<path d="M175 718 L175 799.6" fill="none"/>
-<path d="M175 852 L175 887.6" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M93.82 324 L93.82 341.6"/>
+<path d="M93.82 394 L93.82 469.6"/>
+<path d="M93.82 522 L93.82 539.6"/>
 </g>
-<rect x="20.46" y="414" width="146.72" height="20" fill="white"/>
-<rect x="13.44" y="166" width="55.13" height="20" fill="white"/>
-<rect x="88.95" y="166" width="144.1" height="20" fill="white"/>
-<rect x="56.64" y="612" width="74.72" height="20" fill="white"/>
-<rect x="205" y="150" width="96.93" height="20" fill="white"/>
-<rect x="134.98" y="756" width="80.03" height="20" fill="white"/>
-<polygon points="93.82,338 87.82,326 99.82,326" fill="#3b4754"/>
-<polygon points="93.82,466 87.82,454 99.82,454" fill="#3b4754"/>
-<polygon points="93.82,536 87.82,524 99.82,524" fill="#3b4754"/>
-<polygon points="148,60 142,48 154,48" fill="#3b4754"/>
-<polygon points="41,236 35,224 47,224" fill="#3b4754"/>
-<polygon points="161,104 167,116 155,116" fill="#3b4754"/>
-<polygon points="155,674 149,662 161,662" fill="#3b4754"/>
-<polygon points="188,104 194,116 182,116" fill="#3b4754"/>
-<polygon points="175,808 169,796 181,796" fill="#3b4754"/>
-<polygon points="175,896 169,884 181,884" fill="#3b4754"/>
-<circle cx="148" cy="8" r="8" fill="#3b4754"/>
+<line x1="245" y1="708" x2="293.3" y2="708" stroke="#b59a1b" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M148 16 L148 51.6"/>
+<path d="M108 104 L108 135.7 C108 140.1 104.4 143.7 100 143.7 L49 143.7 C44.6 143.7 41 147.3 41 151.7 L41 239.6"/>
+<path d="M161 112.4 L161 248"/>
+<path d="M94 592 L94 648.3 C94 652.7 97.6 656.3 102 656.3 L147 656.3 C151.4 656.3 155 659.9 155 664.3 L155 677.6"/>
+<path d="M188 112.4 L188 156 C188 158.2 189.8 160 192 160 L314.93 160 C317.13 160 318.93 161.8 318.93 164 L318.93 599 C318.93 603.4 315.33 607 310.93 607 L183 607 C178.6 607 175 610.6 175 615 L175 686"/>
+<path d="M175 730 L175 811.6"/>
+<path d="M175 864 L175 899.6"/>
+</g>
+<g fill="white">
+<rect x="20.46" y="426" width="146.72" height="20"/>
+<rect x="13.44" y="166" width="55.13" height="20"/>
+<rect x="88.95" y="166" width="144.1" height="20"/>
+<rect x="56.64" y="624" width="74.72" height="20"/>
+<rect x="205" y="150" width="96.93" height="20"/>
+<rect x="134.98" y="768" width="80.03" height="20"/>
+</g>
+<g fill="#3b4754">
+<polygon points="93.82,350 87.82,338 99.82,338"/>
+<polygon points="93.82,478 87.82,466 99.82,466"/>
+<polygon points="93.82,548 87.82,536 99.82,536"/>
+<polygon points="148,60 142,48 154,48"/>
+<polygon points="41,248 35,236 47,236"/>
+<polygon points="161,104 167,116 155,116"/>
+<polygon points="155,686 149,674 161,674"/>
+<polygon points="188,104 194,116 182,116"/>
+<polygon points="175,820 169,808 181,808"/>
+<polygon points="175,908 169,896 181,896"/>
+<circle cx="148" cy="8" r="8"/>
+</g>
 <rect x="78" y="60" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle cx="93.82" cy="304" r="8" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="23.82" y="338" width="140" height="44" rx="8" fill="#eef2f7"/>
-<rect x="23.82" y="466" width="140" height="44" rx="8" fill="#eef2f7"/>
+<circle cx="93.82" cy="316" r="8" fill="#3b4754"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="23.82" y="350" width="140" height="44" rx="8"/>
+<rect x="23.82" y="478" width="140" height="44" rx="8"/>
 </g>
-<circle cx="93.82" cy="546" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle cx="93.82" cy="546" r="6" fill="#3b4754"/>
-<rect x="105" y="674" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<rect x="293.3" y="668" width="161.39" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
-<rect x="105" y="808" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
-<circle cx="175" cy="906" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<circle cx="175" cy="906" r="6" fill="#3b4754"/>
+<circle cx="93.82" cy="558" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle cx="93.82" cy="558" r="6" fill="#3b4754"/>
+<rect x="105" y="686" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<rect x="293.3" y="680" width="161.39" height="56" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<rect x="105" y="820" width="140" height="44" rx="8" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
+<circle cx="175" cy="918" r="10" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<circle cx="175" cy="918" r="6" fill="#3b4754"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="148" y="87.6">Draft</text>
-<text x="94" y="257.6">InReview</text>
-<text x="93.82" y="365.6">Technical</text>
-<text x="93.82" y="493.6">Quality</text>
-<text x="93.82" y="429.6">comments resolved</text>
-<text x="175" y="701.6">Effective</text>
-<text x="374" y="691.6">Only one revision</text>
-<text x="374" y="711.6">is effective at a time</text>
-<text x="175" y="835.6">Obsolete</text>
+<text x="94" y="269.6">InReview</text>
+<text x="93.82" y="377.6">Technical</text>
+<text x="93.82" y="505.6">Quality</text>
+<text x="93.82" y="441.6">comments resolved</text>
+<text x="175" y="713.6">Effective</text>
+<text x="374" y="703.6">Only one revision</text>
+<text x="374" y="723.6">is effective at a time</text>
+<text x="175" y="847.6">Obsolete</text>
 <text x="41" y="181.6">submit</text>
 <text x="161" y="181.6">changes requested</text>
-<text x="94" y="627.6">approved</text>
+<text x="94" y="639.6">approved</text>
 <text x="253.46" y="165.6">new revision</text>
-<text x="175" y="771.6">withdrawn</text>
+<text x="175" y="783.6">withdrawn</text>
 </g>
 </svg>

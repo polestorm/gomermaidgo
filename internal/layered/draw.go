@@ -172,6 +172,7 @@ func (l *layouter) spreadPorts() {
 		upper bool    // koniec przy dolnym boku górnego pola
 		key   float64 // położenie następnego punktu krawędzi
 	}
+	l.sideBypasses()
 	bottom, top := map[*item][]end{}, map[*item][]end{}
 	var order []*item
 	seen := map[*item]bool{}
@@ -198,11 +199,11 @@ func (l *layouter) spreadPorts() {
 				next, prev = e.chain[0].x, e.chain[len(e.chain)-1].x
 			}
 			// Koniec prowadzony dalej we wnętrzu podgrafu albo leżący na ramce nie zaczepia się o pole.
-			if e.upperCont == nil && e.u.kind != kindPort {
+			if e.upperCont == nil && e.u.kind != kindPort && e.sideEntry == 0 {
 				bottom[e.u] = append(bottom[e.u], end{e, true, next})
 				note(e.u)
 			}
-			if e.lowerCont == nil && e.v.kind != kindPort {
+			if e.lowerCont == nil && e.v.kind != kindPort && e.sideEntry == 0 {
 				top[e.v] = append(top[e.v], end{e, false, prev})
 				note(e.v)
 			}
@@ -372,6 +373,127 @@ func sideExitsOf[E any](l *layouter, it *item, ends []E, of func(E) (*ledge, flo
 		e.sideExit = side
 	}
 	return kept
+}
+
+// sideBypasses (LAY-032) wybiera krawędzie, które obchodzą pola bokiem: długa krawędź, której punkty
+// pośrednie stoją w jednej osi poza bokami obu jej pól, po tej samej stronie, wychodzi z boku pola
+// górnego, biegnie prosto wzdłuż osi warstw i wchodzi w bok pola dolnego. Ma wtedy dwa załamania
+// zamiast czterech (w dół, w bok, w dół, w bok, w dół). Oś odsuwa się od boków pól tak, żeby przed
+// grotem został kawałek prostej, jeśli punkty pośrednie mają tam miejsce w swoich warstwach i torze.
+// Warunki: krawędź bez etykiet, bez zakończenia na początku, między dwoma polami jednego poziomu;
+// w rzędach obu pól nic nie stoi między bokiem pola a osią; bok jest wolny (bez krawędzi w poprzek,
+// pętli własnej ani innego obejścia).
+func (l *layouter) sideBypasses() {
+	if l.o.CurvedEdges {
+		return
+	}
+	used := map[*item]map[float64]bool{}
+	take := func(it *item, side float64) {
+		if used[it] == nil {
+			used[it] = map[float64]bool{}
+		}
+		used[it][side] = true
+	}
+	for _, s := range append([]string{""}, l.subgraphIDs()...) {
+		lv := l.levels[s]
+		for _, e := range lv.edges {
+			if e.flat && e.e.Style != graph.Invisible {
+				dir := 1.0
+				if e.v.x < e.u.x {
+					dir = -1
+				}
+				take(e.u, dir)
+				take(e.v, -dir)
+			}
+		}
+		for it := range lv.loops {
+			take(it, 1)
+		}
+		for _, e := range lv.edges {
+			side, x, ok := l.bypass(lv, e)
+			if !ok || used[e.u][side] || used[e.v][side] {
+				continue
+			}
+			take(e.u, side)
+			take(e.v, side)
+			for _, d := range e.chain {
+				d.x, d.textShift = x, 0
+			}
+			e.sideExit, e.sideEntry = side, side
+		}
+	}
+}
+
+// bypass mówi, czy krawędź e może obejść swoje pola bokiem (sideBypasses), z której strony i w jakiej osi.
+func (l *layouter) bypass(lv *level, e *ledge) (side, x float64, ok bool) {
+	if e.e.Style == graph.Invisible || e.flat || e.part || e.rev || e.label != nil || len(e.chain) == 0 ||
+		e.upperCont != nil || e.lowerCont != nil || e.u.kind != kindNode || e.v.kind != kindNode || e.sideExit != 0 ||
+		(e.e.StartHead != "" && e.e.StartHead != graph.NoHead) || e.e.StartLabel != "" || e.e.EndLabel != "" {
+		return 0, 0, false
+	}
+	for _, it := range []*item{e.u, e.v} {
+		switch it.node.Shape {
+		case graph.StateStart, graph.StateEnd, graph.Rhombus, graph.Choice:
+			return 0, 0, false
+		}
+		if bar(it) {
+			return 0, 0, false
+		}
+	}
+	// Strona obejścia: tam, gdzie stoi pierwszy punkt pośredni. Któryś punkt musi stać poza bokami
+	// obu pól: inaczej krawędź może biec pod polem górnym (LAY-028) i obejście niczego nie skraca.
+	side = 1.0
+	if e.chain[0].x < e.u.nodeX() {
+		side = -1
+	}
+	edge := func(it *item) float64 { return it.nodeX() + side*it.nodeW()/2 }
+	far := edge(e.u)
+	if side*(edge(e.v)-far) > 0 {
+		far = edge(e.v)
+	}
+	x = math.NaN()
+	for _, d := range e.chain {
+		if side*(d.x-far) > 0 && (math.IsNaN(x) || side*(d.x-x) < 0) {
+			x = d.x // oś najbliżej pól spośród punktów stojących poza nimi
+		}
+	}
+	if math.IsNaN(x) {
+		return 0, 0, false
+	}
+	// Przed grotem kawałek prostej za narożnikiem: oś co najmniej u(24) od dalszego boku.
+	if want := far + side*l.u(24); side*(want-x) > 0 {
+		x = want
+	}
+	// Oś nie wychodzi poza zawartość poziomu ani poza tor.
+	lo, hi := math.Inf(1), math.Inf(-1)
+	for _, row := range lv.ranks {
+		for _, it := range row {
+			lo, hi = math.Min(lo, it.x-it.w/2), math.Max(hi, it.x+it.w/2)
+		}
+	}
+	if x < lo || x > hi {
+		return 0, 0, false
+	}
+	for _, d := range e.chain {
+		dlo, dhi := l.dummyRoom(lv, d)
+		if l.lanes != nil && lv == l.levels[""] {
+			ln := l.lanes[d.lane]
+			dlo, dhi = math.Max(dlo, ln.lo+l.u(4)), math.Min(dhi, ln.hi-l.u(4))
+		}
+		if x < dlo || x > dhi {
+			return 0, 0, false
+		}
+	}
+	// W rzędach obu pól odcinek w poprzek od boku do osi nie przechodzi przez inne pole ani linię.
+	for _, it := range []*item{e.u, e.v} {
+		a, b := math.Min(edge(it), x)-l.u(10), math.Max(edge(it), x)+l.u(10)
+		for _, o := range lv.ranks[it.rank] {
+			if o != it && o.x+o.w/2 > a && o.x-o.w/2 < b {
+				return 0, 0, false
+			}
+		}
+	}
+	return side, x, true
 }
 
 func (l *layouter) subgraphIDs() []string {
@@ -635,6 +757,7 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 			first = first.upperCont
 		}
 		r.side = first.sideExit != 0
+		r.sideIn = e.sideEntry != 0
 		last := len(pts) - 1
 		r.top, r.bottom = pts[0], pts[last]
 		if e.flat {
@@ -650,7 +773,15 @@ func (l *layouter) routes(lv *level) []*edgeRoute {
 			continue
 		}
 		pts[0].y += l.headLength(topHead)
-		pts[last].y -= l.headLength(bottomHead)
+		if r.sideIn {
+			dir := 1.0
+			if pts[last].x < pts[last-1].x {
+				dir = -1
+			}
+			pts[last].x -= dir * l.headLength(bottomHead)
+		} else {
+			pts[last].y -= l.headLength(bottomHead)
+		}
 		// Punkty pośrednie leżące na jednej prostej z sąsiadami są zbędne, a punkt, który po
 		// skróceniu końca o grot znalazł się za nim, cofałby linię.
 		kept := pts[:1]
@@ -1154,6 +1285,9 @@ func (l *layouter) route(e *ledge) []routePoint {
 		}
 	}
 	switch {
+	case e.sideEntry != 0:
+		// LAY-032: wejście w bok pola, na wysokości jego środka.
+		pts = append(pts, routePoint{pts[len(pts)-1].x, e.v.y}, routePoint{e.v.nodeX() + e.sideEntry*e.v.nodeW()/2, e.v.y})
 	case e.lowerCont != nil:
 		pts = append(pts, l.route(e.lowerCont)...)
 	case e.v.kind == kindPort:
@@ -1191,6 +1325,7 @@ type edgeRoute struct {
 	// (0: przed odcinkiem poprzecznym albo cały odcinek prosty, 1: za odcinkiem poprzecznym).
 	runHops map[[2]int][]float64
 	side    bool // pierwszy odcinek wychodzi w poprzek z bocznego wierzchołka rombu
+	sideIn  bool // LAY-032: ostatni odcinek wchodzi w poprzek w bok pola
 	flat    bool // LAY-027: cała krawędź to jeden odcinek w poprzek, w jednej warstwie
 	// labelAt: środek etykiety postawionej na odcinku poziomym (LAY-031); nil, gdy etykieta stoi
 	// w swojej warstwie.
@@ -1307,6 +1442,10 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 				r.track[0] = a.y // odcinek poprzeczny na wysokości wierzchołka, poza odstępem warstw
 				continue
 			}
+			if i+2 == len(r.pts) && r.sideIn {
+				r.track[i] = b.y // odcinek poprzeczny na wysokości środka pola, poza odstępem warstw
+				continue
+			}
 			if math.Abs(a.x-b.x) >= straightTolerance {
 				j := &jog{r: r, seg: i, a: a, b: b, lo: math.Min(a.x, b.x) - l.u(5), hi: math.Max(a.x, b.x) + l.u(5), padA: l.u(7), padB: l.u(7)}
 				if i == 0 && r.topHead != "" && r.topHead != graph.NoHead {
@@ -1385,12 +1524,45 @@ func (l *layouter) assignTracks(routes []*edgeRoute) {
 				break
 			}
 		}
+		// Numery torów bez luk: podnoszenie toru wyżej od innego może zostawić tor, na którym nic
+		// nie biegnie, a wtedy zajęte tory stoją niepotrzebnie blisko siebie.
+		used := map[int]bool{}
 		for _, j := range group {
-			tracks = max(tracks, j.track+1)
+			used[j.track] = true
 		}
+		var numbers []int
+		for n := range used {
+			numbers = append(numbers, n)
+		}
+		sort.Ints(numbers)
+		dense := map[int]int{}
+		for i, n := range numbers {
+			dense[n] = i
+		}
+		for _, j := range group {
+			j.track = dense[j.track]
+		}
+		tracks = len(numbers)
 		lo, hi := maxA+l.u(7), minB-l.u(7)
 		for _, j := range group {
 			lo, hi = math.Max(lo, j.a.y+j.padA), math.Min(hi, j.b.y-j.padB)
+		}
+		// Odcinki biegnące w przeciwne strony, których zakresy się pokrywają, przecinają się z zejściem
+		// drugiej krawędzi: górny tor odsuwa się od pól tak, żeby przecięcie leżało dalej od nich niż
+		// mostek z narożnikiem (LAY-003), o ile tory mają przy tym między sobą tyle samo miejsca.
+		if tracks > 1 {
+			crossing := false
+			for _, p := range group {
+				for _, q := range group {
+					pr, qr := p.b.x > p.a.x, q.b.x > q.a.x
+					if pr && !qr && p.lo+l.u(5) < q.hi-l.u(5) && q.lo+l.u(5) < p.hi-l.u(5) {
+						crossing = true
+					}
+				}
+			}
+			if bridge := maxA + l.u(14); crossing && bridge > lo && hi-bridge >= float64(tracks-1)*l.u(14) {
+				lo = bridge
+			}
 		}
 		if hi < lo {
 			// Za mało miejsca na zapasy przy narożnikach i grotach: tory zajmują cały odstęp, żeby
@@ -1424,7 +1596,15 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 		return
 	}
 	l.headAt(r.topHead, r.top.x, r.top.y, 0, -1)
-	l.headAt(r.bottomHead, r.bottom.x, r.bottom.y, 0, 1)
+	if r.sideIn {
+		dir := 1.0
+		if r.bottom.x < pts[len(pts)-2].x {
+			dir = -1
+		}
+		l.headAt(r.bottomHead, r.bottom.x, r.bottom.y, dir, 0)
+	} else {
+		l.headAt(r.bottomHead, r.bottom.x, r.bottom.y, 0, 1)
+	}
 	// Opisy przy końcach (liczność): obok linii, tuż przy polu.
 	topLabel, bottomLabel := e.e.StartLabel, e.e.EndLabel
 	if e.rev {
@@ -1491,6 +1671,32 @@ func (l *layouter) drawEdge(route *edgeRoute) {
 		}
 		if math.Abs(a.x-b.x) < straightTolerance {
 			run(b.x, b.y, [2]int{i, 0})
+			continue
+		}
+		if i+2 == len(pts) && route.sideIn {
+			// LAY-032: wejście w bok pola: prosto do wysokości jego środka, jeden narożnik, w poprzek do grotu.
+			dir := 1.0
+			if b.x < a.x {
+				dir = -1
+			}
+			rad := math.Max(0, math.Min(l.u(8), math.Min(math.Abs(b.x-a.x)/2, b.y-a.y)))
+			const k = 0.45
+			run(a.x, b.y-rad, [2]int{i, 0})
+			segments = append(segments,
+				scene.Segment{Cmd: 'C', C1: l.point(a.x, b.y-rad*k), C2: l.point(a.x+dir*rad*k, b.y), To: l.point(a.x+dir*rad, b.y)})
+			hops := append([]float64(nil), route.hops[i]...)
+			if dir < 0 {
+				sort.Sort(sort.Reverse(sort.Float64Slice(hops)))
+			}
+			for _, x := range hops {
+				const q = 0.55
+				hh := l.u(6)
+				segments = append(segments,
+					scene.Segment{Cmd: 'L', To: l.point(x-dir*hh, b.y)},
+					scene.Segment{Cmd: 'C', C1: l.point(x-dir*hh, b.y-hh*q), C2: l.point(x-dir*hh*q, b.y-hh), To: l.point(x, b.y-hh)},
+					scene.Segment{Cmd: 'C', C1: l.point(x+dir*hh*q, b.y-hh), C2: l.point(x+dir*hh, b.y-hh*q), To: l.point(x+dir*hh, b.y)})
+			}
+			segments = append(segments, scene.Segment{Cmd: 'L', To: l.point(b.x, b.y)})
 			continue
 		}
 		mid := (a.y + b.y) / 2
@@ -1794,7 +2000,7 @@ func (l *layouter) drawFlatEdge(r *edgeRoute) {
 // Etykieta przesuwa się razem z punktami, jeśli mieści się w wolnym miejscu warstwy; punkty w torze
 // zostają w jego granicach.
 func (l *layouter) alignChain(e *ledge) {
-	if len(e.chain) == 0 || e.upperCont != nil || e.lowerCont != nil || e.u.kind != kindNode || e.v.kind != kindNode {
+	if len(e.chain) == 0 || e.upperCont != nil || e.lowerCont != nil || e.u.kind != kindNode || e.v.kind != kindNode || e.sideEntry != 0 {
 		return
 	}
 	defer l.widenForLabel(e)
@@ -2421,6 +2627,9 @@ func (l *layouter) routeSegs(r *edgeRoute, add func(a, b routePoint, horizontal 
 		case i == 0 && r.side:
 			add(a, routePoint{b.x, a.y}, true, -1)
 			add(routePoint{b.x, a.y}, b, false, -1)
+		case i+2 == len(p) && r.sideIn:
+			add(a, routePoint{a.x, b.y}, false, -1)
+			add(routePoint{a.x, b.y}, b, true, -1)
 		case math.Abs(a.x-b.x) < straightTolerance:
 			add(a, b, false, -1)
 		default:

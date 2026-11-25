@@ -1,0 +1,5 @@
+flowchart LR
+node Start rect "Start"
+node Krok rect "Krok pierwszy"
+edge Start -> Krok normal none/arrow len=1 "Tak"
+edge Krok -> Start normal none/arrow len=1

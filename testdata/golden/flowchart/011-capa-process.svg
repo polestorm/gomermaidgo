@@ -1,19 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="532.95" height="967" viewBox="-11.95 -12 532.95 967" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-8a5bf359"><path d="M-11.95 -12 L521 -12 L521 955 L-11.95 955 M8.05 425 L8.05 445 L249.95 445 L249.95 425 M264.66 251 L264.66 271 L299.34 271 L299.34 251 M408 256 L408 276 L440 276 L440 256 M245.64 843 L245.64 863 L328.36 863 L328.36 843 M266.95 534 L266.95 554 L444.8 554 L444.8 534"/></clipPath></defs>
-<g clip-path="url(#label-holes-8a5bf359)">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="532.95" height="971" viewBox="-11.95 -12 532.95 971" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-b4be7e41"><path d="M-11.95 -12 L521 -12 L521 959 L-11.95 959 M8.05 425 L8.05 445 L249.95 445 L249.95 425 M264.66 251 L264.66 271 L299.34 271 L299.34 251 M408 256 L408 276 L440 276 L440 256 M245.64 847 L245.64 867 L328.36 867 L328.36 847 M266.95 534 L266.95 554 L444.8 554 L444.8 534"/></clipPath></defs>
+<g clip-path="url(#label-holes-b4be7e41)">
 <rect x="0.05" y="419" width="257.89" height="250" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
 <path d="M129.25 557 L129.25 592.6"/>
 <path d="M337 44 L337 79.6"/>
-<g clip-path="url(#label-holes-8a5bf359)">
+<g clip-path="url(#label-holes-b4be7e41)">
 <path d="M317 212.02 L317 253 C317 257.4 313.4 261 309 261 L255 261 C250.6 261 247 264.6 247 269 L247 298.6"/>
-<path d="M357 212.02 L357 258 C357 262.4 360.6 266 365 266 L483 266 C487.4 266 491 269.6 491 274 L491 818 C491 822.4 487.4 826 483 826 L397 826 C392.6 826 389 829.6 389 834 L389 890.6"/>
+<path d="M357 212.02 L357 258 C357 262.4 360.6 266 365 266 L483 266 C487.4 266 491 269.6 491 274 L491 820 C491 824.4 487.4 828 483 828 L397 828 C392.6 828 389 831.6 389 836 L389 894.6"/>
 <path d="M227 371 L227 396.7 C227 401.1 223.4 404.7 219 404.7 L137.25 404.7 C132.85 404.7 129.25 408.3 129.25 412.7 L129.25 464.6"/>
 </g>
 <path d="M129.25 645 L129.25 679.55 C129.25 683.95 132.85 687.55 137.25 687.55 L259 687.55 C263.4 687.55 267 691.15 267 695.55 L267 717.11"/>
-<g clip-path="url(#label-holes-8a5bf359)">
-<path d="M287 811 L287 865 C287 869.02 290.28 872.3 294.3 872.3 L361.7 872.3 C365.72 872.3 369 875.58 369 879.6 L369 890.6"/>
+<g clip-path="url(#label-holes-b4be7e41)">
+<path d="M287 811 L287 869 C287 873.02 290.28 876.3 294.3 876.3 L361.7 876.3 C365.72 876.3 369 879.58 369 883.6 L369 894.6"/>
 <path d="M267 379.4 L267 396.7 C267 401.1 270.6 404.7 275 404.7 L299 404.7 C303.4 404.7 307 408.3 307 412.7 L307 725.51"/>
 </g>
 </g>
@@ -21,10 +21,10 @@
 <polygon points="129.25,601 123.25,589 135.25,589"/>
 <polygon points="337,88 331,76 343,76"/>
 <polygon points="247,307 241,295 253,295"/>
-<polygon points="389,899 383,887 395,887"/>
+<polygon points="389,903 383,891 395,891"/>
 <polygon points="129.25,473 123.25,461 135.25,461"/>
 <polygon points="267,725.51 261,713.51 273,713.51"/>
-<polygon points="369,899 363,887 375,887"/>
+<polygon points="369,903 363,891 375,891"/>
 <polygon points="267,371 273,383 261,383"/>
 </g>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
@@ -34,7 +34,7 @@
 <rect x="27.25" y="473" width="204" height="84"/>
 <polygon points="35.42,601 237.75,601 223.08,645 20.75,645"/>
 <polygon points="287,717 397.5,764 287,811 176.5,764"/>
-<rect x="269" y="899" width="240" height="44" rx="22"/>
+<rect x="269" y="903" width="240" height="44" rx="22"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="337" y="27.6">Zgłoszenie niezgodności</text>
@@ -48,10 +48,10 @@
 <text x="129.25" y="540.6">odpowiedzialna</text>
 <text x="129.25" y="628.6">Wdrożenie działań</text>
 <text x="287" y="769.6">Ocena skuteczności</text>
-<text x="389" y="926.6">Zamknięcie zgłoszenia</text>
+<text x="389" y="930.6">Zamknięcie zgłoszenia</text>
 <text x="282" y="266.6">Tak</text>
 <text x="424" y="271.6">Nie</text>
-<text x="287" y="858.6">Skuteczne</text>
+<text x="287" y="862.6">Skuteczne</text>
 <text x="355.88" y="549.6">Nieskuteczne – powtórz</text>
 </g>
 </svg>

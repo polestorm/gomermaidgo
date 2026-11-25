@@ -1,6 +1,6 @@
-%% REQ: LAY-027 LAY-029
+%% REQ: LAY-027 LAY-029 LAY-032
 %% Tytuł: Przekazania między torami w jednej warstwie
-%% Sprawdza: krawędź między torami bez etykiety biegnie poziomo w jednej warstwie (łańcuch przez trzy tory, przekazania w lewo i w prawo), krawędzie z etykietą i przechodzące przez zajęty tor schodzą warstwę niżej, zejście jednej krawędzi nie leży na dojściu innej.
+%% Sprawdza: krawędź między torami bez etykiety biegnie poziomo w jednej warstwie (łańcuch przez trzy tory, przekazania w lewo i w prawo), krawędzie z etykietą i przechodzące przez zajęty tor schodzą warstwę niżej, zejście jednej krawędzi nie leży na dojściu innej. Długa krawędź obok pól (Analiza → Wdrożenie) wychodzi z boku jednego pola i wchodzi w bok drugiego; odcinki poprzeczne biegnące w przeciwne strony mają między sobą miejsce na mostek.
 swimlane-beta TD
   zgl[Zgłoszenie] --> rej[Rejestracja] --> ocena[Ocena] --> anal[Analiza] --> wdr[Wdrożenie] --> szk[Szkolenie] --> arch[Archiwum]
   anal --> prz[Przegląd] --> dec{Zgodne?} -->|Tak| zatw[Zatwierdzenie] --> wdr

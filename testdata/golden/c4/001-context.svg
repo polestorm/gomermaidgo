@@ -1,46 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="761" height="1138" viewBox="-11.5 -12 761 1138" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="761" height="1168" viewBox="-11.5 -12 761 1168" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>System zarządzania jakością w otoczeniu</title>
-<defs><clipPath id="label-holes-ef78ef5a"><path d="M-11.5 -12 L749.5 -12 L749.5 1126 L-11.5 1126 M8.5 6 L8.5 46 L238.81 46 L238.81 6 M28.5 302 L28.5 342 L267.67 342 L267.67 302 M48.5 676 L48.5 716 L150.76 716 L150.76 676 M184.26 636 L184.26 656 L252.74 656 L252.74 636 M335.13 580 L335.13 620 L505.87 620 L505.87 580 M280.38 202 L280.38 242 L350.62 242 L350.62 202 M446.58 216 L446.58 236 L576.42 236 L576.42 216 M432.01 918 L432.01 958 L624.99 958 L624.99 918"/></clipPath></defs>
-<g clip-path="url(#label-holes-ef78ef5a)">
-<rect x="0.5" y="0" width="737" height="1114" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<defs><clipPath id="label-holes-563fefa2"><path d="M-11.5 -12 L749.5 -12 L749.5 1156 L-11.5 1156 M8.5 6 L8.5 46 L238.81 46 L238.81 6 M28.5 320 L28.5 360 L267.67 360 L267.67 320 M48.5 706 L48.5 746 L150.76 746 L150.76 706 M184.26 660 L184.26 680 L252.74 680 L252.74 660 M335.13 598 L335.13 638 L505.87 638 L505.87 598 M280.38 202 L280.38 242 L350.62 242 L350.62 202 M446.58 234 L446.58 254 L576.42 254 L576.42 234 M432.01 948 L432.01 988 L624.99 988 L624.99 948"/></clipPath></defs>
+<g clip-path="url(#label-holes-563fefa2)">
+<rect x="0.5" y="0" width="737" height="1144" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
 </g>
 <g fill="none" stroke="#8a94a3" stroke-width="1" stroke-dasharray="6 4">
-<g clip-path="url(#label-holes-ef78ef5a)">
-<rect x="20.5" y="296" width="532" height="590" rx="4"/>
-<rect x="40.5" y="670" width="466" height="192" rx="4"/>
+<g clip-path="url(#label-holes-563fefa2)">
+<rect x="20.5" y="314" width="532" height="602" rx="4"/>
+<rect x="40.5" y="700" width="466" height="192" rx="4"/>
 </g>
 </g>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
-<g clip-path="url(#label-holes-ef78ef5a)">
-<path d="M364.5 518 L364.5 540 C364.5 544.4 360.9 548 356.5 548 L288.5 548 C284.1 548 280.5 551.6 280.5 556 L280.5 638 C280.5 642.4 276.9 646 272.5 646 L164.5 646 C160.1 646 156.5 649.6 156.5 654 L156.5 735.6"/>
-<path d="M420.5 518 L420.5 638 C420.5 642.4 416.9 646 412.5 646 L401.5 646 C397.1 646 393.5 649.6 393.5 654 L393.5 742.6"/>
-<path d="M239.5 174 L239.5 214 C239.5 218.4 243.1 222 247.5 222 L383.5 222 C387.9 222 391.5 225.6 391.5 230 L391.5 385.6"/>
-<path d="M511.5 174 L511.5 264 C511.5 268.4 507.9 272 503.5 272 L425.5 272 C421.1 272 417.5 275.6 417.5 280 L417.5 385.6"/>
-<path d="M444.5 526.4 L444.5 549.7 C444.5 554.1 448.1 557.7 452.5 557.7 L520.5 557.7 C524.9 557.7 528.5 561.3 528.5 565.7 L528.5 981.6"/>
+<g clip-path="url(#label-holes-563fefa2)">
+<path d="M364.5 536 L364.5 558 C364.5 562.4 360.9 566 356.5 566 L288.5 566 C284.1 566 280.5 569.6 280.5 574 L280.5 662 C280.5 666.4 276.9 670 272.5 670 L164.5 670 C160.1 670 156.5 673.6 156.5 678 L156.5 765.6"/>
+<path d="M420.5 536 L420.5 662 C420.5 666.4 416.9 670 412.5 670 L401.5 670 C397.1 670 393.5 673.6 393.5 678 L393.5 772.6"/>
+<path d="M239.5 174 L239.5 214 C239.5 218.4 243.1 222 247.5 222 L383.5 222 C387.9 222 391.5 225.6 391.5 230 L391.5 403.6"/>
+<path d="M511.5 174 L511.5 282 C511.5 286.4 507.9 290 503.5 290 L425.5 290 C421.1 290 417.5 293.6 417.5 298 L417.5 403.6"/>
+<path d="M444.5 544.4 L444.5 567.7 C444.5 572.1 448.1 575.7 452.5 575.7 L520.5 575.7 C524.9 575.7 528.5 579.3 528.5 583.7 L528.5 1011.6"/>
 </g>
 </g>
 <g fill="#3b4754">
-<polygon points="156.5,744 150.5,732 162.5,732"/>
-<polygon points="393.5,751 387.5,739 399.5,739"/>
-<polygon points="391.5,394 385.5,382 397.5,382"/>
-<polygon points="417.5,394 411.5,382 423.5,382"/>
-<polygon points="444.5,518 450.5,530 438.5,530"/>
-<polygon points="528.5,990 522.5,978 534.5,978"/>
+<polygon points="156.5,774 150.5,762 162.5,762"/>
+<polygon points="393.5,781 387.5,769 399.5,769"/>
+<polygon points="391.5,412 385.5,400 397.5,400"/>
+<polygon points="417.5,412 411.5,400 423.5,400"/>
+<polygon points="444.5,536 450.5,548 438.5,548"/>
+<polygon points="528.5,1020 522.5,1008 534.5,1008"/>
 </g>
 <rect x="103.5" y="70" width="272" height="104" rx="52" fill="#eef2f7" stroke="#55657a" stroke-width="1.5"/>
 <rect x="423.5" y="70" width="294" height="104" rx="52" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
-<rect x="306.5" y="394" width="196" height="124"/>
-<ellipse cx="156.5" cy="835" rx="96" ry="7"/>
+<rect x="306.5" y="412" width="196" height="124"/>
+<ellipse cx="156.5" cy="865" rx="96" ry="7"/>
 </g>
-<rect x="60.5" y="751" width="192" height="84" fill="#eef2f7"/>
+<rect x="60.5" y="781" width="192" height="84" fill="#eef2f7"/>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
-<line x1="60.5" y1="751" x2="60.5" y2="835"/>
-<line x1="252.5" y1="751" x2="252.5" y2="835"/>
-<ellipse cx="156.5" cy="751" rx="96" ry="7"/>
-<rect x="300.5" y="751" width="186" height="84"/>
+<line x1="60.5" y1="781" x2="60.5" y2="865"/>
+<line x1="252.5" y1="781" x2="252.5" y2="865"/>
+<ellipse cx="156.5" cy="781" rx="96" ry="7"/>
+<rect x="300.5" y="781" width="186" height="84"/>
 </g>
-<rect x="435.5" y="990" width="186" height="104" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
+<rect x="435.5" y="1020" width="186" height="104" fill="#f6f8fa" stroke="#7b8794" stroke-width="1.5" stroke-dasharray="5 4"/>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="123.66" y="21.6">System zarządzania jakością w</text>
 <text x="123.66" y="41.6">otoczeniu</text>
@@ -56,40 +56,40 @@
 <text x="570.5" y="117.6">[Person]</text>
 <text x="570.5" y="137.6">Przegląda zapisy podczas</text>
 <text x="570.5" y="157.6">audytu</text>
-<text x="148.09" y="317.6">Wytwórca wyrobów medycznych</text>
-<text x="148.09" y="337.6">[ENTERPRISE]</text>
+<text x="148.09" y="335.6">Wytwórca wyrobów medycznych</text>
+<text x="148.09" y="355.6">[ENTERPRISE]</text>
 </g>
-<text x="346.69" y="421.6" font-weight="bold" fill="#1b1f24">System jakości</text>
+<text x="346.69" y="439.6" font-weight="bold" fill="#1b1f24">System jakości</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="404.5" y="441.6">[Software System]</text>
-<text x="404.5" y="461.6">Dokumenty, zapisy,</text>
-<text x="404.5" y="481.6">szkolenia, działania</text>
-<text x="404.5" y="501.6">korygujące</text>
-<text x="99.63" y="691.6">Infrastruktura</text>
-<text x="99.63" y="711.6">[SYSTEM]</text>
+<text x="404.5" y="459.6">[Software System]</text>
+<text x="404.5" y="479.6">Dokumenty, zapisy,</text>
+<text x="404.5" y="499.6">szkolenia, działania</text>
+<text x="404.5" y="519.6">korygujące</text>
+<text x="99.63" y="721.6">Infrastruktura</text>
+<text x="99.63" y="741.6">[SYSTEM]</text>
 </g>
-<text x="107.59" y="782.1" font-weight="bold" fill="#1b1f24">Baza danych</text>
+<text x="107.59" y="812.1" font-weight="bold" fill="#1b1f24">Baza danych</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="156.5" y="802.1">[Software System]</text>
-<text x="156.5" y="822.1">Zapisy i ich historia</text>
+<text x="156.5" y="832.1">[Software System]</text>
+<text x="156.5" y="852.1">Zapisy i ich historia</text>
 </g>
-<text x="367.71" y="778.6" font-weight="bold" fill="#1b1f24">Poczta</text>
+<text x="367.71" y="808.6" font-weight="bold" fill="#1b1f24">Poczta</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="393.5" y="798.6">[Software System]</text>
-<text x="393.5" y="818.6">Powiadomienia</text>
-<text x="218.5" y="651.6">Zapisuje</text>
-<text x="420.5" y="595.6">Wysyła powiadomienia</text>
-<text x="420.5" y="615.6">[SMTP]</text>
+<text x="393.5" y="828.6">[Software System]</text>
+<text x="393.5" y="848.6">Powiadomienia</text>
+<text x="218.5" y="675.6">Zapisuje</text>
+<text x="420.5" y="613.6">Wysyła powiadomienia</text>
+<text x="420.5" y="633.6">[SMTP]</text>
 </g>
-<text x="512.05" y="1017.6" font-weight="bold" fill="#1b1f24">ERP</text>
+<text x="512.05" y="1047.6" font-weight="bold" fill="#1b1f24">ERP</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="528.5" y="1037.6">[Software System]</text>
-<text x="528.5" y="1057.6">Partie, dostawcy,</text>
-<text x="528.5" y="1077.6">zamówienia</text>
+<text x="528.5" y="1067.6">[Software System]</text>
+<text x="528.5" y="1087.6">Partie, dostawcy,</text>
+<text x="528.5" y="1107.6">zamówienia</text>
 <text x="315.5" y="217.6">Korzysta</text>
 <text x="315.5" y="237.6">[HTTPS]</text>
-<text x="511.5" y="231.6">Przegląda zapisy</text>
-<text x="528.5" y="933.6">Wymienia dane o partiach</text>
-<text x="528.5" y="953.6">[API]</text>
+<text x="511.5" y="249.6">Przegląda zapisy</text>
+<text x="528.5" y="963.6">Wymienia dane o partiach</text>
+<text x="528.5" y="983.6">[API]</text>
 </g>
 </svg>

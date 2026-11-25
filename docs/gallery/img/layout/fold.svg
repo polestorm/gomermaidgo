@@ -1,50 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="734.91" height="484" viewBox="-12 -12 734.91 484" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Supplier approval</title>
 <rect x="-12" y="-12" width="734.91" height="484" fill="white"/>
-<g stroke="#3b4754" stroke-width="1.5">
-<path d="M148 42 L183.6 42" fill="none"/>
-<path d="M289 42 L324.6 42" fill="none"/>
-<path d="M97.63 208.75 L110.81 208.75 C115.21 208.75 118.81 205.15 118.81 200.75 L118.81 172 C118.81 167.6 122.41 164 126.81 164 L140 164 L204.51 164" fill="none"/>
-<path d="M97.63 231.25 L110.81 231.25 C115.21 231.25 118.81 234.85 118.81 239.25 L118.81 268 C118.81 272.4 122.41 276 126.81 276 L140 276 L204.51 276" fill="none"/>
-<path d="M313.91 164 L320.21 164 C324.61 164 328.21 167.6 328.21 172 L328.21 195 C328.21 199.4 331.81 203 336.21 203 L353.51 203" fill="none"/>
-<path d="M313.91 276 L320.21 276 C324.61 276 328.21 272.4 328.21 268 L328.21 245 C328.21 240.6 331.81 237 336.21 237 L353.51 237" fill="none"/>
-<path d="M431.91 220 L467.51 220" fill="none"/>
-<path d="M562.91 220 L598.51 220" fill="none"/>
-<path d="M90 408 L125.6 408" fill="none"/>
-<path d="M230 408 L265.6 408" fill="none"/>
-<path d="M377 408 L412.6 408" fill="none"/>
-<path d="M395 84 L395 96 C395 100.4 391.4 104 387 104 L63 104 C58.6 104 55 107.6 55 112 L55 161.6" fill="none"/>
-<path d="M658.91 262 L658.91 320 C658.91 324.4 655.31 328 650.91 328 L53 328 C48.6 328 45 331.6 45 336 L45 347.6" fill="none"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M148 42 L183.6 42"/>
+<path d="M289 42 L324.6 42"/>
+<path d="M97.63 208.75 L110.81 208.75 C115.21 208.75 118.81 205.15 118.81 200.75 L118.81 172 C118.81 167.6 122.41 164 126.81 164 L204.51 164"/>
+<path d="M97.63 231.25 L110.81 231.25 C115.21 231.25 118.81 234.85 118.81 239.25 L118.81 268 C118.81 272.4 122.41 276 126.81 276 L204.51 276"/>
+<path d="M313.91 164 L320.21 164 C324.61 164 328.21 167.6 328.21 172 L328.21 195 C328.21 199.4 331.81 203 336.21 203 L353.51 203"/>
+<path d="M313.91 276 L320.21 276 C324.61 276 328.21 272.4 328.21 268 L328.21 245 C328.21 240.6 331.81 237 336.21 237 L353.51 237"/>
+<path d="M431.91 220 L467.51 220"/>
+<path d="M562.91 220 L598.51 220"/>
+<path d="M90 408 L125.6 408"/>
+<path d="M230 408 L265.6 408"/>
+<path d="M377 408 L412.6 408"/>
+<path d="M395 84 L395 96 C395 100.4 391.4 104 387 104 L63 104 C58.6 104 55 107.6 55 112 L55 161.6"/>
+<path d="M658.91 262 L658.91 320 C658.91 324.4 655.31 328 650.91 328 L53 328 C48.6 328 45 331.6 45 336 L45 347.6"/>
 </g>
-<rect x="141" y="154" width="40.91" height="20" fill="white"/>
-<rect x="142.78" y="266" width="37.35" height="20" fill="white"/>
-<polygon points="192,42 180,36 180,48" fill="#3b4754"/>
-<polygon points="333,42 321,36 321,48" fill="#3b4754"/>
-<polygon points="212.91,164 200.91,158 200.91,170" fill="#3b4754"/>
-<polygon points="212.91,276 200.91,270 200.91,282" fill="#3b4754"/>
-<polygon points="361.91,203 349.91,197 349.91,209" fill="#3b4754"/>
-<polygon points="361.91,237 349.91,231 349.91,243" fill="#3b4754"/>
-<polygon points="475.91,220 463.91,214 463.91,226" fill="#3b4754"/>
-<polygon points="606.91,220 594.91,214 594.91,226" fill="#3b4754"/>
-<polygon points="134,408 122,402 122,414" fill="#3b4754"/>
-<polygon points="274,408 262,402 262,414" fill="#3b4754"/>
-<polygon points="421,408 409,402 409,414" fill="#3b4754"/>
-<polygon points="55,170 49,158 61,158" fill="#3b4754"/>
-<polygon points="45,356 39,344 51,344" fill="#3b4754"/>
-<g stroke="#55657a" stroke-width="1.5">
-<rect x="0" y="0" width="148" height="84" rx="42" fill="#eef2f7"/>
-<rect x="192" y="0" width="97" height="84" fill="#eef2f7"/>
-<rect x="333" y="0" width="124" height="84" fill="#eef2f7"/>
-<polygon points="55,170 110,220 55,270 0,220" fill="#eef2f7"/>
-<rect x="212.91" y="132" width="101" height="64" fill="#eef2f7"/>
-<rect x="212.91" y="244" width="101" height="64" fill="#eef2f7"/>
-<rect x="361.91" y="178" width="70" height="84" fill="#eef2f7"/>
-<rect x="475.91" y="178" width="87" height="84" fill="#eef2f7"/>
-<rect x="606.91" y="178" width="104" height="84" fill="#eef2f7"/>
-<rect x="0" y="356" width="90" height="104" fill="#eef2f7"/>
-<rect x="134" y="356" width="96" height="104" fill="#eef2f7"/>
-<rect x="274" y="356" width="103" height="104" fill="#eef2f7"/>
-<rect x="421" y="356" width="127" height="104" rx="52" fill="#eef2f7"/>
+<g fill="white">
+<rect x="141" y="154" width="40.91" height="20"/>
+<rect x="142.78" y="266" width="37.35" height="20"/>
+</g>
+<g fill="#3b4754">
+<polygon points="192,42 180,36 180,48"/>
+<polygon points="333,42 321,36 321,48"/>
+<polygon points="212.91,164 200.91,158 200.91,170"/>
+<polygon points="212.91,276 200.91,270 200.91,282"/>
+<polygon points="361.91,203 349.91,197 349.91,209"/>
+<polygon points="361.91,237 349.91,231 349.91,243"/>
+<polygon points="475.91,220 463.91,214 463.91,226"/>
+<polygon points="606.91,220 594.91,214 594.91,226"/>
+<polygon points="134,408 122,402 122,414"/>
+<polygon points="274,408 262,402 262,414"/>
+<polygon points="421,408 409,402 409,414"/>
+<polygon points="55,170 49,158 61,158"/>
+<polygon points="45,356 39,344 51,344"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<rect x="0" y="0" width="148" height="84" rx="42"/>
+<rect x="192" y="0" width="97" height="84"/>
+<rect x="333" y="0" width="124" height="84"/>
+<polygon points="55,170 110,220 55,270 0,220"/>
+<rect x="212.91" y="132" width="101" height="64"/>
+<rect x="212.91" y="244" width="101" height="64"/>
+<rect x="361.91" y="178" width="70" height="84"/>
+<rect x="475.91" y="178" width="87" height="84"/>
+<rect x="606.91" y="178" width="104" height="84"/>
+<rect x="0" y="356" width="90" height="104"/>
+<rect x="134" y="356" width="96" height="104"/>
+<rect x="274" y="356" width="103" height="104"/>
+<rect x="421" y="356" width="127" height="104" rx="52"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="74" y="27.6">Request</text>

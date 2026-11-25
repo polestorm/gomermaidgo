@@ -1,37 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="475.5" height="1044" viewBox="-12 -12 475.5 1044" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-964b5821"><path d="M-12 -12 L463.5 -12 L463.5 1032 L-12 1032 M47.66 574 L47.66 594 L82.34 594 L82.34 574 M98.85 412 L98.85 432 L249.15 432 L249.15 412 M286.09 574 L286.09 594 L391.91 594 L391.91 574 M117.16 832 L117.16 852 L151.84 852 L151.84 832 M208 786 L208 806 L240 806 L240 786"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="475.5" height="1090" viewBox="-12 -12 475.5 1090" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-22fb1397"><path d="M-12 -12 L463.5 -12 L463.5 1078 L-12 1078 M47.66 574 L47.66 594 L82.34 594 L82.34 574 M98.85 412 L98.85 432 L249.15 432 L249.15 412 M286.09 574 L286.09 594 L391.91 594 L391.91 574 M117.16 878 L117.16 898 L151.84 898 L151.84 878 M208 832 L208 852 L240 852 L240 832"/></clipPath></defs>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
 <path d="M274 44 L274 60 C274 64.4 270.4 68 266 68 L182 68 C177.6 68 174 71.6 174 76 L174 83.6"/>
 <path d="M174 136 L174 171.6"/>
 <path d="M174 244 L174 279.6"/>
-<g clip-path="url(#label-holes-964b5821)">
-<path d="M154 371.24 L154 382.62 C154 387.02 150.4 390.62 146 390.62 L73 390.62 C68.6 390.62 65 394.22 65 398.62 L65 875.6"/>
+<g clip-path="url(#label-holes-22fb1397)">
+<path d="M154 371.24 L154 382.62 C154 387.02 150.4 390.62 146 390.62 L73 390.62 C68.6 390.62 65 394.22 65 398.62 L65 921.6"/>
 <path d="M174 380 L174 455.6"/>
-<path d="M279 334 L331 334 C335.4 334 339 337.6 339 342 L339 875.6"/>
+<path d="M279 334 L331 334 C335.4 334 339 337.6 339 342 L339 921.6"/>
 </g>
 <path d="M184 508 L184 543.6"/>
 <path d="M197 616 L197 651.6"/>
-<g clip-path="url(#label-holes-964b5821)">
-<path d="M171 742.94 L171 834 C171 838.4 167.4 842 163 842 L106 842 C101.6 842 98 845.6 98 850 L98 875.6"/>
-<path d="M224 742.52 L224 875.6"/>
+<g clip-path="url(#label-holes-22fb1397)">
+<path d="M171 742.94 L171 880 C171 884.4 167.4 888 163 888 L106 888 C101.6 888 98 891.6 98 896 L98 921.6"/>
+<path d="M224 742.52 L224 921.6"/>
 </g>
-<path d="M337 928 L337 967.6"/>
-<g clip-path="url(#label-holes-964b5821)">
-<path d="M314 52.4 L314 60 C314 64.4 317.6 68 322 68 L407 68 C411.4 68 415 71.6 415 76 L415 976"/>
+<path d="M337 974 L337 1013.6"/>
+<g clip-path="url(#label-holes-22fb1397)">
+<path d="M314 52.4 L314 60 C314 64.4 317.6 68 322 68 L407 68 C411.4 68 415 71.6 415 76 L415 1022"/>
 </g>
 </g>
 <g fill="#3b4754">
 <polygon points="174,92 168,80 180,80"/>
 <polygon points="174,180 168,168 180,168"/>
 <polygon points="174,288 168,276 180,276"/>
-<polygon points="65,884 59,872 71,872"/>
+<polygon points="65,930 59,918 71,918"/>
 <polygon points="174,464 168,452 180,452"/>
-<polygon points="339,884 333,872 345,872"/>
+<polygon points="339,930 333,918 345,918"/>
 <polygon points="184,552 178,540 190,540"/>
 <polygon points="197,660 191,648 203,648"/>
-<polygon points="98,884 92,872 104,872"/>
-<polygon points="224,884 218,872 230,872"/>
-<polygon points="337,976 331,964 343,964"/>
+<polygon points="98,930 92,918 104,918"/>
+<polygon points="224,930 218,918 230,918"/>
+<polygon points="337,1022 331,1010 343,1010"/>
 <polygon points="314,44 320,56 308,56"/>
 </g>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
@@ -42,9 +42,9 @@
 <rect x="91" y="464" width="166" height="44"/>
 <rect x="101" y="552" width="166" height="64"/>
 <polygon points="197,660 307.5,707 197,754 86.5,707"/>
-<rect x="0" y="884" width="156" height="44"/>
-<rect x="204.5" y="884" width="189" height="44"/>
-<rect x="262.5" y="976" width="189" height="44"/>
+<rect x="0" y="930" width="156" height="44"/>
+<rect x="204.5" y="930" width="189" height="44"/>
+<rect x="262.5" y="1022" width="189" height="44"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="294" y="27.6">Zgłoszenie zmiany</text>
@@ -56,13 +56,13 @@
 <text x="184" y="579.6">Przegląd</text>
 <text x="184" y="599.6">ręczny</text>
 <text x="197" y="712.6">Wyjątek przyznany?</text>
-<text x="78" y="911.6">Zatwierdzenie</text>
-<text x="299" y="911.6">Odrzucenie</text>
-<text x="357" y="1003.6">Poprawki autora</text>
+<text x="78" y="957.6">Zatwierdzenie</text>
+<text x="299" y="957.6">Odrzucenie</text>
+<text x="357" y="1049.6">Poprawki autora</text>
 <text x="65" y="589.6">Tak</text>
 <text x="174" y="427.6">Uwagi do procedury</text>
 <text x="339" y="589.6">Brak walidacji</text>
-<text x="134.5" y="847.6">Tak</text>
-<text x="224" y="801.6">Nie</text>
+<text x="134.5" y="893.6">Tak</text>
+<text x="224" y="847.6">Nie</text>
 </g>
 </svg>

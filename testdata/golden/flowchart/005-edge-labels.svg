@@ -1,23 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="450" height="764" viewBox="-12 -12 450 764" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-a0d72756"><path d="M-12 -12 L438 -12 L438 752 L-12 752 M89.66 72 L89.66 92 L124.34 92 L124.34 72 M205 72 L205 92 L237 92 L237 72 M93.44 236 L93.44 256 L140.56 256 L140.56 236 M219.3 204 L219.3 224 L296.7 224 L296.7 204 M72.64 350 L72.64 370 L147.36 370 L147.36 350 M247.75 350 L247.75 370 L348.25 370 L348.25 350 M17.68 478 L17.68 518 L202.32 518 L202.32 478 M277.55 478 L277.55 518 L318.45 518 L318.45 478 M145.32 644 L145.32 664 L190.68 664 L190.68 644 M273.84 640 L273.84 660 L335.16 660 L335.16 640"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="450" height="782" viewBox="-12 -12 450 782" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-a0056efe"><path d="M-12 -12 L438 -12 L438 770 L-12 770 M89.66 72 L89.66 92 L124.34 92 L124.34 72 M205 72 L205 92 L237 92 L237 72 M93.44 236 L93.44 256 L140.56 256 L140.56 236 M219.3 204 L219.3 224 L296.7 224 L296.7 204 M72.64 350 L72.64 370 L147.36 370 L147.36 350 M247.75 350 L247.75 370 L348.25 370 L348.25 350 M17.68 496 L17.68 536 L202.32 536 L202.32 496 M277.55 496 L277.55 536 L318.45 536 L318.45 496 M145.32 662 L145.32 682 L190.68 682 L190.68 662 M273.84 658 L273.84 678 L335.16 678 L335.16 658"/></clipPath></defs>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
-<g clip-path="url(#label-holes-a0d72756)">
+<g clip-path="url(#label-holes-a0056efe)">
 <path d="M144 44 L144 74 C144 78.4 140.4 82 136 82 L78 82 C73.6 82 70 85.6 70 90 L70 119.6"/>
 <path d="M184 44 L184 74 C184 78.4 187.6 82 192 82 L250 82 C254.4 82 258 85.6 258 90 L258 119.6"/>
 </g>
 </g>
-<g clip-path="url(#label-holes-a0d72756)">
+<g clip-path="url(#label-holes-a0056efe)">
 <path d="M70 172 L70 238 C70 242.4 73.6 246 78 246 L156 246 C160.4 246 164 249.6 164 254 L164 265.6" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <path d="M258 172 L258 232.3 C258 236.7 254.4 240.3 250 240.3 L212 240.3 C207.6 240.3 204 243.9 204 248.3 L204 265.6" fill="none" stroke="#3b4754" stroke-width="3"/>
 </g>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
-<g clip-path="url(#label-holes-a0d72756)">
+<g clip-path="url(#label-holes-a0056efe)">
 <path d="M164 318 L164 325 C164 329.4 160.4 333 156 333 L118 333 C113.6 333 110 336.6 110 341 L110 402"/>
 <path d="M204 318 L204 325 C204 329.4 207.6 333 212 333 L290 333 C294.4 333 298 336.6 298 341 L298 402"/>
-<path d="M110 446 L110 526.3 C110 530.7 113.6 534.3 118 534.3 L205 534.3 C209.4 534.3 213 537.9 213 542.3 L213 559.6"/>
-<path d="M298 446 L298 526.3 C298 530.7 294.4 534.3 290 534.3 L261 534.3 C256.6 534.3 253 537.9 253 542.3 L253 559.6"/>
-<path d="M213 612 L213 619 C213 623.4 209.4 627 205 627 L176 627 C171.6 627 168 630.6 168 635 L168 687"/>
-<path d="M253 612 L253 642 C253 646.4 256.6 650 261 650 L348 650 C352.4 650 356 653.6 356 658 L356 688"/>
+<path d="M110 446 L110 544.3 C110 548.7 113.6 552.3 118 552.3 L205 552.3 C209.4 552.3 213 555.9 213 560.3 L213 577.6"/>
+<path d="M298 446 L298 544.3 C298 548.7 294.4 552.3 290 552.3 L261 552.3 C256.6 552.3 253 555.9 253 560.3 L253 577.6"/>
+<path d="M213 630 L213 637 C213 641.4 209.4 645 205 645 L176 645 C171.6 645 168 648.6 168 653 L168 705"/>
+<path d="M253 630 L253 660 C253 664.4 256.6 668 261 668 L348 668 C352.4 668 356 671.6 356 676 L356 706"/>
 </g>
 </g>
 <g fill="#3b4754">
@@ -25,13 +25,13 @@
 <polygon points="258,128 252,116 264,116"/>
 <polygon points="164,274 158,262 170,262"/>
 <polygon points="204,274 198,262 210,262"/>
-<polygon points="213,568 207,556 219,556"/>
-<polygon points="253,568 247,556 259,556"/>
+<polygon points="213,586 207,574 219,574"/>
+<polygon points="253,586 247,574 259,574"/>
 </g>
 <g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
-<circle cx="168" cy="691" r="5"/>
-<line x1="361" y1="693" x2="351" y2="683"/>
-<line x1="351" y1="693" x2="361" y2="683"/>
+<circle cx="168" cy="709" r="5"/>
+<line x1="361" y1="711" x2="351" y2="701"/>
+<line x1="351" y1="711" x2="361" y2="701"/>
 </g>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
 <rect x="94" y="0" width="140" height="44"/>
@@ -40,9 +40,9 @@
 <rect x="114" y="274" width="140" height="44"/>
 <rect x="40" y="402" width="140" height="44"/>
 <rect x="228" y="402" width="140" height="44"/>
-<rect x="163" y="568" width="140" height="44"/>
-<rect x="98" y="696" width="140" height="44"/>
-<rect x="286" y="696" width="140" height="44"/>
+<rect x="163" y="586" width="140" height="44"/>
+<rect x="98" y="714" width="140" height="44"/>
+<rect x="286" y="714" width="140" height="44"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="164" y="27.6">A</text>
@@ -51,20 +51,20 @@
 <text x="184" y="301.6">D</text>
 <text x="110" y="429.6">E</text>
 <text x="298" y="429.6">F</text>
-<text x="233" y="595.6">G</text>
-<text x="168" y="723.6">H</text>
-<text x="356" y="723.6">I</text>
+<text x="233" y="613.6">G</text>
+<text x="168" y="741.6">H</text>
+<text x="356" y="741.6">I</text>
 <text x="107" y="87.6">Tak</text>
 <text x="221" y="87.6">Nie</text>
 <text x="117" y="251.6">może</text>
 <text x="258" y="219.6">na pewno</text>
 <text x="110" y="365.6">bez grotu</text>
 <text x="298" y="365.6">też bez grotu</text>
-<text x="110" y="493.6">Etykieta z (nawiasami) i |</text>
-<text x="110" y="513.6">kreską</text>
-<text x="298" y="493.6">dwie</text>
-<text x="298" y="513.6">linie</text>
-<text x="168" y="659.6">kółko</text>
-<text x="304.5" y="655.6">krzyżyk</text>
+<text x="110" y="511.6">Etykieta z (nawiasami) i |</text>
+<text x="110" y="531.6">kreską</text>
+<text x="298" y="511.6">dwie</text>
+<text x="298" y="531.6">linie</text>
+<text x="168" y="677.6">kółko</text>
+<text x="304.5" y="673.6">krzyżyk</text>
 </g>
 </svg>
