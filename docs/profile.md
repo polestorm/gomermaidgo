@@ -554,6 +554,24 @@ Deliberate differences from Mermaid: an own look (a spine with an arrowhead to t
 categories alternately above the spine and below it in fields at the ends of slanted bones, causes on horizontal
 strokes); more than eight levels of causes under a category is an error.
 
+## Tree view (`treeView-beta`, `treeView`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| entry | a name on its own line, plain or `"quoted"`; a trailing `/` marks a directory | TREE-003 |
+| nesting | indentation (a tab counts as four spaces) or box-drawing characters `├──`, `└──`, `│` and the heavy `┣━━`, `┗━━`, `┃`; the output of `tree` (a `.` root with branches from column zero) is read as is | TREE-002 |
+| highlight | `:::highlight`; other `:::class` names are accepted and do not change the drawing | TREE-003 |
+| icon | `icon(folder)`, `icon(file)`, `icon(pack:name)`, `icon(none)` | TREE-003, TREE-004 |
+| description | `## text` at the end of the line | TREE-003 |
+| comment | `%%` | TREE-001 |
+| accessibility | `accTitle`, `accDescr` | TREE-001 |
+
+Deliberate differences from Mermaid: there is no `/` root above the entries, and a directory keeps the slash it was
+written with; an entry with children is a directory even without a slash; descriptions stand in one column after
+the longest name that has one; icon packs are not bundled, so `icon(pack:name)` draws this library's own file or
+folder icon by the kind of entry; the `treeView` configuration (`showIcons`, `rowIndent`, icon maps) and its theme
+variables are outside the profile. At most 2000 entries and 32 levels.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |

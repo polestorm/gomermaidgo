@@ -1,0 +1,11 @@
+%% REQ: TREE-001 TREE-002 TREE-003 TREE-004
+%% Tytuł: Wynik polecenia tree z ikonami
+%% Sprawdza: korzeń „.” z gałęziami od kolumny zero (tak wypisuje tree), ikony icon(folder), icon(file), ikona z zestawu (logos:go) rysowana jak plik, icon(none), katalog bez ukośnika rozpoznany po zawartości, opis przy katalogu, accTitle.
+treeView-beta
+    accTitle: Katalog wydania
+.
+├── wydanie icon(folder) ## pliki do wysłania klientowi
+│   ├── instrukcja.pdf icon(file)
+│   ├── serwer icon(logos:go)
+│   └── licencja.txt icon(none)
+└── sumy-kontrolne.txt icon(file)

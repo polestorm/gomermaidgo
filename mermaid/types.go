@@ -11,6 +11,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/sankey"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/treemap"
+	"github.com/polestorm/gomermaidgo/internal/treeview"
 )
 
 // Diagram types added after the first ones.
@@ -24,6 +25,7 @@ const (
 	TypeBlock        = "block"
 	TypeArchitecture = "architecture"
 	TypeIshikawa     = "ishikawa"
+	TypeTreeView     = "treeView"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -107,5 +109,12 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return treemap.Layout(d, treemap.Options(o)), nil
+	}},
+	{TypeTreeView, []string{"treeView-beta", "treeView"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		t, err := treeview.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return treeview.Layout(t, treeview.Options(o)), nil
 	}},
 }
