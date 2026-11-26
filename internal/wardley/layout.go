@@ -22,7 +22,7 @@ const (
 	colorText   = "#1b1f24"
 	colorMuted  = "#55657a"
 	colorAxis   = "#3b4754"
-	colorGrid   = "#c3cad3"
+	colorGrid   = "#8a96a3"
 	colorLine   = "#55657a"
 	colorDot    = "#ffffff"
 	colorDeco   = "#dfe4ea"
@@ -61,8 +61,81 @@ func Layout(m *Map, o Options) *scene.Scene {
 		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: role, X: x, Y: y, W: o.Measure(s, size), H: size * 1.25,
 			Text: s, Anchor: anchor, Bold: bold, Italic: italic, FontSize: size, Fill: fill})
 	}
+	var segs [][4]float64 // linie na planszy, których podpisy składników unikają
 	line := func(x1, y1, x2, y2 float64, stroke string, width float64, dash, role string) {
-		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: role, X: x1, Y: y1, X2: x2, Y2: y2, Stroke: stroke, StrokeWidth: width, Dash: dash})
+		if role != "wardley-axis" {
+			segs = append(segs, [4]float64{x1, y1, x2, y2})
+		}
+		// Linie leżą pod podkładami podpisów: podpis je zasłania albo wycina.
+		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: role, X: x1, Y: y1, X2: x2, Y2: y2, Stroke: stroke, StrokeWidth: width, Dash: dash})
+	}
+	var bands []float64 // prawe granice etapów ewolucji (0–1)
+	// box zwraca prostokąt podkładu podpisu: x0, y0, x1, y1.
+	box := func(s string, x, y, size float64, anchor string, bold bool) [4]float64 {
+		w := o.Measure(s, size)
+		if bold {
+			w *= 1.06
+		}
+		x0 := x - w/2
+		switch anchor {
+		case "start":
+			x0 = x
+		case "end":
+			x0 = x - w
+		}
+		return [4]float64{x0 - u(2), y - size*0.95, x0 + w + u(2), y + size*0.35}
+	}
+	var placed [][4]float64 // podkłady podpisów już narysowanych
+	// label rysuje podpis na podkładzie: w trybie kolorowym w odcieniach etapów, na których stoi
+	// (podkład dzieli się na granicach etapów, więc wygląda jak przezroczysty), a w neutralnym
+	// w kolorze tła rysunku (przy tle przezroczystym podkład wycina linie pod podpisem).
+	label := func(s string, x, y, size float64, anchor string, bold, italic bool, fill, role string) {
+		b := box(s, x, y, size, anchor, bold)
+		placed = append(placed, b)
+		if !o.Colors {
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: role + "-background",
+				X: b[0], Y: b[1], W: b[2] - b[0], H: b[3] - b[1], Knockout: true})
+		} else {
+			from := 0.0
+			for i, until := range bands {
+				to := until * W // poza planszą (za ostatnim etapem) podkład nie jest potrzebny: nie ma tam linii
+				if x0, x1 := math.Max(b[0], from), math.Min(b[2], to); x1 > x0 {
+					sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: role + "-background",
+						X: x0, Y: b[1], W: x1 - x0, H: b[3] - b[1], Fill: scene.Distinct(i).Fill})
+				}
+				from = to
+			}
+		}
+		text(s, x, y, size, anchor, bold, italic, fill, role)
+	}
+	// clash liczy kolizje prostokąta z liniami, innymi podpisami i kółkami składników.
+	var dots [][3]float64
+	clash := func(b [4]float64) int {
+		n := 0
+		for _, sg := range segs {
+			for k := 0; k <= 20; k++ {
+				t := float64(k) / 20
+				x, y := sg[0]+(sg[2]-sg[0])*t, sg[1]+(sg[3]-sg[1])*t
+				if x > b[0] && x < b[2] && y > b[1] && y < b[3] {
+					n++
+					break
+				}
+			}
+		}
+		for _, p := range placed {
+			if b[0] < p[2] && p[0] < b[2] && b[1] < p[3] && p[1] < b[3] {
+				n += 2
+			}
+		}
+		for _, d := range dots {
+			if d[0]+d[2] > b[0] && d[0]-d[2] < b[2] && d[1]+d[2] > b[1] && d[1]-d[2] < b[3] {
+				n += 2
+			}
+		}
+		if b[0] < 0 || b[2] > W+u(40) || b[1] < -u(10) || b[3] > H {
+			n += 3
+		}
+		return n
 	}
 	arrow := func(x, y, dx, dy float64, fill string) {
 		l := math.Hypot(dx, dy)
@@ -99,10 +172,19 @@ func Layout(m *Map, o Options) *scene.Scene {
 		}
 		stages[len(stages)-1].Until = 1
 	}
+	for _, st := range stages {
+		bands = append(bands, st.Until)
+	}
 	from := 0.0
 	for i, st := range stages {
+		if o.Colors {
+			// Tryb kolorowy: każdy etap ewolucji ma swój jasny odcień.
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerBackground, Role: "wardley-stage-band", X: px(from), Y: 0, W: px(st.Until) - px(from), H: H,
+				Fill: scene.Distinct(i).Fill})
+		}
 		if i < len(stages)-1 {
-			line(px(st.Until), 0, px(st.Until), H, colorGrid, 1, "4 4", "wardley-stage")
+			sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerLifeline, Role: "wardley-stage", X: px(st.Until), Y: 0, X2: px(st.Until), Y2: H,
+				Stroke: colorGrid, StrokeWidth: 1.25, Dash: "5 4"})
 		}
 		for k, s := range st.Names {
 			text(s, px((from+st.Until)/2), H+u(8)+float64(k)*small*1.25+small*0.9, small, "middle", k == 0, k > 0, colorMuted, "wardley-stage-label")
@@ -170,10 +252,8 @@ func Layout(m *Map, o Options) *scene.Scene {
 			arrow(x1+ux*sa, y1+uy*sa, -ux, -uy, colorLine)
 		}
 		if l.Label != "" {
-			w := o.Measure(l.Label, small)
 			mx, my := (x1+x2)/2, (y1+y2)/2
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "wardley-link-label", X: mx - w/2 - u(3), Y: my - small*0.65, W: w + u(6), H: small * 1.3, Fill: "#ffffff"})
-			text(l.Label, mx, my+small*0.35, small, "middle", false, true, colorMuted, "wardley-link-label")
+			label(l.Label, mx, my+small*0.35, small, "middle", false, true, colorMuted, "wardley-link-label")
 		}
 	}
 	// Ewolucja: przerywana strzałka do przyszłego położenia i kółko z przerywanym obrysem.
@@ -192,7 +272,7 @@ func Layout(m *Map, o Options) *scene.Scene {
 		line(x1+dir*r, y, x2-dir*(r+u(2)), y, red, 1.5, "6 4", "wardley-evolve")
 		arrow(x2-dir*(r+u(2)), y, dir, 0, red)
 		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "wardley-evolved", X: x2, Y: y, R: r, Fill: colorDot, Stroke: red, StrokeWidth: 1.5, Dash: "3 2"})
-		text(c.Name, x2+r+u(4), y-r, small, "start", false, true, red, "wardley-evolved-label")
+		label(c.Name, x2+r+u(4), y-r, small, "start", false, true, red, "wardley-evolved-label")
 	}
 	for _, t := range m.Trends {
 		c := m.Component(t.Name)
@@ -202,11 +282,20 @@ func Layout(m *Map, o Options) *scene.Scene {
 		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "wardley-trend", X: x2, Y: y2, R: r * 0.7, Fill: "none", Stroke: colorLine, StrokeWidth: 1, Dash: "2 2"})
 	}
 
-	// Składniki: dekoratory pod kółkiem, kółko, podpis z prawej u góry.
+	// Kółka składników i podpisy kotwic są przeszkodami dla podpisów składników.
 	for _, c := range m.Components {
 		x, y := point(c)
 		if c.Anchor {
-			text(c.Name, x+c.LabelDX, y+0.35*fs+c.LabelDY, fs, "middle", true, false, colorText, "wardley-anchor")
+			placed = append(placed, box(c.Name, x+c.LabelDX, y+0.35*fs+c.LabelDY, fs, "middle", true))
+		} else {
+			dots = append(dots, [3]float64{x, y, r})
+		}
+	}
+	// Składniki: dekoratory pod kółkiem, kółko, podpis obok (domyślnie z prawej u góry).
+	for _, c := range m.Components {
+		x, y := point(c)
+		if c.Anchor {
+			label(c.Name, x+c.LabelDX, y+0.35*fs+c.LabelDY, fs, "middle", true, false, colorText, "wardley-anchor")
 			continue
 		}
 		for _, d := range c.Decorators {
@@ -230,10 +319,29 @@ func Layout(m *Map, o Options) *scene.Scene {
 		lx, ly := x+r+u(4), y-r
 		if c.Pipeline != "" {
 			lx, ly = x, y+u(12)+small+u(4)
-			text(c.Name, lx+c.LabelDX, ly+c.LabelDY, small, "middle", false, false, colorText, "wardley-component-label")
+			label(c.Name, lx+c.LabelDX, ly+c.LabelDY, small, "middle", false, false, colorText, "wardley-component-label")
 			continue
 		}
-		text(c.Name, lx+c.LabelDX, ly+c.LabelDY, small, "start", false, false, colorText, "wardley-component-label")
+		if c.LabelDX != 0 || c.LabelDY != 0 {
+			label(c.Name, lx+c.LabelDX, ly+c.LabelDY, small, "start", false, false, colorText, "wardley-component-label")
+			continue
+		}
+		// Podpis bez podanego przesunięcia: pierwsze z miejsc wokół kółka, które nie wchodzi na
+		// linie, inne podpisy ani kółka; gdy każde koliduje, to z najmniejszą liczbą kolizji.
+		type spot struct {
+			x, y   float64
+			anchor string
+		}
+		spots := []spot{{x + r + u(4), y - r, "start"}, {x + r + u(4), y + r + small*0.8, "start"},
+			{x - r - u(4), y - r, "end"}, {x - r - u(4), y + r + small*0.8, "end"},
+			{x, y - r - u(6), "middle"}, {x, y + r + small + u(2), "middle"}}
+		best, bestN := spots[0], math.MaxInt
+		for _, sp := range spots {
+			if n := clash(box(c.Name, sp.x, sp.y, small, sp.anchor, false)); n < bestN {
+				best, bestN = sp, n
+			}
+		}
+		label(c.Name, best.x, best.y, small, best.anchor, false, false, colorText, "wardley-component-label")
 	}
 
 	// Notatki, siły i adnotacje.

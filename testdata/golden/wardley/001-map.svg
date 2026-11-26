@@ -1,19 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="910.77" height="639.85" viewBox="-64.97 -50.4 910.77 639.85" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<line x1="0" y1="520" x2="0" y2="0" stroke="#3b4754" stroke-width="1.5"/>
-<polygon points="0,-2 5,8 -5,8" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<line x1="0" y1="520" x2="820" y2="520" stroke="#3b4754" stroke-width="1.5"/>
-<polygon points="822,520 812,525 812,515" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<g stroke="#c3cad3" stroke-width="1" stroke-dasharray="4 4">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="912.77" height="639.85" viewBox="-64.97 -50.4 912.77 639.85" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-98c5f64e"><path d="M-64.97 -50.4 L847.81 -50.4 L847.81 589.45 L-64.97 589.45 M550.79 16.4 L550.79 37.2 L597.21 37.2 L597.21 16.4 M459 108.05 L459 124.95 L571.39 124.95 L571.39 108.05 M336 212.05 L336 228.95 L418.03 228.95 L418.03 212.05 M295 293.65 L295 310.55 L460.15 310.55 L460.15 293.65 M366.55 394.05 L366.55 410.95 L484 410.95 L484 394.05 M787 449.65 L787 466.55 L835.81 466.55 L835.81 449.65"/></clipPath></defs>
+<g stroke="#3b4754" stroke-width="1.5">
+<line x1="0" y1="520" x2="0" y2="0"/>
+<line x1="0" y1="520" x2="820" y2="520"/>
+</g>
+<g stroke="#8a96a3" stroke-width="1.25" stroke-dasharray="5 4">
 <line x1="139.4" y1="0" x2="139.4" y2="520"/>
+<g clip-path="url(#label-holes-98c5f64e)">
 <line x1="328" y1="0" x2="328" y2="520"/>
 <line x1="574" y1="0" x2="574" y2="520"/>
 </g>
+</g>
 <g stroke="#55657a" stroke-width="1.2">
+<g clip-path="url(#label-holes-98c5f64e)">
 <line x1="565.55" y1="31.36" x2="456.07" y2="100.79"/>
+</g>
 <line x1="446.42" y1="107.87" x2="332.58" y2="204.13"/>
+<g clip-path="url(#label-holes-98c5f64e)">
 <line x1="325.8" y1="213.58" x2="289.2" y2="306.42"/>
+</g>
 <line x1="292.61" y1="314.13" x2="486.39" y2="387.87"/>
+<g clip-path="url(#label-holes-98c5f64e)">
 <line x1="292.72" y1="313.81" x2="773.28" y2="466.19"/>
+</g>
+</g>
+<g fill="#3b4754" stroke="#3b4754" stroke-width="1">
+<polygon points="0,-2 5,8 -5,8"/>
+<polygon points="822,520 812,525 812,515"/>
 </g>
 <g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
 <circle cx="451" cy="104" r="6"/>
@@ -39,10 +52,10 @@
 </g>
 <text x="574" y="31.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Klient</text>
 <g fill="#1b1f24">
-<text x="461" y="98" font-size="13">Zamówienie online</text>
-<text x="338" y="202" font-size="13">Wzorcowanie</text>
+<text x="461" y="120.4" font-size="13">Zamówienie online</text>
+<text x="338" y="224.4" font-size="13">Wzorcowanie</text>
 <text x="297" y="306" font-size="13">Laboratorium akredytowane</text>
-<text x="502" y="384" font-size="13">Wzorce odniesienia</text>
-<text x="789" y="462" font-size="13">Energia</text>
 </g>
+<text x="482" y="406.4" text-anchor="end" font-size="13" fill="#1b1f24">Wzorce odniesienia</text>
+<text x="789" y="462" font-size="13" fill="#1b1f24">Energia</text>
 </svg>

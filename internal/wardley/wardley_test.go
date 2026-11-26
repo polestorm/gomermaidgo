@@ -134,3 +134,40 @@ func TestLayout(t *testing.T) {
 		t.Error("default stages missing")
 	}
 }
+
+// REQ: WARD-005
+// Podpis składnika nie wchodzi na linię, gdy obok kółka jest wolne miejsce; tryb kolorowy barwi etapy.
+func TestLabelsAvoidLinesAndBands(t *testing.T) {
+	m, err := Parse("wardley-beta\ncomponent A [0.5, 0.3]\ncomponent B [0.6, 0.6]\nA -> B")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(m, Options{Measure: font.ApproxTextWidth, FontSize: 16, Colors: true})
+	var link scene.Item
+	bands := 0
+	for _, it := range sc.Items {
+		switch it.Role {
+		case "wardley-link":
+			link = it
+		case "wardley-stage-band":
+			bands++
+		}
+	}
+	if bands != 4 {
+		t.Errorf("stage bands: %d, want 4", bands)
+	}
+	for _, it := range sc.Items {
+		if it.Role != "wardley-component-label" {
+			continue
+		}
+		b := it.Bounds()
+		for k := 0; k <= 50; k++ {
+			f := float64(k) / 50
+			x, y := link.X+(link.X2-link.X)*f, link.Y+(link.Y2-link.Y)*f
+			if x > b.X0 && x < b.X1 && y > b.Y0 && y < b.Y1 {
+				t.Errorf("label %q lies on the link", it.Text)
+				break
+			}
+		}
+	}
+}

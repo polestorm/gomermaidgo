@@ -671,10 +671,14 @@ section; a reply to a variable after `new` comes from the created participant.
 | comment | `%%`, also at the end of a line | WARD-001 |
 | accessibility | `accTitle`, `accDescr` | WARD-001 |
 
-Deliberate differences from Mermaid: an own look (neutral; `WithColors` draws evolution red and forces tinted);
+Deliberate differences from Mermaid: an own look (neutral; `WithColors` tints the evolution stages and draws evolution
+red and forces tinted); the visibility axis is labelled "Value chain", from "Visible" at the top to "Invisible" at the
+bottom, as on Simon Wardley's maps;
 default stages Genesis, Custom built, Product (+ rental), Commodity (+ utility) with boundaries at 0.17, 0.40 and 0.70;
 names may contain any letters; the positions of `annotations` and `annotation` are read as [visibility, evolution]
-like all other positions; overlapping labels are not moved.
+like all other positions; a component label without `label [x, y]` takes the first of six places around its dot
+that does not touch a line, another label or a dot, and labels stand on a background that interrupts the lines under
+them.
 
 ## Event model (`eventmodeling`)
 

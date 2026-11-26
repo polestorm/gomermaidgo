@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="902.81" height="639.85" viewBox="-64.97 -50.4 902.81 639.85" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect x="-64.97" y="-50.4" width="902.81" height="639.85" fill="white"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="904.81" height="639.85" viewBox="-64.97 -50.4 904.81 639.85" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-64.97" y="-50.4" width="904.81" height="639.85" fill="white"/>
 <g fill="#dfe4ea" stroke="#55657a" stroke-width="1">
 <polygon points="287,195 300,217.75 274,217.75"/>
 <polygon points="492,377 505,390 492,403 479,390"/>
 </g>
-<line x1="0" y1="520" x2="0" y2="0" stroke="#3b4754" stroke-width="1.5"/>
-<polygon points="0,-2 5,8 -5,8" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<line x1="0" y1="520" x2="820" y2="520" stroke="#3b4754" stroke-width="1.5"/>
-<polygon points="822,520 812,525 812,515" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<g stroke="#c3cad3" stroke-width="1" stroke-dasharray="4 4">
+<g stroke="#3b4754" stroke-width="1.5">
+<line x1="0" y1="520" x2="0" y2="0"/>
+<line x1="0" y1="520" x2="820" y2="520"/>
+</g>
+<g stroke="#8a96a3" stroke-width="1.25" stroke-dasharray="5 4">
 <line x1="139.4" y1="0" x2="139.4" y2="520"/>
 <line x1="328" y1="0" x2="328" y2="520"/>
 <line x1="574" y1="0" x2="574" y2="520"/>
@@ -21,7 +21,20 @@
 <line x1="251.76" y1="313.69" x2="773.24" y2="466.31"/>
 </g>
 <line x1="293" y1="208" x2="484" y2="208" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="6 4"/>
-<polygon points="484,208 474,213 474,203" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g fill="white">
+<rect x="500" y="189.65" width="66.14" height="16.9"/>
+<rect x="494.24" y="16.4" width="77.51" height="20.8"/>
+<rect x="459" y="108.05" width="75.54" height="16.9"/>
+<rect x="295" y="212.05" width="66.14" height="16.9"/>
+<rect x="254" y="293.65" width="86.38" height="16.9"/>
+<rect x="500" y="371.65" width="124.68" height="16.9"/>
+<rect x="787" y="449.65" width="40.85" height="16.9"/>
+</g>
+<g fill="#3b4754" stroke="#3b4754" stroke-width="1">
+<polygon points="0,-2 5,8 -5,8"/>
+<polygon points="822,520 812,525 812,515"/>
+<polygon points="484,208 474,213 474,203"/>
+</g>
 <circle cx="492" cy="208" r="6" fill="#ffffff" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 2"/>
 <g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
 <circle cx="451" cy="104" r="6"/>
@@ -51,8 +64,8 @@
 <text x="502" y="202" font-size="13" font-style="italic" fill="#3b4754">Calibration</text>
 <text x="533" y="31.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Customer</text>
 <g fill="#1b1f24">
-<text x="461" y="98" font-size="13">Online order</text>
-<text x="297" y="202" font-size="13">Calibration</text>
+<text x="461" y="120.4" font-size="13">Online order</text>
+<text x="297" y="224.4" font-size="13">Calibration</text>
 <text x="256" y="306" font-size="13">Accredited lab</text>
 <text x="502" y="384" font-size="13">Reference standards</text>
 <text x="789" y="462" font-size="13">Power</text>

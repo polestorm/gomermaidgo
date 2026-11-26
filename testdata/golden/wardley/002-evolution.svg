@@ -1,28 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="898.97" height="639.85" viewBox="-64.97 -50.4 898.97 639.85" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-d473bc08"><path d="M-64.97 -50.4 L834 -50.4 L834 589.45 L-64.97 589.45 M598.54 278.2 L598.54 295.1 L631.46 295.1 L631.46 278.2 M664 111.65 L664 128.55 L788.68 128.55 L788.68 111.65 M360.88 32 L360.88 52.8 L459.12 52.8 L459.12 32 M377 111.65 L377 128.55 L501.68 128.55 L501.68 111.65 M551 179.65 L551 196.55 L635.22 196.55 L635.22 179.65 M705 345.65 L705 362.55 L753.08 362.55 L753.08 345.65 M414.68 250.65 L414.68 267.55 L487.32 267.55 L487.32 250.65 M618.22 250.65 L618.22 267.55 L693.78 267.55 L693.78 250.65"/></clipPath></defs>
 <g fill="#dfe4ea" stroke="#55657a" stroke-width="1">
 <polygon points="369,117 382,139.75 356,139.75"/>
 <polygon points="533,195 546,208 533,221 520,208"/>
 <rect x="686.6" y="353.6" width="20.8" height="20.8"/>
 </g>
-<line x1="0" y1="520" x2="0" y2="0" stroke="#3b4754" stroke-width="1.5"/>
-<polygon points="0,-2 5,8 -5,8" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<line x1="0" y1="520" x2="820" y2="520" stroke="#3b4754" stroke-width="1.5"/>
-<polygon points="822,520 812,525 812,515" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<g stroke="#c3cad3" stroke-width="1" stroke-dasharray="4 4">
+<g stroke="#3b4754" stroke-width="1.5">
+<line x1="0" y1="520" x2="0" y2="0"/>
+<line x1="0" y1="520" x2="820" y2="520"/>
+</g>
+<g stroke="#8a96a3" stroke-width="1.25" stroke-dasharray="5 4">
 <line x1="205" y1="0" x2="205" y2="520"/>
+<g clip-path="url(#label-holes-d473bc08)">
 <line x1="410" y1="0" x2="410" y2="520"/>
 <line x1="615" y1="0" x2="615" y2="520"/>
 </g>
-<g fill="none" stroke="#55657a" stroke-width="1">
-<rect x="435" y="222" width="237" height="24"/>
-<line x1="533" y1="214" x2="533" y2="222"/>
 </g>
+<line x1="533" y1="214" x2="533" y2="222" stroke="#55657a" stroke-width="1"/>
+<g clip-path="url(#label-holes-d473bc08)">
 <line x1="405.79" y1="50.67" x2="371.52" y2="124.56" stroke="#55657a" stroke-width="1.2"/>
+</g>
 <line x1="374.42" y1="132.58" x2="527.58" y2="205.42" stroke="#55657a" stroke-width="1.2" stroke-dasharray="5 4"/>
-<polygon points="527.58,205.42 516.4,205.64 520.7,196.61" fill="#55657a" stroke="#55657a" stroke-width="1"/>
+<g clip-path="url(#label-holes-d473bc08)">
 <line x1="537.35" y1="212.14" x2="692.65" y2="359.86" stroke="#55657a" stroke-width="1.2"/>
-<polygon points="692.65,359.86 681.96,356.6 688.85,349.35" fill="#55657a" stroke="#55657a" stroke-width="1"/>
 <line x1="375" y1="130" x2="648" y2="130" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="6 4"/>
+</g>
+<g fill="#3b4754" stroke="#3b4754" stroke-width="1">
+<polygon points="0,-2 5,8 -5,8"/>
+<polygon points="822,520 812,525 812,515"/>
+</g>
+<g stroke="#55657a" stroke-width="1">
+<rect x="435" y="222" width="237" height="24" fill="none"/>
+<polygon points="527.58,205.42 516.4,205.64 520.7,196.61" fill="#55657a"/>
+<polygon points="692.65,359.86 681.96,356.6 688.85,349.35" fill="#55657a"/>
+</g>
 <polygon points="648,130 638,135 638,125" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <circle cx="656" cy="130" r="6" fill="#ffffff" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 2"/>
 <rect x="385" y="119" width="5" height="22" fill="#3b4754"/>
@@ -35,7 +46,7 @@
 </g>
 <circle cx="369" cy="130" r="9" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
 <polygon points="388.78,299 503.22,299 513.22,312 503.22,325 388.78,325" fill="#eef2f7" stroke="#55657a" stroke-width="1"/>
-<rect x="41" y="494" width="191.6" height="28.25" fill="#ffffff" stroke="#c3cad3" stroke-width="1"/>
+<rect x="41" y="494" width="191.6" height="28.25" fill="#ffffff" stroke="#8a96a3" stroke-width="1"/>
 <text x="410" y="-20" text-anchor="middle" font-size="18.4" font-weight="bold" fill="#1b1f24">Zmiana dostawcy oprogramowania</text>
 <text x="-10" y="260" text-anchor="middle" font-size="13" fill="#55657a" transform="rotate(-90 -10 260)">Value chain</text>
 <g fill="#55657a" text-anchor="end">
@@ -48,9 +59,8 @@
 <text x="307.5" y="539.7" font-size="13" font-weight="bold">Na zamowienie</text>
 <text x="512.5" y="539.7" font-size="13" font-weight="bold">Produkt</text>
 <text x="717.5" y="539.7" font-size="13" font-weight="bold">Usluga</text>
+<text x="615" y="290.55" font-size="13" font-style="italic">dane</text>
 </g>
-<rect x="597.54" y="277.55" width="34.92" height="16.9" fill="#ffffff"/>
-<text x="615" y="290.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">dane</text>
 <text x="666" y="124" font-size="13" font-style="italic" fill="#3b4754">Rejestr niezgodności</text>
 <text x="410" y="47.2" text-anchor="middle" font-weight="bold" fill="#1b1f24">Dział jakości</text>
 <g fill="#1b1f24">
