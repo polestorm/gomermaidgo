@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1317.69" height="346" viewBox="-12 -12 1317.69 346" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Rejestr reklamacji</title>
+<g fill="#f3f5f8">
+<rect x="0" y="0" width="94.1" height="86"/>
+<rect x="0" y="86" width="94.1" height="118"/>
+</g>
+<line x1="0" y1="86" x2="1293.69" y2="86" stroke="#c3cad3" stroke-width="1"/>
+<rect x="0" y="204" width="94.1" height="118" fill="#f3f5f8"/>
+<g fill="none" stroke="#c3cad3" stroke-width="1">
+<line x1="0" y1="204" x2="1293.69" y2="204"/>
+<rect x="0" y="0" width="1293.69" height="322"/>
+<line x1="94.1" y1="0" x2="94.1" y2="322"/>
+</g>
+<line x1="267.1" y1="188" x2="316.67" y2="216.06" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="323.63,220 312.47,219.43 317.39,210.72" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="495.02" y1="263" x2="523.02" y2="263" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="531.02,263 521.02,268 521.02,258" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="702.08" y1="263" x2="730.08" y2="263" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="738.08,263 728.08,268 728.08,258" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="495.02" y1="245.32" x2="957.06" y2="159.69" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="964.93,158.23 956.01,164.97 954.19,155.13" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="702.08" y1="238.96" x2="957.23" y2="167.23" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="964.93,165.07 956.66,172.59 953.95,162.96" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="907.41" y1="220" x2="982.99" y2="176.02" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="989.91,172 983.78,181.35 978.75,172.71" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="1081.94" y1="118" x2="1156.18" y2="74.07" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="1163.06,70 1157,79.4 1151.91,70.79" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
+<rect x="114.1" y="102" width="154.07" height="86" rx="4"/>
+<rect x="304.17" y="220" width="190.85" height="86" rx="10"/>
+<rect x="531.02" y="236" width="171.06" height="54" rx="10"/>
+<rect x="738.08" y="220" width="190.85" height="86" rx="10"/>
+<rect x="964.93" y="118" width="142.76" height="54" rx="4"/>
+<rect x="1143.69" y="16" width="130" height="54"/>
+</g>
+<g fill="#55657a">
+<text x="12" y="39.55" font-size="13">UI</text>
+<text x="12" y="55.55" font-size="13">Automation</text>
+<text x="12" y="141.55" font-size="13">Command</text>
+<text x="12" y="157.55" font-size="13">Read model</text>
+<text x="12" y="267.55" font-size="13">Events</text>
+</g>
+<text x="191.13" y="122.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">command</text>
+<text x="191.13" y="141.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">ZglosReklamacje</text>
+<g fill="#1b1f24">
+<text x="126.1" y="158.55" font-size="13">klient: string</text>
+<text x="126.1" y="174.55" font-size="13">wyrob: string</text>
+</g>
+<text x="399.6" y="240.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">event</text>
+<text x="399.6" y="259.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">ReklamacjaZgloszona</text>
+<g fill="#1b1f24">
+<text x="316.17" y="276.55" font-size="13">klient: Fabryka okien</text>
+<text x="316.17" y="292.55" font-size="13">kwota: 1250.5</text>
+</g>
+<text x="616.55" y="256.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">event</text>
+<text x="616.55" y="275.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">ReklamacjaUznana</text>
+<text x="833.51" y="240.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">event</text>
+<text x="833.51" y="259.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">ReklamacjaZgloszona</text>
+<g fill="#1b1f24">
+<text x="750.08" y="276.55" font-size="13">klient: Huta</text>
+<text x="750.08" y="292.55" font-size="13">kwota: 300</text>
+</g>
+<text x="1036.31" y="138.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">readmodel</text>
+<text x="1036.31" y="157.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">ListaReklamacji</text>
+<text x="1208.69" y="36.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">ui</text>
+<text x="1208.69" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">PanelJakosci</text>
+</svg>

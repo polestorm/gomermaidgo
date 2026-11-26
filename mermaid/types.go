@@ -4,6 +4,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/architecture"
 	"github.com/polestorm/gomermaidgo/internal/block"
 	"github.com/polestorm/gomermaidgo/internal/cynefin"
+	"github.com/polestorm/gomermaidgo/internal/eventmodeling"
 	"github.com/polestorm/gomermaidgo/internal/gitgraph"
 	"github.com/polestorm/gomermaidgo/internal/ishikawa"
 	"github.com/polestorm/gomermaidgo/internal/kanban"
@@ -35,6 +36,7 @@ const (
 	TypeCynefin      = "cynefin"
 	TypeZenUML       = "zenuml"
 	TypeWardley      = "wardley"
+	TypeEventModel   = "eventmodeling"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -154,5 +156,12 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return wardley.Layout(m, wardley.Options(o)), nil
+	}},
+	{TypeEventModel, []string{"eventmodeling"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		m, err := eventmodeling.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return eventmodeling.Layout(m, eventmodeling.Options(o)), nil
 	}},
 }

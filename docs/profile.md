@@ -669,6 +669,22 @@ default stages Genesis, Custom built, Product (+ rental), Commodity (+ utility) 
 names may contain any letters; the positions of `annotations` and `annotation` are read as [visibility, evolution]
 like all other positions; overlapping labels are not moved.
 
+## Event model (`eventmodeling`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| time frame | `tf 01 cmd Name`, `timeframe 01 command Name`; types `ui`, `pcr`/`processor`, `cmd`/`command`, `rmo`/`readmodel`, `evt`/`event` | EVM-002 |
+| namespace | `Namespace.Name` | EVM-002 |
+| data | inline `{ key: value, … }`, reference `[[Block]]` to `data Block { … }`, optional type in backticks | EVM-003 |
+| reset frame | `rf 05 …`, `resetframe 05 …` | EVM-003 |
+| explicit relation | `->> 02`, several in a row | EVM-003 |
+| accessibility | `accTitle`, `accDescr` | EVM-001 |
+
+Deliberate differences from Mermaid: an own look (lanes with a header column, one column per frame, elements with
+their type, name and data; the type is also told by the shape; neutral by default, `WithColors` gives the usual Event
+Modeling colours); relations are straight arrows; data types (`json`, `figma` and others) are accepted and not
+interpreted, as in Mermaid.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |

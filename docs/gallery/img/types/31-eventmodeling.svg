@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1389.44" height="314" viewBox="-12 -12 1389.44 314" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-12" y="-12" width="1389.44" height="314" fill="white"/>
+<g fill="#f3f5f8">
+<rect x="0" y="0" width="94.1" height="86"/>
+<rect x="0" y="86" width="94.1" height="118"/>
+</g>
+<line x1="0" y1="86" x2="1365.44" y2="86" stroke="#c3cad3" stroke-width="1"/>
+<rect x="0" y="204" width="94.1" height="86" fill="#f3f5f8"/>
+<g fill="none" stroke="#c3cad3" stroke-width="1">
+<line x1="0" y1="204" x2="1365.44" y2="204"/>
+<rect x="0" y="0" width="1365.44" height="290"/>
+<line x1="94.1" y1="0" x2="94.1" y2="290"/>
+</g>
+<line x1="232.13" y1="70" x2="283.04" y2="98.6" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="290.02,102.52 278.85,101.98 283.75,93.26" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="441.28" y1="184.22" x2="503.17" y2="216.32" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="510.27,220 499.09,219.84 503.7,210.96" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="614.28" y1="220" x2="699.52" y2="175.69" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="706.62,172 700.05,181.05 695.44,172.18" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="805.19" y1="118" x2="881.17" y2="74.01" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="888.09,70 881.94,79.34 876.93,70.68" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="978.66" y1="70" x2="1049.96" y2="113.81" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="1056.78,118 1045.64,117.02 1050.88,108.5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="1146.48" y1="172" x2="1220.93" y2="215.93" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="1227.82,220 1216.67,219.22 1221.75,210.61" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
+<rect x="114.1" y="16" width="139.92" height="54"/>
+<rect x="290.02" y="102" width="151.26" height="86" rx="4"/>
+<rect x="477.28" y="220" width="170.12" height="54" rx="10"/>
+<rect x="683.4" y="118" width="150.32" height="54" rx="4"/>
+</g>
+<rect x="869.72" y="16" width="130" height="54" rx="4" fill="#ffffff" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="5 3"/>
+<g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
+<rect x="1035.72" y="118" width="130" height="54" rx="4"/>
+<rect x="1201.72" y="220" width="143.72" height="54" rx="10"/>
+</g>
+<g fill="#55657a">
+<text x="12" y="39.55" font-size="13">UI</text>
+<text x="12" y="55.55" font-size="13">Automation</text>
+<text x="12" y="141.55" font-size="13">Command</text>
+<text x="12" y="157.55" font-size="13">Read model</text>
+<text x="12" y="251.55" font-size="13">Events</text>
+</g>
+<text x="184.06" y="36.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">ui</text>
+<text x="184.06" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">ComplaintForm</text>
+<text x="365.65" y="122.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">command</text>
+<text x="365.65" y="141.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">ReportComplaint</text>
+<g fill="#1b1f24">
+<text x="302.02" y="158.55" font-size="13">customer: string</text>
+<text x="302.02" y="174.55" font-size="13">product: string</text>
+</g>
+<text x="562.34" y="240.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">event</text>
+<text x="562.34" y="259.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">ComplaintReported</text>
+<text x="758.56" y="138.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">readmodel</text>
+<text x="758.56" y="157.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">OpenComplaints</text>
+<text x="934.72" y="36.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">processor</text>
+<text x="934.72" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Notifier</text>
+<text x="1100.72" y="138.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">command</text>
+<text x="1100.72" y="157.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">AssignOwner</text>
+<text x="1273.58" y="240.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">event</text>
+<text x="1273.58" y="259.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">OwnerAssigned</text>
+</svg>

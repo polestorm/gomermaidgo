@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="1138.72" height="572" viewBox="-12 -12 1138.72 572" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<g fill="#f3f5f8">
+<rect x="0" y="0" width="94.1" height="86"/>
+<rect x="0" y="86" width="94.1" height="86"/>
+</g>
+<line x1="0" y1="86" x2="1114.72" y2="86" stroke="#c3cad3" stroke-width="1"/>
+<rect x="0" y="172" width="94.1" height="118" fill="#f3f5f8"/>
+<line x1="0" y1="172" x2="1114.72" y2="172" stroke="#c3cad3" stroke-width="1"/>
+<rect x="0" y="290" width="94.1" height="86" fill="#f3f5f8"/>
+<line x1="0" y1="290" x2="1114.72" y2="290" stroke="#c3cad3" stroke-width="1"/>
+<rect x="0" y="376" width="94.1" height="86" fill="#f3f5f8"/>
+<line x1="0" y1="376" x2="1114.72" y2="376" stroke="#c3cad3" stroke-width="1"/>
+<rect x="0" y="462" width="94.1" height="86" fill="#f3f5f8"/>
+<g fill="none" stroke="#c3cad3" stroke-width="1">
+<line x1="0" y1="462" x2="1114.72" y2="462"/>
+<rect x="0" y="0" width="1114.72" height="548"/>
+<line x1="94.1" y1="0" x2="94.1" y2="548"/>
+</g>
+<line x1="203.06" y1="70" x2="302.47" y2="182.02" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="307.78,188 297.4,183.84 304.88,177.2" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="384.26" y1="274" x2="484.11" y2="386.03" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="489.43,392 479.04,387.86 486.51,381.21" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="568.58" y1="446" x2="626.69" y2="474.48" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="633.88,478 622.7,478.09 627.1,469.11" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="579.21" y1="402.86" x2="790.95" y2="350.87" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="798.72,348.96 790.2,356.2 787.81,346.49" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="716.4" y1="478" x2="830.58" y2="365.61" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="836.29,360 832.67,370.58 825.65,363.45" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="885.69" y1="306" x2="1002.7" y2="162.21" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="1007.75,156 1005.31,166.91 997.56,160.6" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
+<rect x="114.1" y="16" width="130" height="54"/>
+<rect x="280.1" y="188" width="131.68" height="86" rx="4"/>
+<rect x="447.78" y="392" width="131.43" height="54" rx="10"/>
+<rect x="615.21" y="478" width="147.51" height="54" rx="10"/>
+<rect x="798.72" y="306" width="130" height="54" rx="4"/>
+</g>
+<rect x="964.72" y="102" width="130" height="54" rx="4" fill="#ffffff" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="5 3"/>
+<g fill="#55657a">
+<text x="12" y="31.55" font-size="13" font-weight="bold">Magazyn</text>
+<text x="12" y="47.55" font-size="13">UI</text>
+<text x="12" y="63.55" font-size="13">Automation</text>
+<text x="12" y="117.55" font-size="13" font-weight="bold">Jakosc</text>
+<text x="12" y="133.55" font-size="13">UI</text>
+<text x="12" y="149.55" font-size="13">Automation</text>
+<text x="12" y="219.55" font-size="13" font-weight="bold">Magazyn</text>
+<text x="12" y="235.55" font-size="13">Command</text>
+<text x="12" y="251.55" font-size="13">Read model</text>
+<text x="12" y="321.55" font-size="13" font-weight="bold">Jakosc</text>
+<text x="12" y="337.55" font-size="13">Command</text>
+<text x="12" y="353.55" font-size="13">Read model</text>
+<text x="12" y="415.55" font-size="13" font-weight="bold">Magazyn</text>
+<text x="12" y="431.55" font-size="13">Events</text>
+<text x="12" y="501.55" font-size="13" font-weight="bold">Jakosc</text>
+<text x="12" y="517.55" font-size="13">Events</text>
+</g>
+<text x="179.1" y="36.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">ui</text>
+<text x="179.1" y="55.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Ekran</text>
+<text x="345.94" y="208.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">command</text>
+<text x="345.94" y="227.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Przyjmij</text>
+<g fill="#1b1f24">
+<text x="292.1" y="244.55" font-size="13">partia: P-2026-114</text>
+<text x="292.1" y="260.55" font-size="13">ilosc: 250</text>
+</g>
+<text x="513.5" y="412.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">event</text>
+<text x="513.5" y="431.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">TowarPrzyjety</text>
+<text x="688.96" y="498.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">event</text>
+<text x="688.96" y="517.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">KontrolaZlecona</text>
+<text x="863.72" y="326.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">readmodel</text>
+<text x="863.72" y="345.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">DoKontroli</text>
+<text x="1029.72" y="122.55" text-anchor="middle" font-size="13" font-style="italic" fill="#55657a">processor</text>
+<text x="1029.72" y="141.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Kontroler</text>
+</svg>

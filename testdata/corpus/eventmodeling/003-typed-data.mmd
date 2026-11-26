@@ -1,0 +1,20 @@
+%% REQ: EVM-001 EVM-002 EVM-003 EVM-004
+%% Tytuł: Dane z typem i kilka zdarzeń w jednym modelu odczytu
+%% Sprawdza: typ danych w odwrotnych apostrofach (w ramce i w bloku data), wartości liczbowe i w apostrofach, ramka rf w zapisie zwartym, model odczytu zasilany trzema zdarzeniami (->> 02 ->> 03 ->> 04), to samo zdarzenie w dwóch ramkach, accTitle, komentarz.
+eventmodeling
+accTitle: Rejestr reklamacji
+%% trzy zdarzenia zasilają jeden widok
+tf 01 cmd ZglosReklamacje `json`{ klient: string, wyrob: string }
+tf 02 evt ReklamacjaZgloszona [[Zgloszenie01]]
+tf 03 evt ReklamacjaUznana
+tf 04 evt ReklamacjaZgloszona [[Zgloszenie02]]
+rf 05 rmo ListaReklamacji ->> 02 ->> 03 ->> 04
+tf 06 ui PanelJakosci
+data Zgloszenie01 `jsobj` {
+  klient: 'Fabryka okien'
+  kwota: 1250.5
+}
+data Zgloszenie02 {
+  klient: 'Huta'
+  kwota: 300
+}
