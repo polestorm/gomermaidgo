@@ -290,29 +290,32 @@ func identify(c command) (string, string) {
 		return "", ""
 	}
 	sum := sha256.Sum256(b)
-	ver := ""
-	for _, flag := range []string{"--version", "-version"} {
-		out, err := exec.Command(p, flag).Output()
-		if err == nil && len(out) > 0 && len(out) < 200 {
-			ver = strings.TrimSpace(string(out))
-			break
-		}
-	}
-	if ver == "" {
-		if out, err := exec.Command("go", "version", "-m", p).Output(); err == nil {
-			for _, l := range strings.Split(string(out), "\n") {
-				f := strings.Fields(l)
-				switch {
-				case len(f) >= 3 && f[0] == "mod":
-					ver = f[1] + " " + f[2]
-				case len(f) >= 2 && f[0] == "build" && strings.HasPrefix(f[1], "vcs.revision="):
-					ver += " " + strings.TrimPrefix(f[1], "vcs.revision=")[:12]
-				case len(f) >= 2 && f[0] == "build" && f[1] == "vcs.modified=true":
-					ver += " (modified)"
-				}
+	// wersja modułu z informacji o budowie (programy Go), a obok to, co program sam mówi o sobie
+	ver, rev := "", ""
+	if out, err := exec.Command("go", "version", "-m", p).Output(); err == nil {
+		for _, l := range strings.Split(string(out), "\n") {
+			f := strings.Fields(l)
+			switch {
+			case len(f) >= 3 && f[0] == "mod":
+				ver = f[1] + " " + f[2]
+			case len(f) >= 2 && f[0] == "build" && strings.HasPrefix(f[1], "vcs.revision="):
+				rev = strings.TrimPrefix(f[1], "vcs.revision=")
+			case len(f) >= 2 && f[0] == "build" && f[1] == "vcs.modified=true":
+				rev += " (modified)"
 			}
 		}
 	}
+	if strings.HasSuffix(ver, "(devel)") && rev != "" {
+		ver += " " + rev
+	}
+	for _, flag := range []string{"--version", "-version"} {
+		out, err := exec.Command(p, flag).Output()
+		if self := strings.TrimSpace(string(out)); err == nil && self != "" && len(self) < 200 {
+			ver = strings.TrimSpace(ver + "; " + self)
+			break
+		}
+	}
+	ver = strings.TrimPrefix(ver, "; ")
 	return hex.EncodeToString(sum[:]), ver
 }
 
