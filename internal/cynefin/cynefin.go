@@ -148,7 +148,6 @@ const (
 	colorMiddle  = "#f3f5f8"
 	colorArrow   = "#3b4754"
 	colorBadgeBg = "#ffffff"
-	colorLabelBg = "#ffffff"
 )
 
 // names i descriptions to podpisy domen: nazwa, model działania i rodzaj praktyki.
@@ -255,8 +254,9 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	// Granice: pionowa wygięta w prawo u góry i w lewo u dołu (klif), pozioma odwrotnie.
 	bend := u(16)
 	pt := func(x, y float64) scene.Point { return scene.Point{X: x, Y: y} }
+	// Granice leżą na warstwie tła, nad odcieniami domen: podkład podpisu przejścia może je przerwać.
 	curve := func(a, c1, c2, b scene.Point, width float64, role string) {
-		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerShape, Role: role, Fill: "none", Stroke: colorFrame, StrokeWidth: width,
+		sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerBackground, Role: role, Fill: "none", Stroke: colorFrame, StrokeWidth: width,
 			Segments: []scene.Segment{{Cmd: 'M', To: a}, {Cmd: 'C', C1: c1, C2: c2, To: b}}})
 	}
 	curve(pt(0, -qH), pt(bend, -qH*0.66), pt(bend, -qH*0.33), pt(0, 0), 1.5, "cynefin-boundary")
@@ -380,12 +380,26 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 			Points: []scene.Point{b, pt(b.X-tx*head-ty*head*0.45, b.Y-ty*head+tx*head*0.45), pt(b.X-tx*head+ty*head*0.45, b.Y-ty*head-tx*head*0.45)},
 			Fill:   colorArrow, Stroke: colorArrow, StrokeWidth: 1})
 		if t.Label != "" {
-			// Podpis po zewnętrznej stronie łuku, na nieprzezroczystym podkładzie: przykrywa granice domen.
+			// Podpis po zewnętrznej stronie łuku. Granice domen pod nim są przerwane: w trybie
+			// kolorowym podkład to kawałki odcieni domen (ćwiartki dzielą się na osiach, tak jak
+			// tła), więc wygląda jak przezroczysty; w neutralnym to podkład w kolorze tła rysunku,
+			// a przy tle przezroczystym otwór, który wycina linie.
 			w := o.Measure(t.Label, small)
 			reach := math.Abs(nx)*(w/2+u(6)) + math.Abs(ny)*(slh/2+u(4))
 			lx, ly := mx+nx*(off+reach), my+ny*(off+reach)
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "cynefin-transition-label", X: lx - w/2 - u(4), Y: ly - slh/2, W: w + u(8), H: slh, RX: u(3),
-				Fill: colorLabelBg})
+			x0, y0, x1, y1 := lx-w/2-u(4), ly-slh/2, lx+w/2+u(4), ly+slh/2
+			if o.Colors {
+				for _, dom := range domains[:4] {
+					sx, sy := side(dom)
+					px0, px1 := math.Max(x0, math.Min(0, sx*math.Inf(1))), math.Min(x1, math.Max(0, sx*math.Inf(1)))
+					py0, py1 := math.Max(y0, math.Min(0, sy*math.Inf(1))), math.Min(y1, math.Max(0, sy*math.Inf(1)))
+					if px1 > px0 && py1 > py0 {
+						sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "cynefin-transition-label", X: px0, Y: py0, W: px1 - px0, H: py1 - py0, Fill: tones[dom]})
+					}
+				}
+			} else {
+				sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabel, Role: "cynefin-transition-label", X: x0, Y: y0, W: x1 - x0, H: y1 - y0, RX: u(3), Knockout: true})
+			}
 			text(t.Label, lx, ly, small, "middle", false, false, colorText, "cynefin-transition-label")
 		}
 	}

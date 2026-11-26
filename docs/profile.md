@@ -604,7 +604,8 @@ still does not fit stands outside the circles with a leader line to a dot in its
 Deliberate differences from Mermaid: an own look (a framed board with gently bent boundaries, the cliff between
 Clear and Chaotic drawn as a heavier lower half of the vertical boundary, domain text at the outer edges so the middle
 stays free for transitions, items in framed boxes; neutral by default, `WithColors` tints the domains); transitions are
-arcs bent away from the centre with the label on their outer side; the `cynefin` configuration (`width`, `height`,
+arcs bent away from the centre with the label on their outer side, where the domain boundaries are interrupted and
+the label stands on the domain's own tint; the `cynefin` configuration (`width`, `height`,
 `showDomainDescriptions`, `boundaryAmplitude`, `seed`) and its theme variables are outside the profile; an item must be
 quoted; at most 120 items.
 

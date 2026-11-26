@@ -1,12 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="627.56" height="748.62" viewBox="-313.78 -390.31 627.56 748.62" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-1a08d0fc"><path d="M-313.78 -390.31 L313.78 -390.31 L313.78 358.31 L-313.78 358.31 M-205.16 -79.06 L-205.16 -63.06 L-124.16 -63.06 L-124.16 -79.06 M-165.12 125.64 L-165.12 141.64 L-68.97 141.64 L-68.97 125.64"/></clipPath></defs>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
-<rect x="-301.78" y="-346.31" width="603.56" height="692.62" rx="6"/>
 <path d="M0 -346.31 C16 -228.56 16 -114.28 0 0"/>
 <path d="M-301.78 0 C-199.17 16 -99.59 16 0 0"/>
 <path d="M0 0 C99.59 -16 199.17 -16 301.78 0"/>
 </g>
 <path d="M0 0 C-16 114.28 -16 228.56 0 346.31" fill="none" stroke="#3b4754" stroke-width="3.5"/>
-<ellipse cx="0" cy="0" rx="115.63" ry="110.31" fill="#f3f5f8" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<rect x="-301.78" y="-346.31" width="603.56" height="692.62" rx="6" fill="none"/>
+<ellipse cx="0" cy="0" rx="115.63" ry="110.31" fill="#f3f5f8"/>
+</g>
 <g fill="#ffffff" stroke="#9aa5b1" stroke-width="1">
 <rect x="-285.78" y="-272.31" width="204.34" height="62" rx="4"/>
 <rect x="-285.78" y="-204.31" width="176.31" height="26" rx="4"/>
@@ -56,9 +59,7 @@
 <text x="0" y="1.9" font-size="14">Telefon od klienta</text>
 <text x="0" y="33.9" font-size="14">Uwaga z audytu</text>
 <text x="0" y="65.9" font-size="14">+2 more</text>
+<text x="-164.66" y="-66.51" font-size="13">Rozpoznano</text>
+<text x="-117.04" y="138.19" font-size="13">Przepis gotowy</text>
 </g>
-<rect x="-205.16" y="-79.06" width="81" height="16" rx="3" fill="#ffffff"/>
-<text x="-164.66" y="-66.51" text-anchor="middle" font-size="13" fill="#1b1f24">Rozpoznano</text>
-<rect x="-165.12" y="125.64" width="96.15" height="16" rx="3" fill="#ffffff"/>
-<text x="-117.04" y="138.19" text-anchor="middle" font-size="13" fill="#1b1f24">Przepis gotowy</text>
 </svg>

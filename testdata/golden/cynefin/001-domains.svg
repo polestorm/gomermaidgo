@@ -1,12 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="624" height="546" viewBox="-312 -289 624 546" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
-<rect x="-300" y="-245" width="600" height="490" rx="6"/>
 <path d="M0 -245 C16 -161.7 16 -80.85 0 0"/>
 <path d="M-300 0 C-198 16 -99 16 0 0"/>
 <path d="M0 0 C99 -16 198 -16 300 0"/>
 </g>
 <path d="M0 0 C-16 80.85 -16 161.7 0 245" fill="none" stroke="#3b4754" stroke-width="3.5"/>
-<ellipse cx="0" cy="0" rx="115.63" ry="45" fill="#f3f5f8" stroke="#3b4754" stroke-width="1.5"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<rect x="-300" y="-245" width="600" height="490" rx="6" fill="none"/>
+<ellipse cx="0" cy="0" rx="115.63" ry="45" fill="#f3f5f8"/>
+</g>
 <g fill="#ffffff" stroke="#9aa5b1" stroke-width="1">
 <rect x="-284" y="-171" width="185.63" height="26" rx="4"/>
 <rect x="-284" y="-139" width="172.42" height="26" rx="4"/>

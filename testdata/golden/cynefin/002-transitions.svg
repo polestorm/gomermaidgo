@@ -1,14 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="624" height="450" viewBox="-312 -225 624 450" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Przejścia między domenami Cynefin</title>
 <desc>Jak zmienia się charakter problemu w trakcie wdrażania normy</desc>
+<defs><clipPath id="label-holes-17310d08"><path d="M-312 -225 L312 -225 L312 225 L-312 225 M-64.69 -123 L-64.69 -107 L64.69 -107 L64.69 -123 M151 -8 L151 8 L267.4 8 L267.4 -8 M-64.71 107 L-64.71 123 L64.71 123 L64.71 107 M-279.7 -8 L-279.7 8 L-151 8 L-151 -8"/></clipPath></defs>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
-<rect x="-300" y="-213" width="600" height="426" rx="6"/>
+<g clip-path="url(#label-holes-17310d08)">
 <path d="M0 -213 C16 -140.58 16 -70.29 0 0"/>
 <path d="M-300 0 C-198 16 -99 16 0 0"/>
 <path d="M0 0 C99 -16 198 -16 300 0"/>
 </g>
+</g>
+<g clip-path="url(#label-holes-17310d08)">
 <path d="M0 0 C-16 70.29 -16 140.58 0 213" fill="none" stroke="#3b4754" stroke-width="3.5"/>
-<ellipse cx="0" cy="0" rx="75" ry="45" fill="#f3f5f8" stroke="#3b4754" stroke-width="1.5"/>
+</g>
+<g stroke="#3b4754" stroke-width="1.5">
+<rect x="-300" y="-213" width="600" height="426" rx="6" fill="none"/>
+<ellipse cx="0" cy="0" rx="75" ry="45" fill="#f3f5f8"/>
+</g>
 <g fill="#ffffff" stroke="#9aa5b1" stroke-width="1">
 <rect x="-284" y="-139" width="191.05" height="26" rx="4"/>
 <rect x="133.37" y="-139" width="150.63" height="26" rx="4"/>
@@ -45,13 +52,11 @@
 <text x="284" y="173.55" font-size="13" font-style="italic">Sense – Categorise – Respond</text>
 </g>
 <text x="284" y="192.6" text-anchor="end" font-weight="bold" fill="#1b1f24">Clear</text>
-<text x="0" y="5.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Confusion</text>
-<rect x="-64.69" y="-123" width="129.38" height="16" rx="3" fill="#ffffff"/>
-<text x="0" y="-110.45" text-anchor="middle" font-size="13" fill="#1b1f24">Wzorzec rozpoznany</text>
-<rect x="151" y="-8" width="116.4" height="16" rx="3" fill="#ffffff"/>
-<text x="209.2" y="4.55" text-anchor="middle" font-size="13" fill="#1b1f24">Procedura spisana</text>
-<rect x="-64.71" y="107" width="129.42" height="16" rx="3" fill="#ffffff"/>
-<text x="0" y="119.55" text-anchor="middle" font-size="13" fill="#1b1f24">Rutyna i zaniedbanie</text>
-<rect x="-279.7" y="-8" width="128.7" height="16" rx="3" fill="#ffffff"/>
-<text x="-215.35" y="4.55" text-anchor="middle" font-size="13" fill="#1b1f24">Sytuacja opanowana</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="0" y="5.6" font-weight="bold">Confusion</text>
+<text x="0" y="-110.45" font-size="13">Wzorzec rozpoznany</text>
+<text x="209.2" y="4.55" font-size="13">Procedura spisana</text>
+<text x="0" y="119.55" font-size="13">Rutyna i zaniedbanie</text>
+<text x="-215.35" y="4.55" font-size="13">Sytuacja opanowana</text>
+</g>
 </svg>
