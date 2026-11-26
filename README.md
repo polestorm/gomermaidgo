@@ -52,7 +52,7 @@ which, like this library, has its own parsers and layout.
 | SVG output[^size] | 0.19 MB 🥇 | 11.8 MB | 0.20 MB |
 | PNG output | 2.4 MB | 2.1 MB | 1.9 MB 🥇 |
 | PDF output | 1.7 MB 🥇 | 13.0 MB | no PDF |
-| Diagram types[^types] | 32 of Mermaid's 33 | 33 🥇 | 20 |
+| Diagram types[^types] | 33 of Mermaid's 33 🥇 | 33 🥇 | 20 |
 | Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts | a documented subset per type |
 | Public diagrams[^wild] | 138 of 139 | 137 of 139 | 123 of 139 |
 | Look | own, made for print; neutral by default | Mermaid's, byte for byte | own; Mermaid's theme names |
@@ -80,10 +80,10 @@ checksum, and the commands, method and raw results are in [`docs/benchmarks.md`]
     ([method](docs/benchmarks.md#what-the-numbers-mean)), but neither documents it.
 [^size]: Total size of the files written for the same diagrams: 63 for SVG and PNG, 87 for PDF.
 [^pop]: Stars and forks on 2026-11-23.
-[^types]: Mermaid 12.2 recognises 33 diagram types, `zenuml` among them as a separate add-on. Not drawn here
-    yet: `railroad` (Mermaid 11.16, beta), which is planned. go-mermaid lists 20 types (`-list-types`); of those
-    drawn here it lacks `architecture-beta`, `treemap-beta`, `ishikawa-beta`, `swimlane-beta`, `treeView-beta`,
-    `venn-beta`, `cynefin-beta`, `usecase-beta`, `zenuml`, `wardley-beta`, `eventmodeling` and `agentflow`.
+[^types]: Mermaid 12.2 recognises 33 diagram types, `zenuml` among them as a separate add-on; all of them are drawn
+    here. go-mermaid lists 20 types (`-list-types`); of those drawn here it lacks `architecture-beta`,
+    `treemap-beta`, `ishikawa-beta`, `swimlane-beta`, `treeView-beta`, `venn-beta`, `cynefin-beta`,
+    `usecase-beta`, `zenuml`, `wardley-beta`, `eventmodeling`, `agentflow` and the `railroad` diagrams.
 [^wild]: 168 blocks marked `mermaid` in public GitHub repositories, pinned to commits in
     [`testdata/wild/sources.tsv`](testdata/wild/sources.tsv) and fetched by `go run ./tools/wildcorpus`; 29 are
     rejected by all three programs (fragments without a diagram header, or not Mermaid at all), which leaves 139.
@@ -108,14 +108,14 @@ from 1770 × 404 to 631 × 756.</td>
 </table>
 
 More in the [gallery](docs/gallery/README.md): [page fitting](docs/gallery/page-fitting.md) with and without each
-option, [all 32 diagram types](docs/gallery/types.md), and [scripts and symbols](docs/gallery/scripts.md).
+option, [all 33 diagram types](docs/gallery/types.md), and [scripts and symbols](docs/gallery/scripts.md).
 
 ## Diagram types
 
 Status: early. Drawn: `flowchart`/`graph`, `sequenceDiagram`, `classDiagram`, `stateDiagram-v2`, `erDiagram`,
 `gantt`, `pie`, `journey`, `gitGraph`, `mindmap`, `timeline`, `quadrantChart`, `xychart-beta`, `sankey-beta`,
 `requirementDiagram`, C4 diagrams, `block-beta`, `packet-beta`, `kanban`, `architecture-beta`, `radar-beta`,
-`treemap-beta`, `ishikawa-beta`, `swimlane-beta`, `treeView-beta`, `venn-beta`, `cynefin-beta`, `usecase-beta`, `zenuml`, `wardley-beta`, `eventmodeling` and `agentflow`; one example of each is in the
+`treemap-beta`, `ishikawa-beta`, `swimlane-beta`, `treeView-beta`, `venn-beta`, `cynefin-beta`, `usecase-beta`, `zenuml`, `wardley-beta`, `eventmodeling`, `agentflow` and the `railroad` diagrams; one example of each is in the
 [gallery](docs/gallery/types.md). Graphs use a layered layout written from the published algorithms. The supported
 syntax and its current limits are listed in [`docs/profile.md`](docs/profile.md); a construct outside it is an error
 with a line number, never a partial drawing.

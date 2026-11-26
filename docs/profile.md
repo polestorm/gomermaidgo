@@ -702,6 +702,22 @@ dashed outline; a connector is a pill joined to the tools that refer to it by a 
 a subroutine box; the per-container `algorithm` and edge animation are accepted and not drawn; the semantic model and
 diagnostics are not produced.
 
+## Railroad diagram (`railroad-ebnf-beta`, `railroad-abnf-beta`, `railroad-peg-beta`, `railroad-beta`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| header and rules | one of the four headers (also without `-beta`), `title`, rules ending in `;` on one or several lines | RAIL-001 |
+| EBNF | `=` or `::=`, `"x"` `'x'`, names, sequence by spaces or commas, `|`, `A?` `[A]`, `A*` `{A}`, `A+`, `( )`, `A - B`, `? text ?`, `/* */`, `(* *)` | RAIL-002 |
+| ABNF | `=`, `/`, `*A`, `1*A`, `n*mA`, `nA`, `[A]`, `( )`, `%x41`, `%x30-39`; `;` ends the rule and starts a comment | RAIL-003 |
+| PEG | `<-`, `/`, `?` `*` `+`, `&A`, `!A`, `.`, `[a-z]`, `#` comments | RAIL-003 |
+| constructors | `terminal`, `nonterminal`, `special`, `sequence`, `choice`, `optional`, `zeroOrMore`, `oneOrMore` | RAIL-004 |
+| accessibility | `accTitle`, `accDescr` | RAIL-001 |
+
+Deliberate differences from Mermaid: an own look (start dot and end ring, terminals in rounded boxes, non-terminals in
+rectangles, special sequences, exceptions, predicates and "any character" in italic hexagons; a repetition loop has an
+arrow and, for ABNF counts, a label such as "2–4×"); the first branch of a choice stays on the track; the `railroad`
+configuration block is outside the profile.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |

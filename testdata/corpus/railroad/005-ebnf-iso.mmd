@@ -1,0 +1,12 @@
+%% REQ: RAIL-001 RAIL-002 RAIL-005
+%% Tytuł: EBNF w stylu ISO 14977 z wyjątkiem i sekwencją specjalną
+%% Sprawdza: przecinki w sekwencji, [ ] opcja, { } powtórzenie, komentarze (* *) i /* */, przypisanie ::=, wyjątek A - B, sekwencja specjalna ? … ?, apostrofy w terminalu, reguła w kilku liniach, accTitle.
+railroad-ebnf-beta
+accTitle: Identyfikator dokumentu
+(* identyfikator z prefiksem *)
+identyfikator = litera , { litera | cyfra | '_' } , [ '#' , numer ] ;
+litera = ? dowolna litera Unicode ? ;
+cyfra ::= "0" | "1" | "2" ;  /* skrócone */
+numer = cyfra , { cyfra }
+      , [ '.' , cyfra ] ;
+znak = ? dowolny znak ? - '"' ;

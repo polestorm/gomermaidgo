@@ -3,7 +3,7 @@
 One diagram of each type this library draws, in its default neutral look (`WithColors` adds colour).
 Each section links the Mermaid source of its picture.
 
-[Flowchart](#flowchart) · [Sequence diagram](#sequence-diagram) · [Class diagram](#class-diagram) · [State diagram](#state-diagram) · [Entity relationship diagram](#entity-relationship-diagram) · [Gantt chart](#gantt-chart) · [Pie chart](#pie-chart) · [User journey](#user-journey) · [Git graph](#git-graph) · [Mind map](#mind-map) · [Timeline](#timeline) · [Quadrant chart](#quadrant-chart) · [XY chart](#xy-chart) · [Sankey diagram](#sankey-diagram) · [Requirement diagram](#requirement-diagram) · [C4 diagram](#c4-diagram) · [Block diagram](#block-diagram) · [Packet diagram](#packet-diagram) · [Kanban board](#kanban-board) · [Architecture diagram](#architecture-diagram) · [Radar chart](#radar-chart) · [Treemap](#treemap) · [Ishikawa (cause and effect) diagram](#ishikawa-cause-and-effect-diagram) · [Swimlane diagram](#swimlane-diagram) · [Tree view](#tree-view) · [Venn diagram](#venn-diagram) · [Cynefin map](#cynefin-map) · [Use case diagram](#use-case-diagram) · [ZenUML sequence diagram](#zenuml-sequence-diagram) · [Wardley map](#wardley-map) · [Event model](#event-model) · [Agent flow](#agent-flow)
+[Flowchart](#flowchart) · [Sequence diagram](#sequence-diagram) · [Class diagram](#class-diagram) · [State diagram](#state-diagram) · [Entity relationship diagram](#entity-relationship-diagram) · [Gantt chart](#gantt-chart) · [Pie chart](#pie-chart) · [User journey](#user-journey) · [Git graph](#git-graph) · [Mind map](#mind-map) · [Timeline](#timeline) · [Quadrant chart](#quadrant-chart) · [XY chart](#xy-chart) · [Sankey diagram](#sankey-diagram) · [Requirement diagram](#requirement-diagram) · [C4 diagram](#c4-diagram) · [Block diagram](#block-diagram) · [Packet diagram](#packet-diagram) · [Kanban board](#kanban-board) · [Architecture diagram](#architecture-diagram) · [Radar chart](#radar-chart) · [Treemap](#treemap) · [Ishikawa (cause and effect) diagram](#ishikawa-cause-and-effect-diagram) · [Swimlane diagram](#swimlane-diagram) · [Tree view](#tree-view) · [Venn diagram](#venn-diagram) · [Cynefin map](#cynefin-map) · [Use case diagram](#use-case-diagram) · [ZenUML sequence diagram](#zenuml-sequence-diagram) · [Wardley map](#wardley-map) · [Event model](#event-model) · [Agent flow](#agent-flow) · [Railroad diagram](#railroad-diagram)
 
 ## Flowchart
 
@@ -196,3 +196,9 @@ Each section links the Mermaid source of its picture.
 `agentflow`, source: [`src/types/32-agentflow.mmd`](src/types/32-agentflow.mmd)
 
 ![Agent flow](img/types/32-agentflow.svg)
+
+## Railroad diagram
+
+`railroad-ebnf-beta`, source: [`src/types/33-railroad.mmd`](src/types/33-railroad.mmd)
+
+![Railroad diagram](img/types/33-railroad.svg)

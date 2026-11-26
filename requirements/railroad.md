@@ -1,0 +1,10 @@
+# Wymagania: diagram składni (railroad)
+
+
+| Id | Wymaganie |
+|---|---|
+| RAIL-001 | Źródło zaczynające się od `railroad-ebnf-beta`, `railroad-abnf-beta`, `railroad-peg-beta` albo `railroad-beta` (także bez `-beta`) daje diagram składni w danej notacji. `title` dodaje tytuł; `accTitle` i `accDescr` trafiają do `title` i `desc`; komentarze `%%` są pomijane. Każda reguła kończy się `;` i może zajmować kilka linii. |
+| RAIL-002 | EBNF: `nazwa = wyrażenie ;` albo `::=`; terminale w cudzysłowie albo apostrofach, nieterminale jako nazwy; sekwencja odstępami albo przecinkami (ISO 14977); wybór `|`; opcja `A?` albo `[ A ]`; zero lub więcej `A*` albo `{ A }`; jeden lub więcej `A+`; grupa `( … )`; wyjątek `A - B`; sekwencja specjalna `? opis ?`; komentarze `/* … */` i `(* … *)`. |
+| RAIL-003 | ABNF: `nazwa = wyrażenie ;`, alternatywa `/`, powtórzenia `*A`, `1*A`, `n*mA`, `nA`, opcja `[ A ]`, grupa, napisy i wartości liczbowe `%x41`, `%d65`, `%b1000001` z zakresami `%x30-39`; średnik kończy regułę, a reszta jego linii jest komentarzem. PEG: `Nazwa <- wyrażenie ;`, wybór uporządkowany `/`, przyrostki `?`, `*`, `+`, predykaty `&A` i `!A`, `.`, klasy znaków `[a-z]`, komentarze `#`. |
+| RAIL-004 | `railroad-beta`: `nazwa = konstruktor ;` z konstruktorami `terminal("x")`, `nonterminal("x")`, `special("x")`, `sequence(…)`, `choice(…)`, `optional(a)`, `zeroOrMore(a)`, `oneOrMore(a)`. |
+| RAIL-005 | Rysunek: reguły jedna pod drugą, nazwa reguły nad torem od pełnego kółka początku do pustego kółka końca; terminale w zaokrąglonych polach, nieterminale w prostokątach, sekwencje specjalne (także wyjątek, predykat i dowolny znak) w sześciokątach kursywą; wybór i opcja rozgałęziają tor łukami, powtórzenie wraca pętlą ze strzałką pod elementem (z podpisem liczby powtórzeń w ABNF), zero lub więcej ma też obejście nad elementem. Błąd składni daje błąd z numerem linii i stałym kodem: zły nagłówek, brak reguł, reguła bez nazwy, przypisania albo `;`, niezamknięty napis, komentarz albo nawias, nieznany konstruktor, przekroczenie limitów (100 reguł, 2000 elementów, 40 poziomów zagnieżdżenia). |

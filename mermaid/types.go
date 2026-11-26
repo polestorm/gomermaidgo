@@ -10,6 +10,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/kanban"
 	"github.com/polestorm/gomermaidgo/internal/packet"
 	"github.com/polestorm/gomermaidgo/internal/radar"
+	"github.com/polestorm/gomermaidgo/internal/railroad"
 	"github.com/polestorm/gomermaidgo/internal/sankey"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/sequence"
@@ -37,6 +38,7 @@ const (
 	TypeZenUML       = "zenuml"
 	TypeWardley      = "wardley"
 	TypeEventModel   = "eventmodeling"
+	TypeRailroad     = "railroad"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -164,4 +166,12 @@ var moreTypes = []diagramType{
 		}
 		return eventmodeling.Layout(m, eventmodeling.Options(o)), nil
 	}},
+	{TypeRailroad, []string{"railroad-beta", "railroad-ebnf-beta", "railroad-abnf-beta", "railroad-peg-beta", "railroad", "railroad-ebnf", "railroad-abnf", "railroad-peg"},
+		func(source string, o layoutOptions) (*scene.Scene, error) {
+			d, err := railroad.Parse(source)
+			if err != nil {
+				return nil, err
+			}
+			return railroad.Layout(d, railroad.Options(o)), nil
+		}},
 }

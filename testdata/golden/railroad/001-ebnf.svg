@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="485.92" height="953.56" viewBox="-12 -11.56 485.92 953.56" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<circle cx="8" cy="77" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 77 L28 77" fill="none"/>
+<rect x="28" y="62" width="67.58" height="30" rx="2" fill="#eef2f7"/>
+<path d="M95.58 77 L111.58 77" fill="none"/>
+<rect x="111.58" y="62" width="29.33" height="30" rx="15" fill="#ffffff"/>
+<path d="M140.91 77 L156.91 77" fill="none"/>
+<rect x="156.91" y="62" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M215.58 77 L231.58 77" fill="none"/>
+<rect x="231.58" y="62" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M290.25 77 L306.25 77" fill="none"/>
+<path d="M306.25 77 L326.25 77" fill="none"/>
+<path d="M326.25 77 L436.92 77" fill="none"/>
+<path d="M306.25 77 C311.77 77 316.25 81.48 316.25 87 L316.25 94 C316.25 99.52 320.73 104 326.25 104" fill="none"/>
+<rect x="326.25" y="89" width="28.45" height="30" rx="15" fill="#ffffff"/>
+<path d="M354.7 104 L370.7 104" fill="none"/>
+<rect x="370.7" y="89" width="46.23" height="30" rx="2" fill="#eef2f7"/>
+<path d="M416.92 104 L416.92 104 C422.44 104 426.92 99.52 426.92 94 L426.92 87 C426.92 81.48 431.4 77 436.92 77" fill="none"/>
+<path d="M436.92 77 L451.92 77" fill="none"/>
+<circle cx="456.92" cy="77" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="184" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 184 L28 184" fill="none"/>
+<path d="M28 184 L48 184" fill="none"/>
+<rect x="48" y="169" width="46.23" height="30" rx="15" fill="#ffffff"/>
+<path d="M94.23 184 L114.23 184" fill="none"/>
+<path d="M28 184 C33.52 184 38 188.48 38 194 L38 216 C38 221.52 42.48 226 48 226" fill="none"/>
+<rect x="48" y="211" width="40" height="30" rx="15" fill="#ffffff"/>
+<path d="M88 226 L94.23 226 C99.75 226 104.23 221.52 104.23 216 L104.23 194 C104.23 188.48 108.7 184 114.23 184" fill="none"/>
+<path d="M28 184 C33.52 184 38 188.48 38 194 L38 258 C38 263.52 42.48 268 48 268" fill="none"/>
+<rect x="48" y="253" width="33.77" height="30" rx="15" fill="#ffffff"/>
+<path d="M81.77 268 L94.23 268 C99.75 268 104.23 263.52 104.23 258 L104.23 194 C104.23 188.48 108.7 184 114.23 184" fill="none"/>
+<path d="M114.23 184 L129.23 184" fill="none"/>
+<circle cx="134.23" cy="184" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="348" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 348 L28 348" fill="none"/>
+<rect x="28" y="333" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M86.67 348 L102.67 348" fill="none"/>
+<rect x="102.67" y="333" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M161.34 348 L177.34 348" fill="none"/>
+<rect x="177.34" y="333" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M236.02 348 L252.02 348" fill="none"/>
+<rect x="252.02" y="333" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M310.69 348 L325.69 348" fill="none"/>
+<circle cx="330.69" cy="348" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="428" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 428 L28 428" fill="none"/>
+<path d="M28 428 L48 428" fill="none"/>
+<rect x="48" y="413" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 428 L100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 460 C38 465.52 42.48 470 48 470" fill="none"/>
+<rect x="48" y="455" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 470 L80.9 470 C86.42 470 90.9 465.52 90.9 460 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 502 C38 507.52 42.48 512 48 512" fill="none"/>
+<rect x="48" y="497" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 512 L80.9 512 C86.42 512 90.9 507.52 90.9 502 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 544 C38 549.52 42.48 554 48 554" fill="none"/>
+<rect x="48" y="539" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 554 L80.9 554 C86.42 554 90.9 549.52 90.9 544 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 586 C38 591.52 42.48 596 48 596" fill="none"/>
+<rect x="48" y="581" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 596 L80.9 596 C86.42 596 90.9 591.52 90.9 586 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 628 C38 633.52 42.48 638 48 638" fill="none"/>
+<rect x="48" y="623" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 638 L80.9 638 C86.42 638 90.9 633.52 90.9 628 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 670 C38 675.52 42.48 680 48 680" fill="none"/>
+<rect x="48" y="665" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 680 L80.9 680 C86.42 680 90.9 675.52 90.9 670 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 712 C38 717.52 42.48 722 48 722" fill="none"/>
+<rect x="48" y="707" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 722 L80.9 722 C86.42 722 90.9 717.52 90.9 712 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 754 C38 759.52 42.48 764 48 764" fill="none"/>
+<rect x="48" y="749" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 764 L80.9 764 C86.42 764 90.9 759.52 90.9 754 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M28 428 C33.52 428 38 432.48 38 438 L38 796 C38 801.52 42.48 806 48 806" fill="none"/>
+<rect x="48" y="791" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 806 L80.9 806 C86.42 806 90.9 801.52 90.9 796 L90.9 438 C90.9 432.48 95.38 428 100.9 428" fill="none"/>
+<path d="M100.9 428 L115.9 428" fill="none"/>
+<circle cx="120.9" cy="428" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="898" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 898 L28 898" fill="none"/>
+<rect x="28" y="883" width="69.35" height="30" rx="2" fill="#eef2f7"/>
+<path d="M97.35 898 L113.35 898" fill="none"/>
+<path d="M113.35 898 L133.35 898" fill="none"/>
+<rect x="133.35" y="883" width="28.45" height="30" rx="15" fill="#ffffff"/>
+<path d="M161.8 898 L177.8 898" fill="none"/>
+<rect x="177.8" y="883" width="69.35" height="30" rx="2" fill="#eef2f7"/>
+<path d="M247.15 898 L267.15 898" fill="none"/>
+<path d="M247.15 898 C252.67 898 257.15 902.48 257.15 908 L257.15 915 C257.15 920.52 252.67 925 247.15 925 L133.35 925 C127.83 925 123.35 920.52 123.35 915 L123.35 908 C123.35 902.48 127.83 898 133.35 898" fill="none"/>
+</g>
+<polygon points="185.25,925 195.25,920 195.25,930" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M113.35 898 C118.87 898 123.35 893.52 123.35 888 L123.35 881 C123.35 875.48 127.83 871 133.35 871 L247.15 871 C252.67 871 257.15 875.48 257.15 881 L257.15 888 C257.15 893.52 261.63 898 267.15 898" fill="none"/>
+<path d="M267.15 898 L282.15 898" fill="none"/>
+<circle cx="287.15" cy="898" r="5" fill="#ffffff"/>
+</g>
+<g fill="#1b1f24">
+<text x="0" y="16.44" font-size="18" font-weight="bold">Numer dokumentu</text>
+<text x="0" y="51.6" font-weight="bold">numer</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="61.79" y="82.6">rodzaj</text>
+<text x="126.24" y="82.6">-</text>
+<text x="186.24" y="82.6">cyfra</text>
+<text x="260.91" y="82.6">cyfra</text>
+<text x="340.47" y="109.6">/</text>
+<text x="393.81" y="109.6">rok</text>
+</g>
+<text x="0" y="158.6" font-weight="bold" fill="#1b1f24">rodzaj</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="71.11" y="189.6">PR</text>
+<text x="68" y="231.6">IN</text>
+<text x="64.89" y="273.6">F</text>
+</g>
+<text x="0" y="322.6" font-weight="bold" fill="#1b1f24">rok</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="57.34" y="353.6">cyfra</text>
+<text x="132.01" y="353.6">cyfra</text>
+<text x="206.68" y="353.6">cyfra</text>
+<text x="281.35" y="353.6">cyfra</text>
+</g>
+<text x="0" y="402.6" font-weight="bold" fill="#1b1f24">cyfra</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="64.45" y="433.6">0</text>
+<text x="64.45" y="475.6">1</text>
+<text x="64.45" y="517.6">2</text>
+<text x="64.45" y="559.6">3</text>
+<text x="64.45" y="601.6">4</text>
+<text x="64.45" y="643.6">5</text>
+<text x="64.45" y="685.6">6</text>
+<text x="64.45" y="727.6">7</text>
+<text x="64.45" y="769.6">8</text>
+<text x="64.45" y="811.6">9</text>
+</g>
+<text x="0" y="860.6" font-weight="bold" fill="#1b1f24">lista</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="62.68" y="903.6">numer</text>
+<text x="147.57" y="903.6">,</text>
+<text x="212.47" y="903.6">numer</text>
+</g>
+</svg>

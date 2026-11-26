@@ -47,6 +47,10 @@ zebrano wyszukiwaniem, które ich nazw nie zawierało.
 
 ## Skutki
 
+- 2026-11-26: wszystkie dziewięć typów wdrożone; biblioteka rysuje 33 z 33 typów Mermaid 12.2. Przykłady przeniesiono
+  z `testdata/planned/` do `testdata/corpus/<typ>/`, a strony przeglądu buduje
+  `go run ./tools/review -dir testdata/corpus/<typ> -kind <typ> -ref 'mmdg -q -i {in} -o {out}' -o out/review-<typ>.html`.
+
 - Wiersz „Diagram types” w README rośnie z 24 do 33 w miarę wdrażania; liczbę zmieniamy po każdym typie.
 - Przypis `[^types]` w README poprawiono: podaje wersje z tabeli wyżej.
 - Ryzyko: składnia typów beta może się zmienić; koszt to poprawka parsera, a nie układu.

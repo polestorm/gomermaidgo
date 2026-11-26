@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="574.35" height="211.56" viewBox="-12 -11.56 574.35 211.56" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<circle cx="8" cy="89" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 89 L28 89" fill="none"/>
+<rect x="28" y="74" width="39.1" height="30" rx="15" fill="#ffffff"/>
+<path d="M67.1 89 L83.1 89" fill="none"/>
+<path d="M83.1 89 L103.1 89" fill="none"/>
+<rect x="103.1" y="74" width="34.67" height="30" rx="15" fill="#ffffff"/>
+<path d="M137.77 89 L181.78 89" fill="none"/>
+<path d="M83.1 89 C88.62 89 93.1 93.48 93.1 99 L93.1 121 C93.1 126.52 97.58 131 103.1 131" fill="none"/>
+<rect x="103.1" y="116" width="34.67" height="30" rx="15" fill="#ffffff"/>
+<path d="M137.77 131 L161.78 131 C167.3 131 171.78 126.52 171.78 121 L171.78 99 C171.78 93.48 176.26 89 181.78 89" fill="none"/>
+<path d="M83.1 89 C88.62 89 93.1 93.48 93.1 99 L93.1 163 C93.1 168.52 97.58 173 103.1 173" fill="none"/>
+<rect x="103.1" y="158" width="58.68" height="30" rx="2" fill="#eef2f7"/>
+<path d="M161.78 173 L161.78 173 C167.3 173 171.78 168.52 171.78 163 L171.78 99 C171.78 93.48 176.26 89 181.78 89" fill="none"/>
+<path d="M181.78 89 L197.78 89" fill="none"/>
+<path d="M197.78 89 L217.78 89" fill="none"/>
+<path d="M217.78 89 L277.78 89" fill="none"/>
+<path d="M197.78 89 C203.3 89 207.78 93.48 207.78 99 L207.78 106 C207.78 111.52 212.26 116 217.78 116" fill="none"/>
+<rect x="217.78" y="101" width="40" height="30" rx="15" fill="#ffffff"/>
+<path d="M257.78 116 L257.78 116 C263.3 116 267.78 111.52 267.78 106 L267.78 99 C267.78 93.48 272.26 89 277.78 89" fill="none"/>
+<path d="M277.78 89 L293.78 89" fill="none"/>
+<path d="M293.78 89 L313.78 89" fill="none"/>
+<rect x="313.78" y="74" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M372.45 89 L392.45 89" fill="none"/>
+<path d="M372.45 89 C377.98 89 382.45 93.48 382.45 99 L382.45 106 C382.45 111.52 377.98 116 372.45 116 L313.78 116 C308.26 116 303.78 111.52 303.78 106 L303.78 99 C303.78 93.48 308.26 89 313.78 89" fill="none"/>
+</g>
+<polygon points="338.12,116 348.12,111 348.12,121" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M392.45 89 L408.45 89" fill="none"/>
+<path d="M408.45 89 L428.45 89" fill="none"/>
+<polygon points="428.45,89 434.45,74 499.35,74 505.35,89 499.35,104 434.45,104" fill="#eef2f7"/>
+<path d="M505.35 89 L525.35 89" fill="none"/>
+<path d="M505.35 89 C510.87 89 515.35 93.48 515.35 99 L515.35 106 C515.35 111.52 510.87 116 505.35 116 L428.45 116 C422.93 116 418.45 111.52 418.45 106 L418.45 99 C418.45 93.48 422.93 89 428.45 89" fill="none"/>
+</g>
+<polygon points="461.9,116 471.9,111 471.9,121" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M408.45 89 C413.98 89 418.45 84.52 418.45 79 L418.45 72 C418.45 66.48 422.93 62 428.45 62 L505.35 62 C510.87 62 515.35 66.48 515.35 72 L515.35 79 C515.35 84.52 519.83 89 525.35 89" fill="none"/>
+<path d="M525.35 89 L540.35 89" fill="none"/>
+<circle cx="545.35" cy="89" r="5" fill="#ffffff"/>
+</g>
+<g fill="#1b1f24">
+<text x="0" y="16.44" font-size="18" font-weight="bold">Kod wyrobu</text>
+<text x="0" y="51.6" font-weight="bold">kod</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="47.55" y="94.6">W</text>
+<text x="120.44" y="94.6">A</text>
+<text x="120.44" y="136.6">B</text>
+<text x="132.44" y="178.6">seria</text>
+<text x="237.78" y="121.6">-X</text>
+<text x="343.12" y="94.6">cyfra</text>
+<text x="466.9" y="94.6" font-style="italic">sufiks</text>
+</g>
+</svg>

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="464.61" height="631.4" viewBox="-12 -12.4 464.61 631.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Identyfikator dokumentu</title>
+<circle cx="8" cy="53" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 53 L28 53" fill="none"/>
+<rect x="28" y="38" width="58.68" height="30" rx="2" fill="#eef2f7"/>
+<path d="M86.68 53 L102.68 53" fill="none"/>
+<path d="M102.68 53 L122.68 53" fill="none"/>
+<path d="M122.68 53 L142.68 53" fill="none"/>
+<rect x="142.68" y="38" width="58.68" height="30" rx="2" fill="#eef2f7"/>
+<path d="M201.36 53 L221.36 53" fill="none"/>
+<path d="M122.68 53 C128.2 53 132.68 57.48 132.68 63 L132.68 85 C132.68 90.52 137.16 95 142.68 95" fill="none"/>
+<rect x="142.68" y="80" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M201.35 95 L201.36 95 C206.88 95 211.36 90.52 211.36 85 L211.36 63 C211.36 57.48 215.84 53 221.36 53" fill="none"/>
+<path d="M122.68 53 C128.2 53 132.68 57.48 132.68 63 L132.68 127 C132.68 132.52 137.16 137 142.68 137" fill="none"/>
+<rect x="142.68" y="122" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M175.58 137 L201.36 137 C206.88 137 211.36 132.52 211.36 127 L211.36 63 C211.36 57.48 215.84 53 221.36 53" fill="none"/>
+<path d="M221.36 53 L241.36 53" fill="none"/>
+<path d="M221.36 53 C226.88 53 231.36 57.48 231.36 63 L231.36 154 C231.36 159.52 226.88 164 221.36 164 L122.68 164 C117.16 164 112.68 159.52 112.68 154 L112.68 63 C112.68 57.48 117.16 53 122.68 53" fill="none"/>
+</g>
+<polygon points="167.02,164 177.02,159 177.02,169" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M102.68 53 C108.2 53 112.68 48.52 112.68 43 L112.68 36 C112.68 30.48 117.16 26 122.68 26 L221.36 26 C226.88 26 231.36 30.48 231.36 36 L231.36 43 C231.36 48.52 235.84 53 241.36 53" fill="none"/>
+<path d="M241.36 53 L257.36 53" fill="none"/>
+<path d="M257.36 53 L277.36 53" fill="none"/>
+<path d="M277.36 53 L415.61 53" fill="none"/>
+<path d="M257.36 53 C262.88 53 267.36 57.48 267.36 63 L267.36 70 C267.36 75.52 271.84 80 277.36 80" fill="none"/>
+<rect x="277.36" y="65" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M310.26 80 L326.26 80" fill="none"/>
+<rect x="326.26" y="65" width="69.35" height="30" rx="2" fill="#eef2f7"/>
+<path d="M395.61 80 L395.61 80 C401.13 80 405.61 75.52 405.61 70 L405.61 63 C405.61 57.48 410.09 53 415.61 53" fill="none"/>
+<path d="M415.61 53 L430.61 53" fill="none"/>
+<circle cx="435.61" cy="53" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="229" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 229 L28 229" fill="none"/>
+<polygon points="28,229 34,214 219.88,214 225.88,229 219.88,244 34,244" fill="#eef2f7"/>
+<path d="M225.88 229 L240.88 229" fill="none"/>
+<circle cx="245.88" cy="229" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="309" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 309 L28 309" fill="none"/>
+<path d="M28 309 L48 309" fill="none"/>
+<rect x="48" y="294" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 309 L100.9 309" fill="none"/>
+<path d="M28 309 C33.52 309 38 313.48 38 319 L38 341 C38 346.52 42.48 351 48 351" fill="none"/>
+<rect x="48" y="336" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 351 L80.9 351 C86.42 351 90.9 346.52 90.9 341 L90.9 319 C90.9 313.48 95.38 309 100.9 309" fill="none"/>
+<path d="M28 309 C33.52 309 38 313.48 38 319 L38 383 C38 388.52 42.48 393 48 393" fill="none"/>
+<rect x="48" y="378" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 393 L80.9 393 C86.42 393 90.9 388.52 90.9 383 L90.9 319 C90.9 313.48 95.38 309 100.9 309" fill="none"/>
+<path d="M100.9 309 L115.9 309" fill="none"/>
+<circle cx="120.9" cy="309" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="485" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 485 L28 485" fill="none"/>
+<rect x="28" y="470" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M86.67 485 L102.67 485" fill="none"/>
+<path d="M102.67 485 L122.67 485" fill="none"/>
+<rect x="122.67" y="470" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M181.34 485 L201.34 485" fill="none"/>
+<path d="M181.34 485 C186.87 485 191.34 489.48 191.34 495 L191.34 502 C191.34 507.52 186.87 512 181.34 512 L122.67 512 C117.15 512 112.67 507.52 112.67 502 L112.67 495 C112.67 489.48 117.15 485 122.67 485" fill="none"/>
+</g>
+<polygon points="147.01,512 157.01,507 157.01,517" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M102.67 485 C108.19 485 112.67 480.52 112.67 475 L112.67 468 C112.67 462.48 117.15 458 122.67 458 L181.34 458 C186.87 458 191.34 462.48 191.34 468 L191.34 475 C191.34 480.52 195.82 485 201.34 485" fill="none"/>
+<path d="M201.34 485 L217.34 485" fill="none"/>
+<path d="M217.34 485 L237.34 485" fill="none"/>
+<path d="M237.34 485 L360.46 485" fill="none"/>
+<path d="M217.34 485 C222.87 485 227.34 489.48 227.34 495 L227.34 502 C227.34 507.52 231.82 512 237.34 512" fill="none"/>
+<rect x="237.34" y="497" width="28.45" height="30" rx="15" fill="#ffffff"/>
+<path d="M265.79 512 L281.79 512" fill="none"/>
+<rect x="281.79" y="497" width="58.67" height="30" rx="2" fill="#eef2f7"/>
+<path d="M340.46 512 L340.46 512 C345.98 512 350.46 507.52 350.46 502 L350.46 495 C350.46 489.48 354.94 485 360.46 485" fill="none"/>
+<path d="M360.46 485 L375.46 485" fill="none"/>
+<circle cx="380.46" cy="485" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="592" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 592 L28 592" fill="none"/>
+<polygon points="28,592 34,577 154.95,577 160.95,592 154.95,607 34,607" fill="#eef2f7"/>
+<path d="M160.95 592 L176.95 592" fill="none"/>
+<polygon points="176.95,592 182.95,577 270.32,577 276.32,592 270.32,607 182.95,607" fill="#eef2f7"/>
+<path d="M276.32 592 L291.32 592" fill="none"/>
+<circle cx="296.32" cy="592" r="5" fill="#ffffff"/>
+</g>
+<text x="0" y="15.6" font-weight="bold" fill="#1b1f24">identyfikator</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="57.34" y="58.6">litera</text>
+<text x="172.02" y="58.6">litera</text>
+<text x="172.02" y="100.6">cyfra</text>
+<text x="159.13" y="142.6">_</text>
+<text x="293.81" y="85.6">#</text>
+<text x="360.93" y="85.6">numer</text>
+</g>
+<text x="0" y="203.6" font-weight="bold" fill="#1b1f24">litera</text>
+<text x="126.94" y="234.6" text-anchor="middle" font-style="italic" fill="#1b1f24">dowolna litera Unicode</text>
+<text x="0" y="283.6" font-weight="bold" fill="#1b1f24">cyfra</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="64.45" y="314.6">0</text>
+<text x="64.45" y="356.6">1</text>
+<text x="64.45" y="398.6">2</text>
+</g>
+<text x="0" y="447.6" font-weight="bold" fill="#1b1f24">numer</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="57.34" y="490.6">cyfra</text>
+<text x="152.01" y="490.6">cyfra</text>
+<text x="251.57" y="517.6">.</text>
+<text x="311.13" y="517.6">cyfra</text>
+</g>
+<text x="0" y="566.6" font-weight="bold" fill="#1b1f24">znak</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="94.47" y="597.6" font-style="italic">dowolny znak</text>
+<text x="226.63" y="597.6" font-style="italic">except '&quot;'</text>
+</g>
+</svg>

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="391.3" height="948.56" viewBox="-12 -11.56 391.3 948.56" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<circle cx="8" cy="89" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 89 L28 89" fill="none"/>
+<rect x="28" y="74" width="84.48" height="30" rx="2" fill="#eef2f7"/>
+<path d="M112.48 89 L128.48 89" fill="none"/>
+<path d="M128.48 89 L148.48 89" fill="none"/>
+<path d="M148.48 89 L168.48 89" fill="none"/>
+<rect x="168.48" y="74" width="33.34" height="30" rx="15" fill="#ffffff"/>
+<path d="M201.82 89 L221.82 89" fill="none"/>
+<path d="M148.48 89 C154 89 158.48 93.48 158.48 99 L158.48 121 C158.48 126.52 162.95 131 168.48 131" fill="none"/>
+<rect x="168.48" y="116" width="29.33" height="30" rx="15" fill="#ffffff"/>
+<path d="M197.8 131 L201.82 131 C207.34 131 211.82 126.52 211.82 121 L211.82 99 C211.82 93.48 216.3 89 221.82 89" fill="none"/>
+<path d="M221.82 89 L237.82 89" fill="none"/>
+<rect x="237.82" y="74" width="84.48" height="30" rx="2" fill="#eef2f7"/>
+<path d="M322.3 89 L342.3 89" fill="none"/>
+<path d="M322.3 89 C327.82 89 332.3 93.48 332.3 99 L332.3 148 C332.3 153.52 327.82 158 322.3 158 L148.48 158 C142.95 158 138.48 153.52 138.48 148 L138.48 99 C138.48 93.48 142.95 89 148.48 89" fill="none"/>
+</g>
+<polygon points="230.39,158 240.39,153 240.39,163" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M128.48 89 C134 89 138.48 84.52 138.48 79 L138.48 72 C138.48 66.48 142.95 62 148.48 62 L322.3 62 C327.82 62 332.3 66.48 332.3 72 L332.3 79 C332.3 84.52 336.77 89 342.3 89" fill="none"/>
+<path d="M342.3 89 L357.3 89" fill="none"/>
+<circle cx="362.3" cy="89" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="223" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 223 L28 223" fill="none"/>
+<path d="M28 223 L48 223" fill="none"/>
+<rect x="48" y="208" width="70.25" height="30" rx="2" fill="#eef2f7"/>
+<path d="M118.25 223 L258.23 223" fill="none"/>
+<path d="M28 223 C33.52 223 38 227.48 38 233 L38 255 C38 260.52 42.48 265 48 265" fill="none"/>
+<rect x="48" y="250" width="29.33" height="30" rx="15" fill="#ffffff"/>
+<path d="M77.33 265 L93.33 265" fill="none"/>
+<rect x="93.33" y="250" width="99.58" height="30" rx="2" fill="#eef2f7"/>
+<path d="M192.91 265 L208.91 265" fill="none"/>
+<rect x="208.91" y="250" width="29.33" height="30" rx="15" fill="#ffffff"/>
+<path d="M238.23 265 L238.23 265 C243.76 265 248.23 260.52 248.23 255 L248.23 233 C248.23 227.48 252.71 223 258.23 223" fill="none"/>
+<path d="M258.23 223 L273.23 223" fill="none"/>
+<circle cx="278.23" cy="223" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="345" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 345 L28 345" fill="none"/>
+<path d="M28 345 L48 345" fill="none"/>
+<path d="M48 345 L97.33 345" fill="none"/>
+<path d="M28 345 C33.52 345 38 349.48 38 355 L38 362 C38 367.52 42.48 372 48 372" fill="none"/>
+<rect x="48" y="357" width="29.33" height="30" rx="15" fill="#ffffff"/>
+<path d="M77.33 372 L77.33 372 C82.85 372 87.33 367.52 87.33 362 L87.33 355 C87.33 349.48 91.81 345 97.33 345" fill="none"/>
+<path d="M97.33 345 L113.33 345" fill="none"/>
+<path d="M113.33 345 L133.33 345" fill="none"/>
+<rect x="133.33" y="330" width="62.23" height="30" rx="2" fill="#eef2f7"/>
+<path d="M195.55 345 L215.55 345" fill="none"/>
+<path d="M195.55 345 C201.08 345 205.55 349.48 205.55 355 L205.55 362 C205.55 367.52 201.08 372 195.55 372 L133.33 372 C127.81 372 123.33 367.52 123.33 362 L123.33 355 C123.33 349.48 127.81 345 133.33 345" fill="none"/>
+</g>
+<polygon points="159.44,372 169.44,367 169.44,377" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M215.55 345 L230.55 345" fill="none"/>
+<circle cx="235.55" cy="345" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="452" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 452 L28 452" fill="none"/>
+<path d="M28 452 L48 452" fill="none"/>
+<rect x="48" y="437" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 452 L100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 484 C38 489.52 42.48 494 48 494" fill="none"/>
+<rect x="48" y="479" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 494 L80.9 494 C86.42 494 90.9 489.52 90.9 484 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 526 C38 531.52 42.48 536 48 536" fill="none"/>
+<rect x="48" y="521" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 536 L80.9 536 C86.42 536 90.9 531.52 90.9 526 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 568 C38 573.52 42.48 578 48 578" fill="none"/>
+<rect x="48" y="563" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 578 L80.9 578 C86.42 578 90.9 573.52 90.9 568 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 610 C38 615.52 42.48 620 48 620" fill="none"/>
+<rect x="48" y="605" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 620 L80.9 620 C86.42 620 90.9 615.52 90.9 610 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 652 C38 657.52 42.48 662 48 662" fill="none"/>
+<rect x="48" y="647" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 662 L80.9 662 C86.42 662 90.9 657.52 90.9 652 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 694 C38 699.52 42.48 704 48 704" fill="none"/>
+<rect x="48" y="689" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 704 L80.9 704 C86.42 704 90.9 699.52 90.9 694 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 736 C38 741.52 42.48 746 48 746" fill="none"/>
+<rect x="48" y="731" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 746 L80.9 746 C86.42 746 90.9 741.52 90.9 736 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 778 C38 783.52 42.48 788 48 788" fill="none"/>
+<rect x="48" y="773" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 788 L80.9 788 C86.42 788 90.9 783.52 90.9 778 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M28 452 C33.52 452 38 456.48 38 462 L38 820 C38 825.52 42.48 830 48 830" fill="none"/>
+<rect x="48" y="815" width="32.9" height="30" rx="15" fill="#ffffff"/>
+<path d="M80.9 830 L80.9 830 C86.42 830 90.9 825.52 90.9 820 L90.9 462 C90.9 456.48 95.38 452 100.9 452" fill="none"/>
+<path d="M100.9 452 L115.9 452" fill="none"/>
+<circle cx="120.9" cy="452" r="5" fill="#ffffff"/>
+</g>
+<circle cx="8" cy="910" r="5" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#3b4754" stroke-width="1.5">
+<path d="M13 910 L28 910" fill="none"/>
+<polygon points="28,910 34,895 164.73,895 170.73,910 164.73,925 34,925" fill="#eef2f7"/>
+<path d="M170.73 910 L186.73 910" fill="none"/>
+<polygon points="186.73,910 192.73,895 313.67,895 319.67,910 313.67,925 192.73,925" fill="#eef2f7"/>
+<path d="M319.67 910 L334.67 910" fill="none"/>
+<circle cx="339.67" cy="910" r="5" fill="#ffffff"/>
+</g>
+<g fill="#1b1f24">
+<text x="0" y="16.44" font-size="18" font-weight="bold">Wyrażenie</text>
+<text x="0" y="51.6" font-weight="bold">Wyrazenie</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="70.24" y="94.6">Skladnik</text>
+<text x="185.15" y="94.6">+</text>
+<text x="183.14" y="136.6">-</text>
+<text x="280.06" y="94.6">Skladnik</text>
+</g>
+<text x="0" y="197.6" font-weight="bold" fill="#1b1f24">Skladnik</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="83.13" y="228.6">Liczba</text>
+<text x="62.66" y="270.6">(</text>
+<text x="143.12" y="270.6">Wyrazenie</text>
+<text x="223.57" y="270.6">)</text>
+</g>
+<text x="0" y="319.6" font-weight="bold" fill="#1b1f24">Liczba</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="62.66" y="377.6">-</text>
+<text x="164.44" y="350.6">Cyfra</text>
+</g>
+<text x="0" y="426.6" font-weight="bold" fill="#1b1f24">Cyfra</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="64.45" y="457.6">0</text>
+<text x="64.45" y="499.6">1</text>
+<text x="64.45" y="541.6">2</text>
+<text x="64.45" y="583.6">3</text>
+<text x="64.45" y="625.6">4</text>
+<text x="64.45" y="667.6">5</text>
+<text x="64.45" y="709.6">6</text>
+<text x="64.45" y="751.6">7</text>
+<text x="64.45" y="793.6">8</text>
+<text x="64.45" y="835.6">9</text>
+</g>
+<text x="0" y="884.6" font-weight="bold" fill="#1b1f24">Koniec</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="99.37" y="915.6" font-style="italic">not followed by</text>
+<text x="253.2" y="915.6" font-style="italic">any character</text>
+</g>
+</svg>

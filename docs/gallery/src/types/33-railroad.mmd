@@ -1,0 +1,5 @@
+railroad-ebnf-beta
+title "Document number"
+number = kind "-" digit digit ( "/" year )? ;
+kind = "PR" | "WI" | "F" ;
+list = number ( "," number )* ;
