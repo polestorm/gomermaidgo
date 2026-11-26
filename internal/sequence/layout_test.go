@@ -210,3 +210,28 @@ func TestFooterAndKinds(t *testing.T) {
 		t.Errorf("database covers: %d ellipses, want 2", ellipses)
 	}
 }
+
+// REQ: ZEN-005
+// Ikony rodzajów bloków stoją w zakładkach tylko przy FrameIcons (ZenUML).
+func TestFrameIcons(t *testing.T) {
+	d, err := Parse("sequenceDiagram\nA->>B: x\nloop co minutę\nA->>B: y\nend\nopt warunek\nB->>A: z\nend")
+	if err != nil {
+		t.Fatal(err)
+	}
+	icons := func(sc *scene.Scene) int {
+		n := 0
+		for _, it := range sc.Items {
+			if it.Role == "frame-icon" {
+				n++
+			}
+		}
+		return n
+	}
+	if n := icons(Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})); n != 0 {
+		t.Errorf("sequence diagram: %d icon items, want none", n)
+	}
+	d.FrameIcons = true
+	if n := icons(Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})); n < 3 {
+		t.Errorf("with FrameIcons: %d icon items, want the loop and opt icons", n)
+	}
+}

@@ -14,6 +14,7 @@ type Diagram struct {
 	Participants []*Participant
 	Events       []Event
 	NoFooter     bool // uczestnicy nie są powtórzeni na dole (ZenUML)
+	FrameIcons   bool // zakładki ramek mają ikonę rodzaju bloku (ZenUML)
 }
 
 // Box to grupa sąsiednich uczestników (instrukcja „box”).

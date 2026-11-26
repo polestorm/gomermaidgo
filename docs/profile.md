@@ -655,7 +655,8 @@ Drawn with the layout of `sequenceDiagram`. Deliberate differences from ZenUML: 
 unnamed stick figure on the left; participants are not repeated at the bottom (as in ZenUML) and the diagram has no
 outer frame; messages are not numbered (ZenUML numbers them by nesting, 1, 1.1, 1.2); service icon annotators (`@EC2`
 and others) are shown as a stereotype above the name instead of an icon; a comment becomes a note over the message; Markdown in comments is shown as plain text; `par` has one
-section; a reply to a variable after `new` comes from the created participant.
+section; a reply to a variable after `new` comes from the created participant; frame tabs carry this library's own
+line icons for the block kind (loop, alt, opt, par, try).
 
 ## Wardley map (`wardley-beta`, `wardley`)
 

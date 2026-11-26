@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="868.46" height="1316" viewBox="-32 -12 868.46 1316" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-91e7d711"><path d="M-32 -12 L836.46 -12 L836.46 1304 L-32 1304 M139.71 151 L139.71 169 L237.29 169 L237.29 151 M163.7 396 L163.7 414 L213.3 414 L213.3 396 M25.9 263 L25.9 281 L108.39 281 L108.39 263 M-7 362 L-7 380 L37.24 380 L37.24 362 M165.5 473 L165.5 491 L211.5 491 L211.5 473 M230.25 532 L230.25 550 L368.77 550 L368.77 532 M317.64 695 L317.64 713 L385.9 713 L385.9 695 M324.75 848 L324.75 866 L439.25 866 L439.25 848 M244.09 1024 L244.09 1042 L323.91 1042 L323.91 1024 M327.86 1117 L327.86 1135 L436.14 1135 L436.14 1117 M239.65 1210 L239.65 1228 L328.35 1228 L328.35 1210 M-7 1083 L-7 1101 L46.13 1101 L46.13 1083 M-7 1176 L-7 1194 L48.8 1194 L48.8 1176"/></clipPath></defs>
+<defs><clipPath id="label-holes-e7d69efd"><path d="M-32 -12 L836.46 -12 L836.46 1304 L-32 1304 M139.71 151 L139.71 169 L237.29 169 L237.29 151 M163.7 396 L163.7 414 L213.3 414 L213.3 396 M43.9 263 L43.9 281 L126.39 281 L126.39 263 M-7 362 L-7 380 L37.24 380 L37.24 362 M165.5 473 L165.5 491 L211.5 491 L211.5 473 M248.25 532 L248.25 550 L386.77 550 L386.77 532 M317.64 695 L317.64 713 L385.9 713 L385.9 695 M324.75 848 L324.75 866 L439.25 866 L439.25 848 M244.09 1024 L244.09 1042 L323.91 1042 L323.91 1024 M327.86 1117 L327.86 1135 L436.14 1135 L436.14 1117 M239.65 1210 L239.65 1228 L328.35 1228 L328.35 1210 M-7 1083 L-7 1101 L46.13 1101 L46.13 1083 M-7 1176 L-7 1194 L48.8 1194 L48.8 1176"/></clipPath></defs>
 <g stroke="#9aa5b1" stroke-width="1.5">
-<g clip-path="url(#label-holes-91e7d711)">
+<g clip-path="url(#label-holes-e7d69efd)">
 <line x1="0" y1="68" x2="0" y2="1292"/>
 <line x1="191" y1="68" x2="191" y2="1292"/>
 <line x1="382" y1="68" x2="382" y2="1292"/>
@@ -16,16 +16,16 @@
 <rect x="568" y="1234" width="10" height="8"/>
 </g>
 <rect x="-12" y="260" width="401" height="188" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect x="-12" y="260" width="32.9" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect x="-12" y="260" width="50.9" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
 <line x1="-12" y1="355" x2="389" y2="355" stroke="#6b7785" stroke-width="1" stroke-dasharray="6 4"/>
 <rect x="179" y="529" width="215" height="95" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect x="179" y="529" width="46.25" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect x="179" y="529" width="64.25" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
 <rect x="-12" y="652" width="727.54" height="125" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect x="-12" y="652" width="38.24" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect x="-12" y="652" width="56.24" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
 <rect x="179" y="805" width="406" height="148" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect x="179" y="805" width="39.13" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect x="179" y="805" width="57.13" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
 <rect x="-12" y="981" width="597" height="281" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect x="-12" y="981" width="33.77" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect x="-12" y="981" width="51.77" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
 <g stroke="#6b7785" stroke-width="1" stroke-dasharray="6 4">
 <line x1="-12" y1="1076" x2="585" y2="1076"/>
 <line x1="-12" y1="1169" x2="585" y2="1169"/>
@@ -83,30 +83,53 @@
 <text x="477.5" y="218.6">pobierz(wersja)</text>
 <text x="284" y="317.6">Lista uwag</text>
 <text x="188.5" y="410.6">zgoda</text>
-<text x="4.45" y="277.6">alt</text>
 </g>
+<g fill="none" stroke="#6b7785" stroke-width="1.3">
+<polyline points="-3,272 1.8,272 8.4,267.2"/>
+<polyline points="1.8,272 8.4,276.8"/>
+</g>
+<text x="22.45" y="277.6" text-anchor="middle" fill="#1b1f24">alt</text>
 <g fill="#1b1f24">
-<text x="28.9" y="277.6">[sa_uwagi]</text>
+<text x="46.9" y="277.6">[sa_uwagi]</text>
 <text x="-4" y="376.6">[else]</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="188.5" y="487.6">wynik</text>
 <text x="286.5" y="586.6">Poprawiona wersja</text>
-<text x="202.13" y="546.6">loop</text>
 </g>
-<text x="233.25" y="546.6" fill="#1b1f24">[nie_zatwierdzony]</text>
+<polyline points="196.55,536.58 195.1,536.02 193.56,535.92 192.05,536.29 190.72,537.09 189.7,538.26 189.07,539.68 188.9,541.22 189.21,542.74 189.95,544.1 191.07,545.18 192.47,545.86 194,546.1 195.53,545.86 196.93,545.18 198.05,544.1 198.79,542.74" fill="none" stroke="#6b7785" stroke-width="1.3"/>
+<polygon points="196.55,536.58 192.86,537.65 194.7,533.22" fill="#6b7785" stroke="#6b7785" stroke-width="1"/>
+<text x="220.13" y="546.6" text-anchor="middle" fill="#1b1f24">loop</text>
+<text x="251.25" y="546.6" fill="#1b1f24">[nie_zatwierdzony]</text>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="351.77" y="709.6">«create»</text>
 <text x="764" y="724.6">Archiwum</text>
-<text x="7.12" y="669.6">opt</text>
+</g>
+<g fill="none" stroke="#6b7785" stroke-width="1.3">
+<polygon points="3,658 9,664 3,670 -3,664"/>
+<polyline points="0.9,664 5.1,664"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="25.12" y="669.6">opt</text>
 <text x="382" y="862.6">Powiadomienie</text>
 <text x="477.5" y="915.6">Powiadomienie</text>
-<text x="198.56" y="822.6">par</text>
+</g>
+<g fill="none" stroke="#6b7785" stroke-width="1.3">
+<polyline points="188,814.3 197.6,814.3"/>
+<polyline points="188,819.7 197.6,819.7"/>
+</g>
+<g fill="#6b7785" stroke="#6b7785" stroke-width="1">
+<polygon points="200,814.3 197,816.7 197,811.9"/>
+<polygon points="200,819.7 197,822.1 197,817.3"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="216.56" y="822.6">par</text>
 <text x="284" y="1038.6">opublikuj()</text>
 <text x="382" y="1131.6">Błąd publikacji</text>
 <text x="284" y="1224.6">zapiszLog()</text>
-<text x="4.89" y="998.6">try</text>
 </g>
+<polygon points="3,987 8.1,989.1 7.5,994.5 3,999 -1.5,994.5 -2.1,989.1" fill="none" stroke="#6b7785" stroke-width="1.3"/>
+<text x="22.89" y="998.6" text-anchor="middle" fill="#1b1f24">try</text>
 <g fill="#1b1f24">
 <text x="-4" y="1097.6">[catch]</text>
 <text x="-4" y="1190.6">[finally]</text>

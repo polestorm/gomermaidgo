@@ -90,7 +90,7 @@ func Parse(source string) (*sequence.Diagram, error) {
 	if pos < len(lines) {
 		return nil, syntax.Errorf(lines[pos].line, CodeBlock, "\"}\" without an opening \"{\"")
 	}
-	p := &parser{d: &sequence.Diagram{Title: title, AccTitle: acc.Title, AccDescr: acc.Descr, NoFooter: true}, index: map[string]int{}, starter: -1}
+	p := &parser{d: &sequence.Diagram{Title: title, AccTitle: acc.Title, AccDescr: acc.Descr, NoFooter: true, FrameIcons: true}, index: map[string]int{}, starter: -1}
 	if err := p.run(body, -1); err != nil {
 		return nil, err
 	}

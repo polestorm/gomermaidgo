@@ -863,6 +863,10 @@ func (l *layout) blockEnd() {
 			X: x0, Y: f.y0, W: x1 - x0, H: y1 - f.y0, Fill: fill, FillOpacity: opacity})
 	} else {
 		tabW, tabH := l.width(f.kind)+2*l.u(8), l.lh+l.u(4)
+		icon := l.d.FrameIcons && frameIcons[f.kind]
+		if icon {
+			tabW += l.u(18)
+		}
 		bracket := func(s string) string {
 			if s == "" {
 				return ""
@@ -879,7 +883,12 @@ func (l *layout) blockEnd() {
 			X: x0, Y: f.y0, W: x1 - x0, H: y1 - f.y0, RX: l.u(3), Stroke: colorFrame, StrokeWidth: 1.5, Dash: "2 3"})
 		l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerFrame, Role: "frame-tab",
 			X: x0, Y: f.y0, W: tabW, H: tabH, Fill: colorTabFill, Stroke: colorFrame, StrokeWidth: 1})
-		l.text([]string{f.kind}, x0+tabW/2, f.y0+l.u(2), "middle", "frame-kind", "", scene.LayerLabel)
+		kindX := x0 + tabW/2
+		if icon {
+			l.frameIcon(f.kind, x0+l.u(15), f.y0+tabH/2)
+			kindX += l.u(9)
+		}
+		l.text([]string{f.kind}, kindX, f.y0+l.u(2), "middle", "frame-kind", "", scene.LayerLabel)
 		l.labelBackground(x0+tabW+l.u(8), f.y0+l.u(2), l.width(bracket(f.title)), l.lh)
 		l.text([]string{bracket(f.title)}, x0+tabW+l.u(8), f.y0+l.u(2), "start", "frame-title", "", scene.LayerLabel)
 		for _, s := range f.sections {
@@ -891,6 +900,68 @@ func (l *layout) blockEnd() {
 	}
 	l.cursor = y1 + l.u(24)
 	l.extent(x0, x1)
+}
+
+// frameIcons to rodzaje bloków, które mają ikonę w zakładce (gdy diagram ma FrameIcons).
+var frameIcons = map[string]bool{"loop": true, "alt": true, "opt": true, "par": true, "try": true, "critical": true, "break": true}
+
+// frameIcon rysuje ikonę rodzaju bloku o środku (cx, cy), w kwadracie o boku u(12), samymi
+// liniami w kolorze ramki:
+//   - loop: okrąg otwarty u góry z prawej, z grotem na końcu (powtórzenie);
+//   - alt: linia rozwidlająca się w dwie gałęzie;
+//   - opt: romb z kreską przerywaną — krok, który może się nie wydarzyć;
+//   - par: dwie równoległe strzałki;
+//   - try: tarcza;
+//   - critical: wykrzyknik w kółku;
+//   - break: strzałka zatrzymana pionową kreską.
+func (l *layout) frameIcon(kind string, cx, cy float64) {
+	s := l.u(6)
+	pt := func(x, y float64) scene.Point { return scene.Point{X: cx + x*s, Y: cy + y*s} }
+	poly := func(closed bool, pts ...scene.Point) {
+		k := scene.Polyline
+		if closed {
+			k = scene.Polygon
+		}
+		l.sc.Add(scene.Item{Kind: k, Layer: scene.LayerLabel, Role: "frame-icon", Points: pts, Fill: "none", Stroke: colorFrame, StrokeWidth: 1.3})
+	}
+	head := func(tip, back scene.Point) {
+		dx, dy := tip.X-back.X, tip.Y-back.Y
+		d := math.Hypot(dx, dy)
+		dx, dy = dx/d*s*0.5, dy/d*s*0.5
+		l.sc.Add(scene.Item{Kind: scene.Polygon, Layer: scene.LayerLabel, Role: "frame-icon", Fill: colorFrame, Stroke: colorFrame, StrokeWidth: 1,
+			Points: []scene.Point{tip, {X: tip.X - dx - dy*0.8, Y: tip.Y - dy + dx*0.8}, {X: tip.X - dx + dy*0.8, Y: tip.Y - dy - dx*0.8}}})
+	}
+	switch kind {
+	case "loop":
+		var pts []scene.Point
+		for k := 0; k <= 16; k++ {
+			a := (-60 - 280*float64(k)/16) * math.Pi / 180
+			pts = append(pts, pt(0.85*math.Cos(a), 0.85*math.Sin(a)))
+		}
+		poly(false, pts...)
+		head(pts[0], pt(0.85*math.Cos(-75*math.Pi/180), 0.85*math.Sin(-75*math.Pi/180)))
+	case "alt":
+		poly(false, pt(-1, 0), pt(-0.2, 0), pt(0.9, -0.8))
+		poly(false, pt(-0.2, 0), pt(0.9, 0.8))
+	case "opt":
+		poly(true, pt(0, -1), pt(1, 0), pt(0, 1), pt(-1, 0))
+		poly(false, pt(-0.35, 0), pt(0.35, 0))
+	case "par":
+		poly(false, pt(-1, -0.45), pt(0.6, -0.45))
+		poly(false, pt(-1, 0.45), pt(0.6, 0.45))
+		head(pt(1, -0.45), pt(0, -0.45))
+		head(pt(1, 0.45), pt(0, 0.45))
+	case "try":
+		poly(true, pt(0, -1), pt(0.85, -0.65), pt(0.75, 0.25), pt(0, 1), pt(-0.75, 0.25), pt(-0.85, -0.65))
+	case "critical":
+		l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerLabel, Role: "frame-icon", X: cx, Y: cy, R: s, Fill: "none", Stroke: colorFrame, StrokeWidth: 1.3})
+		poly(false, pt(0, -0.6), pt(0, 0.2))
+		poly(false, pt(0, 0.45), pt(0, 0.6))
+	case "break":
+		poly(false, pt(-1, 0), pt(0.3, 0))
+		head(pt(0.55, 0), pt(0, 0))
+		poly(false, pt(0.9, -0.9), pt(0.9, 0.9))
+	}
 }
 
 var rgbaPattern = syntax.Lazy(`^rgba\((\d+),(\d+),(\d+),([0-9.]+)\)$`)

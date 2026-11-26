@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="681.46" height="954" viewBox="-38 -12 681.46 954" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Obsługa zamówienia</title>
-<defs><clipPath id="label-holes-d08cbeba"><path d="M-38 -12 L643.46 -12 L643.46 942 L-38 942 M425.25 284 L425.25 302 L553.98 302 L553.98 284 M293.46 480 L293.46 498 L431.07 498 L431.07 480 M383.28 563 L383.28 581 L393.72 581 L393.72 563 M25.9 622 L25.9 640 L126.18 640 L126.18 622 M-7 721 L-7 739 L107.49 739 L107.49 721 M-7 814 L-7 832 L37.24 832 L37.24 814"/></clipPath></defs>
+<defs><clipPath id="label-holes-d230b4b6"><path d="M-38 -12 L643.46 -12 L643.46 942 L-38 942 M443.25 284 L443.25 302 L571.98 302 L571.98 284 M293.46 480 L293.46 498 L431.07 498 L431.07 480 M383.28 563 L383.28 581 L393.72 581 L393.72 563 M43.9 622 L43.9 640 L144.18 640 L144.18 622 M-7 721 L-7 739 L107.49 739 L107.49 721 M-7 814 L-7 832 L37.24 832 L37.24 814"/></clipPath></defs>
 <g stroke="#9aa5b1" stroke-width="1.5">
-<g clip-path="url(#label-holes-d08cbeba)">
+<g clip-path="url(#label-holes-d230b4b6)">
 <line x1="0" y1="68" x2="0" y2="930"/>
 </g>
 <line x1="193" y1="68" x2="193" y2="930"/>
-<g clip-path="url(#label-holes-d08cbeba)">
+<g clip-path="url(#label-holes-d230b4b6)">
 <line x1="386" y1="68" x2="386" y2="930"/>
 </g>
 <line x1="579" y1="538" x2="579" y2="930"/>
@@ -17,10 +17,10 @@
 <rect x="381" y="249" width="10" height="202"/>
 <rect x="188" y="117" width="10" height="755"/>
 </g>
-<rect x="374" y="281" width="184.98" height="121" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect x="374" y="281" width="46.25" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect x="374" y="281" width="202.98" height="121" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
+<rect x="374" y="281" width="64.25" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
 <rect x="-12" y="619" width="212" height="281" rx="3" fill="none" stroke="#6b7785" stroke-width="1.5" stroke-dasharray="2 3"/>
-<rect x="-12" y="619" width="32.9" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
+<rect x="-12" y="619" width="50.9" height="24" fill="#e3e8ef" stroke="#6b7785" stroke-width="1"/>
 <g stroke="#6b7785" stroke-width="1" stroke-dasharray="6 4">
 <line x1="-12" y1="714" x2="200" y2="714"/>
 <line x1="-12" y1="807" x2="200" y2="807"/>
@@ -64,8 +64,10 @@
 <text x="204" y="160.6" fill="#1b1f24">sprawdz()</text>
 <text x="289.5" y="239.6" text-anchor="middle" fill="#1b1f24">rezerwuj(koszyk)</text>
 <text x="397" y="338.6" fill="#1b1f24">zdejmij(pozycja)</text>
-<text x="397.13" y="298.6" text-anchor="middle" fill="#1b1f24">loop</text>
-<text x="428.25" y="298.6" fill="#1b1f24">[forEach pozycja]</text>
+<polyline points="391.55,288.58 390.1,288.02 388.56,287.92 387.05,288.29 385.72,289.09 384.7,290.26 384.07,291.68 383.9,293.22 384.21,294.74 384.95,296.1 386.07,297.18 387.47,297.86 389,298.1 390.53,297.86 391.93,297.18 393.05,296.1 393.79,294.74" fill="none" stroke="#6b7785" stroke-width="1.3"/>
+<polygon points="391.55,288.58 387.86,289.65 389.7,285.22" fill="#6b7785" stroke="#6b7785" stroke-width="1"/>
+<text x="415.13" y="298.6" text-anchor="middle" fill="#1b1f24">loop</text>
+<text x="446.25" y="298.6" fill="#1b1f24">[forEach pozycja]</text>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="289.5" y="441.6">rezerwacja</text>
 <text x="362.27" y="494.6">«create» (z, klient)</text>
@@ -74,10 +76,14 @@
 <text x="94" y="676.6">potwierdzenie</text>
 <text x="94" y="769.6">odmowa</text>
 <text x="94" y="862.6">błąd</text>
-<text x="4.45" y="636.6">alt</text>
 </g>
+<g fill="none" stroke="#6b7785" stroke-width="1.3">
+<polyline points="-3,631 1.8,631 8.4,626.2"/>
+<polyline points="1.8,631 8.4,635.8"/>
+</g>
+<text x="22.45" y="636.6" text-anchor="middle" fill="#1b1f24">alt</text>
 <g fill="#1b1f24">
-<text x="28.9" y="636.6">[platnosc_ok]</text>
+<text x="46.9" y="636.6">[platnosc_ok]</text>
 <text x="-4" y="735.6">[brak_srodkow]</text>
 <text x="-4" y="828.6">[else]</text>
 </g>
