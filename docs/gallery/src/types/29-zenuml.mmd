@@ -1,0 +1,14 @@
+zenuml
+    title Document approval
+    @Actor Author
+    Reviewer
+    @Database Register
+    Author->Reviewer: Draft for review
+    result = Reviewer.review(draft) {
+      Register.fetch(history)
+      if(comments) {
+        Reviewer->Author: Comments
+      } else {
+        return approved
+      }
+    }

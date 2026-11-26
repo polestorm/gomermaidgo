@@ -1,0 +1,25 @@
+%% REQ: ZEN-001 ZEN-002 ZEN-003 ZEN-004 ZEN-005
+%% Tytuł: Odpowiedzi, zagnieżdżenia i utworzenie z przypisaniem
+%% Sprawdza: wywołanie z jawnym nadawcą (Klient->Serwis.metoda), zagnieżdżone wywołania, wywołanie własne, odpowiedź z typem zmiennej, @return na komunikacie asynchronicznym, utworzenie z argumentami i przypisaniem, if / else if / else, forEach, accTitle, komentarz %%.
+zenuml
+    accTitle: Obsługa zamówienia
+    %% uczestnicy w kolejności użycia
+    @Boundary Klient
+    Klient->Serwis.zamow(koszyk) {
+      Serwis.sprawdz()
+      Zamowienie z = Magazyn.rezerwuj(koszyk) {
+        forEach(pozycja) {
+          Magazyn.zdejmij(pozycja)
+        }
+        return rezerwacja
+      }
+      f = new Faktura(z, klient)
+      if(platnosc_ok) {
+        @return
+        Serwis->Klient: potwierdzenie
+      } else if(brak_srodkow) {
+        Serwis->Klient: odmowa
+      } else {
+        Serwis->Klient: błąd
+      }
+    }

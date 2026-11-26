@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="502.05" height="444.4" viewBox="-48.9 -12.4 502.05 444.4" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Zgłoszenie niezgodności</title>
+<g stroke="#9aa5b1" stroke-width="1.5">
+<line x1="0" y1="100" x2="0" y2="344"/>
+<line x1="189" y1="100" x2="189" y2="352"/>
+<line x1="378" y1="100" x2="378" y2="352"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<circle cx="0" cy="40" r="8"/>
+<line x1="0" y1="48" x2="0" y2="64"/>
+<line x1="-12" y1="54" x2="12" y2="54"/>
+<line x1="0" y1="64" x2="-10" y2="76"/>
+<line x1="0" y1="64" x2="10" y2="76"/>
+<rect x="125.86" y="32" width="126.29" height="68" rx="3"/>
+<rect x="314.86" y="32" width="126.29" height="68" rx="3"/>
+</g>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<polyline points="180,145 189,149 180,153"/>
+<line x1="0" y1="149" x2="189" y2="149"/>
+<polyline points="369,198 378,202 369,206"/>
+<line x1="189" y1="202" x2="378" y2="202"/>
+<polyline points="198,251 189,255 198,259"/>
+<line x1="378" y1="255" x2="189" y2="255"/>
+<polyline points="9,304 0,308 9,312"/>
+<line x1="189" y1="308" x2="0" y2="308"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<circle cx="0" cy="360" r="8"/>
+<line x1="0" y1="368" x2="0" y2="384"/>
+<line x1="-12" y1="374" x2="12" y2="374"/>
+<line x1="0" y1="384" x2="-10" y2="396"/>
+<line x1="0" y1="384" x2="10" y2="396"/>
+<rect x="125.86" y="352" width="126.29" height="68" rx="3"/>
+<rect x="314.86" y="352" width="126.29" height="68" rx="3"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="189" y="15.6">Zgłoszenie niezgodności</text>
+<text x="0" y="95.6">Pracownik</text>
+<text x="189" y="71.6">System</text>
+<text x="378" y="61.6">«Database»</text>
+<text x="378" y="81.6">Rejestr</text>
+<text x="94.5" y="139.6">Zgłoś niezgodność</text>
+<text x="283.5" y="192.6">Zapisz zgłoszenie</text>
+<text x="283.5" y="245.6">Numer NC-0042</text>
+<text x="94.5" y="298.6">Potwierdzenie</text>
+<text x="0" y="415.6">Pracownik</text>
+<text x="189" y="391.6">System</text>
+<text x="378" y="381.6">«Database»</text>
+<text x="378" y="401.6">Rejestr</text>
+</g>
+</svg>

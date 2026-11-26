@@ -629,6 +629,27 @@ figure (the `hollow`, `awesome` and icon variants and the business slash are not
 drawn like a plain one; edge animation is not drawn; identifiers may contain any letters; a class must be defined
 with `classDef` before the end of the source; the `usecase` configuration and `colorScheme` are outside the profile.
 
+## ZenUML sequence diagram (`zenuml`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| title | `title Text` on the first line after the header | ZEN-001 |
+| participant | implicit on first use; `Name`, `A as Alice`, `@Actor Name`, `@Database Name` and other annotators | ZEN-002 |
+| asynchronous message | `A->B: text`; `@return` or `@reply` before it makes a reply | ZEN-003 |
+| comment | `// text` before a message (drawn as a note over it) | ZEN-003 |
+| synchronous call | `B.method(args)`, `A->B.method()`, block `{ … }` with nested calls | ZEN-004 |
+| reply | `return value`, `result = B.method()`, `Type result = B.method()` | ZEN-004 |
+| creation | `new A`, `new A(args)`, `a = new A()` | ZEN-004 |
+| loop | `while(…)`, `for(…)`, `forEach(…)`, `foreach(…)`, `loop` | ZEN-005 |
+| alternative | `if(…) { } else if(…) { } else { }` | ZEN-005 |
+| other blocks | `opt { }`, `par { }`, `try { } catch { } finally { }` | ZEN-005 |
+| accessibility | `accTitle`, `accDescr` | ZEN-001 |
+
+Drawn with the layout of `sequenceDiagram`. Deliberate differences from ZenUML: a call at the top level comes from an
+unnamed stick figure on the left; annotators other than `@Actor` are shown as a stereotype above the name instead of
+an icon; a comment becomes a note over the message; Markdown in comments is shown as plain text; `par` has one
+section; a reply to a variable after `new` comes from the created participant.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |

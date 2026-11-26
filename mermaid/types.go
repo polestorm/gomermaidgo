@@ -11,9 +11,11 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/radar"
 	"github.com/polestorm/gomermaidgo/internal/sankey"
 	"github.com/polestorm/gomermaidgo/internal/scene"
+	"github.com/polestorm/gomermaidgo/internal/sequence"
 	"github.com/polestorm/gomermaidgo/internal/treemap"
 	"github.com/polestorm/gomermaidgo/internal/treeview"
 	"github.com/polestorm/gomermaidgo/internal/venn"
+	"github.com/polestorm/gomermaidgo/internal/zenuml"
 )
 
 // Diagram types added after the first ones.
@@ -30,6 +32,7 @@ const (
 	TypeTreeView     = "treeView"
 	TypeVenn         = "venn"
 	TypeCynefin      = "cynefin"
+	TypeZenUML       = "zenuml"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -134,5 +137,13 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return cynefin.Layout(d, cynefin.Options(o)), nil
+	}},
+	{TypeZenUML, []string{"zenuml"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		d, err := zenuml.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return sequence.Layout(d, sequence.Options{Measure: o.Measure, FontSize: o.FontSize, FontFamily: o.FontFamily, Background: o.Background,
+			Colors: o.Colors, Shadows: o.Shadows}), nil
 	}},
 }

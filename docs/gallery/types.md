@@ -3,7 +3,7 @@
 One diagram of each type this library draws, in its default neutral look (`WithColors` adds colour).
 Each section links the Mermaid source of its picture.
 
-[Flowchart](#flowchart) · [Sequence diagram](#sequence-diagram) · [Class diagram](#class-diagram) · [State diagram](#state-diagram) · [Entity relationship diagram](#entity-relationship-diagram) · [Gantt chart](#gantt-chart) · [Pie chart](#pie-chart) · [User journey](#user-journey) · [Git graph](#git-graph) · [Mind map](#mind-map) · [Timeline](#timeline) · [Quadrant chart](#quadrant-chart) · [XY chart](#xy-chart) · [Sankey diagram](#sankey-diagram) · [Requirement diagram](#requirement-diagram) · [C4 diagram](#c4-diagram) · [Block diagram](#block-diagram) · [Packet diagram](#packet-diagram) · [Kanban board](#kanban-board) · [Architecture diagram](#architecture-diagram) · [Radar chart](#radar-chart) · [Treemap](#treemap) · [Ishikawa (cause and effect) diagram](#ishikawa-cause-and-effect-diagram) · [Swimlane diagram](#swimlane-diagram) · [Tree view](#tree-view) · [Venn diagram](#venn-diagram) · [Cynefin map](#cynefin-map) · [Use case diagram](#use-case-diagram)
+[Flowchart](#flowchart) · [Sequence diagram](#sequence-diagram) · [Class diagram](#class-diagram) · [State diagram](#state-diagram) · [Entity relationship diagram](#entity-relationship-diagram) · [Gantt chart](#gantt-chart) · [Pie chart](#pie-chart) · [User journey](#user-journey) · [Git graph](#git-graph) · [Mind map](#mind-map) · [Timeline](#timeline) · [Quadrant chart](#quadrant-chart) · [XY chart](#xy-chart) · [Sankey diagram](#sankey-diagram) · [Requirement diagram](#requirement-diagram) · [C4 diagram](#c4-diagram) · [Block diagram](#block-diagram) · [Packet diagram](#packet-diagram) · [Kanban board](#kanban-board) · [Architecture diagram](#architecture-diagram) · [Radar chart](#radar-chart) · [Treemap](#treemap) · [Ishikawa (cause and effect) diagram](#ishikawa-cause-and-effect-diagram) · [Swimlane diagram](#swimlane-diagram) · [Tree view](#tree-view) · [Venn diagram](#venn-diagram) · [Cynefin map](#cynefin-map) · [Use case diagram](#use-case-diagram) · [ZenUML sequence diagram](#zenuml-sequence-diagram)
 
 ## Flowchart
 
@@ -172,3 +172,9 @@ Each section links the Mermaid source of its picture.
 `usecase-beta`, source: [`src/types/28-usecase.mmd`](src/types/28-usecase.mmd)
 
 ![Use case diagram](img/types/28-usecase.svg)
+
+## ZenUML sequence diagram
+
+`zenuml`, source: [`src/types/29-zenuml.mmd`](src/types/29-zenuml.mmd)
+
+![ZenUML sequence diagram](img/types/29-zenuml.svg)

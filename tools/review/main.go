@@ -65,7 +65,7 @@ var typeKinds = map[string]string{mermaid.TypeSequence: "sequence", mermaid.Type
 	mermaid.TypeJourney: "journey", mermaid.TypeMindmap: "mindmap", mermaid.TypeXYChart: "xychart", mermaid.TypeQuadrant: "quadrant",
 	mermaid.TypeRequirement: "requirement", mermaid.TypeKanban: "kanban", mermaid.TypeIshikawa: "ishikawa", mermaid.TypePacket: "packet", mermaid.TypeRadar: "radar",
 	mermaid.TypeTreemap: "treemap", mermaid.TypeSankey: "sankey", mermaid.TypeGit: "gitgraph", mermaid.TypeBlock: "block",
-	mermaid.TypeArchitecture: "architecture", mermaid.TypeC4: "c4", mermaid.TypeTreeView: "treeview", mermaid.TypeVenn: "venn", mermaid.TypeCynefin: "cynefin", mermaid.TypeUseCase: "usecase"}
+	mermaid.TypeArchitecture: "architecture", mermaid.TypeC4: "c4", mermaid.TypeTreeView: "treeview", mermaid.TypeVenn: "venn", mermaid.TypeCynefin: "cynefin", mermaid.TypeUseCase: "usecase", mermaid.TypeZenUML: "zenuml"}
 
 // sampleThemes to motywy pokazywane wyrywkowo; kolorowy (default) ma własną kolumnę.
 var sampleThemes = []string{mermaid.ThemeForest, mermaid.ThemeDark}
@@ -142,7 +142,7 @@ func main() {
 	var groups []group
 	skipped := 0
 	if *dir == "" {
-		for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap", "requirement", "sankey", "c4", "gitgraph", "block", "architecture", "ishikawa", "treeview", "venn", "cynefin", "usecase"} {
+		for _, kind := range []string{"sequence", "flowchart", "state", "gantt", "er", "pie", "class", "timeline", "journey", "mindmap", "xychart", "quadrant", "kanban", "packet", "radar", "treemap", "requirement", "sankey", "c4", "gitgraph", "block", "architecture", "ishikawa", "treeview", "venn", "cynefin", "usecase", "zenuml"} {
 			files, _ := filepath.Glob("testdata/corpus/" + kind + "/*.mmd")
 			sort.Strings(files)
 			groups = append(groups, group{kind, files})
