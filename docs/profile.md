@@ -589,6 +589,23 @@ overlap stands apart to the right; circle areas follow the sizes and an overlap'
 circles, without a numerical fit of all overlaps at once; a style on an overlap fills the whole common area of its
 circles.
 
+## Cynefin map (`cynefin-beta`, `cynefin`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| title | `title Tekst`, `title "Tekst"` | CYN-001 |
+| domain | `complex`, `complicated`, `clear`, `chaotic`, `confusion` on its own line; may be repeated | CYN-002 |
+| item | `"Tekst"` on the lines after a domain name | CYN-002 |
+| transition | `complex --> complicated : "label"`, label optional; a transition to the same domain is ignored | CYN-003 |
+| accessibility | `accTitle`, `accDescr` | CYN-001 |
+
+Deliberate differences from Mermaid: an own look (a framed board with gently bent boundaries, the cliff between
+Clear and Chaotic drawn as a heavier lower half of the vertical boundary, domain text at the outer edges so the middle
+stays free for transitions, items in framed boxes; neutral by default, `WithColors` tints the domains); transitions are
+arcs bent away from the centre with the label on their outer side; the `cynefin` configuration (`width`, `height`,
+`showDomainDescriptions`, `boundaryAmplitude`, `seed`) and its theme variables are outside the profile; an item must be
+quoted; at most 120 items.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |

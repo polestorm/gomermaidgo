@@ -3,6 +3,7 @@ package mermaid
 import (
 	"github.com/polestorm/gomermaidgo/internal/architecture"
 	"github.com/polestorm/gomermaidgo/internal/block"
+	"github.com/polestorm/gomermaidgo/internal/cynefin"
 	"github.com/polestorm/gomermaidgo/internal/gitgraph"
 	"github.com/polestorm/gomermaidgo/internal/ishikawa"
 	"github.com/polestorm/gomermaidgo/internal/kanban"
@@ -28,6 +29,7 @@ const (
 	TypeIshikawa     = "ishikawa"
 	TypeTreeView     = "treeView"
 	TypeVenn         = "venn"
+	TypeCynefin      = "cynefin"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -125,5 +127,12 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return venn.Layout(d, venn.Options(o)), nil
+	}},
+	{TypeCynefin, []string{"cynefin-beta", "cynefin"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		d, err := cynefin.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return cynefin.Layout(d, cynefin.Options(o)), nil
 	}},
 }

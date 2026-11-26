@@ -1,0 +1,22 @@
+%% REQ: CYN-001 CYN-002 CYN-003 CYN-004
+%% Tytuł: Wiele zgłoszeń w zagubieniu i przejścia po przekątnej
+%% Sprawdza: nagłówek bez -beta, więcej niż trzy elementy w domenie confusion (+N more), długi element łamany, przejście po przekątnej (omija elipsę), przejścia z zagubienia i do niego, przejście do tej samej domeny pominięte, domena zadeklarowana dwa razy, komentarz.
+cynefin
+  title Przegląd zgłoszeń z pierwszego kwartału
+  confusion
+    "Zgłoszenie bez opisu"
+    "Telefon od klienta"
+    "Uwaga z audytu"
+    "Wpis w księdze skarg"
+    "Notatka kierownika zmiany"
+  complex
+    "Nietypowe pęknięcia obudowy pojawiające się tylko zimą w jednej partii wyrobów"
+  clear
+    "Wymiana uszczelki"
+  %% druga deklaracja dopisuje elementy
+  complex
+    "Nowy dostawca granulatu"
+  confusion --> complex : "Rozpoznano"
+  complex --> clear : "Przepis gotowy"
+  clear --> confusion
+  complex --> complex : "pomijane"

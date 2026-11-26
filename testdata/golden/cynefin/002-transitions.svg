@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="624" height="450" viewBox="-312 -225 624 450" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Przejścia między domenami Cynefin</title>
+<desc>Jak zmienia się charakter problemu w trakcie wdrażania normy</desc>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<rect x="-300" y="-213" width="600" height="426" rx="6"/>
+<path d="M0 -213 C16 -140.58 16 -70.29 0 0"/>
+<path d="M-300 0 C-198 16 -99 16 0 0"/>
+<path d="M0 0 C99 -16 198 -16 300 0"/>
+</g>
+<path d="M0 0 C-16 70.29 -16 140.58 0 213" fill="none" stroke="#3b4754" stroke-width="3.5"/>
+<ellipse cx="0" cy="0" rx="75" ry="45" fill="#f3f5f8" stroke="#3b4754" stroke-width="1.5"/>
+<g fill="#ffffff" stroke="#9aa5b1" stroke-width="1">
+<rect x="-284" y="-139" width="191.05" height="26" rx="4"/>
+<rect x="133.37" y="-139" width="150.63" height="26" rx="4"/>
+<rect x="92.92" y="119" width="191.08" height="26" rx="4"/>
+</g>
+<path d="M-131 -85 C-43.67 -109 41.1 -109.71 123.29 -87.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="131,-85 120.17,-83.31 122.55,-91.99" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<path d="M131 -85 C155 -28.33 156.04 25.88 134.12 77.63" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="131,85 130.76,74.04 139.04,77.55" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<path d="M131 85 C43.67 109 -41.1 109.71 -123.29 87.12" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="-131,85 -120.17,83.31 -122.55,91.99" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<path d="M-131 85 C-155 28.33 -156.04 -25.88 -134.12 -77.63" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="-131,-85 -130.76,-74.04 -139.04,-77.55" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<text x="-284" y="-181.4" font-weight="bold" fill="#1b1f24">Complex</text>
+<g fill="#55657a">
+<text x="-284" y="-164.45" font-size="13" font-style="italic">Probe – Sense – Respond</text>
+<text x="-284" y="-148.45" font-size="13" font-style="italic">Emergent practice</text>
+</g>
+<text x="-188.47" y="-121.1" text-anchor="middle" font-size="14" fill="#1b1f24">Pierwszy audyt certyfikujący</text>
+<text x="284" y="-181.4" text-anchor="end" font-weight="bold" fill="#1b1f24">Complicated</text>
+<g fill="#55657a" text-anchor="end">
+<text x="284" y="-164.45" font-size="13" font-style="italic">Sense – Analyse – Respond</text>
+<text x="284" y="-148.45" font-size="13" font-style="italic">Good practice</text>
+</g>
+<text x="208.68" y="-121.1" text-anchor="middle" font-size="14" fill="#1b1f24">Przegląd zarządzania</text>
+<g fill="#55657a">
+<text x="-284" y="157.55" font-size="13" font-style="italic">Novel practice</text>
+<text x="-284" y="173.55" font-size="13" font-style="italic">Act – Sense – Respond</text>
+</g>
+<text x="-284" y="192.6" font-weight="bold" fill="#1b1f24">Chaotic</text>
+<text x="188.46" y="136.9" text-anchor="middle" font-size="14" fill="#1b1f24">Coroczny audyt wewnętrzny</text>
+<g fill="#55657a" text-anchor="end">
+<text x="284" y="157.55" font-size="13" font-style="italic">Best practice</text>
+<text x="284" y="173.55" font-size="13" font-style="italic">Sense – Categorise – Respond</text>
+</g>
+<text x="284" y="192.6" text-anchor="end" font-weight="bold" fill="#1b1f24">Clear</text>
+<text x="0" y="5.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Confusion</text>
+<rect x="-64.69" y="-123" width="129.38" height="16" rx="3" fill="#ffffff"/>
+<text x="0" y="-110.45" text-anchor="middle" font-size="13" fill="#1b1f24">Wzorzec rozpoznany</text>
+<rect x="151" y="-8" width="116.4" height="16" rx="3" fill="#ffffff"/>
+<text x="209.2" y="4.55" text-anchor="middle" font-size="13" fill="#1b1f24">Procedura spisana</text>
+<rect x="-64.71" y="107" width="129.42" height="16" rx="3" fill="#ffffff"/>
+<text x="0" y="119.55" text-anchor="middle" font-size="13" fill="#1b1f24">Rutyna i zaniedbanie</text>
+<rect x="-279.7" y="-8" width="128.7" height="16" rx="3" fill="#ffffff"/>
+<text x="-215.35" y="4.55" text-anchor="middle" font-size="13" fill="#1b1f24">Sytuacja opanowana</text>
+</svg>

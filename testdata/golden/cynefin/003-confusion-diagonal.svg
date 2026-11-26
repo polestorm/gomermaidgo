@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="627.56" height="748.62" viewBox="-313.78 -390.31 627.56 748.62" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<rect x="-301.78" y="-346.31" width="603.56" height="692.62" rx="6"/>
+<path d="M0 -346.31 C16 -228.56 16 -114.28 0 0"/>
+<path d="M-301.78 0 C-199.17 16 -99.59 16 0 0"/>
+<path d="M0 0 C99.59 -16 199.17 -16 301.78 0"/>
+</g>
+<path d="M0 0 C-16 114.28 -16 228.56 0 346.31" fill="none" stroke="#3b4754" stroke-width="3.5"/>
+<ellipse cx="0" cy="0" rx="115.63" ry="110.31" fill="#f3f5f8" stroke="#3b4754" stroke-width="1.5"/>
+<g fill="#ffffff" stroke="#9aa5b1" stroke-width="1">
+<rect x="-285.78" y="-272.31" width="204.34" height="62" rx="4"/>
+<rect x="-285.78" y="-204.31" width="176.31" height="26" rx="4"/>
+<rect x="150.75" y="252.31" width="135.03" height="26" rx="4"/>
+<rect x="-73.76" y="-48" width="147.52" height="26" rx="4"/>
+<rect x="-63.26" y="-16" width="126.52" height="26" rx="4"/>
+<rect x="-58.2" y="16" width="116.39" height="26" rx="4"/>
+<rect x="-33.87" y="48" width="67.75" height="26" rx="4"/>
+</g>
+<path d="M-85.18 -74.6 C-129.81 -81.78 -157.86 -104.46 -169.33 -142.65" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="-171.63,-150.31 -164.44,-142.03 -173.06,-139.44" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<path d="M-171.63 -150.31 C-176.35 85.94 -64.57 186.55 163.72 151.52" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="171.63,150.31 162.43,156.27 161.06,147.38" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<path d="M171.63 150.31 C158.62 107.02 132.44 82.2 93.08 75.87" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="85.18,74.6 95.77,71.74 94.34,80.63" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<text x="0" y="-362.31" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b1f24">Przegląd zgłoszeń z pierwszego kwartału</text>
+<text x="-285.78" y="-314.71" font-weight="bold" fill="#1b1f24">Complex</text>
+<g fill="#55657a">
+<text x="-285.78" y="-297.76" font-size="13" font-style="italic">Probe – Sense – Respond</text>
+<text x="-285.78" y="-281.76" font-size="13" font-style="italic">Emergent practice</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="-183.61" y="-254.41" font-size="14">Nietypowe pęknięcia obudowy</text>
+<text x="-183.61" y="-236.41" font-size="14">pojawiające się tylko zimą w</text>
+<text x="-183.61" y="-218.41" font-size="14">jednej partii wyrobów</text>
+<text x="-197.62" y="-186.41" font-size="14">Nowy dostawca granulatu</text>
+</g>
+<text x="285.78" y="-314.71" text-anchor="end" font-weight="bold" fill="#1b1f24">Complicated</text>
+<g fill="#55657a" text-anchor="end">
+<text x="285.78" y="-297.76" font-size="13" font-style="italic">Sense – Analyse – Respond</text>
+<text x="285.78" y="-281.76" font-size="13" font-style="italic">Good practice</text>
+</g>
+<g fill="#55657a">
+<text x="-285.78" y="290.86" font-size="13" font-style="italic">Novel practice</text>
+<text x="-285.78" y="306.86" font-size="13" font-style="italic">Act – Sense – Respond</text>
+</g>
+<text x="-285.78" y="325.91" font-weight="bold" fill="#1b1f24">Chaotic</text>
+<text x="218.26" y="270.21" text-anchor="middle" font-size="14" fill="#1b1f24">Wymiana uszczelki</text>
+<g fill="#55657a" text-anchor="end">
+<text x="285.78" y="290.86" font-size="13" font-style="italic">Best practice</text>
+<text x="285.78" y="306.86" font-size="13" font-style="italic">Sense – Categorise – Respond</text>
+</g>
+<text x="285.78" y="325.91" text-anchor="end" font-weight="bold" fill="#1b1f24">Clear</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="0" y="-58.4" font-weight="bold">Confusion</text>
+<text x="0" y="-30.1" font-size="14">Zgłoszenie bez opisu</text>
+<text x="0" y="1.9" font-size="14">Telefon od klienta</text>
+<text x="0" y="33.9" font-size="14">Uwaga z audytu</text>
+<text x="0" y="65.9" font-size="14">+2 more</text>
+</g>
+<rect x="-205.16" y="-79.06" width="81" height="16" rx="3" fill="#ffffff"/>
+<text x="-164.66" y="-66.51" text-anchor="middle" font-size="13" fill="#1b1f24">Rozpoznano</text>
+<rect x="-165.12" y="125.64" width="96.15" height="16" rx="3" fill="#ffffff"/>
+<text x="-117.04" y="138.19" text-anchor="middle" font-size="13" fill="#1b1f24">Przepis gotowy</text>
+</svg>
