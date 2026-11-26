@@ -484,8 +484,8 @@ func Layout(m *Model, o Options) *scene.Scene {
 	var runs []*run
 	type plan struct {
 		xa, xb, xm, ya, yb float64
-		two              bool
-		r1, r2           *run
+		two                bool
+		r1, r2             *run
 	}
 	plans := make([]plan, len(edges))
 	for i, e := range edges {
