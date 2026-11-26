@@ -560,9 +560,9 @@ strokes); more than eight levels of causes under a category is an error.
 |---|---|---|
 | entry | a name on its own line, plain or `"quoted"`; a trailing `/` marks a directory | TREE-003 |
 | nesting | indentation (a tab counts as four spaces) or box-drawing characters `├──`, `└──`, `│` and the heavy `┣━━`, `┗━━`, `┃`; the output of `tree` (a `.` root with branches from column zero) is read as is | TREE-002 |
-| highlight | `:::highlight`; other `:::class` names are accepted and do not change the drawing | TREE-003 |
+| highlight | `:::highlight` marks the whole entry, its name and description; other `:::class` names are accepted and do not change the drawing | TREE-003 |
 | icon | `icon(folder)`, `icon(file)`, `icon(pack:name)`, `icon(none)` | TREE-003, TREE-004 |
-| description | `## text` at the end of the line | TREE-003 |
+| description | `## text` at the end of the line; grey italics, green with `WithColors` | TREE-003 |
 | comment | `%%` | TREE-001 |
 | accessibility | `accTitle`, `accDescr` | TREE-001 |
 

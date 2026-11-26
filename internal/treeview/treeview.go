@@ -237,6 +237,7 @@ const (
 	colorMark   = "#eef2f7" // podkład wyróżnienia w trybie neutralnym
 	colorMarkLn = "#55657a"
 	colorIcon   = "#55657a"
+	colorDescC  = "#3f7d3a" // opis w trybie kolorowym: zieleń jak komentarz w kodzie
 )
 
 // row to węzeł ułożony w rzędzie.
@@ -346,7 +347,12 @@ func Layout(t *Tree, o Options) *scene.Scene {
 			if o.Colors {
 				fill, stroke = "#fff3cd", "#d9a300"
 			}
-			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "treeview-highlight", X: lx - u(4), Y: r.mid - lh/2, W: r.labelW + u(8), H: lh, RX: u(3),
+			// Wyróżnienie obejmuje cały wpis: nazwę i jego opis.
+			w := r.labelW
+			if r.n.Desc != "" {
+				w = descX + o.Measure(r.n.Desc, fs) - lx
+			}
+			sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerLabelBackground, Role: "treeview-highlight", X: lx - u(4), Y: r.mid - lh/2, W: w + u(8), H: lh, RX: u(3),
 				Fill: fill, Stroke: stroke, StrokeWidth: 1})
 		}
 		if r.icon {
@@ -355,8 +361,12 @@ func Layout(t *Tree, o Options) *scene.Scene {
 		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "treeview-label", X: lx, Y: r.mid + 0.35*fs, W: r.labelW, H: lh,
 			Text: label(r.n), Anchor: "start", Bold: r.n.Dir(), Fill: colorText})
 		if r.n.Desc != "" {
+			desc := colorDesc
+			if o.Colors {
+				desc = colorDescC
+			}
 			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "treeview-description", X: descX, Y: r.mid + 0.35*fs, W: o.Measure(r.n.Desc, fs), H: lh,
-				Text: r.n.Desc, Anchor: "start", Italic: true, Fill: colorDesc})
+				Text: r.n.Desc, Anchor: "start", Italic: true, Fill: desc})
 		}
 	}
 	return sc
