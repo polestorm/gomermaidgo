@@ -1,0 +1,36 @@
+%% REQ: UC-001 UC-002 UC-003 UC-004 UC-005 UC-006
+%% Tytuł: Tabela JSON, napisy Markdown, identyfikatory krawędzi i style
+%% Sprawdza: nagłówek bez -beta, accTitle i accDescr w bloku, deklaracja po użyciu, przypadek użycia z nazwy w cudzysłowie, napis Markdown z pogrubieniem i złamaniem linii, kody #quot; i #40;, węzeł json z zagnieżdżeniem i tablicą, notatka Markdown, identyfikatory krawędzi ze style i class, classDef, :::klasa, granica z tytułem w cudzysłowie i metadanymi podanymi później, dłuższa krawędź (--->), krawędzie z kółkiem i krzyżykiem.
+usecase
+accTitle: Rejestr dokumentów
+accDescr {
+  Kierownik jakości zatwierdza dokumenty,
+  a system zapisuje ich dane.
+}
+direction LR
+Kierownik --> Zatwierdz
+actor Kierownik("Kierownik jakości"):::wazny
+systemBoundary "Rejestr dokumentów"
+  Zatwierdz("`**Zatwierdź**
+  dokument`")
+  "Wycofaj wersję"
+  Kopia("Kopia #quot;PDF#quot; #40;archiwum#41;")
+end
+Rejestr_dokumentów@{ type: package }
+json Dokument@{
+  "numer": "PR-02",
+  "wersja": 3,
+  "zatwierdzony": true,
+  "autor": { "dzial": "Jakość" },
+  "zalaczniki": ["F-01", "F-02"],
+  "uwagi": null
+}:::dane
+note for Zatwierdz "`Wymaga **podpisu**`"
+Kierownik zapis@-- "zapisuje" ---> Dokument
+Kierownik --o Wycofaj_wersję
+Kierownik --x Kopia
+classDef wazny stroke:#b00,stroke-width:2px
+classDef dane stroke:#3572a5
+class zapis wazny
+style Zatwierdz stroke:#06c
+zapis@{ animation: fast }

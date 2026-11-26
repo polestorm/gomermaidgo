@@ -35,6 +35,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/state"
 	"github.com/polestorm/gomermaidgo/internal/syntax"
 	"github.com/polestorm/gomermaidgo/internal/timeline"
+	"github.com/polestorm/gomermaidgo/internal/usecase"
 	"github.com/polestorm/gomermaidgo/internal/xychart"
 )
 
@@ -60,11 +61,12 @@ const (
 	TypeQuadrant    = "quadrantChart"
 	TypeRequirement = "requirementDiagram"
 	TypeC4          = "C4"
+	TypeUseCase     = "usecase"
 )
 
 // SupportedTypes returns the supported diagram types.
 func SupportedTypes() []string {
-	out := []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant, TypeRequirement, TypeC4}
+	out := []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant, TypeRequirement, TypeC4, TypeUseCase}
 	for _, t := range moreTypes {
 		out = append(out, t.name)
 	}
@@ -244,6 +246,8 @@ func DetectType(source string) (string, error) {
 			return TypeRequirement, nil
 		case "C4Context", "C4Container", "C4Component", "C4Dynamic", "C4Deployment":
 			return TypeC4, nil
+		case "usecase-beta", "usecase":
+			return TypeUseCase, nil
 		}
 		for _, t := range moreTypes {
 			if slices.Contains(t.headers, strings.TrimRight(word, ";")) {
@@ -310,6 +314,8 @@ func Check(source string) error {
 		_, err = requirement.Parse(source)
 	case TypeC4:
 		_, err = c4.Parse(source)
+	case TypeUseCase:
+		_, err = usecase.Parse(source)
 	case TypeTimeline:
 		_, err = timeline.Parse(source)
 	case TypeJourney:
@@ -617,6 +623,8 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 			g, err = requirement.Parse(source)
 		case TypeC4:
 			g, err = c4.Parse(source)
+		case TypeUseCase:
+			g, err = usecase.Parse(source)
 		default:
 			g, err = state.Parse(source)
 		}

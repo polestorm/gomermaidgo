@@ -1,0 +1,14 @@
+usecase TB
+subgraph audyt title="Audyty"
+node note-1 note "Raz na kwartał"
+node Audytor actor "Audytor wewnętrzny"
+node Wiodacy actor "Audytor wiodący"
+node Zarzad actor "«Kierownictwo»\nZarząd"
+node Plan usecase "Zaplanuj audyt" in=audyt
+node Przeprowadz usecase "Przeprowadź audyt" in=audyt
+node Zatwierdz usecase "«Roczny»\nZatwierdź program" in=audyt
+edge note-1 -> Plan dotted none/none len=1
+edge Wiodacy -> Audytor normal none/triangle len=1
+edge Audytor -> Przeprowadz normal none/arrow len=1
+edge Wiodacy -> Plan normal none/arrow len=1 "przygotowuje"
+edge Zarzad -> Zatwierdz normal none/none len=1

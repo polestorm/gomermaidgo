@@ -70,6 +70,9 @@ const (
 	Entity           Shape = "entity"      // encja diagramu związków: nagłówek i tabela atrybutów
 	Class            Shape = "class"       // klasa: nazwa, atrybuty, metody
 	Requirement      Shape = "requirement" // wymaganie albo element: rodzaj, nazwa i pola w jednym przedziale
+	UseCase          Shape = "usecase"     // przypadek użycia: elipsa z tekstem
+	Actor            Shape = "actor"       // aktor: postać z podpisem pod nią
+	NoteBox          Shape = "note"        // notatka przypięta krawędzią do węzła
 )
 
 // LineStyle to rodzaj linii krawędzi.

@@ -1,0 +1,20 @@
+usecase LR
+subgraph Rejestr_dokumentów title="Rejestr dokumentów"
+node Dokument entity "Dokument" paint[stroke=#3572a5]
+  attribute ["numer" "PR-02" "" ""]
+  attribute ["wersja" "3" "" ""]
+  attribute ["zatwierdzony" "true" "" ""]
+  attribute ["autor.dzial" "Jakość" "" ""]
+  attribute ["zalaczniki[0]" "F-01" "" ""]
+  attribute ["zalaczniki[1]" "F-02" "" ""]
+  attribute ["uwagi" "null" "" ""]
+node note-1 note "Wymaga **podpisu**"
+node Kierownik actor "Kierownik jakości" paint[stroke=#b00 width=2]
+node Zatwierdz usecase "**Zatwierdź**\ndokument" in=Rejestr_dokumentów paint[stroke=#06c]
+node Wycofaj_wersję usecase "Wycofaj wersję" in=Rejestr_dokumentów
+node Kopia usecase "Kopia \"PDF\" (archiwum)" in=Rejestr_dokumentów
+edge Kierownik -> Zatwierdz normal none/arrow len=1
+edge note-1 -> Zatwierdz dotted none/none len=1
+edge Kierownik -> Dokument normal none/arrow len=2 "zapisuje" paint[stroke=#b00 width=2]
+edge Kierownik -> Wycofaj_wersję normal none/circle len=1
+edge Kierownik -> Kopia normal none/cross len=1

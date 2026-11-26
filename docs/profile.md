@@ -606,6 +606,29 @@ arcs bent away from the centre with the label on their outer side; the `cynefin`
 `showDomainDescriptions`, `boundaryAmplitude`, `seed`) and its theme variables are outside the profile; an item must be
 quoted; at most 120 items.
 
+## Use case diagram (`usecase-beta`, `usecase`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| direction | `direction TB`, `TD`, `BT`, `LR`, `RL` (default TB) | UC-001 |
+| actor | `actor Id`, `actor Id("label")`, metadata `@{ type: hollow }`, `@{ business: true }`, `@{ icon: "fa:user" }`, stereotype `<<Name>>`, `:::class` | UC-002 |
+| use case | `Id("label")` (ellipse), `Id[label]` (rectangle), `"Name"`, `Id`; an undeclared relationship end | UC-002 |
+| label | plain, `"quoted"`, Markdown string in backticks, codes `#quot;` `#39;` `#40;` `#41;` `#91;` `#93;` `#96;` | UC-002 |
+| system boundary | `systemBoundary Id["title"]` or `systemBoundary "title"` … `end`, one level; `@{ type: package }` | UC-003 |
+| association | `-->`, `--->`, `<--`, `--`, `--o`, `o--`, `--x`, `x--`; `A -- "label" --> B` | UC-004 |
+| include, extend | `A ..> : include B`, `A ..> : extend B` | UC-004 |
+| generalisation | `A --|> B` (two actors or two use cases) | UC-004 |
+| edge id | `A id@--> B`; metadata `id@{ animation: fast }` is accepted | UC-004 |
+| note | `note for Id "text"` | UC-004 |
+| JSON table | `json Id@{ … }` | UC-005 |
+| style | `classDef`, `class`, `style`, `:::class` on actors, use cases, boundaries, tables and edges with an id | UC-005 |
+| accessibility | `accTitle`, `accDescr`, `accDescr { … }` | UC-001 |
+
+Deliberate differences from Mermaid: the layered layout of flowcharts instead of ELK; every actor is the same stick
+figure (the `hollow`, `awesome` and icon variants and the business slash are not drawn); a `package` boundary is
+drawn like a plain one; edge animation is not drawn; identifiers may contain any letters; a class must be defined
+with `classDef` before the end of the source; the `usecase` configuration and `colorScheme` are outside the profile.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |

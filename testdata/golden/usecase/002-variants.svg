@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="814.16" height="481" viewBox="-11.91 -11 814.16 481" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-a88ee52a"><path d="M-11.91 -11 L802.25 -11 L802.25 470 L-11.91 470 M45.75 298 L45.75 318 L102.66 318 L102.66 298 M149.86 159 L149.86 179 L252.14 179 L252.14 159"/></clipPath></defs>
+<g clip-path="url(#label-holes-a88ee52a)">
+<rect x="37.75" y="292" width="752.5" height="166" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<path d="M63 187 L63 246 C63 250.4 66.6 254 71 254 L125.75 254 C130.15 254 133.75 257.6 133.75 262 L133.75 378.28" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+</g>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M278 74 L278 82.5 C278 86.9 281.6 90.5 286 90.5 L339 90.5 C343.4 90.5 347 94.1 347 98.5 L347 118"/>
+<path d="M347 206 L347 246 C347 250.4 350.6 254 355 254 L385.75 254 C390.15 254 393.75 257.6 393.75 262 L393.75 369.6"/>
+<g clip-path="url(#label-holes-a88ee52a)">
+<path d="M270 74 L270 82.5 C270 86.9 266.4 90.5 262 90.5 L209 90.5 C204.6 90.5 201 94.1 201 98.5 L201 246 C201 250.4 197.4 254 193 254 L167.75 254 C163.35 254 159.75 257.6 159.75 262 L159.75 369.88"/>
+</g>
+<path d="M698 216 L698 246 C698 250.4 694.4 254 690 254 L669.75 254 C665.35 254 661.75 257.6 661.75 262 L661.75 370"/>
+<polygon points="347,132 339,118 355,118"/>
+</g>
+<g fill="#3b4754">
+<polygon points="393.75,378 387.75,366 399.75,366"/>
+<polygon points="159.75,378.28 153.75,366.28 165.75,366.28"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<circle cx="274" cy="9" r="8"/>
+<line x1="274" y1="17" x2="274" y2="35"/>
+<line x1="260" y1="24" x2="288" y2="24"/>
+<line x1="274" y1="35" x2="263" y2="49"/>
+<line x1="274" y1="35" x2="285" y2="49"/>
+</g>
+<rect x="0.09" y="151" width="125.82" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<circle cx="347" cy="141" r="8"/>
+<line x1="347" y1="149" x2="347" y2="167"/>
+<line x1="333" y1="156" x2="361" y2="156"/>
+<line x1="347" y1="167" x2="336" y2="181"/>
+<line x1="347" y1="167" x2="358" y2="181"/>
+<circle cx="698" cy="131" r="8"/>
+<line x1="698" y1="139" x2="698" y2="157"/>
+<line x1="684" y1="146" x2="712" y2="146"/>
+<line x1="698" y1="157" x2="687" y2="171"/>
+<line x1="698" y1="157" x2="709" y2="171"/>
+<ellipse cx="146.75" cy="404" rx="88.5" ry="26"/>
+<ellipse cx="393.75" cy="404" rx="111" ry="26"/>
+<ellipse cx="661.75" cy="404" rx="108.5" ry="34"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="274" y="65.6">Audytor wiodący</text>
+<text x="63" y="174.6">Raz na kwartał</text>
+<text x="347" y="197.6">Audytor wewnętrzny</text>
+<text x="698" y="187.6">«Kierownictwo»</text>
+<text x="698" y="207.6">Zarząd</text>
+<text x="74.21" y="313.6">Audyty</text>
+<text x="146.75" y="409.6">Zaplanuj audyt</text>
+<text x="393.75" y="409.6">Przeprowadź audyt</text>
+<text x="661.75" y="399.6">«Roczny»</text>
+<text x="661.75" y="419.6">Zatwierdź program</text>
+<text x="201" y="174.6">przygotowuje</text>
+</g>
+</svg>

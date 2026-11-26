@@ -1,0 +1,14 @@
+usecase LR
+subgraph rekl title="System reklamacji"
+node Klient actor "Klient"
+node Jakosc actor "Dział jakości"
+node Zglos usecase "Zgłoś reklamację" in=rekl
+node Status usecase "Sprawdź status" in=rekl
+node Ocen usecase "Oceń zasadność" in=rekl
+node Raport rect "Raport 8D" in=rekl
+edge Klient -> Zglos normal none/arrow len=1
+edge Klient -> Status normal none/arrow len=1
+edge Jakosc -> Ocen normal none/arrow len=1
+edge Jakosc -> Raport normal none/arrow len=1
+edge Zglos -> Status dotted none/open-arrow len=1 "«include»"
+edge Raport -> Ocen dotted none/open-arrow len=1 "«extend»"

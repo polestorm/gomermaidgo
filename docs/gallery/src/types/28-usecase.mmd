@@ -1,0 +1,16 @@
+usecase-beta
+direction LR
+actor Customer
+actor Quality("Quality department")
+systemBoundary claims["Complaint system"]
+  Report("Report a complaint")
+  Status("Check status")
+  Assess("Assess the complaint")
+  EightD[8D report]
+end
+Customer --> Report
+Customer --> Status
+Quality --> Assess
+Quality --> EightD
+Report ..> : include Status
+EightD ..> : extend Assess

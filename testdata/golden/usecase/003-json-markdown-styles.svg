@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="846.78" height="517" viewBox="-12 -12 846.78 517" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Rejestr dokumentów</title>
+<desc>Kierownik jakości zatwierdza dokumenty, a system zapisuje ich dane.</desc>
+<defs><clipPath id="label-holes-c28d4e0e"><path d="M-12 -12 L834.78 -12 L834.78 505 L-12 505 M247.78 161 L247.78 181 L401.63 181 L401.63 161 M376.43 115 L376.43 135 L443.13 135 L443.13 115"/></clipPath></defs>
+<g clip-path="url(#label-holes-c28d4e0e)">
+<rect x="239.78" y="155" width="340" height="338" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+</g>
+<path d="M140.39 223 L226.78 223 C227.61 223 228.28 223.68 228.28 224.5 L228.28 224.5 C228.28 225.33 228.96 226 229.78 226 L353.93 226" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path d="M149.78 328 L160.28 328 C164.68 328 168.28 324.4 168.28 320 L168.28 260 C168.28 255.6 171.88 252 176.28 252 L362.33 252" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g clip-path="url(#label-holes-c28d4e0e)">
+<path d="M140.39 219 L220.28 219 C224.68 219 228.28 215.4 228.28 211 L228.28 133 C228.28 128.6 231.88 125 236.28 125 L631.38 125" fill="none" stroke="#b00" stroke-width="2"/>
+</g>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M140.39 227 L200.28 227 C204.68 227 208.28 230.6 208.28 235 L208.28 246 C204.98 246 202.28 248.7 202.28 252 C202.28 255.3 204.98 258 208.28 258 L208.28 339 C208.28 343.4 211.88 347 216.28 347 L324.78 347"/>
+<path d="M140.39 231 L180.28 231 C184.68 231 188.28 234.6 188.28 239 L188.28 246 C184.98 246 182.28 248.7 182.28 252 C182.28 255.3 184.98 258 188.28 258 L188.28 439 C188.28 443.4 191.88 447 196.28 447 L279.78 447"/>
+</g>
+<polygon points="362.33,226 350.33,220 350.33,232" fill="#3b4754"/>
+<polygon points="639.78,125 627.78,119 627.78,131" fill="#b00"/>
+<g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
+<circle cx="328.78" cy="347" r="5"/>
+<line x1="284.78" y1="452" x2="274.78" y2="442"/>
+<line x1="284.78" y1="442" x2="274.78" y2="452"/>
+</g>
+<g fill="#eef2f7" stroke="#b00" stroke-width="2">
+<circle cx="74.89" cy="197" r="8"/>
+<line x1="74.89" y1="205" x2="74.89" y2="223"/>
+<line x1="60.89" y1="212" x2="88.89" y2="212"/>
+<line x1="74.89" y1="223" x2="63.89" y2="237"/>
+<line x1="74.89" y1="223" x2="85.89" y2="237"/>
+</g>
+<rect x="0" y="310" width="149.78" height="36" fill="#fff6c2" stroke="#b59a1b" stroke-width="1"/>
+<ellipse cx="423.78" cy="239" rx="66.5" ry="34" fill="#eef2f7" stroke="#06c" stroke-width="1.5"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<ellipse cx="423.78" cy="347" rx="90" ry="26"/>
+<ellipse cx="423.78" cy="447" rx="136" ry="26"/>
+</g>
+<g stroke="#3572a5" stroke-width="1.5">
+<rect x="639.78" y="0" width="183" height="250" fill="#ffffff"/>
+<rect x="639.78" y="0" width="183" height="40" fill="#eef2f7"/>
+</g>
+<g stroke="#3572a5" stroke-width="1">
+<line x1="639.78" y1="70" x2="822.78" y2="70"/>
+<line x1="639.78" y1="100" x2="822.78" y2="100"/>
+<line x1="639.78" y1="130" x2="822.78" y2="130"/>
+<line x1="639.78" y1="160" x2="822.78" y2="160"/>
+<line x1="639.78" y1="190" x2="822.78" y2="190"/>
+<line x1="639.78" y1="220" x2="822.78" y2="220"/>
+</g>
+<text x="74.89" y="253.6" text-anchor="middle" fill="#1b1f24">Kierownik jakości</text>
+<g fill="#1b1f24">
+<text x="10" y="333.6">Wymaga</text>
+<text x="77.57" y="333.6" font-weight="bold">podpisu</text>
+</g>
+<text x="324.7" y="176.6" text-anchor="middle" fill="#1b1f24">Rejestr dokumentów</text>
+<text x="386.89" y="234.6" font-weight="bold" fill="#1b1f24">Zatwierdź</text>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="423.78" y="254.6">dokument</text>
+<text x="423.78" y="352.6">Wycofaj wersję</text>
+<text x="423.78" y="452.6">Kopia &quot;PDF&quot; (archiwum)</text>
+<text x="731.28" y="25.6">Dokument</text>
+</g>
+<g fill="#1b1f24">
+<text x="649.78" y="60.6">numer</text>
+<text x="763.16" y="60.6">PR-02</text>
+<text x="649.78" y="90.6">wersja</text>
+<text x="763.16" y="90.6">3</text>
+<text x="649.78" y="120.6">zatwierdzony</text>
+<text x="763.16" y="120.6">true</text>
+<text x="649.78" y="150.6">autor.dzial</text>
+<text x="763.16" y="150.6">Jakość</text>
+<text x="649.78" y="180.6">zalaczniki[0]</text>
+<text x="763.16" y="180.6">F-01</text>
+<text x="649.78" y="210.6">zalaczniki[1]</text>
+<text x="763.16" y="210.6">F-02</text>
+<text x="649.78" y="240.6">uwagi</text>
+<text x="763.16" y="240.6">null</text>
+</g>
+<text x="409.78" y="130.6" text-anchor="middle" fill="#1b1f24">zapisuje</text>
+</svg>

@@ -61,6 +61,11 @@ func (l *layouter) nodeSize(shape graph.Shape, text []string) (w, h float64) {
 		w += l.u(16)
 	case graph.Cylinder:
 		h += l.u(14)
+	case graph.UseCase:
+		// Elipsa opisana na prostokącie tekstu z marginesem: półosie √2 razy większe.
+		w, h = math.Max(math.Sqrt2*(tw+l.u(20)), l.u(120)), math.Max(math.Sqrt2*(th+l.u(8)), l.u(52))
+	case graph.Actor:
+		w, h = math.Max(tw+l.u(8), l.u(48)), l.u(50)+th+l.u(4)
 	case graph.Circle, graph.DoubleCircle:
 		d := math.Max(math.Hypot(tw, th)+l.u(16), l.u(44))
 		if shape == graph.DoubleCircle {
@@ -149,8 +154,10 @@ func (l *layouter) portRange(it *item) float64 {
 		// Krawędzie wychodzą z boków przy wierzchołku, każda w swoim miejscu: widać, która
 		// odpowiedź dokąd prowadzi.
 		return w * 0.45
-	case graph.Circle, graph.DoubleCircle:
+	case graph.Circle, graph.DoubleCircle, graph.UseCase:
 		return w * 0.5
+	case graph.Actor:
+		return l.u(16)
 	case graph.StateStart, graph.StateEnd:
 		return 0
 	case graph.Stadium:
@@ -810,8 +817,8 @@ func (l *layouter) tone(shape graph.Shape) (fill, stroke string) {
 	switch shape {
 	case graph.Rhombus, graph.Hexagon, graph.Choice:
 		t = scene.Palette[2] // decyzja
-	case graph.Stadium, graph.Circle, graph.DoubleCircle:
-		t = scene.Palette[1] // początek, koniec
+	case graph.Stadium, graph.Circle, graph.DoubleCircle, graph.UseCase:
+		t = scene.Palette[1] // początek, koniec, przypadek użycia
 	case graph.Cylinder, graph.Subroutine:
 		t = scene.Palette[3] // dane, podproces
 	case graph.Parallelogram, graph.ParallelogramAlt, graph.Trapezoid, graph.TrapezoidAlt, graph.Asymmetric:
@@ -1065,6 +1072,21 @@ func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float
 		cy += cap / 4
 	case graph.Circle:
 		circle(w/2, colorNodeFill, colorNodeStroke)
+	case graph.UseCase:
+		l.sc.Add(scene.Item{Kind: scene.Ellipse, Layer: scene.LayerShape, Role: "node", X: cx, Y: cy, W: w, H: h,
+			Fill: colorNodeFill, Stroke: colorNodeStroke, StrokeWidth: 1.5})
+	case graph.Actor:
+		// Postać: głowa, tułów, ręce i nogi; podpis pod postacią.
+		r := l.u(8)
+		hy := y0 + r + 1
+		l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "node", X: cx, Y: hy, R: r,
+			Fill: colorNodeFill, Stroke: colorNodeStroke, StrokeWidth: 1.5})
+		line(cx, hy+r, cx, hy+r+l.u(18))
+		line(cx-l.u(14), hy+r+l.u(7), cx+l.u(14), hy+r+l.u(7))
+		line(cx, hy+r+l.u(18), cx-l.u(11), hy+r+l.u(32))
+		line(cx, hy+r+l.u(18), cx+l.u(11), hy+r+l.u(32))
+		_, th := l.textSize(text)
+		cy = y0 + l.u(50) + th/2
 	case graph.DoubleCircle:
 		circle(w/2, colorNodeFill, colorNodeStroke)
 		circle(w/2-l.u(5), "", colorNodeStroke)
@@ -1238,6 +1260,9 @@ func inset(it *item, off float64) float64 {
 	case graph.Circle, graph.DoubleCircle:
 		r := it.h / 2
 		return r - math.Sqrt(math.Max(r*r-off*off, 0))
+	case graph.UseCase:
+		k := math.Min(math.Abs(off)/half, 1)
+		return it.h / 2 * (1 - math.Sqrt(1-k*k))
 	}
 	return 0
 }

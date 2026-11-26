@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="709.47" height="316" viewBox="-7.97 -12 709.47 316" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-7.97" y="-12" width="709.47" height="316" fill="white"/>
+<rect x="165" y="0" width="524.5" height="292" rx="4" fill="none" stroke="#8a94a3" stroke-width="1"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3">
+<path d="M313.02 78 L474.26 78 C478.66 78 482.26 81.6 482.26 86 L482.26 97.5 C482.26 101.9 485.86 105.5 490.26 105.5 L513.02 105.5"/>
+<path d="M303 260 L474.26 260 C478.66 260 482.26 256.4 482.26 252 L482.26 248 C482.26 243.6 485.86 240 490.26 240 L526.67 240"/>
+</g>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M83 112 L129 112 C133.4 112 137 108.4 137 104 L137 92 C137 87.6 140.6 84 145 84 L180.6 84"/>
+<path d="M83 120 L129 120 C133.4 120 137 123.6 137 128 L137 132 C137 136.4 140.6 140 145 140 L341 140 C345.4 140 349 136.4 349 132 L349 120 C349 115.6 352.6 112 357 112 L474.81 112 C476.6 112 478.06 113.46 478.06 115.25 L478.06 115.25 C478.06 117.04 479.52 118.5 481.31 118.5 L504.62 118.5"/>
+<path d="M89 244 L109 244 C113.4 244 117 240.4 117 236 L117 212 C117 207.6 120.6 204 125 204 L341 204 C345.4 204 349 207.6 349 212 L349 218 C349 222.4 352.6 226 357 226 L512.1 226"/>
+<path d="M89 252 L135 252 C136.1 252 137 251.1 137 250 L137 250 C137 248.9 137.9 248 139 248 L191.6 248"/>
+</g>
+<g fill="white">
+<rect x="173" y="6" width="135.15" height="20"/>
+<rect x="385" y="68" width="76.5" height="20"/>
+<rect x="386.33" y="250" width="73.84" height="20"/>
+</g>
+<g stroke="#3b4754" stroke-width="1.5">
+<line x1="513.02" y1="105.5" x2="502.02" y2="111.5"/>
+<line x1="513.02" y1="105.5" x2="502.02" y2="99.5"/>
+<line x1="526.67" y1="240" x2="515.67" y2="246"/>
+<line x1="526.67" y1="240" x2="515.67" y2="234"/>
+</g>
+<g fill="#3b4754">
+<polygon points="189,84 177,78 177,90"/>
+<polygon points="513.02,118.5 501.02,112.5 501.02,124.5"/>
+<polygon points="520.5,226 508.5,220 508.5,232"/>
+<polygon points="200,248 188,242 188,254"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<circle cx="44.5" cy="88" r="8"/>
+<line x1="44.5" y1="96" x2="44.5" y2="114"/>
+<line x1="30.5" y1="103" x2="58.5" y2="103"/>
+<line x1="44.5" y1="114" x2="33.5" y2="128"/>
+<line x1="44.5" y1="114" x2="55.5" y2="128"/>
+<circle cx="44.5" cy="210" r="8"/>
+<line x1="44.5" y1="218" x2="44.5" y2="236"/>
+<line x1="30.5" y1="225" x2="58.5" y2="225"/>
+<line x1="44.5" y1="236" x2="33.5" y2="250"/>
+<line x1="44.5" y1="236" x2="55.5" y2="250"/>
+<ellipse cx="251.5" cy="84" rx="62.5" ry="34"/>
+<rect x="200" y="226" width="103" height="44"/>
+<ellipse cx="590" cy="112" rx="79.5" ry="26"/>
+<ellipse cx="590" cy="226" rx="69.5" ry="34"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="44.5" y="144.6">Customer</text>
+<text x="44.5" y="266.6">Quality</text>
+<text x="44.5" y="286.6">department</text>
+<text x="240.57" y="21.6">Complaint system</text>
+<text x="251.5" y="79.6">Report a</text>
+<text x="251.5" y="99.6">complaint</text>
+<text x="251.5" y="253.6">8D report</text>
+<text x="590" y="117.6">Check status</text>
+<text x="590" y="221.6">Assess the</text>
+<text x="590" y="241.6">complaint</text>
+<text x="423.25" y="83.6">«include»</text>
+<text x="423.25" y="265.6">«extend»</text>
+</g>
+</svg>
