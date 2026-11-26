@@ -120,18 +120,38 @@ func TestParseErrors(t *testing.T) {
 		"usecase-beta\nactor A@{ color: red }": {CodeStatement, 2},
 		"usecase-beta\nsystemBoundary S\nX":    {CodeStatement, 0},
 		"usecase-beta\nsystemBoundary S\nsystemBoundary T": {CodeStatement, 3},
-		"usecase-beta\nend":               {CodeStatement, 2},
-		"usecase-beta\nA ..> : uses B":    {CodeStatement, 2},
-		"usecase-beta\nactor A\nA --|> B": {CodeStatement, 3},
-		"usecase-beta\njson J@{ \"a\": }": {CodeStatement, 2},
-		"usecase-beta\njson J@[1, 2]":     {CodeStatement, 2},
-		"usecase-beta\n?? what":           {CodeStatement, 2},
-		"usecase-beta\ndirection UP":      {CodeStatement, 2},
+		"usecase-beta\nend":                     {CodeStatement, 2},
+		"usecase-beta\nA ..> : uses B":          {CodeStatement, 2},
+		"usecase-beta\nactor A\nA --|> B":       {CodeStatement, 3},
+		"usecase-beta\njson J@{ \"a\": }":       {CodeStatement, 2},
+		"usecase-beta\njson J@[1, 2]":           {CodeStatement, 2},
+		"usecase-beta\n?? what":                 {CodeStatement, 2},
+		"usecase-beta\ndirection UP":            {CodeStatement, 2},
+		"usecase-beta\nactor A@{ type: robot }": {CodeStatement, 2},
 	} {
 		_, err := Parse(src)
 		e, ok := err.(*syntax.Error)
 		if !ok || e.Code != want.code || e.Line != want.line {
 			t.Errorf("%.40q: got %v, want code %s at line %d", src, err, want.code, want.line)
+		}
+	}
+}
+
+// REQ: UC-001 UC-002 UC-006
+func TestParseVariantsAndDefaultDirection(t *testing.T) {
+	g, err := Parse("usecase-beta\nactor A@{ type: hollow, business: true }\nactor B@{ type: \"awesome\" }\nU(\"Zamów\")@{ business: true }\nV(\"Wydaj\")\nA --> U")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if g.Direction != graph.LeftRight {
+		t.Errorf("default direction %q, want LR", g.Direction)
+	}
+	for id, want := range map[string]struct {
+		variant  string
+		business bool
+	}{"A": {"hollow", true}, "B": {"awesome", false}, "U": {"", true}, "V": {"", false}} {
+		if n := g.Node(id); n == nil || n.Variant != want.variant || n.Business != want.business {
+			t.Errorf("%s: %+v", id, n)
 		}
 	}
 }

@@ -38,12 +38,14 @@ type item struct {
 	shape      graph.Shape
 	label      []string
 	line       int
+	variant    string // odmiana aktora (hollow)
+	business   bool
 }
 
 // Parse rozbiera źródło do grafu.
 func Parse(source string) (*graph.Graph, error) {
 	g := graph.New("usecase")
-	g.Direction = graph.TopBottom
+	g.Direction = graph.LeftRight // domyślnie aktorzy po lewej, jak w przykładach dokumentacji Mermaid
 	var acc syntax.Accessibility
 	seenHeader := false
 	var items []*item
@@ -158,7 +160,11 @@ func Parse(source string) (*graph.Graph, error) {
 			if err != nil {
 				return nil, err
 			}
-			if err := declare(&item{id: m[1], shape: graph.Actor, label: stereotype(m[6], t)}); err != nil {
+			variant := metaValue(m[5], "type")
+			if variant != "" && variant != "hollow" && variant != "awesome" {
+				return nil, syntax.Errorf(line, CodeStatement, "unknown actor type %q (write hollow or awesome)", variant)
+			}
+			if err := declare(&item{id: m[1], shape: graph.Actor, label: stereotype(m[6], t), variant: variant, business: metaValue(m[5], "business") == "true"}); err != nil {
 				return nil, err
 			}
 			for _, c := range classNames(m[7]) {
@@ -271,7 +277,7 @@ func Parse(source string) (*graph.Graph, error) {
 			if err != nil {
 				return nil, err
 			}
-			if err := declare(&item{id: id, shape: shape, label: stereotype(m[6], t)}); err != nil {
+			if err := declare(&item{id: id, shape: shape, label: stereotype(m[6], t), business: shape == graph.UseCase && metaValue(m[5], "business") == "true"}); err != nil {
 				return nil, err
 			}
 			for _, c := range classNames(m[7]) {
@@ -295,6 +301,7 @@ func Parse(source string) (*graph.Graph, error) {
 			return nil, err
 		}
 		n.Label, n.Explicit = it.label, true
+		n.Variant, n.Business = it.variant, it.business
 	}
 	for _, r := range rels {
 		for _, end := range []string{r.edge.From, r.edge.To} {
@@ -459,6 +466,18 @@ func classNames(s string) []string {
 		}
 	}
 	return out
+}
+
+// metaValue zwraca wartość klucza z metadanych @{…} bez cudzysłowów (pusta, gdy klucza nie ma).
+func metaValue(meta, key string) string {
+	body := strings.TrimSuffix(strings.TrimPrefix(meta, "@{"), "}")
+	for _, kv := range strings.Split(body, ",") {
+		k, v, _ := strings.Cut(kv, ":")
+		if strings.TrimSpace(k) == key {
+			return strings.Trim(strings.TrimSpace(v), `"'`)
+		}
+	}
+	return ""
 }
 
 // checkMeta sprawdza klucze metadanych @{…}: dozwolone są tylko podane.

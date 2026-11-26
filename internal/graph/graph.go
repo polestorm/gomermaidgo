@@ -123,6 +123,11 @@ type Node struct {
 	// Table to wiersze tabeli atrybutów encji: typ, nazwa, klucze, komentarz.
 	Table [][]string
 
+	// Odmiana kształtu: dla aktora „hollow” (postać obrysowana konturem); Business dodaje ukośną
+	// kreskę aktora albo przypadku użycia biznesowego.
+	Variant  string
+	Business bool
+
 	// Klasa: adnotacja (np. „interface”) i składowe w kolejności ze źródła.
 	Annotation string
 	Members    []Member

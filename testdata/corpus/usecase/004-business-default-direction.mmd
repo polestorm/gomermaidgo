@@ -1,0 +1,16 @@
+%% REQ: UC-001 UC-002 UC-006
+%% Tytuł: Proces biznesowy bez podanego kierunku
+%% Sprawdza: domyślny kierunek LR (aktorzy po lewej), aktor biznesowy z ukośną kreską, aktor hollow, przypadek użycia biznesowy (business: true na elipsie), aktor awesome rysowany jak zwykły.
+usecase-beta
+actor Klient("Klient")@{ business: true }
+actor Handlowiec("Handlowiec")@{ type: hollow, business: true }
+actor Magazyn("Magazyn")@{ type: awesome }
+systemBoundary sprzedaz["Sprzedaż"]
+  Zamow("Złóż zamówienie")@{ business: true }
+  Oferta("Przygotuj ofertę")@{ business: true }
+  Wydaj("Wydaj towar")
+end
+Klient --> Zamow
+Handlowiec --> Oferta
+Magazyn --> Wydaj
+Zamow ..> : include Oferta

@@ -157,7 +157,7 @@ func (l *layouter) portRange(it *item) float64 {
 	case graph.Circle, graph.DoubleCircle, graph.UseCase:
 		return w * 0.5
 	case graph.Actor:
-		return l.u(16)
+		return l.u(24)
 	case graph.StateStart, graph.StateEnd:
 		return 0
 	case graph.Stadium:
@@ -263,11 +263,38 @@ func (l *layouter) spreadPorts() {
 			if !en.upper && len(ends) == 1 && it.kind == kindNode && math.Abs(off) >= l.u(12) && !bar(en.e.u) {
 				continue
 			}
+			// Jedyna krawędź wychodząca z boku pola też zostaje w środku boku, jeśli przesunięcie
+			// i tak nie wyprostuje jej do końca: uskok będzie dalej, a krawędź nie zacznie się z brzegu.
+			if en.upper && len(ends) == 1 && it.kind == kindNode && math.Abs(off) > l.u(4) && !bar(en.e.u) && !bar(en.e.v) &&
+				len(en.e.chain) > 0 && !l.straightThrough(en.e, target) {
+				continue
+			}
 			set := func(en end, v float64) {
 				if en.upper {
 					en.e.upperPort = v
 				} else {
 					en.e.lowerPort = v
+				}
+			}
+			// Punkty gęsto obok siebie (np. przy aktorze): przy drobnej różnicy cała grupa układa się
+			// na nowo wokół prostowanej krawędzi.
+			if d := off - get(en); len(ends) > 1 && math.Abs(d) <= l.u(6) &&
+				((i > 0 && off < get(ends[i-1])+l.u(10)) || (i+1 < len(ends) && off > get(ends[i+1])-l.u(10))) {
+				// Odstęp zostaje, a gdy grupa nie mieści się w zasięgu boku, zmniejsza się, nie mniej
+				// niż do u(4).
+				k := float64(len(ends))
+				step := (get(ends[len(ends)-1]) - get(ends[0])) / (k - 1)
+				if i > 0 {
+					step = math.Min(step, (off+usable/2)/float64(i))
+				}
+				if i+1 < len(ends) {
+					step = math.Min(step, (usable/2-off)/float64(len(ends)-1-i))
+				}
+				if step >= l.u(4) {
+					for j, o := range ends {
+						set(o, off+float64(j-i)*step)
+					}
+					continue
 				}
 			}
 			// Sąsiedni punkt, który stoi na drodze, odsuwa się, jeśli ma dokąd; inaczej uskok zostaje.
@@ -650,7 +677,7 @@ func (l *layouter) drawLevelContent(lv *level) {
 						l.sc.AddShadows(from, l.u(3), "node")
 					}
 				} else {
-					l.drawNode(it.node.Shape, it.text, cx, cy, w, h, it.node.Paint)
+					l.drawNode(it.node.Shape, it.text, cx, cy, w, h, it.node.Paint, it.node.Variant, it.node.Business)
 				}
 				if a := it.anchor; a != nil {
 					// Łącznik notatki: krótka linia kropkowana między bokami pola i notatki.
@@ -1015,7 +1042,7 @@ func (l *layouter) drawClass(n *graph.Node, cx, cy, w, h float64) {
 	}
 }
 
-func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float64, paint graph.Paint) {
+func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float64, paint graph.Paint, variant string, business bool) {
 	colorNodeFill, colorNodeStroke := l.tone(shape)
 	from := len(l.sc.Items)
 	defer func() {
@@ -1075,16 +1102,38 @@ func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float
 	case graph.UseCase:
 		l.sc.Add(scene.Item{Kind: scene.Ellipse, Layer: scene.LayerShape, Role: "node", X: cx, Y: cy, W: w, H: h,
 			Fill: colorNodeFill, Stroke: colorNodeStroke, StrokeWidth: 1.5})
+		if business {
+			// Przypadek użycia biznesowy: ukośna kreska przy prawym dolnym brzegu elipsy.
+			at := func(deg float64) (float64, float64) {
+				a := deg * math.Pi / 180
+				return cx + w/2*math.Cos(a), cy + h/2*math.Sin(a)
+			}
+			ax, ay := at(8)
+			bx, by := at(72)
+			line(ax, ay, bx, by)
+		}
 	case graph.Actor:
-		// Postać: głowa, tułów, ręce i nogi; podpis pod postacią.
+		// Postać: głowa, tułów, ręce i nogi; podpis pod postacią. Odmiana „hollow” to postać
+		// obrysowana konturem; aktor biznesowy ma ukośną kreskę przez dół głowy.
 		r := l.u(8)
 		hy := y0 + r + 1
 		l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "node", X: cx, Y: hy, R: r,
 			Fill: colorNodeFill, Stroke: colorNodeStroke, StrokeWidth: 1.5})
-		line(cx, hy+r, cx, hy+r+l.u(18))
-		line(cx-l.u(14), hy+r+l.u(7), cx+l.u(14), hy+r+l.u(7))
-		line(cx, hy+r+l.u(18), cx-l.u(11), hy+r+l.u(32))
-		line(cx, hy+r+l.u(18), cx+l.u(11), hy+r+l.u(32))
+		top := hy + r
+		if variant == "hollow" {
+			p := func(x, y float64) scene.Point { return pt(cx+l.u(x), top+l.u(y)) }
+			poly(p(-4, 0), p(4, 0), p(4, 4), p(14, 4), p(14, 10), p(4, 10), p(4, 17), p(12, 30), p(7, 33), p(0, 22),
+				p(-7, 33), p(-12, 30), p(-4, 17), p(-4, 10), p(-14, 10), p(-14, 4), p(-4, 4))
+		} else {
+			line(cx, top, cx, top+l.u(18))
+			line(cx-l.u(14), top+l.u(7), cx+l.u(14), top+l.u(7))
+			line(cx, top+l.u(18), cx-l.u(11), top+l.u(32))
+			line(cx, top+l.u(18), cx+l.u(11), top+l.u(32))
+		}
+		if business {
+			a1, a2 := 0.0, 120*math.Pi/180
+			line(cx+r*math.Cos(a1), hy+r*math.Sin(a1), cx+r*math.Cos(a2), hy+r*math.Sin(a2))
+		}
 		_, th := l.textSize(text)
 		cy = y0 + l.u(50) + th/2
 	case graph.DoubleCircle:
@@ -2119,6 +2168,32 @@ func (l *layouter) alignChain(e *ledge) {
 			return
 		}
 	}
+	// Oś tuż obok osi końca (o kilka jednostek, w granicach zakresu): punkt zaczepienia przesuwa się
+	// o tyle samo, krawędź biegnie od pola prosto, a przesunięcie jest niewidoczne.
+	for k, x := range []float64{vx, ux} {
+		c := math.Max(lo, math.Min(hi, x))
+		if math.IsNaN(x) || lo > hi || math.Abs(c-x) > l.u(4) {
+			continue
+		}
+		type spot struct{ x, shift float64 }
+		saved := make([]spot, len(e.chain))
+		for i, d := range e.chain {
+			saved[i] = spot{d.x, d.textShift}
+		}
+		up, lp := e.upperPort, e.lowerPort
+		move(c)
+		end := e.v.nodeX() + e.lowerPort
+		if k == 1 {
+			end = e.u.nodeX() + e.upperPort
+		}
+		if math.Abs(end-c) < straightTolerance {
+			return
+		}
+		for i, d := range e.chain {
+			d.x, d.textShift = saved[i].x, saved[i].shift
+		}
+		e.upperPort, e.lowerPort = up, lp
+	}
 	if same {
 		l.alignEnd(e, at) // punkty nie mają dokąd przejść: końce, które mogą, dochodzą do nich prosto
 		return
@@ -2205,6 +2280,22 @@ func (l *layouter) fewestBends(e *ledge, ranges []struct{ lo, hi float64 }, ux, 
 	return best
 }
 
+// straightThrough mówi, czy krawędź może biec w osi x prosto od pola do pola: wszystkie jej punkty
+// pośrednie stoją w tej osi, a oba końce mogą się w niej zaczepić.
+func (l *layouter) straightThrough(e *ledge, x float64) bool {
+	for _, d := range e.chain {
+		if math.Abs(d.x-x) >= straightTolerance {
+			return false
+		}
+	}
+	for _, it := range []*item{e.u, e.v} {
+		if it.kind == kindNode && math.Abs(x-it.nodeX()) > l.portRange(it)/2 {
+			return false
+		}
+	}
+	return true
+}
+
 // alignEnd usuwa uskok przy końcu krawędzi: punkt zaczepienia przesuwa się w oś x jej punktów
 // pośrednich, jeśli krawędź jest jedyną na tym boku pola, a oś leży w zasięgu boku.
 func (l *layouter) alignEnd(e *ledge, x float64) {
@@ -2230,6 +2321,10 @@ func (l *layouter) alignEnd(e *ledge, x float64) {
 		}
 		off := x - it.nodeX()
 		jog := math.Abs(off - *port)
+		// Jedyna krawędź na boku pola nie odchodzi z brzegu, gdy i tak nie pobiegnie prosto do końca.
+		if it.kind == kindNode && math.Abs(off) > l.u(4) && !bar(e.u) && !bar(e.v) && !l.straightThrough(e, x) {
+			continue
+		}
 		if jog >= straightTolerance && math.Abs(off) <= l.portRange(it)/2 && alone(it, upper) {
 			*port = off
 		}

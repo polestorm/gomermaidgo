@@ -627,8 +627,10 @@ quoted; at most 120 items.
 | style | `classDef`, `class`, `style`, `:::class` on actors, use cases, boundaries, tables and edges with an id | UC-005 |
 | accessibility | `accTitle`, `accDescr`, `accDescr { … }` | UC-001 |
 
-Deliberate differences from Mermaid: the layered layout of flowcharts instead of ELK; every actor is the same stick
-figure (the `hollow`, `awesome` and icon variants and the business slash are not drawn); a `package` boundary is
+Deliberate differences from Mermaid: the layered layout of flowcharts instead of ELK; the default direction is `LR`
+(actors on the left, as in every example of the Mermaid documentation, which names no default); a `hollow` actor is an
+outlined figure and `business: true` adds a slash to an actor's head or to a use case ellipse, in this library's own
+drawing; the `awesome` and icon variants are drawn as the plain stick figure; a `package` boundary is
 drawn like a plain one; edge animation is not drawn; identifiers may contain any letters; a class must be defined
 with `classDef` before the end of the source; the `usecase` configuration and `colorScheme` are outside the profile.
 

@@ -13,6 +13,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/font"
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/scene"
+	"github.com/polestorm/gomermaidgo/internal/usecase"
 )
 
 // Testy reguł wyglądu ustalonych w przeglądzie rysunków (requirements/layout.md). Pliki wzorcowe
@@ -1062,4 +1063,35 @@ func TestStraightEdgeLabelCentred(t *testing.T) {
 		return
 	}
 	t.Fatal("no edge label Tak")
+}
+
+// REQ: LAY-014
+// Jedyna krawędź wychodząca z boku pola, która i tak skręca, zaczyna się w środku boku
+// (przypadki użycia w kierunku LR: include i extend wychodzą z połowy wysokości pola).
+func TestSingleOutgoingEdgeLeavesCentre(t *testing.T) {
+	src, err := os.ReadFile("../../testdata/corpus/usecase/001-boundary.mmd")
+	if err != nil {
+		t.Fatal(err)
+	}
+	g, err := usecase.Parse(string(src))
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(g, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	for _, label := range []string{"Zgłoś reklamację", "Raport 8D"} {
+		box := nodeOf(t, sc, label)
+		found := false
+		for _, e := range byRole(sc, "edge") {
+			start := e.Segments[0].To
+			if math.Abs(start.X-box.X1) < 6 && start.Y > box.Y0 && start.Y < box.Y1 {
+				found = true
+				if cy := (box.Y0 + box.Y1) / 2; math.Abs(start.Y-cy) > 0.5 {
+					t.Errorf("%s: the edge leaves at y=%.1f, the centre is %.1f", label, start.Y, cy)
+				}
+			}
+		}
+		if !found {
+			t.Errorf("%s: no edge leaves its right side", label)
+		}
+	}
 }

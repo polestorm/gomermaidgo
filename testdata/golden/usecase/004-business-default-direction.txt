@@ -1,0 +1,12 @@
+usecase LR
+subgraph sprzedaz title="Sprzedaż"
+node Klient actor "Klient"
+node Handlowiec actor "Handlowiec"
+node Magazyn actor "Magazyn"
+node Zamow usecase "Złóż zamówienie" in=sprzedaz
+node Oferta usecase "Przygotuj ofertę" in=sprzedaz
+node Wydaj usecase "Wydaj towar" in=sprzedaz
+edge Klient -> Zamow normal none/arrow len=1
+edge Handlowiec -> Oferta normal none/arrow len=1
+edge Magazyn -> Wydaj normal none/arrow len=1
+edge Zamow -> Oferta dotted none/open-arrow len=1 "«include»"

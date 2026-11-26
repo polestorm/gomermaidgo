@@ -1,4 +1,4 @@
-usecase TB
+usecase LR
 subgraph audyt title="Audyty"
 node note-1 note "Raz na kwartał"
 node Audytor actor "Audytor wewnętrzny"
