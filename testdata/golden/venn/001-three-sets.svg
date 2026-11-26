@@ -1,22 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="384" height="403.92" viewBox="-132 -271.92 384 403.92" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="492" height="507.1" viewBox="-168 -339.1 492 507.1" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <g fill="#55657a" fill-opacity="0.08" stroke="#3b4754" stroke-width="1.5">
-<circle cx="0" cy="0" r="120"/>
-<circle cx="120" cy="0" r="120"/>
-<circle cx="60" cy="-103.92" r="120"/>
+<circle cx="0" cy="0" r="156"/>
+<circle cx="156" cy="0" r="156"/>
+<circle cx="78" cy="-135.1" r="156"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="60" y="-243.92" font-size="18" font-weight="bold">Kompetencje audytora</text>
-<text x="-46.77" y="22.6" font-weight="bold">Znajomość</text>
-<text x="-46.77" y="42.6" font-weight="bold">normy</text>
-<text x="166.77" y="22.6" font-weight="bold">Doświadczenie</text>
-<text x="166.77" y="42.6" font-weight="bold">w branży</text>
-<text x="60" y="-152.32" font-weight="bold">Komunikacja</text>
-<text x="60" y="56.12">Ocena</text>
-<text x="60" y="76.12">zgodności</text>
-<text x="142.41" y="-86.62">Rozmowa z</text>
-<text x="142.41" y="-66.62">kierownikiem</text>
-<text x="-22.41" y="-76.62">Szkolenie</text>
-<text x="60" y="-39.04">Audytor</text>
-<text x="60" y="-19.04">wiodący</text>
+<text x="78" y="-311.1" font-size="18" font-weight="bold">Kompetencje audytora</text>
+<text x="-70" y="39.6" font-weight="bold">Znajomość</text>
+<text x="-70" y="59.6" font-weight="bold">normy</text>
+<text x="229" y="31.6" font-weight="bold">Doświadczenie</text>
+<text x="229" y="51.6" font-weight="bold">w branży</text>
+<text x="78" y="-211.5" font-weight="bold">Komunikacja</text>
+<text x="78" y="55.6">Ocena</text>
+<text x="78" y="75.6">zgodności</text>
+<text x="177" y="-118.4">Rozmowa z</text>
+<text x="177" y="-98.4">kierownikiem</text>
+<text x="-18" y="-106.4">Szkolenie</text>
+<text x="78" y="-23.4">Audytor wiodący</text>
 </g>
 </svg>

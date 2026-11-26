@@ -587,7 +587,9 @@ Deliberate differences from Mermaid: an own look (circles with a light transluce
 neutral by default); at most three sets, so every overlap can be drawn as a region of circles; a set without any
 overlap stands apart to the right; circle areas follow the sizes and an overlap's size sets the distance of its
 circles, without a numerical fit of all overlaps at once; a style on an overlap fills the whole common area of its
-circles.
+circles; every label block fits inside its region and is centred in the room available there:
+when text does not fit, all circles grow (up to 1.3 times), then all text shrinks (down to 0.8), and a label that
+still does not fit stands outside the circles with a leader line to a dot in its region.
 
 ## Cynefin map (`cynefin-beta`, `cynefin`)
 

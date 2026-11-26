@@ -1,21 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="384" height="403.92" viewBox="-132 -271.92 384 403.92" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<rect x="-132" y="-271.92" width="384" height="403.92" fill="white"/>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="438" height="455.51" viewBox="-150 -305.51 438 455.51" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-150" y="-305.51" width="438" height="455.51" fill="white"/>
 <g fill="#55657a" fill-opacity="0.08" stroke="#3b4754" stroke-width="1.5">
-<circle cx="0" cy="0" r="120"/>
-<circle cx="120" cy="0" r="120"/>
-<circle cx="60" cy="-103.92" r="120"/>
+<circle cx="0" cy="0" r="138"/>
+<circle cx="138" cy="0" r="138"/>
+<circle cx="69" cy="-119.51" r="138"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="60" y="-243.92" font-size="18" font-weight="bold">Auditor competence</text>
-<text x="-46.77" y="22.6" font-weight="bold">Knowledge of</text>
-<text x="-46.77" y="42.6" font-weight="bold">the standard</text>
-<text x="166.77" y="22.6" font-weight="bold">Industry</text>
-<text x="166.77" y="42.6" font-weight="bold">experience</text>
-<text x="60" y="-152.32" font-weight="bold">Communication</text>
-<text x="60" y="56.12">Conformity</text>
-<text x="60" y="76.12">assessment</text>
-<text x="142.41" y="-76.62">Interviews</text>
-<text x="-22.41" y="-76.62">Training</text>
-<text x="60" y="-29.04">Lead auditor</text>
+<text x="69" y="-277.51" font-size="18" font-weight="bold">Auditor competence</text>
+<text x="-59" y="26.6" font-weight="bold">Knowledge</text>
+<text x="-59" y="46.6" font-weight="bold">of the</text>
+<text x="-59" y="66.6" font-weight="bold">standard</text>
+<text x="201" y="31.6" font-weight="bold">Industry</text>
+<text x="201" y="51.6" font-weight="bold">experience</text>
+<text x="69" y="-183.91" font-weight="bold">Communication</text>
+<text x="69" y="42.6">Conformity</text>
+<text x="69" y="62.6">assessment</text>
+<text x="153" y="-97.4">Interviews</text>
+<text x="-18" y="-88.4">Training</text>
+<text x="69" y="-26.4">Lead auditor</text>
 </g>
 </svg>

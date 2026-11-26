@@ -61,7 +61,7 @@ func TestParseErrors(t *testing.T) {
 func circles(sc *scene.Scene) []scene.Item {
 	var out []scene.Item
 	for _, it := range sc.Items {
-		if it.Kind == scene.Circle {
+		if it.Kind == scene.Circle && it.Role == "venn-set" {
 			out = append(out, it)
 		}
 	}
@@ -123,5 +123,81 @@ func TestLayoutThreeSetsAndSeparate(t *testing.T) {
 	}
 	if strings.Contains(string(Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16}).SVG()), "NaN") {
 		t.Error("NaN in SVG")
+	}
+}
+
+// REQ: VENN-004
+func TestLabelsFitTheirRegions(t *testing.T) {
+	d, err := Parse(`venn-beta
+set W["Znajomość normy"]
+set P["Doświadczenie w branży"]
+set K["Komunikacja"]
+union W,P["Ocena zgodności"]
+union P,K["Rozmowa z kierownikiem"]
+union W,K["Szkolenie"]
+union W,P,K["Audytor wiodący"]`)
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	cs := circles(sc)
+	// Obszar każdego podpisu: w których kołach (W, P, K) leży.
+	want := map[string][3]bool{
+		"Znajomość": {true, false, false}, "normy": {true, false, false},
+		"Komunikacja": {false, false, true},
+		"Ocena":       {true, true, false}, "zgodności": {true, true, false},
+		"Rozmowa": {false, true, true}, "kierownikiem": {false, true, true},
+		"Szkolenie": {true, false, true},
+		"Audytor":   {true, true, true}, "wiodący": {true, true, true},
+	}
+	seen := 0
+	for _, it := range sc.Items {
+		if it.Kind != scene.Text || it.Role == "venn-title" {
+			continue
+		}
+		for word, in := range want {
+			if !strings.Contains(it.Text, word) {
+				continue
+			}
+			seen++
+			fs := it.FontSize
+			w := font.ApproxTextWidth(it.Text, fs) * 1.06
+			for _, p := range [][2]float64{{it.X - w/2, it.Y - 0.8*fs}, {it.X + w/2, it.Y - 0.8*fs}, {it.X - w/2, it.Y + 0.2*fs}, {it.X + w/2, it.Y + 0.2*fs}} {
+				for k, c := range cs {
+					if inside := math.Hypot(p[0]-c.X, p[1]-c.Y) < c.R; inside != in[k] {
+						t.Errorf("%q: corner %v in circle %d = %v", it.Text, p, k, inside)
+					}
+				}
+			}
+		}
+	}
+	if seen < len(want) {
+		t.Errorf("found %d of %d labels", seen, len(want))
+	}
+}
+
+// REQ: VENN-004
+func TestLeaderForTightOverlap(t *testing.T) {
+	d, err := Parse("venn-beta\nset A:30\nset B:30\nunion A,B[\"Wspólne przeglądy wymagań i testów akceptacyjnych\"]:1")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	cs := circles(sc)
+	leaders := 0
+	for _, it := range sc.Items {
+		if it.Role == "venn-leader" {
+			leaders++
+		}
+		if it.Kind == scene.Text && strings.Contains(it.Text, "akceptacyjnych") {
+			for _, c := range cs {
+				if math.Hypot(it.X-c.X, it.Y-c.Y) < c.R {
+					t.Errorf("leader label inside a circle")
+				}
+			}
+		}
+	}
+	if leaders != 2 {
+		t.Errorf("leader items: %d, want line and dot", leaders)
 	}
 }

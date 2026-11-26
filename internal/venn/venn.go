@@ -11,7 +11,6 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/graph"
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/syntax"
-	"github.com/polestorm/gomermaidgo/internal/textwrap"
 )
 
 // Kody błędów składni diagramu Venna.
@@ -304,7 +303,6 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 	}
 	u := func(v float64) float64 { return math.Round(v * fs / 16) }
 	lh := math.Round(fs * 1.25)
-	small := math.Round(fs * 0.85)
 	sc := &scene.Scene{Title: d.AccTitle, Desc: d.AccDescr, FontFamily: o.FontFamily, FontSize: fs, Margin: u(12), Background: o.Background}
 
 	// Promienie: największy zbiór ma promień R, pozostałe według pierwiastka z wielkości.
@@ -415,12 +413,21 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 		right = cs[i].x + cs[i].r
 	}
 
+	// Koła rosną (a tekst maleje), aż podpisy zmieszczą się w swoich obszarach.
+	grow, textScale := chooseSize(d, cs, index, o, u)
+	for i := range cs {
+		cs[i] = circle{cs[i].x * grow, cs[i].y * grow, cs[i].r * grow}
+	}
+
 	// Tytuł nad kołami.
 	minY, minX, maxX := math.Inf(1), math.Inf(1), math.Inf(-1)
 	for _, c := range cs {
 		minY, minX, maxX = math.Min(minY, c.y-c.r), math.Min(minX, c.x-c.r), math.Max(maxX, c.x+c.r)
 	}
+	var titleBox *rect
 	if d.Title != "" {
+		tw := o.Measure(d.Title, fs*1.15) * 1.06
+		titleBox = &rect{(minX+maxX)/2 - tw/2, minY - u(20) - fs*1.15, (minX+maxX)/2 + tw/2, minY - u(20) + u(6)}
 		sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "venn-title", X: (minX + maxX) / 2, Y: minY - u(20), W: o.Measure(d.Title, fs*1.15), H: lh,
 			Text: d.Title, Anchor: "middle", Bold: true, FontSize: math.Round(fs * 1.15), Fill: colorText})
 	}
@@ -461,112 +468,7 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 		}
 	}
 
-	// Podpisy: zbiór w swojej części poza innymi kołami, część wspólna w środku obszaru wspólnego.
-	place := func(a *Area, x, y, wrapW float64, bold bool) {
-		var lines []string
-		if a.Label != "" || len(a.IDs) == 1 {
-			l := a.Label
-			if l == "" {
-				l = a.IDs[0]
-			}
-			lines = textwrap.Lines(textwrap.Split(l), wrapW, func(s string) float64 { return o.Measure(s, fs) })
-		}
-		var items [][]string
-		var owners []*Text
-		n := 0
-		for _, t := range a.Texts {
-			ls := textwrap.Lines(textwrap.Split(t.Label), wrapW, func(s string) float64 { return o.Measure(s, small) })
-			items, owners = append(items, ls), append(owners, t)
-			n += len(ls)
-		}
-		ih := math.Round(small * 1.25)
-		h := float64(len(lines))*lh + float64(n)*ih
-		top := y - h/2
-		for k, s := range lines {
-			fill := colorText
-			if a.Paint.Color != "" {
-				fill = a.Paint.Color
-			}
-			sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "venn-label", X: x, Y: top + float64(k)*lh + lh/2 + 0.35*fs, W: o.Measure(s, fs), H: lh,
-				Text: s, Anchor: "middle", Bold: bold, Fill: fill})
-		}
-		top += float64(len(lines)) * lh
-		for k, ls := range items {
-			t := owners[k]
-			fill := colorItem
-			if t.Paint.Color != "" {
-				fill = t.Paint.Color
-			} else if a.Paint.Color != "" {
-				fill = a.Paint.Color
-			}
-			for _, s := range ls {
-				sc.Add(scene.Item{Kind: scene.Text, Layer: scene.LayerLabel, Role: "venn-text", X: x, Y: top + ih/2 + 0.35*small, W: o.Measure(s, small), H: ih,
-					Text: s, Anchor: "middle", FontSize: small, Fill: fill})
-				top += ih
-			}
-		}
-	}
-	for i, s := range d.Sets {
-		c := cs[i]
-		x, y := c.x, c.y
-		if linked(i) {
-			// Punkt w części koła poza innymi: od środka połączonych kół przez środek tego koła.
-			cx, cy := 0.0, 0.0
-			for _, j := range group {
-				cx, cy = cx+cs[j].x/float64(len(group)), cy+cs[j].y/float64(len(group))
-			}
-			dx, dy := c.x-cx, c.y-cy
-			if l := math.Hypot(dx, dy); l > 0 {
-				x, y = c.x+dx/l*c.r*0.45, c.y+dy/l*c.r*0.45
-			}
-		}
-		place(s, x, y, c.r*0.9, true)
-	}
-	for _, un := range d.Unions {
-		var group []circle
-		for _, id := range un.IDs {
-			group = append(group, cs[index[id]])
-		}
-		pts := intersection(group)
-		if len(pts) < 3 {
-			continue
-		}
-		x, y := centroid(pts)
-		var outside []scene.Point
-		if len(un.IDs) == 2 && len(cs) == 3 {
-			// Soczewka pary przy trzecim kole: podpis odsunięty od obszaru wspólnego wszystkich trzech.
-			var third circle
-			for i, c := range cs {
-				if index[un.IDs[0]] != i && index[un.IDs[1]] != i {
-					third = c
-				}
-			}
-			for _, p := range pts {
-				if !third.contains(p.X, p.Y) {
-					outside = append(outside, p)
-				}
-			}
-			if len(outside) > 2 {
-				x, y = centroid(outside)
-			}
-		}
-		// Szerokość łamania: rozpiętość obszaru w poziomie na wysokości podpisu.
-		region := pts
-		if outside != nil {
-			region = outside
-		}
-		lo, hi := math.Inf(1), math.Inf(-1)
-		for _, p := range region {
-			if math.Abs(p.Y-y) < lh*1.5 {
-				lo, hi = math.Min(lo, p.X), math.Max(hi, p.X)
-			}
-		}
-		w := u(60)
-		if hi > lo {
-			w = math.Max(w, 0.85*(hi-lo))
-		}
-		place(un, x, y, w, false)
-	}
+	placeLabels(sc, d, cs, index, o, u, titleBox, textScale)
 	return sc
 }
 

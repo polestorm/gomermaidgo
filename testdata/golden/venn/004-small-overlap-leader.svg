@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="481.78" height="363.6" viewBox="-132 -168 481.78 363.6" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<g fill="#55657a" fill-opacity="0.08" stroke="#3b4754" stroke-width="1.5">
+<circle cx="0" cy="0" r="120"/>
+<circle cx="217.78" cy="0" r="120"/>
+</g>
+<line x1="108.78" y1="0" x2="108.78" y2="120" stroke="#3b4754" stroke-width="1"/>
+<circle cx="108.78" cy="0" r="3" fill="#3b4754" stroke="none" stroke-width="1"/>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="108.89" y="-140" font-size="18" font-weight="bold">Zespoły projektu</text>
+<text x="-11" y="5.6" font-weight="bold">Analitycy</text>
+<text x="228.78" y="5.6" font-weight="bold">Programiści</text>
+<text x="108.78" y="139.6">Wspólne przeglądy</text>
+<text x="108.78" y="159.6">wymagań i testów</text>
+<text x="108.78" y="179.6">akceptacyjnych</text>
+</g>
+</svg>
