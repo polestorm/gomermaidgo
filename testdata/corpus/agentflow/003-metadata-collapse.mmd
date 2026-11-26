@@ -1,0 +1,22 @@
+%% REQ: AGF-001 AGF-002 AGF-003 AGF-004 AGF-005
+%% Tytuł: Metadane w kilku liniach, kształt Mermaid i zwinięcie późniejsze
+%% Sprawdza: nagłówek agentflow bez kierunku (TB), metadane YAML w kilku liniach z kluczami pomijanymi, podpis z metadanych (label), zwykła nazwa kształtu Mermaid (cyl), łańcuch krawędzi, krawędź do węzła w kontenerze zwiniętym linią podaną po kontenerze, blok global wewnątrz flow, komentarz.
+agentflow
+%% wejście i baza
+pytanie["Pytanie klienta"]@{ shape: input, example: "Gdzie jest moja przesyłka?" }
+baza@{ shape: cyl, label: "Historia zamówień" }
+flow obsluga["Obsługa zgłoszenia"]
+  global
+    wytyczne["Wytyczne obsługi"]@{ shape: refdoc }
+  end
+  sprawdz["Sprawdź status"]@{
+    shape: tool
+    params: "numer :: String"
+    returns: "Status"
+  }
+  odpowiedz["Odpowiedz"]@{ shape: action }
+end
+obsluga@{ view: "collapsed" }
+pytanie --> sprawdz --> odpowiedz
+sprawdz -.- baza
+sprawdz -.- wytyczne

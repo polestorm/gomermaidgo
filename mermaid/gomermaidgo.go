@@ -9,6 +9,7 @@ package mermaid
 import (
 	"errors"
 	"fmt"
+	"github.com/polestorm/gomermaidgo/internal/agentflow"
 	"github.com/polestorm/gomermaidgo/internal/fontdata"
 	"slices"
 	"strconv"
@@ -62,11 +63,12 @@ const (
 	TypeRequirement = "requirementDiagram"
 	TypeC4          = "C4"
 	TypeUseCase     = "usecase"
+	TypeAgentflow   = "agentflow"
 )
 
 // SupportedTypes returns the supported diagram types.
 func SupportedTypes() []string {
-	out := []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant, TypeRequirement, TypeC4, TypeUseCase}
+	out := []string{TypeSequence, TypeFlowchart, TypeState, TypeGantt, TypeER, TypePie, TypeClass, TypeTimeline, TypeJourney, TypeMindmap, TypeXYChart, TypeQuadrant, TypeRequirement, TypeC4, TypeUseCase, TypeAgentflow}
 	for _, t := range moreTypes {
 		out = append(out, t.name)
 	}
@@ -248,6 +250,8 @@ func DetectType(source string) (string, error) {
 			return TypeC4, nil
 		case "usecase-beta", "usecase":
 			return TypeUseCase, nil
+		case "agentflow-beta", "agentflow":
+			return TypeAgentflow, nil
 		}
 		for _, t := range moreTypes {
 			if slices.Contains(t.headers, strings.TrimRight(word, ";")) {
@@ -316,6 +320,8 @@ func Check(source string) error {
 		_, err = c4.Parse(source)
 	case TypeUseCase:
 		_, err = usecase.Parse(source)
+	case TypeAgentflow:
+		_, err = agentflow.Parse(source)
 	case TypeTimeline:
 		_, err = timeline.Parse(source)
 	case TypeJourney:
@@ -625,6 +631,8 @@ func buildScene(source string, opts []Option) (*scene.Scene, *font.Face, error) 
 			g, err = c4.Parse(source)
 		case TypeUseCase:
 			g, err = usecase.Parse(source)
+		case TypeAgentflow:
+			g, err = agentflow.Parse(source)
 		default:
 			g, err = state.Parse(source)
 		}

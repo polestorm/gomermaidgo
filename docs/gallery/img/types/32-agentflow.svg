@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="529.9" height="382" viewBox="-12 -12 529.9 382" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-12" y="-12" width="529.9" height="382" fill="white"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M140 52 L175.6 52"/>
+<path d="M268 52 L303.6 52"/>
+<path d="M270.91 242.63 L285.96 242.63 C290.36 242.63 293.96 239.03 293.96 234.63 L293.96 202 C293.96 197.6 297.56 194 301.96 194 L373.5 194"/>
+<path d="M270.91 267.38 L285.96 267.38 C290.36 267.38 293.96 270.98 293.96 275.38 L293.96 308 C293.96 312.4 297.56 316 301.96 316 L384.5 316"/>
+</g>
+<path d="M372.5 104 L372.5 116 C372.5 120.4 368.9 124 364.5 124 L58 124 C53.6 124 50 127.6 50 132 L50 162" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M372.5 104 L372.5 130 C372.5 134.4 368.9 138 364.5 138 L223.5 138 C219.1 138 215.5 141.6 215.5 146 L215.5 191.6" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<g fill="white">
+<rect x="318" y="184" width="32.9" height="20"/>
+<rect x="321.55" y="306" width="25.8" height="20"/>
+</g>
+<g fill="#3b4754">
+<polygon points="184,52 172,46 172,58"/>
+<polygon points="312,52 300,46 300,58"/>
+<polygon points="381.9,194 369.9,188 369.9,200"/>
+<polygon points="392.9,316 380.9,310 380.9,322"/>
+<polygon points="215.5,200 209.5,188 221.5,188"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<polygon points="21.33,20 140,20 118.67,84 0,84"/>
+<rect x="184" y="0" width="84" height="104" rx="8"/>
+<rect x="312" y="0" width="121" height="104"/>
+<line x1="320" y1="0" x2="320" y2="104"/>
+<line x1="425" y1="0" x2="425" y2="104"/>
+</g>
+<rect x="0" y="162" width="100" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5" stroke-dasharray="5 4"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<polygon points="215.5,200 287,255 215.5,310 144,255"/>
+<polygon points="397.9,162 489.9,162 505.9,194 489.9,226 397.9,226 381.9,194"/>
+<rect x="392.9" y="274" width="102" height="84" rx="8"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="70" y="47.6">Customer</text>
+<text x="70" y="67.6">question</text>
+<text x="226" y="37.6">Classify</text>
+<text x="226" y="57.6">the</text>
+<text x="226" y="77.6">request</text>
+<text x="372.5" y="27.6">Search</text>
+<text x="372.5" y="47.6">the</text>
+<text x="372.5" y="67.6">knowledge</text>
+<text x="372.5" y="87.6">base</text>
+<text x="50" y="189.6">Complaint</text>
+<text x="50" y="209.6">procedure</text>
+<text x="215.5" y="250.6">Confident</text>
+<text x="215.5" y="270.6">answer?</text>
+<text x="443.9" y="189.6">Send the</text>
+<text x="443.9" y="209.6">answer</text>
+<text x="443.9" y="301.6">Hand over</text>
+<text x="443.9" y="321.6">to an</text>
+<text x="443.9" y="341.6">agent</text>
+<text x="334.45" y="199.6">yes</text>
+<text x="334.45" y="321.6">no</text>
+</g>
+</svg>

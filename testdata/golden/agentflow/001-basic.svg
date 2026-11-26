@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="617.35" height="448" viewBox="-12 -12 617.35 448" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-619ed374"><path d="M-12 -12 L605.35 -12 L605.35 436 L-12 436 M378 250 L378 270 L407.35 270 L407.35 250 M378 292 L378 312 L407.35 312 L407.35 292"/></clipPath></defs>
+<path d="M148 32 L183.6 32" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<path d="M108 239.33 L131 239.33 C135.4 239.33 139 235.73 139 231.33 L139 152 C139 147.6 142.6 144 147 144 L188.5 144" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<path d="M108 281 L161.6 281"/>
+<g clip-path="url(#label-holes-619ed374)">
+<path d="M299.71 260 L447.95 260"/>
+<path d="M299.71 302 L424.35 302 C428.75 302 432.35 305.6 432.35 310 L432.35 357 C432.35 361.4 435.95 365 440.35 365 L461.45 365"/>
+<path d="M108 295 L131 295 C135.4 295 139 298.6 139 303 L139 391 C139 395.4 142.6 399 147 399 L461.85 399"/>
+</g>
+<path d="M244 64 L244 76 C244 80.4 240.4 84 236 84 L62 84 C57.6 84 54 87.6 54 92 L54 211.6"/>
+</g>
+<g fill="#3b4754">
+<polygon points="192,32 180,26 180,38"/>
+<polygon points="170,281 158,275 158,287"/>
+<polygon points="456.35,260 444.35,254 444.35,266"/>
+<polygon points="469.85,365 457.85,359 457.85,371"/>
+</g>
+<g stroke="#3b4754" stroke-width="1.5">
+<line x1="466.85" y1="404" x2="456.85" y2="394"/>
+<line x1="466.85" y1="394" x2="456.85" y2="404"/>
+</g>
+<polygon points="54,220 48,208 60,208" fill="#3b4754"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<polygon points="21.33,0 148,0 126.67,64 0,64"/>
+<rect x="192" y="0" width="104" height="64" rx="8"/>
+<rect x="0" y="220" width="108" height="84"/>
+<line x1="8" y1="220" x2="8" y2="304"/>
+<line x1="100" y1="220" x2="100" y2="304"/>
+</g>
+<rect x="188.5" y="112" width="122" height="64" fill="#eef2f7" stroke="#55657a" stroke-width="1.5" stroke-dasharray="5 4"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<polygon points="249.5,224 329,281 249.5,338 170,281"/>
+<polygon points="472.35,228 577.35,228 593.35,260 577.35,292 472.35,292 456.35,260"/>
+<rect x="469.85" y="340" width="110" height="84" rx="8"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="74" y="27.6">Zgłoszenie</text>
+<text x="74" y="47.6">klienta</text>
+<text x="244" y="27.6">Sklasyfikuj</text>
+<text x="244" y="47.6">zgłoszenie</text>
+<text x="54" y="247.6">Szukaj w</text>
+<text x="54" y="267.6">bazie</text>
+<text x="54" y="287.6">wiedzy</text>
+<text x="249.5" y="139.6">Procedura</text>
+<text x="249.5" y="159.6">reklamacyjna</text>
+<text x="249.5" y="276.6">Odpowiedź</text>
+<text x="249.5" y="296.6">pewna?</text>
+<text x="524.85" y="255.6">Wyślij</text>
+<text x="524.85" y="275.6">odpowiedź</text>
+<text x="524.85" y="367.6">Przekaż</text>
+<text x="524.85" y="387.6">do</text>
+<text x="524.85" y="407.6">konsultanta</text>
+<text x="392.68" y="265.6">tak</text>
+<text x="392.68" y="307.6">nie</text>
+</g>
+</svg>

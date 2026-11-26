@@ -685,6 +685,23 @@ their type, name and data; the type is also told by the shape; neutral by defaul
 Modeling colours); relations are straight arrows; data types (`json`, `figma` and others) are accepted and not
 interpreted, as in Mermaid.
 
+## Agent flow (`agentflow`, `agentflow-beta`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| header | `agentflow`, `agentflow-beta`, optional `TB`, `TD`, `BT`, `LR`, `RL` | AGF-001 |
+| node | `id["label"]@{ shape: task }`; aliases `task`, `tool`, `input`, `decision`, `refdoc`, `action`, or a flowchart shape name; `label`; other keys accepted; metadata on one or several lines | AGF-002 |
+| edge | `-->`, `-.-`, `--x`, `a -- yes --> b`, chains | AGF-003 |
+| container | `flow id["label"] … end`, nested; `global … end` | AGF-004 |
+| collapse | `id@{ view: "collapsed" }` | AGF-004 |
+| connector | `connector id["label"]@{ … }`; `connectorRef: id` on a tool | AGF-004 |
+
+Drawn as a flowchart after translating the source line by line. Deliberate differences from Mermaid: the layered
+layout of flowcharts instead of ELK and the neutral look instead of `redux-color`; `refdoc` is a rectangle with a
+dashed outline; a connector is a pill joined to the tools that refer to it by a dotted line; a collapsed container is
+a subroutine box; the per-container `algorithm` and edge animation are accepted and not drawn; the semantic model and
+diagnostics are not produced.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |

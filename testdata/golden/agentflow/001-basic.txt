@@ -1,0 +1,15 @@
+flowchart LR
+node pytanie parallelogram "Zgłoszenie klienta"
+node klasyfikuj round "Sklasyfikuj zgłoszenie"
+node szukaj subroutine "Szukaj w bazie wiedzy"
+node procedura rect "Procedura reklamacyjna" paint[dash=5,4]
+node pewny rhombus "Odpowiedź pewna?"
+node wyslij hexagon "Wyślij odpowiedź"
+node czlowiek round "Przekaż do konsultanta"
+edge pytanie -> klasyfikuj normal none/arrow len=1
+edge klasyfikuj -> szukaj normal none/arrow len=1
+edge szukaj -> procedura dotted none/none len=1
+edge szukaj -> pewny normal none/arrow len=1
+edge pewny -> wyslij normal none/arrow len=1 "tak"
+edge pewny -> czlowiek normal none/arrow len=1 "nie"
+edge szukaj -> czlowiek normal none/cross len=1

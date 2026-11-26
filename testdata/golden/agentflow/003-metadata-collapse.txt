@@ -1,0 +1,8 @@
+flowchart TB
+node pytanie parallelogram "Pytanie klienta"
+node baza cylinder "Historia zamówień"
+node obsluga subroutine "Obsługa zgłoszenia"
+node wytyczne rect "Wytyczne obsługi" paint[dash=5,4]
+edge pytanie -> obsluga normal none/arrow len=1
+edge obsluga -> baza dotted none/none len=1
+edge obsluga -> wytyczne dotted none/none len=1

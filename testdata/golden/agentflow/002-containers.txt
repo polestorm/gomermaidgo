@@ -1,0 +1,14 @@
+flowchart TB
+subgraph przeglad title="Przegląd dokumentu"
+subgraph uwagi title="Zbieranie uwag" in=przeglad
+node baza rect "Rejestr dokumentów" paint[dash=5,4]
+node api stadium "API rejestru"
+node czytaj round "Przeczytaj dokument" in=przeglad
+node sprawdz round "Sprawdź zgodność z normą" in=uwagi
+node zapisz subroutine "Zapisz uwagi" in=uwagi
+node publikacja subroutine "Publikacja"
+edge czytaj -> sprawdz normal none/arrow len=1
+edge sprawdz -> zapisz normal none/arrow len=1
+edge czytaj -> baza dotted none/none len=1
+edge zapisz -> publikacja normal none/arrow len=1
+edge zapisz -> api dotted none/none len=1

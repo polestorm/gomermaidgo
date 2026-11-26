@@ -1,0 +1,13 @@
+agentflow LR
+question["Customer question"]@{ shape: input }
+classify["Classify the request"]@{ shape: task }
+search["Search the knowledge base"]@{ shape: tool }
+procedure["Complaint procedure"]@{ shape: refdoc }
+sure["Confident answer?"]@{ shape: decision }
+send["Send the answer"]@{ shape: action }
+human["Hand over to an agent"]@{ shape: task }
+question --> classify --> search
+search -.- procedure
+search --> sure
+sure -- yes --> send
+sure -- no --> human
