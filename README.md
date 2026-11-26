@@ -65,6 +65,9 @@ which, like this library, has its own parsers and layout.
 | License | Apache 2.0 | MIT | MIT |
 | GitHub popularity[^pop] | new | 5 stars, 1 fork | 13 stars, 5 forks 🥇 |
 
+Every number in this table can be measured again from a fresh clone: the inputs are in the repository or pinned by
+checksum, and the commands, method and raw results are in [`docs/benchmarks.md`](docs/benchmarks.md#repeating-the-run).
+
 [^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
 [^deps]: Go modules linked into the program (`dep` lines of `go version -m`); program size as built by `go build`.
 [^bench]: Time and memory per diagram, PNG at scale 1. Median over the corpus diagrams all compared programs rendered
