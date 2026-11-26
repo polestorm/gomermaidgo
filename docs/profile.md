@@ -678,7 +678,7 @@ bottom, as on Simon Wardley's maps;
 default stages Genesis, Custom built, Product (+ rental), Commodity (+ utility) with boundaries at 0.17, 0.40 and 0.70;
 names may contain any letters; the positions of `annotations` and `annotation` are read as [visibility, evolution]
 like all other positions; a component label without `label [x, y]` takes the first of six places around its dot
-that does not touch a line, another label or a dot, and labels stand on a background that interrupts the lines under
+that does not touch a line, another label or a dot or leave the map (so does the label of an evolved position), and labels stand on a background that interrupts the lines under
 them.
 
 ## Event model (`eventmodeling`)

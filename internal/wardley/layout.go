@@ -132,7 +132,9 @@ func Layout(m *Map, o Options) *scene.Scene {
 				n += 2
 			}
 		}
-		if b[0] < 0 || b[2] > W+u(40) || b[1] < -u(10) || b[3] > H {
+		// Podpis wychodzący poza planszę (poza osie albo za ostatni etap) liczy się jak kilka kolizji:
+		// stoi wtedy poza tłem etapów, a przy prawej krawędzi wychodzi poza rysunek.
+		if b[0] < 0 || b[2] > W || b[1] < 0 || b[3] > H {
 			n += 3
 		}
 		return n
@@ -256,6 +258,33 @@ func Layout(m *Map, o Options) *scene.Scene {
 			label(l.Label, mx, my+small*0.35, small, "middle", false, true, colorMuted, "wardley-link-label")
 		}
 	}
+	// Kółka składników i podpisy kotwic są przeszkodami dla podpisów składników.
+	for _, c := range m.Components {
+		x, y := point(c)
+		if c.Anchor {
+			placed = append(placed, box(c.Name, x+c.LabelDX, y+0.35*fs+c.LabelDY, fs, "middle", true))
+		} else {
+			dots = append(dots, [3]float64{x, y, r})
+		}
+	}
+	// around stawia podpis kółka w pierwszym z sześciu miejsc wokół niego, które nie wchodzi na
+	// linie, inne podpisy, kółka ani poza planszę; gdy każde koliduje, w tym z najmniejszą liczbą kolizji.
+	around := func(name string, x, y float64, italic bool, fill, role string) {
+		type spot struct {
+			x, y   float64
+			anchor string
+		}
+		spots := []spot{{x + r + u(4), y - r, "start"}, {x + r + u(4), y + r + small*0.8, "start"},
+			{x - r - u(4), y - r, "end"}, {x - r - u(4), y + r + small*0.8, "end"},
+			{x, y - r - u(6), "middle"}, {x, y + r + small + u(2), "middle"}}
+		best, bestN := spots[0], math.MaxInt
+		for _, sp := range spots {
+			if n := clash(box(name, sp.x, sp.y, small, sp.anchor, false)); n < bestN {
+				best, bestN = sp, n
+			}
+		}
+		label(name, best.x, best.y, small, best.anchor, false, italic, fill, role)
+	}
 	// Ewolucja: przerywana strzałka do przyszłego położenia i kółko z przerywanym obrysem.
 	red := colorEvolve
 	if o.Colors {
@@ -272,7 +301,8 @@ func Layout(m *Map, o Options) *scene.Scene {
 		line(x1+dir*r, y, x2-dir*(r+u(2)), y, red, 1.5, "6 4", "wardley-evolve")
 		arrow(x2-dir*(r+u(2)), y, dir, 0, red)
 		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "wardley-evolved", X: x2, Y: y, R: r, Fill: colorDot, Stroke: red, StrokeWidth: 1.5, Dash: "3 2"})
-		label(c.Name, x2+r+u(4), y-r, small, "start", false, true, red, "wardley-evolved-label")
+		dots = append(dots, [3]float64{x2, y, r})
+		around(c.Name, x2, y, true, red, "wardley-evolved-label")
 	}
 	for _, t := range m.Trends {
 		c := m.Component(t.Name)
@@ -282,15 +312,6 @@ func Layout(m *Map, o Options) *scene.Scene {
 		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "wardley-trend", X: x2, Y: y2, R: r * 0.7, Fill: "none", Stroke: colorLine, StrokeWidth: 1, Dash: "2 2"})
 	}
 
-	// Kółka składników i podpisy kotwic są przeszkodami dla podpisów składników.
-	for _, c := range m.Components {
-		x, y := point(c)
-		if c.Anchor {
-			placed = append(placed, box(c.Name, x+c.LabelDX, y+0.35*fs+c.LabelDY, fs, "middle", true))
-		} else {
-			dots = append(dots, [3]float64{x, y, r})
-		}
-	}
 	// Składniki: dekoratory pod kółkiem, kółko, podpis obok (domyślnie z prawej u góry).
 	for _, c := range m.Components {
 		x, y := point(c)
@@ -326,22 +347,7 @@ func Layout(m *Map, o Options) *scene.Scene {
 			label(c.Name, lx+c.LabelDX, ly+c.LabelDY, small, "start", false, false, colorText, "wardley-component-label")
 			continue
 		}
-		// Podpis bez podanego przesunięcia: pierwsze z miejsc wokół kółka, które nie wchodzi na
-		// linie, inne podpisy ani kółka; gdy każde koliduje, to z najmniejszą liczbą kolizji.
-		type spot struct {
-			x, y   float64
-			anchor string
-		}
-		spots := []spot{{x + r + u(4), y - r, "start"}, {x + r + u(4), y + r + small*0.8, "start"},
-			{x - r - u(4), y - r, "end"}, {x - r - u(4), y + r + small*0.8, "end"},
-			{x, y - r - u(6), "middle"}, {x, y + r + small + u(2), "middle"}}
-		best, bestN := spots[0], math.MaxInt
-		for _, sp := range spots {
-			if n := clash(box(c.Name, sp.x, sp.y, small, sp.anchor, false)); n < bestN {
-				best, bestN = sp, n
-			}
-		}
-		label(c.Name, best.x, best.y, small, best.anchor, false, false, colorText, "wardley-component-label")
+		around(c.Name, x, y, false, colorText, "wardley-component-label")
 	}
 
 	// Notatki, siły i adnotacje.

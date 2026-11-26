@@ -1,6 +1,7 @@
 package wardley
 
 import (
+	"math"
 	"strings"
 	"testing"
 
@@ -168,6 +169,27 @@ func TestLabelsAvoidLinesAndBands(t *testing.T) {
 				t.Errorf("label %q lies on the link", it.Text)
 				break
 			}
+		}
+	}
+}
+
+// REQ: WARD-005
+// Podpis składnika przy prawej krawędzi planszy nie wychodzi poza nią.
+func TestLabelStaysOnMap(t *testing.T) {
+	m, err := Parse("wardley-beta\ncomponent Energia [0.1, 0.95]")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(m, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	right := 0.0
+	for _, it := range sc.Items {
+		if it.Role == "wardley-axis" && it.Kind == scene.Line {
+			right = math.Max(right, math.Max(it.X, it.X2))
+		}
+	}
+	for _, it := range sc.Items {
+		if it.Role == "wardley-component-label" && it.Bounds().X1 > right {
+			t.Errorf("label ends at %.1f, the map at %.1f", it.Bounds().X1, right)
 		}
 	}
 }
