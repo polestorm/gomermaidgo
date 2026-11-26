@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="898.97" height="639.85" viewBox="-64.97 -50.4 898.97 639.85" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-d473bc08"><path d="M-64.97 -50.4 L834 -50.4 L834 589.45 L-64.97 589.45 M598.54 278.2 L598.54 295.1 L631.46 295.1 L631.46 278.2 M664 111.65 L664 128.55 L788.68 128.55 L788.68 111.65 M360.88 32 L360.88 52.8 L459.12 52.8 L459.12 32 M377 111.65 L377 128.55 L501.68 128.55 L501.68 111.65 M551 179.65 L551 196.55 L635.22 196.55 L635.22 179.65 M705 345.65 L705 362.55 L753.08 362.55 L753.08 345.65 M414.68 250.65 L414.68 267.55 L487.32 267.55 L487.32 250.65 M618.22 250.65 L618.22 267.55 L693.78 267.55 L693.78 250.65"/></clipPath></defs>
+<defs><clipPath id="label-holes-7cac5642"><path d="M-64.97 -50.4 L834 -50.4 L834 589.45 L-64.97 589.45 M598.54 278.2 L598.54 295.1 L631.46 295.1 L631.46 278.2 M664 111.65 L664 128.55 L788.68 128.55 L788.68 111.65 M360.88 32 L360.88 52.8 L459.12 52.8 L459.12 32 M403 111.65 L403 128.55 L527.68 128.55 L527.68 111.65 M551 179.65 L551 196.55 L635.22 196.55 L635.22 179.65 M713 345.65 L713 362.55 L761.08 362.55 L761.08 345.65 M414.68 250.65 L414.68 267.55 L487.32 267.55 L487.32 250.65 M618.22 250.65 L618.22 267.55 L693.78 267.55 L693.78 250.65"/></clipPath></defs>
 <g fill="#dfe4ea" stroke="#55657a" stroke-width="1">
 <polygon points="369,117 382,139.75 356,139.75"/>
 <polygon points="533,195 546,208 533,221 520,208"/>
@@ -11,17 +11,17 @@
 </g>
 <g stroke="#8a96a3" stroke-width="1.25" stroke-dasharray="5 4">
 <line x1="205" y1="0" x2="205" y2="520"/>
-<g clip-path="url(#label-holes-d473bc08)">
+<g clip-path="url(#label-holes-7cac5642)">
 <line x1="410" y1="0" x2="410" y2="520"/>
 <line x1="615" y1="0" x2="615" y2="520"/>
 </g>
 </g>
 <line x1="533" y1="214" x2="533" y2="222" stroke="#55657a" stroke-width="1"/>
-<g clip-path="url(#label-holes-d473bc08)">
+<g clip-path="url(#label-holes-7cac5642)">
 <line x1="405.79" y1="50.67" x2="371.52" y2="124.56" stroke="#55657a" stroke-width="1.2"/>
 </g>
 <line x1="374.42" y1="132.58" x2="527.58" y2="205.42" stroke="#55657a" stroke-width="1.2" stroke-dasharray="5 4"/>
-<g clip-path="url(#label-holes-d473bc08)">
+<g clip-path="url(#label-holes-7cac5642)">
 <line x1="537.35" y1="212.14" x2="692.65" y2="359.86" stroke="#55657a" stroke-width="1.2"/>
 <line x1="375" y1="130" x2="648" y2="130" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="6 4"/>
 </g>
@@ -44,7 +44,7 @@
 <circle cx="451" cy="234" r="6"/>
 <circle cx="656" cy="234" r="6"/>
 </g>
-<circle cx="369" cy="130" r="9" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
+<circle cx="345" cy="106" r="9" fill="#ffffff" stroke="#3b4754" stroke-width="1"/>
 <polygon points="388.78,299 503.22,299 513.22,312 503.22,325 388.78,325" fill="#eef2f7" stroke="#55657a" stroke-width="1"/>
 <rect x="41" y="494" width="191.6" height="28.25" fill="#ffffff" stroke="#8a96a3" stroke-width="1"/>
 <text x="410" y="-20" text-anchor="middle" font-size="18.4" font-weight="bold" fill="#1b1f24">Zmiana dostawcy oprogramowania</text>
@@ -64,9 +64,9 @@
 <text x="666" y="124" font-size="13" font-style="italic" fill="#3b4754">Rejestr niezgodności</text>
 <text x="410" y="47.2" text-anchor="middle" font-weight="bold" fill="#1b1f24">Dział jakości</text>
 <g fill="#1b1f24">
-<text x="379" y="124" font-size="13">Rejestr niezgodności</text>
+<text x="405" y="124" font-size="13">Rejestr niezgodności</text>
 <text x="553" y="192" font-size="13">Raportowanie</text>
-<text x="707" y="358" font-size="13">Hosting</text>
+<text x="715" y="358" font-size="13">Hosting</text>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="451" y="263" font-size="13">Raport PDF</text>
@@ -74,7 +74,7 @@
 </g>
 <text x="164" y="156" font-size="13" font-weight="bold" fill="#1b1f24">Licencja kończy się w 2027</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="369" y="134.55" font-size="13" font-weight="bold">1</text>
+<text x="345" y="110.55" font-size="13" font-weight="bold">1</text>
 <text x="451" y="316.55" font-size="13">Obowiązek KSeF</text>
 </g>
 <text x="49" y="512.67" font-size="13" fill="#1b1f24">1. Wiedza tylko u jednej osoby</text>

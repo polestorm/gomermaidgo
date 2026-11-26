@@ -1,25 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="838.97" height="545.9" viewBox="-64.97 -16.45 838.97 545.9" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <title>Łańcuch dostaw granulatu</title>
-<defs><clipPath id="label-holes-d9b6a098"><path d="M-64.97 -16.45 L774 -16.45 L774 529.45 L-64.97 529.45 M395.97 256.7 L395.97 273.6 L478.03 273.6 L478.03 256.7 M377.34 36.4 L377.34 57.2 L458.66 57.2 L458.66 36.4 M464 119.65 L464 136.55 L533 136.55 L533 119.65 M654 234.65 L654 251.55 L707.86 251.55 L707.86 234.65 M139.4 257.65 L139.4 274.55 L220 274.55 L220 257.65 M692 349.65 L692 366.55 L751.63 366.55 L751.63 349.65"/></clipPath></defs>
+<defs><clipPath id="label-holes-842d92d0"><path d="M-64.97 -16.45 L774 -16.45 L774 529.45 L-64.97 529.45 M395.97 256.7 L395.97 273.6 L478.03 273.6 L478.03 256.7 M377.34 36.4 L377.34 57.2 L458.66 57.2 L458.66 36.4 M472 119.65 L472 136.55 L541 136.55 L541 119.65 M654 234.65 L654 251.55 L707.86 251.55 L707.86 234.65 M139.4 257.65 L139.4 274.55 L220 274.55 L220 257.65 M692 349.65 L692 366.55 L751.63 366.55 L751.63 349.65"/></clipPath></defs>
 <circle cx="456" cy="138" r="13" fill="#dfe4ea" stroke="#55657a" stroke-width="1"/>
 <g stroke="#3b4754" stroke-width="1.5">
 <line x1="0" y1="460" x2="0" y2="0"/>
 <line x1="0" y1="460" x2="760" y2="460"/>
 </g>
 <g stroke="#8a96a3" stroke-width="1.25" stroke-dasharray="5 4">
-<g clip-path="url(#label-holes-d9b6a098)">
+<g clip-path="url(#label-holes-842d92d0)">
 <line x1="152" y1="0" x2="152" y2="460"/>
 </g>
 <line x1="342" y1="0" x2="342" y2="460"/>
 <line x1="570" y1="0" x2="570" y2="460"/>
 </g>
 <g stroke="#55657a" stroke-width="1.2">
-<g clip-path="url(#label-holes-d9b6a098)">
+<g clip-path="url(#label-holes-842d92d0)">
 <line x1="421.82" y1="55.24" x2="453.71" y2="132.45"/>
 </g>
 <line x1="461.13" y1="141.11" x2="640.87" y2="249.89"/>
 <line x1="647.88" y1="258.7" x2="682.12" y2="362.3"/>
-<g clip-path="url(#label-holes-d9b6a098)">
+<g clip-path="url(#label-holes-842d92d0)">
 <line x1="233.99" y1="275.67" x2="640.01" y2="253.33"/>
 <line x1="450.87" y1="141.11" x2="233.13" y2="272.89"/>
 <line x1="640.01" y1="253.33" x2="233.99" y2="275.67"/>
@@ -61,7 +61,7 @@
 </g>
 <text x="418" y="51.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Producent</text>
 <g fill="#1b1f24">
-<text x="466" y="132" font-size="13">Wtryskarka</text>
+<text x="474" y="132" font-size="13">Wtryskarka</text>
 <text x="656" y="247" font-size="13">Granulat</text>
 </g>
 <text x="218" y="270" text-anchor="end" font-size="13" fill="#1b1f24">Laboratorium</text>

@@ -25,9 +25,9 @@
 <rect x="500" y="189.65" width="66.14" height="16.9"/>
 <rect x="494.24" y="16.4" width="77.51" height="20.8"/>
 <rect x="459" y="108.05" width="75.54" height="16.9"/>
-<rect x="295" y="212.05" width="66.14" height="16.9"/>
-<rect x="254" y="293.65" width="86.38" height="16.9"/>
-<rect x="500" y="371.65" width="124.68" height="16.9"/>
+<rect x="303" y="212.05" width="66.14" height="16.9"/>
+<rect x="272" y="293.65" width="86.38" height="16.9"/>
+<rect x="508" y="371.65" width="124.68" height="16.9"/>
 <rect x="730.15" y="472.05" width="40.85" height="16.9"/>
 </g>
 <g fill="#3b4754" stroke="#3b4754" stroke-width="1">
@@ -65,9 +65,9 @@
 <text x="533" y="31.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Customer</text>
 <g fill="#1b1f24">
 <text x="461" y="120.4" font-size="13">Online order</text>
-<text x="297" y="224.4" font-size="13">Calibration</text>
-<text x="256" y="306" font-size="13">Accredited lab</text>
-<text x="502" y="384" font-size="13">Reference standards</text>
+<text x="305" y="224.4" font-size="13">Calibration</text>
+<text x="274" y="306" font-size="13">Accredited lab</text>
+<text x="510" y="384" font-size="13">Reference standards</text>
 </g>
 <text x="769" y="484.4" text-anchor="end" font-size="13" fill="#1b1f24">Power</text>
 </svg>

@@ -193,3 +193,35 @@ func TestLabelStaysOnMap(t *testing.T) {
 		}
 	}
 }
+
+// REQ: WARD-005
+// Kółko adnotacji o współrzędnych składnika odsuwa się z jego kółka, a podpis składnika
+// z dekoratorem i bezwładnością nie wchodzi na nie.
+func TestAnnotationAndDecoratorsClear(t *testing.T) {
+	m, err := Parse("wardley-beta\ncomponent A [0.5, 0.5] (build) (inertia)\nannotation 1,[0.5, 0.5] \"x\"")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(m, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	var comp, ann, inertia scene.Item
+	var label scene.Box
+	for _, it := range sc.Items {
+		switch {
+		case it.Role == "wardley-component":
+			comp = it
+		case it.Role == "wardley-annotation" && it.Kind == scene.Circle:
+			ann = it
+		case it.Role == "wardley-inertia":
+			inertia = it
+		case it.Role == "wardley-component-label":
+			label = it.Bounds()
+		}
+	}
+	if math.Hypot(comp.X-ann.X, comp.Y-ann.Y) < comp.R+ann.R {
+		t.Errorf("annotation circle at %v,%v covers the component at %v,%v", ann.X, ann.Y, comp.X, comp.Y)
+	}
+	ib := inertia.Bounds()
+	if label.X0 < ib.X1 && ib.X0 < label.X1 && label.Y0 < ib.Y1 && ib.Y0 < label.Y1 {
+		t.Errorf("label %v overlaps the inertia bar %v", label, ib)
+	}
+}

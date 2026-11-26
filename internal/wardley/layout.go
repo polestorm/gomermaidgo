@@ -258,25 +258,68 @@ func Layout(m *Map, o Options) *scene.Scene {
 			label(l.Label, mx, my+small*0.35, small, "middle", false, true, colorMuted, "wardley-link-label")
 		}
 	}
-	// Kółka składników i podpisy kotwic są przeszkodami dla podpisów składników.
+	// Przeszkody dla podpisów składników: kółka (z dekoratorami pod nimi), belki bezwładności,
+	// podpisy kotwic, notatki, siły i kółka adnotacji.
 	for _, c := range m.Components {
 		x, y := point(c)
 		if c.Anchor {
 			placed = append(placed, box(c.Name, x+c.LabelDX, y+0.35*fs+c.LabelDY, fs, "middle", true))
-		} else {
-			dots = append(dots, [3]float64{x, y, r})
+			continue
+		}
+		rr := r
+		for _, d := range c.Decorators {
+			if d == "inertia" {
+				placed = append(placed, [4]float64{x + u(16), y - u(11), x + u(21), y + u(11)})
+			} else {
+				rr = u(14)
+			}
+		}
+		dots = append(dots, [3]float64{x, y, rr})
+	}
+	// Kółko adnotacji stojące na kółku składnika (te same współrzędne) odsuwa się ukośnie
+	// w miejsce, które najmniej koliduje; jego położenie jest ustalone przed podpisami.
+	annotAt := map[int][2]float64{}
+	for k, t := range m.Texts {
+		x, y := px(t.At.Evo), py(t.At.Vis)
+		switch t.Kind {
+		case "note":
+			placed = append(placed, box(t.Text, x, y, small, "start", true))
+		case "accelerator", "deaccelerator":
+			w, h := math.Max(u(70), o.Measure(t.Text, small)+u(24)), u(26)
+			placed = append(placed, [4]float64{x - w/2, y - h/2, x + w/2, y + h/2})
+		case "annotation":
+			onDot := false
+			for _, d := range dots {
+				if math.Hypot(d[0]-x, d[1]-y) < d[2]+u(9) {
+					onDot = true
+				}
+			}
+			if onDot {
+				best, bestN := [2]float64{x, y}, math.MaxInt
+				for _, d := range [][2]float64{{-1, -1}, {1, -1}, {-1, 1}, {1, 1}} {
+					cx, cy := x+d[0]*u(24), y+d[1]*u(24)
+					if n := clash([4]float64{cx - u(9), cy - u(9), cx + u(9), cy + u(9)}); n < bestN {
+						best, bestN = [2]float64{cx, cy}, n
+					}
+				}
+				x, y = best[0], best[1]
+			}
+			annotAt[k] = [2]float64{x, y}
+			dots = append(dots, [3]float64{x, y, u(9)})
 		}
 	}
 	// around stawia podpis kółka w pierwszym z sześciu miejsc wokół niego, które nie wchodzi na
 	// linie, inne podpisy, kółka ani poza planszę; gdy każde koliduje, w tym z najmniejszą liczbą kolizji.
-	around := func(name string, x, y float64, italic bool, fill, role string) {
+	// rr to zasięg kółka razem z dekoratorem pod nim, right — dodatkowy odstęp z prawej (belka
+	// bezwładności).
+	around := func(name string, x, y, rr, right float64, italic bool, fill, role string) {
 		type spot struct {
 			x, y   float64
 			anchor string
 		}
-		spots := []spot{{x + r + u(4), y - r, "start"}, {x + r + u(4), y + r + small*0.8, "start"},
-			{x - r - u(4), y - r, "end"}, {x - r - u(4), y + r + small*0.8, "end"},
-			{x, y - r - u(6), "middle"}, {x, y + r + small + u(2), "middle"}}
+		spots := []spot{{x + rr + right + u(4), y - r, "start"}, {x + rr + right + u(4), y + r + small*0.8, "start"},
+			{x - rr - u(4), y - r, "end"}, {x - rr - u(4), y + r + small*0.8, "end"},
+			{x, y - rr - u(6), "middle"}, {x, y + rr + small + u(2), "middle"}}
 		best, bestN := spots[0], math.MaxInt
 		for _, sp := range spots {
 			if n := clash(box(name, sp.x, sp.y, small, sp.anchor, false)); n < bestN {
@@ -302,7 +345,7 @@ func Layout(m *Map, o Options) *scene.Scene {
 		arrow(x2-dir*(r+u(2)), y, dir, 0, red)
 		sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "wardley-evolved", X: x2, Y: y, R: r, Fill: colorDot, Stroke: red, StrokeWidth: 1.5, Dash: "3 2"})
 		dots = append(dots, [3]float64{x2, y, r})
-		around(c.Name, x2, y, true, red, "wardley-evolved-label")
+		around(c.Name, x2, y, r, 0, true, red, "wardley-evolved-label")
 	}
 	for _, t := range m.Trends {
 		c := m.Component(t.Name)
@@ -347,13 +390,24 @@ func Layout(m *Map, o Options) *scene.Scene {
 			label(c.Name, lx+c.LabelDX, ly+c.LabelDY, small, "start", false, false, colorText, "wardley-component-label")
 			continue
 		}
-		around(c.Name, x, y, false, colorText, "wardley-component-label")
+		rr, right := r, 0.0
+		for _, d := range c.Decorators {
+			if d == "inertia" {
+				right = u(18)
+			} else {
+				rr = u(14)
+			}
+		}
+		around(c.Name, x, y, rr, right, false, colorText, "wardley-component-label")
 	}
 
 	// Notatki, siły i adnotacje.
 	var notes []Text
-	for _, t := range m.Texts {
+	for k, t := range m.Texts {
 		x, y := px(t.At.Evo), py(t.At.Vis)
+		if p, ok := annotAt[k]; ok {
+			x, y = p[0], p[1]
+		}
 		switch t.Kind {
 		case "note":
 			text(t.Text, x, y, small, "start", true, false, colorText, "wardley-note")
