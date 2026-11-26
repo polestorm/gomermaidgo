@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="617.35" height="458" viewBox="-12 -12 617.35 458" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
 <defs><clipPath id="label-holes-6230ba10"><path d="M-12 -12 L605.35 -12 L605.35 446 L-12 446 M378 260 L378 280 L407.35 280 L407.35 260 M378 302 L378 322 L407.35 322 L407.35 302"/></clipPath></defs>
 <path d="M148 32 L183.6 32" fill="none" stroke="#3b4754" stroke-width="1.5"/>
-<path d="M108 247.33 L131.3 247.33 C135.7 247.33 139.3 243.73 139.3 239.33 L139.3 157 C139.3 152.6 142.9 149 147.3 149 L188.5 149" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
+<path d="M108 247.33 L131.3 247.33 C135.7 247.33 139.3 243.73 139.3 239.33 L139.3 157 C139.3 152.6 142.9 149 147.3 149 L183.5 149" fill="none" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 3"/>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
 <path d="M108 270 L131.3 270 C135.7 270 139.3 273.6 139.3 278 L139.3 283 C139.3 287.4 142.9 291 147.3 291 L161.6 291"/>
 <g clip-path="url(#label-holes-6230ba10)">
@@ -28,7 +28,8 @@
 <rect x="0" y="228" width="108" height="84"/>
 <line x1="8" y1="228" x2="8" y2="312"/>
 <line x1="100" y1="228" x2="100" y2="312"/>
-<path d="M188.5 112 L310.5 112 L310.5 176 C267.8 163.5 231.2 188.5 188.5 176 L188.5 112"/>
+<path d="M183.5 112 L315.5 112 L315.5 176 C269.3 163.5 229.7 188.5 183.5 176 L183.5 112"/>
+<line x1="191.5" y1="112" x2="191.5" y2="177.25"/>
 <polygon points="249.5,234 329,291 249.5,348 170,291"/>
 <polygon points="472.35,238 577.35,238 593.35,270 577.35,302 472.35,302 456.35,270"/>
 <rect x="469.85" y="350" width="110" height="84" rx="8"/>
@@ -41,8 +42,8 @@
 <text x="54" y="255.6">Szukaj w</text>
 <text x="54" y="275.6">bazie</text>
 <text x="54" y="295.6">wiedzy</text>
-<text x="249.5" y="139.6">Procedura</text>
-<text x="249.5" y="159.6">reklamacyjna</text>
+<text x="253.5" y="139.6">Procedura</text>
+<text x="253.5" y="159.6">reklamacyjna</text>
 <text x="249.5" y="286.6">Odpowiedź</text>
 <text x="249.5" y="306.6">pewna?</text>
 <text x="524.85" y="265.6">Wyślij</text>

@@ -695,8 +695,8 @@ them.
 Deliberate differences from Mermaid: an own look (lanes with a header column, frames from left to right, elements with
 their type, name and data; the type is also told by the shape; neutral by default, `WithColors` gives the usual Event
 Modeling colours); each frame starts at least half the previous element's width after its start, so elements in
-different lanes may overlap horizontally and the drawing stays narrow; relations are right-angled arrows running
-along the free strips at the lane boundaries, never under an element and without crossing each other at a shared
+different lanes may overlap horizontally and the drawing stays narrow; relations are right-angled arrows whose horizontal parts run beside
+the lane boundaries (never on them), on the source's side, one level for arrows that do not overlap, never under an element and without crossing each other at a shared
 target; data types (`json`, `figma` and others) are accepted and not
 interpreted, as in Mermaid.
 
@@ -712,9 +712,10 @@ interpreted, as in Mermaid.
 | connector | `connector id["label"]@{ … }`; `connectorRef: id` on a tool | AGF-004 |
 
 Drawn as a flowchart after translating the source line by line. Deliberate differences from Mermaid: the layered
-layout of flowcharts instead of ELK and the neutral look instead of `redux-color`; `refdoc` is drawn as a document
-(a rectangle with a wavy bottom edge); a connector is a pill joined to the tools that refer to it by a dotted line; a collapsed container is
-a subroutine box; the per-container `algorithm` and edge animation are accepted and not drawn; the semantic model and
+layout of flowcharts instead of ELK and the neutral look instead of `redux-color`; `refdoc` is drawn as a lined
+document (`lin-doc`: a wavy bottom edge and a bar along the left side); a connector is a pill joined to the tools that
+refer to it by a dotted line; a collapsed container is a rounded box with its title, a dashed rule and three dots,
+unlike a tool; the per-container `algorithm` and edge animation are accepted and not drawn; the semantic model and
 diagnostics are not produced.
 
 ## Railroad diagram (`railroad-ebnf-beta`, `railroad-abnf-beta`, `railroad-peg-beta`, `railroad-beta`)

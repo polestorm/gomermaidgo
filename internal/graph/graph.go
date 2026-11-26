@@ -52,7 +52,9 @@ const (
 	Stadium          Shape = "stadium"
 	Subroutine       Shape = "subroutine"
 	Cylinder         Shape = "cylinder"
-	Document         Shape = "document" // dokument: prostokąt z falistym dołem
+	Document         Shape = "document"       // dokument: prostokąt z falistym dołem
+	LinedDocument    Shape = "lined-document" // dokument z pionową kreską przy lewym boku
+	Collapsed        Shape = "collapsed"      // zwinięty kontener: tytuł, kreska i trzy kropki
 	Circle           Shape = "circle"
 	DoubleCircle     Shape = "double-circle"
 	Asymmetric       Shape = "asymmetric"

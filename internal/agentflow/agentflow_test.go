@@ -17,7 +17,7 @@ func TestParseShapesAndEdges(t *testing.T) {
 	if g.Direction != graph.LeftRight {
 		t.Errorf("direction %q", g.Direction)
 	}
-	want := map[string]graph.Shape{"q": graph.Parallelogram, "t": graph.Round, "tool": graph.Subroutine, "d": graph.Rhombus, "r": graph.Document, "a": graph.Hexagon, "c": graph.Cylinder}
+	want := map[string]graph.Shape{"q": graph.Parallelogram, "t": graph.Round, "tool": graph.Subroutine, "d": graph.Rhombus, "r": graph.LinedDocument, "a": graph.Hexagon, "c": graph.Cylinder}
 	for id, sh := range want {
 		if n := g.Node(id); n == nil || n.Shape != sh {
 			t.Errorf("%s: %+v, want shape %s", id, n, sh)
@@ -55,8 +55,8 @@ func TestTranslateContainers(t *testing.T) {
 	if g.Node("kb").Parent != "" || g.Node("api").Shape != graph.Stadium {
 		t.Errorf("global or connector: %+v %+v", g.Node("kb"), g.Node("api"))
 	}
-	if g.Subgraph("p") != nil || g.Node("p") == nil || g.Node("x") != nil {
-		t.Errorf("collapsed container is not one node")
+	if g.Subgraph("p") != nil || g.Node("p") == nil || g.Node("x") != nil || g.Node("p").Shape != graph.Collapsed {
+		t.Errorf("collapsed container is not one collapsed node: %+v", g.Node("p"))
 	}
 	var edges []string
 	for _, e := range g.Edges {

@@ -21,18 +21,20 @@ const (
 
 // aliases to kształty przepływu agentów zapisane nazwami kształtów schematu blokowego.
 var aliases = map[string]string{"task": "rounded", "tool": "subroutine", "input": "lean-right", "decision": "diamond",
-	"refdoc": "doc", "action": "hexagon"}
+	"refdoc": "lin-doc", "action": "hexagon"}
 
 var (
-	ident      = `[\p{L}_][\p{L}\p{N}_-]*`
-	header     = syntax.Lazy(`^agentflow(?:-beta)?(?:\s+(TB|TD|BT|LR|RL))?$`)
-	flowRule   = syntax.Lazy(`^flow\s+(` + ident + `)\s*(?:\[\s*"?([^"\]]*)"?\s*\])?\s*(?:@\{.*\})?$`)
-	connRule   = syntax.Lazy(`^connector\s+(` + ident + `)\s*(?:\[\s*"?([^"\]]*)"?\s*\])?\s*(?:@\{.*\})?$`)
-	metaOnly   = syntax.Lazy(`^(` + ident + `)@\{(.*)\}$`)
-	nodeMeta   = syntax.Lazy(`(` + ident + `)(?:\[\s*"([^"]*)"\s*\]|\[([^\]"]*)\])?@\{([^{}]*)\}`)
-	attr       = syntax.Lazy(`([\w-]+)\s*:\s*(?:"([^"]*)"|'([^']*)'|([^,}]*))`)
-	collapsedV = syntax.Lazy(`\bview\s*:\s*["']?collapsed["']?`)
-	declared   = syntax.Lazy(`(?:^|[\s&>-])(` + ident + `)\s*(?:\[|@\{|\(|$|\s*(?:-->|-\.-|--x|--|&))`)
+	ident    = `[\p{L}_][\p{L}\p{N}_-]*`
+	header   = syntax.Lazy(`^agentflow(?:-beta)?(?:\s+(TB|TD|BT|LR|RL))?$`)
+	flowRule = syntax.Lazy(`^flow\s+(` + ident + `)\s*(?:\[\s*"?([^"\]]*)"?\s*\])?\s*(?:@\{.*\})?$`)
+	connRule = syntax.Lazy(`^connector\s+(` + ident + `)\s*(?:\[\s*"?([^"\]]*)"?\s*\])?\s*(?:@\{.*\})?$`)
+	metaOnly = syntax.Lazy(`^(` + ident + `)@\{(.*)\}$`)
+	nodeMeta = syntax.Lazy(`(` + ident + `)(?:\[\s*"([^"]*)"\s*\]|\[([^\]"]*)\])?@\{([^{}]*)\}`)
+	attr     = syntax.Lazy(`([\w-]+)\s*:\s*(?:"([^"]*)"|'([^']*)'|([^,}]*))`)
+	// collapsedNode rozpoznaje w przekładzie węzeł zwiniętego kontenera (zob. Translate).
+	collapsedNode = syntax.Lazy(`^(` + ident + `)@\{ shape: subroutine, label: "[^"]*", collapsed \}$`)
+	collapsedV    = syntax.Lazy(`\bview\s*:\s*["']?collapsed["']?`)
+	declared      = syntax.Lazy(`(?:^|[\s&>-])(` + ident + `)\s*(?:\[|@\{|\(|$|\s*(?:-->|-\.-|--x|--|&))`)
 )
 
 // Parse przekłada źródło na schemat blokowy i rozbiera je do grafu.
@@ -41,7 +43,20 @@ func Parse(source string) (*graph.Graph, error) {
 	if err != nil {
 		return nil, err
 	}
-	return flowchart.Parse(fc)
+	g, err := flowchart.Parse(fc)
+	if err != nil {
+		return nil, err
+	}
+	// Zwinięte kontenery: zapisane jako podproces, rysowane własnym kształtem (tytuł, kreska,
+	// trzy kropki), żeby nie myliły się z narzędziem.
+	for _, line := range strings.Split(fc, "\n") {
+		if m := collapsedNode.FindStringSubmatch(line); m != nil {
+			if n := g.Node(m[1]); n != nil {
+				n.Shape = graph.Collapsed
+			}
+		}
+	}
+	return g, nil
 }
 
 // block to otwarty kontener w czasie przekładu.
@@ -162,7 +177,7 @@ func Translate(source string) (string, error) {
 			case hidden != "":
 			case collapsed[m[1]]:
 				hidden = m[1]
-				out[i] = m[1] + `@{ shape: subroutine, label: "` + label + `" }`
+				out[i] = m[1] + `@{ shape: subroutine, label: "` + label + `", collapsed }`
 			default:
 				out[i] = "subgraph " + m[1] + `["` + label + `"]`
 			}

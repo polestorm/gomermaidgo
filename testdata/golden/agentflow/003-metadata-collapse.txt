@@ -1,8 +1,8 @@
 flowchart TB
 node pytanie parallelogram "Pytanie klienta"
 node baza cylinder "Historia zamówień"
-node obsluga subroutine "Obsługa zgłoszenia"
-node wytyczne document "Wytyczne obsługi"
+node obsluga collapsed "Obsługa zgłoszenia"
+node wytyczne lined-document "Wytyczne obsługi"
 edge pytanie -> obsluga normal none/arrow len=1
 edge obsluga -> baza dotted none/none len=1
 edge obsluga -> wytyczne dotted none/none len=1

@@ -11,19 +11,19 @@
 <rect x="0" y="0" width="941.85" height="322"/>
 <line x1="94.1" y1="0" x2="94.1" y2="322"/>
 </g>
-<polyline points="191.13,188 191.13,195 254.75,195 254.75,212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="191.13,188 191.13,196 254.75,196 254.75,212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="254.75,220 249.75,210 259.75,210" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <polyline points="381.98,263 409.98,263" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="417.98,263 407.98,268 407.98,258" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <polyline points="589.04,263 617.04,263" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="625.04,263 615.04,268 615.04,258" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="318.37,220 318.37,201 756.16,201 756.16,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="318.37,220 318.37,208 756.16,208 756.16,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="756.16,172 761.16,182 751.16,182" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="503.51,236 503.51,207 791.85,207 791.85,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="503.51,236 503.51,212 791.85,212 791.85,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="791.85,172 796.85,182 786.85,182" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="720.47,220 720.47,213 827.54,213 827.54,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="720.47,220 720.47,216 827.54,216 827.54,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="827.54,172 832.54,182 822.54,182" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="791.85,118 791.85,86 856.85,86 856.85,78" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="791.85,118 791.85,94 856.85,94 856.85,78" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="856.85,70 861.85,80 851.85,80" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
 <rect x="114.1" y="102" width="154.07" height="86" rx="4"/>

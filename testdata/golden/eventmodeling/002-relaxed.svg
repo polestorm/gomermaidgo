@@ -16,17 +16,17 @@
 <rect x="0" y="0" width="599.41" height="548"/>
 <line x1="94.1" y1="0" x2="94.1" y2="548"/>
 </g>
-<polyline points="179.1,70 179.1,86 212.02,86 212.02,169 244.94,169 244.94,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="179.1,70 179.1,78 212.02,78 212.02,164 244.94,164 244.94,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="244.94,188 239.94,178 249.94,178" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="244.94,274 244.94,287 266.84,287 266.84,370 288.75,370 288.75,384" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="244.94,274 244.94,282 266.84,282 266.84,368 288.75,368 288.75,384" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="288.75,392 283.75,382 293.75,382" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="310.65,446 310.65,459 359.82,459 359.82,470" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="310.65,446 310.65,454 359.82,454 359.82,470" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="359.82,478 354.82,468 364.82,468" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="332.56,392 332.56,376 427.74,376 427.74,368" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="332.56,392 332.56,384 427.74,384 427.74,368" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="427.74,360 432.74,370 422.74,370" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="408.99,478 408.99,465 440.03,465 440.03,382 471.07,382 471.07,368" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="408.99,478 408.99,470 440.03,470 440.03,384 471.07,384 471.07,368" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="471.07,360 476.07,370 466.07,370" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="449.41,306 449.41,293 481.91,293 481.91,175 514.41,175 514.41,164" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="449.41,306 449.41,298 481.91,298 481.91,180 514.41,180 514.41,164" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="514.41,156 519.41,166 509.41,166" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
 <rect x="114.1" y="16" width="130" height="54"/>

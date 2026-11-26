@@ -518,16 +518,24 @@ func Layout(m *Model, o Options) *scene.Scene {
 	// Rozłożenie odcinków w pasie: pionowy odcinek jednej strzałki nie może przeciąć poziomego
 	// innej. Pionowy w górę w zakresie odcinka e wymaga, żeby e leżał niżej; w dół — wyżej.
 	// Kolejność z sortowania topologicznego tych warunków (przy cyklu zostaje kolejność tras).
-	byChannel := map[float64][]*run{}
-	var channels []float64
-	for _, r := range runs {
-		if _, ok := byChannel[r.c]; !ok {
-			channels = append(channels, r.c)
-		}
-		byChannel[r.c] = append(byChannel[r.c], r)
+	// Odcinek leży po tej stronie granicy, z której przychodzi (od źródła): po stronie celu zostaje
+	// cały margines na grot.
+	type strip struct {
+		c    float64
+		side int
 	}
-	for _, c := range channels {
-		list := byChannel[c]
+	byChannel := map[strip][]*run{}
+	var channels []strip
+	for _, r := range runs {
+		k := strip{r.c, r.d1}
+		if _, ok := byChannel[k]; !ok {
+			channels = append(channels, k)
+		}
+		byChannel[k] = append(byChannel[k], r)
+	}
+	for _, key := range channels {
+		c := key.c
+		list := byChannel[key]
 		n := len(list)
 		above := make([][]bool, n) // above[f][e]: f musi leżeć wyżej niż e
 		for f := range above {
@@ -582,12 +590,65 @@ func Layout(m *Model, o Options) *scene.Scene {
 			done[picked] = true
 			order = append(order, picked)
 		}
-		step := u(6)
-		if n > 1 {
-			step = math.Min(step, 2*u(13)/float64(n-1))
+		// Odcinki nie leżą na granicy torów, tylko w wolnym pasie obok niej (w marginesie toru po
+		// stronie źródła), z dala od granicy i od elementów: pojedyncza strzałka w połowie pasa,
+		// kilka rozłożonych po nim. Gdy po tej stronie jest za mało miejsca, pas leży po drugiej.
+		lo, hi := c+u(4), c+u(12)
+		roomBelow, roomAbove := math.Inf(1), math.Inf(1)
+		for _, b := range boxes {
+			if b.y >= c-0.5 {
+				roomBelow = math.Min(roomBelow, b.y-c)
+			}
+			if b.y+b.h <= c+0.5 {
+				roomAbove = math.Min(roomAbove, c-b.y-b.h)
+			}
 		}
-		for k, f := range order {
-			list[f].y = c + (float64(k)-float64(n-1)/2)*step
+		below := key.side > 0
+		if below && roomBelow < u(12) && roomAbove >= u(12) || !below && roomAbove < u(12) && roomBelow >= u(12) {
+			below = !below // po swojej stronie za mało miejsca
+		}
+		if below {
+			hi = math.Min(c+roomBelow-u(4), c+u(14))
+		} else {
+			lo, hi = c-math.Min(roomAbove-u(4), u(14)), c-u(4)
+		}
+		// Tory w pasie: odcinki, które nie zachodzą na siebie w poziomie, dzielą tor (biegną na tej
+		// samej wysokości); tor odcinka leży niżej niż tory odcinków, które muszą być nad nim.
+		track := make([]int, n)
+		tracks := 0
+		overlap := func(a, b *run) bool {
+			return math.Min(a.x1, a.x2) < math.Max(b.x1, b.x2)+u(6) && math.Min(b.x1, b.x2) < math.Max(a.x1, a.x2)+u(6)
+		}
+		placedRun := make([]bool, n)
+		for _, f := range order {
+			t := 0
+			for g := 0; g < n; g++ {
+				if placedRun[g] && above[g][f] && track[g] >= t {
+					t = track[g] + 1
+				}
+			}
+			for {
+				clash := false
+				for g := 0; g < n; g++ {
+					if placedRun[g] && track[g] == t && overlap(list[f], list[g]) {
+						clash = true
+						break
+					}
+				}
+				if !clash {
+					break
+				}
+				t++
+			}
+			track[f], placedRun[f] = t, true
+			tracks = max(tracks, t+1)
+		}
+		for f := range list {
+			if tracks == 1 {
+				list[f].y = (lo + hi) / 2
+			} else {
+				list[f].y = lo + (hi-lo)*float64(track[f])/float64(tracks-1)
+			}
 		}
 	}
 	for i := range edges {

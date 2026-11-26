@@ -61,8 +61,13 @@ func (l *layouter) nodeSize(shape graph.Shape, text []string) (w, h float64) {
 		w += l.u(16)
 	case graph.Cylinder:
 		h += l.u(14)
-	case graph.Document:
+	case graph.Document, graph.LinedDocument:
 		h += l.u(10) // miejsce na falę dolnego boku
+		if shape == graph.LinedDocument {
+			w += l.u(10)
+		}
+	case graph.Collapsed:
+		h += l.u(22) // kreska i trzy kropki pod tytułem
 	case graph.UseCase:
 		// Elipsa opisana na prostokącie tekstu z marginesem: półosie √2 razy większe.
 		w, h = math.Max(math.Sqrt2*(tw+l.u(20)), l.u(120)), math.Max(math.Sqrt2*(th+l.u(8)), l.u(52))
@@ -848,7 +853,7 @@ func (l *layouter) tone(shape graph.Shape) (fill, stroke string) {
 		t = scene.Palette[2] // decyzja
 	case graph.Stadium, graph.Circle, graph.DoubleCircle, graph.UseCase:
 		t = scene.Palette[1] // początek, koniec, przypadek użycia
-	case graph.Cylinder, graph.Subroutine, graph.Document:
+	case graph.Cylinder, graph.Subroutine, graph.Document, graph.LinedDocument:
 		t = scene.Palette[3] // dane, podproces, dokument
 	case graph.Parallelogram, graph.ParallelogramAlt, graph.Trapezoid, graph.TrapezoidAlt, graph.Asymmetric:
 		t = scene.Palette[5] // wejście, wyjście, czynność ręczna
@@ -1100,7 +1105,19 @@ func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float
 		ellipse(y0 + cap/2)
 		// Środek tekstu w widocznej części korpusu: od dolnego brzegu górnej pokrywy do dołu walca.
 		cy += cap / 2
-	case graph.Document:
+	case graph.Collapsed:
+		// Zwinięty kontener: zaokrąglone pole z tytułem, pod nim przerywana kreska i trzy kropki —
+		// znak, że zawartość jest ukryta.
+		box(l.u(8), colorNodeFill, colorNodeStroke)
+		ly := y1 - l.u(22)
+		l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "node-detail", X: x0 + l.u(10), Y: ly, X2: x1 - l.u(10), Y2: ly,
+			Stroke: colorNodeStroke, StrokeWidth: 1, Dash: "3 3"})
+		for k := -1; k <= 1; k++ {
+			l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "node-detail", X: cx + float64(k)*l.u(9), Y: y1 - l.u(11), R: l.u(2),
+				Fill: colorNodeStroke})
+		}
+		cy -= l.u(11)
+	case graph.Document, graph.LinedDocument:
 		// Dokument: górne boki proste, dolny falisty; w połowie szerokości fala przecina dolną
 		// krawędź pola (tam dochodzą krawędzie), z lewej schodzi niżej, z prawej wyżej.
 		a := l.u(5)
@@ -1109,6 +1126,11 @@ func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float
 			Segments: []scene.Segment{{Cmd: 'M', To: pt(x0, y0)}, {Cmd: 'L', To: pt(x1, y0)}, {Cmd: 'L', To: pt(x1, yb)},
 				{Cmd: 'C', C1: pt(x1-0.35*w, yb-2.5*a), C2: pt(x0+0.35*w, yb+2.5*a), To: pt(x0, yb)}, {Cmd: 'L', To: pt(x0, y0)}}})
 		cy -= a
+		if shape == graph.LinedDocument {
+			// Kreska przy lewym boku, do fali (przy lewym końcu fala leży tuż pod yb).
+			line(x0+l.u(8), y0, x0+l.u(8), yb+0.25*a)
+			textX += l.u(4)
+		}
 	case graph.Circle:
 		circle(w/2, colorNodeFill, colorNodeStroke)
 	case graph.UseCase:

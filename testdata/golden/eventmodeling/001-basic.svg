@@ -10,17 +10,17 @@
 <rect x="0" y="0" width="962.9" height="290"/>
 <line x1="94.1" y1="0" x2="94.1" y2="290"/>
 </g>
-<polyline points="215.17,70 215.17,80 296.93,80 296.93,94" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="215.17,70 215.17,78 296.93,78 296.93,94" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="296.93,102 291.93,92 301.93,92" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="296.93,188 296.93,198 363.7,198 363.7,212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="296.93,188 296.93,196 363.7,196 363.7,212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="363.7,220 358.7,210 368.7,210" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="430.46,220 430.46,204 482.77,204 482.77,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="430.46,220 430.46,212 482.77,212 482.77,180" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="482.77,172 487.77,182 477.77,182" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="482.77,118 482.77,86 527.22,86 527.22,78" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="482.77,118 482.77,94 527.22,94 527.22,78" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="527.22,70 532.22,80 522.22,80" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="571.67,70 571.67,92 703.03,92 703.03,110" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="571.67,70 571.67,78 703.03,78 703.03,110" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="703.03,118 698.03,108 708.03,108" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
-<polyline points="703.03,172 703.03,210 822.97,210 822.97,212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
+<polyline points="703.03,172 703.03,196 822.97,196 822.97,212" fill="none" stroke="#3b4754" stroke-width="1.5"/>
 <polygon points="822.97,220 817.97,210 827.97,210" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
 <g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
 <rect x="114.1" y="16" width="202.15" height="54"/>
