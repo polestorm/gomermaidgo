@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="654" height="264" viewBox="-132 -132 654 264" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<title>Wyroby i ich dokumentacja</title>
+<g fill="#55657a" fill-opacity="0.08" stroke="#3b4754" stroke-width="1.5">
+<circle cx="0" cy="0" r="120"/>
+<circle cx="120" cy="0" r="120"/>
+</g>
+<circle cx="390" cy="0" r="120" fill="#55657a" fill-opacity="0.08" stroke="#9aa5b1" stroke-width="3"/>
+<polygon points="0.26,-7.85 1.03,-15.66 2.31,-23.41 4.09,-31.06 6.37,-38.57 9.13,-45.92 12.38,-53.07 16.08,-60 20.22,-66.67 24.8,-73.05 29.78,-79.12 35.15,-84.85 40.88,-90.22 46.95,-95.2 53.33,-99.78 60,-103.92 60,-103.92 66.67,-99.78 73.05,-95.2 79.12,-90.22 84.85,-84.85 90.22,-79.12 95.2,-73.05 99.78,-66.67 103.92,-60 107.62,-53.07 110.87,-45.92 113.63,-38.57 115.91,-31.06 117.69,-23.41 118.97,-15.66 119.74,-7.85 120,0 119.74,7.85 118.97,15.66 117.69,23.41 115.91,31.06 113.63,38.57 110.87,45.92 107.62,53.07 103.92,60 99.78,66.67 95.2,73.05 90.22,79.12 84.85,84.85 79.12,90.22 73.05,95.2 66.67,99.78 60,103.92 60,103.92 53.33,99.78 46.95,95.2 40.88,90.22 35.15,84.85 29.78,79.12 24.8,73.05 20.22,66.67 16.08,60 12.38,53.07 9.13,45.92 6.37,38.57 4.09,31.06 2.31,23.41 1.03,15.66 0.26,7.85 0,0" fill="#9aa5b1" fill-opacity="0.6" stroke="none" stroke-width="1"/>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="-54" y="-4.4" font-weight="bold">Wyroby</text>
+<text x="-54" y="15.6" font-weight="bold">seryjne</text>
+<text x="174" y="5.6" font-weight="bold">Prototypy</text>
+<text x="390" y="-4.4" font-weight="bold">Archiwum</text>
+<text x="390" y="15.6" font-weight="bold">zamknięte</text>
+<text x="60" y="-4.4">Wyroby po</text>
+<text x="60" y="15.6">zmianie</text>
+</g>
+</svg>

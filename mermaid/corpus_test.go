@@ -325,9 +325,9 @@ func TestCorpusValidSVG(t *testing.T) {
 		if a, b := checkSVG(t, f, plain), checkSVG(t, f+" (colors)", styled); strings.Join(a, "|") != strings.Join(b, "|") {
 			t.Errorf("%s: colours and shadows changed the texts", f)
 		}
-		// Diagram pakietu, wykres radarowy, mapa drzewa i drzewo katalogów nie mają kształtów, pod którymi cień
+		// Diagram pakietu, wykres radarowy, mapa drzewa, drzewo katalogów i diagram Venna nie mają kształtów, pod którymi cień
 		// miałby sens (pola stykają się bokami albo są liniami); opcja jest tam przyjmowana bez skutku.
-		flat := strings.Contains(f, "/gitgraph/") || strings.Contains(f, "/sankey/") || strings.Contains(f, "/packet/") || strings.Contains(f, "/radar/") || strings.Contains(f, "/treemap/") || strings.Contains(f, "/treeview/")
+		flat := strings.Contains(f, "/gitgraph/") || strings.Contains(f, "/sankey/") || strings.Contains(f, "/packet/") || strings.Contains(f, "/radar/") || strings.Contains(f, "/treemap/") || strings.Contains(f, "/treeview/") || strings.Contains(f, "/venn/")
 		if !flat && bytes.Count(styled, []byte(`class="shadow"`)) == 0 {
 			t.Errorf("%s: no shadows were drawn", f)
 		}

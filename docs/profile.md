@@ -572,6 +572,23 @@ the longest name that has one; icon packs are not bundled, so `icon(pack:name)` 
 folder icon by the kind of entry; the `treeView` configuration (`showIcons`, `rowIndent`, icon maps) and its theme
 variables are outside the profile. At most 2000 entries and 32 levels.
 
+## Venn diagram (`venn-beta`, `venn`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| title | `title Tekst`, `title "Tekst"` | VENN-001 |
+| set | `set A`, `set A["label"]`, `set "Long name"`, optional size `:20` | VENN-002 |
+| overlap | `union A,B["label"]`, `union A,B,C`, optional size `:3`; the sets must be declared first | VENN-002 |
+| item | `text A1["label"]` on an indented line under a set or overlap | VENN-002 |
+| style | `style A fill:#f96`, `style A,B color:#333`, `style A1 color:red`: `fill`, `fill-opacity`, `stroke`, `stroke-width`, `color` | VENN-003 |
+| accessibility | `accTitle`, `accDescr` | VENN-001 |
+
+Deliberate differences from Mermaid: an own look (circles with a light translucent fill, so overlaps are darker;
+neutral by default); at most three sets, so every overlap can be drawn as a region of circles; a set without any
+overlap stands apart to the right; circle areas follow the sizes and an overlap's size sets the distance of its
+circles, without a numerical fit of all overlaps at once; a style on an overlap fills the whole common area of its
+circles.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |

@@ -31,7 +31,9 @@ zebrano wyszukiwaniem, które ich nazw nie zawierało.
 
 1. Rysujemy wszystkie dziewięć typów, jeden po drugim, bez pośpiechu. Każdy typ to osobna runda: wymagania
    w `requirements/`, pliki korpusu z `%% REQ:`, wpis w `docs/profile.md`, obrazek w galerii i przegląd
-   właściciela na stronie porównania z `mmdg`. Kolejny typ zaczynamy po przyjęciu poprzedniego.
+   właściciela na stronie porównania z `mmdg`. Typy powstają jeden po drugim bez czekania na przegląd:
+   właściciel ocenia je w wolnej chwili, a poprawki z przeglądu robimy w osobnych rundach (decyzja
+   właściciela z 2026-11-26).
 2. Kolejność, od najtańszych: `treeView`, `venn`, `cynefin`, `usecase`, `zenuml`, `wardley`, `eventmodeling`,
    `agentflow`, `railroad`. Najpierw te, które wykorzystują istniejące części (drzewo, układ warstwowy, diagram
    sekwencji, plansza o stałym układzie).

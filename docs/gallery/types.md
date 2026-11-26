@@ -3,7 +3,7 @@
 One diagram of each type this library draws, in its default neutral look (`WithColors` adds colour).
 Each section links the Mermaid source of its picture.
 
-[Flowchart](#flowchart) · [Sequence diagram](#sequence-diagram) · [Class diagram](#class-diagram) · [State diagram](#state-diagram) · [Entity relationship diagram](#entity-relationship-diagram) · [Gantt chart](#gantt-chart) · [Pie chart](#pie-chart) · [User journey](#user-journey) · [Git graph](#git-graph) · [Mind map](#mind-map) · [Timeline](#timeline) · [Quadrant chart](#quadrant-chart) · [XY chart](#xy-chart) · [Sankey diagram](#sankey-diagram) · [Requirement diagram](#requirement-diagram) · [C4 diagram](#c4-diagram) · [Block diagram](#block-diagram) · [Packet diagram](#packet-diagram) · [Kanban board](#kanban-board) · [Architecture diagram](#architecture-diagram) · [Radar chart](#radar-chart) · [Treemap](#treemap) · [Ishikawa (cause and effect) diagram](#ishikawa-cause-and-effect-diagram) · [Swimlane diagram](#swimlane-diagram) · [Tree view](#tree-view)
+[Flowchart](#flowchart) · [Sequence diagram](#sequence-diagram) · [Class diagram](#class-diagram) · [State diagram](#state-diagram) · [Entity relationship diagram](#entity-relationship-diagram) · [Gantt chart](#gantt-chart) · [Pie chart](#pie-chart) · [User journey](#user-journey) · [Git graph](#git-graph) · [Mind map](#mind-map) · [Timeline](#timeline) · [Quadrant chart](#quadrant-chart) · [XY chart](#xy-chart) · [Sankey diagram](#sankey-diagram) · [Requirement diagram](#requirement-diagram) · [C4 diagram](#c4-diagram) · [Block diagram](#block-diagram) · [Packet diagram](#packet-diagram) · [Kanban board](#kanban-board) · [Architecture diagram](#architecture-diagram) · [Radar chart](#radar-chart) · [Treemap](#treemap) · [Ishikawa (cause and effect) diagram](#ishikawa-cause-and-effect-diagram) · [Swimlane diagram](#swimlane-diagram) · [Tree view](#tree-view) · [Venn diagram](#venn-diagram)
 
 ## Flowchart
 
@@ -154,3 +154,9 @@ Each section links the Mermaid source of its picture.
 `treeView-beta`, source: [`src/types/25-treeview.mmd`](src/types/25-treeview.mmd)
 
 ![Tree view](img/types/25-treeview.svg)
+
+## Venn diagram
+
+`venn-beta`, source: [`src/types/26-venn.mmd`](src/types/26-venn.mmd)
+
+![Venn diagram](img/types/26-venn.svg)

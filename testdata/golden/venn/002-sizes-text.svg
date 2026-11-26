@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="384.9" height="300" viewBox="-132 -168 384.9 300" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<g stroke="#3b4754" stroke-width="1.5">
+<circle cx="0" cy="0" r="120" fill="#dfe9f3" fill-opacity="0.35"/>
+<circle cx="147.94" cy="0" r="92.95" fill="#55657a" fill-opacity="0.08"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="60.45" y="-140" font-size="18" font-weight="bold">Dostawcy i klienci</text>
+<text x="-54" y="-21.4" font-weight="bold">Dostawcy</text>
+</g>
+<g fill="#3b4754" text-anchor="middle">
+<text x="-54" y="-3.1" font-size="14">Huta Silesia</text>
+<text x="-54" y="14.9" font-size="14">Granulat sp. z</text>
+<text x="-54" y="32.9" font-size="14">o.o.</text>
+</g>
+<text x="189.77" y="-12.4" text-anchor="middle" font-weight="bold" fill="#1b1f24">Klienci</text>
+<g fill="#3b4754" text-anchor="middle">
+<text x="189.77" y="5.9" font-size="14">Fabryka</text>
+<text x="189.77" y="23.9" font-size="14">okien</text>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="86.16" y="-22.4">Obie</text>
+<text x="86.16" y="-2.4">role</text>
+</g>
+<g fill="#333" text-anchor="middle">
+<text x="86.16" y="15.9" font-size="14">Firma</text>
+<text x="86.16" y="33.9" font-size="14">Transportowa</text>
+</g>
+</svg>

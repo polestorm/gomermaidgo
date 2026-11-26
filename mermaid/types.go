@@ -12,6 +12,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/treemap"
 	"github.com/polestorm/gomermaidgo/internal/treeview"
+	"github.com/polestorm/gomermaidgo/internal/venn"
 )
 
 // Diagram types added after the first ones.
@@ -26,6 +27,7 @@ const (
 	TypeArchitecture = "architecture"
 	TypeIshikawa     = "ishikawa"
 	TypeTreeView     = "treeView"
+	TypeVenn         = "venn"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -116,5 +118,12 @@ var moreTypes = []diagramType{
 			return nil, err
 		}
 		return treeview.Layout(t, treeview.Options(o)), nil
+	}},
+	{TypeVenn, []string{"venn-beta", "venn"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		d, err := venn.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return venn.Layout(d, venn.Options(o)), nil
 	}},
 }

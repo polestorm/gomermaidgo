@@ -16,7 +16,7 @@
 | 13 | krój zapasowy z emoji (Noto Emoji, jednobarwne) w pomiarze, SVG, PDF i PNG (ADR 0006) | zrobione 2026-11-23 |
 | 14 | krój domyślny Arimo (szerokości jak Arial i Liberation Sans) zamiast Recursive (ADR 0007) | zrobione 2026-11-23 |
 | 15 | dopasowanie do strony i zwijanie długich diagramów w rzędy (ADR 0008) | zrobione 2026-11-23 |
-| 16 | dziewięć brakujących typów Mermaid, po kolei, każdy po przeglądzie właściciela (ADR 0011): `treeView`, `venn`, `cynefin`, `usecase`, `zenuml`, `wardley`, `eventmodeling`, `agentflow`, `railroad`; przykłady w `testdata/planned/` | zaplanowane 2026-11-26; `treeView` zrobione 2026-11-26 (TREE-001..005), czeka na przegląd |
+| 16 | dziewięć brakujących typów Mermaid, po kolei, każdy po przeglądzie właściciela (ADR 0011): `treeView`, `venn`, `cynefin`, `usecase`, `zenuml`, `wardley`, `eventmodeling`, `agentflow`, `railroad`; przykłady w `testdata/planned/` | zaplanowane 2026-11-26; `treeView` (TREE-001..005) i `venn` (VENN-001..005) zrobione 2026-11-26, czekają na przegląd |
 | 5 | diagramy w dokumencie Markdown (`markdown.Embed`, reguły CSS dla wydruku) | zrobione 2026-11-21 |
 
 Zrobione 2026-11-21 po pierwszym przeglądzie: krój domyślny Recursive (ADR 0002), `box`, `create`/`destroy`,
