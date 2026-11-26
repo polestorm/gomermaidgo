@@ -52,6 +52,18 @@ Próba ręczna całej drogi z 2026-11-21: dokument Markdown z trzema blokami `me
 i komunikat błędu na stronie, akapity i lista wokół nienaruszone. Ta próba nie jest zautomatyzowana, bo parser Markdown
 byłby zależnością.
 
+## Porównanie z innymi rendererami (czas, pamięć, pokrycie)
+
+Liczby z tabeli porównania w README pochodzą z `tools/bench`. Narzędzie uruchamia każdy renderer jako osobny program,
+zapisuje polecenia, sumy kontrolne i wersje programów oraz opis maszyny. Pokrycie liczymy na zbiorze publicznych
+diagramów z manifestu `testdata/wild/sources.tsv`: repozytorium, przypięty commit, ścieżka, linia i SHA-256. Zbiór
+pobiera `tools/wildcorpus`. Samych diagramów nie przechowujemy, bo są cudze. Metodę, polecenia do powtórzenia i surowe
+wyniki opisuje `docs/benchmarks.md` (po angielsku, bo odsyła do niej README).
+
+Każda liczba porównania w README musi mieć wsad i metodę w repozytorium, tak żeby konkurencja mogła ją łatwo powtórzyć
+(decyzja właściciela z 2026-11-26). Po zmianie wyniku odświeżamy liczby tym samym narzędziem i zapisujemy nowy plik
+w `docs/benchmarks/`.
+
 ## Porównanie z rendererem odniesienia
 
 `tools/refcompare` uruchamia cudzy renderer jako osobny program i porównuje **treść** obu rysunków: zbiór tekstów

@@ -29,6 +29,9 @@ Zasady:
 - wygląd jest własny i stały: nie odtwarzamy motywów Mermaid ani wyniku co do piksela; celem jest rysunek czytelny
   i przewidywalny;
 - każda decyzja = plik w `docs/adr/`;
+- każda liczba porównania z innymi programami ma wsad i metodę w repozytorium (`tools/bench`, manifest
+  `testdata/wild/sources.tsv` z `tools/wildcorpus`, surowy wynik w `docs/benchmarks/`, opis w `docs/benchmarks.md`
+  po angielsku), tak żeby konkurencja mogła ją łatwo powtórzyć (ADR 0010, decyzja właściciela z 2026-11-26);
 - opisy commitów po angielsku; przed commitem muszą przechodzić `go vet ./...` i `go test ./...`;
 - commit i push do `origin` (`polestorm/gomermaidgo`) po każdej zakończonej rundzie pracy, bez pytania
   (decyzja użytkownika z 2026-11-21).

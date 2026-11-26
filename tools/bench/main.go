@@ -360,10 +360,18 @@ func printMarkdown(w *os.File, r report) {
 	fmt.Fprintf(w, "%s, %s, %d files, best of %d runs per file\n\n", r.Date, r.Host, r.Files, r.Runs)
 	for _, fr := range r.Results {
 		fmt.Fprintf(w, "%s: %d files rendered by all, %d by at least one\n\n", strings.ToUpper(fr.Format), fr.Common, fr.Any)
-		fmt.Fprintln(w, "| program | rendered | median time ms | median peak memory MB | output MB | files differing between runs |")
-		fmt.Fprintln(w, "|---|---:|---:|---:|---:|---:|")
+		if r.Runs == 0 {
+			fmt.Fprintln(w, "| program | rendered |\n|---|---:|")
+		} else {
+			fmt.Fprintln(w, "| program | rendered | median time ms | median peak memory MB | output MB | files differing between runs |")
+			fmt.Fprintln(w, "|---|---:|---:|---:|---:|---:|")
+		}
 		for _, s := range fr.Stats {
-			fmt.Fprintf(w, "| %s | %d | %.1f | %.1f | %.2f | %d |\n", s.Program, s.Rendered, s.MedianMs, s.MedianMB, s.OutputMB, s.Unstable)
+			if r.Runs == 0 {
+				fmt.Fprintf(w, "| %s | %d |\n", s.Program, s.Rendered)
+			} else {
+				fmt.Fprintf(w, "| %s | %d | %.1f | %.1f | %.2f | %d |\n", s.Program, s.Rendered, s.MedianMs, s.MedianMB, s.OutputMB, s.Unstable)
+			}
 		}
 		fmt.Fprintln(w)
 	}

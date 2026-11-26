@@ -15,7 +15,7 @@ Compared with two other Go renderers that need no browser, [`mmdg`](https://gith
 and [`go-mermaid`](https://github.com/zkrebbekx/go-mermaid) (details in [Comparison](#comparison)):
 
 - **Smallest footprint**: a single 8.4 MB program with no dependencies at all, PDF and PNG included.
-- **The fastest of the three**: SVG, PDF, PNG creation 20–90% faster than the others.
+- **The fastest of the three**: SVG, PDF and PNG creation takes 35–90% less time than with the others.
 - **Printing friendly**: narrows fields, folds long processes/chains, staggers long ranks, to fit A4 pages.
 - **Small output**: plain SVG 1.1 without embedded fonts or CSS, much smaller than mmdg's and a little smaller than
   go-mermaid's; PDF with real, searchable text.
@@ -41,15 +41,15 @@ which, like this library, has its own parsers and layout.
 | | gomermaidgo | mmdg 0.14.1 | go-mermaid 0.1.6 |
 |---|:---:|:---:|:---:|
 | Approach | own parsers and layout in Go | Mermaid 12.2.0 (embedded JavaScript) | own parsers and layout in Go |
-| Dependencies[^deps] | 0 🥇 | 7 | 10 |
+| Dependencies[^deps] | 0 🥇 | 7 | 5 |
 | Program size | 8.4 MB 🥇 | 53.0 MB | 11.7 MB |
-| SVG time[^bench] | 3.1 ms 🥇 | 31 ms | 3.9 ms |
-| SVG memory | 8 MB 🥇 | 41 MB | 12 MB |
-| PDF time | 4.6 ms 🥇 | 30 ms | no PDF |
-| PDF memory | 16 MB 🥇 | 54 MB | no PDF |
-| PNG time | 12 ms 🥇 | 36 ms | 24 ms |
-| PNG memory | 18 MB | 44 MB | 16 MB 🥇 |
-| SVG output[^size] | 0.20 MB 🥇 | 11.6 MB | 0.21 MB |
+| SVG time[^bench] | 3.1 ms 🥇 | 31 ms | 4.9 ms |
+| SVG memory | 7 MB 🥇 | 40 MB | 12 MB |
+| PDF time | 4.4 ms 🥇 | 32 ms | no PDF |
+| PDF memory | 15 MB 🥇 | 54 MB | no PDF |
+| PNG time | 13 ms 🥇 | 39 ms | 27 ms |
+| PNG memory | 18 MB | 43 MB | 17 MB 🥇 |
+| SVG output[^size] | 0.19 MB 🥇 | 11.8 MB | 0.20 MB |
 | PNG output | 2.4 MB | 2.1 MB | 1.9 MB 🥇 |
 | PDF output | 1.7 MB 🥇 | 13.0 MB | no PDF |
 | Diagram types[^types] | 24 of Mermaid's 33 | 33 🥇 | 20 |
@@ -66,22 +66,24 @@ which, like this library, has its own parsers and layout.
 | GitHub popularity[^pop] | new | 5 stars, 1 fork | 13 stars, 5 forks |
 
 [^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
-[^deps]: Go modules the program needs; program size as built by `go build`.
+[^deps]: Go modules linked into the program (`dep` lines of `go version -m`); program size as built by `go build`.
 [^bench]: Time and memory per diagram, PNG at scale 1. Median over the corpus diagrams all compared programs rendered
-    (62 for SVG and PNG; 86 for PDF, which go-mermaid does not write), best of three runs of the command-line program
-    per file, process start included; memory is the peak resident size. Measured on 2026-11-23 on one Apple-silicon
-    laptop. 🥇 marks the best value in a row.
+    (63 for SVG and PNG; 87 for PDF, which go-mermaid does not write), best of three runs of the command-line program
+    per file, process start included; memory is the peak resident size. Measured on 2026-11-26 on an Apple M4 laptop
+    with `tools/bench`; inputs, commands and raw results are in [`docs/benchmarks.md`](docs/benchmarks.md).
+    🥇 marks the best value in a row.
 [^det]: The same source gives the same file byte for byte on every run. Here it is documented (see the top of this
-    page) and tested; for the other two, three runs of the 62 (mmdg) and 65 (go-mermaid) corpus diagrams gave
-    identical SVG, PNG and PDF files, but neither documents it.
-[^size]: Total size of the files written for the same diagrams: 62 for SVG and PNG, 86 for PDF.
+    page) and tested; for the other two, the three timed runs of every file gave identical SVG, PNG and PDF files
+    ([method](docs/benchmarks.md#what-the-numbers-mean)), but neither documents it.
+[^size]: Total size of the files written for the same diagrams: 63 for SVG and PNG, 87 for PDF.
 [^pop]: Stars and forks on 2026-11-23.
 [^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here: `zenuml` (a separate Mermaid add-on) and eight
     types added in Mermaid 12 as beta: `venn`, `treeView`, `wardley`, `cynefin`, `railroad`, `eventmodeling`,
     `usecase` and `agentflow`. go-mermaid lists 20 types (`-list-types`); of those drawn here it lacks
     `architecture-beta`, `treemap-beta`, `ishikawa-beta` and `swimlane-beta`.
-[^wild]: 175 blocks marked `mermaid` collected from public GitHub repositories; 36 are rejected by all three programs
-    (fragments without a diagram header, or not Mermaid at all), which leaves 139.
+[^wild]: 168 blocks marked `mermaid` in public GitHub repositories, pinned to commits in
+    [`testdata/wild/sources.tsv`](testdata/wild/sources.tsv) and fetched by `go run ./tools/wildcorpus`; 29 are
+    rejected by all three programs (fragments without a diagram header, or not Mermaid at all), which leaves 139.
 
 ## Examples
 
@@ -120,6 +122,7 @@ with a line number, never a partial drawing.
 - [`docs/usage.md`](docs/usage.md): how to use the library and the command.
 - [`docs/gallery/`](docs/gallery/README.md): pictures with their sources.
 - [`docs/profile.md`](docs/profile.md): supported syntax and its limits.
+- [`docs/benchmarks.md`](docs/benchmarks.md): how the comparison is measured and how to repeat it.
 - In Polish: [`docs/provenance.md`](docs/provenance.md)
   (sources and clean-room rules), [`docs/testing.md`](docs/testing.md) (corpus, invariants, comparison with
   reference renderers), [`requirements/`](requirements/) (numbered requirements), [`docs/adr/`](docs/adr/)
@@ -127,7 +130,8 @@ with a line number, never a partial drawing.
 
 ## How the comparison was measured
 
-All three programs read the same corpus sources (`testdata/corpus/`); for the comparison the other renderers are only
+The full method, the inputs and the commands to repeat every number are in
+[`docs/benchmarks.md`](docs/benchmarks.md). In short: all three programs read the same corpus sources (`testdata/corpus/`); for the comparison the other renderers are only
 run as programs (what was ever read of them is listed in `docs/provenance.md`). Times and memory come from the
 command-line programs, so they include process start; for `mmdg` that includes starting its JavaScript engine. PNG is compared at scale 1 (one image pixel
 per drawing pixel); this library's default is scale 2. A diagram counts as rendered when the program exits without an

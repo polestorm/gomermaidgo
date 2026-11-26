@@ -1,0 +1,154 @@
+{
+ "date": "2026-11-26T08:28:13Z",
+ "host": "darwin/arm64, Apple M4, 10 cores",
+ "files": 90,
+ "runs_per_file": 3,
+ "commands": [
+  {
+   "program": "gomermaidgo",
+   "format": "svg",
+   "command": "gomermaidgo -q -o {out} {in}"
+  },
+  {
+   "program": "gomermaidgo",
+   "format": "pdf",
+   "command": "gomermaidgo -q -o {out} {in}"
+  },
+  {
+   "program": "gomermaidgo",
+   "format": "png",
+   "command": "gomermaidgo -q -s 1 -o {out} {in}"
+  },
+  {
+   "program": "mmdg",
+   "format": "svg",
+   "command": "mmdg -q -i {in} -o {out}"
+  },
+  {
+   "program": "mmdg",
+   "format": "pdf",
+   "command": "mmdg -q -i {in} -o {out}"
+  },
+  {
+   "program": "mmdg",
+   "format": "png",
+   "command": "mmdg -q -s 1 -i {in} -o {out}"
+  },
+  {
+   "program": "go-mermaid",
+   "format": "svg",
+   "command": "mermaid -o {out} {in}"
+  },
+  {
+   "program": "go-mermaid",
+   "format": "png",
+   "command": "mermaid -png -scale 1 -o {out} {in}"
+  }
+ ],
+ "inputs": [
+  "testdata/corpus"
+ ],
+ "results": [
+  {
+   "format": "svg",
+   "common": 63,
+   "rendered_by_any": 90,
+   "programs": [
+    {
+     "program": "gomermaidgo",
+     "rendered": 90,
+     "median_ms": 3.1,
+     "median_peak_rss_mb": 7.3,
+     "output_mb": 0.19,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "81f5e66b89251d220b821c2157ac5431d632ddb0af7fcdfce78055e376ccca38",
+     "version": "github.com/polestorm/gomermaidgo v0.1.2-0.20261126082753-3b3170a0218d"
+    },
+    {
+     "program": "mmdg",
+     "rendered": 87,
+     "median_ms": 31.1,
+     "median_peak_rss_mb": 40.1,
+     "output_mb": 11.78,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "87171fc24da31858da4cc809fcc50e5e869e4ae2a988539e29b5f633ce344f22",
+     "version": "github.com/bvolpato/mermaid-go-renderer v0.14.1; mmdg 0.14.1 (mermaid 12.2.0)"
+    },
+    {
+     "program": "go-mermaid",
+     "rendered": 66,
+     "median_ms": 4.9,
+     "median_peak_rss_mb": 11.8,
+     "output_mb": 0.2,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "10f4d2c3ab78f180f210492fa1c70577fb85b3d770d4f765a4ce2a9068822c48",
+     "version": "github.com/zkrebbekx/go-mermaid v0.1.6; mermaid dev"
+    }
+   ]
+  },
+  {
+   "format": "pdf",
+   "common": 87,
+   "rendered_by_any": 90,
+   "programs": [
+    {
+     "program": "gomermaidgo",
+     "rendered": 90,
+     "median_ms": 4.4,
+     "median_peak_rss_mb": 15.3,
+     "output_mb": 1.65,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "81f5e66b89251d220b821c2157ac5431d632ddb0af7fcdfce78055e376ccca38",
+     "version": "github.com/polestorm/gomermaidgo v0.1.2-0.20261126082753-3b3170a0218d"
+    },
+    {
+     "program": "mmdg",
+     "rendered": 87,
+     "median_ms": 31.8,
+     "median_peak_rss_mb": 54,
+     "output_mb": 13,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "87171fc24da31858da4cc809fcc50e5e869e4ae2a988539e29b5f633ce344f22",
+     "version": "github.com/bvolpato/mermaid-go-renderer v0.14.1; mmdg 0.14.1 (mermaid 12.2.0)"
+    }
+   ]
+  },
+  {
+   "format": "png",
+   "common": 63,
+   "rendered_by_any": 90,
+   "programs": [
+    {
+     "program": "gomermaidgo",
+     "rendered": 90,
+     "median_ms": 12.9,
+     "median_peak_rss_mb": 18,
+     "output_mb": 2.4,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "81f5e66b89251d220b821c2157ac5431d632ddb0af7fcdfce78055e376ccca38",
+     "version": "github.com/polestorm/gomermaidgo v0.1.2-0.20261126082753-3b3170a0218d"
+    },
+    {
+     "program": "mmdg",
+     "rendered": 87,
+     "median_ms": 39.1,
+     "median_peak_rss_mb": 42.8,
+     "output_mb": 2.08,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "87171fc24da31858da4cc809fcc50e5e869e4ae2a988539e29b5f633ce344f22",
+     "version": "github.com/bvolpato/mermaid-go-renderer v0.14.1; mmdg 0.14.1 (mermaid 12.2.0)"
+    },
+    {
+     "program": "go-mermaid",
+     "rendered": 66,
+     "median_ms": 26.5,
+     "median_peak_rss_mb": 16.5,
+     "output_mb": 1.89,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "10f4d2c3ab78f180f210492fa1c70577fb85b3d770d4f765a4ce2a9068822c48",
+     "version": "github.com/zkrebbekx/go-mermaid v0.1.6; mermaid dev"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "date": "2026-11-26T08:28:04Z",
+ "host": "darwin/arm64, Apple M4, 10 cores",
+ "files": 168,
+ "runs_per_file": 0,
+ "commands": [
+  {
+   "program": "gomermaidgo",
+   "format": "svg",
+   "command": "gomermaidgo -q -o {out} {in}"
+  },
+  {
+   "program": "gomermaidgo",
+   "format": "pdf",
+   "command": "gomermaidgo -q -o {out} {in}"
+  },
+  {
+   "program": "gomermaidgo",
+   "format": "png",
+   "command": "gomermaidgo -q -s 1 -o {out} {in}"
+  },
+  {
+   "program": "mmdg",
+   "format": "svg",
+   "command": "mmdg -q -i {in} -o {out}"
+  },
+  {
+   "program": "mmdg",
+   "format": "pdf",
+   "command": "mmdg -q -i {in} -o {out}"
+  },
+  {
+   "program": "mmdg",
+   "format": "png",
+   "command": "mmdg -q -s 1 -i {in} -o {out}"
+  },
+  {
+   "program": "go-mermaid",
+   "format": "svg",
+   "command": "mermaid -o {out} {in}"
+  },
+  {
+   "program": "go-mermaid",
+   "format": "png",
+   "command": "mermaid -png -scale 1 -o {out} {in}"
+  }
+ ],
+ "inputs": [
+  "out/wild"
+ ],
+ "results": [
+  {
+   "format": "svg",
+   "common": 120,
+   "rendered_by_any": 139,
+   "programs": [
+    {
+     "program": "gomermaidgo",
+     "rendered": 138,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "81f5e66b89251d220b821c2157ac5431d632ddb0af7fcdfce78055e376ccca38",
+     "version": "github.com/polestorm/gomermaidgo v0.1.2-0.20261126082753-3b3170a0218d"
+    },
+    {
+     "program": "mmdg",
+     "rendered": 137,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "87171fc24da31858da4cc809fcc50e5e869e4ae2a988539e29b5f633ce344f22",
+     "version": "github.com/bvolpato/mermaid-go-renderer v0.14.1; mmdg 0.14.1 (mermaid 12.2.0)"
+    },
+    {
+     "program": "go-mermaid",
+     "rendered": 123,
+     "files_differing_between_runs": 0,
+     "binary_sha256": "10f4d2c3ab78f180f210492fa1c70577fb85b3d770d4f765a4ce2a9068822c48",
+     "version": "github.com/zkrebbekx/go-mermaid v0.1.6; mermaid dev"
+    }
+   ]
+  }
+ ]
+}
