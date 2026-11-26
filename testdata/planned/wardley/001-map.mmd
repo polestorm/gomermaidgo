@@ -1,0 +1,15 @@
+%% Tytuł: Mapa usługi wzorcowania
+%% Sprawdza: tytuł, kotwica, komponenty z pozycją [widoczność, ewolucja], nazwy w cudzysłowie (polskie znaki), zależności ->, osie widoczności i ewolucji.
+wardley-beta
+title Usługa wzorcowania przyrządów
+anchor Klient [0.95, 0.70]
+component "Zamówienie online" [0.80, 0.55]
+component Wzorcowanie [0.60, 0.40]
+component "Laboratorium akredytowane" [0.40, 0.35]
+component "Wzorce odniesienia" [0.25, 0.60]
+component Energia [0.10, 0.95]
+Klient -> "Zamówienie online"
+"Zamówienie online" -> Wzorcowanie
+Wzorcowanie -> "Laboratorium akredytowane"
+"Laboratorium akredytowane" -> "Wzorce odniesienia"
+"Laboratorium akredytowane" -> Energia

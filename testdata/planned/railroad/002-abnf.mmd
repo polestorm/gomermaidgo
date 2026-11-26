@@ -1,0 +1,10 @@
+%% Tytuł: Data w ABNF
+%% Sprawdza: składnia ABNF: alternatywa /, powtórzenia 4DIGIT i 1*, opcja [ ], wartości liczbowe z zakresem %x30-39.
+railroad-abnf-beta
+title "Data i godzina"
+data = rok "-" miesiac "-" dzien [ "T" godzina ] ;
+rok = 4cyfra ;
+miesiac = 2cyfra ;
+dzien = 2cyfra ;
+godzina = 2cyfra ":" 2cyfra / "teraz" ;
+cyfra = %x30-39 ;

@@ -1,0 +1,13 @@
+%% Tytuł: Dwa zbiory z wielkościami i elementami
+%% Sprawdza: wielkości zbiorów (:N), wcięte linie text pod zbiorem i przecięciem, styl wypełnienia i koloru tekstu.
+venn-beta
+  title "Dostawcy i klienci"
+  set D["Dostawcy"]:20
+    text D1["Huta Silesia"]
+    text D2["Granulat sp. z o.o."]
+  set K["Klienci"]:12
+    text K1["Fabryka okien"]
+  union D,K["Obie role"]:3
+    text DK1["Firma Transportowa"]
+  style D fill:#dfe9f3
+  style DK1 color:#333

@@ -1,0 +1,18 @@
+%% Tytuł: Obsługa reklamacji
+%% Sprawdza: aktorzy, granica systemu, przypadki użycia w elipsie i prostokącie, include i extend, kierunek LR.
+usecase-beta
+direction LR
+actor Klient("Klient")
+actor Jakosc("Dział jakości")
+systemBoundary rekl["System reklamacji"]
+  Zglos("Zgłoś reklamację")
+  Status("Sprawdź status")
+  Ocen("Oceń zasadność")
+  Raport[Raport 8D]
+end
+Klient --> Zglos
+Klient --> Status
+Jakosc --> Ocen
+Jakosc --> Raport
+Zglos ..> : include Status
+Raport ..> : extend Ocen

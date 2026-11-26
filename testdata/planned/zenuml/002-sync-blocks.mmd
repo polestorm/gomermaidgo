@@ -1,0 +1,32 @@
+%% Tytuł: Zatwierdzenie dokumentu z blokami
+%% Sprawdza: wywołania synchroniczne z zagnieżdżeniem {}, return, przypisanie wyniku, new, if/else, while, opt, par, try/catch/finally, komentarz nad komunikatem.
+zenuml
+    A as Autor
+    R as Recenzent
+    D as Dokumenty
+    // Autor wysyła wersję do oceny
+    wynik = R.ocen(wersja) {
+      D.pobierz(wersja)
+      if(sa_uwagi) {
+        R->A: Lista uwag
+      } else {
+        return zgoda
+      }
+    }
+    while(nie_zatwierdzony) {
+      A->R: Poprawiona wersja
+    }
+    opt {
+      new Archiwum
+    }
+    par {
+      D->A: Powiadomienie
+      D->R: Powiadomienie
+    }
+    try {
+      D.opublikuj()
+    } catch {
+      D->A: Błąd publikacji
+    } finally {
+      D.zapiszLog()
+    }

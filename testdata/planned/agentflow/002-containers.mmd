@@ -1,0 +1,21 @@
+%% Tytuł: Przepływy zagnieżdżone, węzły wspólne i zwinięcie
+%% Sprawdza: kontenery flow zagnieżdżone, blok global, zwinięty kontener (view: collapsed), metadane description, łącznik connector.
+agentflow-beta TB
+global
+  baza["Rejestr dokumentów"]@{ shape: refdoc }
+end
+connector api["API rejestru"]@{ protocol: "http", endpoint: "https://example.org/api" }
+flow przeglad["Przegląd dokumentu"]
+  czytaj["Przeczytaj dokument"]@{ shape: task, description: "pełna treść" }
+  flow uwagi["Zbieranie uwag"]
+    sprawdz["Sprawdź zgodność z normą"]@{ shape: task }
+    zapisz["Zapisz uwagi"]@{ shape: tool, connectorRef: api }
+  end
+end
+flow publikacja["Publikacja"]
+  opublikuj["Opublikuj wersję"]@{ shape: action }
+end
+publikacja@{ view: "collapsed" }
+czytaj --> sprawdz --> zapisz
+czytaj -.- baza
+zapisz --> opublikuj

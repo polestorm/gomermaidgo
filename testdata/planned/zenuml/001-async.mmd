@@ -1,0 +1,11 @@
+%% Tytuł: Zgłoszenie niezgodności
+%% Sprawdza: tytuł, deklarowana kolejność uczestników, adnotatory @Actor i @Database, komunikaty asynchroniczne.
+zenuml
+    title Zgłoszenie niezgodności
+    @Actor Pracownik
+    System
+    @Database Rejestr
+    Pracownik->System: Zgłoś niezgodność
+    System->Rejestr: Zapisz zgłoszenie
+    Rejestr->System: Numer NC-0042
+    System->Pracownik: Potwierdzenie

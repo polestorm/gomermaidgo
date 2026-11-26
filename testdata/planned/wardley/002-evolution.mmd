@@ -1,0 +1,21 @@
+%% Tytuł: Ewolucja, dekoratory, notatki i siły
+%% Sprawdza: evolve, dekoratory (build) (buy) (outsource) (inertia), przesunięcie etykiety, linki przerywane i z etykietą, potok, notatka, adnotacje, akcelerator, własne etapy ewolucji.
+wardley-beta
+title Zmiana dostawcy oprogramowania
+evolution Pomysl -> Na zamowienie -> Produkt -> Usluga
+anchor "Dział jakości" [0.92, 0.50]
+component "Rejestr niezgodności" [0.75, 0.45] (build) (inertia)
+component Raportowanie [0.60, 0.65] label [10, -10] (buy)
+component Hosting [0.30, 0.85] (outsource)
+pipeline Raportowanie {
+  component "Raport PDF" [0.55]
+  component "Panel online" [0.80]
+}
+"Dział jakości" -> "Rejestr niezgodności"
+"Rejestr niezgodności" -.-> Raportowanie
+Raportowanie +'dane'> Hosting
+evolve "Rejestr niezgodności" 0.80
+note "Licencja kończy się w 2027" [0.70, 0.20]
+annotations [0.05, 0.05]
+annotation 1,[0.75, 0.45] "Wiedza tylko u jednej osoby"
+accelerator "Obowiązek KSeF" [0.40, 0.55]

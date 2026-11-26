@@ -1,0 +1,16 @@
+%% Tytuł: Agent odpowiadający na zgłoszenia
+%% Sprawdza: kierunek LR, kształty task/tool/input/decision/refdoc/action, krawędzie -->, -.- i --x, etykieta krawędzi.
+agentflow-beta LR
+pytanie["Zgłoszenie klienta"]@{ shape: input }
+klasyfikuj["Sklasyfikuj zgłoszenie"]@{ shape: task }
+szukaj["Szukaj w bazie wiedzy"]@{ shape: tool }
+procedura["Procedura reklamacyjna"]@{ shape: refdoc }
+pewny["Odpowiedź pewna?"]@{ shape: decision }
+wyslij["Wyślij odpowiedź"]@{ shape: action }
+czlowiek["Przekaż do konsultanta"]@{ shape: task }
+pytanie --> klasyfikuj --> szukaj
+szukaj -.- procedura
+szukaj --> pewny
+pewny -- tak --> wyslij
+pewny -- nie --> czlowiek
+szukaj --x czlowiek

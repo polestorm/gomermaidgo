@@ -1,0 +1,9 @@
+%% Tytuł: Numer dokumentu w EBNF
+%% Sprawdza: składnia EBNF w stylu W3C: sekwencja, wybór |, opcja ?, powtórzenie * i +, grupowanie, terminale i nieterminale, tytuł.
+railroad-ebnf-beta
+title "Numer dokumentu"
+numer = rodzaj "-" cyfra cyfra ( "/" rok )? ;
+rodzaj = "PR" | "IN" | "F" ;
+rok = cyfra cyfra cyfra cyfra ;
+cyfra = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+lista = numer ( "," numer )* ;

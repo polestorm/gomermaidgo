@@ -80,10 +80,11 @@ checksum, and the commands, method and raw results are in [`docs/benchmarks.md`]
     ([method](docs/benchmarks.md#what-the-numbers-mean)), but neither documents it.
 [^size]: Total size of the files written for the same diagrams: 63 for SVG and PNG, 87 for PDF.
 [^pop]: Stars and forks on 2026-11-23.
-[^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here: `zenuml` (a separate Mermaid add-on) and eight
-    types added in Mermaid 12 as beta: `venn`, `treeView`, `wardley`, `cynefin`, `railroad`, `eventmodeling`,
-    `usecase` and `agentflow`. go-mermaid lists 20 types (`-list-types`); of those drawn here it lacks
-    `architecture-beta`, `treemap-beta`, `ishikawa-beta` and `swimlane-beta`.
+[^types]: Mermaid 12.2 recognises 33 diagram types. Not drawn here yet: `zenuml` (a separate Mermaid add-on),
+    `eventmodeling` (Mermaid 11.15) and seven types Mermaid marks as beta: `venn` (11.12), `treeView` and `wardley`
+    (11.14), `cynefin` and `railroad` (11.16), `usecase` and `agentflow` (12.0). All nine are planned, one at a
+    time. go-mermaid lists 20 types (`-list-types`); of those drawn here it lacks `architecture-beta`,
+    `treemap-beta`, `ishikawa-beta` and `swimlane-beta`.
 [^wild]: 168 blocks marked `mermaid` in public GitHub repositories, pinned to commits in
     [`testdata/wild/sources.tsv`](testdata/wild/sources.tsv) and fetched by `go run ./tools/wildcorpus`; 29 are
     rejected by all three programs (fragments without a diagram header, or not Mermaid at all), which leaves 139.

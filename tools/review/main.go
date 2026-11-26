@@ -70,7 +70,10 @@ var typeKinds = map[string]string{mermaid.TypeSequence: "sequence", mermaid.Type
 // sampleThemes to motywy pokazywane wyrywkowo; kolorowy (default) ma własną kolumnę.
 var sampleThemes = []string{mermaid.ThemeForest, mermaid.ThemeDark}
 
-var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji", "pie": "Wykres kołowy", "class": "Diagram klas", "timeline": "Oś czasu", "journey": "Podróż użytkownika", "mindmap": "Mapa myśli", "xychart": "Wykres słupkowy i liniowy", "quadrant": "Wykres ćwiartkowy", "kanban": "Tablica kanban", "packet": "Diagram pakietu", "radar": "Wykres radarowy", "treemap": "Mapa drzewa", "requirement": "Diagram wymagań", "sankey": "Wykres Sankeya", "c4": "Diagram C4", "gitgraph": "Graf historii Gita", "block": "Diagram blokowy", "architecture": "Diagram architektury", "ishikawa": "Diagram Ishikawy"}
+var kindNames = map[string]string{"sequence": "Diagram sekwencji", "flowchart": "Schemat blokowy", "state": "Diagram stanów", "gantt": "Wykres Gantta", "er": "Diagram związków encji", "pie": "Wykres kołowy", "class": "Diagram klas", "timeline": "Oś czasu", "journey": "Podróż użytkownika", "mindmap": "Mapa myśli", "xychart": "Wykres słupkowy i liniowy", "quadrant": "Wykres ćwiartkowy", "kanban": "Tablica kanban", "packet": "Diagram pakietu", "radar": "Wykres radarowy", "treemap": "Mapa drzewa", "requirement": "Diagram wymagań", "sankey": "Wykres Sankeya", "c4": "Diagram C4", "gitgraph": "Graf historii Gita", "block": "Diagram blokowy", "architecture": "Diagram architektury", "ishikawa": "Diagram Ishikawy",
+	"treeview": "Drzewo katalogów", "venn": "Diagram Venna", "cynefin": "Mapa Cynefin", "usecase": "Diagram przypadków użycia",
+	"zenuml": "Diagram sekwencji ZenUML", "wardley": "Mapa Wardleya", "eventmodeling": "Model zdarzeń", "agentflow": "Przepływ agentów",
+	"railroad": "Diagram składni (railroad)"}
 
 func main() {
 	fontPath := flag.String("font", "", "font file used to measure text and embedded in the page")
@@ -82,6 +85,7 @@ func main() {
 	out := flag.String("o", "out/review.html", "output file")
 	themes := flag.Bool("themes", false, "also show a sample of diagrams in the forest and dark themes")
 	dir := flag.String("dir", "", "draw every .mmd file of this directory instead of the corpus, grouped by detected type")
+	kindFlag := flag.String("kind", "", "with -dir: put every file in this one group, also types not drawn yet (e.g. testdata/planned/venn)")
 	flag.Parse()
 
 	var opts []mermaid.Option
@@ -148,6 +152,10 @@ func main() {
 		sort.Strings(files)
 		byKind := map[string][]string{}
 		var kinds []string
+		if *kindFlag != "" {
+			// typ planowany: biblioteka go jeszcze nie rozpoznaje, więc grupy nie wyznaczamy ze źródła
+			byKind[*kindFlag], kinds, files = files, []string{*kindFlag}, nil
+		}
 		for _, f := range files {
 			data, _ := os.ReadFile(f)
 			kind, err := mermaid.DetectType(string(data))

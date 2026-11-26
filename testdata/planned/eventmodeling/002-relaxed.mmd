@@ -1,0 +1,13 @@
+%% Tytuł: Zapis rozwinięty, przestrzenie nazw i bloki danych
+%% Sprawdza: zapis rozwinięty (timeframe), przestrzenie nazw jako osobne tory, ramka resetu rf, jawne powiązania ->>, blok data i odwołanie [[...]].
+eventmodeling
+timeframe 01 ui Magazyn.Ekran
+timeframe 02 command Magazyn.Przyjmij [[Przyjecie01]]
+timeframe 03 event Magazyn.TowarPrzyjety
+timeframe 04 event Jakosc.KontrolaZlecona
+resetframe 05 readmodel Jakosc.DoKontroli ->> 03 ->> 04
+timeframe 06 processor Jakosc.Kontroler
+data Przyjecie01 {
+  partia: 'P-2026-114'
+  ilosc: 250
+}

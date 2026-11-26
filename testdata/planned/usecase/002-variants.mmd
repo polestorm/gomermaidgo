@@ -1,0 +1,16 @@
+%% Tytuł: Odmiany aktorów, uogólnienie i notatki
+%% Sprawdza: aktor hollow, aktor biznesowy, stereotyp, uogólnienie --|>, notatka, etykieta na powiązaniu, asocjacje bez grotu, granica typu package.
+usecase-beta
+actor Audytor("Audytor wewnętrzny")
+actor Wiodacy("Audytor wiodący")@{ type: hollow }
+actor Zarzad("Zarząd")@{ business: true } <<Kierownictwo>>
+systemBoundary audyt["Audyty"]@{ type: package }
+  Plan("Zaplanuj audyt")
+  Przeprowadz("Przeprowadź audyt")
+  Zatwierdz("Zatwierdź program") <<Roczny>>
+end
+note for Plan "Raz na kwartał"
+Wiodacy --|> Audytor
+Audytor --> Przeprowadz
+Wiodacy -- "przygotowuje" --> Plan
+Zarzad -- Zatwierdz

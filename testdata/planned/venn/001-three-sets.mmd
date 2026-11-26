@@ -1,0 +1,11 @@
+%% Tytuł: Kompetencje audytora
+%% Sprawdza: trzy zbiory, tytuł, wszystkie przecięcia parami z etykietami i przecięcie trzech zbiorów.
+venn-beta
+  title Kompetencje audytora
+  set Wiedza["Znajomość normy"]
+  set Praktyka["Doświadczenie w branży"]
+  set Komunikacja
+  union Wiedza,Praktyka["Ocena zgodności"]
+  union Praktyka,Komunikacja["Rozmowa z kierownikiem"]
+  union Wiedza,Komunikacja["Szkolenie"]
+  union Wiedza,Praktyka,Komunikacja["Audytor wiodący"]

@@ -1,0 +1,9 @@
+%% Tytuł: Wyrażenie w PEG
+%% Sprawdza: składnia PEG: <-, wybór uporządkowany /, predykaty & i !, kropka, przyrostki ? * +, komentarz #.
+railroad-peg-beta
+title "Wyrażenie"
+Wyrazenie <- Skladnik (("+" / "-") Skladnik)* ;
+Skladnik <- Liczba / "(" Wyrazenie ")" ;
+Liczba <- "-"? Cyfra+ ;
+Cyfra <- "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9" ;
+Koniec <- !. ;

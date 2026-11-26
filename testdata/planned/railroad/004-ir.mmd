@@ -1,0 +1,5 @@
+%% Tytuł: Zapis przez konstruktory
+%% Sprawdza: zapis railroad-beta: terminal, nonterminal, sequence, choice, optional, zeroOrMore, oneOrMore, special.
+railroad-beta
+title "Kod wyrobu"
+kod = sequence(terminal("W"), choice(terminal("A"), terminal("B"), nonterminal("seria")), optional(terminal("-X")), oneOrMore(nonterminal("cyfra")), zeroOrMore(special("sufiks")));
