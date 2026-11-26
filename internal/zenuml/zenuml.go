@@ -4,6 +4,7 @@
 package zenuml
 
 import (
+	"slices"
 	"strings"
 
 	"github.com/polestorm/gomermaidgo/internal/sequence"
@@ -89,7 +90,7 @@ func Parse(source string) (*sequence.Diagram, error) {
 	if pos < len(lines) {
 		return nil, syntax.Errorf(lines[pos].line, CodeBlock, "\"}\" without an opening \"{\"")
 	}
-	p := &parser{d: &sequence.Diagram{Title: title, AccTitle: acc.Title, AccDescr: acc.Descr}, index: map[string]int{}, starter: -1}
+	p := &parser{d: &sequence.Diagram{Title: title, AccTitle: acc.Title, AccDescr: acc.Descr, NoFooter: true}, index: map[string]int{}, starter: -1}
 	if err := p.run(body, -1); err != nil {
 		return nil, err
 	}
@@ -329,9 +330,13 @@ func (p *parser) runBlock(body []*stmt, current, back int) (bool, error) {
 			if m[3] != "" {
 				pt.Label = []string{strings.TrimSpace(m[3])}
 			}
-			switch {
-			case m[1] == "Actor":
+			// Adnotatory z symbolem UML rysują symbol; pozostałe (ikony usług chmurowych) stają się
+			// stereotypem nad nazwą.
+			switch kind := strings.ToLower(m[1]); {
+			case kind == "actor":
 				pt.Actor = true
+			case slices.Contains(sequence.Kinds, kind):
+				pt.Kind = kind
 			case m[1] != "":
 				pt.Label = append([]string{"«" + m[1] + "»"}, pt.Label...)
 			}

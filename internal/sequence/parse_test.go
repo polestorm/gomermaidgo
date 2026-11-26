@@ -121,3 +121,20 @@ func TestParseGroupsLifetimeAccessibility(t *testing.T) {
 		t.Errorf("lifetime: %+v %+v %+v", p, d.Events[1], d.Events[2])
 	}
 }
+
+// REQ: SEQ-002
+func TestParticipantTypes(t *testing.T) {
+	d, err := Parse("sequenceDiagram\nparticipant A@{ \"type\": \"database\" } as Rejestr\nparticipant B@{ \"type\" : \"actor\" }\nparticipant C@{ \"type\": \"queue\" }\nA->>B: x\nB->>C: y")
+	if err != nil {
+		t.Fatal(err)
+	}
+	ps := d.Participants
+	if ps[0].Kind != "database" || ps[0].Label[0] != "Rejestr" || !ps[1].Actor || ps[1].Kind != "" || ps[2].Kind != "queue" {
+		t.Errorf("participants: %+v %+v %+v", ps[0], ps[1], ps[2])
+	}
+	for _, src := range []string{"sequenceDiagram\nparticipant A@{ \"type\": \"robot\" }", "sequenceDiagram\nparticipant A@{ \"shape\": \"x\" }"} {
+		if _, err := Parse(src); err == nil {
+			t.Errorf("%q: expected an error", src)
+		}
+	}
+}

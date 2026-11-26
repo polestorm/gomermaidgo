@@ -252,16 +252,22 @@ func Layout(d *Diagram, o Options) *scene.Scene {
 
 	footerTop := l.cursor + l.u(6)
 	for _, p := range d.Participants {
-		if p.Actor {
+		if p.figure() {
 			// Miejsce na odstęp między końcem linii życia a głową figurki w stopce.
 			footerTop += l.u(10)
 			break
 		}
 	}
-	l.participants(footerTop, func(p *Participant) bool { return !p.Destroyed })
+	if d.NoFooter {
+		footerTop = l.cursor + l.u(6) - l.header - l.u(10)
+	} else {
+		l.participants(footerTop, func(p *Participant) bool { return !p.Destroyed })
+	}
 	for i, p := range d.Participants {
 		end := footerTop
-		if p.Actor {
+		if d.NoFooter {
+			end = l.cursor + l.u(6)
+		} else if p.figure() {
 			head := footerTop + (l.header-(l.u(48)+float64(len(p.Label))*l.lh))/2
 			end = math.Min(end, head-l.u(8))
 		}
@@ -297,25 +303,37 @@ func (l *layout) columns() {
 	for i, p := range l.d.Participants {
 		w := l.maxWidth(p.Label)
 		lines := float64(len(p.Label))
-		if p.Actor {
+		if p.figure() {
 			l.boxW[i] = math.Max(l.u(28), w)
+			if !p.Actor {
+				l.boxW[i] = math.Max(l.u(56), w) // symbol granicy, sterowania albo encji
+			}
 			l.header = math.Max(l.header, l.u(48)+lines*l.lh)
 		} else {
 			l.boxW[i] = math.Max(l.u(100), w+2*l.u(20))
-			l.header = math.Max(l.header, lines*l.lh+2*l.u(14))
+			extra := 0.0
+			switch p.Kind {
+			case "database":
+				extra = l.u(14) // pokrywy walca
+			case "collections":
+				extra = l.u(6) // przesunięcie tylnego pola
+			case "queue":
+				l.boxW[i] += l.u(14)
+			}
+			l.header = math.Max(l.header, lines*l.lh+2*l.u(14)+extra)
 		}
 	}
 	// SEQ-019: okienka uczestników mają wspólną szerokość najszerszego z nich (do u(160)), żeby
 	// rząd nagłówków był równy; dłuższa nazwa poszerza tylko własne okienko.
 	common := 0.0
 	for i, p := range l.d.Participants {
-		if !p.Actor {
+		if !p.figure() {
 			common = math.Max(common, l.boxW[i])
 		}
 	}
 	common = math.Min(common, l.u(160))
 	for i, p := range l.d.Participants {
-		if !p.Actor {
+		if !p.figure() {
 			l.boxW[i] = math.Max(l.boxW[i], common)
 		}
 	}
@@ -470,11 +488,54 @@ func (l *layout) participants(top float64, keep func(*Participant) bool) {
 			tone := scene.Distinct(i)
 			colorBoxFill, colorBoxStroke = tone.Fill, tone.Stroke
 		}
-		if !p.Actor {
-			l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "participant",
-				X: cx - l.boxW[i]/2, Y: top, W: l.boxW[i], H: l.header, RX: l.u(3),
+		x0, x1, y1 := cx-l.boxW[i]/2, cx+l.boxW[i]/2, top+l.header
+		shape := func(kind scene.Kind, x, y, w, h float64, fill, stroke string) {
+			l.sc.Add(scene.Item{Kind: kind, Layer: scene.LayerShape, Role: "participant", X: x, Y: y, W: w, H: h,
+				Fill: fill, Stroke: stroke, StrokeWidth: 1.5})
+		}
+		edge := func(ax, ay, bx, by float64) {
+			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "participant-detail", X: ax, Y: ay, X2: bx, Y2: by,
+				Stroke: colorBoxStroke, StrokeWidth: 1.5})
+		}
+		textY := top + (l.header-lines*l.lh)/2
+		switch {
+		case p.Kind == "database":
+			// Walec: dolna pokrywa, wypełniony korpus, boki i górna pokrywa; podpis pod górną pokrywą.
+			c := l.u(14)
+			l.sc.Add(scene.Item{Kind: scene.Ellipse, Layer: scene.LayerShape, Role: "participant", X: cx, Y: y1 - c/2, W: l.boxW[i], H: c,
 				Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
-			l.text(p.Label, cx, top+(l.header-lines*l.lh)/2, "middle", "participant-label", "", scene.LayerLabel)
+			l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "participant-detail", X: x0, Y: top + c/2, W: l.boxW[i], H: l.header - c, Fill: colorBoxFill})
+			edge(x0, top+c/2, x0, y1-c/2)
+			edge(x1, top+c/2, x1, y1-c/2)
+			l.sc.Add(scene.Item{Kind: scene.Ellipse, Layer: scene.LayerShape, Role: "participant-detail", X: cx, Y: top + c/2, W: l.boxW[i], H: c,
+				Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+			textY += c / 4
+		case p.Kind == "queue":
+			// Walec położony: lewa pokrywa, korpus, górna i dolna krawędź, prawa pokrywa.
+			c := l.u(14)
+			l.sc.Add(scene.Item{Kind: scene.Ellipse, Layer: scene.LayerShape, Role: "participant", X: x0 + c/2, Y: top + l.header/2, W: c, H: l.header,
+				Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+			l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "participant-detail", X: x0 + c/2, Y: top, W: l.boxW[i] - c, H: l.header, Fill: colorBoxFill})
+			edge(x0+c/2, top, x1-c/2, top)
+			edge(x0+c/2, y1, x1-c/2, y1)
+			l.sc.Add(scene.Item{Kind: scene.Ellipse, Layer: scene.LayerShape, Role: "participant-detail", X: x1 - c/2, Y: top + l.header/2, W: c, H: l.header,
+				Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+			cx -= c / 4
+		case p.Kind == "collections":
+			// Zbiór: tylne pole przesunięte w prawo i w górę, przednie na nim.
+			o := l.u(6)
+			l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "participant-detail", X: x0 + o, Y: top, W: l.boxW[i] - o, H: l.header - o, RX: l.u(3),
+				Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+			l.sc.Add(scene.Item{Kind: scene.Rect, Layer: scene.LayerShape, Role: "participant", X: x0, Y: top + o, W: l.boxW[i] - o, H: l.header - o, RX: l.u(3),
+				Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+			cx -= o / 2
+			textY += o / 2
+		case !p.figure():
+			shape(scene.Rect, x0, top, l.boxW[i], l.header, colorBoxFill, colorBoxStroke)
+			l.sc.Items[len(l.sc.Items)-1].RX = l.u(3)
+		}
+		if !p.figure() {
+			l.text(p.Label, cx, textY, "middle", "participant-label", "", scene.LayerLabel)
 			continue
 		}
 		t := top + (l.header-(l.u(48)+lines*l.lh))/2
@@ -482,12 +543,33 @@ func (l *layout) participants(top float64, keep func(*Participant) bool) {
 			l.sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "actor",
 				X: cx + l.u(x1), Y: t + l.u(y1), X2: cx + l.u(x2), Y2: t + l.u(y2), Stroke: colorBoxStroke, StrokeWidth: 1.5})
 		}
-		l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "actor",
-			X: cx, Y: t + l.u(8), R: l.u(8), Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
-		stroke(0, 16, 0, 32)
-		stroke(-12, 22, 12, 22)
-		stroke(0, 32, -10, 44)
-		stroke(0, 32, 10, 44)
+		ring := func(x, y float64) {
+			l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "actor",
+				X: cx + l.u(x), Y: t + l.u(y), R: l.u(14), Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+		}
+		switch p.Kind {
+		case "boundary":
+			// Granica (UML): koło z kreską poziomą do pionowej belki po lewej.
+			stroke(-26, 8, -26, 36)
+			stroke(-26, 22, -14, 22)
+			ring(0, 22)
+		case "control":
+			// Sterowanie: koło z grotem na górze.
+			ring(0, 22)
+			stroke(5, 2, -2, 8)
+			stroke(-2, 8, 5, 14)
+		case "entity":
+			// Encja: koło z kreską pod spodem.
+			ring(0, 20)
+			stroke(-14, 38, 14, 38)
+		default:
+			l.sc.Add(scene.Item{Kind: scene.Circle, Layer: scene.LayerShape, Role: "actor",
+				X: cx, Y: t + l.u(8), R: l.u(8), Fill: colorBoxFill, Stroke: colorBoxStroke, StrokeWidth: 1.5})
+			stroke(0, 16, 0, 32)
+			stroke(-12, 22, 12, 22)
+			stroke(0, 32, -10, 44)
+			stroke(0, 32, 10, 44)
+		}
 		l.text(p.Label, cx, t+l.u(48), "middle", "participant-label", "", scene.LayerLabel)
 	}
 }

@@ -62,9 +62,9 @@ func TestParseParticipantsAndAsync(t *testing.T) {
 	}
 	var ps []string
 	for _, p := range d.Participants {
-		ps = append(ps, fmt.Sprintf("%s=%s/%v", p.ID, strings.Join(p.Label, "|"), p.Actor))
+		ps = append(ps, fmt.Sprintf("%s=%s/%v%s", p.ID, strings.Join(p.Label, "|"), p.Actor, p.Kind))
 	}
-	if got, want := strings.Join(ps, " "), "=/true Alice=Alice/true Db=«Database»|Db/false B=Bob/false"; got != want {
+	if got, want := strings.Join(ps, " "), "=/true Alice=Alice/true Db=Db/falsedatabase B=Bob/false"; got != want {
 		t.Errorf("participants %q, want %q", got, want)
 	}
 	if got, want := events(d), "note:pierwszy Alice->B:Hi B-->Alice:Hello *->Db:zapis"; got != want {

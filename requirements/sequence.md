@@ -7,7 +7,7 @@ wskazuje istniejące wymaganie.
 | Id | Wymaganie |
 |---|---|
 | SEQ-001 | Źródło zaczynające się od `sequenceDiagram` daje dokument SVG; komentarze `%%` i puste linie są pomijane. |
-| SEQ-002 | Uczestnicy: `participant` (prostokąt) i `actor` (ludzik), z aliasem `as`; uczestnik użyty tylko w komunikacie powstaje sam, w kolejności pierwszego użycia. Uczestnicy są powtórzeni na dole. |
+| SEQ-002 | Uczestnicy: `participant` (prostokąt) i `actor` (ludzik), z aliasem `as`; uczestnik użyty tylko w komunikacie powstaje sam, w kolejności pierwszego użycia. Odmiana z metadanych `participant A@{ "type": "…" }` (przed aliasem): `actor` to ludzik, `boundary`, `control` i `entity` to symbole UML (koło z belką, koło z grotem, koło z kreską) z nazwą pod nimi, `database` to walec, `collections` dwa pola jedno na drugim, `queue` walec położony, z nazwą w środku; inny typ albo metadane bez `type` to błąd. Uczestnicy są powtórzeni na dole. |
 | SEQ-003 | Komunikaty: `->`, `-->`, `->>`, `-->>`, `-x`, `--x`, `-)`, `--)`, `<<->>`, `<<-->>`, w obu kierunkach i do siebie; etykieta nad linią. |
 | SEQ-004 | Notatki: `Note right of`, `Note left of`, `Note over` jednego albo dwóch uczestników. |
 | SEQ-005 | Aktywacje: `activate`/`deactivate` oraz skróty `+` i `-` przy odbiorcy; aktywacje zagnieżdżone są przesunięte. |

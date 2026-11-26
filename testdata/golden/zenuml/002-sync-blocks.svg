@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="868.46" height="1394" viewBox="-32 -12 868.46 1394" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-f8968c01"><path d="M-32 -12 L836.46 -12 L836.46 1382 L-32 1382 M139.71 151 L139.71 169 L237.29 169 L237.29 151 M163.7 396 L163.7 414 L213.3 414 L213.3 396 M25.9 263 L25.9 281 L108.39 281 L108.39 263 M-7 362 L-7 380 L37.24 380 L37.24 362 M165.5 473 L165.5 491 L211.5 491 L211.5 473 M230.25 532 L230.25 550 L368.77 550 L368.77 532 M317.64 695 L317.64 713 L385.9 713 L385.9 695 M324.75 848 L324.75 866 L439.25 866 L439.25 848 M244.09 1024 L244.09 1042 L323.91 1042 L323.91 1024 M327.86 1117 L327.86 1135 L436.14 1135 L436.14 1117 M239.65 1210 L239.65 1228 L328.35 1228 L328.35 1210 M-7 1083 L-7 1101 L46.13 1101 L46.13 1083 M-7 1176 L-7 1194 L48.8 1194 L48.8 1176"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="868.46" height="1316" viewBox="-32 -12 868.46 1316" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-91e7d711"><path d="M-32 -12 L836.46 -12 L836.46 1304 L-32 1304 M139.71 151 L139.71 169 L237.29 169 L237.29 151 M163.7 396 L163.7 414 L213.3 414 L213.3 396 M25.9 263 L25.9 281 L108.39 281 L108.39 263 M-7 362 L-7 380 L37.24 380 L37.24 362 M165.5 473 L165.5 491 L211.5 491 L211.5 473 M230.25 532 L230.25 550 L368.77 550 L368.77 532 M317.64 695 L317.64 713 L385.9 713 L385.9 695 M324.75 848 L324.75 866 L439.25 866 L439.25 848 M244.09 1024 L244.09 1042 L323.91 1042 L323.91 1024 M327.86 1117 L327.86 1135 L436.14 1135 L436.14 1117 M239.65 1210 L239.65 1228 L328.35 1228 L328.35 1210 M-7 1083 L-7 1101 L46.13 1101 L46.13 1083 M-7 1176 L-7 1194 L48.8 1194 L48.8 1176"/></clipPath></defs>
 <g stroke="#9aa5b1" stroke-width="1.5">
-<g clip-path="url(#label-holes-f8968c01)">
-<line x1="0" y1="68" x2="0" y2="1294"/>
-<line x1="191" y1="68" x2="191" y2="1302"/>
-<line x1="382" y1="68" x2="382" y2="1302"/>
+<g clip-path="url(#label-holes-91e7d711)">
+<line x1="0" y1="68" x2="0" y2="1292"/>
+<line x1="191" y1="68" x2="191" y2="1292"/>
+<line x1="382" y1="68" x2="382" y2="1292"/>
 </g>
-<line x1="573" y1="68" x2="573" y2="1302"/>
-<line x1="764" y1="753" x2="764" y2="1302"/>
+<line x1="573" y1="68" x2="573" y2="1292"/>
+<line x1="764" y1="753" x2="764" y2="1292"/>
 </g>
 <g fill="#dbe3ec" stroke="#55657a" stroke-width="1">
 <rect x="568" y="228" width="10" height="8"/>
@@ -74,17 +74,6 @@
 </g>
 <polygon points="568,1234 559,1230 559,1238" fill="#3b4754"/>
 <line x1="0" y1="1234" x2="559" y2="1234" stroke="#3b4754" stroke-width="1.5"/>
-<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
-<circle cx="0" cy="1310" r="8"/>
-<line x1="0" y1="1318" x2="0" y2="1334"/>
-<line x1="-12" y1="1324" x2="12" y2="1324"/>
-<line x1="0" y1="1334" x2="-10" y2="1346"/>
-<line x1="0" y1="1334" x2="10" y2="1346"/>
-<rect x="130.54" y="1302" width="120.92" height="68" rx="3"/>
-<rect x="321.54" y="1302" width="120.92" height="68" rx="3"/>
-<rect x="512.54" y="1302" width="120.92" height="68" rx="3"/>
-<rect x="703.54" y="1302" width="120.92" height="68" rx="3"/>
-</g>
 <g fill="#1b1f24" text-anchor="middle">
 <text x="191" y="39.6">Autor</text>
 <text x="382" y="39.6">Recenzent</text>
@@ -121,11 +110,5 @@
 <g fill="#1b1f24">
 <text x="-4" y="1097.6">[catch]</text>
 <text x="-4" y="1190.6">[finally]</text>
-</g>
-<g fill="#1b1f24" text-anchor="middle">
-<text x="191" y="1341.6">Autor</text>
-<text x="382" y="1341.6">Recenzent</text>
-<text x="573" y="1341.6">Dokumenty</text>
-<text x="764" y="1341.6">Archiwum</text>
 </g>
 </svg>

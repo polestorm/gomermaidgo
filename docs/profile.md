@@ -41,6 +41,7 @@ precedence over the source where both set the same thing.
 |---|---|---|
 | header, comments | `sequenceDiagram`, `%% komentarz` | SEQ-001 |
 | participant, actor, alias | `participant A`, `actor A`, `participant A as Etykieta` | SEQ-002 |
+| participant type | `participant A@{ "type": "database" }`; types `actor`, `boundary`, `control`, `entity`, `database`, `collections`, `queue` | SEQ-002 |
 | implicit participant | first use in a message or a note | SEQ-002 |
 | message | `A->>B: tekst`; arrows `->`, `-->`, `->>`, `-->>`, `-x`, `--x`, `-)`, `--)`, `<<->>`, `<<-->>` | SEQ-003 |
 | message to self | `A->>A: tekst` | SEQ-003 |
@@ -639,7 +640,7 @@ with `classDef` before the end of the source; the `usecase` configuration and `c
 | Element | Syntax | Requirement |
 |---|---|---|
 | title | `title Text` on the first line after the header | ZEN-001 |
-| participant | implicit on first use; `Name`, `A as Alice`, `@Actor Name`, `@Database Name` and other annotators | ZEN-002 |
+| participant | implicit on first use; `Name`, `A as Alice`; annotators `@Actor`, `@Boundary`, `@Control`, `@Entity`, `@Database`, `@Collections`, `@Queue` draw their symbol or shape, other annotators (service icons) a stereotype | ZEN-002 |
 | asynchronous message | `A->B: text`; `@return` or `@reply` before it makes a reply | ZEN-003 |
 | comment | `// text` before a message (drawn as a note over it) | ZEN-003 |
 | synchronous call | `B.method(args)`, `A->B.method()`, block `{ … }` with nested calls | ZEN-004 |
@@ -651,8 +652,9 @@ with `classDef` before the end of the source; the `usecase` configuration and `c
 | accessibility | `accTitle`, `accDescr` | ZEN-001 |
 
 Drawn with the layout of `sequenceDiagram`. Deliberate differences from ZenUML: a call at the top level comes from an
-unnamed stick figure on the left; annotators other than `@Actor` are shown as a stereotype above the name instead of
-an icon; a comment becomes a note over the message; Markdown in comments is shown as plain text; `par` has one
+unnamed stick figure on the left; participants are not repeated at the bottom (as in ZenUML) and the diagram has no
+outer frame; messages are not numbered (ZenUML numbers them by nesting, 1, 1.1, 1.2); service icon annotators (`@EC2`
+and others) are shown as a stereotype above the name instead of an icon; a comment becomes a note over the message; Markdown in comments is shown as plain text; `par` has one
 section; a reply to a variable after `new` comes from the created participant.
 
 ## Wardley map (`wardley-beta`, `wardley`)

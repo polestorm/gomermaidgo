@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="957" height="465" viewBox="-38 -12 957 465" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-d7869468"><path d="M-38 -12 L919 -12 L919 453 L-38 453 M381.54 252 L381.54 270 L468.46 270 L468.46 252 M469.65 305 L469.65 323 L550.35 323 L550.35 305"/></clipPath></defs>
+<g stroke="#9aa5b1" stroke-width="1.5">
+<line x1="0" y1="68" x2="0" y2="365"/>
+<line x1="170" y1="68" x2="170" y2="365"/>
+<line x1="340" y1="68" x2="340" y2="365"/>
+<g clip-path="url(#label-holes-d7869468)">
+<line x1="510" y1="68" x2="510" y2="373"/>
+</g>
+<line x1="680" y1="68" x2="680" y2="373"/>
+<line x1="850" y1="68" x2="850" y2="373"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="-26" y1="8" x2="-26" y2="36"/>
+<line x1="-26" y1="22" x2="-14" y2="22"/>
+<circle cx="0" cy="22" r="14"/>
+<circle cx="170" cy="22" r="14"/>
+<line x1="175" y1="2" x2="168" y2="8"/>
+<line x1="168" y1="8" x2="175" y2="14"/>
+<circle cx="340" cy="20" r="14"/>
+<line x1="326" y1="38" x2="354" y2="38"/>
+<ellipse cx="510" cy="61" rx="57" ry="7"/>
+</g>
+<rect x="453" y="7" width="114" height="54" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="453" y1="7" x2="453" y2="61"/>
+<line x1="567" y1="7" x2="567" y2="61"/>
+<ellipse cx="510" cy="7" rx="57" ry="7"/>
+<rect x="629" y="0" width="108" height="62" rx="3"/>
+<rect x="623" y="6" width="108" height="62" rx="3"/>
+<ellipse cx="800" cy="34" rx="7" ry="34"/>
+</g>
+<rect x="800" y="0" width="100" height="68" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="800" y1="0" x2="900" y2="0"/>
+<line x1="800" y1="68" x2="900" y2="68"/>
+<ellipse cx="900" cy="34" rx="7" ry="34"/>
+</g>
+<polygon points="170,117 161,113 161,121" fill="#3b4754"/>
+<line x1="0" y1="117" x2="161" y2="117" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="340,170 331,166 331,174" fill="#3b4754"/>
+<line x1="170" y1="170" x2="331" y2="170" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="510,223 501,219 501,227" fill="#3b4754"/>
+<line x1="340" y1="223" x2="501" y2="223" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="680,276 671,272 671,280" fill="#3b4754"/>
+<g fill="none" stroke="#3b4754" stroke-width="1.5">
+<line x1="170" y1="276" x2="671" y2="276"/>
+<polyline points="841,325 850,329 841,333"/>
+<line x1="170" y1="329" x2="850" y2="329"/>
+</g>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="-26" y1="381" x2="-26" y2="409"/>
+<line x1="-26" y1="395" x2="-14" y2="395"/>
+<circle cx="0" cy="395" r="14"/>
+<circle cx="170" cy="395" r="14"/>
+<line x1="175" y1="375" x2="168" y2="381"/>
+<line x1="168" y1="381" x2="175" y2="387"/>
+<circle cx="340" cy="393" r="14"/>
+<line x1="326" y1="411" x2="354" y2="411"/>
+<ellipse cx="510" cy="434" rx="57" ry="7"/>
+</g>
+<rect x="453" y="380" width="114" height="54" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="453" y1="380" x2="453" y2="434"/>
+<line x1="567" y1="380" x2="567" y2="434"/>
+<ellipse cx="510" cy="380" rx="57" ry="7"/>
+<rect x="629" y="373" width="108" height="62" rx="3"/>
+<rect x="623" y="379" width="108" height="62" rx="3"/>
+<ellipse cx="800" cy="407" rx="7" ry="34"/>
+</g>
+<rect x="800" y="373" width="100" height="68" fill="#eef2f7"/>
+<g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
+<line x1="800" y1="373" x2="900" y2="373"/>
+<line x1="800" y1="441" x2="900" y2="441"/>
+<ellipse cx="900" cy="407" rx="7" ry="34"/>
+</g>
+<g fill="#1b1f24" text-anchor="middle">
+<text x="0" y="63.6">Portal</text>
+<text x="170" y="63.6">Kontroler</text>
+<text x="340" y="63.6">Zgłoszenie</text>
+<text x="510" y="43.1">Rejestr</text>
+<text x="677" y="42.6">Załączniki</text>
+<text x="846.5" y="39.6">Kolejka</text>
+<text x="85" y="107.6">Zgłoś</text>
+<text x="255" y="160.6">Utwórz</text>
+<text x="425" y="213.6">Zapisz</text>
+<text x="425" y="266.6">Dołącz pliki</text>
+<text x="510" y="319.6">Powiadom</text>
+<text x="0" y="436.6">Portal</text>
+<text x="170" y="436.6">Kontroler</text>
+<text x="340" y="436.6">Zgłoszenie</text>
+<text x="510" y="416.1">Rejestr</text>
+<text x="677" y="415.6">Załączniki</text>
+<text x="846.5" y="412.6">Kolejka</text>
+</g>
+</svg>

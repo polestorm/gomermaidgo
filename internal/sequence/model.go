@@ -13,6 +13,7 @@ type Diagram struct {
 	Boxes        []Box
 	Participants []*Participant
 	Events       []Event
+	NoFooter     bool // uczestnicy nie są powtórzeni na dole (ZenUML)
 }
 
 // Box to grupa sąsiednich uczestników (instrukcja „box”).
@@ -27,6 +28,7 @@ type Participant struct {
 	ID    string
 	Label []string // linie etykiety
 	Actor bool
+	Kind  string // odmiana: "" (prostokąt), boundary, control, entity, database, collections, queue
 	Line  int
 
 	Created   bool // powstaje w trakcie diagramu (instrukcja „create”)
@@ -99,4 +101,13 @@ type Event struct {
 	Color string // dla rect
 
 	Text []string // linie tekstu komunikatu, notatki, tytułu bloku
+}
+
+// Kinds to odmiany uczestnika poza prostokątem i aktorem.
+var Kinds = []string{"boundary", "control", "entity", "database", "collections", "queue"}
+
+// figure mówi, czy uczestnik jest symbolem z podpisem pod nim (aktor, granica, sterowanie,
+// encja), a nie polem z podpisem w środku.
+func (p *Participant) figure() bool {
+	return p.Actor || p.Kind == "boundary" || p.Kind == "control" || p.Kind == "entity"
 }

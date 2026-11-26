@@ -1,0 +1,15 @@
+%% REQ: SEQ-002
+%% Tytuł: Odmiany uczestników
+%% Sprawdza: participant z metadanymi @{ "type": … } (boundary, control, entity, database, collections, queue) i aliasem as.
+sequenceDiagram
+    participant U@{ "type": "boundary" } as Portal
+    participant C@{ "type": "control" } as Kontroler
+    participant E@{ "type": "entity" } as Zgłoszenie
+    participant D@{ "type": "database" } as Rejestr
+    participant K@{ "type": "collections" } as Załączniki
+    participant Q@{ "type": "queue" } as Kolejka
+    U->>C: Zgłoś
+    C->>E: Utwórz
+    E->>D: Zapisz
+    C->>K: Dołącz pliki
+    C-)Q: Powiadom

@@ -174,3 +174,39 @@ func TestHighlightCentred(t *testing.T) {
 		t.Errorf("margin above %.1f, below %.1f", above, below)
 	}
 }
+
+// REQ: SEQ-002 ZEN-005
+// Uczestnicy są powtórzeni na dole, chyba że diagram ma NoFooter (ZenUML); odmiany rysują się
+// symbolem albo kształtem, z podpisem.
+func TestFooterAndKinds(t *testing.T) {
+	d, err := Parse("sequenceDiagram\nparticipant A@{ \"type\": \"boundary\" }\nparticipant B@{ \"type\": \"database\" }\nA->>B: x")
+	if err != nil {
+		t.Fatal(err)
+	}
+	count := func(sc *scene.Scene) int {
+		n := 0
+		for _, it := range sc.Items {
+			if it.Role == "participant-label" {
+				n++
+			}
+		}
+		return n
+	}
+	if n := count(Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})); n != 4 {
+		t.Errorf("labels with footer: %d, want 4", n)
+	}
+	d.NoFooter = true
+	sc := Layout(d, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	if n := count(sc); n != 2 {
+		t.Errorf("labels without footer: %d, want 2", n)
+	}
+	ellipses := 0
+	for _, it := range sc.Items {
+		if it.Kind == scene.Ellipse {
+			ellipses++
+		}
+	}
+	if ellipses != 2 {
+		t.Errorf("database covers: %d ellipses, want 2", ellipses)
+	}
+}

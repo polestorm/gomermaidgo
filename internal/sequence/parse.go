@@ -1,6 +1,7 @@
 package sequence
 
 import (
+	"slices"
 	"strconv"
 	"strings"
 
@@ -23,6 +24,9 @@ const (
 
 var (
 	lineBreak = syntax.Lazy(`(?i)<br\s*/?>`)
+	// participantMeta dzieli „A@{ … } as Etykieta” na nazwę, metadane i resztę.
+	participantMeta = syntax.Lazy(`^([^@]*?)\s*@\{([^{}]*)\}(.*)$`)
+	participantType = syntax.Lazy(`["']?type["']?\s*:\s*["']?(\w+)["']?`)
 
 	// Strzałki w kolejności od najdłuższej, żeby „-->>” nie zostało odczytane jako „-->”.
 	arrows = []struct {
@@ -251,6 +255,19 @@ func (p *parser) statement(s string, line int) error {
 		return nil
 
 	case word == "participant" || word == "actor":
+		// Odmiana z metadanych: participant A@{ "type": "database" }, przed aliasem albo po nim.
+		kind := ""
+		if m := participantMeta.FindStringSubmatch(rest); m != nil {
+			t := participantType.FindStringSubmatch(m[2])
+			if t == nil {
+				return syntax.Errorf(line, CodeParticipant, "participant metadata needs \"type\": %q", m[2])
+			}
+			kind = t[1]
+			if kind != "actor" && kind != "participant" && !slices.Contains(Kinds, kind) {
+				return syntax.Errorf(line, CodeParticipant, "unknown participant type %q", kind)
+			}
+			rest = strings.TrimSpace(m[1] + " " + m[3])
+		}
 		id, label := rest, rest
 		if i := strings.Index(rest, " as "); i >= 0 {
 			id, label = rest[:i], strings.TrimSpace(rest[i+4:])
@@ -263,7 +280,10 @@ func (p *parser) statement(s string, line int) error {
 		if err != nil {
 			return err
 		}
-		p.d.Participants[i].Actor = word == "actor"
+		p.d.Participants[i].Actor = word == "actor" || kind == "actor"
+		if kind != "actor" && kind != "participant" {
+			p.d.Participants[i].Kind = kind
+		}
 		p.d.Participants[i].Label = splitLines(label)
 		if created {
 			if p.box != 0 {
