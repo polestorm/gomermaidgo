@@ -52,6 +52,7 @@ const (
 	Stadium          Shape = "stadium"
 	Subroutine       Shape = "subroutine"
 	Cylinder         Shape = "cylinder"
+	Document         Shape = "document" // dokument: prostokąt z falistym dołem
 	Circle           Shape = "circle"
 	DoubleCircle     Shape = "double-circle"
 	Asymmetric       Shape = "asymmetric"

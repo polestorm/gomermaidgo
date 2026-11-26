@@ -35,6 +35,7 @@ var (
 		"stadium": graph.Stadium, "pill": graph.Stadium, "terminal": graph.Stadium,
 		"fr-rect": graph.Subroutine, "subprocess": graph.Subroutine, "subproc": graph.Subroutine, "framed-rectangle": graph.Subroutine, "subroutine": graph.Subroutine,
 		"cyl": graph.Cylinder, "cylinder": graph.Cylinder, "database": graph.Cylinder, "db": graph.Cylinder,
+		"doc": graph.Document, "document": graph.Document,
 		"circle": graph.Circle, "circ": graph.Circle,
 		"dbl-circ": graph.DoubleCircle, "double-circle": graph.DoubleCircle,
 		"diam": graph.Rhombus, "diamond": graph.Rhombus, "decision": graph.Rhombus, "question": graph.Rhombus,

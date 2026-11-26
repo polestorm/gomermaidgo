@@ -61,6 +61,8 @@ func (l *layouter) nodeSize(shape graph.Shape, text []string) (w, h float64) {
 		w += l.u(16)
 	case graph.Cylinder:
 		h += l.u(14)
+	case graph.Document:
+		h += l.u(10) // miejsce na falę dolnego boku
 	case graph.UseCase:
 		// Elipsa opisana na prostokącie tekstu z marginesem: półosie √2 razy większe.
 		w, h = math.Max(math.Sqrt2*(tw+l.u(20)), l.u(120)), math.Max(math.Sqrt2*(th+l.u(8)), l.u(52))
@@ -846,8 +848,8 @@ func (l *layouter) tone(shape graph.Shape) (fill, stroke string) {
 		t = scene.Palette[2] // decyzja
 	case graph.Stadium, graph.Circle, graph.DoubleCircle, graph.UseCase:
 		t = scene.Palette[1] // początek, koniec, przypadek użycia
-	case graph.Cylinder, graph.Subroutine:
-		t = scene.Palette[3] // dane, podproces
+	case graph.Cylinder, graph.Subroutine, graph.Document:
+		t = scene.Palette[3] // dane, podproces, dokument
 	case graph.Parallelogram, graph.ParallelogramAlt, graph.Trapezoid, graph.TrapezoidAlt, graph.Asymmetric:
 		t = scene.Palette[5] // wejście, wyjście, czynność ręczna
 	}
@@ -1096,7 +1098,17 @@ func (l *layouter) drawNode(shape graph.Shape, text []string, cx, cy, w, h float
 		line(x0, y0+cap/2, x0, y1-cap/2)
 		line(x1, y0+cap/2, x1, y1-cap/2)
 		ellipse(y0 + cap/2)
-		cy += cap / 4
+		// Środek tekstu w widocznej części korpusu: od dolnego brzegu górnej pokrywy do dołu walca.
+		cy += cap / 2
+	case graph.Document:
+		// Dokument: górne boki proste, dolny falisty; w połowie szerokości fala przecina dolną
+		// krawędź pola (tam dochodzą krawędzie), z lewej schodzi niżej, z prawej wyżej.
+		a := l.u(5)
+		yb := y1 - 2*a
+		l.sc.Add(scene.Item{Kind: scene.Path, Layer: scene.LayerShape, Role: "node", Fill: colorNodeFill, Stroke: colorNodeStroke, StrokeWidth: 1.5,
+			Segments: []scene.Segment{{Cmd: 'M', To: pt(x0, y0)}, {Cmd: 'L', To: pt(x1, y0)}, {Cmd: 'L', To: pt(x1, yb)},
+				{Cmd: 'C', C1: pt(x1-0.35*w, yb-2.5*a), C2: pt(x0+0.35*w, yb+2.5*a), To: pt(x0, yb)}, {Cmd: 'L', To: pt(x0, y0)}}})
+		cy -= a
 	case graph.Circle:
 		circle(w/2, colorNodeFill, colorNodeStroke)
 	case graph.UseCase:

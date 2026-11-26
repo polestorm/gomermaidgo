@@ -49,10 +49,10 @@
 </g>
 <text x="89.65" y="512.6" font-weight="bold" fill="#1b1f24">Kolejka zadań</text>
 <text x="143" y="532.6" text-anchor="middle" fill="#1b1f24">[Container: tabela w bazie]</text>
-<text x="488.32" y="506.1" font-weight="bold" fill="#1b1f24">Baza</text>
+<text x="488.32" y="509.6" font-weight="bold" fill="#1b1f24">Baza</text>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="507" y="526.1">[Container: PostgreSQL]</text>
-<text x="507" y="546.1">Dokumenty i zapisy</text>
+<text x="507" y="529.6">[Container: PostgreSQL]</text>
+<text x="507" y="549.6">Dokumenty i zapisy</text>
 </g>
 <text x="198.65" y="713.6" font-weight="bold" fill="#1b1f24">Renderer PDF</text>
 <g fill="#1b1f24" text-anchor="middle">

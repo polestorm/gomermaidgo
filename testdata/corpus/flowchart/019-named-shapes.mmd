@@ -1,9 +1,10 @@
 %% REQ: FLOW-022 FLOW-023
 %% Tytuł: Nazwane kształty i tekst krawędzi bez odstępów
-%% Sprawdza: kształty zapisu @{ shape }, tekst krawędzi bez odstępów, znacznik ikony.
+%% Sprawdza: kształty zapisu @{ shape } (w tym doc — dokument), tekst krawędzi bez odstępów, znacznik ikony.
 flowchart TD
     A@{ shape: stadium, label: "Projekt dokumentu" } --> B@{ shape: diam, label: "Zatwierdzony?" }
     B --tak--> C@{ shape: cyl, label: "Rejestr" }
     B --nie--> D@{ shape: lean-r, label: "Uwagi" }
     D --> A
     C --> E[fa:fa-user Odbiorcy]
+    C --> F@{ shape: doc, label: "Protokół" }

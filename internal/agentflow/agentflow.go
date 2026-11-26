@@ -21,7 +21,7 @@ const (
 
 // aliases to kształty przepływu agentów zapisane nazwami kształtów schematu blokowego.
 var aliases = map[string]string{"task": "rounded", "tool": "subroutine", "input": "lean-right", "decision": "diamond",
-	"refdoc": "rect", "action": "hexagon"}
+	"refdoc": "doc", "action": "hexagon"}
 
 var (
 	ident      = `[\p{L}_][\p{L}\p{N}_-]*`
@@ -127,7 +127,6 @@ func Translate(source string) (string, error) {
 
 	// Drugie przejście: przekład linia po linii.
 	out := make([]string, len(lines))
-	var dashed []string
 	var refs [][2]string // narzędzie i łącznik z connectorRef
 	stack, hidden = nil, ""
 	for i, raw := range lines {
@@ -219,9 +218,6 @@ func Translate(source string) (string, error) {
 				}
 			}
 			if alias, ok := aliases[shape]; ok {
-				if shape == "refdoc" {
-					dashed = append(dashed, id)
-				}
 				shape = alias
 			}
 			parts := []string{}
@@ -264,10 +260,6 @@ func Translate(source string) (string, error) {
 	// Narzędzie korzystające z łącznika: linia kropkowana bez grotu.
 	for _, r := range refs {
 		out = append(out, r[0]+" -.- "+r[1])
-	}
-	// Materiał odniesienia: prostokąt z przerywanym obrysem.
-	for _, id := range dashed {
-		out = append(out, "style "+id+" stroke-dasharray:5 4")
 	}
 	return strings.Join(out, "\n"), nil
 }

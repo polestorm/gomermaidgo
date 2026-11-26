@@ -126,7 +126,7 @@ A field with six or more leaves can stand them in two staggered ranks instead of
 
 ### Outside the profile (error `flowchart-unsupported`)
 
-Shapes of the `@{ shape: … }` syntax that are not drawn under the old syntax (e.g. `doc`, `cloud`, `delay`; the others
+Shapes of the `@{ shape: … }` syntax that are not drawn under the old syntax (e.g. `cloud`, `delay`; `doc` and the others
 work, FLOW-022), `interpolate`, `flowchart-elk`.
 
 ### Deliberate differences from Mermaid
@@ -712,8 +712,8 @@ interpreted, as in Mermaid.
 | connector | `connector id["label"]@{ … }`; `connectorRef: id` on a tool | AGF-004 |
 
 Drawn as a flowchart after translating the source line by line. Deliberate differences from Mermaid: the layered
-layout of flowcharts instead of ELK and the neutral look instead of `redux-color`; `refdoc` is a rectangle with a
-dashed outline; a connector is a pill joined to the tools that refer to it by a dotted line; a collapsed container is
+layout of flowcharts instead of ELK and the neutral look instead of `redux-color`; `refdoc` is drawn as a document
+(a rectangle with a wavy bottom edge); a connector is a pill joined to the tools that refer to it by a dotted line; a collapsed container is
 a subroutine box; the per-container `algorithm` and edge animation are accepted and not drawn; the semantic model and
 diagnostics are not produced.
 

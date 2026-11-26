@@ -2,7 +2,7 @@ flowchart LR
 node pytanie parallelogram "Zgłoszenie klienta"
 node klasyfikuj round "Sklasyfikuj zgłoszenie"
 node szukaj subroutine "Szukaj w bazie wiedzy"
-node procedura rect "Procedura reklamacyjna" paint[dash=5,4]
+node procedura document "Procedura reklamacyjna"
 node pewny rhombus "Odpowiedź pewna?"
 node wyslij hexagon "Wyślij odpowiedź"
 node czlowiek round "Przekaż do konsultanta"

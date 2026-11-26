@@ -1,41 +1,45 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="381.5" height="491" viewBox="-12 -12 381.5 491" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
-<defs><clipPath id="label-holes-d83db63a"><path d="M-12 -12 L369.5 -12 L369.5 479 L-12 479 M55.33 239 L55.33 259 L84.67 259 L84.67 239 M171.32 280 L171.32 300 L200.68 300 L200.68 280"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="475.5" height="507.5" viewBox="-12 -12 475.5 507.5" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<defs><clipPath id="label-holes-9ef96068"><path d="M-12 -12 L463.5 -12 L463.5 495.5 L-12 495.5 M149.33 239 L149.33 259 L178.67 259 L178.67 239 M265.32 280 L265.32 300 L294.68 300 L294.68 280"/></clipPath></defs>
 <g fill="none" stroke="#3b4754" stroke-width="1.5">
-<path d="M95 44 L95 83.6"/>
-<g clip-path="url(#label-holes-d83db63a)">
-<path d="M70 164.72 L70 312.6"/>
-<path d="M119 165.21 L119 282 C119 286.4 122.6 290 127 290 L245 290 C249.4 290 253 293.6 253 298 L253 319.6"/>
+<path d="M189 44 L189 83.6"/>
+<g clip-path="url(#label-holes-9ef96068)">
+<path d="M164 164.72 L164 312.6"/>
+<path d="M213 165.21 L213 282 C213 286.4 216.6 290 221 290 L339 290 C343.4 290 347 293.6 347 298 L347 319.6"/>
 </g>
-<path d="M203 52.4 L203 69.7 C203 74.1 206.6 77.7 211 77.7 L265 77.7 C269.4 77.7 273 81.3 273 85.7 L273 328"/>
-<path d="M70 379 L70 414.6"/>
+<path d="M297 52.4 L297 69.7 C297 74.1 300.6 77.7 305 77.7 L359 77.7 C363.4 77.7 367 81.3 367 85.7 L367 328"/>
+<path d="M144 379 L144 385.3 C144 389.7 140.4 393.3 136 393.3 L78 393.3 C73.6 393.3 70 396.9 70 401.3 L70 423.6"/>
+<path d="M184 379 L184 385.3 C184 389.7 187.6 393.3 192 393.3 L250 393.3 C254.4 393.3 258 396.9 258 401.3 L258 418.6"/>
 </g>
 <g fill="#3b4754">
-<polygon points="95,92 89,80 101,80"/>
-<polygon points="70,321 64,309 76,309"/>
-<polygon points="253,328 247,316 259,316"/>
-<polygon points="203,44 209,56 197,56"/>
-<polygon points="70,423 64,411 76,411"/>
+<polygon points="189,92 183,80 195,80"/>
+<polygon points="164,321 158,309 170,309"/>
+<polygon points="347,328 341,316 353,316"/>
+<polygon points="297,44 303,56 291,56"/>
+<polygon points="70,432 64,420 76,420"/>
+<polygon points="258,427 252,415 264,415"/>
 </g>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
-<rect x="43.5" y="0" width="211" height="44" rx="22"/>
-<polygon points="95,92 181.5,134.5 95,177 8.5,134.5"/>
-<ellipse cx="70" cy="372" rx="70" ry="7"/>
+<rect x="137.5" y="0" width="211" height="44" rx="22"/>
+<polygon points="189,92 275.5,134.5 189,177 102.5,134.5"/>
+<ellipse cx="164" cy="372" rx="70" ry="7"/>
 </g>
-<rect x="0" y="328" width="140" height="44" fill="#eef2f7"/>
+<rect x="94" y="328" width="140" height="44" fill="#eef2f7"/>
 <g fill="#eef2f7" stroke="#55657a" stroke-width="1.5">
-<line x1="0" y1="328" x2="0" y2="372"/>
-<line x1="140" y1="328" x2="140" y2="372"/>
-<ellipse cx="70" cy="328" rx="70" ry="7"/>
-<polygon points="203.17,328 357.5,328 342.83,372 188.5,372"/>
-<rect x="0" y="423" width="140" height="44"/>
+<line x1="94" y1="328" x2="94" y2="372"/>
+<line x1="234" y1="328" x2="234" y2="372"/>
+<ellipse cx="164" cy="328" rx="70" ry="7"/>
+<polygon points="297.17,328 451.5,328 436.83,372 282.5,372"/>
+<rect x="0" y="432" width="140" height="44"/>
+<path d="M188 427 L328 427 L328 471 C279 458.5 237 483.5 188 471 L188 427"/>
 </g>
 <g fill="#1b1f24" text-anchor="middle">
-<text x="149" y="27.6">Projekt dokumentu</text>
-<text x="95" y="140.1">Zatwierdzony?</text>
-<text x="70" y="359.1">Rejestr</text>
-<text x="273" y="355.6">Uwagi</text>
-<text x="70" y="450.6">Odbiorcy</text>
-<text x="70" y="254.6">tak</text>
-<text x="186" y="295.6">nie</text>
+<text x="243" y="27.6">Projekt dokumentu</text>
+<text x="189" y="140.1">Zatwierdzony?</text>
+<text x="164" y="362.6">Rejestr</text>
+<text x="367" y="355.6">Uwagi</text>
+<text x="70" y="459.6">Odbiorcy</text>
+<text x="258" y="454.6">Protokół</text>
+<text x="164" y="254.6">tak</text>
+<text x="280" y="295.6">nie</text>
 </g>
 </svg>

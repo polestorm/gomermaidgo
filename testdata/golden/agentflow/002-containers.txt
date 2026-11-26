@@ -1,7 +1,7 @@
 flowchart TB
 subgraph przeglad title="Przegląd dokumentu"
 subgraph uwagi title="Zbieranie uwag" in=przeglad
-node baza rect "Rejestr dokumentów" paint[dash=5,4]
+node baza document "Rejestr dokumentów"
 node api stadium "API rejestru"
 node czytaj round "Przeczytaj dokument" in=przeglad
 node sprawdz round "Sprawdź zgodność z normą" in=uwagi
