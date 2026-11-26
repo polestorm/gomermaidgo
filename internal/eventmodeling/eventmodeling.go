@@ -6,6 +6,7 @@ package eventmodeling
 
 import (
 	"math"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -238,6 +239,7 @@ type lane struct {
 	group     int
 	namespace string
 	y, h      float64
+	index     int // miejsce toru od góry
 }
 
 // Layout rysuje model: tory jeden pod drugim (ekrany i procesy, polecenia i modele odczytu,
@@ -315,19 +317,32 @@ func Layout(m *Model, o Options) *scene.Scene {
 	}
 	headW += 2 * u(12)
 	y := 0.0
-	for _, l := range lanes {
-		l.y = y
+	for i, l := range lanes {
+		l.y, l.index = y, i
 		y += l.h
 	}
-	// Kolumny ramek: element ramki zaczyna się za poprzednim, z odstępem na strzałkę.
+	// Kolumny ramek: element zaczyna się za początkiem poprzedniego, ale może na nim częściowo
+	// stać (w innym torze), co ścieśnia rysunek; kolejność czyta się z lewych krawędzi. W tym
+	// samym torze element stoi za poprzednim elementem toru, z odstępem na strzałkę.
 	gap := u(36)
-	x := headW + u(20)
-	for _, b := range boxes {
+	x0 := headW + u(20)
+	right := x0
+	lastIn := map[*lane]*box{}
+	for i, b := range boxes {
+		x := x0
+		if i > 0 {
+			p := boxes[i-1]
+			x = p.x + math.Max(u(64), p.w*0.5)
+		}
+		if l := lastIn[b.lane]; l != nil {
+			x = math.Max(x, l.x+l.w+gap)
+		}
 		b.x = x
 		b.y = b.lane.y + (b.lane.h-b.h)/2
-		x += b.w + gap
+		lastIn[b.lane] = b
+		right = math.Max(right, b.x+b.w)
 	}
-	width := x - gap + u(20)
+	width := right + u(20)
 
 	// Tory: pas z nagłówkiem i linia podziału.
 	for i, l := range lanes {
@@ -369,30 +384,267 @@ func Layout(m *Model, o Options) *scene.Scene {
 			}
 		}
 	}
-	clip := func(bx *box, tx, ty float64) (float64, float64) {
-		cx, cy := bx.x+bx.w/2, bx.y+bx.h/2
-		dx, dy := tx-cx, ty-cy
-		k := math.Min(math.Abs(bx.w/2/dx), math.Abs(bx.h/2/dy))
-		if math.IsInf(k, 0) || math.IsNaN(k) {
-			k = 0
-		}
-		return cx + dx*k, cy + dy*k
+	// Trasy strzałek. W tym samym torze, bez elementu pomiędzy: poziomo od boku do boku. Między
+	// torami: z górnego albo dolnego boku elementu (tego zwróconego do toru celu) pionowo do pasa
+	// przy granicy torów, w którym nie stoją elementy, wzdłuż niego i pionowo w bok celu. Gdy tory
+	// nie sąsiadują, trasa przechodzi przez tory pośrednie w kolumnie wolnej od elementów.
+	// Wyjścia i wejścia na jednym boku rozkładają się wzdłuż niego; strzałki w jednym pasie biegną
+	// na różnych wysokościach.
+	type end struct {
+		e     int
+		other float64 // x drugiego końca, do kolejności na boku
 	}
-	for _, e := range edges {
-		acx, acy := e.a.x+e.a.w/2, e.a.y+e.a.h/2
-		bcx, bcy := e.b.x+e.b.w/2, e.b.y+e.b.h/2
-		x1, y1 := clip(e.a, bcx, bcy)
-		x2, y2 := clip(e.b, acx, acy)
-		dx, dy := x2-x1, y2-y1
+	type route struct {
+		pts      []scene.Point
+		straight bool
+	}
+	sideOf := func(from, to *lane) int { // -1 górny bok, +1 dolny
+		if to.index < from.index {
+			return -1
+		}
+		return 1
+	}
+	between := func(a, c *box) bool { // element w tym samym torze między a i c
+		for _, o := range boxes {
+			if o != a && o != c && o.lane == a.lane && o.x > math.Min(a.x, c.x) && o.x < math.Max(a.x, c.x) {
+				return true
+			}
+		}
+		return false
+	}
+	routes := make([]route, len(edges))
+	type sideKey struct {
+		b    *box
+		side int
+	}
+	ends := map[sideKey][]end{}
+	for i, e := range edges {
+		if e.a.lane == e.b.lane && !between(e.a, e.b) {
+			routes[i].straight = true
+			continue
+		}
+		sa, sb := sideOf(e.a.lane, e.b.lane), sideOf(e.b.lane, e.a.lane)
+		if e.a.lane == e.b.lane { // w tym samym torze z elementem pomiędzy: pasem pod torem
+			sa, sb = 1, 1
+			if e.a.lane.index == len(lanes)-1 {
+				sa, sb = -1, -1
+			}
+		}
+		ends[sideKey{e.a, sa}] = append(ends[sideKey{e.a, sa}], end{i, e.b.x + e.b.w/2})
+		ends[sideKey{e.b, sb}] = append(ends[sideKey{e.b, sb}], end{i, e.a.x + e.a.w/2})
+	}
+	portX := map[[2]int]float64{} // (krawędź, 0 = początek / 1 = koniec) → x na boku
+	for k, list := range ends {
+		sort.SliceStable(list, func(i, j int) bool { return list[i].other < list[j].other })
+		for n, en := range list {
+			x := k.b.x + k.b.w*float64(n+1)/float64(len(list)+1)
+			which := 0
+			if edges[en.e].b == k.b {
+				which = 1
+			}
+			portX[[2]int{en.e, which}] = x
+		}
+	}
+	// Pas przy granicy toru l po stronie side: y środka pasa.
+	channel := func(l *lane, side int) float64 {
+		if side < 0 {
+			return l.y
+		}
+		return l.y + l.h
+	}
+	freeColumn := func(lo, hi float64, from, to *lane) float64 {
+		minL, maxL := math.Min(float64(from.index), float64(to.index)), math.Max(float64(from.index), float64(to.index))
+		clear := func(x float64) bool {
+			for _, o := range boxes {
+				if float64(o.lane.index) > minL && float64(o.lane.index) < maxL && x > o.x-u(8) && x < o.x+o.w+u(8) {
+					return false
+				}
+			}
+			return true
+		}
+		mid := (lo + hi) / 2
+		for d := 0.0; d < width; d += u(4) {
+			for _, x := range []float64{mid + d, mid - d} {
+				if x > headW+u(8) && x < width-u(8) && clear(x) {
+					return x
+				}
+			}
+		}
+		return mid
+	}
+	// Odcinki w pasach: pas (granica torów), zakres x i kierunek pionowych odcinków na końcach
+	// (-1 w górę, +1 w dół od pasa).
+	type run struct {
+		edge, part int
+		c          float64
+		x1, x2     float64
+		d1, d2     int
+		y          float64 // wysokość po rozłożeniu
+	}
+	var runs []*run
+	type plan struct {
+		xa, xb, xm, ya, yb float64
+		two              bool
+		r1, r2           *run
+	}
+	plans := make([]plan, len(edges))
+	for i, e := range edges {
+		if routes[i].straight {
+			continue
+		}
+		sa, sb := sideOf(e.a.lane, e.b.lane), sideOf(e.b.lane, e.a.lane)
+		if e.a.lane == e.b.lane {
+			sa, sb = 1, 1
+			if e.a.lane.index == len(lanes)-1 {
+				sa, sb = -1, -1
+			}
+		}
+		pl := plan{xa: portX[[2]int{i, 0}], xb: portX[[2]int{i, 1}]}
+		pl.ya = e.a.y + e.a.h/2 + float64(sa)*e.a.h/2
+		pl.yb = e.b.y + e.b.h/2 + float64(sb)*e.b.h/2
+		ca, cb := channel(e.a.lane, sa), channel(e.b.lane, sb)
+		if ca == cb {
+			pl.r1 = &run{edge: i, c: ca, x1: pl.xa, x2: pl.xb, d1: -sa, d2: -sb}
+			runs = append(runs, pl.r1)
+		} else {
+			pl.two = true
+			pl.xm = freeColumn(pl.xa, pl.xb, e.a.lane, e.b.lane)
+			pl.r1 = &run{edge: i, c: ca, x1: pl.xa, x2: pl.xm, d1: -sa, d2: sa}
+			pl.r2 = &run{edge: i, part: 1, c: cb, x1: pl.xm, x2: pl.xb, d1: sb, d2: -sb}
+			runs = append(runs, pl.r1, pl.r2)
+		}
+		plans[i] = pl
+	}
+	// Rozłożenie odcinków w pasie: pionowy odcinek jednej strzałki nie może przeciąć poziomego
+	// innej. Pionowy w górę w zakresie odcinka e wymaga, żeby e leżał niżej; w dół — wyżej.
+	// Kolejność z sortowania topologicznego tych warunków (przy cyklu zostaje kolejność tras).
+	byChannel := map[float64][]*run{}
+	var channels []float64
+	for _, r := range runs {
+		if _, ok := byChannel[r.c]; !ok {
+			channels = append(channels, r.c)
+		}
+		byChannel[r.c] = append(byChannel[r.c], r)
+	}
+	for _, c := range channels {
+		list := byChannel[c]
+		n := len(list)
+		above := make([][]bool, n) // above[f][e]: f musi leżeć wyżej niż e
+		for f := range above {
+			above[f] = make([]bool, n)
+		}
+		inside := func(x float64, r *run) bool {
+			return x > math.Min(r.x1, r.x2)+0.5 && x < math.Max(r.x1, r.x2)-0.5
+		}
+		for f, rf := range list {
+			for e, re := range list {
+				if f == e {
+					continue
+				}
+				for _, v := range [][2]float64{{rf.x1, float64(rf.d1)}, {rf.x2, float64(rf.d2)}} {
+					if inside(v[0], re) {
+						if v[1] < 0 {
+							above[f][e] = true
+						} else {
+							above[e][f] = true
+						}
+					}
+				}
+			}
+		}
+		var order []int
+		done := make([]bool, n)
+		for len(order) < n {
+			picked := -1
+			for f := 0; f < n && picked < 0; f++ {
+				if done[f] {
+					continue
+				}
+				free := true
+				for g := 0; g < n; g++ {
+					if !done[g] && g != f && above[g][f] {
+						free = false
+						break
+					}
+				}
+				if free {
+					picked = f
+				}
+			}
+			if picked < 0 { // cykl: pierwszy nieułożony
+				for f := 0; f < n; f++ {
+					if !done[f] {
+						picked = f
+						break
+					}
+				}
+			}
+			done[picked] = true
+			order = append(order, picked)
+		}
+		step := u(6)
+		if n > 1 {
+			step = math.Min(step, 2*u(13)/float64(n-1))
+		}
+		for k, f := range order {
+			list[f].y = c + (float64(k)-float64(n-1)/2)*step
+		}
+	}
+	for i := range edges {
+		if routes[i].straight {
+			continue
+		}
+		pl := plans[i]
+		pts := []scene.Point{{X: pl.xa, Y: pl.ya}, {X: pl.xa, Y: pl.r1.y}}
+		if pl.two {
+			pts = append(pts, scene.Point{X: pl.xm, Y: pl.r1.y}, scene.Point{X: pl.xm, Y: pl.r2.y}, scene.Point{X: pl.xb, Y: pl.r2.y})
+		} else {
+			pts = append(pts, scene.Point{X: pl.xb, Y: pl.r1.y})
+		}
+		pts = append(pts, scene.Point{X: pl.xb, Y: pl.yb})
+		// Bez zbędnych punktów: dwa kolejne w tym samym miejscu albo trzy w jednej linii.
+		var clean []scene.Point
+		for _, p := range pts {
+			if n := len(clean); n > 0 && math.Abs(clean[n-1].X-p.X) < 0.5 && math.Abs(clean[n-1].Y-p.Y) < 0.5 {
+				continue
+			}
+			if n := len(clean); n > 1 {
+				a, b := clean[n-2], clean[n-1]
+				if (math.Abs(a.X-b.X) < 0.5 && math.Abs(b.X-p.X) < 0.5) || (math.Abs(a.Y-b.Y) < 0.5 && math.Abs(b.Y-p.Y) < 0.5) {
+					clean[n-1] = p
+					continue
+				}
+			}
+			clean = append(clean, p)
+		}
+		routes[i].pts = clean
+	}
+	for i, e := range edges {
+		pts := routes[i].pts
+		if routes[i].straight {
+			cy := e.b.y + e.b.h/2
+			x1, x2 := e.a.x+e.a.w, e.b.x
+			if e.b.x < e.a.x {
+				x1, x2 = e.a.x, e.b.x+e.b.w
+			}
+			pts = []scene.Point{{X: x1, Y: cy}, {X: x2, Y: cy}}
+		}
+		if len(pts) < 2 {
+			continue
+		}
+		tip, prev := pts[len(pts)-1], pts[len(pts)-2]
+		dx, dy := tip.X-prev.X, tip.Y-prev.Y
 		l := math.Hypot(dx, dy)
 		if l < u(4) {
 			continue
 		}
 		ux, uy := dx/l, dy/l
 		a, hw := u(10), u(5)
-		sc.Add(scene.Item{Kind: scene.Line, Layer: scene.LayerShape, Role: "eventmodeling-edge", X: x1, Y: y1, X2: x2 - ux*a*0.8, Y2: y2 - uy*a*0.8, Stroke: colorEdge, StrokeWidth: 1.5})
+		line := append([]scene.Point(nil), pts...)
+		line[len(line)-1] = scene.Point{X: tip.X - ux*a*0.8, Y: tip.Y - uy*a*0.8}
+		sc.Add(scene.Item{Kind: scene.Polyline, Layer: scene.LayerShape, Role: "eventmodeling-edge", Points: line, Fill: "none", Stroke: colorEdge, StrokeWidth: 1.5})
 		sc.Add(scene.Item{Kind: scene.Polygon, Layer: scene.LayerShape, Role: "eventmodeling-edge", Fill: colorEdge, Stroke: colorEdge, StrokeWidth: 1,
-			Points: []scene.Point{{X: x2, Y: y2}, {X: x2 - ux*a - uy*hw, Y: y2 - uy*a + ux*hw}, {X: x2 - ux*a + uy*hw, Y: y2 - uy*a - ux*hw}}})
+			Points: []scene.Point{tip, {X: tip.X - ux*a - uy*hw, Y: tip.Y - uy*a + ux*hw}, {X: tip.X - ux*a + uy*hw, Y: tip.Y - uy*a - ux*hw}}})
 	}
 
 	// Elementy: rodzaj małymi literami u góry, nazwa, dane.

@@ -692,9 +692,12 @@ them.
 | explicit relation | `->> 02`, several in a row | EVM-003 |
 | accessibility | `accTitle`, `accDescr` | EVM-001 |
 
-Deliberate differences from Mermaid: an own look (lanes with a header column, one column per frame, elements with
+Deliberate differences from Mermaid: an own look (lanes with a header column, frames from left to right, elements with
 their type, name and data; the type is also told by the shape; neutral by default, `WithColors` gives the usual Event
-Modeling colours); relations are straight arrows; data types (`json`, `figma` and others) are accepted and not
+Modeling colours); each frame starts at least half the previous element's width after its start, so elements in
+different lanes may overlap horizontally and the drawing stays narrow; relations are right-angled arrows running
+along the free strips at the lane boundaries, never under an element and without crossing each other at a shared
+target; data types (`json`, `figma` and others) are accepted and not
 interpreted, as in Mermaid.
 
 ## Agent flow (`agentflow`, `agentflow-beta`)

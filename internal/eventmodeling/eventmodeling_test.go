@@ -1,10 +1,12 @@
 package eventmodeling
 
 import (
+	"math"
 	"strings"
 	"testing"
 
 	"github.com/polestorm/gomermaidgo/internal/font"
+	"github.com/polestorm/gomermaidgo/internal/scene"
 	"github.com/polestorm/gomermaidgo/internal/syntax"
 )
 
@@ -86,5 +88,78 @@ func TestLayout(t *testing.T) {
 	// 1→2, 2→3, 3→4 (jawne; reset bez wywnioskowanego), 4→5: linia i grot każda.
 	if edges != 8 {
 		t.Errorf("%d edge items, want 8", edges)
+	}
+}
+
+// REQ: EVM-004
+// Elementy w różnych torach mogą na siebie zachodzić w poziomie (rysunek jest węższy), w tym samym
+// torze nie; strzałki są łamane pod kątem prostym, nie przechodzą przez elementy i nie krzyżują się
+// przy wspólnym celu.
+func TestCompactColumnsAndRoutes(t *testing.T) {
+	m, err := Parse("eventmodeling\ntf 01 cmd Zglos\ntf 02 evt Zgloszona\ntf 03 evt Uznana\ntf 04 evt Zgloszona\nrf 05 rmo Lista ->> 02 ->> 03 ->> 04\ntf 06 ui Panel")
+	if err != nil {
+		t.Fatal(err)
+	}
+	sc := Layout(m, Options{Measure: font.ApproxTextWidth, FontSize: 16})
+	var boxes []scene.Box
+	var lines [][]scene.Point
+	for _, it := range sc.Items {
+		switch {
+		case it.Role == "eventmodeling-element":
+			boxes = append(boxes, it.Bounds())
+		case it.Role == "eventmodeling-edge" && it.Kind == scene.Polyline:
+			lines = append(lines, it.Points)
+		}
+	}
+	// 01 (polecenie) i 02 (zdarzenie) w różnych torach: 02 zaczyna się przed końcem 01.
+	if boxes[1].X0 >= boxes[0].X1 {
+		t.Errorf("frames in different lanes do not overlap: %v %v", boxes[0], boxes[1])
+	}
+	// 02, 03, 04 w jednym torze: bez zachodzenia.
+	for i := 2; i <= 3; i++ {
+		if boxes[i].X0 < boxes[i-1].X1 {
+			t.Errorf("frames %d and %d in one lane overlap", i, i+1)
+		}
+	}
+	type seg struct{ a, b scene.Point }
+	var segs [][]seg
+	for _, pts := range lines {
+		var ss []seg
+		for k := 1; k < len(pts); k++ {
+			a, b := pts[k-1], pts[k]
+			if math.Abs(a.X-b.X) > 0.5 && math.Abs(a.Y-b.Y) > 0.5 {
+				t.Errorf("diagonal segment %v–%v", a, b)
+			}
+			ss = append(ss, seg{a, b})
+			for _, bx := range boxes {
+				mx, my := (a.X+b.X)/2, (a.Y+b.Y)/2
+				if mx > bx.X0+1 && mx < bx.X1-1 && my > bx.Y0+1 && my < bx.Y1-1 {
+					t.Errorf("segment %v–%v runs through an element", a, b)
+				}
+			}
+		}
+		segs = append(segs, ss)
+	}
+	// Strzałki do modelu odczytu (z trzech zdarzeń) nie krzyżują się.
+	cross := func(h, v seg) bool {
+		if math.Abs(h.a.Y-h.b.Y) > 0.5 || math.Abs(v.a.X-v.b.X) > 0.5 {
+			return false
+		}
+		x, y := v.a.X, h.a.Y
+		return x > math.Min(h.a.X, h.b.X)+0.5 && x < math.Max(h.a.X, h.b.X)-0.5 && y > math.Min(v.a.Y, v.b.Y)+0.5 && y < math.Max(v.a.Y, v.b.Y)-0.5
+	}
+	for i := range segs {
+		for j := range segs {
+			if i == j {
+				continue
+			}
+			for _, h := range segs[i] {
+				for _, v := range segs[j] {
+					if cross(h, v) {
+						t.Errorf("arrows %d and %d cross", i, j)
+					}
+				}
+			}
+		}
 	}
 }
