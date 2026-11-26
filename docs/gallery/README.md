@@ -6,7 +6,7 @@ pictures are made again with `go run ./tools/gallery`.
 
 - [Page fitting](page-fitting.md): the same diagram with and without fitting to A4, folding into rows,
   folding of long chains and staggering of long ranks.
-- [Diagram types](types.md): one diagram of each of the 29 types.
+- [Diagram types](types.md): one diagram of each of the 30 types.
 - [Scripts and symbols](scripts.md): Polish, German, French, Greek, Cyrillic, emoji and symbols with the bundled
   fonts, and Japanese with a font given by the caller.
 

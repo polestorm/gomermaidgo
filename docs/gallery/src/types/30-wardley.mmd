@@ -1,0 +1,14 @@
+wardley-beta
+title Calibration service
+anchor Customer [0.95, 0.65]
+component Online order [0.8, 0.55]
+component Calibration [0.6, 0.35] (build)
+component Accredited lab [0.4, 0.3] (inertia)
+component Reference standards [0.25, 0.6] (buy)
+component Power [0.1, 0.95]
+Customer -> Online order
+Online order -> Calibration
+Calibration -> Accredited lab
+Accredited lab -> Reference standards
+Accredited lab -> Power
+evolve Calibration 0.6

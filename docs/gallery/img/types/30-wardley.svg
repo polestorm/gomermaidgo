@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="902.81" height="639.85" viewBox="-64.97 -50.4 902.81 639.85" role="img" font-family="Arimo, Arial, 'Liberation Sans', sans-serif" font-size="16">
+<rect x="-64.97" y="-50.4" width="902.81" height="639.85" fill="white"/>
+<g fill="#dfe4ea" stroke="#55657a" stroke-width="1">
+<polygon points="287,195 300,217.75 274,217.75"/>
+<polygon points="492,377 505,390 492,403 479,390"/>
+</g>
+<line x1="0" y1="520" x2="0" y2="0" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="0,-2 5,8 -5,8" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<line x1="0" y1="520" x2="820" y2="520" stroke="#3b4754" stroke-width="1.5"/>
+<polygon points="822,520 812,525 812,515" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<g stroke="#c3cad3" stroke-width="1" stroke-dasharray="4 4">
+<line x1="139.4" y1="0" x2="139.4" y2="520"/>
+<line x1="328" y1="0" x2="328" y2="520"/>
+<line x1="574" y1="0" x2="574" y2="520"/>
+</g>
+<g stroke="#55657a" stroke-width="1.2">
+<line x1="525.75" y1="32.89" x2="455.35" y2="99.86"/>
+<line x1="445.93" y1="107.21" x2="292.07" y2="204.79"/>
+<line x1="284.8" y1="213.58" x2="248.2" y2="306.42"/>
+<line x1="251.72" y1="313.81" x2="486.28" y2="388.19"/>
+<line x1="251.76" y1="313.69" x2="773.24" y2="466.31"/>
+</g>
+<line x1="293" y1="208" x2="484" y2="208" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="6 4"/>
+<polygon points="484,208 474,213 474,203" fill="#3b4754" stroke="#3b4754" stroke-width="1"/>
+<circle cx="492" cy="208" r="6" fill="#ffffff" stroke="#3b4754" stroke-width="1.5" stroke-dasharray="3 2"/>
+<g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
+<circle cx="451" cy="104" r="6"/>
+<circle cx="287" cy="208" r="6"/>
+</g>
+<rect x="262" y="301" width="5" height="22" fill="#3b4754"/>
+<g fill="#ffffff" stroke="#3b4754" stroke-width="1.5">
+<circle cx="246" cy="312" r="6"/>
+<circle cx="492" cy="390" r="6"/>
+<circle cx="779" cy="468" r="6"/>
+</g>
+<text x="410" y="-20" text-anchor="middle" font-size="18.4" font-weight="bold" fill="#1b1f24">Calibration service</text>
+<text x="-10" y="260" text-anchor="middle" font-size="13" fill="#55657a" transform="rotate(-90 -10 260)">Value chain</text>
+<g fill="#55657a" text-anchor="end">
+<text x="-6" y="8.55" font-size="13" font-style="italic">Visible</text>
+<text x="-6" y="516" font-size="13" font-style="italic">Invisible</text>
+<text x="820" y="574.2" font-size="13" font-style="italic">Evolution</text>
+</g>
+<g fill="#55657a" text-anchor="middle">
+<text x="69.7" y="539.7" font-size="13" font-weight="bold">Genesis</text>
+<text x="233.7" y="539.7" font-size="13" font-weight="bold">Custom built</text>
+<text x="451" y="539.7" font-size="13" font-weight="bold">Product</text>
+<text x="451" y="555.95" font-size="13" font-style="italic">(+ rental)</text>
+<text x="697" y="539.7" font-size="13" font-weight="bold">Commodity</text>
+<text x="697" y="555.95" font-size="13" font-style="italic">(+ utility)</text>
+</g>
+<text x="502" y="202" font-size="13" font-style="italic" fill="#3b4754">Calibration</text>
+<text x="533" y="31.6" text-anchor="middle" font-weight="bold" fill="#1b1f24">Customer</text>
+<g fill="#1b1f24">
+<text x="461" y="98" font-size="13">Online order</text>
+<text x="297" y="202" font-size="13">Calibration</text>
+<text x="256" y="306" font-size="13">Accredited lab</text>
+<text x="502" y="384" font-size="13">Reference standards</text>
+<text x="789" y="462" font-size="13">Power</text>
+</g>
+</svg>

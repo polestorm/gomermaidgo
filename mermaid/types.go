@@ -15,6 +15,7 @@ import (
 	"github.com/polestorm/gomermaidgo/internal/treemap"
 	"github.com/polestorm/gomermaidgo/internal/treeview"
 	"github.com/polestorm/gomermaidgo/internal/venn"
+	"github.com/polestorm/gomermaidgo/internal/wardley"
 	"github.com/polestorm/gomermaidgo/internal/zenuml"
 )
 
@@ -33,6 +34,7 @@ const (
 	TypeVenn         = "venn"
 	TypeCynefin      = "cynefin"
 	TypeZenUML       = "zenuml"
+	TypeWardley      = "wardley"
 )
 
 // layoutOptions to ustawienia przekazywane układowi typu diagramu.
@@ -145,5 +147,12 @@ var moreTypes = []diagramType{
 		}
 		return sequence.Layout(d, sequence.Options{Measure: o.Measure, FontSize: o.FontSize, FontFamily: o.FontFamily, Background: o.Background,
 			Colors: o.Colors, Shadows: o.Shadows}), nil
+	}},
+	{TypeWardley, []string{"wardley-beta", "wardley"}, func(source string, o layoutOptions) (*scene.Scene, error) {
+		m, err := wardley.Parse(source)
+		if err != nil {
+			return nil, err
+		}
+		return wardley.Layout(m, wardley.Options(o)), nil
 	}},
 }

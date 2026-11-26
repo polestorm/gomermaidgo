@@ -1,0 +1,20 @@
+%% REQ: WARD-001 WARD-002 WARD-003 WARD-004 WARD-005
+%% Tytuł: Przepływy, trend, rozmiar i podwójne nazwy etapów
+%% Sprawdza: nagłówek bez -beta, size, etapy z granicami (@) i podwójnymi nazwami (A / B), dekorator market, przepływy +>, +<, +<>, linia --> i -> z etykietą po średniku, trend -.- (x, y), deakcelerator, komentarz na końcu linii, accTitle.
+wardley
+accTitle: Łańcuch dostaw granulatu
+size [900, 560]
+evolution Pomysł / Prototyp@0.2 -> Na zamówienie@0.45 -> Produkt@0.75 -> Towar / Usługa
+anchor Producent [0.9, 0.55]
+component "Wtryskarka" [0.7, 0.6] (market)  %% własne maszyny
+component "Granulat" [0.45, 0.85]
+component "Laboratorium" [0.4, 0.3]
+component "Transport" [0.2, 0.9]
+Producent -> "Wtryskarka"
+"Wtryskarka" --> "Granulat"
+"Granulat" +> "Transport"
+"Laboratorium" +< "Granulat"
+"Wtryskarka" +<> "Laboratorium"
+"Granulat" -> "Laboratorium"; badanie partii
+"Laboratorium" -.- (0.55, 0.35)
+deaccelerator "Nowe normy" [0.25, 0.4]

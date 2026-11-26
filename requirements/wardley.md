@@ -1,0 +1,10 @@
+# Wymagania: mapa Wardleya
+
+
+| Id | Wymaganie |
+|---|---|
+| WARD-001 | Źródło zaczynające się od `wardley-beta` albo `wardley` daje mapę Wardleya. `title` dodaje tytuł, `size [szerokość, wysokość]` ustala rozmiar planszy. Komentarze `%%`, także na końcu linii, i puste linie są pomijane; `accTitle` i `accDescr` trafiają do `title` i `desc`. |
+| WARD-002 | `component Nazwa [widoczność, ewolucja]` i `anchor Nazwa [widoczność, ewolucja]` (liczby od 0 do 1) to składniki i kotwice; nazwa jest zwykła albo w cudzysłowie. Po położeniu: `label [dx, dy]` przesuwa podpis, dekoratory `(build)`, `(buy)`, `(outsource)`, `(market)`, `(inertia)`. `pipeline Nazwa { component "część" [ewolucja] … }` dodaje potok składnika. |
+| WARD-003 | Zależności i przepływy: `A -> B`, `A --> B`, `A -> B; podpis`, `A -.-> B`, `A +> B`, `A +< B`, `A +<> B`, `A +'podpis'> B`. Końce muszą być składnikami. |
+| WARD-004 | `evolve Nazwa ewolucja` (ruch na osi ewolucji), `Nazwa -.- (x, y)` (trend: x to ewolucja, y widoczność), `evolution Etap -> Etap …` z granicami `@0.4` i podwójnymi nazwami `A / B`, `note "tekst" [w, e]`, `annotations [w, e]` i `annotation N,[w, e] "tekst"`, `accelerator` i `deaccelerator "nazwa" [w, e]`. |
+| WARD-005 | Rysunek: oś widoczności z lewej, oś ewolucji na dole z etapami (domyślnie Genesis, Custom built, Product, Commodity) rozdzielonymi przerywanymi liniami; składniki to kółka z podpisem, kotwice pogrubiony podpis, dekoratory to kształty pod kółkiem, bezwładność gruba kreska; potok to ramka z częściami; ewolucja to przerywana strzałka do kółka z przerywanym obrysem; adnotacje to numerowane kółka i lista. Błąd składni daje błąd z numerem linii i stałym kodem: zły nagłówek, nieznana instrukcja, położenie spoza przedziału od 0 do 1, składnik zdefiniowany dwa razy, odwołanie do nieistniejącego składnika, niezamknięty potok, ponad 300 instrukcji. |

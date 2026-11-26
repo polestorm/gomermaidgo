@@ -650,6 +650,25 @@ unnamed stick figure on the left; annotators other than `@Actor` are shown as a 
 an icon; a comment becomes a note over the message; Markdown in comments is shown as plain text; `par` has one
 section; a reply to a variable after `new` comes from the created participant.
 
+## Wardley map (`wardley-beta`, `wardley`)
+
+| Element | Syntax | Requirement |
+|---|---|---|
+| title, size | `title Text`, `size [900, 560]` | WARD-001 |
+| component | `component Name [visibility, evolution]`, quoted names, `label [dx, dy]`, `(build)`, `(buy)`, `(outsource)`, `(market)`, `(inertia)` | WARD-002 |
+| anchor | `anchor Name [visibility, evolution]` | WARD-002 |
+| pipeline | `pipeline Name { component "part" [evolution] … }` | WARD-002 |
+| link | `A -> B`, `A --> B`, `A -> B; label`, `A -.-> B`, `A +> B`, `A +< B`, `A +<> B`, `A +'label'> B` | WARD-003 |
+| evolution | `evolve Name 0.8`, trend `Name -.- (x, y)`, stages `evolution A -> B@0.4 -> C / D` | WARD-004 |
+| notes and forces | `note "text" [v, e]`, `annotations [v, e]`, `annotation 1,[v, e] "text"`, `accelerator "name" [v, e]`, `deaccelerator "name" [v, e]` | WARD-004 |
+| comment | `%%`, also at the end of a line | WARD-001 |
+| accessibility | `accTitle`, `accDescr` | WARD-001 |
+
+Deliberate differences from Mermaid: an own look (neutral; `WithColors` draws evolution red and forces tinted);
+default stages Genesis, Custom built, Product (+ rental), Commodity (+ utility) with boundaries at 0.17, 0.40 and 0.70;
+names may contain any letters; the positions of `annotations` and `annotation` are read as [visibility, evolution]
+like all other positions; overlapping labels are not moved.
+
 ## Packet diagram (`packet-beta`, `packet`)
 
 | Element | Syntax | Requirement |
