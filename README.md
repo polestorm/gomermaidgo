@@ -54,7 +54,7 @@ which, like this library, has its own parsers and layout.
 | PDF output | 1.7 MB 🥇 | 13.0 MB | no PDF |
 | Diagram types[^types] | 24 of Mermaid's 33 | 33 🥇 | 20 |
 | Syntax coverage | a documented profile; anything outside it is an error with a line number | everything Mermaid accepts | a documented subset per type |
-| Public diagrams[^wild] | 138 of 139 🥇 | 137 of 139 | 123 of 139 |
+| Public diagrams[^wild] | 138 of 139 | 137 of 139 | 123 of 139 |
 | Look | own, made for print; neutral by default | Mermaid's, byte for byte | own; Mermaid's theme names |
 | Page fitting | fit to A4, folding of long diagrams, chains and ranks | none | none |
 | SVG content | basic SVG 1.1 elements, no CSS, no scripts, no `foreignObject`; role classes on request | Mermaid's SVG with CSS and embedded fonts | basic SVG elements, no CSS, no scripts, no `foreignObject` |
@@ -63,7 +63,7 @@ which, like this library, has its own parsers and layout.
 | `mermaid-cli` flags | yes | yes | own flags |
 | Deterministic output[^det] | yes, documented | yes, in our runs | yes, in our runs |
 | License | Apache 2.0 | MIT | MIT |
-| GitHub popularity[^pop] | new | 5 stars, 1 fork | 13 stars, 5 forks |
+| GitHub popularity[^pop] | new | 5 stars, 1 fork | 13 stars, 5 forks 🥇 |
 
 [^ref]: `mmdg` is the reference renderer this library is compared with throughout its tests and reviews.
 [^deps]: Go modules linked into the program (`dep` lines of `go version -m`); program size as built by `go build`.
